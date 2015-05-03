@@ -5,7 +5,12 @@ class SiteController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-	public function actions()
+        public function init() {
+            parent::init();
+            $this->layout = "//layouts/special";
+        }
+	
+         public function actions()
 	{
 		return array(
 			// captcha action renders the CAPTCHA image displayed on the contact page

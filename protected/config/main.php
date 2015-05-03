@@ -68,21 +68,24 @@ return array(
 
 		'user'=>array(
 			// enable cookie-based authentication
+                        'class'=>'WebUser',
 			'allowAutoLogin'=>true,
 		),
-
-		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
+                    'urlFormat' => 'path',
+                    'showScriptName'=>false, 
+                    'rules' => array(
+                            // стандартное правило для обработки '/' как 'site/index'
+                        '' => 'site/index',
+                        // это пример добавления который заработал
+                        //'secondcontroller/<action:.*>'=>'secondcontroller/<action>',
+                        'user/<action:.*>'=>'user/<action>',
+                        //'<action:.*>'=>'site/<action>', //закомментил а то глючило с ним
+                        '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    ),
 		),
-		*/
-
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
 
