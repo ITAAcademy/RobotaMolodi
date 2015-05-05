@@ -34,13 +34,13 @@ return array(
                     'hash' => 'md5',
 
                     # send activation email
-                    'sendActivationMail' => true,
+                    'sendActivationMail' => false,
 
                     # allow access for non-activated users
                     'loginNotActiv' => false,
 
                     # activate user on registration (only sendActivationMail = false)
-                    'activeAfterRegister' => false,
+                    'activeAfterRegister' => true,
 
                     # automatically login from registration
                     'autoLogin' => true,
