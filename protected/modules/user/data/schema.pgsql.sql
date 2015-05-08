@@ -1,1 +1,0 @@
--- No explicit schema is provided - please use the one in the migrations
