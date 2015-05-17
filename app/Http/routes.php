@@ -15,6 +15,8 @@ Route::get('/', 'MainController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('vacancy/{id}',"VacancyController@view");
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
