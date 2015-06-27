@@ -11,11 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Redirect;
+use JsonSchema\Validator;
+
 Route::get('/', 'MainController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('vacancy/{id}',"VacancyController@view");
+//Route::get('vacancy/{id}',"VacancyController@view");
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -23,3 +26,16 @@ Route::controllers([
 ]);
 
 Route::get('nata', function(){return 'Get well, Nataly!';});
+
+$router->resource('Vacancy','VacancyController');
+
+$router->resource('Company','CompanyController');
+
+Route::post('Company/create',function(){
+    $rules = array("min:3");
+    $validator = Validator::make(Input::post('companyName'),$rules);
+
+    if($validator->fails()){
+        return Redirect::to('Company/create')->withErrors($validator);
+    }
+});
