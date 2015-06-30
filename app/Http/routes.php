@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
+use Illuminate\Support\Facades\Input;
 
 Route::get('/', 'MainController@index');
 
@@ -36,6 +37,19 @@ Route::post('Company/create',function(){
     $validator = Validator::make(Input::post('companyName'),$rules);
 
     if($validator->fails()){
-        return Redirect::to('Company/create')->withErrors($validator);
+        return Redirect::to('Company/create') -> withErrors($validator);
     }
 });
+
+//Route::post('Vacancy/create',function()
+//{
+//    $rules = array("min:3");
+//    $validator = Validator::make(Input::post('Position'),$rules);
+//
+//
+//    if($validator->fails())
+//    {
+//
+//        return Redirect::to('Vacancy/create') -> withErrors($validator);
+//    }
+//});

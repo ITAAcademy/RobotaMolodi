@@ -29,7 +29,7 @@ class CreateUserlistTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vacancy_list');
+		Schema::drop('company');
 	}
 
 }

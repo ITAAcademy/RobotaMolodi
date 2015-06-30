@@ -38,7 +38,7 @@ class CompanyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Guard $auth,Company $companyModel, Request $request)
+	public function store(Guard $auth,Company $companyModel,Request $request)
 	{
 
         $this->validate($request,[
@@ -49,22 +49,20 @@ class CompanyController extends Controller {
         $companyEmail = $request['companyEmail'];
 
 
-        if($companyName!=null)
-        {
             $regArray = array();
             $regArray[] = $auth->user();
             $regArray[] = $companyName;
             $regArray[] = $companyEmail;
 
             $companyModel->createCompany($regArray);
-
-            return redirect()->route('Company.index');
+        //dd($_COOKIE['paths']);
+        if($_COOKIE['paths']!=''){
+            return redirect()->route($_COOKIE['paths']);
         }
         else
         {
-            return view('Company.regCompany');
+            return redirect()->route('Company.index');
         }
-
 	}
 
 	/**
@@ -110,5 +108,6 @@ class CompanyController extends Controller {
 	{
 		//
 	}
+
 
 }

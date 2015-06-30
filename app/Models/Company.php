@@ -16,20 +16,14 @@ class Company extends Model {
     protected $table = 'company';
     public function ReadCompany()
     {
-        //$company = DB::table('company');
+
         $company = DB::select('SELECT * FROM company Where 1');
         return $company;
-        //$nameCompany = $company[2];
-        //$_POST['company'] = $nameCompany;
-        //return $company;
-        //dd($company);
-        //$companyTable = DB::table();
-        //$posts = Vacancy::all();
-        //dd($posts);
+
     }
     public function createCompany($array)                                                                               //создание компании
     {
-        //setcookie('color','white');
+
         $date = new\DateTime();
         $companyId = 10;
         $companyName = $array[1];
@@ -39,8 +33,8 @@ class Company extends Model {
 
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
-            setcookie('regCompany',"Компанія з таким ім'ям вже зареєстрована");
-            return false;
+
+            return "Компанія з таким ім'ям вже зареєстрована";
         }
         else{                                                                                                           //если нет такой компании
         DB::table('company')->insert(
@@ -53,8 +47,8 @@ class Company extends Model {
             )
 
         );
-            return true;
-            //setcookie('regCompany',"Компанія зареєстрована") ;
+            return "Компанія зареєстрована";
+
 
         }
     }
@@ -63,9 +57,16 @@ class Company extends Model {
         $companyName = $array[0];
 
         $hasCompany = DB::select('SELECT company_id FROM company WHERE company_id = ?',array($companyName));
-        //dd($hasCompany);
         if($hasCompany)return true;
         else return false;
     }
 
+    public function CountCompany($id)
+    {
+        $countCompany = DB::select('SELECT company_name FROM company WHERE company_id = ?',array($id));
+
+        if($countCompany) return $countCompany;
+
+        else return false;
+    }
 }
