@@ -8,7 +8,7 @@
         <div class="col-sm-5">
             {!! Form::text('vacancyPosition', null, array('class' => 'form-control' )) !!}
         </div>
-        <div ><span>*</span>  </div>
+        <div class="required_field"><span>*</span>  </div>
         </br>
     </div>
     <div class="form-group">

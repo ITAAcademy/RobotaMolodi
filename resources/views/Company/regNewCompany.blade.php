@@ -9,7 +9,7 @@
             <div class="col-sm-5">
                 <input class="form-control"  name="companyName" type="text" >
             </div>
-            <div ><span>*</span> поле обовязкове для заповнення</div>
+            <div class="required_field"><span>*</span> поле обовязкове для заповнення</div>
             </br>
         </div>
 
