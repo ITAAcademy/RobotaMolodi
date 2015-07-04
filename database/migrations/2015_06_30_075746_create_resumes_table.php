@@ -22,7 +22,7 @@ class CreateResumesTable extends Migration {
             $table->integer('position')->nullable();
             $table->string('industry')->nullable();
             $table->string('city')->nullable();
-            $table->sting('salary')->nullable();
+            $table->string('salary')->nullable();
             $table->text('description')->nullable();
 			$table->timestamps();
 		});

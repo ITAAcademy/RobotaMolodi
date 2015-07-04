@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-        $this->call('VacancySeeder');
+//        $this->call('VacancySeeder');
         //$this->call('CompanySeeder');
 		// $this->call('UserTableSeeder');
-        //$this->call('ResumeSeeder');
+        $this->call('ResumeSeeder');
 	}
 
 }
@@ -68,7 +68,7 @@ class ResumeSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('Resumes')->delete();
+        DB::table('resumes')->delete();
         Resume::create([
             'name_u'=> 'Сергій Коломієць',
             'telephone'=> '0963363495',
