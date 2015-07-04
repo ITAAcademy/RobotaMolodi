@@ -62,6 +62,9 @@ mark {
   background: #ff0;
   color: #000;
 }
+.required_field {
+  color:red;
+}
 small {
   font-size: 80%;
 }
@@ -4985,6 +4988,7 @@ a.list-group-item-danger.active:focus {
   padding: 15px;
 }
 .panel-heading {
+  //display:inline-block;
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-top-right-radius: 3px;

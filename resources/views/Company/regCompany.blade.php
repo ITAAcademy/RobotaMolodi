@@ -8,7 +8,7 @@
         <div class="col-sm-5">
             {!! Form::text('companyName', null, array('class' => 'form-control' )) !!}
         </div>
-        <div ><span>*</span><?php echo $errors->first('companyName'); ?>  </div>
+        <div class="required_field"><span>*</span><?php echo $errors->first('companyName'); ?>  </div>
         </br>
     </div>
 

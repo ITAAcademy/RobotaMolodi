@@ -39,3 +39,6 @@ Route::post('Company/create',function(){
         return Redirect::to('Company/create')->withErrors($validator);
     }
 });
+
+get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
+$router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
