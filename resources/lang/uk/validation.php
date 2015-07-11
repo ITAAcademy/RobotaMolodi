@@ -89,6 +89,10 @@ return [
 		'attribute-name' => [
 			'rule-name' => 'custom-message',
 		],
+        'email' => [
+            'required' => 'Поле обов\'язкове для заповнення!',
+            'email' => 'Введіть корректний email!',
+        ],
 	],
 
 	/*
