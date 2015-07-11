@@ -53,7 +53,19 @@
 		</div>
 	</nav>
 
-	@yield('content')
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div style="display:inline-block;">
+                        @yield('title')</div>
+                    </div>
+                <div class="panel-body">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

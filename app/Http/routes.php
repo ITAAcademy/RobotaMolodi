@@ -41,6 +41,7 @@ Route::post('Company/create',function(){
     }
 });
 
+
 //Route::post('Vacancy/create',function()
 //{
 //    $rules = array("min:3");
@@ -53,3 +54,7 @@ Route::post('Company/create',function(){
 //        return Redirect::to('Vacancy/create') -> withErrors($validator);
 //    }
 //});
+
+get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
+$router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
+

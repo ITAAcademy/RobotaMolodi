@@ -9,7 +9,11 @@
         <div class="col-sm-5">
             {!! Form::text('Position', null, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
+
         <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше трьох символів'); ?></span> </div>
+
+        <div class="required_field"><span>*</span>  </div>
+
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">

@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vacancy;
 use \App\Models\Company;
+use \App\Models\Resume;
 
 class DatabaseSeeder extends Seeder {
 
@@ -16,9 +17,10 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-        //$this->call('VacancySeeder');
-        $this->call('CompanySeeder');
+//        $this->call('VacancySeeder');
+        //$this->call('CompanySeeder');
 		// $this->call('UserTableSeeder');
+        $this->call('ResumeSeeder');
 	}
 
 }
@@ -60,4 +62,45 @@ class CompanySeeder extends Seeder
         ]);
     }
 
+}
+
+class ResumeSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('resumes')->delete();
+        Resume::create([
+            'name_u'=> 'Сергій Коломієць',
+            'telephone'=> '0963363495',
+            'email'=> '3sorey4@gmail.com',
+            'position'=> 1,
+            'industry'=> 'Ювелірна' ,
+            'city'=> 'Вінниця',
+            'salary'=> 20500,
+            'description'=> 'Створення програмного забезпечення для штампу на дорогоцінних металах.',
+        ]);
+
+        Resume::create([
+            'name_u'=> 'Сергій Коломієць',
+            'telephone'=> '0963363495',
+            'email'=> '3sorey4@gmail.com',
+            'position'=> 2,
+            'industry'=> 'Харчова' ,
+            'city'=> 'Вінниця',
+            'salary'=> 20500,
+            'description'=> 'Створення програмного забезпечення для конвеєрного виробництва.',
+        ]);
+
+        Resume::create([
+            'name_u'=> 'Сергій Коломієць',
+            'telephone'=> '0963363495',
+            'email'=> '3sorey4@gmail.com',
+            'position'=> 3,
+            'industry'=> 'Шкіряна' ,
+            'city'=> 'Вінниця',
+            'salary'=> 20500,
+            'description'=> 'Створення програми для обчислення розмірів тканин.',
+        ]);
+
+    }
 }
