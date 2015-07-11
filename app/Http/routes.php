@@ -28,9 +28,9 @@ Route::controllers([
 
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
-$router->resource('Vacancy','VacancyController');
+$router->resource('Vacancy','Vacancy\VacancyController');
 
-$router->resource('Company','CompanyController');
+$router->resource('Company','Company\CompanyController');
 
 Route::post('Company/create',function(){
     $rules = array("min:3");

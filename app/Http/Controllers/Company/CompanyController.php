@@ -1,17 +1,17 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Company;
 
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use View;
 use Validator;
-//use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Contracts\Auth\Guard;
 use App\Http\Controllers\Auth;
-use Resources\Views;
+//use Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
-
-class CompanyController extends Controller {
+use Illuminate\Support\Facades\Redirect;
+class CompanyController extends Controller  {
 
 	/**
 	 * Display a listing of the resource.
@@ -30,8 +30,15 @@ class CompanyController extends Controller {
 	 */
 	public function create(Company $company)
 	{
-        return view('Company.regCompany');
-	}
+        $company = ' ';
+
+       // dd($company);
+        if(Session::get('company') != '')
+        {
+            $company = Session::get('company');
+        }
+        return view('Company.regCompany',['company' => $company]);
+    }
 
 	/**
 	 * Store a newly created resource in storage.
@@ -49,20 +56,21 @@ class CompanyController extends Controller {
         $companyEmail = $request['companyEmail'];
 
 
+            $hasCompany = $companyModel->hasCompany(array($companyName));
+
+            if($hasCompany)
+            {
+                return Redirect::to('Company/create')->with('company', 'Така компанія вже зареєстрована');
+            }
+        else{
             $regArray = array();
-            $regArray[] = $auth->user();
-            $regArray[] = $companyName;
-            $regArray[] = $companyEmail;
+            $regArray["id"] = 10;//$auth->user();
+            $regArray["companyName"] = $companyName;
+            $regArray["companyEmail"] = $companyEmail;
 
             $companyModel->createCompany($regArray);
-        //dd($_COOKIE['paths']);
-        if($_COOKIE['paths']!=''){
-            return redirect()->route($_COOKIE['paths']);
-        }
-        else
-        {
-            return redirect()->route('Company.index');
-        }
+            return Redirect::to('Vacancy/create');
+            }
 	}
 
 	/**

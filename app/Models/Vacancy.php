@@ -1,11 +1,11 @@
 <?php namespace App\Models;
 
-
+use Eloquent;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
-class Vacancy extends Model {
+class Vacancy extends Eloquent {
 
 
     protected $table = 'vacancies';

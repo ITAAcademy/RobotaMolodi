@@ -1,14 +1,16 @@
-@extends ('NewVacancy/layout')
+@extends ('NewVacancy/users')
 
 @section('contents')
 
+
     {!!Form::open(['route' => 'Company.store'])!!}
+    <h3>Створення компанії</h3>
     <div class="form-group" >
         <label for="sector" class="col-sm-2 control-label">Назва компаніїї</label>
         <div class="col-sm-5">
             {!! Form::text('companyName', null, array('class' => 'form-control' )) !!}
         </div>
-        <div ><span>*</span><?php echo $errors->first('companyName','поле має містити не менше трьох символів'); ?>  </div>
+        <div ><span>* <?php echo $errors->first('companyName','поле має містити не менше трьох символів'); ?>  </span> {{$company}}</div>
         </br>
     </div>
 
