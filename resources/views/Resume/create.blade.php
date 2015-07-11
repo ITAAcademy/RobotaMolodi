@@ -11,4 +11,4 @@
     {!! Form::open(['route' => 'resume.store']) !!}
         @include('Resume._form')
     {!!Form::close()!!}
-@endsection
+@stop
