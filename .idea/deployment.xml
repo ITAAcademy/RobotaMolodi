@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="RM">
+  <component name="PublishConfigData" serverName="RobotaMolodi">
     <serverData>
-      <paths name="RM">
+      <paths name="RobotaMolodi">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="RobotaMolodi" />
+            <mapping local="$PROJECT_DIR$" web="GitHub/Git" />
           </mappings>
         </serverdata>
       </paths>

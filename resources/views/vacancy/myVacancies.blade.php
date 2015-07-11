@@ -1,6 +1,6 @@
-@extends ('NewVacancy/layout')
+@extends ('app')
 
-@section ('contents')
+@section ('content')
 
     <div>
         <ul class="nav nav-tabs">
@@ -8,8 +8,6 @@
 
         </ul>
     </div>
-
-
 
     <div>
         <ul class="nav nav-tabs">
@@ -21,6 +19,7 @@
 
         </ul>
     </div>
+    @yield('contents')
 
     <!--<address>
         foreach($vacancies as $vacancy)

@@ -14,9 +14,10 @@ class CreateUserlistTable extends Migration {
 	{
 		Schema::create('company',function(Blueprint $table)
 		{
-			$table->integer('company_id');
+			$table->increments('id');
 			$table->string('company_name');
 			$table->string('company_email');
+            $table->integer('users_id');
 			$table->rememberToken();
 			$table->timestamps();	
 		});
@@ -29,7 +30,7 @@ class CreateUserlistTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vacancy_list');
+		Schema::drop('company');
 	}
 
 }
