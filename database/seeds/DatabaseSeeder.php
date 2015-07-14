@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-//        $this->call('VacancySeeder');
-        //$this->call('CompanySeeder');
+     $this->call('VacancySeeder');
+        $this->call('CompanySeeder');
 		// $this->call('UserTableSeeder');
         $this->call('ResumeSeeder');
 	}
@@ -30,14 +30,14 @@ class VacancySeeder extends Seeder
 {
     public function Run()
     {
-        $id = '3';
+        //$id = '3';
         $branch = "sasas";
         $organisation = "org2";
 
         DB::table('vacancies')->delete();
         Vacancy::create([
-            "company_id" => $id,
-            "bfranch"    => $branch,
+            //"id" => $id,
+            "branch"    => $branch,
             "organisation"=> $organisation,
             "date_field"=>"12.01.123",
             "salary"=>"3000",
@@ -56,7 +56,7 @@ class CompanySeeder extends Seeder
         $company_email = "1989alpan@gmail.com";
         //DB::table("company")->delete();
         Company::create([
-            "company_id" => $company_id,
+            //"id" => $company_id,
             "company_name" =>$company_name,
             "company_email" => $company_email
         ]);

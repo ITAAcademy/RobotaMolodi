@@ -8,30 +8,30 @@
 
 namespace App\Models;
 
-use Eloquent;
-use DB;
-//use Illuminate\Database\Eloquent;
 use Illuminate\Database\Eloquent\Model;
-class Company extends Eloquent {
+use DB;
+
+class Company extends Model {
 
     protected $table = 'company';
+    protected $fillable = ['position','company_id','branch', 'organisation', 'date_field', 'salary','city', 'description'];
     public function ReadCompany()
     {
 
-        $company = Company::all();//DB::select('SELECT * FROM company Where 1');
+        $company = Company::all();
         return $company;
 
     }
     public function createCompany($array)                                                                               //создание компании
     {
         $date = new\DateTime();
-        //$companyId = 10;
+
         $usersid = $array["id"];
         $companyName = $array["companyName"];
         $companyEmail = $array["companyEmail"];
 
-        $hasCompany = Company::find($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
-        //dd($hasCompany);
+        $hasCompany = Company::hasMany($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
+        dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
 

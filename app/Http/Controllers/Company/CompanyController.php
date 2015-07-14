@@ -63,12 +63,13 @@ class CompanyController extends Controller  {
                 return Redirect::to('Company/create')->with('company', 'Така компанія вже зареєстрована');
             }
         else{
-            $regArray = array();
-            $regArray["id"] = 10;//$auth->user();
-            $regArray["companyName"] = $companyName;
-            $regArray["companyEmail"] = $companyEmail;
-
-            $companyModel->createCompany($regArray);
+//            $regArray = array();
+//            $regArray["id"] = 10;//$auth->user();
+//            $regArray["companyName"] = $companyName;
+//            $regArray["companyEmail"] = $companyEmail;
+            //$resumeModel->create($request->all());
+            //dd($request->all());
+            $companyModel->create($request->all());
             return Redirect::to('Vacancy/create');
             }
 	}

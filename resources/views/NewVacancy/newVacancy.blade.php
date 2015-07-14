@@ -20,6 +20,7 @@
     <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
     <div class="col-sm-5">
         <select class="form-control" id="selectGaluz" name="Galuz">
+
             <option>1</option>
             <option>2</option>
             <option>3</option>
