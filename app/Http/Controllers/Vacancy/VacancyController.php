@@ -45,7 +45,7 @@ class VacancyController extends Controller {
             return view('NewVacancy.newVacancy',['companies' => $countCompany]);
         }
         else{
-            return redirect()->route('Company.create');
+            return redirect()->route('company.create');
 
             }
 	}
@@ -95,7 +95,7 @@ class VacancyController extends Controller {
         }
         else
         {
-            redirect()->route('Company/Company.create');
+            redirect()->route('company/company.create');
 
         }
 

@@ -10,11 +10,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Eloquent;
 
-class Company extends Model {
+class Company extends Eloquent {
 
     protected $table = 'company';
-    protected $fillable = ['position','company_id','branch', 'organisation', 'date_field', 'salary','city', 'description'];
+    protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
     public function ReadCompany()
     {
 
@@ -22,6 +23,12 @@ class Company extends Model {
         return $company;
 
     }
+
+    public function Many()
+    {
+        return $this->belongsTo('company_name');
+    }
+
     public function createCompany($array)                                                                               //создание компании
     {
         $date = new\DateTime();
@@ -34,7 +41,6 @@ class Company extends Model {
         dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
-
             return "Компанія з таким ім'ям вже зареєстрована";
         }
         else{                                                                                                           //если нет такой компании
@@ -57,7 +63,7 @@ class Company extends Model {
     {
         $companyName = $array[0];
 
-        $hasCompany = DB::select('SELECT company_name FROM company WHERE company_name = ?',array($companyName));
+        $hasCompany = Company::where('company_name','=',$companyName);//DB::select('SELECT company_name FROM company WHERE company_name = ?',array($companyName));
         if($hasCompany)return true;
         else return false;
     }

@@ -38,6 +38,7 @@ class CompanyController extends Controller  {
             $company = Session::get('company');
         }
         return view('Company.regCompany',['company' => $company]);
+
     }
 
 	/**
@@ -49,28 +50,37 @@ class CompanyController extends Controller  {
 	{
 
         $this->validate($request,[
-            'companyName' => 'required|min:3',
+            'company_name' => 'required|min:3',
         ]);
 
-        $companyName = $request['companyName'];
-        $companyEmail = $request['companyEmail'];
+            //$companyName = $request['companyName'];
+            //dd(Company::all());
 
+            //$companies = $request->all();
+            //$companies['users_id'] = $auth->user()->getAuthIdentifier();
+            //dd($companies);
 
-            $hasCompany = $companyModel->hasCompany(array($companyName));
+            //$qq = $request->all();
+            //$qq['user_id'] = $auth->user()->getAuthIdentifier();
+            //dd(Company::all());
+            //dd($qq);
+
+            $hasCompany = $companyModel->hasCompany(array($request['company_name']));
 
             if($hasCompany)
             {
-                return Redirect::to('Company/create')->with('company', 'Така компанія вже зареєстрована');
+                return Redirect::to('company/create')->with('company', 'Така компанія вже зареєстрована');
             }
-        else{
-//            $regArray = array();
-//            $regArray["id"] = 10;//$auth->user();
-//            $regArray["companyName"] = $companyName;
-//            $regArray["companyEmail"] = $companyEmail;
-            //$resumeModel->create($request->all());
-            //dd($request->all());
-            $companyModel->create($request->all());
-            return Redirect::to('Vacancy/create');
+            else{
+
+                $companies = $companyModel;
+                $companies->company_name = $request['company_name'];
+                $companies->company_email = $request['company_email'];
+                $companies->users_id = $auth->user()->getAuthIdentifier();
+
+                $companies->save();
+                $companyModel->create($request->all());
+            return Redirect::to('vacancy/create');
             }
 	}
 

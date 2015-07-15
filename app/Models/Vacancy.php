@@ -9,7 +9,7 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-
+    protected $fillable = ['position','company_id','branch', 'organisation', 'date_field', 'salary','city', 'description'];
 
     public function ReadCompany()
     {

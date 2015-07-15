@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    {!!Form::open(['route' => 'Vacancy.store'])!!}
+    {!!Form::open(['route' => 'vacancy.store'])!!}
     <h3>Створення вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
@@ -12,14 +12,14 @@
 
         <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше трьох символів'); ?></span> </div>
 
-        <div class="required_field"><span>*</span>  </div>
+
 
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
     <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
     <div class="col-sm-5">
-        <select class="form-control" id="selectGaluz" name="Galuz">
+        <select class="form-control" id="selectGaluz" name="branch">
 
             <option>1</option>
             <option>2</option>
