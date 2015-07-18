@@ -12,7 +12,7 @@ class CreateResumesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('resumes', function(Blueprint $table)
+		Schema::create('resumes', function(Blueprint $table) // Створення талциці в БД
 		{
 			$table->increments('id');
             $table->integer('id_u');
@@ -22,7 +22,7 @@ class CreateResumesTable extends Migration {
             $table->string('position')->nullable();
             $table->string('industry')->nullable();
             $table->string('city')->nullable();
-            $table->string('salary')->nullable();
+            $table->integer('salary')->nullable();
             $table->text('description')->nullable();
 			$table->timestamps();
 		});

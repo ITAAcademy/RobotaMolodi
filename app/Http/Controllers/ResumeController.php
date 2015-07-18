@@ -9,20 +9,20 @@ use App\Models\Resume;
 use App\Models\City;
 use App\Models\Industry;
 
-class ResumeController extends Controller {
+class ResumeController extends Controller {// Клас по роботі з резюме
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index(Resume $resumeModel)
+	public function index(Resume $resumeModel)//Output all resumes
 	{
-        $resumes = $resumeModel->getResumes();
+        $resumes = $resumeModel->getResumes(); //Выборка с базы через модель Resumes
 
         //$resumes = Resume::all();
         //dd($resumes);
-		return  view('Resume.myResumes', ['resumes'=> $resumes]);
+		return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
 	}
 
 	/**
@@ -30,7 +30,7 @@ class ResumeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create(City $cityModel, Industry $industryModel)
+	public function create(City $cityModel, Industry $industryModel)// Create new resume
 	{
         $cities = $cityModel->getCities();
         $industries = $industryModel->getIndustries();
@@ -43,7 +43,7 @@ class ResumeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Resume $resumeModel, CreateNewResume $request)
+	public function store(Resume $resumeModel, CreateNewResume $request)//Save resume in DB
 	{
         //dd($request->all());
         $resumeModel->create($request->all());

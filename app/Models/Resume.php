@@ -9,8 +9,7 @@ class Resume extends Model {
 
     public function getResumes()
     {
-        $resumes = $this->latest('id')->get();
-
+        $resumes = $this->latest('id')->get();//Беремо із бази всі дані і сортуємо за спаданням по id
         return $resumes;
     }
 

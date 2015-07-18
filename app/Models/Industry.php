@@ -6,11 +6,9 @@ class Industry extends Model {
 
     protected $table = 'industries';
 
-    public $timestamps = false;
-
     public function getIndustries()
     {
-        $industries = $this->latest('id')->get();
+        $industries = $this->latest()->get();
 
         return $industries;
     }

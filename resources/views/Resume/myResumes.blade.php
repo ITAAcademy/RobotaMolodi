@@ -9,7 +9,7 @@
 
 @section('content')
 
-    @foreach($resumes as $resume)
+    @foreach($resumes as $resume) <!-- Прийом данних і вибірка необхідних полів і значень -->
         <article>
             <h2>{!!$resume->position!!}</h2>
             <p>

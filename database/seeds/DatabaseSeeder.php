@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('VacancySeeder');
         $this->call('CompanySeeder');
 		//$this->call('UserTableSeeder');
-        $this->call('ResumeSeeder');
+        $this->call('ResumeSeeder'); // Заповнення таблиці resumes даними
         $this->call('CitySeeder');
         $this->call('IndustrySeeder');
 	}
@@ -68,7 +68,7 @@ class CompanySeeder extends Seeder
 
 }
 
-class ResumeSeeder extends Seeder
+class ResumeSeeder extends Seeder  // Заповнення таблиці resumes даними
 {
     public function run()
     {
@@ -80,7 +80,7 @@ class ResumeSeeder extends Seeder
             'position'=> 'Розробник програмного забезпечення',
             'industry'=> 'Ювелірна' ,
             'city'=> 'Вінниця',
-            'salary'=> 20500,
+            'salary'=> 20100,
             'description'=> 'Створення програмного забезпечення для штампу на дорогоцінних металах.',
         ]);
 
@@ -91,7 +91,7 @@ class ResumeSeeder extends Seeder
             'position'=> 'Програміст С++',
             'industry'=> 'Харчова' ,
             'city'=> 'Вінниця',
-            'salary'=> 20500,
+            'salary'=> 20300,
             'description'=> 'Створення програмного забезпечення для конвеєрного виробництва.',
         ]);
 
@@ -121,32 +121,32 @@ class CitySeeder extends Seeder
     public function run()
     {
         DB::table("cities")->delete();
-        City::create(["name" => "Винница"]);
-        City::create(["name" => "Днепропетровск"]);
-        City::create(["name" => "Донецк"]);
+        City::create(["name" => "Вінниця"]);
+        City::create(["name" => "Дніпропетровськ"]);
+        City::create(["name" => "Донецьк"]);
         City::create(["name" => "Житомир"]);
-        City::create(["name" => "Запорожье"]);
-        City::create(["name" => "Ивано-Франковск"]);
-        City::create(["name" => "Киев"]);
-        City::create(["name" => "Кировоград"]);
-        City::create(["name" => "Луганск"]);
-        City::create(["name" => "Луцк"]);
-        City::create(["name" => "Львов"]);
-        City::create(["name" => "Николаев"]);
-        City::create(["name" => "Одесса"]);
+        City::create(["name" => "Запоріжжя"]);
+        City::create(["name" => "Івано-Франківськ"]);
+        City::create(["name" => "Київ"]);
+        City::create(["name" => "Кіровоград"]);
+        City::create(["name" => "Луганськ"]);
+        City::create(["name" => "Луцьк"]);
+        City::create(["name" => "Львів"]);
+        City::create(["name" => "Миколаїв"]);
+        City::create(["name" => "Одеса"]);
         City::create(["name" => "Полтава"]);
-        City::create(["name" => "Ровно"]);
+        City::create(["name" => "Рівне"]);
         City::create(["name" => "Севастополь"]);
-        City::create(["name" => "Симферополь"]);
-        City::create(["name" => "Сумы"]);
-        City::create(["name" => "Тернополь"]);
+        City::create(["name" => "Сімферополь"]);
+        City::create(["name" => "Суми"]);
+        City::create(["name" => "Тернопіль"]);
         City::create(["name" => "Ужгород"]);
-        City::create(["name" => "Харьков"]);
+        City::create(["name" => "Харків"]);
         City::create(["name" => "Херсон"]);
-        City::create(["name" => "Хмельницкий"]);
-        City::create(["name" => "Черкассы"]);
-        City::create(["name" => "Чернигов"]);
-        City::create(["name" => "Черновцы"]);
+        City::create(["name" => "Хмельницький"]);
+        City::create(["name" => "Черкаси"]);
+        City::create(["name" => "Чернігів"]);
+        City::create(["name" => "Чернівці"]);
     }
 }
 class IndustrySeeder extends Seeder
