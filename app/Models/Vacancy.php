@@ -1,14 +1,16 @@
 <?php namespace App\Models;
 
-use Eloquent;
-use DB;
 use Illuminate\Database\Eloquent\Model;
+use DB;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
-class Vacancy extends Eloquent {
+class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
+    protected $fillable = ['position','company_id','branch','organisation', 'date_field', 'salary','city', 'description'];
+
 
 
     public function ReadCompany()
@@ -19,7 +21,7 @@ class Vacancy extends Eloquent {
     public function CreateVacancy($array)
     {
 
-        $company_id = 13;
+        //$company_id = 13;
         $position = $array['position'];
         $galuz = $array['galuz'];
         $organisation = $array['organisation'];
@@ -32,7 +34,7 @@ class Vacancy extends Eloquent {
 
         DB::table('vacancies')->insert(
             array(
-                'company_id' => $company_id,
+                //'company_id' => $company_id,
                 'position' => $position,
                 'branch' => $galuz,
                 'organisation' => $organisation,

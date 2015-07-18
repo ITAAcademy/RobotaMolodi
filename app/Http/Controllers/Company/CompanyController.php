@@ -38,6 +38,7 @@ class CompanyController extends Controller  {
             $company = Session::get('company');
         }
         return view('Company.regCompany',['company' => $company]);
+
     }
 
 	/**
@@ -48,28 +49,32 @@ class CompanyController extends Controller  {
 	public function store(Guard $auth,Company $companyModel,Request $request)
 	{
 
+
         $this->validate($request,[
-            'companyName' => 'required|min:3',
+            'company_name' => 'required|min:3',
         ]);
-
-        $companyName = $request['companyName'];
-        $companyEmail = $request['companyEmail'];
-
-
-            $hasCompany = $companyModel->hasCompany(array($companyName));
-
+            $user = $auth->user();
+            //$companyModel->
+            //dd($request['company_name']);
+            //dd(Company::all());
+            $hasCompany = $companyModel->hasCompany($user->getAuthIdentifier());
+            //dd($hasCompany);
             if($hasCompany)
             {
-                return Redirect::to('Company/create')->with('company', 'Така компанія вже зареєстрована');
+                return Redirect::to('company/create')->with('company', 'Така компанія вже зареєстрована');
             }
-        else{
-            $regArray = array();
-            $regArray["id"] = 10;//$auth->user();
-            $regArray["companyName"] = $companyName;
-            $regArray["companyEmail"] = $companyEmail;
+            else{
 
-            $companyModel->createCompany($regArray);
-            return Redirect::to('Vacancy/create');
+                $companies = $companyModel;
+                $companies->company_name = $request['company_name'];
+                $companies->company_email = $request['company_email'];
+                //dd($auth->user()->getAuthIdentifier());
+
+                $companies->users_id = $auth->user()->getAuthIdentifier();
+
+                $companies->save();
+                //$companyModel->create($request->all());
+            return Redirect::to('vacancy/create');
             }
 	}
 

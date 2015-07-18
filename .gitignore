@@ -3,3 +3,5 @@
 .env
 /nbproject/private/
 adminer.php
+/
+.idea/
