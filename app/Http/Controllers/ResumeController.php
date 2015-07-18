@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 use App\Models\Resume;
+use App\Models\City;
+use App\Models\Industry;
 
 class ResumeController extends Controller {
 
@@ -14,9 +16,11 @@ class ResumeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Resume $resumeModel)
 	{
-        $resumes = Resume::all();
+        $resumes = $resumeModel->getResumes();
+
+        //$resumes = Resume::all();
         //dd($resumes);
 		return  view('Resume.myResumes', ['resumes'=> $resumes]);
 	}
@@ -26,9 +30,12 @@ class ResumeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(City $cityModel, Industry $industryModel)
 	{
-		return view('Resume.create');
+        $cities = $cityModel->getCities();
+        $industries = $industryModel->getIndustries();
+
+		return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries]);
 	}
 
 	/**
@@ -36,7 +43,7 @@ class ResumeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Resume $resumeModel, Request $request)
+	public function store(Resume $resumeModel, CreateNewResume $request)
 	{
         //dd($request->all());
         $resumeModel->create($request->all());

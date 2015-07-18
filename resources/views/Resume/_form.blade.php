@@ -1,54 +1,59 @@
-<div class="form-group">
-    {!! Form::label("Прізвище та ім'я") !!}
+<div class="form-group {{$errors-> has('name_u') ? 'has-error' : ''}}">
+    {!! Form::label("Прізвище та ім'я") !!} <span class="required_field">*</span>
     {!! Form::text('name_u', null, ['class'=>'form-control']) !!}
+    {!! $errors->first('name_u', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
     {!! Form::label('Телефон') !!}
     {!! Form::text('telephone', null, ['class'=>'form-control']) !!}
 </div>
-<div class="form-group">
-    {!! Form::label('Електронна пошта') !!}
+<div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}">
+    {!! Form::label('Електронна пошта') !!} <span class="required_field">*</span>
     {!! Form::text('email', null, ['class'=>'form-control']) !!}
+    {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
 </div>
-<div class="form-group">
-    {!! Form::label('position', 'Позиція') !!}
+<div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
+    {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span>
     {!! Form::text('position', null, ['class'=>'form-control']) !!}
+    {!! $errors->first('position', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
+
     {!! Form::label('Місто') !!}
-    {!! Form::macro('myField', function()
+    {!! Form::macro('myField', function($cities)
     {
-        return '<select name="city" class="form-control" id="selectGaluz">
-            <option>Вінниця</option>
-            <option>Київ</option>
-            <option>Одеса</option>
-            <option>Харків</option>
-            <option>Львів</option>
-        </select>';
+        $resultString = "<select name='city' class='form-control' id='selectCity'>";
+        $optionsArray = array();
+
+        foreach($cities as $city)
+        {
+            $optionArray[] = "<option>".$city->name."</option>";
+        }
+        $resultString = $resultString.join("\n",$optionArray). "</select>";
+        return $resultString;
     }) !!}
-      {!! Form::myField('city', ['class'=>'form-control']) !!}
-    <!-- {!! Form::text('industry',null, ['class'=>'form-control']) !!} -->
+      {!! Form::myField($cities, ['class'=>'form-control']) !!}
 </div>
+
 <div class="form-group">
     {!! Form::label('Галузь') !!}
     {!! Form::macro('myField', function()
     {
-    return '<select name="industry" class="form-control" id="selectGaluz">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+    return '<select name="industry" class="form-control" id="selectIndustry">
+            <option>Інформаційні технології</option>
+            <option>Керівництво/топ-менеджмент</option>
+            <option>Менеджери/керівники середньої ланки</option>
+            <option>Освіта/наука/виховання</option>
+            <option>Екологія/охорона навколишнього середовища</option>
         </select>';
     }) !!}
     {!! Form::myField('industry', ['class'=>'form-control']) !!}
-    <!-- {!! Form::text('industry',null, ['class'=>'form-control']) !!} -->
 </div>
 <div class="form-group">
     {!! Form::label('Зарплата(грн*)') !!}
     {!! Form::macro('myField', function()
     {
-        return '<select  name="salary" class="form-control" id="selectGaluz">
+        return '<select  name="salary" class="form-control" id="selectSalary">
             <option>1000-1500</option>
             <option>1500-2000</option>
             <option>2000-2500</option>
@@ -63,11 +68,14 @@
         </select>';
     }) !!}
     {!! Form::myField('salary', ['class'=>'form-control']) !!}
-    <!-- {!! Form::text('industry',null, ['class'=>'form-control']) !!} -->
+</div>
+<div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">
+    {!! Form::label('Опис') !!} <span class="required_field">*</span>
+    {!! Form::textarea('description',null, ['class'=>'form-control']) !!}
+    {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Опис') !!}
-    {!! Form::textarea('description',null, ['class'=>'form-control']) !!}
+    <span class="required_field">*</span> – Обов'язкові для заповнення.
 </div>
 <div class="form-group">
     {!! Form::submit('Зберегти', ['class'=>'btn btn-primary']) !!}
