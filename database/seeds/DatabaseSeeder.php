@@ -41,7 +41,7 @@ class VacancySeeder extends Seeder
         DB::table('vacancies')->delete();
         Vacancy::create([
             "company_id" => $id,
-            "bfranch"    => $branch,
+            "branch"    => $branch,
             "organisation"=> $organisation,
             "date_field"=>"12.01.123",
             "salary"=>"3000",
