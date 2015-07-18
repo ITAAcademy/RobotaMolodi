@@ -7,7 +7,8 @@ use Illuminate\Contracts\Auth\Guard;
 use App\Models\Company;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+//use Illuminate\View\View;
+use View;
 
 class VacancyController extends Controller {
 
@@ -19,13 +20,22 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $guard)
 	{
-        //dd("asdsada");
+
         setcookie('paths','');
-        $logId = 10;//$guard->user('id');
 
         $vacancies = Vacancy::all();
 
-       return view('vacancy.myVacancies',['vacancies' => $vacancies] );
+        if(!$vacancies)
+        {
+            $vacancies = "Зараз у Вас немає вакансій. Створіть";
+
+            return  View::make('vacancy.myVacancies')->nest('child','vacancy._noVacancy',['vacancies' => $vacancies]);
+        }
+        else
+        {
+            return  View::make('vacancy.myVacancies')->nest('child','vacancy._vacancy',['vacancies' => $vacancies]);
+        }
+
 	}
 
 	/**
@@ -35,11 +45,12 @@ class VacancyController extends Controller {
 	 */
 	public function create(Vacancy $vacancy,Guard $auth,Company $company)
 	{
-
-        $hasCompany = true; $company->hasCompany(array($auth->user())); //заглушка пока не узнаю как присоединится к юзеру
+        $user = $auth->user();
+        $hasCompany = $company->hasCompany($user->getAuthIdentifier()); //заглушка пока не узнаю как присоединится к юзеру
         setcookie('paths','');
+        //dd($hasCompany);
         if($hasCompany){
-            $logId = 10;//$auth->user('id');                            //заглушка пока не узнаю как присоединится к юзеру
+            $logId = $user->getAuthIdentifier();                                    //заглушка пока не узнаю как присоединится к юзеру
             $countCompany = $company->CountCompany($logId);             //подсчет компаний юзера
 
             return view('NewVacancy.newVacancy',['companies' => $countCompany]);
@@ -57,9 +68,8 @@ class VacancyController extends Controller {
 	 */
 	public function store(Guard $guard,Company $company,Vacancy $vacancy,Request $request)
 	{
-        //$dada = Company::find($id);
-
-        $hasCompany = true;//$company->hasCompany(array($guard->user()));       //заглушка пока не узнаю как присоединится к юзеру
+        //dd($guard->user()->getAuthIdentifier());
+        $hasCompany = Company::find($guard->user);//$company->hasCompany($guard->user());       //заглушка пока не узнаю как присоединится к юзеру
 
         if($hasCompany){
         $rules = 'required|min:3';
@@ -70,32 +80,32 @@ class VacancyController extends Controller {
         ]);
 
         $position = $request['Position'];
-        $galuz = $request['Galuz'];
+        $branch = $request['branch'];
         $organisation = $request['Organisation'];
         $date = $request['Date'];
         $salary = $request['Salary'];
         $city = $request['City'];
         $desription = $request['Description'];
 
-        $vacancyReg = array();
-        $vacancyReg['position'] = $position;
-        $vacancyReg['galuz'] = $galuz;
-        $vacancyReg['organisation'] = $organisation;
-        $vacancyReg['date'] = $date;
-        $vacancyReg['salary'] = $salary;
-        $vacancyReg['city'] = $city;
-        $vacancyReg['description'] = $desription;
-        //$vacancyReg['created_at'] = timestamps();
+            $companyId = $company->companyName($organisation);
 
-        $vacancy->CreateVacancy($vacancyReg);
+            $vacancy = new Vacancy();
+            $vacancy->position = $position;
+            $vacancy->branch = $branch;
+            $vacancy->organisation = $organisation;
+            $vacancy->date_field = $date;
+            $vacancy->salary = $salary;
+            $vacancy->city = $city;
+            $vacancy->description = $desription;
+            $vacancy->company_id = $companyId[0]->id ;
 
-            $vacancies = Vacancy::all();
-            //dd($vacancies);
-            return view('vacancy.vacancyMain',['vacancies' => $vacancies] );
+            $vacancy->save();
+
+            return redirect()->route('vacancy.index');
         }
         else
         {
-            redirect()->route('company/company.create');
+            return redirect()->route('company.create');
 
         }
 

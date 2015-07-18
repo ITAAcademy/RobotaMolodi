@@ -8,6 +8,7 @@
 
 namespace App\Models;
 
+//use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Eloquent;
@@ -16,6 +17,11 @@ class Company extends Eloquent {
 
     protected $table = 'company';
     protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
+
+    public function Vacancies()
+    {
+        return $this->hasMany('App\Models\Vacancy');
+    }
     public function ReadCompany()
     {
 
@@ -59,11 +65,13 @@ class Company extends Eloquent {
 
         }
     }
-    public function hasCompany($array)
+    public function hasCompany($id)
     {
-        $companyName = $array[0];
+        //dd($id);
+        $companyName = $id;
 
-        $hasCompany = Company::where('company_name','=',$companyName);//DB::select('SELECT company_name FROM company WHERE company_name = ?',array($companyName));
+        $hasCompany = DB::select('SELECT id FROM company WHERE id = ?',$companyName);
+        dd($hasCompany);
         if($hasCompany)return true;
         else return false;
     }
@@ -76,4 +84,11 @@ class Company extends Eloquent {
 
         else return false;
     }
+    public function companyName($name)
+    {
+        $company = DB::select('select id from company where company_name = ?', [$name]);
+        //dd($company);
+        return $company;
+    }
 }
+

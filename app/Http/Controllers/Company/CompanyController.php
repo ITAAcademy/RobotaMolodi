@@ -49,24 +49,16 @@ class CompanyController extends Controller  {
 	public function store(Guard $auth,Company $companyModel,Request $request)
 	{
 
+
         $this->validate($request,[
             'company_name' => 'required|min:3',
         ]);
-
-            //$companyName = $request['companyName'];
+            $user = $auth->user();
+            //$companyModel->
+            //dd($request['company_name']);
             //dd(Company::all());
-
-            //$companies = $request->all();
-            //$companies['users_id'] = $auth->user()->getAuthIdentifier();
-            //dd($companies);
-
-            //$qq = $request->all();
-            //$qq['user_id'] = $auth->user()->getAuthIdentifier();
-            //dd(Company::all());
-            //dd($qq);
-
-            $hasCompany = $companyModel->hasCompany(array($request['company_name']));
-
+            $hasCompany = $companyModel->hasCompany($user->getAuthIdentifier());
+            //dd($hasCompany);
             if($hasCompany)
             {
                 return Redirect::to('company/create')->with('company', 'Така компанія вже зареєстрована');
@@ -76,10 +68,12 @@ class CompanyController extends Controller  {
                 $companies = $companyModel;
                 $companies->company_name = $request['company_name'];
                 $companies->company_email = $request['company_email'];
+                //dd($auth->user()->getAuthIdentifier());
+
                 $companies->users_id = $auth->user()->getAuthIdentifier();
 
                 $companies->save();
-                $companyModel->create($request->all());
+                //$companyModel->create($request->all());
             return Redirect::to('vacancy/create');
             }
 	}
