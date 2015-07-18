@@ -28,16 +28,16 @@ Route::controllers([
 
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
-$router->resource('Vacancy','Vacancy\VacancyController');
+$router->resource('vacancy','Vacancy\VacancyController');
 
-$router->resource('Company','Company\CompanyController');
+$router->resource('company','Company\CompanyController');
 
-Route::post('Company/create',function(){
+Route::post('company/create',function(){
     $rules = array("min:3");
-    $validator = Validator::make(Input::post('companyName'),$rules);
+    $validator = Validator::make(Input::post('company_name'),$rules);
 
     if($validator->fails()){
-        return Redirect::to('Company/create') -> withErrors($validator);
+        return Redirect::to('company/create') -> withErrors($validator);
     }
 });
 

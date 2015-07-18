@@ -8,33 +8,45 @@
 
 namespace App\Models;
 
-use Eloquent;
-use DB;
-//use Illuminate\Database\Eloquent;
+//use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Model;
+use DB;
+use Eloquent;
+
 class Company extends Eloquent {
 
     protected $table = 'company';
+    protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
+
+    public function Vacancies()
+    {
+        return $this->hasMany('App\Models\Vacancy');
+    }
     public function ReadCompany()
     {
 
-        $company = Company::all();//DB::select('SELECT * FROM company Where 1');
+        $company = Company::all();
         return $company;
 
     }
+
+    public function Many()
+    {
+        return $this->belongsTo('company_name');
+    }
+
     public function createCompany($array)                                                                               //создание компании
     {
         $date = new\DateTime();
-        //$companyId = 10;
+
         $usersid = $array["id"];
         $companyName = $array["companyName"];
         $companyEmail = $array["companyEmail"];
 
-        $hasCompany = Company::find($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
-        //dd($hasCompany);
+        $hasCompany = Company::hasMany($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
+        dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
-
             return "Компанія з таким ім'ям вже зареєстрована";
         }
         else{                                                                                                           //если нет такой компании
@@ -53,11 +65,13 @@ class Company extends Eloquent {
 
         }
     }
-    public function hasCompany($array)
+    public function hasCompany($id)
     {
-        $companyName = $array[0];
+        //dd($id);
+        $companyName = $id;
 
-        $hasCompany = DB::select('SELECT company_name FROM company WHERE company_name = ?',array($companyName));
+        $hasCompany = DB::select('SELECT id FROM company WHERE id = ?',$companyName);
+        dd($hasCompany);
         if($hasCompany)return true;
         else return false;
     }
@@ -70,4 +84,11 @@ class Company extends Eloquent {
 
         else return false;
     }
+    public function companyName($name)
+    {
+        $company = DB::select('select id from company where company_name = ?', [$name]);
+        //dd($company);
+        return $company;
+    }
 }
+
