@@ -23,11 +23,12 @@ class CreateNewResume extends Request {
 	{
 		return [
             //'position','telephone','email', 'name_u', 'industry', 'salary','city', 'description',
-            'name_u'        => 'required|min:5|max:35',
-            'telephone'     => 'alpha_dash|min:6|max:20',
+            'name_u'        => 'required|min:3|max:255',
+            'telephone'     => 'min:5|max:30',
             'email'         => 'required|email',
-            'position'      => 'required|min:5|max:55',
-            'description'   => 'required|min:5|max:35',
+            'position'      => 'required|min:5|max:80',
+            'salary'        => 'required|integer|min:100|max:500000',
+            'description'   => 'required|min:5|max:2028',
 		];
 	}
 

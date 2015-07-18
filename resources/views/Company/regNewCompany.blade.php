@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <form method="POST" accept-charset="UTF-8"><input name="_token" type="hidden" value="DRJVy4F4cETSZOHq9PL0KpcDlpbHW2j6x3lnzXCf">
+
         <div class="form-group" >
             <label for="sector" class="col-sm-2 control-label">Назва компаніїї</label>
             <div class="col-sm-5">

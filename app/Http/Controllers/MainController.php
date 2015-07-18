@@ -1,5 +1,9 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\City;
+use Input;
+use Request;
+
 class MainController extends Controller {
 
 	/*
@@ -32,9 +36,20 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(City $cityModel)
 	{
-		return view('main.index',['data'=>$this->fakeData]);
+        $cities = $cityModel->getCities();
+		return view('main.index',['data'=>$this->fakeData, 'cities'=> $cities]);
 	}
+    public function filter()
+    {
+        dd($data);
+        // Getting all post data
+        if (Request::ajax()) {
+            $data = Input::all();
+            print_r($data);
+            die;
+        }
+    }
 
 }

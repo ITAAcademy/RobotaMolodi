@@ -58,3 +58,9 @@ Route::post('company/create',function(){
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
+/*
+Route::get('/', function() {
+    return View::make('main.index');
+});*/
+//$router->resource('/','Vacancy\MainController');
+Route::post('/', [ 'as'=>'', 'uses'=>'MainController@filter']);
