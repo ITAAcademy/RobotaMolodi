@@ -60,7 +60,7 @@ class CompanySeeder extends Seeder
         $company_email = "1989alpan@gmail.com";
         //DB::table("company")->delete();
         Company::create([
-            "company_id" => $company_id,
+            "id" => $company_id,
             "company_name" =>$company_name,
             "company_email" => $company_email
         ]);
