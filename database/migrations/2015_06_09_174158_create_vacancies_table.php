@@ -23,6 +23,7 @@ class CreateVacanciesTable extends Migration {
             $table->integer('salary');
             $table->string('city');
             $table->mediumText('description');
+            $table->string('user_email');
             $table->rememberToken();
             $table->timestamps();
         });

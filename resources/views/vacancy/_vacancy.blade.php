@@ -6,6 +6,7 @@
         Організація : {{$vacancy->organisation}}<br>
         Зарплата : {{$vacancy->salary}}<br>
         Опис :{{$vacancy->description}}<br>
+        Компания : {{$vacancy->company_id}}<br>
 </address>
 <br>
 @endforeach

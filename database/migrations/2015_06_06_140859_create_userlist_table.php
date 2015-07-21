@@ -17,7 +17,7 @@ class CreateUserlistTable extends Migration {
 			$table->increments('id');
 			$table->string('company_name');
 			$table->string('company_email');
-            $table->integer('users_id');
+            $table->integer('user_id');
 			$table->rememberToken();
 			$table->timestamps();	
 		});

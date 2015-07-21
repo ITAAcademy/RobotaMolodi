@@ -31,4 +31,40 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    private function hasCompany()
+    {
+       return $this->hasMany('App\Models\Company','users_id')->get();
+            //dd("asdd");
+    }
+
+    public function hasAnyCompany()
+    {
+        $hasAnyCompany = User::hasCompany();
+
+        return $hasAnyCompany;
+    }
+
+    public function ReadUserVacancies()
+    {
+        $userCompanies = User::hasCompany();
+
+        $vacancies = array();
+        foreach($userCompanies as $company)
+        {
+
+            $vacancy =$company->getUserVacancies();
+            foreach ($vacancy as $vacation){
+
+                array_push($vacancies,$vacation);
+
+            }
+
+            //  = $company->getUserVacancies();
+
+        }
+
+        return $vacancies;
+    }
+
+
 }

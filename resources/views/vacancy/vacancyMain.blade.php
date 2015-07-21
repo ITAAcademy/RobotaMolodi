@@ -10,6 +10,7 @@
         {{$vacancy->data_field}}    <br>
         {{$vacancy->city}}    <br>
         {{$vacancy->salary}}    <br>
+        {{$vacancy->company_id}} <br>
         <abbr title="Phone">P:</abbr> (123) 456-7890
     </address>
 
