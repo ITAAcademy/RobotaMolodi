@@ -32,6 +32,8 @@ $router->resource('vacancy','Vacancy\VacancyController');
 
 $router->resource('company','Company\CompanyController');
 
+$router->resource('cabinet','cabinet\CabinetController');
+
 Route::post('company/create',function(){
     $rules = array("min:3");
     $validator = Validator::make(Input::post('company_name'),$rules);

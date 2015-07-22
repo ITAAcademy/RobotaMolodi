@@ -20,13 +20,12 @@
     <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
     <div class="col-sm-5">
         <select class="form-control" id="selectGaluz" name="branch">
-
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
+        @foreach($industries as $industry)
+            {
+                <option>{{$industry->name}}</option>
+            }
+        @endforeach
+           </select>
     </div></br>
     </div>
 
@@ -60,14 +59,23 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
+        <label for="sector" class="col-sm-2 control-label">Email роботодавця</label>
+        <div class="col-sm-5">
+            {!! Form::text('user_email', null, array('class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail,'value' => $userEmail )) !!}
+        </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити не менше трьох символів'); ?></span> </div>
+        </br>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
             <select class="form-control" name="City" >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            @foreach($cities as $city)
+                {
+                    <option>{{$city->name}}</option>
+                }
+            @endforeach
             </select>
         </div>
         </br>
@@ -83,33 +91,11 @@
     </div>
     </br>
 
+
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
         <input type="submit" class="btn btn-default" style="background: #a7eebe" onclick="checkForm()" value="Зареєструвати вакансію">
     </div>
     {!!Form::token()!!}
     {!!Form::close()!!}
     <div id="Result"></div>
-<script type=text/javascript>
-
-    function checkForm(forms)
-    {
-        return false;
-
-        var check = false;
-        var elements = document.forms[0].elements[1].value;
-
-        alert(elements);
-        if(elements==""){
-
-            document.getElementById('Result').innerHTML = "swdfsffsff";
-            return false;
-        }
-        else
-        {
-
-            return true;
-        }
-
-    }
-</script>
 @endsection

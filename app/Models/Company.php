@@ -10,6 +10,7 @@ namespace App\Models;
 
 //use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use DB;
 use Eloquent;
 
@@ -17,6 +18,13 @@ class Company extends Eloquent {
 
     protected $table = 'company';
     protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
+
+    public function CheckUserCompany()
+    {
+        //return User::where('id',$this->users_id)->first();
+        return $this->belongsTo('App\Models\User');
+
+    }
 
     public function Vacancies()
     {
@@ -32,7 +40,7 @@ class Company extends Eloquent {
 
     public function Many()
     {
-        return $this->belongsTo('company_name');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function createCompany($array)                                                                               //создание компании
@@ -65,21 +73,22 @@ class Company extends Eloquent {
 
         }
     }
+
     public function hasCompany($id)
     {
-        //dd($id);
+
         $companyName = $id;
 
-        $hasCompany = DB::select('SELECT id FROM company WHERE id = ?',$companyName);
-        dd($hasCompany);
+        $hasCompany = DB::select('SELECT id FROM company WHERE id = ?',array($companyName));
+       // dd($hasCompany);
         if($hasCompany)return true;
         else return false;
     }
 
     public function CountCompany($id)
     {
-        $countCompany = DB::select('SELECT company_name FROM company WHERE id = ?',array($id));
-
+        $countCompany = Company::where('users_id',$id)->get();//$this->latest('id')->get();
+        //dd($countCompany);
         if($countCompany) return $countCompany;
 
         else return false;
@@ -88,7 +97,16 @@ class Company extends Eloquent {
     {
         $company = DB::select('select id from company where company_name = ?', [$name]);
         //dd($company);
+        //$company = $this->latest('id')->get();
+        //dd($company[0]);
         return $company;
+    }
+
+    public function getUserVacancies()
+    {
+        $vacancies = $this->hasMany('App\Models\Vacancy','company_id')->get();
+
+        return $vacancies;//$this->hasMany('App\Models\Vacancy','company_id')->get();
     }
 }
 

@@ -1,13 +1,6 @@
-@extends ('app')
+@extends ('cabinet/cabinet')
 
-@section ('content')
-
-    <div>
-        <ul class="nav nav-tabs">
-            <li role = "presentation">{!!link_to_route('vacancy.index','Мої вакансії')!!}</li>
-
-        </ul>
-    </div>
+@section ('contents')
 
     <div>
         <ul class="nav nav-tabs">
@@ -19,6 +12,8 @@
 
         </ul>
     </div>
+
+
     @yield('contents')
     <?php echo $child ?>
 

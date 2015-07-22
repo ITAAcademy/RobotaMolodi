@@ -3,11 +3,15 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Industry;
 use Illuminate\Contracts\Auth\Guard;
 use App\Models\Company;
 use App\Models\Vacancy;
+use App\Models\User;
 use Illuminate\Http\Request;
-//use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use View;
 
 class VacancyController extends Controller {
@@ -18,13 +22,14 @@ class VacancyController extends Controller {
 	 * @return Response
 	 */
 
-	public function index(Company $companies,Guard $guard)
+	public function index(Company $companies,Guard $auth)
 	{
-
+        if(Auth::check()){
         setcookie('paths','');
 
-        $vacancies = Vacancy::all();
-
+        $vacancy = new Vacancy();
+        $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
+           //dd($vacancies);
         if(!$vacancies)
         {
             $vacancies = "Зараз у Вас немає вакансій. Створіть";
@@ -37,6 +42,11 @@ class VacancyController extends Controller {
         }
 
 	}
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -45,31 +55,55 @@ class VacancyController extends Controller {
 	 */
 	public function create(Vacancy $vacancy,Guard $auth,Company $company)
 	{
-        $user = $auth->user();
-        $hasCompany = $company->hasCompany($user->getAuthIdentifier()); //заглушка пока не узнаю как присоединится к юзеру
-        setcookie('paths','');
-        //dd($hasCompany);
-        if($hasCompany){
-            $logId = $user->getAuthIdentifier();                                    //заглушка пока не узнаю как присоединится к юзеру
-            $countCompany = $company->CountCompany($logId);             //подсчет компаний юзера
+        if(Auth::check()){
 
-            return view('NewVacancy.newVacancy',['companies' => $countCompany]);
+        $user = new User();
+
+         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+
+         setcookie('paths','');
+
+        if(!empty($hasCompany[0])){
+            //$logId = $user->find($auth->user()->                                    //заглушка пока не узнаю как присоединится к юзеру
+            $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
+
+            $industry = new Industry();
+            $industries = $industry->getIndustries();
+
+            $city = new City();
+            $cities = $city->getCities();
+
+            $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+
+            return view('NewVacancy.newVacancy',
+                ['companies' => $countCompany,
+                'cities'=> $cities,
+                'industries' => $industries,
+                'userEmail' => $userEmail,
+                ]);
         }
         else{
             return redirect()->route('company.create');
 
             }
-	}
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+
+    }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(Guard $guard,Company $company,Vacancy $vacancy,Request $request)
+	public function store(Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
-        //dd($guard->user()->getAuthIdentifier());
-        $hasCompany = Company::find($guard->user);//$company->hasCompany($guard->user());       //заглушка пока не узнаю как присоединится к юзеру
+        if(Auth::check()){
+
+        $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
         if($hasCompany){
         $rules = 'required|min:3';
@@ -86,7 +120,8 @@ class VacancyController extends Controller {
         $salary = $request['Salary'];
         $city = $request['City'];
         $desription = $request['Description'];
-
+        $userEmail = $request['user_email'];
+        //dd($userEmail);
             $companyId = $company->companyName($organisation);
 
             $vacancy = new Vacancy();
@@ -98,10 +133,11 @@ class VacancyController extends Controller {
             $vacancy->city = $city;
             $vacancy->description = $desription;
             $vacancy->company_id = $companyId[0]->id ;
+            //$vacancy->user_email = $userEmail;
 
             $vacancy->save();
 
-            return redirect()->route('vacancy.index');
+            return redirect()->route('cabinet.index');
         }
         else
         {
@@ -109,8 +145,13 @@ class VacancyController extends Controller {
 
         }
 
+        }
+        else
+        {
+        return Redirect::to('auth/login');
+        }
 
-	}
+}
 
 	/**
 	 * Display the specified resource.
