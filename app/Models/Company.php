@@ -95,10 +95,8 @@ class Company extends Eloquent {
     }
     public function companyName($name)
     {
-        $company = DB::select('select id from company where company_name = ?', [$name]);
-        //dd($company);
-        //$company = $this->latest('id')->get();
-        //dd($company[0]);
+        $company = DB::select('select * from company where company_name = ?', [$name]);
+
         return $company;
     }
 

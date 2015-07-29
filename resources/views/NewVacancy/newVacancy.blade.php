@@ -61,7 +61,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Email роботодавця</label>
         <div class="col-sm-5">
-            {!! Form::text('user_email', null, array('class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail,'value' => $userEmail )) !!}
+            {!! Form::text('user_email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити не менше трьох символів'); ?></span> </div>
         </br>
@@ -93,9 +93,9 @@
 
 
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
-        <input type="submit" class="btn btn-default" style="background: #a7eebe" onclick="checkForm()" value="Зареєструвати вакансію">
+        <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
     </div>
     {!!Form::token()!!}
     {!!Form::close()!!}
-    <div id="Result"></div>
+
 @endsection

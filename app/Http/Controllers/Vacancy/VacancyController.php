@@ -27,9 +27,12 @@ class VacancyController extends Controller {
         if(Auth::check()){
         setcookie('paths','');
 
-        $vacancy = new Vacancy();
+
+
         $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
-           //dd($vacancies);
+
+
+
         if(!$vacancies)
         {
             $vacancies = "Зараз у Вас немає вакансій. Створіть";
@@ -61,10 +64,10 @@ class VacancyController extends Controller {
 
          $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
-         setcookie('paths','');
-
+            session_start();
+         //dd($_COOKIE['path']);
         if(!empty($hasCompany[0])){
-            //$logId = $user->find($auth->user()->                                    //заглушка пока не узнаю как присоединится к юзеру
+
             $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
 
             $industry = new Industry();
@@ -83,6 +86,8 @@ class VacancyController extends Controller {
                 ]);
         }
         else{
+            $_SESSION['path'] ='vacancy.create';
+
             return redirect()->route('company.create');
 
             }
@@ -113,27 +118,9 @@ class VacancyController extends Controller {
             'Description' => $rules
         ]);
 
-        $position = $request['Position'];
-        $branch = $request['branch'];
-        $organisation = $request['Organisation'];
-        $date = $request['Date'];
-        $salary = $request['Salary'];
-        $city = $request['City'];
-        $desription = $request['Description'];
-        $userEmail = $request['user_email'];
-        //dd($userEmail);
-            $companyId = $company->companyName($organisation);
+        $vacancy = $vacancy->fillVacancy(0,$auth,$company,$request);
 
-            $vacancy = new Vacancy();
-            $vacancy->position = $position;
-            $vacancy->branch = $branch;
-            $vacancy->organisation = $organisation;
-            $vacancy->date_field = $date;
-            $vacancy->salary = $salary;
-            $vacancy->city = $city;
-            $vacancy->description = $desription;
-            $vacancy->company_id = $companyId[0]->id ;
-            //$vacancy->user_email = $userEmail;
+
 
             $vacancy->save();
 
@@ -141,8 +128,8 @@ class VacancyController extends Controller {
         }
         else
         {
+            //setcookie('path',"vacancy.create");
             return redirect()->route('company.create');
-
         }
 
         }
@@ -159,10 +146,22 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id,Guard $auth)
 	{
-		//
-	}
+
+        $vacancy = Vacancy::find($id);
+
+        $user = User::find($auth->user()->getAuthIdentifier());
+
+        $company = new Company();
+        $company_name = $company->companyName($vacancy->organisation);
+
+        return view('vacancy.show')
+            ->with('vacancy',$vacancy)
+            ->with('company_name',$company_name[0])
+            ->with('user',$user);
+
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -170,9 +169,27 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id,Guard $auth)
 	{
-		return view('NewVacancy.edit');
+
+        $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
+
+        $industry = new Industry();
+        $industries = $industry->getIndustries();
+
+        $city = new City();
+        $cities = $city->getCities();
+
+        $vacancy = Vacancy::find($id);
+
+        $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+
+        return view('vacancy.edit')
+            ->with('vacancy',$vacancy)
+            ->with('industries',$industries)
+            ->with('companies',$companies)
+            ->with('cities',$cities)
+            ->with('userEmail',$userEmail);
 	}
 
 	/**
@@ -181,9 +198,27 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
-		//
+
+        if(Auth::check()) {
+            $rules = 'required|min:3';
+            $this->validate($request, [
+                'Position' => $rules,
+                'Salary' => 'required|min:3|numeric',
+                'Description' => $rules
+            ]);
+
+            $vacancy = $vacancy->fillVacancy($id,$auth, $company, $request);
+
+            $vacancy->update();
+            $vacancy->push();
+            return redirect('cabinet');
+        }
+        else
+        {
+            return redirect()->route('company.create');
+        }
 	}
 
 	/**
@@ -194,7 +229,17 @@ class VacancyController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Vacancy::destroy($id);
+
+        return redirect('cabinet');
+
 	}
+
+    public function response($id)
+    {
+        $vacancy = Vacancy::find($id);
+
+        return view('vacancy/response')->with('vacancy',$vacancy);
+    }
 
 }

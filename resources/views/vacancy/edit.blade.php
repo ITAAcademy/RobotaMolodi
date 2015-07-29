@@ -1,8 +1,7 @@
-@extends('NewVacancy/layout')
+@extends('app')
 
-@section('contents')
-
-    {!!Form::open(['route' => 'vacancy.store'])!!}
+@section('content')
+    {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put'))!!}
     <h3>Створення вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
@@ -52,7 +51,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Зарплата</label>
         <div class="col-sm-5">
-            {!! Form::text('Salary', null, array('class' => 'form-control' )) !!}
+            {!! Form::text('Salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити тільки цифри'); ?></span> </div>
         </br>
@@ -84,7 +83,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
-            {!! Form::textarea('Description', null, array('class' => 'form-control' )) !!}
+            {!! Form::textarea('Description', $vacancy->description, array('class' => 'form-control' )) !!}
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має містити не менше трьох символів'); ?></span> </div>
         </br>
