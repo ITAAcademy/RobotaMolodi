@@ -14,8 +14,13 @@
 use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Models\Vacancy;
+//use Symfony\Component\HttpFoundation\Response;
+
 
 Route::get('/', 'MainController@index');
+Route::post('/filter',['as' => 'filters', 'uses' => 'MainController@filters']);
+
 
 Route::get('home', 'HomeController@index');
 
@@ -61,6 +66,23 @@ $router->resource('resume', 'ResumeController'); //created oll routes of ResumeC
 /*
 Route::get('/', function() {
     return View::make('main.index');
-});*/
+});
 //$router->resource('/','Vacancy\MainController');
 Route::post('/', [ 'as'=>'', 'uses'=>'MainController@filter']);
+
+Route::get('/ajax-subcat', function(){
+
+    $city_id = Input::get('city_id');
+
+
+    $vacancies = DB::select('select * from vacancies where city = (select cities.name from cities where id = ?)', [$city_id])->get();
+    //$vacancies = Vacancy::where('cities.id', '=', $city)->get();
+
+    return Response::json($vacancies);
+});
+*/
+Route::post('/searchCity', 'MainController@filter');
+
+
+//Route::get('/filter',['as' => 'filter', 'uses' => 'MainController@filters']);
+

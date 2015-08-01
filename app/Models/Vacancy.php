@@ -49,7 +49,18 @@ class Vacancy extends Model {
         );
 
     }
+//test main_page
+    public function vacA()
+    {
+        return $this->belongsTo('App\Models\Vacancy');
+    }
 
+    public function getVac()
+    {
+        //$vacancies = $this->latest('id')->get();//Беремо із бази всі дані і сортуємо за спаданням по id
+        $vacancies = DB::select('select * from vacancies where city = (select cities.name from cities where id = ?)', 52)->get();
+        return $vacancies;
+    }
 	//
 
 
