@@ -1,0 +1,10 @@
+diff a/app/Models/City.php b/app/Models/City.php	(rejected hunks)
+@@ -10,7 +10,7 @@
+ 
+     public function getCities()
+     {
+-        $cities = $this->latest('id')->get();
++        $cities = $this->orderBy('name')->get();
+ 
+         return $cities;
+     }
