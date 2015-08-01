@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
 class Vacancy extends Model {
@@ -11,13 +10,6 @@ class Vacancy extends Model {
     protected $table = 'vacancies';
     protected $fillable = ['position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email'];
 
-
-
-    public function getVacancies()
-    {
-
-        //return $this->latest()->get();
-    }
 
     public function ReadCompany()
     {
@@ -52,6 +44,7 @@ class Vacancy extends Model {
         );
 
     }
+
     public function fillVacancy($id,$auth,$company,$request)
     {
 
@@ -65,9 +58,10 @@ class Vacancy extends Model {
         $userEmail = $request['user_email'];
 
         $companyId = $company->companyName($organisation);
-        //dd($companyId);
-        if($id!=0){
-        $vacancy = Vacancy::find($id);
+
+        if($id!=0)
+		{
+			$vacancy = Vacancy::find($id);
         }
         else
         {

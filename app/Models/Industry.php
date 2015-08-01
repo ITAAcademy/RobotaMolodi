@@ -8,7 +8,7 @@ class Industry extends Model {
 
     public function getIndustries()
     {
-        $industries = $this->latest()->get();
+        $industries = $this->orderBy('name')->get();
 
         return $industries;
     }

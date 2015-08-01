@@ -14,8 +14,13 @@
 use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Models\Vacancy;
+//use Symfony\Component\HttpFoundation\Response;
+
 
 Route::get('/', 'MainController@index');
+Route::post('/filter',['as' => 'filters', 'uses' => 'MainController@filters']);
+
 
 Route::get('home', 'HomeController@index');
 
@@ -74,4 +79,8 @@ get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
 
+
+
+
 Route::post('/filters/', [ 'as'=>'', 'uses'=>'MainController@filter']);
+
