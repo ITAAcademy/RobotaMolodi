@@ -1,12 +1,12 @@
 <?php namespace App\Http\Controllers\Company;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use View;
 use Validator;
 use Illuminate\Contracts\Auth\Guard;
-use App\Http\Controllers\Auth;
-//use Request;
 use App\Http\Requests;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -18,9 +18,32 @@ class CompanyController extends Controller  {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Guard $auth)
 	{
-		//dd($_COOKIE['regCompany']);
+        if(Auth::check())
+        {
+
+            $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+
+            if(empty($companies[0]))
+            {
+
+                $companies = "Зараз у Вас немає компаній. Створіть";
+
+                return  View::make('Company.myCompanies')->nest('child','Company._noCompany',['companies' => $companies]);
+            }
+            else
+            {
+
+                return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
+            }
+
+
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
 	}
 
 	/**
@@ -30,16 +53,25 @@ class CompanyController extends Controller  {
 	 */
 	public function create(Company $company)
 	{
-        $company = ' ';
+        if(Auth::check())
+        {
 
-       // dd($company);
+            $company = ' ';
+
+
         if(Session::get('company') != '')
         {
             $company = Session::get('company');
         }
         return view('Company.regCompany',['company' => $company]);
 
-    }
+        }
+        else
+        {
+        return Redirect::to('auth/login');
+        }
+
+}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -49,34 +81,44 @@ class CompanyController extends Controller  {
 	public function store(Guard $auth,Company $companyModel,Request $request)
 	{
 
+        if(Auth::check())
+        {
 
         $this->validate($request,[
             'company_name' => 'required|min:3',
         ]);
             $user = $auth->user();
-            //$companyModel->
-            //dd($request['company_name']);
-            //dd(Company::all());
-            $hasCompany = $companyModel->hasCompany($user->getAuthIdentifier());
-            //dd($hasCompany);
-            if($hasCompany)
-            {
-                return Redirect::to('company/create')->with('company', 'Така компанія вже зареєстрована');
-            }
-            else{
 
-                $companies = $companyModel;
+
+                $companies = new Company();
+                $companies->users_id = $user->getAuthIdentifier();
                 $companies->company_name = $request['company_name'];
                 $companies->company_email = $request['company_email'];
-                //dd($auth->user()->getAuthIdentifier());
 
-                $companies->users_id = $auth->user()->getAuthIdentifier();
 
                 $companies->save();
-                //$companyModel->create($request->all());
-            return Redirect::to('vacancy/create');
+            //$_SESSION['path'] = "dasdsad";
+            session_start();
+
+            if(isset ($_SESSION['path']))
+            {
+
+                $path = $_SESSION['path'];
+                session_unset();
             }
-	}
+            else
+            {
+
+                $path = 'cabinet.index';
+            }
+            return redirect()->route($path);
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+
+    }
 
 	/**
 	 * Display the specified resource.
@@ -84,10 +126,14 @@ class CompanyController extends Controller  {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id,Guard $auth)
 	{
-		//
-	}
+        $company = Company::find($id);
+
+        return view('Company.show')
+            ->with('company',$company);
+
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -97,7 +143,11 @@ class CompanyController extends Controller  {
 	 */
 	public function edit($id)
 	{
-		//
+//
+
+        $company = Company::find($id);
+
+        return view('Company.edit')->with('company',$company);
 	}
 
 	/**
@@ -106,9 +156,25 @@ class CompanyController extends Controller  {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $request)
 	{
-		//
+        $this->validate($request,[
+            'company_name' => 'required|min:3',
+        ]);
+
+        $company_name = $request['company_name'];
+        $company_email = $request['company_email'];
+
+        $company = Company::find($id);
+
+        $company->company_name = $company_name;
+        $company->company_email = $company_email;
+
+        $company->save();
+        $company->push();
+
+        return redirect('cabinet');
+
 	}
 
 	/**
@@ -119,7 +185,10 @@ class CompanyController extends Controller  {
 	 */
 	public function destroy($id)
 	{
-		//
+		Company::destroy($id);
+
+        return redirect('cabinet');
+
 	}
 
 

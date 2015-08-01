@@ -2,12 +2,17 @@
 
 
 use App\Http\Requests;
+use Mail;
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Industry;
 use Illuminate\Contracts\Auth\Guard;
 use App\Models\Company;
 use App\Models\Vacancy;
+use App\Models\User;
 use Illuminate\Http\Request;
-//use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use View;
 
 class VacancyController extends Controller {
@@ -18,12 +23,17 @@ class VacancyController extends Controller {
 	 * @return Response
 	 */
 
-	public function index(Company $companies,Guard $guard)
+	public function index(Company $companies,Guard $auth)
 	{
-
+        if(Auth::check()){
+            //dd(Vacancy::all());
         setcookie('paths','');
 
-        $vacancies = Vacancy::all();
+
+
+        $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
+
+
 
         if(!$vacancies)
         {
@@ -37,6 +47,11 @@ class VacancyController extends Controller {
         }
 
 	}
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -45,31 +60,57 @@ class VacancyController extends Controller {
 	 */
 	public function create(Vacancy $vacancy,Guard $auth,Company $company)
 	{
-        $user = $auth->user();
-        $hasCompany = $company->hasCompany($user->getAuthIdentifier()); //заглушка пока не узнаю как присоединится к юзеру
-        setcookie('paths','');
-        //dd($hasCompany);
-        if($hasCompany){
-            $logId = $user->getAuthIdentifier();                                    //заглушка пока не узнаю как присоединится к юзеру
-            $countCompany = $company->CountCompany($logId);             //подсчет компаний юзера
+        if(Auth::check()){
 
-            return view('NewVacancy.newVacancy',['companies' => $countCompany]);
+        $user = new User();
+
+         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+
+            session_start();
+         //dd($_COOKIE['path']);
+        if(!empty($hasCompany[0])){
+
+            $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
+
+            $industry = new Industry();
+            $industries = $industry->getIndustries();
+
+            $city = new City();
+            $cities = $city->getCities();
+
+            $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+
+            return view('NewVacancy.newVacancy',
+                ['companies' => $countCompany,
+                'cities'=> $cities,
+                'industries' => $industries,
+                'userEmail' => $userEmail,
+                ]);
         }
         else{
+            $_SESSION['path'] ='vacancy.create';
+
             return redirect()->route('company.create');
 
             }
-	}
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+
+    }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(Guard $guard,Company $company,Vacancy $vacancy,Request $request)
+	public function store(Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
-        //dd($guard->user()->getAuthIdentifier());
-        $hasCompany = Company::find($guard->user);//$company->hasCompany($guard->user());       //заглушка пока не узнаю как присоединится к юзеру
+        if(Auth::check()){
+
+        $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
         if($hasCompany){
         $rules = 'required|min:3';
@@ -79,38 +120,27 @@ class VacancyController extends Controller {
             'Description' => $rules
         ]);
 
-        $position = $request['Position'];
-        $branch = $request['branch'];
-        $organisation = $request['Organisation'];
-        $date = $request['Date'];
-        $salary = $request['Salary'];
-        $city = $request['City'];
-        $desription = $request['Description'];
+        $vacancy = $vacancy->fillVacancy(0,$auth,$company,$request);
 
-            $companyId = $company->companyName($organisation);
 
-            $vacancy = new Vacancy();
-            $vacancy->position = $position;
-            $vacancy->branch = $branch;
-            $vacancy->organisation = $organisation;
-            $vacancy->date_field = $date;
-            $vacancy->salary = $salary;
-            $vacancy->city = $city;
-            $vacancy->description = $desription;
-            $vacancy->company_id = $companyId[0]->id ;
 
             $vacancy->save();
 
-            return redirect()->route('vacancy.index');
+            return redirect()->route('cabinet.index');
         }
         else
         {
+            //setcookie('path',"vacancy.create");
             return redirect()->route('company.create');
-
         }
 
+        }
+        else
+        {
+        return Redirect::to('auth/login');
+        }
 
-	}
+}
 
 	/**
 	 * Display the specified resource.
@@ -118,10 +148,22 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id,Guard $auth)
 	{
-		//
-	}
+
+        $vacancy = Vacancy::find($id);
+
+        $user = User::find($auth->user()->getAuthIdentifier());
+
+        $company = new Company();
+        $company_name = $company->companyName($vacancy->organisation);
+
+        return view('vacancy.show')
+            ->with('vacancy',$vacancy)
+            ->with('company_name',$company_name[0])
+            ->with('user',$user);
+
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -129,9 +171,27 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id,Guard $auth)
 	{
-		return view('NewVacancy.edit');
+
+        $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
+
+        $industry = new Industry();
+        $industries = $industry->getIndustries();
+
+        $city = new City();
+        $cities = $city->getCities();
+
+        $vacancy = Vacancy::find($id);
+
+        $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+
+        return view('vacancy.edit')
+            ->with('vacancy',$vacancy)
+            ->with('industries',$industries)
+            ->with('companies',$companies)
+            ->with('cities',$cities)
+            ->with('userEmail',$userEmail);
 	}
 
 	/**
@@ -140,9 +200,27 @@ class VacancyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
-		//
+
+        if(Auth::check()) {
+            $rules = 'required|min:3';
+            $this->validate($request, [
+                'Position' => $rules,
+                'Salary' => 'required|min:3|numeric',
+                'Description' => $rules
+            ]);
+
+            $vacancy = $vacancy->fillVacancy($id,$auth, $company, $request);
+
+            $vacancy->update();
+            $vacancy->push();
+            return redirect('cabinet');
+        }
+        else
+        {
+            return redirect()->route('company.create');
+        }
 	}
 
 	/**
@@ -153,7 +231,49 @@ class VacancyController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Vacancy::destroy($id);
+
+        return redirect('cabinet');
+
 	}
 
+    //Show response form (take one param "id" vacancy)
+    public function response($id)
+    {
+        $vacancy = Vacancy::find($id);
+
+        return view('vacancy/response')->with('vacancy',$vacancy);
+    }
+
+    //Send file in employer (takes one param "id" vacancy)
+    public function sendFile(Guard $auth,Request $request)
+    {
+//        Mail::send(array('html.view', 'text.view'), "fsdsf", "dasda");
+////        Mail::send('vacancy.response', array('request' => '1'), function($message)
+////        {
+////            $message->to('1989alpan@gmail.com', 'Джон Смит')->subject('Привет!');
+////        });
+//
+//        $id = $request['id'];
+//
+//        $company = Vacancy::find($id)->ReadCompany();
+//
+//        $user = Company::find($company->id)->ReadUser();
+//
+//        $users = $user->hasAnyCompany();
+//        //dd($users);
+////        $to = $user->email;
+//
+//        //$filename = $_FILES['Load']['name'];
+//        //dd($request->all());
+//
+//        $user = User::find($auth->user()->getAuthIdentifier());
+//
+//        //mail("1989alpan@gmail.com","dasfdsada","Rezume");
+    }
+
+    public function link(Request $request)
+    {
+        dd($request->all());
+    }
 }

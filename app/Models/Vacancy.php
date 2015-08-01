@@ -2,26 +2,24 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
 class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['position','company_id','branch','organisation', 'date_field', 'salary','city', 'description'];
-
+    protected $fillable = ['position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email'];
 
 
     public function ReadCompany()
     {
-
+        $company = $this->belongsTo('App\Models\Company','company_id')->get();
+        return $company[0];
     }
 
     public function CreateVacancy($array)
     {
 
-        //$company_id = 13;
         $position = $array['position'];
         $galuz = $array['galuz'];
         $organisation = $array['organisation'];
@@ -29,12 +27,9 @@ class Vacancy extends Model {
         $salary = $array['salary'];
         $city = $array['city'];
         $description = $array['description'];
-       // $remember = rememberToken();
-       // $time = timestamps();
 
         DB::table('vacancies')->insert(
             array(
-                //'company_id' => $company_id,
                 'position' => $position,
                 'branch' => $galuz,
                 'organisation' => $organisation,
@@ -49,17 +44,40 @@ class Vacancy extends Model {
         );
 
     }
-//test main_page
-    public function vacA()
-    {
-        return $this->belongsTo('App\Models\Vacancy');
-    }
 
-    public function getVac()
+    public function fillVacancy($id,$auth,$company,$request)
     {
-        //$vacancies = $this->latest('id')->get();//Беремо із бази всі дані і сортуємо за спаданням по id
-        $vacancies = DB::select('select * from vacancies where city = (select cities.name from cities where id = ?)', 52)->get();
-        return $vacancies;
+
+        $position = $request['Position'];
+        $branch = $request['branch'];
+        $organisation = $request['Organisation'];
+        $date = $request['Date'];
+        $salary = $request['Salary'];
+        $city = $request['City'];
+        $desription = $request['Description'];
+        $userEmail = $request['user_email'];
+
+        $companyId = $company->companyName($organisation);
+
+        if($id!=0)
+		{
+			$vacancy = Vacancy::find($id);
+        }
+        else
+        {
+            $vacancy = new Vacancy();
+        }
+        $vacancy->position = $position;
+        $vacancy->branch = $branch;
+        $vacancy->organisation = $organisation;
+        $vacancy->date_field = $date;
+        $vacancy->salary = $salary;
+        $vacancy->city = $city;
+        $vacancy->description = $desription;
+        $vacancy->company_id = $companyId[0]->id;
+        $vacancy->user_email = $userEmail;
+
+        return $vacancy;
     }
 	//
 

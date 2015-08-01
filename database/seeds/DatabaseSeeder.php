@@ -75,12 +75,12 @@ class CompanySeeder extends Seeder
 {
     public function run()
     {
-        //$company_id = '2';
+
         $company_name = "Sasha";
         $company_email = "1989alpan@gmail.com";
-        //DB::table("company")->delete();
+
         Company::create([
-            //"id" => $company_id,
+
             "company_name" =>$company_name,
             "company_email" => $company_email
         ]);
