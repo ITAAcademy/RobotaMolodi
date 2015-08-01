@@ -1,0 +1,9 @@
+diff a/resources/views/app.blade.php b/resources/views/app.blade.php	(rejected hunks)
+@@ -60,7 +60,6 @@
+                     <div style="display:inline-block;">
+                         @yield('title')</div>
+                     </div>
+-                <div class="panel-body">
+                 <div class="panel-body" style="background: #87CEFA">
+                     @yield('content')
+                 </div>
