@@ -13,18 +13,21 @@
 
         <div ><span style ="color:red">* <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span> {{$company}}</div>
 
-        
-
         </br>
     </div>
 
     <div class="form-group" style="margin-top: 20px">
-        <label for="level" class="col-sm-2 control-label">Електронна пошта компанії</label>
+        <label for="level" class="col-sm-2 control-label">Посилання на компанію</label>
         <div class="col-sm-5">
-            {!! Form::text('company_email', null, array('class' => 'form-control')) !!}
-            {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+            {!! Form::text('company_link', null, array('class' => 'form-control')) !!}
+
         </div>
+        <div ><span style ="color:red"><?php echo $errors->first('company_link','поле має бути посиланням в форматі https://'); ?>  </span> {{$company}}</div>
         </br>
+        </br>
+        <div class="form-group" style="margin-top: 20px; margin-left: 160px">
+        {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+        </div>
        {!!Form::token()!!}
     </div>
     {!!Form::close()!!}

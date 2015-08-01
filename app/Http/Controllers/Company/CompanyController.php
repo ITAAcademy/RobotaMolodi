@@ -86,18 +86,23 @@ class CompanyController extends Controller  {
 
         $this->validate($request,[
             'company_name' => 'required|min:3',
+            'company_link' => 'url'
         ]);
             $user = $auth->user();
 
+                $company_link = $request['company_link'];
+                $company_name = $request['company_name'];
+                $user_id = $user->getAuthIdentifier();
+
 
                 $companies = new Company();
-                $companies->users_id = $user->getAuthIdentifier();
-                $companies->company_name = $request['company_name'];
-                $companies->company_email = $request['company_email'];
+                $companies->users_id = $user_id;
+                $companies->company_name = $company_name;
+                $companies->company_email = $company_link;
 
 
                 $companies->save();
-            //$_SESSION['path'] = "dasdsad";
+
             session_start();
 
             if(isset ($_SESSION['path']))

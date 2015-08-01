@@ -1,13 +1,11 @@
-@extends('app')
+@extends('cabinet/cabinet')
+@section('contents')
 
-@section('title')
-    <div><h2>Мої резюме</h2></div>
-    <div>
-        {!! link_to_route('resume.create', 'Написати резюме') !!}
-    </div>
-@stop
+<div><h2>Мої резюме</h2></div>
+<div>
+    {!! link_to_route('resume.create', 'Написати резюме') !!}
+</div>
 
-@section('content')
 
     @foreach($resumes as $resume) <!-- Прийом данних і вибірка необхідних полів і значень -->
         <article>

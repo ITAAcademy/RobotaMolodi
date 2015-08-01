@@ -19,7 +19,7 @@ class cabinetController extends Controller {
 	{
         if(Auth::check())
         {
-            return View::make('cabinet.cabinet');
+            return Redirect::to('resume');
         }
         else
         {
