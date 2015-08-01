@@ -2,6 +2,7 @@
 
 
 use App\Http\Requests;
+use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Industry;
@@ -25,6 +26,7 @@ class VacancyController extends Controller {
 	public function index(Company $companies,Guard $auth)
 	{
         if(Auth::check()){
+            //dd(Vacancy::all());
         setcookie('paths','');
 
 
@@ -235,6 +237,7 @@ class VacancyController extends Controller {
 
 	}
 
+    //Show response form (take one param "id" vacancy)
     public function response($id)
     {
         $vacancy = Vacancy::find($id);
@@ -242,4 +245,35 @@ class VacancyController extends Controller {
         return view('vacancy/response')->with('vacancy',$vacancy);
     }
 
+    //Send file in employer (takes one param "id" vacancy)
+    public function sendFile(Guard $auth,Request $request)
+    {
+//        Mail::send(array('html.view', 'text.view'), "fsdsf", "dasda");
+////        Mail::send('vacancy.response', array('request' => '1'), function($message)
+////        {
+////            $message->to('1989alpan@gmail.com', 'Джон Смит')->subject('Привет!');
+////        });
+//
+//        $id = $request['id'];
+//
+//        $company = Vacancy::find($id)->ReadCompany();
+//
+//        $user = Company::find($company->id)->ReadUser();
+//
+//        $users = $user->hasAnyCompany();
+//        //dd($users);
+////        $to = $user->email;
+//
+//        //$filename = $_FILES['Load']['name'];
+//        //dd($request->all());
+//
+//        $user = User::find($auth->user()->getAuthIdentifier());
+//
+//        //mail("1989alpan@gmail.com","dasfdsada","Rezume");
+    }
+
+    public function link(Request $request)
+    {
+        dd($request->all());
+    }
 }

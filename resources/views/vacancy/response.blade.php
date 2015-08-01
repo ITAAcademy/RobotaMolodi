@@ -9,11 +9,11 @@
 
 
 
-{!!Form::open(['route' => 'vacancy.store'])!!}
+{!!Form::open(['route' => 'vacancy.link'])!!}
 
 <h3 style="margin-top: 100px">Вставити посилання на резюме</h3>
 <div class="form-group" style="margin-top: 30px">
-    <label for="sector" class="col-sm-2 control-label">Позиція</label>
+    <label for="sector" class="col-sm-2 control-label">Посилання</label>
     <div class="col-sm-5">
         {!! Form::text('Link', null, array('class' => 'form-control')) !!}
     </div>
@@ -35,11 +35,11 @@
 
 <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px;display: none " id="inputDiv">
 
-    {!!Form::open(['route' => 'vacancy.store'])!!}
+    {!!Form::open(['route' => 'vacancy.sendFile','enctype' => 'multipart/form-data'])!!}
 
     <h3 style="margin-top: 100px">Завантажити файл</h3>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Позиція</label>
+        <label for="sector" class="col-sm-2 control-label">Загрузити резюме</label>
         <div class="col-sm-5">
             {!! Form::file('Load', null, array('class' => 'form-control')) !!}
         </div>
@@ -47,6 +47,7 @@
         </br>
     </div>
 
+    {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
 
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
         <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
@@ -62,14 +63,17 @@
         var linkDiv = document.getElementById('linkDiv');
         var display = linkDiv.style.display;
         var inputDisplay = document.getElementById('inputDiv').style.display;
-        alert(display);
-        alert(inputDisplay);
-        if(display == "block" && inputDisplay == "none")
+//        alert(display);
+//        alert(inputDisplay);
+        if(display == "block" )
         {
+
             linkDiv.style.display="none";
+
         }
         else
         {
+            document.getElementById('inputDiv').style.display = "none";
             linkDiv.style.display="block";
         }
     }
@@ -81,10 +85,12 @@
         if(display == "block")
         {
             inputDiv.style.display="none";
+
         }
         else
         {
-            inputDiv.style.display="block"
+            document.getElementById('linkDiv').style.display = "none";
+            inputDiv.style.display="block";
         }
     }
 

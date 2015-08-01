@@ -66,8 +66,12 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 
 Route::get('vacancy/{vacancy}/response','Vacancy\VacancyController@response');
 
+Route::post('vacancy/{vacancy}/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
+Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
+
+
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
 
-Route::post('/', [ 'as'=>'', 'uses'=>'MainController@filter']);
+Route::post('/filters/', [ 'as'=>'', 'uses'=>'MainController@filter']);

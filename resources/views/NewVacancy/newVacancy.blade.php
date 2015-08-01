@@ -43,7 +43,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="level" class="col-sm-2 control-label">Введіть дату:</label>
         <div class="col-sm-5">
-            <input type="date" class="form-control" name="Date">
+             <input type="date" class="form-control" name="Date" >
         </div>
 
         </br>
