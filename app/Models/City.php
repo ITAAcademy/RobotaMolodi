@@ -10,7 +10,7 @@ class City extends Model {
 
     public function getCities()
     {
-        $cities = $this->latest('id')->get();
+        $cities = $this->orderBy('name')->get();
 
         return $cities;
     }
