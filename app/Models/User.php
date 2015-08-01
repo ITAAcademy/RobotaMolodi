@@ -34,7 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     private function hasCompany()
     {
        return $this->hasMany('App\Models\Company','users_id')->get();
-            //dd("asdd");
+
     }
 
     public function hasAnyCompany()
@@ -58,8 +58,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
                 array_push($vacancies,$vacation);
 
             }
-
-            //  = $company->getUserVacancies();
 
         }
 

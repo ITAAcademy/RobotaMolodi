@@ -6,7 +6,8 @@
         Організація : {{$vacancy->organisation}}<br>
         Зарплата : {{$vacancy->salary}}<br>
         Опис :{{$vacancy->description}}<br>
-        Компания : {{$vacancy->company_id}}<br>
+        Компанія : {{$vacancy->ReadCompany()->company_name}}<br>
+        Переглянути : <a href="vacancy/{{$vacancy->id}}">Переглянути</a>
 </address>
 <br>
 @endforeach

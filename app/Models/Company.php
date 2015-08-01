@@ -19,10 +19,10 @@ class Company extends Eloquent {
     protected $table = 'company';
     protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
 
-    public function CheckUserCompany()
+    public function ReadUser()
     {
         //return User::where('id',$this->users_id)->first();
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User','users_id')->first();
 
     }
 
@@ -95,10 +95,8 @@ class Company extends Eloquent {
     }
     public function companyName($name)
     {
-        $company = DB::select('select id from company where company_name = ?', [$name]);
-        //dd($company);
-        //$company = $this->latest('id')->get();
-        //dd($company[0]);
+        $company = DB::select('select * from company where company_name = ?', [$name]);
+
         return $company;
     }
 

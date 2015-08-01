@@ -19,7 +19,6 @@ Route::get('/', 'MainController@index');
 
 Route::get('home', 'HomeController@index');
 
-//Route::get('vacancy/{id}',"VacancyController@view");
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -43,26 +42,36 @@ Route::post('company/create',function(){
     }
 });
 
-
-//Route::post('Vacancy/create',function()
+//Route::put('company/{company}/edit',function()
 //{
 //    $rules = array("min:3");
-//    $validator = Validator::make(Input::post('Position'),$rules);
+//    $validator = Validator::make(Input::put('company_name'),$rules);
 //
-//
-//    if($validator->fails())
-//    {
-//
-//        return Redirect::to('Vacancy/create') -> withErrors($validator);
+//    if($validator->fails()){
+//        return Redirect::to('company/create') -> withErrors($validator);
 //    }
 //});
+
+Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
+
+Route::model('vacancy/{vacancy}/destroy','App\Models\Vacancy');
+
+Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
+
+Route::post('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
+
+Route::model('company/{company}/destroy','App\Models\Company');
+
+Route::get('company/{company}/destroy','Company\CompanyController@destroy');
+
+Route::get('vacancy/{vacancy}/response','Vacancy\VacancyController@response');
+
+Route::post('vacancy/{vacancy}/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
+Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
+
 
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
-/*
-Route::get('/', function() {
-    return View::make('main.index');
-});*/
-//$router->resource('/','Vacancy\MainController');
-Route::post('/', [ 'as'=>'', 'uses'=>'MainController@filter']);
+
+Route::post('/filters/', [ 'as'=>'', 'uses'=>'MainController@filter']);
