@@ -60,7 +60,7 @@
                     <div style="display:inline-block;">
                         @yield('title')</div>
                     </div>
-                <div class="panel-body" style="background: #87CEFA">
+                <div class="panel-body">
                     @yield('content')
                 </div>
             </div>

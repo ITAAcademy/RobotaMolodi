@@ -62,6 +62,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         }
 
         return $vacancies;
+
+    }
+
+    private function HasManyResumes()
+    {
+        return $this->hasMany('App\Models\Resume','id_u');
+    }
+
+    public function GetResumes()
+    {
+        $resumes = $this->HasManyResumes();
+        return $resumes;
     }
 
 

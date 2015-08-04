@@ -47,15 +47,6 @@ Route::post('company/create',function(){
     }
 });
 
-//Route::put('company/{company}/edit',function()
-//{
-//    $rules = array("min:3");
-//    $validator = Validator::make(Input::put('company_name'),$rules);
-//
-//    if($validator->fails()){
-//        return Redirect::to('company/create') -> withErrors($validator);
-//    }
-//});
 
 Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 
@@ -69,7 +60,7 @@ Route::model('company/{company}/destroy','App\Models\Company');
 
 Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 
-Route::get('vacancy/{vacancy}/response','Vacancy\VacancyController@response');
+Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
 Route::post('vacancy/{vacancy}/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
 Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);

@@ -3,6 +3,8 @@
 use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
+use App\Models\User;
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 
 use App\Models\Resume;
@@ -16,12 +18,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 *
 	 * @return Response
 	 */
-	public function index(Resume $resumeModel)//Output all resumes
+	public function index(Resume $resumeModel,Guard $auth)//Output all resumes
 	{
-        $resumes = $resumeModel->getResumes(); //Выборка с базы через модель Resumes
 
-        //$resumes = Resume::all();
-        //dd($resumes);
+        $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes(); //Выборка с базы через модель Resumes
+        //dd(Resume::all());
 		return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
 	}
 

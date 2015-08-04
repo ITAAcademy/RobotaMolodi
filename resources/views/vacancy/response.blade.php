@@ -28,6 +28,9 @@
     <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
 </div>
 </div>
+{!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
+{!! Form::hidden('email', $user->email, array('class' => 'form-control')) !!}
+{!! Form::hidden('emailAddressee', $userVacation->email, array('class' => 'form-control')) !!}
 {!!Form::token()!!}
 {!!Form::close()!!}
 
@@ -48,7 +51,8 @@
     </div>
 
     {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
-
+    {!! Form::hidden('email', $user->email, array('class' => 'form-control')) !!}
+    {!! Form::hidden('emailAddressee', $userVacation->email, array('class' => 'form-control')) !!}
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
         <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
     </div>

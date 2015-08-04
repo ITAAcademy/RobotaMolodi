@@ -2,6 +2,7 @@
 
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
@@ -26,14 +27,10 @@ class VacancyController extends Controller {
 	public function index(Company $companies,Guard $auth)
 	{
         if(Auth::check()){
-            //dd(Vacancy::all());
+
         setcookie('paths','');
 
-
-
         $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
-
-
 
         if(!$vacancies)
         {
@@ -67,7 +64,7 @@ class VacancyController extends Controller {
          $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
             session_start();
-         //dd($_COOKIE['path']);
+
         if(!empty($hasCompany[0])){
 
             $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
@@ -130,8 +127,7 @@ class VacancyController extends Controller {
         }
         else
         {
-            //setcookie('path',"vacancy.create");
-            return redirect()->route('company.create');
+           return redirect()->route('company.create');
         }
 
         }
@@ -150,15 +146,25 @@ class VacancyController extends Controller {
 	 */
 	public function show($id,Guard $auth)
 	{
+        $view = '';
 
         $vacancy = Vacancy::find($id);
 
-        $user = User::find($auth->user()->getAuthIdentifier());
+        $userVacation = $vacancy->ReadUser($id);
 
+        $user = User::find($auth->user()->getAuthIdentifier());
+        if($userVacation->id == $user->id)
+        {
+            $view = 'vacancy.showMyVacancy';
+        }
+        else
+        {
+            $view = 'vacancy.show';
+        }
         $company = new Company();
         $company_name = $company->companyName($vacancy->organisation);
 
-        return view('vacancy.show')
+        return view($view)
             ->with('vacancy',$vacancy)
             ->with('company_name',$company_name[0])
             ->with('user',$user);
@@ -238,42 +244,67 @@ class VacancyController extends Controller {
 	}
 
     //Show response form (take one param "id" vacancy)
-    public function response($id)
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function response(Guard $auth,$id)
     {
+
         $vacancy = Vacancy::find($id);
 
-        return view('vacancy/response')->with('vacancy',$vacancy);
+        $company = $vacancy->ReadCompany();
+
+        $user = User::find($auth->user()->getAuthIdentifier());
+
+        $userVacation = $company->ReadUser();
+
+        return view('vacancy/response')
+                    ->with('vacancy',$vacancy)
+                    ->with('user',$user)
+                    ->with('userVacation',$userVacation);
     }
 
     //Send file in employer (takes one param "id" vacancy)
     public function sendFile(Guard $auth,Request $request)
     {
-//        Mail::send(array('html.view', 'text.view'), "fsdsf", "dasda");
-////        Mail::send('vacancy.response', array('request' => '1'), function($message)
-////        {
-////            $message->to('1989alpan@gmail.com', 'Джон Смит')->subject('Привет!');
-////        });
-//
-//        $id = $request['id'];
-//
-//        $company = Vacancy::find($id)->ReadCompany();
-//
-//        $user = Company::find($company->id)->ReadUser();
-//
-//        $users = $user->hasAnyCompany();
-//        //dd($users);
-////        $to = $user->email;
-//
-//        //$filename = $_FILES['Load']['name'];
-//        //dd($request->all());
-//
-//        $user = User::find($auth->user()->getAuthIdentifier());
-//
-//        //mail("1989alpan@gmail.com","dasfdsada","Rezume");
+
+        $id = $request['id'];
+        $vacancy = Vacancy::find($id);
+        $company = $vacancy->ReadCompany();
+
+        $user = User::find($auth->user()->getAuthIdentifier());
+
+        Mail::send('vacancy.mail', ['user' => $user], function($message)
+        {
+            $to = Input::get('emailAddressee');
+            $from = Input::get('email');
+            $pathToFile = $_FILES['Load']['tmp_name'];
+
+            $message->from($from);
+            $message->to($to, 'John Smith')->subject('Welcome!');
+            $message->attach($pathToFile);
+        });
+
+
+
     }
 
-    public function link(Request $request)
+    public function link(Guard $auth,Request $request)
     {
-        dd($request->all());
+        $link = Input::get('Link');
+
+        $user = User::find($auth->user()->getAuthIdentifier());
+
+        Mail::send('vacancy.mail', ['user' => $user,'link'=>$link], function($message)
+        {
+            $to = Input::get('emailAddressee');
+            $from = Input::get('email');
+            $link = Input::get('Link');
+
+            $message->from($from);
+            $message->to($to, 'John Smith')->subject($link);
+
+        });
     }
 }
