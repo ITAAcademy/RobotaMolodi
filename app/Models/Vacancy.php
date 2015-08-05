@@ -14,6 +14,7 @@ class Vacancy extends Model {
     public function ReadCompany()
     {
         $company = $this->belongsTo('App\Models\Company','company_id')->get();
+
         return $company[0];
     }
 
@@ -74,12 +75,18 @@ class Vacancy extends Model {
         $vacancy->salary = $salary;
         $vacancy->city = $city;
         $vacancy->description = $desription;
-        $vacancy->company_id = $companyId[0]->id;
+        $vacancy->company_id = $companyId->id;
         $vacancy->user_email = $userEmail;
 
         return $vacancy;
     }
 	//
 
-
+    public function ReadUser($id)
+    {
+        $vacancy = Vacancy::find($id);
+        $comp = $vacancy->ReadCompany();
+        $user = $comp->ReadUser();
+        return $user;
+    }
 }

@@ -97,7 +97,7 @@ class Company extends Eloquent {
     {
         $company = DB::select('select * from company where company_name = ?', [$name]);
 
-        return $company;
+        return $company[0];
     }
 
     public function getUserVacancies()
