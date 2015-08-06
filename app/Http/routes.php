@@ -18,8 +18,8 @@ use App\Models\Vacancy;
 //use Symfony\Component\HttpFoundation\Response;
 
 
-Route::get('/', 'MainController@index');
-Route::post('/filter',['as' => 'filters', 'uses' => 'MainController@filters']);
+Route::get('/',['as' => 'head' ,'uses' => 'MainController@index']);
+Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
 
 
 Route::get('home', 'HomeController@index');
@@ -68,7 +68,6 @@ Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\Vaca
 
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
-
 
 
 

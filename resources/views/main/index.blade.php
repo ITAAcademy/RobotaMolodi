@@ -2,9 +2,8 @@
 
 @section('content')
     <!-- <meta name="csrf_token" content="{{ csrf_token() }}" />
-
     Form filters-->
-    {!! Form::open(['route' => 'filters', 'class'=>'form-inline']) !!} <!-- F-->
+    {!! Form::open(['method' => 'get', 'route' => 'filter', 'class'=>'form-inline']) !!} <!-- F-->
 
         <select name="industry" class="form-control" id="selectIndustry" style="width: 200px">
             <option value="0"> Усі галузі</option>
@@ -20,39 +19,31 @@
             @endforeach
         </select>
 
-   <!--     <button type="button" class="btn btn-primary" id="search">Пошук</button>
-    <input type="hidden" name="post_id" value="34"> -->
-
-
-    <div class="form-group">
-        {!! Form::submit('Запуск', ['class'=>'btn btn-primary']) !!}
-    </div>
+        <div class="form-group">
+            {!! Form::submit('Пошук', ['class'=>'btn btn-primary']) !!}
+        </div>
 
     {!!Form::close()!!}
 
     <!-- Output vacancies  -->
 
     <div class="list-group">
-        <?php $i=1; ?>
         @foreach($vacancies as $vacancy)
             <a href="vacancy/{{$vacancy->id}}" class="list-group-item">
                 <p>
                     <h3 class="list-group-item-heading">{{$vacancy->id}} Позиція: <span class="text-info" >{{$vacancy->position}}</span>
                     <span class="text-muted text-right pull-right"><h5>{{$vacancy->date_field}}</h5></span></h3>
-                    <h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">{{$vacancy->description}}</span></h4>
+                <h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">{{ substr($vacancy->description, 0, 100)}}</span>...</h4>
                 </p>
                 <p class="list-group-item-text"><b>Зарплата: </b> {{$vacancy->salary}} </p>
+
             </a>
         @endforeach
-            <?php echo $vacancies->render(); ?>
+        <?php echo $vacancies->render(); ?>
     </div>
-
-
 @stop
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
 
 <script type="text/javascript">
 
@@ -90,31 +81,6 @@
                             '<p class="list-group-item-text"><b>Зарплата: </b>' + json[i].salary + '</p>');
                         }
 
-                        $('div[class=list-group]').append('<nav>'+
-                        '<ul class="pagination">'+
-                        '<li class="disabled">'+
-                        '<span>'+
-                        '<span aria-hidden="true">&laquo;</span>'+
-                       '</span>'+
-                        '</li>'+
-                        '<li class="active">'+
-                        '<span>1 <span class="sr-only">(current)</span></span>'+
-                        '</li>'+
-                    '...'+
-                    '</ul>'+
-                        '</nav><br >'+
-
-                        '<ul class="pagination">'+
-                        '<li class="disabled"><a href="#">&laquo;</a></li>'+
-                        '<li class="active"><a href="#">1</a></li>'+
-                        '<li><a href="#">2</a></li>'+
-                        '<li><a href="#">3</a></li>'+
-                        '<li><a href="#">4</a></li>'+
-                       '<li><a href="#">5</a></li>'+
-                        '<li><a href="#">&raquo;</a></li>'+
-                       '</ul>'
-
-                        );
                     }
                 },
                 error:function(){
