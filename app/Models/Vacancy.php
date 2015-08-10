@@ -52,10 +52,9 @@ class Vacancy extends Model {
         $position = $request['Position'];
         $branch = $request['branch'];
         $organisation = $request['Organisation'];
-        $date = $request['Date'];
         $salary = $request['Salary'];
         $city = $request['City'];
-        $desription = $request['Description'];
+        $description = $request['Description'];
         $userEmail = $request['user_email'];
 
         $companyId = $company->companyName($organisation);
@@ -71,10 +70,9 @@ class Vacancy extends Model {
         $vacancy->position = $position;
         $vacancy->branch = $branch;
         $vacancy->organisation = $organisation;
-        $vacancy->date_field = $date;
         $vacancy->salary = $salary;
         $vacancy->city = $city;
-        $vacancy->description = $desription;
+        $vacancy->description = $description;
         $vacancy->company_id = $companyId->id;
         $vacancy->user_email = $userEmail;
 

@@ -15,15 +15,18 @@ class Resume extends Model {
 
     private function BelongsUser()
     {
-        return $this->belongsTo('App\Models\User','id_u')->first();
+        $user = $this->belongsTo('App\Models\User','id_u')->get();
+
+        return $user[0];
     }
-    public function GetUser()
+    public function ReadUser()
     {
         $user = $this->BelongsUser();
+
         return $user;
     }
 
-    public function fillResume($id,$auth,$company,$request)
+    public function fillResume($id,$auth,$request)
     {
 
         $name_u = $request['name_u'];
@@ -35,8 +38,30 @@ class Resume extends Model {
         $salary = $request['salary'];
         $description = $request['description'];
 
+        if($id!=0)
+        {
+            $user = Resume::GetUser();
+            $resume = Resume::find($id);
+            $resume->id_u = $user->id;
 
+        }
+        else
+        {
+            $user = $auth->user();
+            $resume = new Resume();
+            $resume->id_u = $user->id;
+        }
 
+        $resume->name_u = $name_u;
+        $resume->telephone = $telephone;
+        $resume->email = $email;
+        $resume->city = $city;
+        $resume->industry = $industry;
+        $resume->position = $position;
+        $resume->salary = $salary;
+        $resume->description = $description;
+
+        return $resume;
 
     }
 }

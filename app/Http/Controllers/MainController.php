@@ -3,8 +3,10 @@
 use App\Models\City;
 use App\Models\Vacancy;
 use App\Models\Industry;
+use Illuminate\Auth\Guard;
 use Input;
 use Request;
+use Session;
 use DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redirect;
@@ -21,11 +23,7 @@ class MainController extends Controller {
 	| controllers, you are free to modify or remove it as you desire.
 	|
 	*/
-//        public $fakeData = [
-//            ['data'=>"1"],
-//            ['data'=>"2"],
-//            ['data'=>"3"]
-//        ];
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -41,16 +39,15 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(City $cityModel)
+	public function index(City $cityModel,Guard $auth)
 	{
+        //dd($auth->user());
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
-        $vacancies = Vacancy::latest('id')->paginate(10);
-
-        //var_dump($vacancies);
-       // print_r($vacancies);
-
-		//return view('main.index',['data'=>$this->fakeData, 'cities'=>$cities,'industries'=>$industries]);
+        $vacancies = Vacancy::latest('id')->paginate(3);
+        Session::forget('city');
+        Session::forget('industry');
+        //Session::flush();
         return view('main.index',['vacancies'=>$vacancies, 'cities'=>$cities,'industries'=>$industries]);
 	}
     public function filters(City $cityModel)
@@ -58,55 +55,36 @@ class MainController extends Controller {
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
 
+        if(Input::get('industry') || Input::get('city')){
+            $city_i = Input::get('city');
+            $industry_i = Input::get('industry');
+            session(['city' => $city_i, 'industry' => $industry_i]);
 
-        $data1 = Input::all();
-        //var_dump($data1);
+        }
 
-            if($data1['city'] > 0 && $data1['industry'] == 0){
-                $vacancies = Vacancy::where('city', '=',$data1['city'])->latest('id')->paginate(2);
-                //$vacancies = Vacancy::where('city', '=',$data1['city_id'])->latest('id')->paginate(4);
+        $city = session('city');
+        $industry = session('industry');
 
-            }
-            elseif($data1['city'] > 0 && $data1['industry'] > 0){
-                $vacancies = Vacancy::where('city', '=',$data1['city'])->where('branch', '=', $data1['industry'])->latest('id')->paginate(2);
-            }
-            elseif( $data1['industry'] > 0 && $data1['city'] == 0){
-                $vacancies = Vacancy::where('branch', '=', $data1['industry'])->latest('id')->paginate(2);
-            }
-            else
-            {
-                $vacancies = Vacancy::latest('id')->paginate(2);
-            }
-        //$vacancies->setPath('filter/');
-        //return Redirect::to('main.filters',['vacancies'=>$vacancies, 'cities'=>$cities,'industries'=>$industries]);
-        return view('main.index',['vacancies'=>$vacancies, 'cities'=>$cities,'industries'=>$industries]);
-        //return view('main.index')->with('vacancies', $vacancies)->render();
+        if($city > 0 && $industry < 1){
+            $vacancies = Vacancy::where('city', '=',$city)->latest('id')->paginate(2);
+        }
+        elseif($city > 0 && $industry > 0){
+            $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('id')->paginate(2);
+        }
+        elseif( $industry > 0 && $city < 1){
+            $vacancies = Vacancy::where('branch', '=', $industry)->latest('id')->paginate(2);
+        }
+        else
+        {
+            $vacancies = Vacancy::latest('id')->paginate(3);
+        }
+
+        return view('main.filter',
+            ['vacancies'=>$vacancies,
+            'cities'=>$cities,
+            'industries'=>$industries,
+            'city_f'=> $city,
+            'industry_f'=>$industry]);
     }
-//    public function filter()
-//    {
-//        if (Request::ajax()) {
-//            $data1 = Input::all();
-//
-//            if($data1['city_id'] > 0 && $data1['industry_id'] == 0){
-//                $vacancies = Vacancy::where('city', '=',$data1['city_id'])->latest('id')->get();
-//                //$vacancies = Vacancy::where('city', '=',$data1['city_id'])->latest('id')->paginate(4);
-//
-//            }
-//            elseif($data1['city_id'] > 0 && $data1['industry_id'] > 0){
-//                $vacancies = Vacancy::where('city', '=',$data1['city_id'])->where('branch', '=', $data1['industry_id'])->latest('id')->get();
-//            }
-//            elseif( $data1['industry_id'] > 0 && $data1['city_id'] == 0){
-//                $vacancies = Vacancy::where('branch', '=', $data1['industry_id'])->latest('id')->get();
-//            }
-//            else
-//            {
-//                $vacancies = Vacancy::latest('id')->get();
-//            }
-//            //return view('main.index',['vacancies'=>$vacancies]);
-//            header("Content-type: text/x-json");
-//            echo json_encode($vacancies);
-//            exit();
-//        }
-//    }
-        //$vacancies = DB::select('select * from vacancies where city = (select cities.name from cities where id = ?)', $city_id)->get();
+
 }

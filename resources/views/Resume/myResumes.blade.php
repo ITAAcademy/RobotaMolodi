@@ -25,9 +25,12 @@
             </p>
             <p>
                 Опис: {{$resume->description}}
-                <hr >
-            </p>
 
+            </p>
+            <p>
+                <a href="resume/{{$resume->id}}">Переглянути</a>
+            <hr >
+            </p>
         </article>
     @endforeach
 

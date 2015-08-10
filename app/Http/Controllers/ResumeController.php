@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 use App\Models\Resume;
 use App\Models\City;
 use App\Models\Industry;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -22,8 +27,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	{
 
         $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes(); //Выборка с базы через модель Resumes
-        //dd(Resume::all());
-		return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
+
+        return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
 	}
 
 	/**
@@ -44,10 +49,27 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 *
 	 * @return Response
 	 */
-	public function store(Resume $resumeModel, CreateNewResume $request)//Save resume in DB
+	public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
 	{
-        //dd($request->all());
-        $resumeModel->create($request->all());
+        Input::flush();
+        //Input::flash('only', array('industry','cities'));
+        //Cookie::put('industry','yes',1);
+        $rules = 'required|min:3';
+        $this->validate($request,[
+            'name_u' => $rules,
+            'email' => 'required|email',
+            'position' => $rules,
+            'salary' => 'required|min:3|numeric',
+            'description' => $rules
+
+        ]);
+
+
+        $file = $_FILES['loadResume'];//$request->file('loadResume');
+
+        $resume = $resumeModel->fillResume(0,$auth,$request);
+
+        $resume->save();
         return redirect()->route('resumes');
 	}
 
@@ -57,9 +79,31 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id,Guard $auth)
 	{
-		//
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        $view = '';
+
+        $resume = Resume::find($id);
+
+        $userResume = $resume->ReadUser($id);
+
+        $user = auth()->user();
+        if(Auth::check())
+        {
+        if($user->id == $userResume->id)
+        {
+            $view = "Resume.showMyResume";
+        }
+        }
+        else
+        {
+            $view = "Resume.show";
+        }
+        return view($view)
+            ->with('resume',$resume);
+
+
 	}
 
 	/**
@@ -68,9 +112,20 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id,City $city,Industry $industry)
 	{
-		//
+        if(Auth::check())
+        {
+            $resume = Resume::find($id);
+            $cities = $city->getCities();
+            $industries = $industry->getIndustries();
+
+
+            return view('Resume.edit')
+                        ->with('resume',$resume)
+                        ->with('cities',$cities)
+                        ->with('industries',$industries);
+        }
 	}
 
 	/**
@@ -79,9 +134,16 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $request,Resume $resume,Guard $auth)
 	{
-		//
+        $updateResume = $resume->fillResume($id,$auth,$request);
+
+        $updateResume->push();
+
+        $updateResume->save();
+
+        return redirect()->route('cabinet.index');
+
 	}
 
 	/**
@@ -92,7 +154,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function destroy($id)
 	{
-		//
+		Resume::destroy($id);
+
+        return redirect()->route('cabinet.index');
+        //$resume->destroy();
 	}
 
 }

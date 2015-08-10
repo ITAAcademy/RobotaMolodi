@@ -106,6 +106,7 @@ class VacancyController extends Controller {
 	public function store(Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
         if(Auth::check()){
+        Input::flash();
 
         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
@@ -123,7 +124,7 @@ class VacancyController extends Controller {
 
             $vacancy->save();
 
-            return redirect()->route('cabinet.index');
+            return redirect()->route('vacancy.index');
         }
         else
         {
@@ -152,10 +153,15 @@ class VacancyController extends Controller {
 
         $userVacation = $vacancy->ReadUser($id);
 
-        $user = User::find($auth->user()->getAuthIdentifier());
-        if($userVacation->id == $user->id)
+        $user = new User();
+        if(Auth::check())
         {
-            $view = 'vacancy.showMyVacancy';
+            $user = User::find($auth->user()->getAuthIdentifier());
+            if($userVacation->id == $user->id)
+            {
+                $view = 'vacancy.showMyVacancy';
+
+            }
         }
         else
         {
@@ -166,8 +172,8 @@ class VacancyController extends Controller {
 
         return view($view)
             ->with('vacancy',$vacancy)
-            ->with('company_name',$company_name[0])
-            ->with('user',$user);
+            ->with('company_name',$company_name)
+            ->with('user',$userVacation);
 
     }
 
