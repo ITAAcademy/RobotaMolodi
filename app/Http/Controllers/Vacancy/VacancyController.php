@@ -147,6 +147,7 @@ class VacancyController extends Controller {
 	 */
 	public function show($id,Guard $auth)
 	{
+        //dd("dasdsa");
         $view = '';
 
         $vacancy = Vacancy::find($id);
@@ -156,11 +157,16 @@ class VacancyController extends Controller {
         $user = new User();
         if(Auth::check())
         {
+
             $user = User::find($auth->user()->getAuthIdentifier());
             if($userVacation->id == $user->id)
             {
                 $view = 'vacancy.showMyVacancy';
 
+            }
+            else
+            {
+                $view = 'vacancy.show';
             }
         }
         else
@@ -169,7 +175,7 @@ class VacancyController extends Controller {
         }
         $company = new Company();
         $company_name = $company->companyName($vacancy->organisation);
-
+        //dd($view);
         return view($view)
             ->with('vacancy',$vacancy)
             ->with('company_name',$company_name)
