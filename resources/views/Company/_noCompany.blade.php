@@ -1,4 +1,3 @@
-<br/>
 <?php
 
 echo $companies;

@@ -12,6 +12,7 @@
     Опис :            {{$vacancy->description}}<br>
     Від кого :        {{$user->name}}<br>
     <a href="{{$vacancy->id}}/response">Відгукнутися</a>
+    <hr >
 
 
 

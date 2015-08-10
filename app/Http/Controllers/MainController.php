@@ -79,7 +79,12 @@ class MainController extends Controller {
             $vacancies = Vacancy::latest('id')->paginate(3);
         }
 
-        return view('main.filter',['vacancies'=>$vacancies, 'cities'=>$cities,'industries'=>$industries, 'city_f'=> $city, 'industry_f'=>$industry]);
+        return view('main.filter',
+            ['vacancies'=>$vacancies,
+            'cities'=>$cities,
+            'industries'=>$industries,
+            'city_f'=> $city,
+            'industry_f'=>$industry]);
     }
 
 }

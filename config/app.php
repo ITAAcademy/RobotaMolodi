@@ -115,7 +115,6 @@ return [
 		 */
         'Collective\Html\HtmlServiceProvider',//add
 
-
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',

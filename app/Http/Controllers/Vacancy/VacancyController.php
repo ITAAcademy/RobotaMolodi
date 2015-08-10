@@ -106,6 +106,7 @@ class VacancyController extends Controller {
 	public function store(Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
         if(Auth::check()){
+        Input::flash();
 
         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
@@ -123,7 +124,7 @@ class VacancyController extends Controller {
 
             $vacancy->save();
 
-            return redirect()->route('cabinet.index');
+            return redirect()->route('vacancy.index');
         }
         else
         {

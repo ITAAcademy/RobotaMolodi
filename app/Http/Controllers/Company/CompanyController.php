@@ -114,7 +114,7 @@ class CompanyController extends Controller  {
             else
             {
 
-                $path = 'cabinet.index';
+                $path = 'company.index';
             }
             return redirect()->route($path);
         }
