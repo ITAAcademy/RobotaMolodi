@@ -256,7 +256,7 @@ class VacancyController extends Controller {
      */
     public function response(Guard $auth,$id)
     {
-
+        if(Auth::check()){
         $vacancy = Vacancy::find($id);
 
         $company = $vacancy->ReadCompany();
@@ -269,6 +269,11 @@ class VacancyController extends Controller {
                     ->with('vacancy',$vacancy)
                     ->with('user',$user)
                     ->with('userVacation',$userVacation);
+    }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
     }
 
     //Send file in employer (takes one param "id" vacancy)
