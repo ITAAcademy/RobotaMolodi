@@ -147,8 +147,8 @@ class VacancyController extends Controller {
 	 */
 	public function show($id,Guard $auth)
 	{
-        //dd("dasdsa");
-        $view = '';
+
+        $view = 'vacancy.show';
 
         $vacancy = Vacancy::find($id);
 
@@ -164,15 +164,8 @@ class VacancyController extends Controller {
                 $view = 'vacancy.showMyVacancy';
 
             }
-            else
-            {
-                $view = 'vacancy.show';
-            }
         }
-        else
-        {
-            $view = 'vacancy.show';
-        }
+
         $company = new Company();
         $company_name = $company->companyName($vacancy->organisation);
         //dd($view);
@@ -262,7 +255,8 @@ class VacancyController extends Controller {
      */
     public function response(Guard $auth,$id)
     {
-        if(Auth::check()){
+        if(Auth::check())
+        {
         $vacancy = Vacancy::find($id);
 
         $company = $vacancy->ReadCompany();
@@ -275,7 +269,7 @@ class VacancyController extends Controller {
                     ->with('vacancy',$vacancy)
                     ->with('user',$user)
                     ->with('userVacation',$userVacation);
-    }
+        }
         else
         {
             return Redirect::to('auth/login');
