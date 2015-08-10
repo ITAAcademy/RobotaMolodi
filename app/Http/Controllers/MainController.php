@@ -41,6 +41,7 @@ class MainController extends Controller {
 	 */
 	public function index(City $cityModel,Guard $auth)
 	{
+
         //dd($auth->user());
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
