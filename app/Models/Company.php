@@ -21,7 +21,7 @@ class Company extends Eloquent {
 
     public function ReadUser()
     {
-        //return User::where('id',$this->users_id)->first();
+
         return $this->belongsTo('App\Models\User','users_id')->first();
 
     }

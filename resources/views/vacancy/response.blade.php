@@ -1,4 +1,4 @@
-@extends('cabinet\cabinet')
+@extends('cabinet/cabinet')
 @section('contents')
 <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
     <button class="btn btn-default" style="background: #a7eebe" onclick="PasteLink()" >Вставити посилання на рєзюме</button>
