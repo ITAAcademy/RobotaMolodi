@@ -1,10 +1,9 @@
 @extends('app')
 
 @section('content')
-    <!-- <meta name="csrf_token" content="{{ csrf_token() }}" />
-    Form filters-->
-    {!! Form::open(['method' => 'get', 'route' => 'filter', 'class'=>'form-inline']) !!} <!-- F-->
-
+     <meta name="csrf_token" content="{{ csrf_token() }}" />
+    <!--Form filters-->
+    {!! Form::open(['method' => 'get',  'class'=>'form-inline']) !!} <!-- F-->
         <select name="industry" class="form-control" id="selectIndustry" style="width: 200px">
             <option value="0"> Усі галузі</option>
             @foreach($industries as $industry)
@@ -20,14 +19,14 @@
         </select>
 
         <div class="form-group">
-            {!! Form::submit('Пошук', ['class'=>'btn btn-primary']) !!}
+            <!--{!! Form::submit('Пошук', ['class'=>'btn btn-primary']) !!}-->
         </div>
 
     {!!Form::close()!!}
 
     <!-- Output vacancies  -->
 
-    <div class="list-group">
+    <div class="list-group" id="resDiv">
         @foreach($vacancies as $vacancy)
             <a href="vacancy/{{$vacancy->id}}" class="list-group-item">
                 <p>
@@ -48,40 +47,73 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $('#search').click(function(){
+        $('#get').click(function(e)
+        {
+            e.preventDefault();
+            $.get('categories',function(data)
+            {
+                console.log(data);
+            });
+        });
+
+    });
+
+    $(document).ready(function(){
+        $('#selectIndustry').change(function(){
             $("div.list-group").empty();
             var city_id = $('[name=city]').val();
             var industry_id = $('[name=industry]').val();
 
-            alert(city_id+ " "+ industry_id);
-            //alert(industry_id);
+            alert(industry_id);
+            alert(city_id);
             $.ajax({   //start of ajax
-                url: "searchCity",
+                url: "filterVacancy",
                 type:"POST",
                 beforeSend: function(xhr){
                     var token = $('meta[name="csrf_token"]').attr('content');
-                    if (token) {
+                    if (token)
+                    {
                         return xhr.setRequestHeader('X-CSRF-TOKEN', token);
                     }
                 },
                 data: {'city_id' : city_id, 'industry_id' : industry_id},
                 success:function(json){
+
                     if(json.length < 1){
                         $('div[class=list-group]').html('<p class="btn bg-danger">По даному  запросу дані відсутні.</p>');
                     }
-                    else if(json){
-                        alert(json);
-                        for(var i in json) {
-                            var j = i * 1 + 1;
-                            <!-- Output filters vacancies  -->
-                            $('div[class=list-group]').append('<a href="http://localhost/RobotaMolodi/public/vacancy/' + json[i].id + ' " class="list-group-item">' +
-                            '<h3 class="list-group-item-heading">' + j + ' Позиція: <span class="text-info" >' + json[i].position +'</span>' +
-                            '<span class="text-muted text-right pull-right"><h5>' + json[i].date_field + '</h5></span></h3>' +
-                            '<h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">' + json[i].description + '</span></h4>' +
-                            '<p class="list-group-item-text"><b>Зарплата: </b>' + json[i].salary + '</p>');
+                     if(json) {
+
+                        var vacancies = JSON.parse(json['vacancies']);
+                        for(var i in vacancies.data)
+                        {
+
+                            ////////////////////////////////////////////////////////////////////////////////////////////
+                            var vacancy = '<a href="vacancy/'+vacancies.data[i].id +'" class="list-group-item">';
+                                vacancy += '<p>';
+                                vacancy += '<h3 class="list-group-item-heading">'+vacancies.data[i].branch +' Позиція: <span class="text-info" >'+vacancies.data[i].position +'</span>';
+                                vacancy += '<span class="text-muted text-right pull-right"><h5>'+vacancies.data[i].created_at+'</h5></span></h3>';
+                                vacancy += '<h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">'+ vacancies.data[i].description+'</span>...</h4>';
+                                vacancy += '</p>';
+                                vacancy += '<p class="list-group-item-text"><b>Зарплата: </b>'+ vacancies.data[i].salary+ '</p>';
+                                vacancy += '</a>';
+
+                            $('#resDiv').append(vacancy);
+
+
+
+
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                            jQuery('<div/>', {
+//                                id: vacancies.data[i].id,
+//                                href: 'vacancy/'+ vacancies.data[i].id,
+//                                title: vacancies.data[i].position,
+//                                text: vacancies.data[i].description
+//                            }).appendTo('#resDiv');
+                        }
+                            $('#resDiv').append(vacancies.total);
                         }
 
-                    }
                 },
                 error:function(){
                     alert("error!!!!");

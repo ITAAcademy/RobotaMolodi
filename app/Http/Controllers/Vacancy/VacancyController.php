@@ -26,6 +26,8 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
+
+        //dd(Vacancy::where('branch','1')->get());
         if(Auth::check()){
 
         setcookie('paths','');

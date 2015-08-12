@@ -18,8 +18,10 @@ use App\Models\Vacancy;
 //use Symfony\Component\HttpFoundation\Response;
 
 
-Route::get('/',['as' => 'head' ,'uses' => 'MainController@index']);
-
+Route::get('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
+/////
+Route::post('showVacancies','MainController@showVacancies');
+/////
 
 Route::get('home', 'HomeController@index');
 
@@ -79,9 +81,8 @@ $router->resource('resume', 'ResumeController'); //created oll routes of ResumeC
 //Other Route
 Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
 
+Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
+
 $router->resource('cabinet','cabinet\CabinetController');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-

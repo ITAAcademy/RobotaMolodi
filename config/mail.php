@@ -1,9 +1,9 @@
 <?php
 return [
-    'driver' => 'smtp',
-    'host' => 'smtp.mailgun.org',
-    'port' => 587,
-    'from' => ['address' => null, 'name' => null],
+    'driver' => 'log',
+    'host' => '127.0.0.1',
+    'port' => 25,
+    'from' => ['address' => "robotamolodi@robotamolodi.org", 'name' => "TEst"],
     'encryption' => 'tls',
     'username' => null,
     'password' => null,
