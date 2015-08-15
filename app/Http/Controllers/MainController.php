@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
@@ -139,7 +140,7 @@ class MainController extends Controller
                 $vacancies = Vacancy::latest('id')->paginate(25);
             }
 
-            return Response::json(View::make('main.vacancy',
+            return Response::json(View::make('main..filter.vacancy',
                 array('vacancies' => $vacancies,
                       'industries' => $industries,
                       'cities' => $cities,
@@ -147,8 +148,50 @@ class MainController extends Controller
                       'industry_id' => $industry)
                             )->render());
         }
-        return View::make('main.ajax', array(
+        return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
+            'industries' => $industries,
+            'city_id'=>$city,
+            'industry_id' => $industry,
+            'cities' => $cities));
+    }
+
+    public function showResumes(City $cityModel)
+    {
+        $industries = Industry::orderBy('name')->get();
+        $cities = $cityModel->getCities();
+        $city = Input::get('city_id',0);
+        $industry = Input::get('industry_id',0);
+        $resumes = Resume::paginate(5);
+        if (Request::ajax()) {
+
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            if($city > 0 && $industry < 1){
+                $resumes = Resume::where('city', '=',$city)->latest('id')->paginate(2);
+            }
+            elseif($city > 0 && $industry > 0){
+                $resumes = Resume::where('city', '=',$city)->where('industry', '=', $industry)->latest('id')->paginate(2);
+            }
+            elseif( $industry > 0 && $city < 1){
+                $resumes = Resume::where('industry', '=', $industry)->latest('id')->paginate(2);
+            }
+            else
+            {
+                $resumes = Resume::latest('id')->paginate(25);
+            }
+
+            return Response::json(View::make('main..filter.resume',
+                array('resumes' => $resumes,
+                    'industries' => $industries,
+                    'cities' => $cities,
+                    'city_id'=>$city,
+                    'industry_id' => $industry)
+            )->render());
+        }
+        return View::make('main.filter.filterResumes', array(
+            'resumes' => $resumes,
             'industries' => $industries,
             'city_id'=>$city,
             'industry_id' => $industry,

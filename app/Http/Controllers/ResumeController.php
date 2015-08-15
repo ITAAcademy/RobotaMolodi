@@ -51,6 +51,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
 	{
+        dd($request->all());
         Input::flush();
         //Input::flash('only', array('industry','cities'));
         //Cookie::put('industry','yes',1);
