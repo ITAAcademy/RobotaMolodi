@@ -18,10 +18,10 @@
     <div class="form-group" style="margin-top: 30px">
     <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
     <div class="col-sm-5">
-        <select class="form-control" id="selectGaluz" name="branch">
+        <select class="form-control"  id="selectGaluz" name="branch">
         @foreach($industries as $industry)
             {
-                <option>{{$industry->name}}</option>
+                <option value="{{$industry->id}}">{{$industry->name}}</option>
             }
         @endforeach
             @if(Input::old('branch')!= '')
@@ -37,7 +37,7 @@
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
-                    <option>{{$comp->company_name}}</option>
+                    <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
                     @if(Input::old('Organisation')!= '')
                         <option selected>{{Input::old('Organisation')}}</option>
@@ -68,21 +68,26 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
-            <select class="form-control" name="City" >
-            @foreach($cities as $city)
+            <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="City[]" id="city">
+                @foreach($cities as $city)
                 {
-                    <option>{{$city->name}}</option>
+                    <option value="{{$city->id}}">{{$city->name}}</option>
                 }
-            @endforeach
+                @endforeach
+                    @if(Input::old('City[]')!= '')
+                        <option selected>{{Input::old('City[]')}}
+                    @endif
             </select>
         </div>
+        <div > <span style="color: red"> * <?php echo $errors->first('City','поле має містити не менше одного міста'); ?></span> </div>
+
         </br>
     </div>
 
     <div class="form-group {{$errors-> has('Description') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
-            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control' )) !!}
+            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)' )) !!}
         </div>
 
         <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має містити не менше трьох символів'); ?></span> </div>
@@ -97,4 +102,14 @@
     {!!Form::token()!!}
     {!!Form::close()!!}
 
+
 @endsection
+
+@section('footer')
+
+    <script type="text/javascript">
+        $('#city').select2();
+
+
+    </script>
+@stop

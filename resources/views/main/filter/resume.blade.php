@@ -1,4 +1,4 @@
-@if($resumes=='')
+@if(empty($resumes))
     </br>
     <?php echo "Немає рєзюме по Вашому пошуку"?>
 

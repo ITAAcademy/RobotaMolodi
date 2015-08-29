@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
+
 		"laravel/framework": "5.0.*",
         "laravelcollective/html":"~5.0"
 

@@ -113,6 +113,7 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
+
         'Collective\Html\HtmlServiceProvider',//add
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',

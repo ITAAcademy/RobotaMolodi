@@ -18,10 +18,10 @@ class CreateVacanciesTable extends Migration {
             $table->string('position');
             $table->integer('company_id');
             $table->string('branch');
-            $table->string('organisation');
+            //$table->string('organisation');
             $table->date('date_field');
             $table->integer('salary');
-            $table->string('city');
+            //$table->string('city');
             $table->mediumText('description');
             $table->string('user_email');
             $table->rememberToken();

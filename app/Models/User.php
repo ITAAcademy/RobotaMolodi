@@ -28,7 +28,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
+     *
 	 */
+
 	protected $hidden = ['password', 'remember_token'];
 
     private function hasCompany()
@@ -61,7 +63,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         }
 
-        return $vacancies;
+        return $vacancy;
 
     }
 
@@ -83,6 +85,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         return $resumes;
     }
+
 
 
 }

@@ -42,7 +42,7 @@ function Pagination(city_id,industry_id,url)
 function getPosts(page) {
     var city_id = $('[name=city]').val();
     var industry_id = $('[name=industry]').val();
-    alert(industry_id);
+
     $.ajax({
         url : '?page=' + page + '&city_id=' + city_id + '&industry_id=' + industry_id ,
         dataType: 'json'
@@ -60,6 +60,7 @@ function sendAjax(city_id,industry_id,url)
         type: "POST",
         beforeSend: function (xhr) {
             var token = $('meta[name="csrf_token"]').attr('content');
+
             if (token) {
                 return xhr.setRequestHeader('X-CSRF-TOKEN', token);
             }

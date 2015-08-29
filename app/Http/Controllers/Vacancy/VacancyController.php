@@ -2,6 +2,7 @@
 
 
 use App\Http\Requests;
+use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Input;
 use Mail;
 use App\Http\Controllers\Controller;
@@ -26,14 +27,12 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
-
-        //dd(Vacancy::where('branch','1')->get());
         if(Auth::check()){
 
         setcookie('paths','');
 
         $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
-
+        $vacancies->sortByDesc('created_at');
         if(!$vacancies)
         {
             $vacancies = "Зараз у Вас немає вакансій. Створіть";
@@ -105,35 +104,45 @@ class VacancyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Guard $auth,Company $company,Vacancy $vacancy,Request $request)
+	public function store(Guard $auth,Company $company,Vacancy $vacancy,Vacancy_City $vacancy_City,Request $request)
 	{
+
         if(Auth::check()){
         Input::flash();
 
         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
-
-        if($hasCompany){
+        //
+        if($hasCompany)
+        {
         $rules = 'required|min:3';
             $this->validate($request,[
             'Position' => $rules,
             'Salary' => 'required|min:3|numeric',
-            'Description' => $rules
+            'Description' => $rules,
+            'City' => 'required'
         ]);
 
-        $vacancy = $vacancy->fillVacancy(0,$auth,$company,$request);
+        $vacancy = $vacancy->fillVacancy(0,$request);
 
-
+            //
+           // $vacancy_City->FillHole($vacancy->city,$auth->user()->getAuthIdentifier());
 
             $vacancy->save();
 
-            return redirect()->route('vacancy.index');
+            $cities = $request['City'];
+            $vacancy_City = new Vacancy_City();
+            $vacancy_City->FillHole($cities,$vacancy->id);                 //link vacancy with cities in vacancy
+
+
+
+        return redirect()->route('vacancy.index');
         }
         else
         {
            return redirect()->route('company.create');
         }
-
         }
+
         else
         {
         return Redirect::to('auth/login');
@@ -156,7 +165,9 @@ class VacancyController extends Controller {
 
         $userVacation = $vacancy->ReadUser($id);
 
-        $user = new User();
+        $cities = $vacancy->Cities();
+
+        $industry = Industry::find($vacancy->branch);
         if(Auth::check())
         {
 
@@ -168,13 +179,17 @@ class VacancyController extends Controller {
             }
         }
 
-        $company = new Company();
-        $company_name = $company->companyName($vacancy->organisation);
+        $company = Company::find($vacancy->company_id);;
+
+        //$company_name = $company->companyName($vacancy->organisation);
         //dd($view);
+
         return view($view)
             ->with('vacancy',$vacancy)
-            ->with('company_name',$company_name)
-            ->with('user',$userVacation);
+            ->with('company',$company)
+            ->with('user',$userVacation)
+            ->with('cities',$cities)
+            ->with('industry',$industry);
 
     }
 
@@ -216,15 +231,18 @@ class VacancyController extends Controller {
 	public function update($id,Guard $auth,Company $company,Vacancy $vacancy,Request $request)
 	{
 
+
         if(Auth::check()) {
             $rules = 'required|min:3';
-            $this->validate($request, [
+            $this->validate($request,
+            [
                 'Position' => $rules,
                 'Salary' => 'required|min:3|numeric',
-                'Description' => $rules
+                'Description' => $rules,
+                'City' => 'required'
             ]);
 
-            $vacancy = $vacancy->fillVacancy($id,$auth, $company, $request);
+            $vacancy = $vacancy->fillVacancy($id, $request);
 
             $vacancy->update();
             $vacancy->push();

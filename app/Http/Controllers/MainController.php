@@ -4,6 +4,7 @@ use App\Models\City;
 use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\Industry;
+use App\Models\Vacancy_City;
 use Illuminate\Auth\Guard;
 use Input;
 use Request;
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class MainController extends Controller
 {
-
+    const paginateCount = 25;
+    const paginateFilter = 'upduted_at';
     /*
     |--------------------------------------------------------------------------
     | Welcome Controller
@@ -51,6 +53,7 @@ class MainController extends Controller
         $vacancies = Vacancy::latest('id')->paginate(25);
         Session::forget('city');
         Session::forget('industry');
+
         //Session::flush();
         return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
     }
@@ -120,27 +123,27 @@ class MainController extends Controller
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $vacancies = Vacancy::paginate(5);
+        $vacancies = Vacancy::paginate(25);
+        $vacancy_city = new Vacancy_City();
         if (Request::ajax()) {
 
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
             if($city > 0 && $industry < 1){
-                $vacancies = Vacancy::where('city', '=',$city)->latest('id')->paginate(2);
+                $vacancies = $vacancy_city->ShowVacancies($city);//Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
+
             }
             elseif($city > 0 && $industry > 0){
-                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('id')->paginate(2);
+                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
             }
             elseif( $industry > 0 && $city < 1){
-                $vacancies = Vacancy::where('branch', '=', $industry)->latest('id')->paginate(2);
+                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
             }
             else
             {
                 $vacancies = Vacancy::latest('id')->paginate(25);
             }
 
-            return Response::json(View::make('main..filter.vacancy',
+            return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,
                       'industries' => $industries,
                       'cities' => $cities,
@@ -164,25 +167,27 @@ class MainController extends Controller
         $industry = Input::get('industry_id',0);
         $resumes = Resume::paginate(5);
         if (Request::ajax()) {
-
+        //dd(Resume::where('city',$city)->latest('id'));
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if($city > 0 && $industry < 1){
-                $resumes = Resume::where('city', '=',$city)->latest('id')->paginate(2);
+
+                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(2);
+                //dd(City::find(1));
             }
             elseif($city > 0 && $industry > 0){
-                $resumes = Resume::where('city', '=',$city)->where('industry', '=', $industry)->latest('id')->paginate(2);
+                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(2);
             }
             elseif( $industry > 0 && $city < 1){
-                $resumes = Resume::where('industry', '=', $industry)->latest('id')->paginate(2);
+                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(2);
             }
             else
             {
                 $resumes = Resume::latest('id')->paginate(25);
             }
 
-            return Response::json(View::make('main..filter.resume',
+            return Response::json(View::make('main.filter.resume',
                 array('resumes' => $resumes,
                     'industries' => $industries,
                     'cities' => $cities,

@@ -40,14 +40,6 @@ Route::get('nata', function(){return 'Get well, Nataly!';});
 
 
 
-//Route::post('company/create',function(){
-//    $rules = array("min:3");
-//    $validator = Validator::make(Input::post('company_name'),$rules);
-//
-//    if($validator->fails()){
-//        return Redirect::to('company/create') -> withErrors($validator);
-//    }
-//});
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Vacancy Route
 $router->resource('vacancy','Vacancy\VacancyController');
