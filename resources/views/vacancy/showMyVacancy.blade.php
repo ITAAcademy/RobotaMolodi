@@ -7,11 +7,11 @@
     </ul>
     <h1>Перегляд вакансії</h1>
     Дата розміщення : {{$vacancy->created_at}}<br>
-    Компанія :        {{$company_name->company_name}}<br>
+    Компанія :        {{$company->company_name}}<br>
     Зарплата :        {{$vacancy->salary}}<br>
     Позиція :         {{$vacancy->position}}<br>
-    Місто :           {{$vacancy->city}}<br>
-    Галузь :          {{$vacancy->branch}}<br>
+    Місто :           @foreach($cities as $city) {{$city->name}}, @endforeach<br>
+    Галузь :          {{$industry->name}}<br>
     Опис :            {{$vacancy->description}}<br>
     Від кого :        {{$user->name}}<br>
 

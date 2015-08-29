@@ -13,7 +13,7 @@
         Позиція :  {!!$resume->position!!}
     </p>
     <p>
-       Місто  :  {!!$resume->city!!}
+       Місто  :  {!!$city->name!!}
     </p>
 <p>
     Промисловість: {!!$resume->industry!!}

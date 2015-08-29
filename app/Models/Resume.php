@@ -15,9 +15,8 @@ class Resume extends Model {
 
     private function BelongsUser()
     {
-        $user = $this->belongsTo('App\Models\User','id_u')->get();
-
-        return $user[0];
+        $user = $this->belongsTo('App\Models\User','id_u')->first();
+        return $user;
     }
     public function ReadUser()
     {
@@ -40,8 +39,8 @@ class Resume extends Model {
 
         if($id!=0)
         {
-            $user = Resume::GetUser();
             $resume = Resume::find($id);
+            $user = $resume->ReadUser();
             $resume->id_u = $user->id;
 
         }
@@ -63,5 +62,9 @@ class Resume extends Model {
 
         return $resume;
 
+    }
+    public function Cities()
+    {
+        $this->belongsToMany('App\Models\City','resume_city')->get();
     }
 }

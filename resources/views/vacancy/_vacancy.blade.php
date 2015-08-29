@@ -2,12 +2,11 @@
 
     @foreach($vacancies as $vacancy)
         <strong>Вакансія : {{$vacancy->position}}</strong><br>
-        Галузь : {{$vacancy->branch}}<br>
-        Організація : {{$vacancy->organisation}}<br>
+        Галузь : {!!$vacancy->company()->company_name!!}<br>
         Зарплата : {{$vacancy->salary}}<br>
         Опис :{{$vacancy->description}}<br>
         Компанія : {{$vacancy->ReadCompany()->company_name}}<br>
-        Переглянути : <a href="vacancy/{{$vacancy->id}}">Переглянути</a>
+        <a href="vacancy/{{$vacancy->id}}">Переглянути</a>
 </address>
 <br>
 @endforeach

@@ -19,8 +19,12 @@ use App\Models\Vacancy;
 
 
 Route::get('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
+Route::get('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
+Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
 /////
-Route::post('showVacancies','MainController@showVacancies');
+Route::post('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
+Route::post('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
+Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
 /////
 
 Route::get('home', 'HomeController@index');
@@ -36,14 +40,6 @@ Route::get('nata', function(){return 'Get well, Nataly!';});
 
 
 
-//Route::post('company/create',function(){
-//    $rules = array("min:3");
-//    $validator = Validator::make(Input::post('company_name'),$rules);
-//
-//    if($validator->fails()){
-//        return Redirect::to('company/create') -> withErrors($validator);
-//    }
-//});
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Vacancy Route
 $router->resource('vacancy','Vacancy\VacancyController');

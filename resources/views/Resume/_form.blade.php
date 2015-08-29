@@ -15,25 +15,21 @@
 </div>
 <div class="form-group">
     {!! Form::label('Місто') !!}
-    {!! Form::macro('myField', function($cities)
-    {
-        $resultString = "<select name='city' class='form-control' id='selectCity'>";
-        $optionsArray = array();
-
-        foreach($cities as $city)
-        {
-            $optionArray[] = "<option>".$city->name."</option>";
-        }
-        $resultString = $resultString.join("\n",$optionArray). "</select>";
-        return $resultString;
-    }) !!}
-        {!! Form::myField($cities, ['class'=>'form-control']) !!}
+    <select name="city" class="form-control" id="selectCity">
+        @foreach($cities as $city)
+            <option value="{{$city->id}}"> {{$city->name}} </option>
+        @endforeach
+        @if(Input::old('city')!= '')
+            <option selected>{{Input::old('city')}}
+                @endif
+            </option>
+    </select>
 </div>
 <div class="form-group">
     {!! Form::label('Галузь') !!}
         <select name="industry" class="form-control" id="selectIndustry">
             @foreach($industries as $industry)
-                <option> {{$industry->name}} </option>
+                <option value="{{$industry->id}}"> {{$industry->name}} </option>
             @endforeach
             @if(Input::old('industry')!= '')
             <option selected>{{Input::old('industry')}}

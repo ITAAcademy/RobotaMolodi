@@ -51,6 +51,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
 	{
+       // dd($request->all());
         Input::flush();
         //Input::flash('only', array('industry','cities'));
         //Cookie::put('industry','yes',1);
@@ -60,8 +61,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'email' => 'required|email',
             'position' => $rules,
             'salary' => 'required|min:3|numeric',
-            'description' => $rules
-
+            'description' => $rules,
+            'city' => 'reqired'
         ]);
 
 
@@ -70,6 +71,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $resume = $resumeModel->fillResume(0,$auth,$request);
 
         $resume->save();
+
         return redirect()->route('resumes');
 	}
 
@@ -82,11 +84,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	public function show($id,Guard $auth)
 	{
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        $view = '';
+        $view = 'Resume.show';
 
         $resume = Resume::find($id);
 
         $userResume = $resume->ReadUser($id);
+
+        $city = City::find($resume->city);
 
         $user = auth()->user();
         if(Auth::check())
@@ -96,12 +100,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $view = "Resume.showMyResume";
         }
         }
-        else
-        {
-            $view = "Resume.show";
-        }
+
         return view($view)
-            ->with('resume',$resume);
+            ->with('resume',$resume)
+            ->with('city',$city);
 
 
 	}
@@ -136,6 +138,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function update($id,Request $request,Resume $resume,Guard $auth)
 	{
+
         $updateResume = $resume->fillResume($id,$auth,$request);
 
         $updateResume->push();

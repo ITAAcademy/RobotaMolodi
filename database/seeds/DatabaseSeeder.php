@@ -7,6 +7,7 @@ use App\Models\Vacancy;
 use \App\Models\Company;
 use \App\Models\Resume;
 use \App\Models\City;
+use \App\Models\User;
 use \App\Models\Industry;
 
 class DatabaseSeeder extends Seeder {
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
         $this->call('VacancySeeder');
         $this->call('CompanySeeder');
-		//$this->call('UserTableSeeder');
+		$this->call('UserTableSeeder');
         $this->call('ResumeSeeder'); // Заповнення таблиці resumes даними
         $this->call('CitySeeder');
         $this->call('IndustrySeeder');
@@ -30,13 +31,11 @@ class DatabaseSeeder extends Seeder {
 }
 
 
+
 class VacancySeeder extends Seeder
 {
     public function Run()
     {
-        $id = '3';
-        $branch = "sasas";
-        $organisation = "org2";
 
         DB::table('vacancies')->delete();
         for($i = 0; $i < 105; $i++)  {
@@ -52,20 +51,19 @@ class VacancySeeder extends Seeder
                 default: $pos = "Rock"; $sal = 50000;  break;
             }
             switch($position){
-                case 1: $com_id = 1; $com_n = "Ипам"; break;
-                case 2: $com_id = 2; $com_n = "Сіклум";break;
-                default: $com_id = 3;$com_n = "Делфі"; break;
+                case 1: $com_id = 1;  break;
+                case 2: $com_id = 2; break;
+                default: $com_id = 3; break;
             }
 
             Vacancy::create([
                 "position" => $pos,
                 "company_id" => $com_id,
                 "branch" => $industry,
-                "organisation" => $com_n,
                 "date_field" => \Carbon\Carbon::now(),
                 "salary" => $sal,
-                "city" => $city_r,
-                "description" => $pos." ".$com_n." bla-bla-bla Зарплата:".$sal]);
+                //"city" => $city_r,
+                "description" => $pos." "." bla-bla-bla Зарплата:".$sal]);
         }
     }
 
@@ -75,13 +73,24 @@ class CompanySeeder extends Seeder
 {
     public function run()
     {
-        $company_id = '1';
-        $company_name = "Сіклум";
-        $company_email = "1989alpan@gmail.com";
+
         Company::create([
-            "id" => $company_id,
-            "company_name" =>$company_name,
-            "company_email" => $company_email
+            "users_id" => 3,
+            "id" => 1,
+            "company_name" =>'Ciklum',
+            "company_email" => 'www.goo'
+        ]);
+        Company::create([
+            "users_id" => 2,
+            "id" => 3,
+            "company_name" =>'Epam',
+            "company_email" => 'www.aaas'
+        ]);
+        Company::create([
+            "users_id" => 1,
+            "id" => 2,
+            "company_name" =>'Firs',
+            "company_email" => 'www.asdadad'
         ]);
     }
 
@@ -93,34 +102,37 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
     {
         DB::table('resumes')->delete();
         Resume::create([
+            'id_u' => 1,
             'name_u'=> 'Сергій Коломієць',
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Розробник програмного забезпечення',
             'industry'=> 'Ювелірна' ,
-            'city'=> 'Вінниця',
+            'city'=> '1',
             'salary'=> 20100,
             'description'=> 'Створення програмного забезпечення для штампу на дорогоцінних металах.',
         ]);
 
         Resume::create([
+            'id_u' => 1,
             'name_u'=> 'Сергій Коломієць',
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Програміст С++',
             'industry'=> 'Харчова' ,
-            'city'=> 'Вінниця',
+            'city'=> '1',
             'salary'=> 20300,
             'description'=> 'Створення програмного забезпечення для конвеєрного виробництва.',
         ]);
 
         Resume::create([
+            'id_u' => 2,
             'name_u'=> 'Сергій Коломієць',
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Програміст С#',
             'industry'=> 'Шкіряна' ,
-            'city'=> 'Вінниця',
+            'city'=> '1',
             'salary'=> 20500,
             'description'=> 'Створення програми для обчислення розмірів тканин.',
         ]);
@@ -140,6 +152,7 @@ class CitySeeder extends Seeder
     public function run()
     {
         DB::table("cities")->delete();
+        City::create(['name'=>'Уся Україна']);
         City::create(["name" => "Вінниця"]);
         City::create(["name" => "Дніпропетровськ"]);
         City::create(["name" => "Донецьк"]);
@@ -202,4 +215,34 @@ class IndustrySeeder extends Seeder
         Industry::create(["name" => "Стажування за кордоном/програми обміну"]);
     }
 
+}
+
+class UserTableSeeder extends Seeder
+{
+   public function run()
+   {
+       DB::table("users")->delete();
+       User::truncate();
+       User::create([
+           'id'=> 1,
+           'name'=> 'Sasha',
+           'email'=> '3sorey4@gmail.com',
+           'password'=> Hash::make( '123456' ),
+           ]);
+       User::create([
+           'id'=> 2,
+           'name'=> 'Vova',
+           'email'=> '34@gmail.com',
+           'password'=> Hash::make( '123456' ),
+       ]);
+
+       User::create([
+           'id'=> 3,
+           'name'=> 'Sergey',
+           'email'=> '3sorey@gmail.com',
+           'password'=> Hash::make( '123456' ) ,
+       ]);
+
+
+   }
 }

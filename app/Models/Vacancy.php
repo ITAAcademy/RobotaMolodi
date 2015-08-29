@@ -8,56 +8,27 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email'];
+    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email'];
 
-
+//Read and return company
     public function ReadCompany()
     {
-        $company = $this->belongsTo('App\Models\Company','company_id')->get();
+        $company = $this->belongsTo('App\Models\Company','company_id')->first();
 
-        return $company[0];
+        return $company;
     }
 
-    public function CreateVacancy($array)
+//Fill and return vacancy Model
+    public function fillVacancy($id,$request)
     {
 
-        $position = $array['position'];
-        $galuz = $array['galuz'];
-        $organisation = $array['organisation'];
-        $date = $array['date'];
-        $salary = $array['salary'];
-        $city = $array['city'];
-        $description = $array['description'];
-
-        DB::table('vacancies')->insert(
-            array(
-                'position' => $position,
-                'branch' => $galuz,
-                'organisation' => $organisation,
-                'salary' => $salary,
-                'city' => $city,
-                'description' => $description,
-                'date_field' => $date,
-                'created_at' => $date,
-                'updated_at' => $date
-            )
-
-        );
-
-    }
-
-    public function fillVacancy($id,$auth,$company,$request)
-    {
 
         $position = $request['Position'];
         $branch = $request['branch'];
-        $organisation = $request['Organisation'];
         $salary = $request['Salary'];
-        $city = $request['City'];
         $description = $request['Description'];
         $userEmail = $request['user_email'];
-
-        $companyId = $company->companyName($organisation);
+        $companyId = $request['Organisation'];
 
         if($id!=0)
 		{
@@ -67,24 +38,32 @@ class Vacancy extends Model {
         {
             $vacancy = new Vacancy();
         }
+
         $vacancy->position = $position;
         $vacancy->branch = $branch;
-        $vacancy->organisation = $organisation;
         $vacancy->salary = $salary;
-        $vacancy->city = $city;
         $vacancy->description = $description;
-        $vacancy->company_id = $companyId->id;
+        $vacancy->company_id = $companyId;
         $vacancy->user_email = $userEmail;
-
         return $vacancy;
     }
 	//
-
+//Read and return user through company
     public function ReadUser($id)
     {
         $vacancy = Vacancy::find($id);
         $comp = $vacancy->ReadCompany();
         $user = $comp->ReadUser();
         return $user;
+    }
+
+    public function Cities()
+    {
+        return $this->belongsToMany('App\Models\City','vacancy_city')->get();
+    }
+
+    public function scopeCompany()
+    {
+        return Vacancy::ReadCompany();
     }
 }
