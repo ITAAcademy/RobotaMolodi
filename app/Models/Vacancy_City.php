@@ -58,13 +58,14 @@ class Vacancy_City extends Model {
 
     public function ShowVacancies($city_id)
     {
-        //$vacancies = array();
-        $vacancy_id = Vacancy_City::where('city_id', '=',$city_id)->latest('updated_at')->get('vacancy_id');
-        for($i = 0;$i <=count($vacancy_id);$i++)
-        {
-            $vacancy = Vacancy::where('city_id', '=',$city_id)->latest('updated_at')->get();
-            array_push()
-        }
+        $vacancies = array();
+        $vacancy_id = Vacancy_City::where('city_id', '=',$city_id)->latest('updated_at')->get();
+        dd($vacancy_id);
+//        for($i = 0;$i <=count($vacancy_id);$i++)
+//        {
+//            $vacancy = Vacancy::where('city_id', '=',$city_id)->latest('updated_at')->get();
+//
+//        }
 
         dd($vacancies);
         return $vacancies;

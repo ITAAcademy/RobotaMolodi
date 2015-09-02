@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 class City extends Model {
 
     protected $table = 'cities';
@@ -17,6 +17,7 @@ class City extends Model {
 
     public function Vacancies()
     {
-        return $this->belongsToMany('App\Models\Vacancy','vacancy_city')->get();
+        return $this->belongsToMany('App\Models\Vacancy','vacancy_city');
     }
+
 }

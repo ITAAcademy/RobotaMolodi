@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Vacancy;
 
 
+use App\Http\Controllers\MainController;
 use App\Http\Requests;
 use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Input;
@@ -27,20 +28,23 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
+
         if(Auth::check()){
 
         setcookie('paths','');
 
         $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
-        $vacancies->sortByDesc('created_at');
+
         if(!$vacancies)
         {
-            $vacancies = "Зараз у Вас немає вакансій. Створіть";
+            $vacancies = "Зараз у Вас немає вакансій.";
 
             return  View::make('vacancy.myVacancies')->nest('child','vacancy._noVacancy',['vacancies' => $vacancies]);
         }
         else
         {
+            $vacancies->sortByDesc('created_at');
+
             return  View::make('vacancy.myVacancies')->nest('child','vacancy._vacancy',['vacancies' => $vacancies]);
         }
 
@@ -60,9 +64,7 @@ class VacancyController extends Controller {
 	{
         if(Auth::check()){
 
-        $user = new User();
-
-         $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+        $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
             session_start();
 

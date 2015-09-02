@@ -48,23 +48,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function ReadUserVacancies()
     {
-        $userCompanies = User::hasCompany();
+        $vacancies = $this->hasManyThrough('App\Models\Vacancy', 'App\Models\Company','users_id')->get();
 
-        $vacancies = array();
-        foreach($userCompanies as $company)
-        {
-
-            $vacancy =$company->getUserVacancies();
-            foreach ($vacancy as $vacation){
-
-                array_push($vacancies,$vacation);
-
-            }
-
-        }
-
-        return $vacancy;
-
+        return $vacancies;
     }
 
     private function HasManyResumes()

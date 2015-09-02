@@ -8,7 +8,7 @@
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 {!! Form::open(['method' => 'get',  'class'=>'form-inline']) !!}
 <select name="city" class="form-control" id="selectCity" style="float: left;">
-    <option value="0"> Усі міста</option>
+
     @foreach($cities as $city)
         <option value="{{$city->id}}"> {{$city->name}} </option>
     @endforeach
