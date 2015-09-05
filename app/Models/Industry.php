@@ -12,4 +12,8 @@ class Industry extends Model {
 
         return $industries;
     }
+    public function GetVacancies()
+    {
+        return $this->hasMany('App\Models\Vacancy','branch');
+    }
 }

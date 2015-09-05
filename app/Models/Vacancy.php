@@ -66,4 +66,5 @@ class Vacancy extends Model {
     {
         return Vacancy::ReadCompany();
     }
+
 }

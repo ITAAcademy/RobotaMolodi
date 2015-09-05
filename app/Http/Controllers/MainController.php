@@ -1,10 +1,10 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\Industry;
-use App\Models\Vacancy_City;
 use Illuminate\Auth\Guard;
 use Input;
 use Request;
@@ -12,7 +12,7 @@ use Session;
 use DB;
 use View;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Pagination\Paginator as Paginator;
 
 class MainController extends Controller
 {
@@ -124,24 +124,27 @@ class MainController extends Controller
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
         $vacancies = Vacancy::paginate(25);
-        $vacancy_city = new Vacancy_City();
+
         if (Request::ajax()) {
 
+            $vacancies =MainController::ShowFilterVacancies($city,$industry);
 
-            if($city > 0 && $industry < 1){
-                $vacancies = $vacancy_city->ShowVacancies($city);//Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
 
-            }
-            elseif($city > 0 && $industry > 0){
-                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-            }
-            elseif( $industry > 0 && $city < 1){
-                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-            }
-            else
-            {
-                $vacancies = Vacancy::latest('id')->paginate(25);
-            }
+//            if($city > 1 && $industry < 1){
+//                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
+//
+//            }
+//            elseif($city > 1 && $industry > 0){
+//                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
+//            }
+//            elseif( $industry > 0 && $city == 1){
+//
+//                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
+//            }
+//            else
+//            {
+//                $vacancies = Vacancy::latest('id')->paginate(25);
+//            }
 
             return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,
@@ -201,5 +204,46 @@ class MainController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities));
+    }
+
+    public function ShowFilterVacancies($city_id,$industry_id)
+    {
+
+        if($city_id > 1 && $industry_id == 0)
+        {
+            $vacancy_list = City::find($city_id)->Vacancies()->paginate(2);
+
+            return $vacancy_list;
+        }
+        elseif($city_id == 1 && $industry_id > 0)
+        {
+            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(2);
+
+            return $filterVacancies;
+        }
+        elseif($city_id > 1 && $industry_id > 0)
+        {
+            $vacancy_city = City::find($city_id)->Vacancies()->get();
+            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
+
+            $vacancies = $vacancy_city->intersect($vacancy_industry);
+
+            if(count($vacancies) == 0) return $vacancies;
+
+            $filterVacancy = new FilterVacanciesModels();
+            $filterVacancy->FillTable($vacancies);
+
+            $vacancies = FilterVacanciesModels::latest('id')->paginate(2);
+
+            $filterVacancy->DestroyData();
+
+            return $vacancies;
+        }
+
+        elseif($city_id == 1 && $industry_id == 0)
+        {
+            return Vacancy::latest('id')->paginate(10);
+        }
+
     }
 }
