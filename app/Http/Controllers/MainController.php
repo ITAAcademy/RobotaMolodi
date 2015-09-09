@@ -127,7 +127,7 @@ class MainController extends Controller
 
         if (Request::ajax()) {
 
-            $vacancies =MainController::ShowFilterVacancies($city,$industry);
+            $vacancies = MainController::ShowFilterVacancies($city,$industry);
 
 
 //            if($city > 1 && $industry < 1){
