@@ -113,7 +113,7 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-
+        'Proengsoft\JsValidation\JsValidationServiceProvider',
         'Collective\Html\HtmlServiceProvider',//add
 
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
@@ -162,7 +162,7 @@ return [
 	*/
 
 	'aliases' => [
-
+        'JsValidator' => 'Proengsoft\JsValidation\Facades\JsValidatorFacade',
         'Form' => 'Collective\Html\FormFacade',//add
         'Html' => 'Collective\Html\HtmlFacade',//add
 

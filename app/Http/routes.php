@@ -84,4 +84,5 @@ $router->resource('cabinet','cabinet\CabinetController');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ProfOrientation
 
-Route::get('proforient','ProfOrientation@index');
+Route::get('proforient','ProfOrientationController@index');
+Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);

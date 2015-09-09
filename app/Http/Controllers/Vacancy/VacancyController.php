@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Requests;
+use App\Models\profOrientation\test1;
+use App\Models\profOrientation\UserSession;
 use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Input;
 //use Illuminate\Support\Facades\Session;
@@ -30,7 +32,6 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
-
 
         if(Auth::check()){
 

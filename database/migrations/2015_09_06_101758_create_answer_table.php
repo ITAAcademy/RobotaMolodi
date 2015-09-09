@@ -16,13 +16,12 @@ class CreateAnswerTable extends Migration {
         {
             $table->increments('id');
             $table->integer('testNumber');
-            $table->integer('answer');
-            //$table->string('organisation');
+            $table->text('answer');
             $table->integer('value');
 
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('rm_user_id');
+            $table->integer('po_user_id');
         });
 	}
 

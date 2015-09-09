@@ -17,7 +17,8 @@ class CreateUserSessionTable extends Migration {
             $table->increments('id');
             $table->string('username');
             $table->string('password');
-            $table->string('rm_username');
+            $table->tinyInteger('sex');
+            $table->integer('rm_id');
         });
 	}
 

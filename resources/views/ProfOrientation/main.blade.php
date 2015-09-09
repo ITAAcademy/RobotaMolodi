@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <div class="container" id="content">
 <br/>
 	<div id="logo"><a href="#">Career Oriented</a></div>
@@ -27,10 +28,10 @@
 					      </h3>
 					   </div>
 	<div class="panel-body">
-		<form id="myform">
+        {!!Form::open(['route' => 'proforient.start'])!!}
 			<div id="fieldset" >
 				<div class="phNameLocation col-md-12">
-					<p><input class="form-control" type="text" placeholder="Введіть ваше ім'я" id="phName" name="inputName" autocomplete="off"/></p>
+					<p><input class="form-control" type="text" placeholder="Введіть ваше ім'я" id="phName" name="name" autocomplete="off"/></p>
 				</div>
 			<br/>
 				<div id="text">
@@ -38,8 +39,8 @@
 						<fieldset id="sexFieldset">
 							<legend id="leg">Оберіть стать</legend>
 							<div class="textalign">
-								<input type="radio" name="one" id="sex1" value="1"><label class="radio-inline col-md-6 col-xs-6" for="sex1"><img id="male" src="images/m.jpg"/></label>
-								<input type="radio" name="one" id="sex2" value="2"><label class="radio-inline col-md-6 col-xs-6" for="sex2"><img id="female" src="images/f.jpg"/></label>
+								<input type="radio" name="sex" id="sex1" value="1"><label class="radio-inline col-md-6 col-xs-6" for="sex1"><img id="male" src="image/m.jpg"/></label>
+								<input type="radio" name="sex" id="sex2" value="2"><label class="radio-inline col-md-6 col-xs-6" for="sex2"><img id="female" src="image/f.jpg"/></label>
 							</div>
 						</fieldset>
 					</form>
@@ -56,7 +57,8 @@
 							                	<p><button type="submit" class="button btn" onclick="startTesting()">Розпочати тестування</button></p>
 							                </div>
 			</div>
-		</form>
+        {!!Form::token()!!}
+        {!!Form::close()!!}
 	</div>
 		</div>
     </div>
@@ -66,5 +68,8 @@
         <div id="down_footer" class="col-md-4 col-md-offset-8 col-xs-8 col-xs-offset-4">&copy; Copyright 2015 <b>IT Academy</b></div>
     </div>
 </div>
+
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/router.js"></script>
 
 @stop
