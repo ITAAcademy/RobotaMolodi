@@ -28,6 +28,7 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
+        return view('po/main');
 
         if(Auth::check()){
 
