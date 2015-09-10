@@ -10,6 +10,7 @@ use \App\Models\City;
 use \App\Models\User;
 use \App\Models\Industry;
 use App\Models\profOrientation\test1;
+use App\Models\Vacancy_City;
 
 class DatabaseSeeder extends Seeder {
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('CitySeeder');
         $this->call('IndustrySeeder');
         $this->call('Test1Seeder');
+        $this->call('VacancyCitySeeder');
 	}
 
 }
@@ -109,7 +111,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Розробник програмного забезпечення',
-            'industry'=> 'Ювелірна' ,
+            'industry'=> 5 ,
             'city'=> '1',
             'salary'=> 20100,
             'description'=> 'Створення програмного забезпечення для штампу на дорогоцінних металах.',
@@ -121,7 +123,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Програміст С++',
-            'industry'=> 'Харчова' ,
+            'industry'=> 3 ,
             'city'=> '1',
             'salary'=> 20300,
             'description'=> 'Створення програмного забезпечення для конвеєрного виробництва.',
@@ -133,7 +135,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
             'telephone'=> '0963363495',
             'email'=> '3sorey4@gmail.com',
             'position'=> 'Програміст С#',
-            'industry'=> 'Шкіряна' ,
+            'industry'=> 10 ,
             'city'=> '1',
             'salary'=> 20500,
             'description'=> 'Створення програми для обчислення розмірів тканин.',
@@ -219,6 +221,23 @@ class IndustrySeeder extends Seeder
 
 }
 
+class VacancyCitySeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table("vacancy_city")->delete();
+
+        for($i = 0;$i < 105;$i++)
+        {
+            $city = rand(1,26);
+            Vacancy_City::create([
+                'vacancy_id' => $i,
+                'city_id' => $city
+            ]);
+        }
+
+    }
+}
 class UserTableSeeder extends Seeder
 {
    public function run()

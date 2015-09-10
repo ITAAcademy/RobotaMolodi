@@ -2,7 +2,7 @@
 
     @foreach($vacancies as $vacancy)
         <strong>Вакансія : {{$vacancy->position}}</strong><br>
-        Галузь : {!!$vacancy->company()->company_name!!}<br>
+        Галузь : {!!$vacancy->Industry()->name!!}<br>
         Зарплата : {{$vacancy->salary}}<br>
         Опис :{{$vacancy->description}}<br>
         Компанія : {{$vacancy->ReadCompany()->company_name}}<br>

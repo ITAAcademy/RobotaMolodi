@@ -10,7 +10,7 @@
             {!! Form::text('Position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
 
-        <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше трьох символів'); ?></span> </div>
+        <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше чотирьох символів'); ?></span> </div>
 
 
 

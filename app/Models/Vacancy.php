@@ -62,9 +62,37 @@ class Vacancy extends Model {
         return $this->belongsToMany('App\Models\City','vacancy_city')->get();
     }
 
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //Scopes
+
     public function scopeCompany()
     {
-        return Vacancy::ReadCompany();
+        $company = Vacancy::ReadCompany();
+
+        return $company;
     }
 
+    public function scopeUser()
+    {
+       $company = $this->belongsTo('App\Models\Company','company_id')->first();
+       $user = $company->ReadUser();
+
+        return $user;
+    }
+
+    public function scopeIndustry()
+    {
+       $industry = $this->belongsTo('App\Models\Industry','branch')->first();
+
+        return $industry;
+    }
+
+    public function scopeCity()
+    {
+        $cities = Vacancy::Cities();
+
+        return $cities;
+    }
 }
