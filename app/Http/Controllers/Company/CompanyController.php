@@ -165,6 +165,7 @@ class CompanyController extends Controller  {
 	{
         $this->validate($request,[
             'company_name' => 'required|min:3',
+            'company_link' => 'url'
         ]);
 
         $company_name = $request['company_name'];

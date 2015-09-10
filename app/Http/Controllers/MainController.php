@@ -117,13 +117,14 @@ class MainController extends Controller
     }
 
 
-    public function showVacancies(City $cityModel)
+    public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
         $vacancies = Vacancy::paginate(25);
+
 
         if (Request::ajax()) {
 
