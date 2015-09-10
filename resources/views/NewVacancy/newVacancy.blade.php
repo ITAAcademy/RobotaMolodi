@@ -9,7 +9,7 @@
         <div class="col-sm-5">
             {!! Form::text('Position', Input::old('Position'), array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
-        <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше трьох символів'); ?></span> </div>
+        <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше чотирьох символів'); ?></span> </div>
 
 
 
@@ -25,7 +25,11 @@
             }
         @endforeach
             @if(Input::old('branch')!= '')
-                <option selected>{{Input::old('branch')}}</option>
+                @foreach($industries as $industry)
+                    @if($industry->id == Input::old('branch'))
+                <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                    @endif
+                @endforeach
             @endif
 
         </select>
@@ -40,7 +44,11 @@
                     <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
                     @if(Input::old('Organisation')!= '')
-                        <option selected>{{Input::old('Organisation')}}</option>
+                        @foreach($industries as $industry)
+                            @if($industry->id == Input::old('Organisation'))
+                                <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                            @endif
+                        @endforeach
                     @endif
 
             </select>

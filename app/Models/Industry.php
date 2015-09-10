@@ -16,4 +16,12 @@ class Industry extends Model {
     {
         return $this->hasMany('App\Models\Vacancy','branch');
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Scopes
+
+    public function scopeName()
+    {
+
+    }
 }

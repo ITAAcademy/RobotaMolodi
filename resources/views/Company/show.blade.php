@@ -12,7 +12,7 @@
     <script>
         function ConfirmDelete()
         {
-            var conf = confirm("Ви дійсно хочете видалити рєзюме?");
+            var conf = confirm("Ви дійсно хочете видалити компанію?");
 
             if(conf) return true;
 
