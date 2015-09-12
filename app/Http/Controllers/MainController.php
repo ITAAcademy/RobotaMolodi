@@ -224,26 +224,29 @@ class MainController extends Controller
         }
         elseif($city_id > 1 && $industry_id > 0)
         {
+
+
             $vacancy_city = City::find($city_id)->Vacancies()->get();
+
             $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
 
             $vacancies = $vacancy_city->intersect($vacancy_industry);
 
-            if(count($vacancies) == 0) return $vacancies;
+            if(count($vacancies) == 0) return null;
 
-            $filterVacancy = new FilterVacanciesModels();
-            $filterVacancy->FillTable($vacancies);
-
-            $vacancies = FilterVacanciesModels::latest('id')->paginate(2);
-
-            $filterVacancy->DestroyData();
+//            $filterVacancy = new FilterVacanciesModels();
+//            $filterVacancy->FillTable($vacancies);
+//
+//            $vacancies = FilterVacanciesModels::latest('id')->paginate(2);
+//
+//            $filterVacancy->DestroyData();
 
             return $vacancies;
         }
 
         elseif($city_id == 1 && $industry_id == 0)
         {
-            return Vacancy::latest('id')->paginate(10);
+            return Vacancy::paginate(25);
         }
 
     }

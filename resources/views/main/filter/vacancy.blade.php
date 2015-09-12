@@ -1,4 +1,4 @@
-@if(empty($vacancies))
+@if($vacancies == null)
     </br>
     <?php echo "Немає вакансій по Вашому пошуку"?>
 
