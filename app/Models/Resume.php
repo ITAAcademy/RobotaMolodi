@@ -68,6 +68,10 @@ class Resume extends Model {
         $this->belongsToMany('App\Models\City','resume_city')->get();
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Scopes
+
+
     public function scopeCity()
     {
         $city = $this->hasOne('App\Models\City','id','city')->first();
