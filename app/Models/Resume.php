@@ -67,4 +67,23 @@ class Resume extends Model {
     {
         $this->belongsToMany('App\Models\City','resume_city')->get();
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Scopes
+
+
+    public function scopeCity()
+    {
+        $city = $this->hasOne('App\Models\City','id','city')->first();
+
+        return $city;
+    }
+
+    public function scopeIndustry()
+    {
+        $industry = $this->hasOne('App\Models\Industry','id','industry')->first();
+
+        return $industry;
+    }
+
 }

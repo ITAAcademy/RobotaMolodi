@@ -17,12 +17,17 @@
     </div>
 
     <div class="form-group" style="margin-top: 20px">
-        <label for="level" class="col-sm-2 control-label">Електронна пошта компанії</label>
+        <label for="level" class="col-sm-2 control-label">Поссилання на компанію</label>
         <div class="col-sm-5">
             {!! Form::text('company_email', $company->company_email, array('class' => 'form-control')) !!}
-            {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+
         </div>
         </br>
+        <div class="form-group" style="margin-top: 20px">
+            <div class="col-sm-5">
+                <input class="btn btn-primary" type="submit" value="Зареєструвати компанію" onclick="ohg()">
+            </div>
+            </br>
         {!!Form::token()!!}
     </div>
 

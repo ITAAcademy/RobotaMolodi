@@ -3,8 +3,12 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Requests;
+use App\Models\profOrientation\test1;
+use App\Models\profOrientation\UserSession;
 use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Session;
 use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
@@ -17,7 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use View;
-
+//use Session;
 class VacancyController extends Controller {
 
 	/**

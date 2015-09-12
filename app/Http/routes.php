@@ -82,3 +82,7 @@ Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainControlle
 $router->resource('cabinet','cabinet\CabinetController');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//ProfOrientation
+
+Route::get('proforient','ProfOrientationController@index');
+Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);
