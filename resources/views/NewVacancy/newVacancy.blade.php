@@ -82,8 +82,9 @@
                     <option value="{{$city->id}}">{{$city->name}}</option>
                 }
                 @endforeach
+                <script>alert({{Input::old('City[]')}})</script>
                     @if(Input::old('City[]')!= '')
-                        <option selected>{{Input::old('City[]')}}
+                        <option selected>{{Input::old('City[0]')}}</option>
                     @endif
             </select>
         </div>
