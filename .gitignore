@@ -5,3 +5,4 @@
 adminer.php
 /
 .idea/
+app/Http/Requests/StoreBlogPostRequest.php

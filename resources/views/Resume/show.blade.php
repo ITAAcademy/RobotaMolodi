@@ -2,28 +2,19 @@
 
 @section('content')
 
-    <h2>{!!$resume->position!!}</h2>
-    <p>
-      Дата створення :  {!!$resume->created_at!!}
-    </p>
-<p>
-      Ім'я :  {!!$resume->name_u!!}
-</p>
-    <p>
-        Позиція :  {!!$resume->position!!}
-    </p>
-    <p>
-       Місто  :  {!!$city->name!!}
-    </p>
-<p>
-    Промисловість: {!!$resume->Industry()->name!!}
-</p>
-<p>
-    Зарплата: {!!$resume->salary!!} грн.
-</p>
-<p>
-    Опис: {!!$resume->description!!}
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"> <h2>{!!$resume->position!!}</h2></div>
 
-</p>
-    <a href="#">Написати на почту</a>
+        <ul class="list-group">
+            <li class="list-group-item"><span class="heading"> Дата створення :    </span> {!!$resume->created_at!!}</li>
+            <li class="list-group-item"><span class="heading"> Ім'я :    </span>  {!!$resume->name_u!!}</li>
+            <li class="list-group-item"><span class="heading"> Позиція :     </span> {!!$resume->position!!}</li>
+            <li class="list-group-item"><span class="heading"> Місто  :   </span> {!!$city->name!!}</li>
+            <li class="list-group-item"><span class="heading"> Промисловість: </span> {!!$resume->Industry()->name!!}</li>
+            <li class="list-group-item"><span class="heading"> Зарплата:  </span> {!!$resume->salary!!} грн.</li>
+            <li class="list-group-item"><span class="heading"> Опис: </span> {!!$resume->description!!}</li>
+            <li class="list-group-item"><a href="#">Написати на почту</a></li>
+        </ul>
+    </div>
 @stop

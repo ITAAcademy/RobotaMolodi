@@ -1,5 +1,5 @@
 @if($vacancies == null)
-    </br>
+    <br>
     <?php echo "Немає вакансій по Вашому пошуку"?>
 
 @else
