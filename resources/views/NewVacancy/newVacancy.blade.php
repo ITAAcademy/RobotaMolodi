@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    {!!Form::open(['route' => 'vacancy.store'])!!}
+    {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()'])!!}
     <h3>Створення вакансії</h3>
     <div class="form-group {{$errors-> has('Position') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
@@ -58,7 +58,7 @@
     <div class="form-group {{$errors-> has('Salary') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Зарплата</label>
         <div class="col-sm-5">
-            {!! Form::text('Salary', Input::old('Salary'), array('class' => 'form-control' )) !!}
+            {!! Form::text('Salary', Input::old('Salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити тільки цифри'); ?></span> </div>
         </br>
@@ -82,7 +82,7 @@
                     <option value="{{$city->id}}">{{$city->name}}</option>
                 }
                 @endforeach
-                <script>alert({{Input::old('City[]')}})</script>
+
                     @if(Input::old('City[]')!= '')
                         <option selected>{{Input::old('City[0]')}}</option>
                     @endif
@@ -99,7 +99,7 @@
             {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)' )) !!}
         </div>
 
-        <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має містити не менше трьох символів'); ?></span> </div>
+        <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має бути заповнене'); ?></span> </div>
         </br>
     </div>
     </br>
@@ -119,6 +119,22 @@
     <script type="text/javascript">
         $('#city').select2();
 
+      function  CheckForm()
+      {
+         var salaryField = $('[name = Salary]').val();
+          var results = salaryField;
+          alert(results);
+          if(salaryField.search(' '))
+          {
+            salaryField = salaryField.split(' ');
+            if(salaryField.length>1)
+               results = salaryField[0] + salaryField[1];
+          }
+          alert(results);
+          document.getElementById('Salary').value = results;
+
+          return true;
+      }
 
     </script>
 @stop

@@ -23,7 +23,7 @@
         Місто  :  {!!$resume->city!!}
     </p>
     <p>
-        Промисловість: {!!$resume->industry!!}
+        Промисловість: {!!$resume->Industry()->name!!}
     </p>
     <p>
         Зарплата: {!!$resume->salary!!} грн.

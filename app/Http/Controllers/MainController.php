@@ -12,7 +12,7 @@ use Session;
 use DB;
 use View;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Pagination\Paginator as Paginator;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class MainController extends Controller
 {
@@ -129,6 +129,10 @@ class MainController extends Controller
         if (Request::ajax()) {
 
             $vacancies = MainController::ShowFilterVacancies($city,$industry);
+            if($vacancies != null)
+            {
+                $vacancies->sortByDesc('updated_at');
+            }
 
 
 //            if($city > 1 && $industry < 1){
@@ -230,10 +234,11 @@ class MainController extends Controller
 
             $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
 
-            $vacancies = $vacancy_city->intersect($vacancy_industry);
+            $vacancies = $vacancy_city->intersect($vacancy_industry)->sortBy('created_at');
 
             if(count($vacancies) == 0) return null;
 
+            $result = new Paginator($vacancies,1,1);
 //            $filterVacancy = new FilterVacanciesModels();
 //            $filterVacancy->FillTable($vacancies);
 //
@@ -241,12 +246,17 @@ class MainController extends Controller
 //
 //            $filterVacancy->DestroyData();
 
-            return $vacancies;
+            return $result;
         }
 
         elseif($city_id == 1 && $industry_id == 0)
         {
+
+            $vacancies = Vacancy::all()->sortByDesc('updated_at');
+            $perPage = 25;
+            $total = count($vacancies)/$perPage;
             return Vacancy::paginate(25);
+//            return new Paginator($vacancies,count($vacancies),$perPage);
         }
 
     }
