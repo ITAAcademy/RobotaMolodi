@@ -217,13 +217,13 @@ class MainController extends Controller
 
         if($city_id > 1 && $industry_id == 0)
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->paginate(2);
+            $vacancy_list = City::find($city_id)->Vacancies()->paginate(10);
 
             return $vacancy_list;
         }
         elseif($city_id == 1 && $industry_id > 0)
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(2);
+            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(10);
 
             return $filterVacancies;
         }
