@@ -7,16 +7,12 @@
     </ul>
 
     <div class="panel panel-orange">
-        <div class="panel-heading"><h1>Перегляд вакансії</h1></div>
+        <div class="panel-heading"><h2>{{$vacancy->position}} ,{{$vacancy->salary}} грн</h2></div>
         <ul class="list-group">
-            <li class="list-group-item"> Дата розміщення :{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at)) }}</li>
-            <li class="list-group-item">Компанія : {{$company->company_name}}</li>
-            <li class="list-group-item">Зарплата : {{$vacancy->salary}}}</li>
-            <li class="list-group-item">Позиція : {{$vacancy->position}}</li>
-            <li class="list-group-item">Місто :  @foreach($cities as $city) {{$city->name}}, @endforeach</li>
-            <li class="list-group-item">Галузь :  {{$industry->name}}</li>
-            <li class="list-group-item">Опис :  {{$vacancy->description}}</li>
-            <li class="list-group-item">Від кого :  {{$user->name}}</li>
+            <li class="list-group-item"> {{$company->company_name}} , {{$user->name}}</li>
+            <li class="list-group-item"> @foreach($cities as $city) {{$city->name}} @endforeach</li>
+            <li class="list-group-item">  {{$industry->name}}</li>
+            <li class="list-group-item">Опис :  {{$vacancy->description}} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></li>
         </ul>
     </div>
 
