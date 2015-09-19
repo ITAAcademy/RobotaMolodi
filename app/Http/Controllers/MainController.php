@@ -6,6 +6,7 @@ use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
+use Illuminate\Database\Eloquent\Collection;
 use Input;
 use Request;
 use Session;
@@ -133,7 +134,7 @@ class MainController extends Controller
             {
                 $vacancies->sortByDesc('updated_at');
             }
-
+            //dd($vacancies);
 
 //            if($city > 1 && $industry < 1){
 //                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
@@ -230,15 +231,25 @@ class MainController extends Controller
         {
 
 
-            $vacancy_city = City::find($city_id)->Vacancies()->get();
+            $city = new City();
+            $vacancies = $city->GetCollection($city_id,$industry_id);
 
-            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
-
-            $vacancies = $vacancy_city->intersect($vacancy_industry)->sortBy('created_at');
-
+//            $vacancy_city = City::find($city_id)->Vacancies();
+//
+//            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
+//
+//            $vacancies = $vacancy_city->intersect($vacancy_industry)->sortBy('created_at');
+////            $result = Vacancy::paginate(15);
+//            //dd($result);
             if(count($vacancies) == 0) return null;
+            $vacanciesArr = new Collection();
+            foreach($vacancies as $vacancy)
+            {
+                $vacanciesArr->add(Vacancy::find($vacancy->id));
+            }
 
-            $result = new Paginator($vacancies,1,1);
+            $result = new Paginator($vacanciesArr,count($vacancies),2);
+            //$result = new Paginator($vacancies,1,1);
 //            $filterVacancy = new FilterVacanciesModels();
 //            $filterVacancy->FillTable($vacancies);
 //
@@ -252,11 +263,8 @@ class MainController extends Controller
         elseif($city_id == 1 && $industry_id == 0)
         {
 
-            $vacancies = Vacancy::all()->sortByDesc('updated_at');
-            $perPage = 25;
-            $total = count($vacancies)/$perPage;
             return Vacancy::paginate(25);
-//            return new Paginator($vacancies,count($vacancies),$perPage);
+
         }
 
     }

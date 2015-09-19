@@ -37,4 +37,10 @@ class ProfOrientationController extends Controller {
     {
 
     }
+    public function testValidate(Request $request)
+    {
+
+        dd($request->all());
+        return view('ProfOrientation.testValidate');
+    }
 }
