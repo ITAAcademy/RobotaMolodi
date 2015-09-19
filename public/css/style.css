@@ -291,10 +291,9 @@ span.heading{
 	text-align: left;
 }
 
-/*.panel-body p,address,li {
-	text-overflow: ellipsis;
-	overflow: hidden;
-}*/
+.panel-orange {
+word-wrap: break-word;
+}
 
 .panel-orange {
 	background-color: #fdddcd;
