@@ -7,29 +7,23 @@
 @section('contents')
 
 <div>
-    {!! link_to_route('resume.create', 'Написати резюме') !!}
+   <h4>{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
 </div>
 
 
     @foreach($resumes as $resume) <!-- Прийом данних і вибірка необхідних полів і значень -->
         <article>
-            <h2>{!!$resume->position!!}</h2>
-            <p>
-                {!!$resume->name_u!!}
-            </p>
-            <p>
-                Промисловість: {!!$resume->industry!!}
-            </p>
-            <p>
-               Зарплата: {!!$resume->salary!!} грн.
-            </p>
-            <p>
-                Опис: {{$resume->description}}
+            <div class="panel panel-orange">
+                <div class="panel-heading">   <h3>{!!$resume->position!!}</h3></div>
+                <ul class="list-group">
+                    <li class="list-group-item">  Ім'я :   {!!$resume->name_u!!}</li>
+                    <li class="list-group-item">Галузь: {!!$resume->industry!!}</li>
+                    <li class="list-group-item">    Зарплата: {!!$resume->salary!!} грн.</li>
+                    <li class="list-group-item">     Опис: {{$resume->description}}</li>
+                    <li class="list-group-item">  <a href="resume/{{$resume->id}}">Переглянути</a></li>
+                </ul>
+            </div>
 
-            </p>
-            <p>
-                <a href="resume/{{$resume->id}}">Переглянути</a>
-            <hr >
             </p>
         </article>
     @endforeach
