@@ -63,13 +63,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $userResumes = User::HasManyResumes();
 
         //dd($userResumes);
-        $resumes = array();
-        foreach($userResumes as $resume)
-        {
-            array_push($resumes,$resume);
-        }
+//        $resumes = array();
+//        foreach($userResumes as $resume)
+//        {
+//            array_push($resumes,$resume);
+//        }
 
-        return $resumes;
+        return $userResumes;
     }
 
 

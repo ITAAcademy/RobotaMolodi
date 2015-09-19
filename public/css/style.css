@@ -280,6 +280,10 @@ div .tit_b
 	height: 40px;
 }
 
+textarea
+{
+    resize: none;
+}
 
 
 

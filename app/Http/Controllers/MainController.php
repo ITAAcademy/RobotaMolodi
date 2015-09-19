@@ -6,13 +6,14 @@ use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
+use Illuminate\Database\Eloquent\Collection;
 use Input;
 use Request;
 use Session;
 use DB;
 use View;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Pagination\Paginator as Paginator;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class MainController extends Controller
 {
@@ -129,7 +130,11 @@ class MainController extends Controller
         if (Request::ajax()) {
 
             $vacancies = MainController::ShowFilterVacancies($city,$industry);
-
+            if($vacancies != null)
+            {
+                $vacancies->sortByDesc('updated_at');
+            }
+            //dd($vacancies);
 
 //            if($city > 1 && $industry < 1){
 //                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
@@ -226,14 +231,25 @@ class MainController extends Controller
         {
 
 
-            $vacancy_city = City::find($city_id)->Vacancies()->get();
+            $city = new City();
+            $vacancies = $city->GetCollection($city_id,$industry_id);
 
-            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
-
-            $vacancies = $vacancy_city->intersect($vacancy_industry);
-
+//            $vacancy_city = City::find($city_id)->Vacancies();
+//
+//            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
+//
+//            $vacancies = $vacancy_city->intersect($vacancy_industry)->sortBy('created_at');
+////            $result = Vacancy::paginate(15);
+//            //dd($result);
             if(count($vacancies) == 0) return null;
+            $vacanciesArr = new Collection();
+            foreach($vacancies as $vacancy)
+            {
+                $vacanciesArr->add(Vacancy::find($vacancy->id));
+            }
 
+            $result = new Paginator($vacanciesArr,count($vacancies),2);
+            //$result = new Paginator($vacancies,1,1);
 //            $filterVacancy = new FilterVacanciesModels();
 //            $filterVacancy->FillTable($vacancies);
 //
@@ -241,12 +257,14 @@ class MainController extends Controller
 //
 //            $filterVacancy->DestroyData();
 
-            return $vacancies;
+            return $result;
         }
 
         elseif($city_id == 1 && $industry_id == 0)
         {
+
             return Vacancy::paginate(25);
+
         }
 
     }
