@@ -8,12 +8,13 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
-	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
+	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+
 
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -56,13 +57,13 @@
 						<li><a href="{{ url('/auth/login') }}">Увійти</a></li>
 						<li><a href="{{ url('/auth/register') }}">Зареєструватись</a></li>
 					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-                                                                <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
-								<li><a href="{{ url('/auth/logout') }}">Вийти</a></li>
-							</ul>
-						</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
+                                <li><a href="{{ url('/auth/logout') }}">Вийти</a></li>
+                            </ul>
+                        </li>
 					@endif
 				</ul>
 			</div>

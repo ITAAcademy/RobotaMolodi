@@ -279,16 +279,23 @@ div .tit_b
 {
 	height: 40px;
 }
+
+textarea
+{
+    resize: none;
+}
 span.heading{
 	color:darkgray;
 }
 .myResume{
 	text-align: left;
 }
+
 /*.panel-body p,address,li {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }*/
+
 .panel-orange {
 	background-color: #fdddcd;
 	border:3px solid #f26c27;
@@ -304,20 +311,9 @@ a.link{
 {
 	text-decoration:none;
 	border:2px solid #d96123;
-	/*-webkit-transform: scale(1.1);
-	transform: scale(1.1);*/
 }
- .navbar-right{
+.navbar-right{
 margin: 10px 10px;
 }
-
-textarea
-{
-    resize: none;
-}
-
-
-
-
 
 
