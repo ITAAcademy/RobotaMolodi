@@ -33,6 +33,7 @@ class VacancyController extends Controller {
 	public function index(Company $companies,Guard $auth)
 	{
 
+
         if(Auth::check()){
 
         setcookie('paths','');
@@ -113,6 +114,7 @@ class VacancyController extends Controller {
 	public function store(Guard $auth,Company $company,Vacancy $vacancy,Vacancy_City $vacancy_City,Request $request)
 	{
 
+
         if(Auth::check()){
         Input::flash();
 
@@ -130,8 +132,7 @@ class VacancyController extends Controller {
 
         $vacancy = $vacancy->fillVacancy(0,$request);
 
-            //
-           // $vacancy_City->FillHole($vacancy->city,$auth->user()->getAuthIdentifier());
+
 
             $vacancy->save();
 

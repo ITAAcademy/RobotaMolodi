@@ -311,3 +311,13 @@ a.link{
 margin: 10px 10px;
 }
 
+textarea
+{
+    resize: none;
+}
+
+
+
+
+
+
