@@ -9,7 +9,7 @@
     <div class="panel panel-orange">
         <div class="panel-heading"><h2>Перегляд компанії</h2></div>
         <ul class="list-group">
-            <li class="list-group-item">  Назва :  {{$company->company_name}}</li>
+            <li class="list-group-item">  {{$company->company_name}}</li>
             <li class="list-group-item"> Поссилання :   {{$company->company_email}}</li>
         </ul>
     </div>

@@ -285,10 +285,10 @@ span.heading{
 .myResume{
 	text-align: left;
 }
-.panel-body p,address,li {
+/*.panel-body p,address,li {
 	text-overflow: ellipsis;
 	overflow: hidden;
-}
+}*/
 .panel-orange {
 	background-color: #fdddcd;
 	border:3px solid #f26c27;
