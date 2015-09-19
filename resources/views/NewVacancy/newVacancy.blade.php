@@ -1,8 +1,8 @@
-@extends ('NewVacancy/users')
+@extends ('app')
 
-@section('contents')
+@section('content')
 
-    {!!Form::open(['route' => 'vacancy.store'])!!}
+    {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()'])!!}
     <h3>Створення вакансії</h3>
     <div class="form-group {{$errors-> has('Position') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
@@ -58,7 +58,7 @@
     <div class="form-group {{$errors-> has('Salary') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Зарплата</label>
         <div class="col-sm-5">
-            {!! Form::text('Salary', Input::old('Salary'), array('class' => 'form-control' )) !!}
+            {!! Form::text('Salary', Input::old('Salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити тільки цифри'); ?></span> </div>
         </br>
@@ -82,8 +82,13 @@
                     <option value="{{$city->id}}">{{$city->name}}</option>
                 }
                 @endforeach
+
                     @if(Input::old('City[]')!= '')
-                        <option selected>{{Input::old('City[]')}}
+                        @foreach(Input::old('City') as $city)
+                            {
+                            <option selected>{{$city}}</option>
+                        }
+                        @endforeach
                     @endif
             </select>
         </div>
@@ -95,10 +100,10 @@
     <div class="form-group {{$errors-> has('Description') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
-            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)' )) !!}
+            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)')) !!}
         </div>
 
-        <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має містити не менше трьох символів'); ?></span> </div>
+        <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має бути заповнене'); ?></span> </div>
         </br>
     </div>
     </br>
@@ -117,6 +122,7 @@
 
     <script type="text/javascript">
         $('#city').select2();
+
 
 
     </script>

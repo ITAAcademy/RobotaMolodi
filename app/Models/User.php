@@ -62,7 +62,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $userResumes = User::HasManyResumes();
 
-        //dd($userResumes);
+
         $resumes = array();
         foreach($userResumes as $resume)
         {
