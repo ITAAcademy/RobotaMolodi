@@ -280,6 +280,7 @@ div .tit_b
 	height: 40px;
 }
 
+
 textarea
 {
     resize: none;
@@ -289,4 +290,35 @@ textarea
 
 
 
+span.heading{
+	color:darkgray;
+}
+.myResume{
+	text-align: left;
+}
+/*.panel-body p,address,li {*/
+	/*text-overflow: ellipsis;*/
+	/*overflow: hidden;*/
+/*}*/
+.panel-orange {
+	background-color: #fdddcd;
+	border:3px solid #f26c27;
+	font-size: large;
+}
+.text-info{
+	color:#d96123;
+}
+a.link{
+	text-decoration: none;
+}
+.list:hover
+{
+	text-decoration:none;
+	border:2px solid #d96123;
+	/*-webkit-transform: scale(1.1);*/
+	/*transform: scale(1.1);*/
+}
+ .navbar-right{
+margin: 10px 10px;
+}
 

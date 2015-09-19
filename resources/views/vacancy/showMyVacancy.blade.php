@@ -5,15 +5,20 @@
         <li> <a href="{{$vacancy->id}}/destroy" onclick="return ConfirmDelete();">Видалити</a></li>
         <li> <a href="{{$vacancy->id}}/edit">Редагувати</a></li>
     </ul>
-    <h1>Перегляд вакансії</h1>
-    Дата розміщення : {{$vacancy->created_at}}<br>
-    Компанія :        {{$company->company_name}}<br>
-    Зарплата :        {{$vacancy->salary}}<br>
-    Позиція :         {{$vacancy->position}}<br>
-    Місто :           @foreach($cities as $city) {{$city->name}}, @endforeach<br>
-    Галузь :          {{$industry->name}}<br>
-    Опис :            {{$vacancy->description}}<br>
-    Від кого :        {{$user->name}}<br>
+
+    <div class="panel panel-orange">
+        <div class="panel-heading"><h1>Перегляд вакансії</h1></div>
+        <ul class="list-group">
+            <li class="list-group-item"> Дата розміщення :{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at)) }}</li>
+            <li class="list-group-item">Компанія : {{$company->company_name}}</li>
+            <li class="list-group-item">Зарплата : {{$vacancy->salary}}}</li>
+            <li class="list-group-item">Позиція : {{$vacancy->position}}</li>
+            <li class="list-group-item">Місто :  @foreach($cities as $city) {{$city->name}}, @endforeach</li>
+            <li class="list-group-item">Галузь :  {{$industry->name}}</li>
+            <li class="list-group-item">Опис :  {{$vacancy->description}}</li>
+            <li class="list-group-item">Від кого :  {{$user->name}}</li>
+        </ul>
+    </div>
 
     <script>
 
