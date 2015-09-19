@@ -1,6 +1,6 @@
-@extends ('NewVacancy/users')
+@extends ('app')
 
-@section('contents')
+@section('content')
 
     {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()'])!!}
     <h3>Створення вакансії</h3>
@@ -84,7 +84,11 @@
                 @endforeach
 
                     @if(Input::old('City[]')!= '')
-                        <option selected>{{Input::old('City[0]')}}</option>
+                        @foreach(Input::old('City') as $city)
+                            {
+                            <option selected>{{$city}}</option>
+                        }
+                        @endforeach
                     @endif
             </select>
         </div>
@@ -96,7 +100,7 @@
     <div class="form-group {{$errors-> has('Description') ? 'has-error' : ''}}" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
-            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)' )) !!}
+            {!! Form::textarea('Description', Input::old('Description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)')) !!}
         </div>
 
         <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має бути заповнене'); ?></span> </div>
@@ -119,22 +123,7 @@
     <script type="text/javascript">
         $('#city').select2();
 
-      function  CheckForm()
-      {
-         var salaryField = $('[name = Salary]').val();
-          var results = salaryField;
-          alert(results);
-          if(salaryField.search(' '))
-          {
-            salaryField = salaryField.split(' ');
-            if(salaryField.length>1)
-               results = salaryField[0] + salaryField[1];
-          }
-          alert(results);
-          document.getElementById('Salary').value = results;
 
-          return true;
-      }
 
     </script>
 @stop
