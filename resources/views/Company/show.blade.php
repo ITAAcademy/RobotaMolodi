@@ -5,9 +5,14 @@
         <li> <li> <a href="{{$company->id}}/destroy" onclick="return ConfirmDelete();">Видалити</a></li></li>
         <li> <a href="{{$company->id}}/edit">Редагувати</a></li>
     </ul>
-    <h1>Перегляд компанії</h1>
-    Назва :        {{$company->company_name}}<br>
-    Поссилання :   {{$company->company_email}}<br>
+
+    <div class="panel panel-orange">
+        <div class="panel-heading"><h2>Перегляд компанії</h2></div>
+        <ul class="list-group">
+            <li class="list-group-item">  Назва :  {{$company->company_name}}</li>
+            <li class="list-group-item"> Поссилання :   {{$company->company_email}}</li>
+        </ul>
+    </div>
 
     <script>
         function ConfirmDelete()

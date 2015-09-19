@@ -1,12 +1,18 @@
 <address>
 
     @foreach($vacancies as $vacancy)
-        <strong>Вакансія : {{$vacancy->position}}</strong><br>
-        Галузь : {!!$vacancy->Industry()->name!!}<br>
-        Зарплата : {{$vacancy->salary}}<br>
-        Опис :{{$vacancy->description}}<br>
-        Компанія : {{$vacancy->ReadCompany()->company_name}}<br>
-        <a href="vacancy/{{$vacancy->id}}">Переглянути</a>
+
+
+        <div class="panel panel-orange">
+            <div class="panel-heading"><strong>Вакансія : {{$vacancy->position}}</strong></div>
+            <ul class="list-group">
+                <li class="list-group-item"> Галузь : {!!$vacancy->Industry()->name!!}</li>
+                <li class="list-group-item">Зарплата : {{$vacancy->salary}} грн</li>
+                <li class="list-group-item">Опис :{{$vacancy->description}}</li>
+                <li class="list-group-item">Компанія : {{$vacancy->ReadCompany()->company_name}}</li>
+                <li class="list-group-item"> <a href="vacancy/{{$vacancy->id}}">Переглянути</a></li>
+            </ul>
+        </div>
 </address>
 <br>
 @endforeach
