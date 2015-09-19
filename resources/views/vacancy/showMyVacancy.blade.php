@@ -11,7 +11,7 @@
         <ul class="list-group">
             <li class="list-group-item"> Дата розміщення :{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at)) }}</li>
             <li class="list-group-item">Компанія : {{$company->company_name}}</li>
-            <li class="list-group-item">Зарплата : {{$vacancy->salary}}}</li>
+            <li class="list-group-item">Зарплата : {{$vacancy->salary}}</li>
             <li class="list-group-item">Позиція : {{$vacancy->position}}</li>
             <li class="list-group-item">Місто :  @foreach($cities as $city) {{$city->name}}, @endforeach</li>
             <li class="list-group-item">Галузь :  {{$industry->name}}</li>
