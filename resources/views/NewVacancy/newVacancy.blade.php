@@ -82,11 +82,10 @@
                     <option value="{{$city->id}}">{{$city->name}}</option>
                 }
                 @endforeach
-
-                    @if(Input::old('City[]')!= '')
-                        @foreach(Input::old('City') as $city)
-                            {
-                            <option selected>{{$city}}</option>
+                    @if(Input::old('City')!= '')
+                        @foreach(Input::old('City') as $cityId)
+                        {
+                            <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
                         }
                         @endforeach
                     @endif
@@ -122,6 +121,9 @@
 
     <script type="text/javascript">
         $('#city').select2();
+        var city = 0;
+
+
 
 
 

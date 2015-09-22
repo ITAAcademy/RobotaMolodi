@@ -138,8 +138,7 @@ class VacancyController extends Controller {
 
             $cities = $request['City'];
             $vacancy_City = new Vacancy_City();
-            $vacancy_City->FillHole($cities,$vacancy->id);                 //link vacancy with cities in vacancy
-
+            $vacancy_City->FillHole($cities,$vacancy->id);
 
 
         return redirect()->route('vacancy.index');
@@ -187,9 +186,6 @@ class VacancyController extends Controller {
         }
 
         $company = Company::find($vacancy->company_id);;
-
-        //$company_name = $company->companyName($vacancy->organisation);
-        //dd($view);
 
         return view($view)
             ->with('vacancy',$vacancy)
@@ -253,6 +249,14 @@ class VacancyController extends Controller {
 
             $vacancy->update();
             $vacancy->push();
+
+
+
+            $cities = $request['City'];
+            $vacancy_City = new Vacancy_City();
+            $vacancy_City->ClearHole($vacancy->id);
+            $vacancy_City->FillHole($cities,$vacancy->id);
+
             return redirect('cabinet');
         }
         else

@@ -49,6 +49,7 @@ class MainController extends Controller
     {
 
         //dd($auth->user());
+
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
         $vacancies = Vacancy::latest('id')->paginate(25);
