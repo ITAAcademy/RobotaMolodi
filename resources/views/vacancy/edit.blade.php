@@ -2,7 +2,7 @@
 
 @section('content')
     {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put'))!!}
-    <h3>Створення вакансії</h3>
+    <h3>Редагування вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
         <div class="col-sm-5">
@@ -11,18 +11,18 @@
 
         <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше трьох символів'); ?></span> </div>
 
-
-
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
         <div class="col-sm-5">
-            <select class="form-control" id="selectGaluz" name="branch" value = "{{$vacancy->branch}}">
+            <select class="form-control" id="selectGaluz" name="branch" >
                 @foreach($industries as $industry)
                     {
                     <option value="{{$industry->id}}">{{$industry->name}}</option>
                     }
+                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Industry()->name}}</option>
+
                 @endforeach
             </select>
         </div></br>
@@ -35,6 +35,7 @@
                 @foreach($companies as $comp)
                     <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
+                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Company()->company_name}}</option>
             </select>
         </div></br>
     </div>
@@ -67,12 +68,20 @@
                     <option value="{{$city->id}}">{{$city->name}}</option>
                     }
                 @endforeach
-                    @if(Input::old('City[]')!= '')
-                        <option selected>{{Input::old('City[]')}}
+                    @if(Input::old('City')!= '')
+                        @foreach(Input::old('City') as $cityId)
+                            {
+                            <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
+                            }
+                        @endforeach
+                    @else
+                        @foreach($vacancy->City() as $city)
+                            {
+                            <option selected value="{{$city->id}}">{{$city->name}}</option>
+                            }
+                        @endforeach
                     @endif
             </select>
-
-
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має містити не менше одного міста'); ?></span> </div>
         </br>
