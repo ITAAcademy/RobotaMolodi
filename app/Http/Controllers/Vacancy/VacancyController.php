@@ -327,7 +327,7 @@ class VacancyController extends Controller {
             $message->to($to, 'John Smith')->subject('Welcome!');
             $message->attach($pathToFile);
         });
-
+    return view('vacancy/vacancyAnswer');
 
 
     }
