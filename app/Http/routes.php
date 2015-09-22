@@ -42,6 +42,7 @@ Route::get('nata', function(){return 'Get well, Nataly!';});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Vacancy Route
+Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);

@@ -7,13 +7,13 @@
     </ul>
 
     <div class="panel panel-orange">
-        <div class="panel-heading"><h2>{{$vacancy->position}} ,{{$vacancy->salary}} грн</h2></div>
+        <div class="panel-heading"><h2>{{$vacancy->position}} &#183; {{$vacancy->salary}} грн</h2></div>
         <ul class="list-group">
 
-            <li class="list-group-item"> {{$company->company_name}} , {{$user->name}}</li>
+            <li class="list-group-item"> <a href="#">{{$company->company_name}}</a> &#183; {{$user->name}}</li>
             <li class="list-group-item"> @foreach($cities as $city) {{$city->name}} @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
-            <li class="list-group-item">Опис :  {{$vacancy->description}} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></li>
+            <li class="list-group-item"><span class="heading"> Опис : </span> {{$vacancy->description}} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></li>
 
         </ul>
     </div>
