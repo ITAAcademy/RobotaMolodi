@@ -280,42 +280,9 @@ div .tit_b
 	height: 40px;
 }
 
-textarea
-{
-    resize: none;
-}
-span.heading{
-	color:darkgray;
-}
-.myResume{
-	text-align: left;
-}
 
-.panel-orange {
-word-wrap: break-word;
-}
 
-.panel-orange {
-	background-color: #fdddcd;
-	border:3px solid #f26c27;
-	font-size: large;
-}
-.text-info{
-	color:#d96123;
-}
-a.link{
-	text-decoration: none;
-}
-.list:hover
-{
-	text-decoration:none;
-	border:2px solid #d96123;
-}
-.navbar-right{
-margin: 10px 10px;
-}
-.formTitle{
-	text-indent: 1.5em;
-}
+
+
 
 
