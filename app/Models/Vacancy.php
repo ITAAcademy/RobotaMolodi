@@ -21,14 +21,16 @@ class Vacancy extends Model {
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
-
-
         $position = $request['Position'];
         $branch = $request['branch'];
         $salary = $request['Salary'];
         $description = $request['Description'];
         $userEmail = $request['user_email'];
         $companyId = $request['Organisation'];
+
+        if($salary > 1000000000){
+            $salary = 1000000000;
+        }
 
         if($id!=0)
 		{
