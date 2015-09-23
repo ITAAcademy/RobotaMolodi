@@ -80,7 +80,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-md-2 col-sm-2 control-label">Виберіть місто</label>
         <div class="col-md-6 col-sm-6">
-            <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="City[]" id="city">
+            <select class="form-control" class="js-example-basic-multiple"  multiple="multiple"  name="City[]" id="city">
                 @foreach($cities as $city)
                 {
                     <option value="{{$city->id}}">{{$city->name}}</option>
@@ -126,10 +126,19 @@
 @section('footer')
 
     <script type="text/javascript">
-        $('#city').select2();
-        var city = 0;
-
-
+        $('#city').select2({
+       //     multiple:true,
+         //  message:"Такого міста не існує.",
+       //     language: {
+                inputTooShort: function () {
+               //     return "You must enter more characters...";
+             //   }
+        //    }
+        });
+       //<li role="treeitem" class="select2-results__option">No results found</li>
+//$('li.select2-results__option').html('Такого міста не існує.');
+       // document.getElementsByClassName("select2-results__option").innerHTML = "Такого міста не існує.";
+        //document.getElementsByClassName("select2-results__option").style.color= "red";
 
 
 

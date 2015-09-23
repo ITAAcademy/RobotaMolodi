@@ -18,11 +18,8 @@
                 <ul class="list-group">
 
 
-                    <li class="list-group-item">  Ім'я :   {!!$resume->name_u!!}</li>
-                    <li class="list-group-item">Галузь: {!!$resume->industry!!}</li>
-                    <li class="list-group-item">    Зарплата: {!!$resume->salary!!} грн.</li>
-                    <li class="list-group-item">     Опис: {{$resume->description}}</li>
-
+                    <li class="list-group-item">   {!!$resume->name_u!!}</li>
+                    <li class="list-group-item">  {!!$resume->salary!!} грн.</li>
                     <li class="list-group-item">  <a href="resume/{{$resume->id}}">Переглянути</a></li>
                 </ul>
             </div>
