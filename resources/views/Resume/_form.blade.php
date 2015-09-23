@@ -33,7 +33,7 @@
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
             @endforeach
             @if(Input::old('industry')!= '')
-            <option selected>{{Input::old('industry')}}
+                <option value="{{Input::old('industry')}}" selected>{{\App\Models\Industry::find(Input::old('industry'))->name}}
             @endif
             </option>
         </select>

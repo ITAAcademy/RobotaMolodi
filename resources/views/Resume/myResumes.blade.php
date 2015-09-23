@@ -17,6 +17,7 @@
                 <div class="panel-heading">   <h3>{!!$resume->position!!}, {!!$resume->salary!!} грн.</h3></div>
                 <ul class="list-group">
 
+
                     <li class="list-group-item">  Ім'я :   {!!$resume->name_u!!}</li>
                     <li class="list-group-item">Галузь: {!!$resume->Industry()->name!!}</li>
                     <li class="list-group-item">    Зарплата: {!!$resume->salary!!} грн.</li>
