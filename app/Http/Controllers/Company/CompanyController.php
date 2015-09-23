@@ -34,10 +34,9 @@ class CompanyController extends Controller  {
             }
             else
             {
-
+                
                 return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
             }
-
 
         }
         else
