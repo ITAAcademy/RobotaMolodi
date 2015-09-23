@@ -36,12 +36,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 *
 	 * @return Response
 	 */
-	public function create(City $cityModel, Industry $industryModel)// Create new resume
+	public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
 	{
         $cities = $cityModel->getCities();
         $industries = $industryModel->getIndustries();
+        $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
-		return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries]);
+		return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail,]);
 	}
 
 	/**
@@ -55,10 +56,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         $rules = 'required|min:3';
         $this->validate($request,[
-            'name_u' => $rules,
+            'name_u' => 'required|min:3|alpha',
+            'telephone' => 'min:5',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|min:3|numeric',
+            'salary' => 'required|min:3|max:999999999|numeric',
             'description' => $rules,
             'city' => 'required'
         ]);

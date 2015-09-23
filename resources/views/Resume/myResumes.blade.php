@@ -19,7 +19,7 @@
 
 
                     <li class="list-group-item">  Ім'я :   {!!$resume->name_u!!}</li>
-                    <li class="list-group-item">Галузь: {!!$resume->industry!!}</li>
+                    <li class="list-group-item">Галузь: {!!$resume->Industry()->name!!}</li>
                     <li class="list-group-item">    Зарплата: {!!$resume->salary!!} грн.</li>
                     <li class="list-group-item">     Опис: {{$resume->description}}</li>
 
