@@ -108,12 +108,13 @@ class CompanyController extends Controller  {
             if(isset ($_SESSION['path']))
             {
 
+
                 $path = $_SESSION['path'];
                 session_unset();
             }
             else
             {
-
+                
                 $path = 'company.index';
             }
             return redirect()->route($path);
