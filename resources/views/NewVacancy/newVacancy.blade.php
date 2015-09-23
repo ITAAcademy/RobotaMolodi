@@ -116,7 +116,7 @@
         <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
     </div>
         </div>
-    </div>
+
     {!!Form::token()!!}
     {!!Form::close()!!}
 
