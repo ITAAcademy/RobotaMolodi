@@ -126,6 +126,7 @@
 @section('footer')
 
     <script type="text/javascript">
+
         $('#city').select2({
        //     multiple:true,
          //  message:"Такого міста не існує.",
@@ -139,6 +140,11 @@
 //$('li.select2-results__option').html('Такого міста не існує.');
        // document.getElementsByClassName("select2-results__option").innerHTML = "Такого міста не існує.";
         //document.getElementsByClassName("select2-results__option").style.color= "red";
+
+
+
+
+>>>>>>> PrepairForMaster
 
 
 

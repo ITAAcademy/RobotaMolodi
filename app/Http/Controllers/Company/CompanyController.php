@@ -34,10 +34,9 @@ class CompanyController extends Controller  {
             }
             else
             {
-
+                
                 return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
             }
-
 
         }
         else
@@ -164,13 +163,14 @@ class CompanyController extends Controller  {
 	 */
 	public function update($id,Request $request)
 	{
+
         $this->validate($request,[
             'company_name' => 'required|min:3',
             'company_link' => 'url'
         ]);
 
         $company_name = $request['company_name'];
-        $company_email = $request['company_email'];
+        $company_email = $request['company_link'];
 
         $company = Company::find($id);
 
