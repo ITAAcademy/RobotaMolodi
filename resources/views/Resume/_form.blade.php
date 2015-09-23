@@ -10,7 +10,7 @@
 </div>
 <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}">
     {!! Form::label('Електронна пошта') !!} <span class="required_field">*</span>
-    {!! Form::text('email', Input::old('email'), ['class'=>'form-control']) !!}
+    {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
 </div>
 <div class="form-group">
@@ -19,10 +19,11 @@
         @foreach($cities as $city)
             <option value="{{$city->id}}"> {{$city->name}} </option>
         @endforeach
-        @if(Input::old('city')!= '')
-            <option selected>{{Input::old('city')}}
-                @endif
-            </option>
+        @foreach($cities as $city)
+            @if($city->id == Input::old('city'))
+                <option value="{{$city->id}}" selected>{{$city->name}}</option>
+            @endif
+        @endforeach
     </select>
 </div>
 <div class="form-group">
@@ -62,3 +63,13 @@
 <div class="form-group">
     {!! Form::submit('Зберегти', ['class'=>'btn btn-primary']) !!}
 </div>
+
+@section('footer')
+
+    <script type="text/javascript">
+        $('#city').select2();
+
+
+
+    </script>
+@stop

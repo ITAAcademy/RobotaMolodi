@@ -40,7 +40,7 @@
         {!! Form::label('Галузь') !!}
         <select name="industry" class="form-control" id="selectIndustry">
             @foreach($industries as $industry)
-                <option> {{$industry->name}} </option>
+                <option value="{{$industry->id}}"> {{$industry->name}} </option>
             @endforeach
         </select>
     </div>
