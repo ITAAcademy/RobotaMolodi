@@ -114,7 +114,7 @@ class VacancyController extends Controller {
 	public function store(Guard $auth,Company $company,Vacancy $vacancy,Vacancy_City $vacancy_City,Request $request)
 	{
 
-
+//        dd($request->all());
         if(Auth::check()){
         Input::flash();
 

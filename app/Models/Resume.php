@@ -37,6 +37,10 @@ class Resume extends Model {
         $salary = $request['salary'];
         $description = $request['description'];
 
+        if($salary > 1000000000){
+            $salary = 1000000000;
+        }
+
         if($id!=0)
         {
             $resume = Resume::find($id);

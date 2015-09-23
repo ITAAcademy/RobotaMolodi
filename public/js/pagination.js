@@ -55,6 +55,7 @@ function getPosts(page) {
 }
 function sendAjax(city_id,industry_id,url)
 {
+
     $.ajax({   //start of ajax
         url: url,
         type: "POST",
