@@ -42,10 +42,7 @@
             @foreach($industries as $industry)
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
             @endforeach
-            @if(Input::old('industry')!= '')
-                <option value="{{Input::old('industry')}}" selected>{{\App\Models\Industry::find(Input::old('industry'))->name}}
-            @endif
-            </option>
+            <option value="{{$resume->industry}}" selected>{{$resume->Industry()->name}}</option>
         </select>
     </div>
     <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
