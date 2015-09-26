@@ -23,7 +23,7 @@ class CreateNewResume extends Request {
 	{
 		return [
             //'position','telephone','email', 'name_u', 'industry', 'salary','city', 'description',
-            'name_u'        => 'required|min:3|max:255',
+            'name_u'        => 'required|min:3|max:255|alpha',
             'telephone'     => 'min:5|max:30',
             'email'         => 'required|email',
             'position'      => 'required|min:5|max:80',

@@ -1,7 +1,7 @@
 @extends('app') <!-- Куди вставляється весь цей код Штмл -->
 
 @section('title')
-    <h2>Написати резюме</h2>
+    <h2>Редагування резюме</h2>
     <div>
         {!! link_to_route('resumes', 'Мої резюме') !!} <!-- Створення силки -->
     </div>
@@ -30,10 +30,7 @@
             @foreach($cities as $city)
                 <option value="{{$city->id}}"> {{$city->name}} </option>
             @endforeach
-            @if(Input::old('city')!= '')
-                <option selected>{{Input::old('city')}}
-                    @endif
-                </option>
+                <option value="{{$resume->city}}" selected>{{$resume->City()->name}}</option>
         </select>
     </div>
     <div class="form-group">
