@@ -317,3 +317,16 @@ margin: 10px 10px;
 .formTitle{
 	text-indent: 1.5em;
 }
+.errors{
+	border-color: red;
+}
+.has-error span[role='combobox']{
+	border-color:#a94442;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.select2-results__option li[role='treeitem'] {
+	border-color:#a94442;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	color:#a94442;
+}
+
