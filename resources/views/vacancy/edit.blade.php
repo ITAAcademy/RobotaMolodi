@@ -35,7 +35,7 @@
                 @foreach($companies as $comp)
                     <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
-                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Company()->company_name}}</option>
+                    <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
             </select>
         </div></br>
     </div>
