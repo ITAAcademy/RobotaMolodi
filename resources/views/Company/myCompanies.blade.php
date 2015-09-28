@@ -8,7 +8,7 @@
 
     <div>
         <ul class="nav nav-tabs">
-            <li role = "presentation">{!!link_to_route('company.create','Створити компанію')!!}</li>
+            <h4><li role = "presentation">{!!link_to_route('company.create','Створити компанію')!!}</li></h4>
         </ul>
     </div>
     @yield('contents')

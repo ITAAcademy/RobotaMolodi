@@ -9,9 +9,7 @@
 
     <div>
         <ul class="nav nav-tabs">
-            <li role = "presentation">{!!link_to_route('vacancy.create','Створити вакансію')!!}</li>
-
-
+            <h4><li role = "presentation">{!!link_to_route('vacancy.create','Створити вакансію')!!}</li></h4>
         </ul>
     </div>
 
