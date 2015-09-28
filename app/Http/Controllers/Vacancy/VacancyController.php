@@ -114,7 +114,7 @@ class VacancyController extends Controller {
 	public function store(Guard $auth,Company $company,Vacancy $vacancy,Vacancy_City $vacancy_City,Request $request)
 	{
 
-
+//        dd($request->all());
         if(Auth::check()){
         Input::flash();
 
@@ -124,10 +124,11 @@ class VacancyController extends Controller {
         {
         $rules = 'required|min:3';
             $this->validate($request,[
-            'Position' => $rules,
-            'Salary' => 'required|min:3|numeric',
-            'Description' => $rules,
-            'City' => 'required'
+            'position' => $rules,
+            'salary' => 'required|min:3|numeric',
+            'email' => 'required|email',
+            'description' => $rules,
+            'city' => 'required'
         ]);
 
         $vacancy = $vacancy->fillVacancy(0,$request);
@@ -136,7 +137,7 @@ class VacancyController extends Controller {
 
             $vacancy->save();
 
-            $cities = $request['City'];
+            $cities = $request['city'];
             $vacancy_City = new Vacancy_City();
             $vacancy_City->FillHole($cities,$vacancy->id);
 
@@ -239,10 +240,11 @@ class VacancyController extends Controller {
             $rules = 'required|min:3';
             $this->validate($request,
             [
-                'Position' => $rules,
-                'Salary' => 'required|min:3|numeric',
-                'Description' => $rules,
-                'City' => 'required'
+                'position' => $rules,
+                'salary' => 'required|min:3|numeric',
+                'email' => 'required|email',
+                'description' => $rules,
+                'city' => 'required'
             ]);
 
             $vacancy = $vacancy->fillVacancy($id, $request);
@@ -252,7 +254,7 @@ class VacancyController extends Controller {
 
 
 
-            $cities = $request['City'];
+            $cities = $request['city'];
             $vacancy_City = new Vacancy_City();
             $vacancy_City->ClearHole($vacancy->id);
             $vacancy_City->FillHole($cities,$vacancy->id);
