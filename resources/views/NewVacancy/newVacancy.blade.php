@@ -110,8 +110,8 @@
             </div>
 
             <div > <span style="color: red"> * <?php echo $errors->first('Description','поле має бути заповнене'); ?></span> </div>
-            </div>
         </div>
+    </div>
     </br>
 
     <div class="row">
