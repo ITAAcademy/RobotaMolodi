@@ -20,15 +20,15 @@
             <label for="sector" class="col-md-2 col-sm-2 control-label">Оберіть галузь</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control"  id="selectGaluz" name="branch">
-                @foreach($industries as $industry)
-                    {
+                    @foreach($industries as $industry)
+                        {
                         <option value="{{$industry->id}}">{{$industry->name}}</option>
-                    }
-                @endforeach
+                        }
+                    @endforeach
                     @if(Input::old('branch')!= '')
                         @foreach($industries as $industry)
                             @if($industry->id == Input::old('branch'))
-                        <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                                <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
                             @endif
                         @endforeach
                     @endif
@@ -46,13 +46,13 @@
                     @foreach($companies as $comp)
                         <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                     @endforeach
-                        @if(Input::old('Organisation')!= '')
-                            @foreach($industries as $industry)
-                                @if($industry->id == Input::old('Organisation'))
-                                    <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
-                                @endif
-                            @endforeach
-                        @endif
+                    @if(Input::old('Organisation')!= '')
+                        @foreach($industries as $industry)
+                            @if($industry->id == Input::old('Organisation'))
+                                <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                            @endif
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -84,17 +84,17 @@
             <div class="col-md-6 col-sm-6">
                 <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
                     @foreach($cities as $city)
-                    {
+                        {
                         <option value="{{$city->id}}">{{$city->name}}</option>
-                    }
+                        }
                     @endforeach
-                        @if(Input::old('city')!= '')
-                            @foreach(Input::old('city') as $cityId)
+                    @if(Input::old('city')!= '')
+                        @foreach(Input::old('city') as $cityId)
                             {
-                                <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
+                            <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
                             }
-                            @endforeach
-                        @endif
+                        @endforeach
+                    @endif
                 </select>
             </div>
             <div> <span style="color: red"> * <?php echo $errors->first('city',':message'); ?></span> </div>

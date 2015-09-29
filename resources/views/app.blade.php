@@ -71,13 +71,13 @@
 	</nav>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2"  >
-            <div class="panel panel-default"  >
+        <div class="col-md-10 col-md-offset-1"  >
+            <div class="col-md-10 col-md-offset-1"  >
                 <div class="panel-heading" style="background-color: #ffffff;">
                     <div style="display:inline-block;">
                         @yield('title')</div>
                     </div>
-                <div class="panel-body" >
+                <div >
                     @yield('content')
                 </div>
             </div>
