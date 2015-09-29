@@ -22,6 +22,6 @@ class Industry extends Model {
 
     public function scopeName()
     {
-
+        return $this;
     }
 }
