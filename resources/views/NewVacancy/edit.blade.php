@@ -7,10 +7,10 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
         <div class="col-sm-5">
-            {!! Form::text('Position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
+            {!! Form::text('position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
 
-        <div > <span style="color: red">* <?php echo $errors->first('Position','поле має містити не менше чотирьох символів'); ?></span> </div>
+        <div > <span style="color: red">* <?php echo $errors->first('position','поле має містити не менше чотирьох символів'); ?></span> </div>
 
 
 
@@ -22,7 +22,7 @@
             <select class="form-control" id="selectGaluz" name="branch" value = "{{$vacancy->branch}}">
                 @foreach($industries as $industry)
                     {
-                    <option>{{$industry->name}}</option>
+                    <option value="{{$industry->id}}">{{$industry->name}}</option>
                     }
                 @endforeach
             </select>
@@ -34,7 +34,7 @@
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
-                    <option>{{$comp->company_name}}</option>
+                    <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
             </select>
         </div></br>
@@ -54,7 +54,7 @@
         <div class="col-sm-5">
             {!! Form::text('Salary', null, array('class' => 'form-control' )) !!}
         </div>
-        <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити тільки цифри'); ?></span> </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary','поле має містити тільки цифри'); ?></span> </div>
         </br>
     </div>
 
@@ -63,7 +63,7 @@
         <div class="col-sm-5">
             {!! Form::text('user_email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
-        <div > <span style="color: red"  >* <?php echo $errors->first('Salary','поле має містити не менше трьох символів'); ?></span> </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary','поле має містити не менше трьох символів'); ?></span> </div>
         </br>
     </div>
 
