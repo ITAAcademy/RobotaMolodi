@@ -56,11 +56,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         $rules = 'required|min:3';
         $this->validate($request,[
-            'name_u' => 'required|min:3|alpha',
+            'name_u' => 'required|min:3|regex:/[[:alpha:]]/',
             'telephone' => 'min:5',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|min:3|max:999999999|numeric',
+            'salary' => 'required|min:3|numeric',
             'description' => $rules,
             'city' => 'required'
         ]);
@@ -138,6 +138,16 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function update($id,Request $request,Resume $resume,Guard $auth)
 	{
+        $rules = 'required|min:3';
+        $this->validate($request,[
+            'name_u' => 'required|min:3',
+            'telephone' => 'min:5',
+            'email' => 'required|email',
+            'position' => $rules,
+            'salary' => 'required|min:3|numeric',
+            'description' => $rules,
+            'city' => 'required'
+        ]);
 
         $updateResume = $resume->fillResume($id,$auth,$request);
 
