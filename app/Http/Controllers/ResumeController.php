@@ -56,7 +56,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         $rules = 'required|min:3';
         $this->validate($request,[
-            'name_u' => 'required|min:3',
+            'name_u' => 'required|min:3|regex:/[[:alpha:]]/',
             'telephone' => 'min:5',
             'email' => 'required|email',
             'position' => $rules,
