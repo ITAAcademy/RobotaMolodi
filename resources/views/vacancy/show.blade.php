@@ -90,11 +90,12 @@
                 document.getElementById('inputDiv').style.display = "none";
                 linkDiv.style.display="block";
             }
-        }}
-        @else
-        {
-            Redirect::to('auth/login');
-        }
+                    @else
+            {
+                    Redirect::to('auth/login');
+                }
+            @endif
+            }}
 
         function PasteFile()
         {
