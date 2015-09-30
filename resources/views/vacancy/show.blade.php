@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <div class="panel panel-orange">
         <div class="panel-heading"><h2> {{$vacancy->position}} &#183; {{$vacancy->salary}} грн <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
         <ul class="list-group">
@@ -9,13 +10,14 @@
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
-                    <button class="btn btn-default" style="background: #a7eebe" onclick="PasteLink()" >Вставити посилання на резюме</button>
-                    <button class="btn btn-default" style="background: #a7eebe; margin-left: 50px" onclick="PasteFile()" >Загрузити файл</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteLink()" >Відправити URL</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteFile()" >Відправити файл</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteResume()" >Відправити резюме</button>
             </li>
 
         </ul>
     </div>
-    
+
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px;display: none " id="linkDiv">
 
 
@@ -73,12 +75,10 @@
 
         function PasteLink()
         {
-
+    @if (Auth::check()){
             var linkDiv = document.getElementById('linkDiv');
             var display = linkDiv.style.display;
             var inputDisplay = document.getElementById('inputDiv').style.display;
-//        alert(display);
-//        alert(inputDisplay);
             if(display == "block" )
             {
 
@@ -90,9 +90,28 @@
                 document.getElementById('inputDiv').style.display = "none";
                 linkDiv.style.display="block";
             }
+        }}
+        @else
+        {
+            Redirect::to('auth/login');
         }
 
         function PasteFile()
+        {
+            var inputDiv = document.getElementById('inputDiv');
+            var display = inputDiv.style.display;
+            if(display == "block")
+            {
+                inputDiv.style.display="none";
+
+            }
+            else
+            {
+                document.getElementById('linkDiv').style.display = "none";
+                inputDiv.style.display="block";
+            }
+        }
+        function PasteResume()
         {
             var inputDiv = document.getElementById('inputDiv');
             var display = inputDiv.style.display;

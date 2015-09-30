@@ -48,6 +48,7 @@ $router->resource('vacancy','Vacancy\VacancyController');
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
 Route::post('vacancy/{vacancy}/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
+Route::post('vacancy/{vacancy}/sendResume',[ 'as'=>'vacancy.sendResume', 'uses'=>'Vacancy\VacancyController@sendResume']);
 
 Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
 
