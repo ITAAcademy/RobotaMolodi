@@ -21,9 +21,16 @@
                     {
                     <option value="{{$industry->id}}">{{$industry->name}}</option>
                     }
-                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Industry()->name}}</option>
-
                 @endforeach
+                @if(Input::old('branch')!= '')
+                    @foreach($industries as $industry)
+                        @if($industry->id == Input::old('branch'))
+                            <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                        @endif
+                    @endforeach
+                @else
+                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Industry()->name}}</option>
+                @endif
             </select>
         </div></br>
     </div>
@@ -35,7 +42,15 @@
                 @foreach($companies as $comp)
                     <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                 @endforeach
-                    <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
+                @if(Input::old('Organisation')!= '')
+                    @foreach($companies as $comp)
+                        @if($comp->id == Input::old('Organisation'))
+                            <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                        @endif
+                    @endforeach
+                @else
+                        <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
+                @endif
             </select>
         </div></br>
     </div>

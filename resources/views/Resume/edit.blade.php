@@ -30,7 +30,15 @@
             @foreach($cities as $city)
                 <option value="{{$city->id}}"> {{$city->name}} </option>
             @endforeach
+            @if(Input::old('city')!= '')
+                @foreach($cities as $city)
+                    @if($city->id == Input::old('city'))
+                        <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                    @endif
+                @endforeach
+            @else
                 <option value="{{$resume->city}}" selected>{{$resume->City()->name}}</option>
+            @endif
         </select>
     </div>
     <div class="form-group">

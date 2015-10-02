@@ -47,8 +47,8 @@
                         <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                     @endforeach
                     @if(Input::old('Organisation')!= '')
-                        @foreach($industries as $industry)
-                            @if($industry->id == Input::old('Organisation'))
+                        @foreach($companies as $comp)
+                            @if($comp->id == Input::old('Organisation'))
                                 <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
                             @endif
                         @endforeach
