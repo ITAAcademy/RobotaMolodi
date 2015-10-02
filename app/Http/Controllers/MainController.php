@@ -175,22 +175,22 @@ class MainController extends Controller
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $resumes = Resume::paginate(5);
+        $resumes = Resume::paginate(25);
         if (Request::ajax()) {
         //dd(Resume::where('city',$city)->latest('id'));
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            if($city > 0 && $industry < 1){
+            if($city > 1 && $industry == 0){
 
-                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(2);
+                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(10);
                 //dd(City::find(1));
             }
-            elseif($city > 0 && $industry > 0){
-                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(2);
+            elseif($city > 1 && $industry > 0){
+                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(10);
             }
-            elseif( $industry > 0 && $city < 1){
-                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(2);
+            elseif( $city == 1 && $industry > 0){
+                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(10);
             }
             else
             {
@@ -218,13 +218,13 @@ class MainController extends Controller
 
         if($city_id > 1 && $industry_id == 0)
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->paginate(10);
+            $vacancy_list = City::find($city_id)->Vacancies()->paginate(25);
 
             return $vacancy_list;
         }
         elseif($city_id == 1 && $industry_id > 0)
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(10);
+            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(25);
 
             return $filterVacancies;
         }
