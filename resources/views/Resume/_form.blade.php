@@ -89,7 +89,5 @@
     <script type="text/javascript">
         $('#city').select2();
 
-
-
     </script>
 @stop
