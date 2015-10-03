@@ -53,7 +53,7 @@
 
         <h3 style="margin-top: 100px">Завантажити файл</h3>
         <div class="form-group" style="margin-top: 30px">
-            <label for="sector" class="col-sm-2 control-label">Загрузити резюме</label>
+            <label for="sector" class="col-sm-2 control-label">Завантажити резюме</label>
             <div class="col-sm-5">
                 {!! Form::file('Load', null, array('class' => 'form-control')) !!}
             </div>
@@ -65,7 +65,7 @@
         {!! Form::hidden('email', $user->email, array('class' => 'form-control')) !!}
         {!! Form::hidden('emailAddressee', $user->email, array('class' => 'form-control')) !!}
         <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
-            <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
+            <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити файл">
         </div>
     </div>
     {!!Form::token()!!}
@@ -92,7 +92,7 @@
             }
                     @else
             {
-                    Redirect::to('auth/login');
+                    {{Redirect::to('auth/login')}}
                 }
             @endif
             }}
