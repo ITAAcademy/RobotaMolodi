@@ -9,7 +9,7 @@
             <li class="list-group-item">{!!$city->name!!}</li>
             <li class="list-group-item">{!!$resume->Industry()->name!!}</li>
             <li class="list-group-item"><span class="heading"> Опис: </span> {!!$resume->description!!}</li>
-            <li class="list-group-item"><a href="#">Написати на почту</a></li>
+            <li class="list-group-item"><a href="{{$resume->id}}/send_message">Написати на пошту</a></li>
         </ul>
     </div>
 @stop
