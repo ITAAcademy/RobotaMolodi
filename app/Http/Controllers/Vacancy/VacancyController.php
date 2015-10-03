@@ -350,5 +350,6 @@ class VacancyController extends Controller {
             $message->to($to, 'John Smith')->subject($link);
 
         });
+        return view('vacancy/vacancyAnswer');
     }
 }
