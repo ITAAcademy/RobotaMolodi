@@ -35,7 +35,7 @@
 
 
         <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
-            <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
+            <input type="submit" class="btn btn-default" onclick="validLink()" style="background: #a7eebe" value="Відправити посилання">
         </div>
     </div>
     {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
@@ -91,7 +91,23 @@
                 {{Redirect::to('auth/login')}}
                  }
                 @endif
+
        }
+        function validLink(){
+           var link=$("[name='Link']").val();
+            //alert(link);
+            function isValidURL(link){
+                var RegExp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+
+                if(RegExp.test(link)){
+                    добавить шттп(конкатинация,потом через иннерхтмл ввести в интпут и отправить)
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        }
               function PasteFile()
         {
             var inputDiv = document.getElementById('inputDiv');
