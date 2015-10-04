@@ -8,7 +8,7 @@
     <h3 class="formTitle">Створення компанії</h3>
         </br>
     <div class="form-group" >
-        <label for="sector" class="col-md-2 col-sm-2 control-label">Назва компаніїї</label>
+        <label for="sector" class="col-md-2 col-sm-2 control-label">Назва компанії</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', null, array('class' => 'form-control' )) !!}
         </div>

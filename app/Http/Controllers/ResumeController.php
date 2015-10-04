@@ -136,8 +136,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id,Request $request,Resume $resume,Guard $auth)
-	{
+        public function update($id,Request $request,Resume $resume,Guard $auth)
+    {
         $rules = 'required|min:3';
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
