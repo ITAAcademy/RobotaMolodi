@@ -23,8 +23,7 @@ class City extends Model {
 
     public function GetCollection($cityId,$industryId)
     {
-
-        return DB::table('vacancies')->select('vacancies.id')->join('vacancy_city', 'vacancy_city.vacancy_id', '=','vacancies.id')->
+        return DB::table('vacancies')->select()->join('vacancy_city', 'vacancy_city.vacancy_id', '=','vacancies.id')->
         where('vacancy_city.city_id','=',$cityId)
         ->where('vacancies.branch','=',$industryId)
         ->get();

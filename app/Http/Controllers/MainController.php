@@ -218,54 +218,25 @@ class MainController extends Controller
 
         if($city_id > 1 && $industry_id == 0)
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->paginate(25);
-
+            $vacancy_list = City::find($city_id)->Vacancies()->paginate(5);
+            //dd($vacancy_list);
             return $vacancy_list;
         }
         elseif($city_id == 1 && $industry_id > 0)
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(25);
-
+            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(5);
+            //dd($filterVacancies);
             return $filterVacancies;
         }
         elseif($city_id > 1 && $industry_id > 0)
         {
-
-
-            $city = new City();
-            $vacancies = $city->GetCollection($city_id,$industry_id);
-
-//            $vacancy_city = City::find($city_id)->Vacancies();
-//
-//            $vacancy_industry = Industry::find($industry_id)->GetVacancies()->get();
-//
-//            $vacancies = $vacancy_city->intersect($vacancy_industry)->sortBy('created_at');
-////            $result = Vacancy::paginate(15);
-//            //dd($result);
-            if(count($vacancies) == 0) return null;
-            $vacanciesArr = new Collection();
-            foreach($vacancies as $vacancy)
-            {
-                $vacanciesArr->add(Vacancy::find($vacancy->id));
-            }
-
-            $result = new Paginator($vacanciesArr,count($vacancies),2);
-            //$result = new Paginator($vacancies,1,1);
-//            $filterVacancy = new FilterVacanciesModels();
-//            $filterVacancy->FillTable($vacancies);
-//
-//            $vacancies = FilterVacanciesModels::latest('id')->paginate(2);
-//
-//            $filterVacancy->DestroyData();
-
-            return $result;
+            $vacancies = City::find($city_id)->Vacancies()->where('branch', '=', $industry_id)->paginate(5);
+            return $vacancies;
         }
 
         elseif($city_id == 1 && $industry_id == 0)
         {
-
             return Vacancy::paginate(25);
-
         }
 
     }

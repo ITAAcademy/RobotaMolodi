@@ -64,8 +64,6 @@ class Vacancy extends Model {
         return $this->belongsToMany('App\Models\City','vacancy_city')->get();
     }
 
-
-
     ////////////////////////////////////////////////////////////////////////////////
     //Scopes
 
