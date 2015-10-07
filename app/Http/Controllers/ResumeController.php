@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Response;
 use App\Models\Resume;
 use App\Models\City;
 use App\Models\Industry;
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
@@ -25,8 +26,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function index(Resume $resumeModel,Guard $auth)//Output all resumes
 	{
-
-        $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes(); //Выборка с базы через модель Resumes
+        $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
 
         return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
 	}

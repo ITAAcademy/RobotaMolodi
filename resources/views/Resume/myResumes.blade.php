@@ -25,4 +25,7 @@
         </article>
     @endforeach
 
+{!! str_replace('/?', '?', $resumes->render()) !!}
+
+
 @stop

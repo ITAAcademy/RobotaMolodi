@@ -183,14 +183,14 @@ class MainController extends Controller
 
             if($city > 1 && $industry == 0){
 
-                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(10);
+                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(25);
                 //dd(City::find(1));
             }
             elseif($city > 1 && $industry > 0){
-                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(10);
+                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(25);
             }
             elseif( $city == 1 && $industry > 0){
-                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(10);
+                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(25);
             }
             else
             {
@@ -218,19 +218,19 @@ class MainController extends Controller
 
         if($city_id > 1 && $industry_id == 0)
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->paginate(5);
+            $vacancy_list = City::find($city_id)->Vacancies()->paginate(25);
             //dd($vacancy_list);
             return $vacancy_list;
         }
         elseif($city_id == 1 && $industry_id > 0)
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(5);
+            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(25);
             //dd($filterVacancies);
             return $filterVacancies;
         }
         elseif($city_id > 1 && $industry_id > 0)
         {
-            $vacancies = City::find($city_id)->Vacancies()->where('branch', '=', $industry_id)->paginate(5);
+            $vacancies = City::find($city_id)->Vacancies()->where('branch', '=', $industry_id)->paginate(25);
             return $vacancies;
         }
 

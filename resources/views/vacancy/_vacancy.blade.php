@@ -10,13 +10,10 @@
                 <li class="list-group-item"> <a href="vacancy/{{$vacancy->id}}">Переглянути</a></li>
             </ul>
         </div>
+    @endforeach
+        {!! str_replace('/?', '?', $vacancies->render()) !!}
 </address>
 <br>
-@endforeach
-<?php
-/**
- * Created by PhpStorm.
- * User: Quicks
- * Date: 15.07.2015
- * Time: 13:54
- */
+
+
+
