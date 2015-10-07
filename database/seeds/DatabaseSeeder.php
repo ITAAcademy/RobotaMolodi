@@ -44,8 +44,7 @@ class VacancySeeder extends Seeder
         DB::table('vacancies')->delete();
         for($i = 0; $i < 105; $i++)  {
             $position = rand(1, 5);
-            $industry = rand(1, 27);
-            $city_r = rand(1, 26);
+            ($i < 54) ? $industry = 27 : $industry = rand(1,26);
             switch($position){
                 case 1: $pos = "Бухгалтер"; $sal = 10000; break;
                 case 2: $pos = "Касир"; $sal = 5000;  break;
@@ -77,27 +76,25 @@ class CompanySeeder extends Seeder
 {
     public function run()
     {
-
         Company::create([
             "users_id" => 3,
             "id" => 1,
             "company_name" =>'Ciklum',
-            "company_email" => 'www.goo'
+            "company_email" => 'http://www.ciklum.com/'
         ]);
         Company::create([
             "users_id" => 2,
             "id" => 3,
             "company_name" =>'Epam',
-            "company_email" => 'www.aaas'
+            "company_email" => 'http://www.epam.com/'
         ]);
         Company::create([
             "users_id" => 1,
             "id" => 2,
-            "company_name" =>'Firs',
-            "company_email" => 'www.asdadad'
+            "company_name" =>'Sitecore',
+            "company_email" => 'http://www.sitecore.net/'
         ]);
     }
-
 }
 
 class ResumeSeeder extends Seeder  // Заповнення таблиці resumes даними
@@ -105,42 +102,38 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
     public function run()
     {
         DB::table('resumes')->delete();
-        Resume::create([
-            'id_u' => 1,
-            'name_u'=> 'Сергій Коломієць',
-            'telephone'=> '0963363495',
-            'email'=> '3sorey4@gmail.com',
-            'position'=> 'Розробник програмного забезпечення',
-            'industry'=> 5 ,
-            'city'=> '1',
-            'salary'=> 20100,
-            'description'=> 'Створення програмного забезпечення для штампу на дорогоцінних металах.',
-        ]);
 
-        Resume::create([
-            'id_u' => 1,
-            'name_u'=> 'Сергій Коломієць',
-            'telephone'=> '0963363495',
-            'email'=> '3sorey4@gmail.com',
-            'position'=> 'Програміст С++',
-            'industry'=> 3 ,
-            'city'=> '1',
-            'salary'=> 20300,
-            'description'=> 'Створення програмного забезпечення для конвеєрного виробництва.',
-        ]);
+        for($i = 0; $i < 105; $i++) {
+            $position = rand(1, 5);
+            $industry = ($i < 54) ?  27 :  rand(1, 26);
+            ($i < 54) ? $city = 27 : $city = rand(1,26);
+            switch ($position) {
+                case 1: $pos = "Бухгалтер"; $sal = 11000; break;
+                case 2: $pos = "Тестер"; $sal = 6000;  break;
+                case 3: $pos = "Архітектор"; $sal = 9000;  break;
+                case 4: $pos = "Фермер талантів"; $sal = 13000;  break;
+                case 5: $pos = "VIP Програміст"; $sal = 27000;  break;
+                default: $pos = "Rock"; $sal = 50000;  break;
+            }
+            switch($position){
+                case 1; case 2; case 3: $user_id = 1; $name_u = 'Віккі Тестер';     $email = '33sorey44@gmail.com'; break;
+                case 4:                 $user_id = 2; $name_u = 'Наталі Тестер';    $email = 'natasha-badora@yandex.ru'; break;
+                case 5:                 $user_id = 3; $name_u = 'Сергій Програмер'; $email = '3sorey4@gmail.com'; break;
+                default:                $user_id = 3; $name_u = 'Ларавел Тейлор';   $email = '37sorey4@gmail.com'; break;
+            }
 
-        Resume::create([
-            'id_u' => 2,
-            'name_u'=> 'Сергій Коломієць',
-            'telephone'=> '0963363495',
-            'email'=> '3sorey4@gmail.com',
-            'position'=> 'Програміст С#',
-            'industry'=> 10 ,
-            'city'=> '1',
-            'salary'=> 20500,
-            'description'=> 'Створення програми для обчислення розмірів тканин.',
-        ]);
-
+            Resume::create([
+                'id_u' => $user_id,
+                'name_u' => $name_u,
+                'telephone' => '0963363496',
+                'email' => $email,
+                'position' => $pos,
+                'industry' => $industry,
+                'city' => $city,
+                'salary' => $sal,
+                'description' => $pos.' програмного забезпечення. Оплата праці:'.$sal,
+            ]);
+        }
     }
 }
 
@@ -185,6 +178,7 @@ class CitySeeder extends Seeder
         City::create(["name" => "Чернівці"]);
     }
 }
+
 class IndustrySeeder extends Seeder
 {
     public function run()
@@ -229,15 +223,15 @@ class VacancyCitySeeder extends Seeder
 
         for($i = 0;$i < 105;$i++)
         {
-            $city = rand(1,26);
+            ($i < 54) ? $city = 27 : $city = rand(1,26);    //  if($i < 54) $city = 27; else $city = rand(1,26);
             Vacancy_City::create([
                 'vacancy_id' => $i,
                 'city_id' => $city
             ]);
         }
-
     }
 }
+
 class UserTableSeeder extends Seeder
 {
    public function run()
@@ -246,27 +240,25 @@ class UserTableSeeder extends Seeder
        User::truncate();
        User::create([
            'id'=> 1,
-           'name'=> 'Sasha',
-           'email'=> '3sorey4@gmail.com',
+           'name'=> 'Viki Тестер',
+           'email'=> '33sorey44@gmail.com',
            'password'=> Hash::make( '123456' ),
            ]);
        User::create([
            'id'=> 2,
-           'name'=> 'Vova',
-           'email'=> '34@gmail.com',
+           'name'=> 'Natali Тестер',
+           'email'=> 'natasha-badora@yandex.ru',
            'password'=> Hash::make( '123456' ),
        ]);
-
        User::create([
            'id'=> 3,
-           'name'=> 'Sergey',
-           'email'=> '3sorey@gmail.com',
-           'password'=> Hash::make( '123456' ) ,
+           'name'=> 'Sorey Програмер',
+           'email'=> '3sorey4@gmail.com',
+           'password'=> Hash::make( '123456' ),
        ]);
-
-
    }
 }
+
 class Test1Seeder extends Seeder
 {
     public function run()
