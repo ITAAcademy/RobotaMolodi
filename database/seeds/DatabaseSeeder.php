@@ -40,7 +40,6 @@ class VacancySeeder extends Seeder
 {
     public function Run()
     {
-
         DB::table('vacancies')->delete();
         for($i = 0; $i < 105; $i++)  {
             $position = rand(1, 5);
@@ -69,7 +68,6 @@ class VacancySeeder extends Seeder
                 "description" => $pos." "." bla-bla-bla Зарплата:".$sal]);
         }
     }
-
 }
 
 class CompanySeeder extends Seeder
@@ -212,7 +210,6 @@ class IndustrySeeder extends Seeder
         Industry::create(["name" => "Житлово-комунальне господарство"]);
         Industry::create(["name" => "Стажування за кордоном/програми обміну"]);
     }
-
 }
 
 class VacancyCitySeeder extends Seeder
@@ -221,7 +218,7 @@ class VacancyCitySeeder extends Seeder
     {
         DB::table("vacancy_city")->delete();
 
-        for($i = 0;$i < 105;$i++)
+        for($i = 1;$i < 106;$i++)
         {
             ($i < 54) ? $city = 27 : $city = rand(1,26);    //  if($i < 54) $city = 27; else $city = rand(1,26);
             Vacancy_City::create([
