@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers\Vacancy;
 
-
 use App\Http\Controllers\MainController;
 use App\Http\Requests;
 use App\Models\profOrientation\test1;
@@ -9,6 +8,8 @@ use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Input;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\Collection;
+
 use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
@@ -20,7 +21,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use View;
+
 //use Session;
 class VacancyController extends Controller {
 
@@ -32,13 +35,11 @@ class VacancyController extends Controller {
 
 	public function index(Company $companies,Guard $auth)
 	{
-
-
         if(Auth::check()){
 
         setcookie('paths','');
 
-        $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies();
+        $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
 
         if(!$vacancies)
         {
@@ -329,9 +330,8 @@ class VacancyController extends Controller {
             $message->to($to, 'John Smith')->subject('Welcome!');
             $message->attach($pathToFile);
         });
-    return view('vacancy/vacancyAnswer');
 
-
+        return view('vacancy/vacancyAnswer');
     }
 
     public function link(Guard $auth,Request $request)
@@ -350,6 +350,15 @@ class VacancyController extends Controller {
             $message->to($to, 'John Smith')->subject($link);
 
         });
+
+        $this->validate($request,[
+            'Link' => 'url'
+        ]);
+
+//        $link = $linkModel->fillResume(0,$auth,$request);
+//
+//        $link ->save();
+//
         return view('vacancy/vacancyAnswer');
     }
 }

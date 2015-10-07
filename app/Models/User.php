@@ -48,14 +48,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function ReadUserVacancies()
     {
-        $vacancies = $this->hasManyThrough('App\Models\Vacancy', 'App\Models\Company','users_id')->get();
+        $vacancies = $this->hasManyThrough('App\Models\Vacancy', 'App\Models\Company','users_id');
 
         return $vacancies;
     }
 
     private function HasManyResumes()
     {
-        return $this->hasMany('App\Models\Resume','id_u')->get();
+        return $this->hasMany('App\Models\Resume','id_u');
     }
 
     public function GetResumes()
