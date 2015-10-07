@@ -172,5 +172,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
         return redirect()->route('cabinet.index');
         //$resume->destroy();
 	}
+    public function send_message(){
+        return view('Resume/send_message');
+    }
 
 }

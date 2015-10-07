@@ -75,6 +75,8 @@ Route::get('resume/{resume}/destroy','ResumeController@destroy');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
+Route::get('resume/{resume}/send_message', 'ResumeController@send_message');
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Other Route
 Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
