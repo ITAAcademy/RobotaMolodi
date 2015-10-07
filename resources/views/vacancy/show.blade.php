@@ -24,13 +24,12 @@
         {!!Form::open(['route' => 'vacancy.link'])!!}
 
         <h3 style="margin-top: 100px">Вставити посилання на резюме</h3>
-        <div class="form-group" style="margin-top: 30px">
+        <div class="form-group {{$errors-> has('Link') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-sm-2 control-label">Посилання</label>
             <div class="col-sm-5">
                 {!! Form::text('Link', null, array('class' => 'form-control')) !!}
             </div>
-
-
+            <div class=" col-sm-5">{!! $errors->first('Link', '<span class="help-block">:message</span>') !!}</div>
             </br>
         </div>
 
@@ -73,31 +72,27 @@
 
     <script>
 
-        function PasteLink()
-        {
-    @if (Auth::check()){
-            var linkDiv = document.getElementById('linkDiv');
-            var display = linkDiv.style.display;
-            var inputDisplay = document.getElementById('inputDiv').style.display;
-            if(display == "block" )
-            {
+        function PasteLink() {
+                @if(Auth::check()){
+                    var linkDiv = document.getElementById('linkDiv');
+                    var display = linkDiv.style.display;
+                    var inputDisplay = document.getElementById('inputDiv').style.display;
+                        if (display == "block") {
 
-                linkDiv.style.display="none";
+                            linkDiv.style.display = "none";
 
-            }
-            else
-            {
-                document.getElementById('inputDiv').style.display = "none";
-                linkDiv.style.display="block";
-            }
-                    @else
-            {
-                    {{Redirect::to('auth/login')}}
+                        }
+                        else {
+                            document.getElementById('inputDiv').style.display = "none";
+                            linkDiv.style.display = "block";
+                        }
                 }
-            @endif
-            }}
-
-        function PasteFile()
+                @else{
+                {{Redirect::to('auth/login')}}
+                 }
+                @endif
+       }
+              function PasteFile()
         {
             var inputDiv = document.getElementById('inputDiv');
             var display = inputDiv.style.display;

@@ -350,6 +350,15 @@ class VacancyController extends Controller {
             $message->to($to, 'John Smith')->subject($link);
 
         });
+
+        $this->validate($request,[
+            'Link' => 'url'
+        ]);
+
+//        $link = $linkModel->fillResume(0,$auth,$request);
+//
+//        $link ->save();
+//
         return view('vacancy/vacancyAnswer');
     }
 }
