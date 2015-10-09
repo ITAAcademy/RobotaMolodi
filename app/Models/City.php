@@ -18,7 +18,7 @@ class City extends Model {
 
     public function Vacancies()
     {
-        return $this->belongsToMany('App\Models\Vacancy','vacancy_city');
+        return $this->belongsToMany('App\Models\Vacancy','vacancy_city')->latest('updated_at');
     }
 
     public function GetCollection($cityId,$industryId)

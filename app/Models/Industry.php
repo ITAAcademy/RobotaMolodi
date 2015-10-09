@@ -14,7 +14,7 @@ class Industry extends Model {
     }
     public function GetVacancies()
     {
-        return $this->hasMany('App\Models\Vacancy','branch');
+        return $this->hasMany('App\Models\Vacancy','branch')->latest('updated_at');
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////

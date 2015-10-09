@@ -44,15 +44,12 @@
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="selectOrgan" name="Organisation">
                     @foreach($companies as $comp)
-                        <option value="{{$comp->id}}">{{$comp->company_name}}</option>
+                        @if($comp->id != Input::old('Organisation'))
+                            <option value="{{$comp->id}}">{{$comp->company_name}}</option>
+                        @else($comp->id == Input::old('Organisation'))
+                            <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                        @endif
                     @endforeach
-                    @if(Input::old('Organisation')!= '')
-                        @foreach($companies as $comp)
-                            @if($comp->id == Input::old('Organisation'))
-                                <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
-                            @endif
-                        @endforeach
-                    @endif
                 </select>
             </div>
         </div>
