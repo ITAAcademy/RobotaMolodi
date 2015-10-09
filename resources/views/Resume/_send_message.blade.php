@@ -8,9 +8,7 @@
     {!! Form::textarea('description',Input::old('description'), ['class'=>'form-control']) !!}
     {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 </div>
-<div class="form-group">
-    <input name="loadResume" type="file">
-</div>
+
 <div class="form-group">
     <span class="required_field">*</span> – Обов'язкові для заповнення.
 </div>
