@@ -125,7 +125,7 @@ class MainController extends Controller
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $vacancies = Vacancy::paginate(25);
+        $vacancies = Vacancy::latest('updated_at')->paginate(25);
 
 
         if (Request::ajax()) {
@@ -175,7 +175,7 @@ class MainController extends Controller
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $resumes = Resume::paginate(25);
+        $resumes = Resume::latest('updated_at')->paginate(25);
         if (Request::ajax()) {
         //dd(Resume::where('city',$city)->latest('id'));
 
@@ -183,18 +183,18 @@ class MainController extends Controller
 
             if($city > 1 && $industry == 0){
 
-                $resumes = Resume::where('city','=' ,$city)->latest('id')->paginate(25);
+                $resumes = Resume::where('city','=' ,$city)->latest('updated_at')->paginate(25);
                 //dd(City::find(1));
             }
             elseif($city > 1 && $industry > 0){
-                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('id')->paginate(25);
+                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
             }
             elseif( $city == 1 && $industry > 0){
-                $resumes = Resume::where('industry' , $industry)->latest('id')->paginate(25);
+                $resumes = Resume::where('industry' , $industry)->latest('updated_at')->paginate(25);
             }
             else
             {
-                $resumes = Resume::latest('id')->paginate(25);
+                $resumes = Resume::latest('updated_at')->paginate(25);
             }
 
             return Response::json(View::make('main.filter.resume',
@@ -236,7 +236,7 @@ class MainController extends Controller
 
         elseif($city_id == 1 && $industry_id == 0)
         {
-            return Vacancy::paginate(25);
+            return Vacancy::latest('updated_at')->aginate(25);
         }
 
     }

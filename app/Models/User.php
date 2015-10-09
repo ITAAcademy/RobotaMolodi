@@ -48,7 +48,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function ReadUserVacancies()
     {
-        $vacancies = $this->hasManyThrough('App\Models\Vacancy', 'App\Models\Company','users_id');
+        $vacancies = $this->hasManyThrough('App\Models\Vacancy', 'App\Models\Company','users_id')->latest('updated_at');
 
         return $vacancies;
     }
@@ -60,7 +60,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function GetResumes()
     {
-        $userResumes = User::HasManyResumes();
+        $userResumes = User::HasManyResumes()->latest('updated_at');
 
         //dd($userResumes);
 //        $resumes = array();

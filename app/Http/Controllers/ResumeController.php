@@ -60,7 +60,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'telephone' => 'min:5',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|regex:/[^0]+/|min:3|numeric',
+            'salary' => 'required|regex:/[^0]+/|min:1|numeric',
             'description' => $rules,
             'city' => 'required'
         ]);
@@ -144,7 +144,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'telephone' => 'min:5',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|regex:/[^0]+/|min:3|numeric',
+            'salary' => 'required|regex:/[^0]+/|min:1|numeric',
             'description' => $rules,
             'city' => 'required'
         ]);
