@@ -61,6 +61,7 @@ Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
 Route::post('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
+Route::get('showCompany','Company\CompanyController@showCompany');
 Route::model('company/{company}/destroy','App\Models\Company');
 
 $router->resource('company','Company\CompanyController');

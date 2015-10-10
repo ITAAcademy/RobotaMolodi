@@ -185,17 +185,20 @@ class VacancyController extends Controller {
                 $view = 'vacancy.showMyVacancy';
 
             }
-        }
 
-        $company = Company::find($vacancy->company_id);;
+
+        $company = Company::find($vacancy->company_id);
+
 
         return view($view)
             ->with('vacancy',$vacancy)
             ->with('company',$company)
             ->with('user',$userVacation)
             ->with('cities',$cities)
-            ->with('industry',$industry);
-
+            ->with('industry',$industry); }
+        else{
+        return redirect('auth/login');
+    }
     }
 
 	/**
@@ -336,6 +339,10 @@ class VacancyController extends Controller {
 
     public function link(Guard $auth,Request $request)
     {
+      $this->validate($request,[
+          'Link' => 'url|required'
+       ]);
+
         $link = Input::get('Link');
 
         $user = User::find($auth->user()->getAuthIdentifier());
@@ -351,14 +358,11 @@ class VacancyController extends Controller {
 
         });
 
-        $this->validate($request,[
-            'Link' => 'url'
-        ]);
 
-//        $link = $linkModel->fillResume(0,$auth,$request);
-//
-//        $link ->save();
-//
+//    $link = $linkModel->fillResume(0,$auth,$request);
+
+   //     $link ->save();
+
         return view('vacancy/vacancyAnswer');
     }
 }

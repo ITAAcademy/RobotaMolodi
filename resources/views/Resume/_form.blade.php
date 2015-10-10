@@ -70,8 +70,9 @@
  </div></div><br>
 
 <div class="row">
-<div class="form-group">
+<div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
     <div class="col-sm-offset-2 col-md-2  col-sm-2"> {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}</div>
+    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div></div><br>
 
 <div class="row">
@@ -88,6 +89,20 @@
 
     <script type="text/javascript">
         $('#city').select2();
+
+//        $('loadResume').formValidation({
+//            fields: {
+//                fileInput: {
+//                    validators: {
+//                        file: {
+//                            extension: 'doc,docx,odt,rtf,txt,pdf',
+//                            type: 'file/doc,file/docx,file/odt,file/rtf,file/txt,file/pdf',
+//                            message: 'Please choose a MP3 file'
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
     </script>
 @stop
