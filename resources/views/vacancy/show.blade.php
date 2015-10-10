@@ -6,7 +6,7 @@
     <div class="panel panel-orange">
         <div class="panel-heading"><h2> {{$vacancy->position}} &#183; {{$vacancy->salary}} грн <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
         <ul class="list-group">
-            <li class="list-group-item">  <a href="@if($company->company_email != ''){{$company->company_email}} @else # @endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
+            <li class="list-group-item">  <a href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
@@ -27,15 +27,15 @@
         <div class="form-group {{$errors-> has('Link') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-sm-2 control-label">Посилання</label>
             <div class="col-sm-5">
-                {!! Form::text('Link', null, array('class' => 'form-control')) !!}
+                {!! Form::text('Link', null, array('class' => 'form-control','autocomplete'=>"off",'required')) !!}
             </div>
-            <div class=" col-sm-5">{!! $errors->first('Link', '<span class="help-block">:message</span>') !!}</div>
+            <div class=" col-sm-5" name="linkError">{!! $errors->first('Link', '<span class="help-block">:message</span>') !!}</div>
             </br>
         </div>
 
 
         <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
-            <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити посилання">
+            <input type="submit" class="btn btn-default" name="btn" style="background: #a7eebe" value="Відправити посилання">
         </div>
     </div>
     {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
@@ -74,9 +74,9 @@
 
         function PasteLink() {
                 @if(Auth::check()){
-                    var linkDiv = document.getElementById('linkDiv');
-                    var display = linkDiv.style.display;
-                    var inputDisplay = document.getElementById('inputDiv').style.display;
+                        var linkDiv = document.getElementById('linkDiv');
+                        var display = linkDiv.style.display;
+                        var inputDisplay = document.getElementById('inputDiv').style.display;
                         if (display == "block") {
 
                             linkDiv.style.display = "none";
@@ -86,12 +86,39 @@
                             document.getElementById('inputDiv').style.display = "none";
                             linkDiv.style.display = "block";
                         }
+                        $("input[name='Link']").keyup(function(){
+
+
+                            var link=$(this).val();
+
+                            var regexpr= new RegExp('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/');
+                            if (regexpr.test(link)) {
+                                alert(" коректний урл");
+                                $("input[name='Link']").removeClass('errorField');
+                                $("label[for='sector']").removeClass('error');
+                                $("input[name='Link']").addClass('form-control');
+                                $("label[for='sector']").addClass('form-control');
+                            }
+                            else{
+                               // alert(" No коректний урл");
+
+                                $("input[name='Link']").removeClass('form-control');
+                                $("label[for='sector']").removeClass('form-control');
+                                $("input[name='Link']").addClass('errorField');
+                                $("label[for='sector']").addClass('error');
+                                $("div[name='linkError']").html( "Будь ласка,введіть коректне посилання на резюме");
+                                $("div[name='linkError']").addClass("error");
+
+                            }
+
+                        });
+            }
+                        @else{
+                        {{Redirect::to('auth/login')}}
+
+                        @endif
+
                 }
-                @else{
-                {{Redirect::to('auth/login')}}
-                 }
-                @endif
-       }
               function PasteFile()
         {
             var inputDiv = document.getElementById('inputDiv');

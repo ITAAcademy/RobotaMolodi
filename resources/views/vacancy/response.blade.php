@@ -18,8 +18,6 @@
         {!! Form::text('Link', null, array('class' => 'form-control')) !!}
     </div>
 
-
-
     </br>
 </div>
 
@@ -59,6 +57,7 @@
 </div>
 {!!Form::token()!!}
 {!!Form::close()!!}
+
 <script>
 
     function PasteLink()
