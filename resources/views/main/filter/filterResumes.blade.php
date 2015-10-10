@@ -1,4 +1,7 @@
 @extends('main/filter/ajax')
+@section('Create_res_vac')
+    <h4 class="btn btn-default" style="background:wheat; color:#ffffff; margin-left: 50px">{!! link_to_route('vacancy.create', 'Створити вакансію') !!}</h4>
+@stop
 @section('panelTitle')
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <li role = "presentation" >{!!link_to_route('head','Всі вакансії')!!}</li>

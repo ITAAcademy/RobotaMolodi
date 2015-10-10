@@ -74,11 +74,15 @@
         <div class="col-md-10 col-md-offset-1"  >
             <div class="col-md-10 col-md-offset-1"  >
                 <div class="panel-heading" style="background-color: #ffffff;">
+                    <div style="float:right">
+                        @yield('Create_res_vac')
+                    </div>
                     <div style="display:inline-block;">
                         @yield('title')</div>
                     </div>
-                <div >
-                    @yield('content')
+                    <div >
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>

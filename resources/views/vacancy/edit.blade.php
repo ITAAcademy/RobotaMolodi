@@ -40,21 +40,19 @@
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
-                    <option value="{{$comp->id}}">{{$comp->company_name}}</option>
-                @endforeach
-                @if(Input::old('Organisation')!= '')
-                    @foreach($companies as $comp)
-                        @if($comp->id == Input::old('Organisation'))
-                            <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                    @if($comp->id != Input::old('Organisation'))
+                        @if($comp->id != $vacancy->company_id)
+                            <option value="{{$comp->id}}">{{$comp->company_name}}</option>
+                        @else
+                            <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
                         @endif
-                    @endforeach
-                @else
-                        <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
-                @endif
+                    @else($comp->id == Input::old('Organisation'))
+                        <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
+                    @endif
+                @endforeach
             </select>
         </div></br>
     </div>
-
 
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Зарплата</label>

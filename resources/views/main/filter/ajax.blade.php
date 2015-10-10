@@ -1,7 +1,7 @@
 @extends('cabinet/cabinet')
 @section('titles')
     @yield('panelTitle')
-    @stop
+@stop
 @section('content')
 
 <title>Robota Molodi</title>
