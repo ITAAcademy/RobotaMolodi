@@ -175,26 +175,28 @@ class VacancyController extends Controller {
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
-        if(Auth::check())
-        {
+        if(Auth::check()) {
 
             $user = User::find($auth->user()->getAuthIdentifier());
-            if($userVacation->id == $user->id)
-            {
+            if ($userVacation->id == $user->id) {
                 $view = 'vacancy.showMyVacancy';
 
             }
+
+            $company = Company::find($vacancy->company_id);
+
+
+            return view($view)
+                ->with('vacancy', $vacancy)
+                ->with('company', $company)
+                ->with('user', $userVacation)
+                ->with('cities', $cities)
+                ->with('industry', $industry);
         }
 
-        $company = Company::find($vacancy->company_id);;
-
-        return view($view)
-            ->with('vacancy',$vacancy)
-            ->with('company',$company)
-            ->with('user',$userVacation)
-            ->with('cities',$cities)
-            ->with('industry',$industry);
-
+else{
+        return redirect('auth/login');
+    }
     }
 
 	/**
@@ -336,9 +338,9 @@ class VacancyController extends Controller {
 
     public function link(Guard $auth,Request $request)
     {
-        $this->validate($request,[
-            'Link' => 'url|required'
-        ]);
+//        $this->validate($request,[
+//            'Link' => 'url|required'
+//        ]);
 
         $link = Input::get('Link');
 
@@ -360,6 +362,6 @@ class VacancyController extends Controller {
 //
 //        $link ->save();
 //
-        return view('vacancy/vacancyAnswer');
+       // return view('vacancy/vacancyAnswer');
     }
 }
