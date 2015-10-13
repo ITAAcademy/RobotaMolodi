@@ -51,12 +51,13 @@
         {!!Form::open(['route' => 'vacancy.sendFile','enctype' => 'multipart/form-data'])!!}
 
         <h3 style="margin-top: 100px">Завантажити файл</h3>
+        <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" style="margin-top: 30px">
         <div class="form-group" style="margin-top: 30px">
-            <label for="sector" class="col-sm-2 control-label">Завантажити резюме</label>
+            <label for="sector" class="col-sm-2 control-label">Завантажити файл</label>
             <div class="col-sm-5">
                 {!! Form::file('Load', null, array('class' => 'form-control')) !!}
             </div>
-
+            <div class=" col-sm-5">{!! $errors->first('Load', '<span class="help-block">:message</span>') !!}</div>
             </br>
         </div>
 
@@ -67,6 +68,7 @@
             <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Відправити файл">
         </div>
     </div>
+        </div>
     {!!Form::token()!!}
     {!!Form::close()!!}
 
@@ -74,81 +76,84 @@
 
         function PasteLink() {
                 @if(Auth::check()){
-                        var linkDiv = document.getElementById('linkDiv');
-                        var display = linkDiv.style.display;
-                        var inputDisplay = document.getElementById('inputDiv').style.display;
-                        if (display == "block") {
+                var linkDiv = document.getElementById('linkDiv');
+                var display = linkDiv.style.display;
+                var inputDisplay = document.getElementById('inputDiv').style.display;
+                if (display == "block") {
 
-                            linkDiv.style.display = "none";
-
-                        }
-                        else {
-                            document.getElementById('inputDiv').style.display = "none";
-                            linkDiv.style.display = "block";
-                        }
-                        $("input[name='Link']").keyup(function(){
-
-
-                            var link=$(this).val();
-
-                            var regexpr= new RegExp('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/');
-                            if (regexpr.test(link)) {
-                                alert(" коректний урл");
-                                $("input[name='Link']").removeClass('errorField');
-                                $("label[for='sector']").removeClass('error');
-                                $("input[name='Link']").addClass('form-control');
-                                $("label[for='sector']").addClass('form-control');
-                            }
-                            else{
-                               // alert(" No коректний урл");
-
-                                $("input[name='Link']").removeClass('form-control');
-                                $("label[for='sector']").removeClass('form-control');
-                                $("input[name='Link']").addClass('errorField');
-                                $("label[for='sector']").addClass('error');
-                                $("div[name='linkError']").html( "Будь ласка,введіть коректне посилання на резюме");
-                                $("div[name='linkError']").addClass("error");
-
-                            }
-
-                        });
-            }
-                        @else{
-                        {{Redirect::to('auth/login')}}
-
-                        @endif
+                    linkDiv.style.display = "none";
 
                 }
-              function PasteFile()
-        {
-            var inputDiv = document.getElementById('inputDiv');
-            var display = inputDiv.style.display;
-            if(display == "block")
-            {
-                inputDiv.style.display="none";
+                else {
+                    document.getElementById('inputDiv').style.display = "none";
+                    linkDiv.style.display = "block";
+                }
+                $("input[name='Link']").keyup(function () {
+
+
+                    var link = $(this).val();
+
+                    var regexpr = new RegExp('/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/');
+                    if (regexpr.test(link)) {
+                        alert(" коректний урл");
+                        $("input[name='Link']").removeClass('errorField');
+                        $("label[for='sector']").removeClass('error');
+                        $("input[name='Link']").addClass('form-control');
+                        $("label[for='sector']").addClass('form-control');
+                    }
+                    else {
+                        // alert(" No коректний урл");
+
+                        $("input[name='Link']").removeClass('form-control');
+                        $("label[for='sector']").removeClass('form-control');
+                        $("input[name='Link']").addClass('errorField');
+                        $("label[for='sector']").addClass('error');
+                        $("div[name='linkError']").html("Будь ласка,введіть коректне посилання на резюме");
+                        $("div[name='linkError']").addClass("error");
+
+                    }
+
+                });
+            }
+                @else{
+                {{Redirect::to('auth/login')}}
+                }
+                @endif
+
 
             }
-            else
-            {
-                document.getElementById('linkDiv').style.display = "none";
-                inputDiv.style.display="block";
-            }
-        }
-        function PasteResume()
-        {
-            var inputDiv = document.getElementById('inputDiv');
-            var display = inputDiv.style.display;
-            if(display == "block")
-            {
-                inputDiv.style.display="none";
+            function PasteFile() {
+                var inputDiv = document.getElementById('inputDiv');
+                var display = inputDiv.style.display;
+                if (display == "block") {
+                    inputDiv.style.display = "none";
 
+                }
+                else {
+                    document.getElementById('linkDiv').style.display = "none";
+                    inputDiv.style.display = "block";
+                }
+//                $(input[name='Load']).validate({
+//                    rules: {
+//                        file: {
+//                    extension: ["jpg","png","gif"]
+//                }
+//            });
             }
-            else
-            {
-                document.getElementById('linkDiv').style.display = "none";
-                inputDiv.style.display="block";
+
+            function PasteResume() {
+                var inputDiv = document.getElementById('inputDiv');
+                var display = inputDiv.style.display;
+                if (display == "block") {
+                    inputDiv.style.display = "none";
+
+                }
+                else {
+                    document.getElementById('linkDiv').style.display = "none";
+                    inputDiv.style.display = "block";
+                }
             }
-        }
+
 
     </script>
 @stop

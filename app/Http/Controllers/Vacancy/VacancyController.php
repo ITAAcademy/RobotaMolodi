@@ -176,15 +176,15 @@ class VacancyController extends Controller {
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
-        if(Auth::check())
-        {
-
-            $user = User::find($auth->user()->getAuthIdentifier());
-            if($userVacation->id == $user->id)
-            {
-                $view = 'vacancy.showMyVacancy';
-
-            }
+//        if(Auth::check())
+//        {
+//
+//            $user = User::find($auth->user()->getAuthIdentifier());
+//            if($userVacation->id == $user->id)
+//            {
+//                $view = 'vacancy.showMyVacancy';
+//
+//            }
 
 
         $company = Company::find($vacancy->company_id);
@@ -195,10 +195,10 @@ class VacancyController extends Controller {
             ->with('company',$company)
             ->with('user',$userVacation)
             ->with('cities',$cities)
-            ->with('industry',$industry); }
-        else{
-        return redirect('auth/login');
-    }
+           ->with('industry',$industry);// }
+//        else{
+//        return redirect('auth/login');
+//    }
     }
 
 	/**
@@ -323,6 +323,12 @@ class VacancyController extends Controller {
 
         $user = User::find($auth->user()->getAuthIdentifier());
 
+        $this->validate($request,
+            [
+                'Load' => 'mimes:doc,docx,odt,rtf,txt,pdf',
+                'Load' => 'required',
+            ]);
+
         Mail::send('vacancy.mail', ['user' => $user], function($message)
         {
             $to = Input::get('emailAddressee');
@@ -331,7 +337,7 @@ class VacancyController extends Controller {
 
             $message->from($from);
             $message->to($to, 'John Smith')->subject('Welcome!');
-            $message->attach($pathToFile);
+           // $message->attach($pathToFile);
         });
 
         return view('vacancy/vacancyAnswer');

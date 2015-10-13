@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-        $this->call('VacancySeeder');
         $this->call('CompanySeeder');
+        $this->call('VacancySeeder');
 		$this->call('UserTableSeeder');
         $this->call('ResumeSeeder'); // Заповнення таблиці resumes даними
         $this->call('CitySeeder');
