@@ -16,7 +16,8 @@ class CreateVacanciesTable extends Migration {
 		{
             $table->increments('id');
             $table->string('position');
-            $table->integer('company_id');
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('company')->onDelete('cascade');
             $table->string('branch');
             //$table->string('organisation');
             $table->date('date_field');

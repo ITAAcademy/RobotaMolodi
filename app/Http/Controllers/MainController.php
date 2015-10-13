@@ -125,7 +125,7 @@ class MainController extends Controller
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $vacancies = Vacancy::latest('updated_at')->paginate(25);
+        $vacancies = Vacancy::AllVacancies()->paginate(25);
 
 
         if (Request::ajax()) {
@@ -236,7 +236,7 @@ class MainController extends Controller
 
         elseif($city_id == 1 && $industry_id == 0)
         {
-            return Vacancy::latest('updated_at')->aginate(25);
+            return Vacancy::AllVacancies()->paginate(25);
         }
 
     }
