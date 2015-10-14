@@ -1,4 +1,4 @@
-<div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
+<div class="form-group {{$errors-> has('name_u') ? 'has-error' : ''}}">
     {!! Form::label("Тема") !!}<span class="required_field">*</span>
     {!! Form::text('salary', Input::old('salary'), ['class'=>'form-control']) !!}
     {!! $errors->first('salary', '<span class="help-block">:message</span>') !!}
