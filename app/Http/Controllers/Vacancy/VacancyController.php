@@ -176,26 +176,29 @@ class VacancyController extends Controller {
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
-        if(Auth::check())
-        {
+//        if(Auth::check())
+//        {
+//
+//            $user = User::find($auth->user()->getAuthIdentifier());
+//            if($userVacation->id == $user->id)
+//            {
+//                $view = 'vacancy.showMyVacancy';
+//
+//            }
 
-            $user = User::find($auth->user()->getAuthIdentifier());
-            if($userVacation->id == $user->id)
-            {
-                $view = 'vacancy.showMyVacancy';
 
-            }
-        }
+        $company = Company::find($vacancy->company_id);
 
-        $company = Company::find($vacancy->company_id);;
 
         return view($view)
             ->with('vacancy',$vacancy)
             ->with('company',$company)
             ->with('user',$userVacation)
             ->with('cities',$cities)
-            ->with('industry',$industry);
-
+           ->with('industry',$industry);// }
+//        else{
+//        return redirect('auth/login');
+//    }
     }
 
 	/**
@@ -320,6 +323,12 @@ class VacancyController extends Controller {
 
         $user = User::find($auth->user()->getAuthIdentifier());
 
+        $this->validate($request,
+            [
+                'Load' => 'mimes:doc,docx,odt,rtf,txt,pdf',
+                'Load' => 'required',
+            ]);
+
         Mail::send('vacancy.mail', ['user' => $user], function($message)
         {
             $to = Input::get('emailAddressee');
@@ -328,7 +337,7 @@ class VacancyController extends Controller {
 
             $message->from($from);
             $message->to($to, 'John Smith')->subject('Welcome!');
-            $message->attach($pathToFile);
+           // $message->attach($pathToFile);
         });
 
         return view('vacancy/vacancyAnswer');
@@ -336,6 +345,10 @@ class VacancyController extends Controller {
 
     public function link(Guard $auth,Request $request)
     {
+      $this->validate($request,[
+          'Link' => 'url|required'
+       ]);
+
         $link = Input::get('Link');
 
         $user = User::find($auth->user()->getAuthIdentifier());
@@ -351,14 +364,11 @@ class VacancyController extends Controller {
 
         });
 
-        $this->validate($request,[
-            'Link' => 'url'
-        ]);
 
-//        $link = $linkModel->fillResume(0,$auth,$request);
-//
-//        $link ->save();
-//
+//    $link = $linkModel->fillResume(0,$auth,$request);
+
+   //     $link ->save();
+
         return view('vacancy/vacancyAnswer');
     }
 }

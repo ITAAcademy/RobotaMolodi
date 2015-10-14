@@ -8,7 +8,7 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email'];
+    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary','city', 'description','user_email', 'updated_at'];
 
 //Read and return company
     public function ReadCompany()
@@ -94,5 +94,11 @@ class Vacancy extends Model {
         $cities = Vacancy::Cities();
 
         return $cities;
+    }
+    public function scopeAllVacancies()
+    {
+        $vacancies = $this->latest('updated_at');
+
+        return $vacancies;
     }
 }

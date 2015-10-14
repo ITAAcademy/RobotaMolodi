@@ -38,11 +38,17 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
 	{
-        $cities = $cityModel->getCities();
-        $industries = $industryModel->getIndustries();
-        $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+        if(Auth::check()){
+            $cities = $cityModel->getCities();
+            $industries = $industryModel->getIndustries();
+            $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
-		return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail,]);
+            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail,]);
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
 	}
 
 	/**
