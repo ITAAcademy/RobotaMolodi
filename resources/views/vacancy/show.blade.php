@@ -6,13 +6,13 @@
     <div class="panel panel-orange">
         <div class="panel-heading"><h2> {{$vacancy->position}} &#183; {{$vacancy->salary}} грн <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
         <ul class="list-group">
-            <li class="list-group-item">  <a href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
+            <li class="list-group-item">  <a target="_blank"href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
                     <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteLink()" >Відправити URL</button>
                     <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteFile()" >Відправити файл</button>
-                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteResume()" >Відправити резюме</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteResume()">Відправити резюме</button>
             </li>
 
         </ul>
@@ -117,22 +117,26 @@
             }
                 @else{
                 {{Redirect::to('auth/login')}}
-                }
-                @endif
-
 
             }
-            function PasteFile() {
-                var inputDiv = document.getElementById('inputDiv');
-                var display = inputDiv.style.display;
-                if (display == "block") {
-                    inputDiv.style.display = "none";
+            @endif
+}
 
-                }
-                else {
-                    document.getElementById('linkDiv').style.display = "none";
-                    inputDiv.style.display = "block";
-                }
+
+            function PasteFile(){
+             @if(Auth::check())
+               {
+
+                        var inputDiv = document.getElementById('inputDiv');
+                        var display = inputDiv.style.display;
+                        if (display == "block") {
+                            inputDiv.style.display = "none";
+
+                        }
+                        else {
+                            document.getElementById('linkDiv').style.display = "none";
+                            inputDiv.style.display = "block";
+                        }
 //                $(input[name='Load']).validate({
 //                    rules: {
 //                        file: {
@@ -140,6 +144,11 @@
 //                }
 //            });
             }
+                @else{
+                {{Redirect::to('auth/login')}}
+                }
+            @endif
+        }
 
             function PasteResume() {
                 var inputDiv = document.getElementById('inputDiv');

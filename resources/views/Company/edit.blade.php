@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="row">
-      <h3><b>Редагувати компанії</b></h3>
+      <h3><b>Редагувати компанію</b></h3>
     </div>
 <br>
     <div class="row">
         <div class="form-group col-md-2 col-sm-2" >
              {!!Form::model($company,array('route' =>array('company.update',$company->id),'method' => 'put'))!!}
-            <label for="sector" class=" control-label">Назва компаніїю</label>
+            <label for="sector" class=" control-label">Назва компанії</label>
         </div>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, array('class' => 'form-control' )) !!}
