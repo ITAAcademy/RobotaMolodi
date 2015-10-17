@@ -179,12 +179,12 @@ class VacancyController extends Controller {
 //        if(Auth::check())
 //        {
 //
-//            $user = User::find($auth->user()->getAuthIdentifier());
-//            if($userVacation->id == $user->id)
-//            {
-//                $view = 'vacancy.showMyVacancy';
-//
-//            }
+            $user = User::find($auth->user()->getAuthIdentifier());
+            if($userVacation->id == $user->id)
+            {
+                $view = 'vacancy.showMyVacancy';
+
+            }
 
 
         $company = Company::find($vacancy->company_id);
