@@ -6,7 +6,7 @@
     <div class="panel panel-orange">
         <div class="panel-heading"><h2> {{$vacancy->position}} &#183; {{$vacancy->salary}} грн <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
         <ul class="list-group">
-            <li class="list-group-item">  <a href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
+            <li class="list-group-item">  <a target="_blank"href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
