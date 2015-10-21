@@ -178,7 +178,12 @@ class ResumeController extends Controller {// Клас по роботі з ре
         return redirect()->route('cabinet.index');
         //$resume->destroy();
 	}
-    public function send_message(){
+    public function send_message(Guard $auth,Request $request){
+        $this->validate($request,[
+            'name_u'=>'required',
+            'description'=>'required',
+        ]);
+
         return view('Resume/send_message');
     }
 
