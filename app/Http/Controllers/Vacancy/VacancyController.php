@@ -183,17 +183,26 @@ class VacancyController extends Controller {
                $view = 'vacancy.showMyVacancy';
 
            }
-
+           $resume = $auth->user()->GetResumes()->get();
+           $company = Company::find($vacancy->company_id);
+           return view($view)
+               ->with('resume',$resume)
+               ->with('vacancy',$vacancy)
+               ->with('company',$company)
+               ->with('user',$userVacation)
+               ->with('cities',$cities)
+               ->with('industry',$industry);
        }
-        $company = Company::find($vacancy->company_id);
+       else{
 
+           $company = Company::find($vacancy->company_id);
 
         return view($view)
             ->with('vacancy',$vacancy)
             ->with('company',$company)
             ->with('user',$userVacation)
             ->with('cities',$cities)
-           ->with('industry',$industry);// }
+           ->with('industry',$industry);}
 //        else{
 //        return redirect('auth/login');
 //    }
@@ -288,10 +297,10 @@ class VacancyController extends Controller {
      * @param $id
      * @return mixed
      */
-    public function response(Guard $auth,$id)
+    public function response(Guard $auth,$id,Request $request)
     {
-        if(Auth::check())
-        {
+//        if(Auth::check())
+//        {
         $vacancy = Vacancy::find($id);
 
         $company = $vacancy->ReadCompany();
@@ -300,15 +309,16 @@ class VacancyController extends Controller {
 
         $userVacation = $company->ReadUser();
 
-        return view('vacancy/response')
-                    ->with('vacancy',$vacancy)
-                    ->with('user',$user)
-                    ->with('userVacation',$userVacation);
-        }
-        else
-        {
-            return Redirect::to('auth/login');
-        }
+//        return view('vacancy/response')
+//                    ->with('vacancy',$vacancy)
+//                    ->with('user',$user)
+//                    ->with('userVacation',$userVacation);
+//        }
+//        else
+//        {
+//            return Redirect::to('auth/login');
+//        }
+        return view('vacancy/vacancyAnswer');
     }
 
     //Send file in employer (takes one param "id" vacancy)
