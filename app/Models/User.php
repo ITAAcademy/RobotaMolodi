@@ -72,6 +72,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $userResumes;
     }
 
+    public function scopeResume(){
 
+        return $this->GetResumes();
+
+    }
 
 }
