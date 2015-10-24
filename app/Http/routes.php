@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
+
 //use Symfony\Component\HttpFoundation\Response;
 
 
@@ -70,6 +71,7 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route
+Route::get('resume/{resume}/create','ResumeController@create');
 Route::get('resume/{resume}/destroy','ResumeController@destroy');
 
 //Route::model('resume/{resume}/destroy','App\Models\Resume');

@@ -48,7 +48,7 @@
         <!-- {!! $vacancies->render()!!} -->
     </div>
     @if(count($vacancies) == 0)
-        <p class="btn bg-danger">По даному  запросу дані відсутні.</p>
+        <p class="btn bg-danger">По даному запиту дані відсутні.</p>
     @endif
 @stop
 <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
