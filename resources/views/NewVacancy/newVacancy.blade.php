@@ -127,10 +127,11 @@
         $('#city').select2({
             "language": {
                 "noResults": function(){
-                    return "Такого міста не існує";
+                    return "Нічого не знайдено по Вашому запиту";
                 }
             }
         });
+
 
     </script>
 @stop
