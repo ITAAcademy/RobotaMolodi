@@ -93,6 +93,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $view = 'Resume.show';
 
         $resume = Resume::find($id);
+        if(isset($resume)==false)
+        {
+            abort(500);
+        }
 
         $userResume = $resume->ReadUser($id);
 

@@ -171,6 +171,12 @@ class VacancyController extends Controller {
 
         $vacancy = Vacancy::find($id);
 
+        //$resume = 'Зареєструйтесь!';
+        if(isset($vacancy) == false)
+        {
+            abort(500);
+        }
+
         $userVacation = $vacancy->ReadUser($id);
 
         $cities = $vacancy->Cities();
