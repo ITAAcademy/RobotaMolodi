@@ -10,9 +10,12 @@
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
-                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteLink()" >Відправити URL</button>
-                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteFile()" >Відправити файл</button>
-                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="PasteResume()">Відправити резюме</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check()){PasteLink()}@else{
+                    {{Redirect::to('auth/login')}}}@endif" >Відправити URL</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check()){PasteFile()}@else{
+                    {{Redirect::to('auth/login')}}}@endif" >Відправити файл</button>
+                    <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check()){PasteResume()}@else{
+                    {{Redirect::to('auth/login')}}}@endif">Відправити резюме</button>
             </li>
 
         </ul>
@@ -78,7 +81,7 @@
         {!!Form::open(['route' => 'vacancy.response'])!!}
         <div class="form-group" style="margin-top: 30px">
             <div class="col-sm-6">
-            @if(empty($resume->all()))
+            @if($resume == '' || empty($resume->all()))
                 <p>У вас немає резюме.Перейти до створення резюме</p>
                 <p>{!!link_to_route('resume.create','Створення резюме')!!}</p>
             </div>
@@ -90,7 +93,7 @@
             <div class="form-group" style="margin-top: 30px">
                 <label for="sector" class="col-sm-3 control-label">Виберіть резюме</label>
                 <div class="col-sm-5">
-                    <select class="form-control" id="selectOrgan" name="Organisation">
+                    <select class="form-control" id="resume">
                         @foreach($resume as $res)
                                 <option value="{{$res->id}}" selected>{{$res->position}}</option>
                         @endforeach
@@ -114,99 +117,85 @@
     {!!Form::token()!!}
     {!!Form::close()!!}
 
+<script>
+    function PasteLink() {
+
+    var linkDiv = document.getElementById('linkDiv');
+    var display = linkDiv.style.display;
+    var inputDisplay = document.getElementById('linkDiv').style.display;
+    if (display == "block") {
+
+    linkDiv.style.display = "none";
+
+    }
+    else {
+    document.getElementById('linkDiv').style.display = "none";
+    linkDiv.style.display = "block";
+    }
+
+    $("input[name='Link']").change(function (){
+
+    var link = $(this).val();
+
+    var regexpr = new RegExp("(?:https?:\/\/|www\.)+[a-z0-9\-\.]+\.[a-z]{2,5}(?:(?:\/|#|\?)[^\s]*)?','i'");
+
+    if (!regexpr.test(link)) {
+    $('input[name="btn"]').removeAttr('disabled');
+    alert('No');
+    $("input[name='Link']").removeClass('form-control');
+    $("label[for='sector']").removeClass('form-control');
+    $("input[name='Link']").addClass('errorField');
+    $("label[for='sector']").addClass('error');
+    $("div[name='linkError']").html("Будь ласка,введіть коректне посилання на резюме");
+    $("div[name='linkError']").addClass("error");
+    return false;
+    }
+    else {
+    $("input[name='Link']").removeClass('errorField');
+    $("label[for='sector']").removeClass('error');
+    $("input[name='Link']").addClass('form-control');
+    $("label[for='sector']").addClass('form-control');
+    $('input[name="btn"]').attr('disabled', 'disabled');
+    return true;
+    }
+
+    });
+    }
 
 
-    <script>
 
-        function PasteLink() {
-                @if(Auth::check()){
-                var linkDiv = document.getElementById('linkDiv');
-                var display = linkDiv.style.display;
-                var inputDisplay = document.getElementById('linkDiv').style.display;
-                if (display == "block") {
-
-                    linkDiv.style.display = "none";
-
-                }
-                else {
-                    document.getElementById('linkDiv').style.display = "none";
-                    linkDiv.style.display = "block";
-                }
-
-                $("input[name='Link']").change(function (){
-
-                  var link = $(this).val();
-
-                    var regexpr = new RegExp("(?:https?:\/\/|www\.)+[a-z0-9\-\.]+\.[a-z]{2,5}(?:(?:\/|#|\?)[^\s]*)?','i'");
-
-                    if (!regexpr.test(link)) {
-                        $('input[name="btn"]').removeAttr('disabled');
-                     alert('No');
-                        $("input[name='Link']").removeClass('form-control');
-                        $("label[for='sector']").removeClass('form-control');
-                        $("input[name='Link']").addClass('errorField');
-                        $("label[for='sector']").addClass('error');
-                        $("div[name='linkError']").html("Будь ласка,введіть коректне посилання на резюме");
-                        $("div[name='linkError']").addClass("error");
-                        return false;
-                    }
-                    else {
-                        $("input[name='Link']").removeClass('errorField');
-                        $("label[for='sector']").removeClass('error');
-                        $("input[name='Link']").addClass('form-control');
-                        $("label[for='sector']").addClass('form-control');
-                        $('input[name="btn"]').attr('disabled', 'disabled');
-                        return true;
-                    }
-
-                });
-            }
-                @else{
-                {{Redirect::to('auth/login')}}
-
-            }
-            @endif
-}
+    function PasteFile(){
 
 
-            function PasteFile(){
-             @if(Auth::check())
-               {
+    var inputDiv = document.getElementById('inputDiv');
+    var display = inputDiv.style.display;
+    if (display == "block") {
+    inputDiv.style.display = "none";
 
-                        var inputDiv = document.getElementById('inputDiv');
-                        var display = inputDiv.style.display;
-                        if (display == "block") {
-                            inputDiv.style.display = "none";
+    }
+    else {
+    document.getElementById('inputDiv').style.display = "none";
+    inputDiv.style.display = "block";
+    }
+    $("span[class='help-block']").html('Будь ласка, завантажте файл в форматі doc, docx, odt, rtf, txt або pdf.');
+    // help-block
+    //                }
+    //            });
 
-                        }
-                        else {
-                            document.getElementById('inputDiv').style.display = "none";
-                            inputDiv.style.display = "block";
-                        }
-                $("span[class='help-block']").html('Будь ласка, завантажте файл в форматі doc, docx, odt, rtf, txt або pdf.');
-                   // help-block
-//                }
-//            });
-            }
-                @else{
-                {{Redirect::to('auth/login')}}
-                }
-            @endif
-        }
+    }
 
-            function PasteResume() {
-                var listDiv = document.getElementById('listDiv');
-                var display = listDiv.style.display;
-                if (display == "block") {
-                    listDiv.style.display = "none";
+    function PasteResume() {
+    var listDiv = document.getElementById('listDiv');
+    var display = listDiv.style.display;
+    if (display == "block") {
+    listDiv.style.display = "none";
 
-                }
-                else {
-                    document.getElementById('listDiv').style.display = "none";
-                    listDiv.style.display = "block";
-                }
-            }
+    }
+    else {
+    document.getElementById('listDiv').style.display = "none";
+    listDiv.style.display = "block";
+    }
+    }
 
-
-    </script>
+</script>
 @stop

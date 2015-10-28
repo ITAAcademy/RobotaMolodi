@@ -166,7 +166,7 @@ class VacancyController extends Controller {
 	 */
 	public function show($id,Guard $auth)
 	{
-
+        $resume=null;
         $view = 'vacancy.show';
 
         $vacancy = Vacancy::find($id);
@@ -182,7 +182,9 @@ class VacancyController extends Controller {
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
-       if(Auth::check()) {
+        $company = Company::find($vacancy->company_id);
+
+        if(Auth::check()) {
 
            $user = User::find($auth->user()->getAuthIdentifier());
            if ($userVacation->id == $user->id) {
@@ -190,29 +192,22 @@ class VacancyController extends Controller {
 
            }
            $resume = $auth->user()->GetResumes()->get();
-           $company = Company::find($vacancy->company_id);
-           return view($view)
-               ->with('resume',$resume)
-               ->with('vacancy',$vacancy)
-               ->with('company',$company)
-               ->with('user',$userVacation)
-               ->with('cities',$cities)
-               ->with('industry',$industry);
-       }
-       else{
 
-           $company = Company::find($vacancy->company_id);
+       }
+
 
         return view($view)
+            ->with('resume',$resume)
             ->with('vacancy',$vacancy)
             ->with('company',$company)
             ->with('user',$userVacation)
             ->with('cities',$cities)
-           ->with('industry',$industry);}
+           ->with('industry',$industry);
+    }
 //        else{
 //        return redirect('auth/login');
-//    }
-    }
+
+
 
 	/**
 	 * Show the form for editing the specified resource.
