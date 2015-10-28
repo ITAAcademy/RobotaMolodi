@@ -119,13 +119,6 @@
 
 @endsection
 @section('footer')
-
-    <script type="text/javascript">
-        $('#city').select2();
-        //$(".js-example-basic-multiple").select2();
-
-
-    </script>
 @stop
 
 

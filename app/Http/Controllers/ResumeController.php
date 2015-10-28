@@ -24,6 +24,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 *
 	 * @return Response
 	 */
+    private $http;
 	public function index(Resume $resumeModel,Guard $auth)//Output all resumes
 	{
         $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
@@ -38,6 +39,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
 	{
+        $this->http=$_SERVER['HTTP_REFERER'];
+
         if(Auth::check()){
             $cities = $cityModel->getCities();
             $industries = $industryModel->getIndustries();
@@ -78,7 +81,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         $resume->save();
 
-        return redirect()->route('resumes');
+
+        return redirect()->to ( $this->http);
 	}
 
 	/**
