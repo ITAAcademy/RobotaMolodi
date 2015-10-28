@@ -49,7 +49,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">{!! Html::image('image/Logo.jpg','Головна',['style'=>'width: 300px']) !!} </a></li>
+                    <li><a href="{{ url('/') }}">{!! Html::image('image/logo.jpg','Головна',['style'=>'width: 300px']) !!} </a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -98,6 +98,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
 
     @yield('footer')
 
