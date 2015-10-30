@@ -39,6 +39,9 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
+
+                  <a href="{{ url('/') }}">{!! Html::image('image/logo.jpg','Головна',['id'=>'logoImg']) !!} </a>
+
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
 					<span class="icon-bar"></span>
@@ -48,9 +51,6 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">{!! Html::image('image/logo.jpg','Головна',['style'=>'width: 300px']) !!} </a></li>
-				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())
@@ -74,12 +74,15 @@
         <div class="col-md-10 col-md-offset-1"  >
             <div class="col-md-10 col-md-offset-1"  >
                 <div class="panel-heading" style="background-color: #ffffff;">
-                    <div style="float:right">
-                        @yield('Create_res_vac')
+                    <div class="row">
+                        <div class="crResVac">
+                            @yield('Create_res_vac')
+                        </div>
                     </div>
-                    <div style="display:inline-block;">
-                        @yield('title')</div>
+                    <div id="dropTitle">
+                        @yield('title')
                     </div>
+                </div>
                     <div >
                         @yield('content')
                     </div>

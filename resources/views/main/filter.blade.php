@@ -4,7 +4,7 @@
     <!-- <meta name="csrf_token" content="{{ csrf_token() }}" /> -->
     {!! Form::open(['method' => 'get', 'route' => 'filter', 'class'=>'form-inline']) !!} <!-- F-->
 
-        <select name="industry" class="form-control" id="selectIndustry" style="width: 200px">
+        <select name="industry" class="form-control" id="selectIndustry">
             <option value="-1"> Усі галузі</option>
             @foreach($industries as $industry)
                 @if($industry_f == $industry->id)
