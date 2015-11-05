@@ -6,10 +6,12 @@
 @stop
 @section('contents')
 
-<div>
-   <h4>{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
-</div>
 
+<div class="row">
+    <div class="crResVac ">
+        <h4 class="btn btn-default btn_cr_ResVac">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
+    </div>
+</div>
 
     @foreach($resumes as $resume) <!-- Прийом данних і вибірка необхідних полів і значень -->
         <article>

@@ -7,10 +7,10 @@
     @stop
 @section ('contents')
 
-    <div>
-        <ul class="nav nav-tabs">
-            <h4><li role = "presentation">{!!link_to_route('vacancy.create','Створити вакансію')!!}</li></h4>
-        </ul>
+    <div class="row">
+        <div class="crResVac ">
+            <h4 class="btn btn-default btn_cr_ResVac">{!!link_to_route('vacancy.create','Створити вакансію')!!}</h4>
+        </div>
     </div>
 
 
