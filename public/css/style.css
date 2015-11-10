@@ -353,6 +353,15 @@ min-width: 300px;
 #selectIndustry,#selectCity{
 	width:250px;
 }
-/*.select2-container--default .select2-results>.select2-results__options*/
+.btn_cr_ResVac{
+	margin-right: 15px;
+	margin-bottom: 20px;
+	text-decoration: none;
+}
+
+.btn_cr{
+	float:right;
+	margin-top: 0;
+}
 
 
