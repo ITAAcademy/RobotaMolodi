@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-                  <a href="{{ url('/') }}">{!! Html::image('image/logo.jpg','Головна',['id'=>'logoImg']) !!} </a>
+                  <a href="{{ url('/') }}">{!! Html::image('image/logotype.jpg','Головна',['id'=>'logoImg']) !!} </a>
 
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
@@ -48,7 +48,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-			</div>
+			</div><!--class="navbar-header"-->
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
@@ -67,29 +67,34 @@
 					@endif
 				</ul>
 			</div>
-		</div>
+		</div><!--class="container-fluid"-->
 	</nav>
 
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1"  >
-            <div class="col-md-10 col-md-offset-1"  >
-                <div class="panel-heading" style="background-color: #ffffff;">
-                    <div class="row">
-                        <div class="crResVac">
-                            @yield('Create_res_vac')
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1" >
+                <div class="col-md-10 col-md-offset-1" >
+                    <div class="panel-heading" style="background-color: #ffffff;">
+                        <div class="row">
+                            <div>
+                                @yield ('btn')
+                            </div>
+                            <div id="dropTitle">
+                                @yield('title')
+                            </div>
+
+                            <div class="crResVac">
+                                @yield('Create_res_vac')
+                            </div>
                         </div>
+
                     </div>
-                    <div id="dropTitle">
-                        @yield('title')
-                    </div>
-                </div>
                     <div >
                         @yield('content')
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div><!--class="col-md-10 col-md-offset-1"-->
+            </div><!--class="col-md-10 col-md-offset-1"-->
+        </div><!--class="row"-->
+
     <!-- Scripts -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
