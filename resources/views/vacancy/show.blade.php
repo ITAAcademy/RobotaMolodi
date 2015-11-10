@@ -146,11 +146,12 @@
 
         }
     }
+
     function PasteLink(){
 
         var link = document.getElementById('Link').value;
 
-        var reg = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+        var reg = /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/;
 
             if(!reg.test(link)){
                 $("input[name='Link']").removeClass('form-control');

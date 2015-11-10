@@ -356,10 +356,12 @@ min-width: 300px;
 .btn_cr_ResVac{
 	margin-right: 15px;
 	margin-bottom: 20px;
-}
-.btn_cr_ResVac a {
 	text-decoration: none;
 }
-/*.select2-container--default .select2-results>.select2-results__options*/
+
+.btn_cr{
+	float:right;
+	margin-top: 0;
+}
 
 
