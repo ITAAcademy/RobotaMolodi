@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-                  <a href="{{ url('/') }}">{!! Html::image('image/logotype.jpg','Головна',['id'=>'logoImg']) !!} </a>
+                  <a href="{{ url('/') }}">{!! Html::image('image/logo.gif','Головна',['id'=>'logoImg']) !!} </a>
 
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
