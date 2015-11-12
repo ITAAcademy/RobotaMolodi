@@ -10,12 +10,12 @@
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
             <li class="list-group-item">
-                    <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check()){buttonHandler(event)}@else{
-                    {{Redirect::to('auth/login')}}}@endif" >Відправити URL</button>
-                    <button class="btn btn-default" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check()){buttonHandler(event)}@else{
-                    {{Redirect::to('auth/login')}}}@endif" >Відправити файл</button>
-                    <button class="btn btn-default" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check()){buttonHandler(event)}@else{
-                    {{Redirect::to('auth/login')}}}@endif">Відправити резюме</button>
+                    <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check())buttonHandler(event)@else
+                    {{Redirect::to('auth/login')}}@endif">Відправити URL</button>
+                    <button class="btn btn-default" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())buttonHandler(event)@else
+                    {{Redirect::to('auth/login')}}@endif">Відправити файл</button>
+                    <button class="btn btn-default" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check())buttonHandler(event)@else
+                    {{Redirect::to('auth/login')}}@endif">Відправити резюме</button>
             </li>
 
         </ul>
