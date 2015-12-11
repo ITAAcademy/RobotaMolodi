@@ -1,8 +1,0 @@
-/vendor
-/node_modules
-.env
-/nbproject/private/
-adminer.php
-/
-.idea/
-app/Http/Requests/StoreBlogPostRequest.php
