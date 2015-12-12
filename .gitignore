@@ -1,8 +1,5 @@
 /vendor
 /node_modules
+Homestead.yaml
+Homestead.json
 .env
-/nbproject/private/
-adminer.php
-/
-.idea/
-app/Http/Requests/StoreBlogPostRequest.php
