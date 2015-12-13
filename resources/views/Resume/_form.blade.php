@@ -21,7 +21,7 @@
 
 <div class="row">
 <div class="form-group">
-    <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Місто') !!}</div>
+    <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Місто') !!}<span class="required_field">*</span></div>
     <div class="col-md-6 col-sm-6"> <select name="city" style="width: auto" class="form-control" id="selectCity">
         @foreach($cities as $city)
             <option value="{{$city->id}}"> {{$city->name}} </option>
@@ -36,7 +36,7 @@
 
 <div class="row">
 <div class="form-group">
-    <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('Галузь') !!}</div>
+    <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('Галузь') !!}<span class="required_field">*</span></div>
     <div class="col-md-6 col-sm-6"> <select name="industry" style="width: auto" class="form-control" id="selectIndustry">
             @foreach($industries as $industry)
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
