@@ -122,20 +122,25 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
-        $cities = $cityModel->getCities();
-        $city = Input::get('city_id',0);
         $industry = Input::get('industry_id',0);
-        $vacancies = Vacancy::AllVacancies()->paginate(25);
 
+        $cities = $cityModel->getCities();
+        $city = Input::get('city_id', 0);
+
+        if (!$cities->has($city) || !$industries->has($industry))
+        {
+            abort(500);
+        }
+
+        $vacancies = Vacancy::AllVacancies()->paginate(25);
 
         if (Request::ajax()) {
 
-            $vacancies = MainController::ShowFilterVacancies($city,$industry);
+            $vacancies = MainController::ShowFilterVacancies($city, $industry);
             if($vacancies != null)
             {
                 $vacancies->sortByDesc('updated_at');
             }
-            //dd($vacancies);
 
 //            if($city > 1 && $industry < 1){
 //                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
@@ -172,20 +177,23 @@ class MainController extends Controller
     public function showResumes(City $cityModel)
     {
         $industries = Industry::orderBy('name')->get();
+        $industry = Input::get('industry_id',0);
+
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
-        $industry = Input::get('industry_id',0);
+
         $resumes = Resume::latest('updated_at')->paginate(25);
+
         if (Request::ajax()) {
         //dd(Resume::where('city',$city)->latest('id'));
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
             if($city > 1 && $industry == 0){
 
                 $resumes = Resume::where('city','=' ,$city)->latest('updated_at')->paginate(25);
                 //dd(City::find(1));
             }
+
             elseif($city > 1 && $industry > 0){
                 $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
             }
