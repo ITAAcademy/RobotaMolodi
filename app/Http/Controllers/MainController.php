@@ -142,6 +142,11 @@ class MainController extends Controller
                 $vacancies->sortByDesc('updated_at');
             }
 
+            if ($vacancies->count() == 0)
+            {
+                return "<br /> По вказаним Вами умовах вакансії відсутні";
+            }
+
 //            if($city > 1 && $industry < 1){
 //                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
 //
@@ -193,7 +198,6 @@ class MainController extends Controller
                 $resumes = Resume::where('city','=' ,$city)->latest('updated_at')->paginate(25);
                 //dd(City::find(1));
             }
-
             elseif($city > 1 && $industry > 0){
                 $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
             }
@@ -203,6 +207,11 @@ class MainController extends Controller
             else
             {
                 $resumes = Resume::latest('updated_at')->paginate(25);
+            }
+
+            if ($resumes->count() == 0)
+            {
+                return "<br /> По вказаним Вами умовах резюме відсутні";
             }
 
             return Response::json(View::make('main.filter.resume',
