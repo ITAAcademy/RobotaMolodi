@@ -142,11 +142,6 @@ class MainController extends Controller
                 $vacancies->sortByDesc('updated_at');
             }
 
-            if ($vacancies->count() == 0)
-            {
-                return "<br /> По вказаним Вами умовах вакансії відсутні";
-            }
-
 //            if($city > 1 && $industry < 1){
 //                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
 //
