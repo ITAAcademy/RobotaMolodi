@@ -23,7 +23,7 @@
 
         function ConfirmDelete()
         {
-            var conf = confirm("Ви дійсно хочете видалити рєзюме?");
+            var conf = confirm("Ви дійсно хочете видалити резюме?");
 
             if(conf) return true;
 

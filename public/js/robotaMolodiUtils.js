@@ -3,10 +3,13 @@
  */
 function  CheckForm()
 {
-    var salaryField = $('[name = Salary]').val();
+    var salaryField = $('[name = salary]').val();
     var results = salaryField;
-    if(salaryField.search(' '))
+    
+
+    if(salaryField.search(' ') > -1)
     {
+        salaryField = salaryField.trim();
         salaryField = salaryField.split(' ');
         if(salaryField.length>1)
             results = salaryField[0] + salaryField[1];
