@@ -4,7 +4,7 @@
      <meta name="csrf_token" content="{{ csrf_token() }}" />
     <!--Form filters-->
     {!! Form::open(['method' => 'get',  'class'=>'form-inline']) !!} <!-- F-->
-        <select name="industry" class="form-control" id="selectIndustry" style="width: 200px">
+        <select name="industry" class="form-control" id="selectIndustry" style="width: 380px">
             <option value="0"> Усі галузі</option>
             @foreach($industries as $industry)
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
@@ -104,7 +104,7 @@
 
 
                   //////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                            jQuery('<div/>', {
+                            jQuery('<div/>', {
 //                                id: vacancies.data[i].id,
 //                                href: 'vacancy/'+ vacancies.data[i].id,
 //                                title: vacancies.data[i].position,
