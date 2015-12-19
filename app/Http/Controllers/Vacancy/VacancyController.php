@@ -27,41 +27,31 @@ use View;
 //use Session;
 class VacancyController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Returns vacancy if exists and 500 code if id or vacancy incorrect .
+     *
+     * @param  int  $id
+     * @return Vacancy
+     */
 
-	public function index(Company $companies,Guard $auth)
-	{
-        if(Auth::check()){
-
-        setcookie('paths','');
-
-        $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
-
-        if(!$vacancies)
+    public function getVacancy($id)
+    {
+        if (!is_numeric($id))
         {
-            $vacancies = "Зараз у Вас немає вакансій.";
-
-            return  View::make('vacancy.myVacancies')->nest('child','vacancy._noVacancy',['vacancies' => $vacancies]);
-        }
-        else
-        {
-            $vacancies->sortByDesc('created_at');
-
-            return  View::make('vacancy.myVacancies')->nest('child','vacancy._vacancy',['vacancies' => $vacancies]);
+            abort(500);
         }
 
-	}
-        else
+        $vacancy = Vacancy::find($id);
+
+        if(!isset($vacancy))
         {
-            return Redirect::to('auth/login');
+            abort(500);
         }
+        return $vacancy;
     }
 
-	/**
+
+    /**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -107,7 +97,42 @@ class VacancyController extends Controller {
 
     }
 
-	/**
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+
+
+    public function index(Company $companies,Guard $auth)
+    {
+        if(Auth::check()){
+
+            setcookie('paths','');
+
+            $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
+
+            if(!$vacancies)
+            {
+                $vacancies = "Зараз у Вас немає вакансій.";
+
+                return  View::make('vacancy.myVacancies')->nest('child','vacancy._noVacancy',['vacancies' => $vacancies]);
+            }
+            else
+            {
+                $vacancies->sortByDesc('created_at');
+
+                return  View::make('vacancy.myVacancies')->nest('child','vacancy._vacancy',['vacancies' => $vacancies]);
+            }
+
+        }
+        else
+        {
+            return Redirect::to('auth/login');
+        }
+    }
+
+    /**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -158,24 +183,20 @@ class VacancyController extends Controller {
 
 }
 
-	/**
+    /**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id,Guard $auth)
+	public function show($id, Guard $auth)
 	{
         $resume=null;
         $view = 'vacancy.show';
 
-        $vacancy = Vacancy::find($id);
+        $vacancy = $this->getVacancy($id);
 
         //$resume = 'Зареєструйтесь!';
-        if(isset($vacancy) == false)
-        {
-            abort(500);
-        }
 
         $userVacation = $vacancy->ReadUser($id);
 
@@ -226,7 +247,7 @@ class VacancyController extends Controller {
         $city = new City();
         $cities = $city->getCities();
 
-        $vacancy = Vacancy::find($id);
+        $vacancy = $this->getVacancy($id);
 
         $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
@@ -287,6 +308,11 @@ class VacancyController extends Controller {
 	 */
 	public function destroy($id)
 	{
+        if (!is_numeric($id))
+        {
+            abort(500);
+        }
+
 		Vacancy::destroy($id);
 
         return redirect('cabinet');
@@ -302,7 +328,7 @@ class VacancyController extends Controller {
     {
 //        if(Auth::check())
 //        {
-        $vacancy = Vacancy::find($id);
+        $vacancy = $this->getVacancy($id);
 
         $company = $vacancy->ReadCompany();
 
@@ -327,7 +353,7 @@ class VacancyController extends Controller {
     {
 
         $id = $request['id'];
-        $vacancy = Vacancy::find($id);
+        $vacancy = $this->getVacancy($id);
         $company = $vacancy->ReadCompany();
 
         $user = User::find($auth->user()->getAuthIdentifier());

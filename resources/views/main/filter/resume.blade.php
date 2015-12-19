@@ -1,4 +1,4 @@
-@if(empty($resumes))
+@if(count($resumes) === 0)
     <br>
     <?php echo "Немає рєзюме по Вашому пошуку"?>
 
@@ -23,5 +23,6 @@
         </article>
 
     @endforeach
-    {!!$resumes->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}
+    @include('/pagination/pagination', ['paginator' => $resumes]);
+    {{--{!!$resumes->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
 @endif

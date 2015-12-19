@@ -13,6 +13,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 class CompanyController extends Controller  {
 
+    private function getCompany($id)
+    {
+        if (!is_numeric($id))
+        {
+            abort(500);
+        }
+
+        $company = Company::find($id);
+
+        if (!isset($company))
+        {
+            abort(500);
+        }
+
+        return $company;
+    }
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -133,7 +151,7 @@ class CompanyController extends Controller  {
 	 */
 	public function show($id,Guard $auth)
 	{
-        $company = Company::find($id);
+        $company = $this->getCompany($id);
 
         return view('Company.show')
             ->with('company',$company);
@@ -150,7 +168,7 @@ class CompanyController extends Controller  {
 	{
 //
 
-        $company = Company::find($id);
+        $company = $this->getCompany($id);
 
         return view('Company.edit')->with('company',$company);
 	}
@@ -192,6 +210,10 @@ class CompanyController extends Controller  {
 	 */
 	public function destroy($id)
 	{
+        if (!is_numeric($id))
+        {
+            abort(500);
+        }
 		Company::destroy($id);
 
         return redirect('cabinet');
