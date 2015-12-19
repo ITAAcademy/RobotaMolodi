@@ -19,6 +19,28 @@ use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
+    /**
+     * Returns resume if exists and 500 code if id or resume incorrect .
+     *
+     * @param  int  $id
+     * @return Resume
+     */
+
+    private function getResume($id)
+    {
+        if (!is_numeric($id))
+        {
+            abort(500);
+        }
+
+        $resume = Resume::find($id);
+        if(!isset($resume))
+        {
+            abort(500);
+        }
+        return $resume;
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -96,11 +118,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         $view = 'Resume.show';
 
-        $resume = Resume::find($id);
-        if(isset($resume)==false)
-        {
-            abort(500);
-        }
+        $resume = $this->getResume($id);
 
         $userResume = $resume->ReadUser($id);
 
@@ -132,7 +150,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	{
         if(Auth::check())
         {
-            $resume = Resume::find($id);
+            $resume = $this->getResume($id);
             $cities = $city->getCities();
             $industries = $industry->getIndustries();
 
@@ -181,12 +199,18 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 */
 	public function destroy($id)
 	{
+        if(!is_numeric($id))
+        {
+            abort(500);
+        }
+
 		Resume::destroy($id);
 
         return redirect()->route('cabinet.index');
         //$resume->destroy();
 	}
-    public function send_message(Guard $auth,Request $request){
+    public function send_message(Guard $auth,Request $request)
+    {
         $this->validate($request,[
             'name_u'=>'required',
             'description'=>'required',

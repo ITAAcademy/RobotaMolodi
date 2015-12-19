@@ -1,4 +1,4 @@
-@if($vacancies == null)
+@if(count($vacancies) === 0)
     <br>
     <?php echo "Немає вакансій по Вашому пошуку"?>
 
@@ -24,5 +24,6 @@
     </article>
 
 @endforeach
-{!!$vacancies->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}
+@include('/pagination/pagination', ['paginator' => $vacancies]);
+{{--{!!$vacancies->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
 @endif
