@@ -24,6 +24,7 @@ class Vacancy extends Model {
         $position = $request['position'];
         $branch = $request['branch'];
         $salary = $request['salary'];
+		$telephone = $request['telephone'];
         $description = $request['description'];
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
@@ -43,6 +44,7 @@ class Vacancy extends Model {
 
         $vacancy->position = $position;
         $vacancy->branch = $branch;
+		$vacancy->telephone = $telephone;
         $vacancy->salary = $salary;
         $vacancy->description = $description;
         $vacancy->company_id = $companyId;

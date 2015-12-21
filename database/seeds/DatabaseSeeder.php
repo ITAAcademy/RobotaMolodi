@@ -45,12 +45,12 @@ class VacancySeeder extends Seeder
             $position = rand(1, 5);
             ($i < 54) ? $industry = 27 : $industry = rand(1,26);
             switch($position){
-                case 1: $pos = "Бухгалтер"; $sal = 10000; break;
-                case 2: $pos = "Касир"; $sal = 5000;  break;
-                case 3: $pos = "Менеджер"; $sal = 8000;  break;
-                case 4: $pos = "Фермер"; $sal = 12000;  break;
-                case 5: $pos = "Програміст"; $sal = 25000;  break;
-                default: $pos = "Rock"; $sal = 50000;  break;
+                case 1: $pos = "Бухгалтер"; $sal = 10000; $phone = '0637576222'; break;
+                case 2: $pos = "Касир"; $sal = 5000; $phone = '0937555522'; break;
+                case 3: $pos = "Менеджер"; $sal = 8000; $phone = '0507545332'; break;
+                case 4: $pos = "Фермер"; $sal = 12000; $phone = '0637774433'; break;
+                case 5: $pos = "Програміст"; $sal = 25000; $phone = '0324535522'; break;
+                default: $pos = "Rock"; $sal = 50000; $phone = '0655646455'; break;
             }
             switch($position){
                 case 1: $com_id = 1;  break;
@@ -64,6 +64,7 @@ class VacancySeeder extends Seeder
                 "branch" => $industry,
                 "date_field" => \Carbon\Carbon::now(),
                 "salary" => $sal,
+				"telephone" => $phone ,
                 //"city" => $city_r,
                 "description" => $pos." "." bla-bla-bla Зарплата:".$sal]);
         }

@@ -64,7 +64,20 @@
             <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
         </div>
     </div>
-
+	
+	
+	 <div class="row">
+        <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" style="margin-top: 30px">
+            <label for="sector" class="col-md-2 col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
+            <div class="col-md-6 col-sm-6">
+                {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
+            </div>
+			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
+        </div>
+    </div>
+	
+	
+	
     <div class="row">
         <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2  col-sm-2 control-label">Email роботодавця</label>

@@ -9,6 +9,7 @@
             <li class="list-group-item">  <a target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
+			<li class="list-group-item">  {{$vacancy->telephone}}</li>
             <li class="list-group-item">
                     <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick=" @if(Auth::check())buttonHandler(event)@else
                     window.location='{{ url('auth/login') }}'@endif">Відправити URL</button>
