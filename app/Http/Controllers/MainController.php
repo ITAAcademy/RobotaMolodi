@@ -122,6 +122,9 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
+		
+		
+		
         $industry = Input::get('industry_id',0);
 
         $cities = $cityModel->getCities();
