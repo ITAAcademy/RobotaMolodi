@@ -6043,6 +6043,32 @@ button.close {
 .visible-lg-inline-block {
   display: none !important;
 }
+.col-sm-offset-2{
+  position: relative;
+  overflow: hidden;
+  font-size: 1em;
+  height: 2em;
+  line-height: 2em
+}
+.col-sm-offset-2 > button{
+  float: left;
+  width: 10em;
+  height: 100%
+}
+.col-sm-offset-2 > div{
+  padding-left: 6em
+}
+.col-sm-offset-2 input[type=file]{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  transform: scale(20);
+  letter-spacing: 10em;     /* IE 9 fix */
+  -ms-transform: scale(20); /* IE 9 fix */
+  opacity: 0;
+  cursor: pointer
+}
 @media (max-width: 767px) {
   .visible-xs {
     display: block !important;

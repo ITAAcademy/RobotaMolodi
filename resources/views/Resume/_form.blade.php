@@ -71,9 +71,14 @@
 
 <div class="row">
 <div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
-    <div class="col-sm-offset-2 col-md-2  col-sm-2"> {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}</div>
+    <div class="col-sm-offset-2">
+        <button type="button">Виберіть файл</button>
+        <div>Файл не вибрано</div>
+        {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}
+    </div>
+</div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
-</div></div><br>
+</div><br>
 
 <div class="row">
 <div class="form-group">
@@ -103,6 +108,38 @@
 //                }
 //            }
 //        });
+		 var wrapper = $( ".col-sm-offset-2" ),
+						inp = wrapper.find( "input" ),
+						btn = wrapper.find( "button" ),
+						lbl = wrapper.find( "div" );
+				btn.focus(function(){
+					inp.focus()
+				});
+				// Crutches for the :focus style:
+				inp.focus(function(){
+					wrapper.addClass( "focus" );
+				}).blur(function(){
+					wrapper.removeClass( "focus" );
+				});
+
+				var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
+
+				inp.change(function(){
+					var file_name;
+					if( file_api && inp[ 0 ].files[ 0 ] )
+						file_name = inp[ 0 ].files[ 0 ].name;
+					else
+						file_name = inp.val().replace( "C:\\fakepath\\", '' );
+
+					if( ! file_name.length )
+						return;
+
+					if( lbl.is( ":visible" ) ){
+						lbl.text( file_name );
+						btn.text( "Вибрати" );
+					}else
+						btn.text( file_name );
+				}).change();
 
     </script>
 @stop
