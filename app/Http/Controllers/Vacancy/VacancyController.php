@@ -277,6 +277,7 @@ class VacancyController extends Controller {
                 'position' => $rules,
                 'salary' => 'required|regex:/[^0]+/|min:1|numeric',
                 'email' => 'required|email',
+				'telephone' => 'min:5',
                 'description' => $rules,
                 'city' => 'required'
             ]);
