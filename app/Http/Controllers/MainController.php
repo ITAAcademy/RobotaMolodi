@@ -122,6 +122,9 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
+		
+		
+		
         $industry = Input::get('industry_id',0);
 
         $cities = $cityModel->getCities();
@@ -190,11 +193,11 @@ class MainController extends Controller
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city > 1 && $industry == 0){
 
-                $resumes = Resume::where('city','=' ,$city)->latest('updated_at')->paginate(25);
+                $resumes = Resume::where('city','=' ,$city)->orWhere('city','=', 1)->latest('updated_at')->paginate(25);
                 //dd(City::find(1));
             }
             elseif($city > 1 && $industry > 0){
-                $resumes = Resume::where('city' ,$city)->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
+                $resumes = Resume::where('city' ,$city)->orWhere('city','=', 1)->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
             }
             elseif( $city == 1 && $industry > 0){
                 $resumes = Resume::where('industry' , $industry)->latest('updated_at')->paginate(25);
