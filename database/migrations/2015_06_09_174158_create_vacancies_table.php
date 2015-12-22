@@ -22,6 +22,7 @@ class CreateVacanciesTable extends Migration {
             //$table->string('organisation');
             $table->date('date_field');
             $table->integer('salary');
+			$table->string('telephone');
             //$table->string('city');
             $table->mediumText('description');
             $table->string('user_email');

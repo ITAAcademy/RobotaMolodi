@@ -151,6 +151,7 @@ class VacancyController extends Controller {
         $rules = 'required|min:3';
             $this->validate($request,[
             'position' => $rules,
+			'telephone' => 'min:5',
             'salary' => 'required|regex:/[^0]+/|min:1|numeric',
             'email' => 'required|email',
             'description' => $rules,
@@ -276,6 +277,7 @@ class VacancyController extends Controller {
                 'position' => $rules,
                 'salary' => 'required|regex:/[^0]+/|min:1|numeric',
                 'email' => 'required|email',
+				'telephone' => 'min:5',
                 'description' => $rules,
                 'city' => 'required'
             ]);
