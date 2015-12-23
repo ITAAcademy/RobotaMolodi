@@ -88,7 +88,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $rules = 'required|min:3';
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
-            'telephone' => 'min:5',
+            'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => $rules,
             'salary' => 'required|regex:/[^0]+/|min:1|numeric',
@@ -173,7 +173,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $rules = 'required|min:3';
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
-            'telephone' => 'min:5',
+            'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => $rules,
             'salary' => 'required|regex:/[^0]+/|min:1|numeric',
