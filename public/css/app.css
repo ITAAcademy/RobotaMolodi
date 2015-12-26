@@ -6047,7 +6047,7 @@ button.close {
   position: relative;
   overflow: hidden;
   font-size: 1em;
-  height: 2em;
+  height: 3em;
   line-height: 2em
 }
 .col-sm-offset-2 > button{
