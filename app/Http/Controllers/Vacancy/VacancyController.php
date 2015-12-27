@@ -408,4 +408,27 @@ class VacancyController extends Controller {
 
         return view('vacancy/vacancyAnswer');
     }
+
+    public function showPasteFileForm ($id, Guard $auth,Request $request)
+    {
+        $vacancy = $this->getVacancy($id);
+        $user = User::find($auth->user()->getAuthIdentifier());
+        return View::make('vacancy.pasteVacancyForm.file', array("vacancy" => $vacancy, "user" => $user));
+    }
+
+    public function showPasteLinkForm ($id, Guard $auth,Request $request)
+    {
+        $vacancy = $this->getVacancy($id);
+        $user = User::find($auth->user()->getAuthIdentifier());
+        return View::make('vacancy.pasteVacancyForm.link', array("vacancy" => $vacancy, "user" => $user));
+    }
+
+    public function showPasteResumeForm ($id, Guard $auth,Request $request)
+    {
+        $vacancy = $this->getVacancy($id);
+        $user = User::find($auth->user()->getAuthIdentifier());
+        $resume = $auth->user()->GetResumes()->get();
+        return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
+    }
+
 }
