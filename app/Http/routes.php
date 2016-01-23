@@ -60,6 +60,13 @@ Route::model('vacancy/{vacancy}/destroy','App\Models\Vacancy');
 Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
 
 Route::post('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
+
+//show form to response for a vacancy via AJAX
+Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\VacancyController@showPasteFileForm");
+
+Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\VacancyController@showPasteLinkForm");
+
+Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\VacancyController@showPasteResumeForm");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
