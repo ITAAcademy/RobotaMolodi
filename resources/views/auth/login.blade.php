@@ -47,9 +47,13 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Увійти</button>
-
-								<a class="btn btn-link" href="{{ url('/password/email') }}">Забули свій пароль?</a>
+								<div>
+									<button type="submit" class="btn btn-primary">Увійти</button>
+									<div >
+										<a class="btn btn-link" href="{{ url('/password/email') }}">Забули свій пароль?</a>
+										<a class="btn btn-link" href="{{ url('/auth/register') }}">Зареєструватися</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</form>

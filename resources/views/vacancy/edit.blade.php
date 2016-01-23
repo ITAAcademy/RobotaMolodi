@@ -129,7 +129,19 @@
 
 @endsection
 @section('footer')
-@stop
 
+    <script type="text/javascript">
+
+        $('#city').select2({
+            "language": {
+                "noResults": function(){
+                    return "Нічого не знайдено по Вашому запиту";
+                }
+            }
+        });
+
+
+    </script>
+@stop
 
 @stop
