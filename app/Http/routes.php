@@ -100,3 +100,8 @@ $router->resource('cabinet','cabinet\CabinetController');
 Route::get('testValidate','ProfOrientationController@testValidate');
 Route::get('proforient','ProfOrientationController@index');
 Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);
+Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//UploadFile
+Route::post('upfile', ['as'=>'upfile', 'uses'=>'UploadFile@upFile']);
