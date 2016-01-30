@@ -42,10 +42,8 @@
 
     function loadForm(f) {
         var id = {{$vacancy->id}};
-        //console.log ("/vacancy/" + id + '/' + f);
         $.ajax({
-            {{--{{dd('vacancy/' + (string) $vacancy->id)}};--}}
-            url:"/vacancy/" + id + '/' + f,
+            url:"{{url("/vacancy")}}/" + id + '/' + f,
             type: "GET",
             success: function (data) {
                 //$data = $(data);
