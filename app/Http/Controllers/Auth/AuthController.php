@@ -61,7 +61,7 @@ class AuthController extends Controller {
 		//			'name' => 'required|max:255|alpha',
 		//			'email' => 'required|email|max:255|unique:users',
 		//			'password' => 'required|confirmed|min:6',
-				'name' => 'required|max:30|regex:/^[а-яА-ЯёЁa-zA-Z_-]{1,30}$/',
+				'name' => 'required|max:30|regex:/^[йцукенгшщзхъэждлорпавыфячсмитьбюєїіёЁЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮЇІЄa-zA-Z_-]+$/',
 				'email' => 'required|email|max:30|unique:users',
 				'password' => 'required|confirmed|min:6',
 			]);
