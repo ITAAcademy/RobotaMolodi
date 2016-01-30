@@ -9,6 +9,7 @@
             <li class="list-group-item">  @foreach($cities as $city) {{$city->name}}<br> @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
 			<li class="list-group-item">  {{$vacancy->telephone}}</li>
+			<li class="list-group-item"><span class="heading"> Опис : </span> {{$vacancy->description}} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></li>
             <li class="list-group-item">
                     <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteLink')@else
                     window.location='{{ url('auth/login') }}'@endif">Відправити URL</button>
