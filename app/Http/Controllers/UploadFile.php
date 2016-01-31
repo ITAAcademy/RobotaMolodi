@@ -8,16 +8,17 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UploadFile extends Controller
 {
     public function upFile()
     {
-        if (Input::hasFile('FileName')) {
+        if(Input::hasFile('FileName'))
+        {
             $file = Input::file('FileName');
 
             $extensions = array('doc', 'docx', 'odt', 'rtf', 'txt', 'pdf');
@@ -27,12 +28,17 @@ class UploadFile extends Controller
                 if ($i == $file->getClientOriginalExtension())
                     $var = 1;
 
-            if ($var == 1) {
-                $filename = Auth::user()['email'] . '_' . $file->getClientOriginalName();
+            if ($var == 1)
+            {
+                $filename = Auth::user()['email'] . '_' . $file -> getClientOriginalName();
                 $file->move(base_path() . '/uploads', $filename);
+                return Redirect::back();
             }
+            else
+                return view('errors/uploadFileError');
         }
-        return Redirect::back();
+        else
+            return view('errors/uploadFileError');
     }
 }
 ?>
