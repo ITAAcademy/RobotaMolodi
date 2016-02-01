@@ -5206,6 +5206,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-default {
   border-color: #dddddd;
+  word-wrap: break-word;
 }
 .panel-default > .panel-heading {
   color: #333333;
