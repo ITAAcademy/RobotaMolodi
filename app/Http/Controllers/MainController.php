@@ -122,18 +122,10 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
-		
-		
-		
         $industry = Input::get('industry_id',0);
 
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
-
-        if (!$cities->has($city) || !$industries->has($industry))
-        {
-            abort(500);
-        }
 
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
@@ -144,30 +136,13 @@ class MainController extends Controller
             {
                 $vacancies->sortByDesc('updated_at');
             }
-
-//            if($city > 1 && $industry < 1){
-//                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
-//
-//            }
-//            elseif($city > 1 && $industry > 0){
-//                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            elseif( $industry > 0 && $city == 1){
-//
-//                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            else
-//            {
-//                $vacancies = Vacancy::latest('id')->paginate(25);
-//            }
-
             return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,
-                      'industries' => $industries,
-                      'cities' => $cities,
-                      'city_id'=>$city,
-                      'industry_id' => $industry)
-                            )->render());
+                    'industries' => $industries,
+                    'cities' => $cities,
+                    'city_id'=>$city,
+                    'industry_id' => $industry)
+            )->render());
         }
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
@@ -188,7 +163,7 @@ class MainController extends Controller
         $resumes = Resume::latest('updated_at')->paginate(25);
 
         if (Request::ajax()) {
-        //dd(Resume::where('city',$city)->latest('id'));
+            //dd(Resume::where('city',$city)->latest('id'));
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city > 1 && $industry == 0){
