@@ -73,7 +73,7 @@ class SearchController extends Controller
 
 
 
-        return View::make('main.filter', ['vacancies' => $vacancies,
+        return View::make('main.filter.filterVacancies', ['vacancies' => $vacancies,
             'cities' => $cities,
             'industries' => $industries,
             'city_f' => $city,
