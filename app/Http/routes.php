@@ -38,9 +38,11 @@ Route::controllers([
 
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
-
-
-
+//////Search Route//////////////
+Route::any('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
+Route::any('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
+//Route::get('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
+//Route::get('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Vacancy Route
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
