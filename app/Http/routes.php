@@ -27,7 +27,8 @@ Route::post('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainContro
 Route::post('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
 Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
 /////
-Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@showVacancies'] );
+Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@showVacancies']);
+Route::get('sortResumes',['as' => 'sortResumes', 'uses' => 'ResumeController@sortResumes']);
 /////
 
 Route::get('home', 'HomeController@index');

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
+use View;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -219,4 +220,33 @@ class ResumeController extends Controller {// Клас по роботі з ре
         return view('Resume/send_message');
     }
 
+    public function sortResumes(City $cityModel)
+    {
+        $industries = Industry::orderBy('name')->get();
+        if(!$ind = Input::get('industry'))
+            $ind = 0;
+        $industry = Input::get('industry_id', (int)$ind);
+
+        $cities = $cityModel->getCities();
+        if(!$cit = Input::get('city'))
+            $cit = 0;
+        $city = Input::get('city_id', (int)$cit);
+
+        if (!$cities->has($city) || !$industries->has($industry))
+            abort(500);
+
+        if($industry > 0 && $city < 1)
+            $resumes = Resume::where('industry' , $industry)->latest('updated_at')->paginate(25);
+        elseif($city > 0 && $industry < 1)
+            $resumes = Resume::whereIn('city',[$city, 1])->latest('updated_at')->paginate(25);
+        else
+            $resumes = Resume::latest('updated_at')->paginate(25);
+
+        return View::make('main.filter.filterResumes', array(
+            'resumes' => $resumes,
+            'industries' => $industries,
+            'city_id' => $city,
+            'industry_id' => $industry,
+            'cities' => $cities));
+    }
 }
