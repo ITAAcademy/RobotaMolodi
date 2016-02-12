@@ -80,7 +80,7 @@
                 success:function(json){
 
                     if(json.length < 1){
-                        $('div[class=list-group]').html('<p class="btn bg-danger">По даному  запросу дані відсутні.</p>');
+                        $('div[class=list-group]').html('<p class="btn bg-danger">По даному запиту дані відсутні.</p>');
                     }
                      if(json) {
 

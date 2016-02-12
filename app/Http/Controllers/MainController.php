@@ -86,6 +86,7 @@ class MainController extends Controller
         }
 
         return view('main.filter',
+        //return view('main.index',
             ['vacancies' => $vacancies,
                 'cities' => $cities,
                 'industries' => $industries,
@@ -95,8 +96,6 @@ class MainController extends Controller
 
     public function filterVacancy(City $cityModel)
     {
-
-
         if (Request::ajax()) {
 
             $city = Input::get('city_id');
@@ -122,10 +121,7 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
-		
-		
-		
-        $industry = Input::get('industry_id',0);
+        $industry = Input::get('industry_id', 0);
 
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
@@ -137,29 +133,13 @@ class MainController extends Controller
 
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
-        if (Request::ajax()) {
-
+        if (Request::ajax())
+        {
             $vacancies = MainController::ShowFilterVacancies($city, $industry);
             if($vacancies != null)
             {
                 $vacancies->sortByDesc('updated_at');
             }
-
-//            if($city > 1 && $industry < 1){
-//                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
-//
-//            }
-//            elseif($city > 1 && $industry > 0){
-//                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            elseif( $industry > 0 && $city == 1){
-//
-//                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            else
-//            {
-//                $vacancies = Vacancy::latest('id')->paginate(25);
-//            }
 
             return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,

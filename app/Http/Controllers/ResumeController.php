@@ -113,9 +113,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	 * @param  int  $id
 	 * @return Response
 	 */
+    /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
 	public function show($id,Guard $auth)
 	{
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         $view = 'Resume.show';
 
         $resume = $this->getResume($id);
