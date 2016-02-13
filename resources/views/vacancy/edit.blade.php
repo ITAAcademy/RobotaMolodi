@@ -85,7 +85,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
-            <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="city[]" id="city">
+            <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="city[]" id="city" style="width:100%;">
                 @foreach($cities as $city)
                     {
                     <option value="{{$city->id}}">{{$city->name}}</option>
