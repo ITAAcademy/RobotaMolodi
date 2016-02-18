@@ -122,11 +122,15 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
+		
+		
+		
         $industry = Input::get('industry_id',0);
-
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
 
+
+		$specialisations = Vacancy::AllVacancies()->get();
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
         if (Request::ajax()) {
@@ -136,20 +140,23 @@ class MainController extends Controller
             {
                 $vacancies->sortByDesc('updated_at');
             }
+
+
             return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,
-                    'industries' => $industries,
-                    'cities' => $cities,
-                    'city_id'=>$city,
-                    'industry_id' => $industry)
-            )->render());
+                      'industries' => $industries,
+                      'cities' => $cities,
+                      'city_id'=>$city,
+                      'industry_id' => $industry)
+                            )->render());
         }
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'industries' => $industries,
             'city_id'=>$city,
             'industry_id' => $industry,
-            'cities' => $cities));
+            'cities' => $cities,
+			'specialisation'=>$specialisations));
     }
 
     public function showResumes(City $cityModel)
@@ -159,11 +166,11 @@ class MainController extends Controller
 
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
-
+		$specialisations = Resume::latest('id')->get();
         $resumes = Resume::latest('updated_at')->paginate(25);
 
         if (Request::ajax()) {
-            //dd(Resume::where('city',$city)->latest('id'));
+        //dd(Resume::where('city',$city)->latest('id'));
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city > 1 && $industry == 0){
@@ -200,7 +207,8 @@ class MainController extends Controller
             'industries' => $industries,
             'city_id'=>$city,
             'industry_id' => $industry,
-            'cities' => $cities));
+            'cities' => $cities,
+			'specialisation'=>$specialisations));
     }
 
     public function ShowFilterVacancies($city_id,$industry_id)
@@ -228,6 +236,7 @@ class MainController extends Controller
         {
             return Vacancy::AllVacancies()->paginate(25);
         }
+		
 
     }
 }

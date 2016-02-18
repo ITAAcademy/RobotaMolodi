@@ -140,6 +140,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".js_drop_menu").select2();
+});
+
+
+</script>
 
     @yield('footer')
 

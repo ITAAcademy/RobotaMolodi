@@ -7,17 +7,24 @@
 <title>Robota Molodi</title>
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 {!! Form::open(['method' => 'get',  'class'=>'form-inline']) !!}
-<select name="city" class="form-control" id="selectCity" style="float: left; width: 160px">
+<select name="city" class="js_drop_menu" id="selectCity" style="float: left; width: 27%">
 
     @foreach($cities as $city)
         <option value="{{$city->id}}"> {{$city->name}} </option>
     @endforeach
 </select>
-<select name="industry" class="form-control" id="selectIndustry" style="width: 380px">
+<select name="industry" class="js_drop_menu" id="selectIndustry" style="float: left;width: 40%">
     <option value="0"> Усі галузі</option>
-    @foreach($industries as $industry)
-        <option value="{{$industry->id}}"> {{$industry->name}} </option>
+    @foreach($industries as $industry2)
+        <option value="{{$industry2->id}}"> {{$industry2->name}} </option>
     @endforeach
+</select>
+<select name="spec" class="js_drop_menu" id="selectSpecialisation" style="width: 32%">
+    <option value="0">Усі спеціалізації</option>
+    @foreach($specialisation as $spec)
+        <option value="{{$spec->id}}"> {{$spec->position}} </option>
+    @endforeach
+
 </select>
 {!!Form::close()!!}
 
