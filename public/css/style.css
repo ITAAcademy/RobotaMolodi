@@ -199,10 +199,13 @@ td
 
 img
 {
-	width: 100px;
 	box-sizing: border-box;
 }
-img:hover
+#logoImg
+{
+    width: 100px;
+}
+#logoImg:hover
 {
     opacity: 0.5;
 }
@@ -368,4 +371,23 @@ min-width: 300px;
 	margin-top: 0;
 }
 
+#opt-data-low
+{
+    border-style: solid hidden hidden solid;
+}
 
+#aform
+{
+    border-style: solid hidden hidden hidden;
+    border-radius: 0;
+    border-width: 1px 0;
+}
+
+#vimg
+{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
+}

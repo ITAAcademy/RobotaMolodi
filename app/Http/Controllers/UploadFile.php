@@ -31,7 +31,7 @@ class UploadFile extends Controller
             if ($var == 1)
             {
                 $filename = Auth::user()['email'] . '_' . $file -> getClientOriginalName();
-                $file->move(base_path() . '/uploads', $filename);
+                $file->move(base_path() . '/public/uploads', $filename);
                 return Redirect::back();
             }
             else
