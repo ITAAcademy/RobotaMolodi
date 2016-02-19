@@ -19,10 +19,10 @@
         <option value="{{$industry2->id}}"> {{$industry2->name}} </option>
     @endforeach
 </select>
-<select name="spec" class="js_drop_menu" id="selectSpecialisation" style="width: 32%">
-    <option value="0">Усі спеціалізації</option>
+<select name="spec" class="js_drop_menu" id="selectSpecialisation" style="float: left;width: 31.5%">
+    <option value="empty">Усі спеціалізації</option>
     @foreach($specialisation as $spec)
-        <option value="{{$spec->id}}"> {{$spec->position}} </option>
+        <option value="{{$spec}}"> {{$spec}} </option>
     @endforeach
 
 </select>
