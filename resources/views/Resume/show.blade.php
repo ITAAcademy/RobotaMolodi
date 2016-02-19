@@ -1,20 +1,26 @@
 @extends('app')
 
 @section('content')
-
     <div class="panel panel-orange">
-        <div class="panel-heading"> <h2>{!!$resume->position!!}  &#183;  {!!$resume->salary!!} грн. <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($resume->created_at))}}</h5></span></h2></div>
-        <ul class="list-group">
+        <div class="panel-heading"> <h2>{!!$resume->position!!}  &#183;  {!!$resume->salary!!} грн. <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y, H:i:s', strtotime($resume->created_at))}}</h5></span></h2></div>
+    </div>
+    <div class="panel panel-orange" style="background-color: #ffffff">
+        <ul class="list-group" style="float: right">
             <li class="list-group-item"> {!!$resume->name_u!!}</li>
-            {!!Form::open(['route' => 'sortResumes', 'method' => 'get', 'name' => 'filthForm'])!!}
+            {!!Form::open(['route' => 'sortResumes', 'method' => 'get', 'name' => 'filthForm', 'id' => 'aform'])!!}
                 <li class="list-group-item"><a href="javascript:submitCity()" id = "valCity">{!!$city->name!!}</a></li>
                 <input type = "hidden" name = "city" id = "idCity"/>
                 <li class="list-group-item"><a href="javascript:submitInd()"  id = "valInd">{!!$resume->Industry()->name!!}</a></li>
                 <input type = "hidden" name = "industry" id = "idInd"/>
             {!!Form::close()!!}
             <li class="list-group-item"><span class="heading"> Опис: </span> {!!$resume->description!!}</li>
-            <li class="list-group-item"><a href="{{$resume->id}}/send_message">Написати на пошту</a></li>
+            <li class="list-group-item" id="opt-data-low"><a href="{{$resume->id}}/send_message">Написати на пошту</a></li>
         </ul>
+        <div class="panel panel-orange" id="vimg">
+            @if(false){!! Html::image('image/default300.png', 'logo', ['id' => 'vacImg']) !!}
+            @else{!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+            @endif
+        </div>
     </div>
 
     <script>
