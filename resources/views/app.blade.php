@@ -64,6 +64,7 @@
 						</li>	
 						<form method="POST" action="{{ url('searchResumes') }}"name="search_form"></form> -->
 						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
+						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
 						@else{!!Form::open(['route' => 'searchV','method' => 'POST'])!!}
 						@endif</li> 
 						<li> 
@@ -142,7 +143,10 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $(".js_drop_menu").select2();
+  $(".js_drop_menu").select2()
+  //$(".js_drop_menu").on("change", function(e){
+	  //console.dir(e);
+  //})
 });
 
 
