@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-                  <a href="{{ url('/') }}">{!! Html::image('image/logo.gif','Головна',['id'=>'logoImg']) !!} </a>
+                  <a href="{{ url('/') }}">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
 
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
@@ -82,8 +82,8 @@
 						</li>
 						{!!Form::close()!!} 
 					@if (Auth::guest())																			
-						<li><a href="{{ url('/auth/login') }}">Увійти</a></li>
-						<li><a href="{{ url('/auth/register') }}">Зареєструватись</a></li>
+						<li><a href="{{ url('/auth/login') }}"><span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> Увійти</a></li>
+						<li><a href="{{ url('/auth/register') }}"><span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> Зареєструватись</a></li>
 					@else
 							
 							
@@ -92,7 +92,7 @@
                             
 							<ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
-                                <li><a href="{{ url('/auth/logout') }}">Вийти</a></li>
+                                <li><a href="{{ url('/auth/logout') }}"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
                             </ul>
                         </li>
 					@endif

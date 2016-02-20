@@ -3,8 +3,8 @@
     <h4 class="btn btn-default" style="background:wheat; color:#ffffff;">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
 @stop
 @section('panelTitle')
-    <li role = "presentation" class="active">{!!link_to_route('head','Всі вакансії')!!}</li>
-    <li role = "presentation">{!!link_to_route('main.resumes' ,'Всі резюме')!!}</li>
+    <li role = "presentation" class="active"><a href={{route('head','Всі вакансії')}}><span>{!! Html::image('image/allvacancies.png','Головна',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>
+    <li role = "presentation"><a href={{ route('main.resumes' ,'Всі резюме')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
 @stop
 
 @section('category')
