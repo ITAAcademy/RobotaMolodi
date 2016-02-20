@@ -64,6 +64,7 @@
 						</li>	
 						<form method="POST" action="{{ url('searchResumes') }}"name="search_form"></form> -->
 						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
+						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
 						@else{!!Form::open(['route' => 'searchV','method' => 'POST'])!!}
 						@endif</li> 
 						<li> 
@@ -140,6 +141,16 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".js_drop_menu").select2()
+  //$(".js_drop_menu").on("change", function(e){
+	  //console.dir(e);
+  //})
+});
+
+
+</script>
 
     @yield('footer')
 

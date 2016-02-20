@@ -38,16 +38,72 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
                 var url = 'showResumes';
-                sendAjax(city_id,industry_id,url);
+				var speccc = $('[name=spec]').val();
+          $.ajax({   
+							url: url,
+							type: "POST",
+							 beforeSend: function (xhr) {
+									var token = $('meta[name="csrf_token"]').attr('content');
+
+									if (token) {
+										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+									}
+								},
+							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							success: function (json) {
+								$('.posts').html(json);
+
+							}
+						});
             });
             /////////////////////////////////
             $('#selectCity').change(function(){
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
+				var speccc = $('[name=spec]').val();
                 var url = 'showResumes';
-                sendAjax(city_id,industry_id,url);
+			$.ajax({   
+							url: url,
+							type: "POST",
+							 beforeSend: function (xhr) {
+									var token = $('meta[name="csrf_token"]').attr('content');
 
+									if (token) {
+										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+									}
+								},
+							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							success: function (json) {
+								$('.posts').html(json);
+
+							}
+						});
+                
+
+            });
+			  $('#selectSpecialisation').change(function(){
+                $("div.list-group").empty();
+                var city_id = $('[name=city]').val();
+                var industry_id = $('[name=industry]').val();
+				var speccc = $('[name=spec]').val();
+                var url = 'showResumes';
+				$.ajax({   
+							url: url,
+							type: "POST",
+							 beforeSend: function (xhr) {
+									var token = $('meta[name="csrf_token"]').attr('content');
+
+									if (token) {
+										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+									}
+								},
+							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							success: function (json) {
+								$('.posts').html(json);
+
+							}
+						});
             });
         });
 

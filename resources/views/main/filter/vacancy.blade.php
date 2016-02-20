@@ -24,6 +24,6 @@
     </article>
 
 @endforeach
-@include('/pagination/pagination', ['paginator' => $vacancies]);
+@include('/pagination/pagination', ['paginator' => $vacancies])
 {{--{!!$vacancies->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
 @endif

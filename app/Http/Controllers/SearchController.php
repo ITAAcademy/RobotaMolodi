@@ -70,22 +70,24 @@ class SearchController extends Controller
         $industry = Input::get('industry_id',0);
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
-
+		$specialisations = Vacancy::AllVacancies()->get();
 
 
         return View::make('main.filter.filterVacancies', ['vacancies' => $vacancies,
             'cities' => $cities,
             'industries' => $industries,
             'city_f' => $city,
-            'industry_f' => $industry]);
+            'industry_f' => $industry,
+			'specialisation'=>$specialisations]);
     }
 /////////////method Search_and_Show Resumes by Position and Description/////////////////////////
     public function showResumes()
     {
-
+		$specialisations = Resume::latest('id')->get();
         $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
         $cityModel= new City();
+	
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $data = Request::input('search_field');
@@ -96,7 +98,8 @@ class SearchController extends Controller
             'industries' => $industries,
             'city_id'=>$city,
             'industry_id' => $industry,
-            'cities' => $cities));
+            'cities' => $cities,
+			'specialisation'=>$specialisations));
     }
 
     public function ShowFilterVacancies()
