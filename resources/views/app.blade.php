@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-                  <a href="{{ url('/') }}">{!! Html::image('image/logo.gif','Головна',['id'=>'logoImg']) !!} </a>
+                  <a href="{{ url('/') }}">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
 
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
@@ -53,15 +53,47 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Увійти</a></li>
-						<li><a href="{{ url('/auth/register') }}">Зареєструватись</a></li>
+						
+							
+						<!--
+								
+						<li>
+							
+							<input type="text" class="nav navbar-nav navbar-right" name="searching_field" placeholder="Введіть запит" />
+							
+						</li>	
+						<form method="POST" action="{{ url('searchResumes') }}"name="search_form"></form> -->
+						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
+						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
+						@else{!!Form::open(['route' => 'searchV','method' => 'POST'])!!}
+						@endif</li> 
+						<li> 
+							<div class="nav navbar-nav navbar-right">{!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}</div>
+						</li> 
+						 
+							
+					
+							
+						<li>
+							<button type="submit" Style="background-color:gray;color:white;" class="navbar-right btn btn-default"onclick="
+							@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
+							@else window.location='{{ url('searchVacancies') }}'
+							@endif">Пошук</button>
+								
+						</li>
+						{!!Form::close()!!} 
+					@if (Auth::guest())																			
+						<li><a href="{{ url('/auth/login') }}"><span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> Увійти</a></li>
+						<li><a href="{{ url('/auth/register') }}"><span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> Зареєструватись</a></li>
 					@else
+							
+							
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
+                            
+							<ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
-                                <li><a href="{{ url('/auth/logout') }}">Вийти</a></li>
+                                <li><a href="{{ url('/auth/logout') }}"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
                             </ul>
                         </li>
 					@endif
@@ -94,7 +126,9 @@
                 </div><!--class="col-md-10 col-md-offset-1"-->
             </div><!--class="col-md-10 col-md-offset-1"-->
         </div><!--class="row"-->
+<div id="formContainer">
 
+    </div>
     <!-- Scripts -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -107,8 +141,19 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".js_drop_menu").select2()
+  //$(".js_drop_menu").on("change", function(e){
+	  //console.dir(e);
+  //})
+});
+
+
+</script>
 
     @yield('footer')
 
 	</body>
 </html>
+
