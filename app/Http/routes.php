@@ -30,6 +30,7 @@ Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainControlle
 Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 Route::get('sortResumes',['as' => 'sortResumes', 'uses' => 'ResumeController@sortResumes']);
 /////
+Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 
 Route::get('home', 'HomeController@index');
 

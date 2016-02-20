@@ -414,7 +414,7 @@ class VacancyController extends Controller
      * @param Vacancy $vacancy
      * @return mixed
      */
-    public function sortVacancies(City $cityModel)//{if(Request::ajax())
+    public function sortVacancies(City $cityModel)
     {
         $industries = Industry::orderBy('name')->get();
         if(!$ind = Input::get('industry'))
@@ -606,11 +606,19 @@ class VacancyController extends Controller
                 'industry_id' => $industry)
         )->render());*/
 
+        /*return View::make('main.filter.vacancy',
+            array('vacancies' => $vacancies,
+                'industries' => $industries,
+                'cities' => $cities,
+                'city_id'=>$city,
+                'industry_id' => $industry)
+        )->render();*/
+
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'industries' => $industries,
             'city_id' => $city,
             'industry_id' => $industry,
             'cities' => $cities));
-    }//else echo 'a';}
+    }
 }

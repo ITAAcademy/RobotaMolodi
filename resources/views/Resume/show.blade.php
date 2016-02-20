@@ -17,8 +17,10 @@
             <li class="list-group-item" id="opt-data-low"><a href="{{$resume->id}}/send_message">Написати на пошту</a></li>
         </ul>
         <div class="panel panel-orange" id="vimg">
-            @if(false){!! Html::image('image/default300.png', 'logo', ['id' => 'vacImg']) !!}
-            @else{!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+            @if(File::exists('image/resume/' . $resume->id . '.png'))
+                {!! Html::image('image/default300.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+            @else
+                {!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
             @endif
         </div>
     </div>

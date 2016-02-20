@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+    <div id="t">
     <div class="panel panel-orange">
         <div class="panel-heading"><h2> {{$vacancy->position}} &#183; {{$vacancy->salary}} грн <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y, H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
     </div>
@@ -25,8 +26,10 @@
 
         </ul>
         <div class="panel panel-orange" id="vimg">
-            @if(false){!! Html::image('image/default300.png', 'logo', ['id' => 'vacImg']) !!}
-            @else{!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+            @if(File::exists('image/vacancy/' . $vacancy->company_id . '.png'))
+                {!! Html::image('image/vacancy/' . $vacancy->id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+            @else
+                {!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
             @endif
         </div>
     </div>
@@ -34,9 +37,10 @@
     <div id="formContainer">
 
     </div>
+    </div>
 
 <script>
-    function sCity()
+    /*function sCity()
     {
         var x = document.getElementById("valCity").innerHTML;
         document.getElementById("idCity").value = x;
@@ -46,9 +50,9 @@
         xhttp.onreadystatechange = function()
         {
             if(xhttp.readyState == 4 && xhttp.status == 200)
-                document.getElementById("t").innerHTML = xhttp.responseText;
+                document.getElementById("t").innerHTML = null;//xhttp.responseText;
         };
-        xhttp.open("GET", "sortVacancies?city=" + x + "&industry=", true);
+        xhttp.open("GET", "vacancy.sortVacancies?city=" + x + "&industry=", true);
         xhttp.send();
     }
     function sInd()
@@ -65,7 +69,7 @@
         };
         xhttp.open("GET", "sortVacancies?city=&industry=" + x, true);
         xhttp.send();
-    }
+    }*/
 
     function submitCity()
     {
