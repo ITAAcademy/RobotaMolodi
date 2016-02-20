@@ -12,7 +12,7 @@
             <li class="list-group-item">  <a target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>,{{$user->name}}  </li>
             <li class="list-group-item"> @foreach($cities as $city) {{$city->name}} @endforeach</li>
             <li class="list-group-item">  {{$industry->name}}</li>
-			 <li class="list-group-item">  {{$vacancy->telephone}}</li>
+			<li class="list-group-item">  {{$vacancy->telephone}}</li>
             <li class="list-group-item"><span class="heading"> Опис : </span> {{$vacancy->description}} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></li>
 
         </ul>

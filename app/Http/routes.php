@@ -27,6 +27,10 @@ Route::post('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainContro
 Route::post('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
 Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
 /////
+Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
+Route::get('sortResumes',['as' => 'sortResumes', 'uses' => 'ResumeController@sortResumes']);
+/////
+Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 
 Route::get('home', 'HomeController@index');
 
@@ -102,3 +106,8 @@ $router->resource('cabinet','cabinet\CabinetController');
 Route::get('testValidate','ProfOrientationController@testValidate');
 Route::get('proforient','ProfOrientationController@index');
 Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);
+Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrientationController@StartTest']);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//UploadFile
+Route::post('upfile', ['as'=>'upfile', 'uses'=>'UploadFile@upFile']);

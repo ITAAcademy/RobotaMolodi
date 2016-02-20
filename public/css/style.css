@@ -100,7 +100,7 @@ span.right
 	border: 1px solid #696969;
 }
 .button:active
-{
+{ 
 	border: 1px solid #696969;
 }
 .buttonTest
@@ -136,18 +136,18 @@ span.right
 {
 	color: #7A2200;
 	font-size: 11px;
-
+	
 }
 #down_footer
 {
 	color: black;
 	font-size: 12px;
-	margin-bottom:10px;
+	margin-bottom:10px;	
 }
 #header
 {
 	margin-left: 90px;
-	font-weight: bold;
+	font-weight: bold;	
 }
 #start_test
 {
@@ -170,10 +170,10 @@ span.right
 }
 #buttons_table
 {
-	margin: 20px 0 0 30px;
+	margin: 20px 0 0 30px;	
 }
 td
-{
+{ 
     width: 80px;
 }
 .error
@@ -199,10 +199,13 @@ td
 
 img
 {
-	width: 15px;
 	box-sizing: border-box;
 }
-img:hover
+#logoImg
+{
+    width: 100px;
+}
+#logoImg:hover
 {
     opacity: 0.5;
 }
@@ -214,7 +217,7 @@ input[type=radio]
 {
 	border: 2px double black;
 }
-fieldset
+fieldset 
 {
 	padding: 0 0 20px 0;
     border: 1px solid #808080;
@@ -226,7 +229,7 @@ fieldset
     border: 2px solid red;
     border-radius:5px;
 }
-legend
+legend 
 {
 	display: block;
 	font-size: 21px;
@@ -245,18 +248,18 @@ legend
 {
 	margin-bottom: 20px;
 }
-@font-face
+@font-face 
 {
     font-family: 'Roboto';
     src: url('fonts/Roboto-webfont.eot?') format('embedded-opentype');
 }
-@font-face
+@font-face 
 {
     font-family: 'Roboto';
-    src: url('fonts/Roboto-Medium-webfont.eot?') format('eot'),
+    src: url('fonts/Roboto-Medium-webfont.eot?') format('eot'), 
          url('fonts/Roboto-Medium-webfont.svg#svgFontName') format('svg');
 }
-p
+p 
 {
 	font-size: 14px;
     font-family: 'Roboto', sans-serif;
@@ -337,7 +340,7 @@ margin: 10px 10px;
 li[role='treeitem'].select2-results__option{
 	border-color:#a94442;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	color: black !important;
+	color: red !important;
 }
 .crResVac{
 	padding-bottom: 10px;
@@ -366,4 +369,24 @@ min-width: 300px;
 .btn_cr{
 	float:right;
 	margin-top: 0;
+}
+
+#opt-data-low
+{
+    border-style: solid hidden hidden solid;
+}
+
+#aform
+{
+    border-style: solid hidden hidden hidden;
+    border-radius: 0;
+    border-width: 1px 0;
+}
+
+#vimg
+{
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
