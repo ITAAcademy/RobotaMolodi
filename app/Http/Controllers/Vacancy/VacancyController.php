@@ -18,12 +18,12 @@ use Illuminate\Contracts\Auth\Guard;
 use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\User;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use View;
-use Request;
+//use Request;
 
 //use Session;
 class VacancyController extends Controller
@@ -132,7 +132,7 @@ class VacancyController extends Controller
     public function store(Guard $auth, Company $company, Vacancy $vacancy, Vacancy_City $vacancy_City, Request $request)
     {
 
-//        dd($request->all());
+        //dd($request);
         if (Auth::check()) {
             Input::flash();
 

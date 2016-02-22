@@ -65,12 +65,12 @@ class SearchController extends Controller
     {
         $cityModel = new City() ;
         $data = Request::input('search_field');
-		$vacancies  = Vacancy::AllVacancies()->where('position','Like',"%$data%")->orWhere('description','Like',"%$data%")->paginate(25);
+		    $vacancies  = Vacancy::AllVacancies()->where('position','Like',"%$data%")->orWhere('description','Like',"%$data%")->paginate(25);
         $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
-		$specialisations = Vacancy::AllVacancies()->get();
+		    $specialisations = Vacancy::groupBy('position')->lists('position');
 
 
         return View::make('main.filter.filterVacancies', ['vacancies' => $vacancies,
@@ -78,16 +78,17 @@ class SearchController extends Controller
             'industries' => $industries,
             'city_f' => $city,
             'industry_f' => $industry,
-			'specialisation'=>$specialisations]);
+			      'specialisation'=>$specialisations]);
     }
 /////////////method Search_and_Show Resumes by Position and Description/////////////////////////
     public function showResumes()
     {
-		$specialisations = Resume::latest('id')->get();
+        //$specialisation = Input::get('specc',0);
+        $specialisations = Resume::groupBy('position')->lists('position');
         $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
         $cityModel= new City();
-	
+
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
         $data = Request::input('search_field');
@@ -99,7 +100,7 @@ class SearchController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities,
-			'specialisation'=>$specialisations));
+			      'specialisation'=>$specialisations));
     }
 
     public function ShowFilterVacancies()
