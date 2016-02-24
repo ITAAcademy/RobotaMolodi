@@ -22,6 +22,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
+use App\Models\Resume;
+use App\Http\Controllers\UploadFile;
+use Illuminate\Support\Facades\File;
 use View;
 use Request;
 
@@ -330,53 +333,35 @@ class VacancyController extends Controller
         return view('vacancy/vacancyAnswer');
     }
 
-    //Send file in employer (takes one param "id" vacancy)
-    public function sendFile(Guard $auth, Request $request)
+     public function sendFile(Guard $auth, Request $request)
     {
-
-        $id = $request['id'];
-        $vacancy = $this->getVacancy($id);
-        $company = $vacancy->ReadCompany();
-
         $user = User::find($auth->user()->getAuthIdentifier());
+        $uploadFile = UploadFile::upFile();
+            if($uploadFile==null)
+             return view('errors/uploadFileError');
+            Mail::send('emails.vacancyFile', ['user' => $user], function ($message) use ($uploadFile) {
+                $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
+                $to = $company->company_email;
+                $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
+                $message->attach($uploadFile);
+            });
+            File::delete($uploadFile);
+            return view('vacancy/vacancyAnswer');
 
-        $this->validate($request,
-            [
-                'Load' => 'mimes:doc,docx,odt,rtf,txt,pdf',
-                'Load' => 'required',
-            ]);
-
-        Mail::send('vacancy.mail', ['user' => $user], function ($message) {
-            $to = Input::get('emailAddressee');
-            $from = Input::get('email');
-            $pathToFile = $_FILES['Load']['tmp_name'];
-
-            $message->from($from);
-            $message->to($to, 'John Smith')->subject('Welcome!');
-            // $message->attach($pathToFile);
-        });
-
-        return view('vacancy/vacancyAnswer');
     }
 
     public function link(Guard $auth, Request $request)
     {
-        $this->validate($request, [
-            'Link' => 'url|required'
-        ]);
-
+//        $this->validate($request,[
+//            'Link' => 'url|required'
+//        ]);
         $link = Input::get('Link');
-
         $user = User::find($auth->user()->getAuthIdentifier());
-
-        Mail::send('vacancy.mail', ['user' => $user, 'link' => $link], function ($message) {
-            $to = Input::get('emailAddressee');
-            $from = Input::get('email');
-            $link = Input::get('Link');
-
-            $message->from($from);
-            $message->to($to, 'John Smith')->subject($link);
-
+        $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
+        Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $link], function ($message) {
+            $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
+            $to = $company->company_email;
+            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
         });
 
 
@@ -384,6 +369,18 @@ class VacancyController extends Controller
 
         //     $link ->save();
 
+        return view('vacancy/vacancyAnswer');
+    }
+
+    public function sendResume(Guard $auth, Request $request)
+    {
+        $resume = Resume::find(Input::get('resumeId'));
+        $user = User::find($auth->user()->getAuthIdentifier());
+        Mail::send('emails.vacancyResume', ['user' => $user, 'resume' => $resume], function ($message) {
+            $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
+            $to = $company->company_email;
+            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
+        });
         return view('vacancy/vacancyAnswer');
     }
 

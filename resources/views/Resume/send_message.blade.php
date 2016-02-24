@@ -5,7 +5,7 @@
     @stop
 
     @section('content')
-    {!! Form::open(['route' => 'resume.store','enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['enctype' => 'multipart/form-data']) !!}
 
     @include('Resume._send_message') <!-- Підключення коду Штмл(Форма вводу) -->
     {!!Form::close()!!}

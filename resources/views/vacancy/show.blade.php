@@ -90,6 +90,7 @@
         var id = {{$vacancy->id}};
         //console.log ("/vacancy/" + id + '/' + f);
         $.ajax({
+
             {{--{{dd('vacancy/' + (string) $vacancy->id)}};--}}
             url:"/vacancy/" + id + '/' + f,
             type: "GET",

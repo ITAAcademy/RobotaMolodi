@@ -54,10 +54,9 @@ $router->resource('vacancy','Vacancy\VacancyController');
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
-Route::post('vacancy/{vacancy}/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
-Route::post('vacancy/{vacancy}/sendResume',[ 'as'=>'vacancy.sendResume', 'uses'=>'Vacancy\VacancyController@sendResume']);
-
-Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
+Route::post('vacancy/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
+Route::post('vacancy/sendresume',[ 'as'=>'vacancy.sendresume', 'uses'=>'Vacancy\VacancyController@sendResume']);
+Route::post('vacancy/sendfile',[ 'as'=>'vacancy.sendfile', 'uses'=>'Vacancy\VacancyController@sendFile']);
 
 Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 
@@ -68,11 +67,11 @@ Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
 Route::post('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
 
 //show form to response for a vacancy via AJAX
-Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\VacancyController@showPasteFileForm");
+Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\\VacancyController@showPasteFileForm");
 
-Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\VacancyController@showPasteLinkForm");
+Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\\VacancyController@showPasteLinkForm");
 
-Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\VacancyController@showPasteResumeForm");
+Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPasteResumeForm");
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
@@ -91,7 +90,7 @@ Route::get('resume/{resume}/destroy','ResumeController@destroy');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
 
-Route::get('resume/{resume}/send_message', 'ResumeController@send_message');
+Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Other Route
@@ -110,4 +109,4 @@ Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrient
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //UploadFile
-Route::post('upfile', ['as'=>'upfile', 'uses'=>'UploadFile@upFile']);
+//Route::post('upfile', ['as'=>'upfile', 'uses'=>'UploadFile@upFile']);

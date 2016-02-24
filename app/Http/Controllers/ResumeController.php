@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Response;
 use App\Models\Resume;
 use App\Models\City;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 use View;
+use Illuminate\Support\Facades\Mail;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -212,12 +214,31 @@ class ResumeController extends Controller {// Клас по роботі з ре
 	}
     public function send_message(Guard $auth,Request $request)
     {
-        $this->validate($request,[
-            'name_u'=>'required',
-            'description'=>'required',
-        ]);
 
-        return view('Resume/send_message');
+        if (Auth::check()) {
+            $resumeId = $request->segment(2);
+            if ($request->isMethod('POST')) {
+
+                $this->validate($request, [
+                    'name_u' => 'required',
+                    'description' => 'required',
+                ]);
+
+                Mail::send('emails.message', ['messageText' => Input::get('description'), ], function ($message) use ($resumeId) {
+                    $to = User::find(Resume::find($resumeId)->id_u)->email;
+                    $message->to($to, User::find(Resume::find($resumeId)->id_u)->name)->subject(Input::get('name_u'));
+                });
+                return view('Resume/send_message');
+            }
+            else
+            return view('Resume/send_message');
+            //$user = User::find($auth->user()->getAuthIdentifier());
+
+
+        }
+        else{
+            return Redirect::to('auth/login');
+        }
     }
 
     public function sortResumes(City $cityModel)

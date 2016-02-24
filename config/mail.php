@@ -1,13 +1,13 @@
 <?php
 return [
-    'driver' => 'log',
-    'host' => '127.0.0.1',
-    'port' => 25,
-    'from' => ['address' => "robotamolodi@robotamolodi.org", 'name' => "TEst"],
-    'encryption' => 'tls',
-    'username' => null,
-    'password' => null,
-    'sendmail' => '/usr/sbin/sendmail -bs',
+    'driver' => 'smtp',
+    'host' => 'smtp.bk.ru',
+    'port' => 465,
+    'from' => ['address' => "test.profitday@bk.ru", 'name' => "Сайт РоботаМолоді"],
+    'encryption' => 'ssl',
+    'username' => 'test.profitday@bk.ru',
+    'password' => '1qazxsw2',
+//    'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,
 ];
 //return [
