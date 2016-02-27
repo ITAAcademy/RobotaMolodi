@@ -2,12 +2,20 @@
 
     @foreach($companies as $company)
 
-        <div class="panel panel-orange">
-            <div class="panel-heading"><h3>{{$company->company_name}}</h3></div>
-            <ul class="list-group">
-                <li class="list-group-item">   Сайт : {{$company->company_email}}</li>
-                <li class="list-group-item"> <a href="company/{{$company->id}}">Переглянути</a></li>
-            </ul>
-        </div>
+    <article>
+        <a href="company/{{$company->id}}" class="link">
+            <div class="list">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="list-group-item-heading panel-title">{{$company->company_name}}</h3>
+                </div>
+                <div class="panel-body">
+                    <h4 class="list-group-item-heading">Сайт:{{ $company->company_email}}</h4>
+                </div>
+                </div>
+            </div>
+        </a>
+    </article>
+
 </address>
 @endforeach
