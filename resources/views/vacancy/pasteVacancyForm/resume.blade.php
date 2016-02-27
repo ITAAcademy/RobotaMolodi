@@ -1,6 +1,6 @@
 <div class="col-sm-offset-2 col-sm-10 form" id="paste-resume-form">
 
-    {!!Form::open(['route' => 'vacancy.response'])!!}
+    {!!Form::open(['route' => 'vacancy.sendresume'])!!}
     <div class="form-group">
         <div class="col-sm-6">
             @if($resume == '' || empty($resume->all()))
@@ -15,7 +15,7 @@
             <div class="form-group" >
                 <label for="sector" class="col-sm-3 control-label">Виберіть резюме</label>
                 <div class="col-sm-5">
-                    <select class="form-control" id="resume">
+                    <select class="form-control" id="resume" name="resumeId">
                         @foreach($resume as $res)
                             <option value="{{$res->id}}" selected>{{$res->position}}</option>
                         @endforeach
@@ -24,10 +24,7 @@
                 </div>
                 </br>
             </div>
-
             {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
-            {!! Form::hidden('email', $user->email, array('class' => 'form-control')) !!}
-            {!! Form::hidden('emailAddressee', $user->email, array('class' => 'form-control')) !!}
             <div class="col-sm-offset-3 col-sm-10" style="margin-top: 20px">
                 <input type="submit" class="btn btn-default" style="background: #f48952" value="Відправити резюме">
             </div>
