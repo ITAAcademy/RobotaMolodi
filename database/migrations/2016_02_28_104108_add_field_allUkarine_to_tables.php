@@ -13,7 +13,7 @@ class AddFieldAllUkarineToTables extends Migration
     public function up()
     {
         Schema::table('vacancies', function ($table) {
-            $table->boolean('vacanyAllUkraine');
+            $table->boolean('vacancyAllUkraine');
         });
         Schema::table('resumes', function ($table) {
             $table->boolean('resumeAllUkraine');
