@@ -28,7 +28,7 @@ class AddFieldAllUkarineToTables extends Migration
     public function down()
     {
         Schema::table('vacancies', function ($table) {
-            $table->dropColumn('vacanyAllUkraine');
+            $table->dropColumn('vacancyAllUkraine');
         });
         Schema::table('resumes', function ($table) {
             $table->dropColumn('resumeAllUkraine');
