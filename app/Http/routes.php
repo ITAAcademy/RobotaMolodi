@@ -22,10 +22,12 @@ use App\Models\Vacancy;
 Route::get('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::get('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
 Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
+Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showCompanies']);
 /////
 Route::post('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
 Route::post('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
 Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
+
 /////
 Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 Route::get('sortResumes',['as' => 'sortResumes', 'uses' => 'ResumeController@sortResumes']);
