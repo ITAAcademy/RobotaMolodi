@@ -14,6 +14,7 @@ use DB;
 use View;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use App\Models\Company;
 
 class MainController extends Controller
 {
@@ -174,6 +175,14 @@ class MainController extends Controller
 			'specialisation'=>$specialisations));
     }
 
+    public function showCompanies(){
+        $companies = Company::latest('id')->paginate(25);
+
+        //dd($companies);
+        //return View::make('main.filter.filterCompanies')->nest('child', 'main.filter.company', ['company' => $companies]);
+        return view('main.filter.filterCompanies', ['companies' => $companies]);
+    }
+
     public function showResumes(City $cityModel)
     {
         $industries = Industry::orderBy('name')->get();
@@ -296,4 +305,6 @@ class MainController extends Controller
 
 
     }
+
+
 }
