@@ -8,13 +8,13 @@
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 {!! Form::open(['method' => 'get',  'class'=>'form-inline']) !!}
 <select name="city" class="js_drop_menu" id="selectCity" style="float: left; width: 27%">
-
+<option value="empty">Уся Україна</option>
     @foreach($cities as $city)
         <option value="{{$city->id}}"> {{$city->name}} </option>
     @endforeach
 </select>
 <select name="industry" class="js_drop_menu" id="selectIndustry" style="float: left;width: 40%">
-    <option value="0"> Усі галузі</option>
+    <option value="empty">Усі галузі</option>
     @foreach($industries as $industry2)
         <option value="{{$industry2->id}}"> {{$industry2->name}} </option>
     @endforeach
