@@ -24,6 +24,5 @@
 
     </address>
     @endforeach
-    @include('/pagination/pagination', ['paginator' => $companies])
-    {{--{!!$vacancies->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
+    {!! str_replace('/?', '?', $companies->render()) !!}
 @endif
