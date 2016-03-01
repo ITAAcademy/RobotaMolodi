@@ -38,8 +38,8 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
                 var url = 'showVacancies';
-				var speccc = $('[name=spec]').val();
-          $.ajax({   
+				        var specialisation = $('[name=spec]').val();
+          $.ajax({
 							url: url,
 							type: "POST",
 							 beforeSend: function (xhr) {
@@ -49,7 +49,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
 							success: function (json) {
 								$('.posts').html(json);
 
@@ -61,9 +61,9 @@
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
-				var speccc = $('[name=spec]').val();
+				        var specialisation = $('[name=spec]').val();
                 var url = 'showVacancies';
-			$.ajax({   
+			$.ajax({
 							url: url,
 							type: "POST",
 							 beforeSend: function (xhr) {
@@ -73,22 +73,22 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
 							success: function (json) {
 								$('.posts').html(json);
 
 							}
 						});
-                
+
 
             });
 			  $('#selectSpecialisation').change(function(){
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
-				var speccc = $('[name=spec]').val();
+				        var specialisation = $('[name=spec]').val();
                 var url = 'showVacancies';
-				$.ajax({   
+				$.ajax({
 							url: url,
 							type: "POST",
 							 beforeSend: function (xhr) {
@@ -98,7 +98,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': speccc,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
 							success: function (json) {
 								$('.posts').html(json);
 

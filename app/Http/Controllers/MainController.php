@@ -123,15 +123,15 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
-		
-		
-		
+
+
+
         $industry = Input::get('industry_id',0);
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
-	
-		$specialisation = Input::get('specc',0);
-		$specialisations = Vacancy::groupBy('position')->lists('position');
+
+		    $specialisation = Input::get('specc',0);
+		    $specialisations = Vacancy::groupBy('position')->lists('position');
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
         if (Request::ajax()) {
@@ -141,29 +141,15 @@ class MainController extends Controller
             {
                 $vacancies->sortByDesc('updated_at');
             }
-			
-//            if($city > 1 && $industry < 1){
-//                $vacancies = Vacancy::where('city', '=',$city)->latest('updated_at')->paginate(2);
-//
-//            }
-//            elseif($city > 1 && $industry > 0){
-//                $vacancies = Vacancy::where('city', '=',$city)->where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            elseif( $industry > 0 && $city == 1){
-//
-//                $vacancies = Vacancy::where('branch', '=', $industry)->latest('updated_at')->paginate(2);
-//            }
-//            else
-//            {
-//                $vacancies = Vacancy::latest('id')->paginate(25);
-//            }
+
 
             return Response::json(View::make('main.filter.vacancy',
                 array('vacancies' => $vacancies,
                       'industries' => $industries,
                       'cities' => $cities,
                       'city_id'=>$city,
-                      'industry_id' => $industry)
+                      'industry_id' => $industry,
+  			              'specialisation'=>$specialisations)
                             )->render());
         }
         return View::make('main.filter.filterVacancies', array(
@@ -172,14 +158,12 @@ class MainController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities,
-			'specialisation'=>$specialisations));
+			      'specialisation'=>$specialisations));
     }
 
     public function showCompanies(){
         $companies = Company::latest('id')->paginate(25);
-
-        //dd($companies);
-        //return View::make('main.filter.filterCompanies')->nest('child', 'main.filter.company', ['company' => $companies]);
+      //  dd($companies);
         return view('main.filter.filterCompanies', ['companies' => $companies]);
     }
 
@@ -190,8 +174,8 @@ class MainController extends Controller
 
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
-		$specialisation = Input::get('specc',0);		
-		$specialisations = Resume::groupBy('position')->lists('position');
+		    $specialisation = Input::get('specc',0);
+		    $specialisations = Resume::groupBy('position')->lists('position');
         $resumes = Resume::latest('updated_at')->paginate(25);
 
         if (Request::ajax()) {
@@ -199,36 +183,56 @@ class MainController extends Controller
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city !='empty' && $industry =='empty' && $specialisation=='empty')
-			{
-                $resumes = Resume::whereIn('city',[$city, 1])->latest('updated_at')->paginate(25);
+			      {
+                $resumes = Resume::whereIn('city',[$city, 1])
+                ->latest('updated_at')
+                ->paginate(25);
             }
             elseif($city !='empty' && $industry !='empty' && $specialisation=='empty')
-			{
-                $resumes = Resume::whereIn('city' ,[$city, 1])->where('industry', '=', $industry)->latest('updated_at')->paginate(25);
+			      {
+                $resumes = Resume::whereIn('city' ,[$city, 1])
+                ->where('industry', '=', $industry)
+                ->latest('updated_at')
+                ->paginate(25);
             }
             elseif( $city =='empty' && $industry !='empty' && $specialisation=='empty')
-			{
-                $resumes = Resume::where('industry' , $industry)->latest('updated_at')->paginate(25);
+			      {
+                $resumes = Resume::where('industry' , $industry)
+                ->latest('updated_at')
+                ->paginate(25);
             }
             elseif($city =='empty' && $industry =='empty' && $specialisation=='empty')
             {
-                $resumes = Resume::latest('updated_at')->paginate(25);
+                $resumes = Resume::latest('updated_at')
+                ->paginate(25);
             }
-			 elseif($city !='empty' && $industry =='empty' && $specialisation!='empty')
-			{
-                $resumes = Resume::whereIn('city',[$city, 1])->latest('updated_at')->where('position','=',$specialisation)->paginate(25);
+			      elseif($city !='empty' && $industry =='empty' && $specialisation!='empty')
+			      {
+                $resumes = Resume::whereIn('city',[$city, 1])
+                ->latest('updated_at')
+                ->where('position','=',$specialisation)
+                ->paginate(25);
             }
             elseif($city !='empty' && $industry !='empty' && $specialisation!='empty')
-			{
-                $resumes = Resume::whereIn('city' ,[$city, 1])->where('industry', '=', $industry)->latest('updated_at')->where('position','=',$specialisation)->paginate(25);
+			      {
+                $resumes = Resume::whereIn('city' ,[$city, 1])
+                ->where('industry', '=', $industry)
+                ->latest('updated_at')
+                ->where('position','=',$specialisation)
+                ->paginate(25);
             }
             elseif( $city =='empty' && $industry !='empty' && $specialisation!='empty')
-			{
-                $resumes = Resume::where('industry' , $industry)->latest('updated_at')->where('position','=',$specialisation)->paginate(25);
+			      {
+                $resumes = Resume::where('industry' , $industry)
+                ->latest('updated_at')
+                ->where('position','=',$specialisation)
+                ->paginate(25);
             }
             elseif($city =='empty' && $industry =='empty' && $specialisation!='empty')
             {
-                $resumes = Resume::latest('updated_at')->where('position','=',$specialisation)->paginate(25);
+                $resumes = Resume::latest('updated_at')
+                ->where('position','=',$specialisation)
+                ->paginate(25);
             }
             if ($resumes->count() == 0)
             {
@@ -241,7 +245,7 @@ class MainController extends Controller
                     'cities' => $cities,
                     'city_id'=>$city,
                     'industry_id' => $industry,
-			'specialisation'=>$specialisations)
+			              'specialisation'=>$specialisations)
             )->render());
         }
         return View::make('main.filter.filterResumes', array(
@@ -250,7 +254,7 @@ class MainController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities,
-			'specialisation'=>$specialisations));
+			      'specialisation'=>$specialisations));
     }
 
     public function ShowFilterVacancies($city_id,$industry_id,$specialisation)
@@ -260,47 +264,62 @@ class MainController extends Controller
 
         if($city_id !='empty' && $industry_id =='empty' && $specialisation=='empty')
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->paginate(25);
-            //dd($vacancy_list);
+            $vacancy_list = City::find($city_id)
+            ->Vacancies()
+            ->paginate(25);
             return $vacancy_list;
         }
         elseif($city_id =='empty' && $industry_id !='empty' && $specialisation=='empty')
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->paginate(25);
-            //dd($filterVacancies);
+            $filterVacancies = Industry::find($industry_id)
+            ->GetVacancies()
+            ->paginate(25);
             return $filterVacancies;
         }
         elseif($city_id !='empty' && $industry_id !='empty'&& $specialisation=='empty')
         {
-            $vacancies = City::find($city_id)->Vacancies()->where('branch', '=', $industry_id)->paginate(25);
+            $vacancies = City::find($city_id)
+            ->Vacancies()
+            ->where('branch', '=', $industry_id)
+            ->paginate(25);
             return $vacancies;
         }
 
         elseif($city_id =='empty' && $industry_id =='empty' && $specialisation=='empty')
         {
-            return Vacancy::AllVacancies()->paginate(25);
+            return Vacancy::AllVacancies()
+            ->paginate(25);
         }
 		elseif($city_id !='empty' && $industry_id =='empty' && $specialisation!='empty')
         {
-            $vacancy_list = City::find($city_id)->Vacancies()->where('position','=',$specialisation)->paginate(25);
-            //dd($vacancy_list);
+            $vacancy_list = City::find($city_id)
+            ->Vacancies()
+            ->where('position','=',$specialisation)
+            ->paginate(25);
             return $vacancy_list;
         }
         elseif($city_id =='empty' && $industry_id !='empty' && $specialisation!='empty')
         {
-            $filterVacancies = Industry::find($industry_id)->GetVacancies()->where('position','=',$specialisation)->paginate(25);
-            //dd($filterVacancies);
+            $filterVacancies = Industry::find($industry_id)
+            ->GetVacancies()
+            ->where('position','=',$specialisation)
+            ->paginate(25);
             return $filterVacancies;
         }
         elseif($city_id !='empty' && $industry_id !='empty' && $specialisation!='empty')
         {
-            $vacancies = City::find($city_id)->Vacancies()->where('branch', '=', $industry_id)->where('position','=',$specialisation)->paginate(25);
+            $vacancies = City::find($city_id)
+            ->Vacancies()->where('branch', '=', $industry_id)
+            ->where('position','=',$specialisation)
+            ->paginate(25);
             return $vacancies;
         }
 
         elseif($city_id =='empty' && $industry_id =='empty' && $specialisation!='empty')
         {
-            return Vacancy::AllVacancies()->where('position','=',$specialisation)->paginate(25);
+            return Vacancy::AllVacancies()
+            ->where('position','=',$specialisation)
+            ->paginate(25);
         }
 
 

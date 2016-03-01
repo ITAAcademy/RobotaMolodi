@@ -4,7 +4,7 @@
 @stop
 @section('panelTitle')
     <li role = "presentation" class="active"><a href={{route('head','Всі вакансії')}}><span>{!! Html::image('image/allvacancies.png','Головна',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>
-    <li role = "presentation"><a href={{ route('main.resumes' ,'Всі резюме')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
+    <li role = "presentation"><a href={{route('main.resumes' ,'Всі резюме')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
     <li role = "presentation"><a href={{route('main.companies')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Всі компанії</a></li>
 @stop
 
@@ -38,7 +38,7 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
                 var url = 'searchVacancies';
-				var speccc = $('[name=spec]').val();
+				        var specialisation = $('[name=spec]').val();
           $.ajax({
 							url: url,
 							type: "POST",
@@ -49,7 +49,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specialisation_': speccc,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 
@@ -61,7 +61,7 @@
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
-				var speccc = $('[name=spec]').val();
+				        var specialisation = $('[name=spec]').val();
                 var url = 'searchVacancies';
 			$.ajax({
 							url: url,
@@ -73,7 +73,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specialisation_': speccc,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 
@@ -86,7 +86,7 @@
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
-				var speccc = $('[name=spec]').val();
+				        var specialisation = $('[name=spec]').val();
                 var url = 'searchVacancies';
 				$.ajax({
 							url: url,
@@ -98,7 +98,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specialisation_': speccc,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 

@@ -8,7 +8,8 @@
         @foreach($companies as $company)
 
             <article>
-                <a href="company/{{$company->id}}" class="link">
+                <a href="scompany/company_vac/{{$company->id}}"  class="link">
+
                     <div class="list">
                         <div class="panel panel-default">
                             <div class="panel-heading">
