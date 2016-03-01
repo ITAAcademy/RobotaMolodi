@@ -1,16 +1,21 @@
 <?php namespace App\Http\Controllers\Company;
 
 use App\Models\User;
+use App\Models\Industry;
+use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use View;
+use Input;
 use Validator;
 use Illuminate\Contracts\Auth\Guard;
-use App\Http\Requests;
-use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Models\Company;
+use App\Models\Vacancy;
+//use Request;
 use Illuminate\Support\Facades\Redirect;
+
 class CompanyController extends Controller  {
 
     private function getCompany($id)
@@ -29,7 +34,51 @@ class CompanyController extends Controller  {
 
         return $company;
     }
+public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $request){
+  $industries = Industry::orderBy('name')->get();
+  $res = $request->id;
+  $industry = Input::get('industry_id',0);
+  $cities = $cityModel->getCities();
+  $city = Input::get('city_id', 0);
 
+  $specialisation = Input::get('specc',0);
+  $specialisations = Vacancy::groupBy('position')->lists('position');
+  //$res= Input::get('id',0);
+  //dd($res);
+  $vacancies = Vacancy::AllVacancies()->where('company_id','=',$res)->paginate(25);
+/*  if (Request::ajax()) {
+
+      $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
+      if($vacancies != null)
+      {
+          $vacancies->sortByDesc('updated_at');
+      }
+
+
+      return Response::json(View::make('main.filter.vacancy',
+          array('vacancies' => $vacancies,
+                'industries' => $industries,
+                'cities' => $cities,
+                'city_id'=>$city,
+                'industry_id' => $industry,
+                'specialisation'=>$specialisations)
+                      )->render());
+  }*/
+  return View::make('main.filter.filterVacancies', array(
+      'vacancies' => $vacancies,
+      'industries' => $industries,
+      'city_id'=>$city,
+      'industry_id' => $industry,
+      'cities' => $cities,
+      'specialisation' =>  $specialisation,
+      'specialisation'=> $specialisations));
+
+//  return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
+
+/*return View::make('main.filter.vacancy', array(
+    'vacancies' => $vacancies
+));*/
+}
 
 	/**
 	 * Display a listing of the resource.
@@ -52,7 +101,7 @@ class CompanyController extends Controller  {
             }
             else
             {
-                
+
                 return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
             }
 
@@ -131,7 +180,7 @@ class CompanyController extends Controller  {
             }
             else
             {
-                
+
                 $path = 'company.index';
             }
             return redirect()->route($path);

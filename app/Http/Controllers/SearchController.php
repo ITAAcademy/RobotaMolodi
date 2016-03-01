@@ -4,6 +4,7 @@ use App\Models\City;
 use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
 use App\Models\Vacancy;
+use App\Models\Company;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
 use Illuminate\Database\Eloquent\Collection;
@@ -56,8 +57,12 @@ class SearchController extends Controller
 
     }
 
-    public function filterVacancy()
+    public function showCompanies_search()
     {
+      $search_request = Request::input('search_field');
+          $companies = Company::latest('id')->where('company_name','Like',"%$search_request%")->paginate(25);
+        //  dd($companies);
+          return view('main.filter.filterCompanies', ['companies' => $companies]);
 
     }
 
@@ -76,7 +81,11 @@ class SearchController extends Controller
         $cities = $cityModel->getCities();
 
 
-		    $vacancies  = Vacancy::AllVacancies()->where('position','Like',"%$search_request%")->orWhere('description','Like',"%$search_request%")->paginate(25);
+		    $vacancies  = Vacancy::AllVacancies()
+        ->where('position','Like',"%$search_request%")
+        ->orWhere('description','Like',"%$search_request%")
+        ->latest('updated_at')
+        ->paginate(25);
 
 
         if (Request::ajax()) {
@@ -91,7 +100,9 @@ class SearchController extends Controller
               $query
               ->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
 
         }
         elseif($city_id =='empty' && $industry_id !='empty' && $specialisation=='empty')
@@ -104,7 +115,9 @@ class SearchController extends Controller
               ->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
 
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
         }
         elseif($city_id !='empty' && $industry_id !='empty' && $specialisation=='empty')
         {
@@ -115,7 +128,9 @@ class SearchController extends Controller
               $query->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
 
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
         }
 
         elseif($city_id == 1 && $industry_id == 0 && $specialisation=='empty')
@@ -123,6 +138,7 @@ class SearchController extends Controller
             $vacancies = Vacancy::AllVacancies()
             ->where('position','Like',"%$search_request_%")
             ->orWhere('description','Like',"%$search_request_%")
+            ->latest('updated_at')
             ->paginate(25);
         }
         elseif($city_id !='empty' && $industry_id =='empty' && $specialisation!='empty')
@@ -136,7 +152,9 @@ class SearchController extends Controller
             ->where('position','Like',"%$search_request_%")
             ->orWhere('description','Like',"%$search_request_%");
 
-          })->paginate(25);
+          })
+          ->latest('updated_at')
+          ->paginate(25);
           }
         elseif($city_id =='empty' && $industry_id !='empty' && $specialisation!='empty')
         {
@@ -148,7 +166,9 @@ class SearchController extends Controller
               ->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
 
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
         }
         elseif($city_id !='empty' && $industry_id !='empty' && $specialisation!='empty')
         {
@@ -161,7 +181,9 @@ class SearchController extends Controller
               ->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
 
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
         }
 
         elseif($city_id =='empty' && $industry_id =='empty' && $specialisation!='empty')
@@ -173,7 +195,9 @@ class SearchController extends Controller
               ->where('position','Like',"%$search_request_%")
               ->orWhere('description','Like',"%$search_request_%");
 
-            })->paginate(25);
+            })
+            ->latest('updated_at')
+            ->paginate(25);
         }
         return Response::json(View::make('main.filter.vacancy',
             array('vacancies' => $vacancies,
@@ -197,14 +221,17 @@ class SearchController extends Controller
     public function showResumes()
     {
 
-        $specialisations = Resume::groupBy('position')->lists('position');
-        $industries = Industry::orderBy('name')->get();
+        $specialisations = Resume::groupBy('position')
+        ->lists('position');
+        $industries = Industry::orderBy('name')
+        ->get();
         $industry = Input::get('industry_id',0);
         $specialisation = Input::get('specialisation_',0);
         $search_request = Request::input('search_field');
 
         $cityModel= new City();
-        $cities = $cityModel->getCities();
+        $cities = $cityModel
+        ->getCities();
         $city = Input::get('city_id',0);
         $data = Request::input('search_field');
         $resumes = Resume::latest('updated_at')
@@ -212,9 +239,9 @@ class SearchController extends Controller
         ->orWhere('description','Like',"%$data%")
         ->paginate(25);
         if (Request::ajax()) {
-        $search_request_=Request::get('data');
 
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            $search_request_=Request::get('data');
+
             if($city !='empty' && $industry =='empty' && $specialisation=='empty')
             {
 
@@ -252,6 +279,7 @@ class SearchController extends Controller
                   ->orWhere('description','Like',"%$search_request_%");
 
                 })
+                ->latest('updated_at')
                 ->paginate(25);
             }
             elseif($city =='empty' && $industry =='empty' && $specialisation=='empty')
@@ -262,7 +290,9 @@ class SearchController extends Controller
                     $query
                     ->where('position','Like',"%$search_request_%")
                     ->orWhere('description','Like',"%$search_request_%");
-                  })->paginate(25);;
+                  })
+                  ->latest('updated_at')
+                  ->paginate(25);;
             }
             elseif($city !='empty' && $industry =='empty' && $specialisation!='empty')
             {
@@ -321,6 +351,7 @@ class SearchController extends Controller
                   ->orWhere('description','Like',"%$search_request_%");
 
                 })
+                ->latest('updated_at')
                 ->paginate(25);
             }
             if ($resumes->count() == 0)

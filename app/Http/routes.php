@@ -45,14 +45,16 @@ Route::controllers([
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
 //////Search Route//////////////
-Route::any('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
-Route::any('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
+Route::any('searchVacancies',['as' => 'searchVacancy' ,'uses' => 'SearchController@showVacancies']);
+Route::any('searchResumes',['as' => 'searchResume' ,'uses' => 'SearchController@showResumes']);
+Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchController@showCompanies_search']);
 //Route::get('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
 //Route::get('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Vacancy Route
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
+
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
@@ -78,6 +80,8 @@ Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPast
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
 Route::model('company/{company}/destroy','App\Models\Company');
+Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompany_Vacancies']);
+//Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');
 
