@@ -115,4 +115,5 @@ Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrient
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //UploadFile
-//Route::post('upfile', ['as'=>'upfile', 'uses'=>'UploadFile@upFile']);
+Route::post('upfile', ['as'=>'upfile', 'uses' => 'UploadFile@upFile']);
+Route::post('upimg', ['as'=>'upimg', 'uses' => 'UploadFile@editImg']);
