@@ -414,19 +414,176 @@ class VacancyController extends Controller
     public function sortVacancies(City $cityModel)
     {
         $industries = Industry::orderBy('name')->get();
-        if(!$i = Input::get('industry_id'))
-            $i = 0;
-        $industry = Input::get('industry_id', (int)$i);
+        if(!$ind = Input::get('industry'))
+            $ind = 0;
+        else
+            switch($ind)
+            {
+                case 'Торгівля/продаж':
+                    $ind = '1';
+                    break;
+                case 'Інформаційні технології':
+                    $ind = '2';
+                    break;
+                case 'Керівництво/топ-менеджмент':
+                    $ind = '3';
+                    break;
+                case 'Менеджери/керівники середньої ланки':
+                    $ind = '4';
+                    break;
+                case 'Бухгалтерія/банк/фінанси/аудит':
+                    $ind = '5';
+                    break;
+                case 'Офісний персонал/HR':
+                    $ind = '6';
+                    break;
+                case 'Реклама/маркетинг/pr':
+                    $ind = '7';
+                    break;
+                case 'Інженерія/технології':
+                    $ind = '8';
+                    break;
+                case 'Будівництво/архітектура/нерухомість':
+                    $ind = '9';
+                    break;
+                case 'Юриспруденція/страхування/консалтинг':
+                    $ind = '10';
+                    break;
+                case 'Логістика/склад/митниця':
+                    $ind = '11';
+                    break;
+                case 'Транспорт/служба безпеки/охорона':
+                    $ind = '12';
+                    break;
+                case 'Поліграфія/дизайн/оформлення':
+                    $ind = '13';
+                    break;
+                case 'Виробництво/робітничі спеціальності':
+                    $ind = '14';
+                    break;
+                case 'Краса/фітнес/спорт/туризм':
+                    $ind = '15';
+                    break;
+                case 'Мистецтво/розваги/шоу-бізнес':
+                    $ind = '16';
+                    break;
+                case 'Журналістика/редагування/переклади':
+                    $ind = '17';
+                    break;
+                case 'Освіта/наука/виховання':
+                    $ind = '18';
+                    break;
+                case 'Сфера обслуговування/кулінарія/готелі/ресторани':
+                    $ind = '19';
+                    break;
+                case 'Охорона здоров\'я/фармацевтика':
+                    $ind = '20';
+                    break;
+                case 'Сільське господарство/переробка с/г продукції':
+                    $ind = '21';
+                    break;
+                case 'Домашній персонал/різноробочі':
+                    $ind = '22';
+                    break;
+                case 'Громадські організації/політичні партії':
+                    $ind = '23';
+                    break;
+                case 'Екологія/охорона навколишнього середовища':
+                    $ind = '24';
+                    break;
+                case 'Соціальна сфера':
+                    $ind = '25';
+                    break;
+                default:
+                    $ind = '666';
+            }
+        $industry = Input::get('industry_id', (int)$ind);
 
         $cities = $cityModel->getCities();
-        if(!$c = Input::get('city_id'))
-            $c = 0;
-        $city = Input::get('city_id', (int)$c);
-
-        $specialisations = Vacancy::groupBy('position')->lists('position');
-        if(!$s = Input::get('specc'))
-            $s = 0;
-        $specialisation = Input::get('specc', $s);
+        if(!$cit = Input::get('city'))
+            $cit = 0;
+        else
+            switch($cit)
+            {
+                case 'Уся Україна':
+                    $cit = '1';
+                    break;
+                case 'Вінниця':
+                    $cit = '2';
+                    break;
+                case 'Дніпропетровськ':
+                    $cit = '3';
+                    break;
+                case 'Донецьк':
+                    $cit = '4';
+                    break;
+                case 'Житомир':
+                    $cit = '5';
+                    break;
+                case 'Запоріжжя':
+                    $cit = '6';
+                    break;
+                case 'Івано-Франківськ':
+                    $cit = '7';
+                    break;
+                case 'Київ':
+                    $cit = '8';
+                    break;
+                case 'Кіровоград':
+                    $cit = '9';
+                    break;
+                case 'Луганськ':
+                    $cit = '10';
+                    break;
+                case 'Луцьк':
+                    $cit = '11';
+                    break;
+                case 'Львів':
+                    $cit = '12';
+                    break;
+                case 'Миколаїв':
+                    $cit = '13';
+                    break;
+                case 'Одеса':
+                    $cit = '14';
+                    break;
+                case 'Полтава':
+                    $cit = '15';
+                    break;
+                case 'Рівне':
+                    $cit = '16';
+                    break;
+                case 'Севастополь':
+                    $cit = '17';
+                    break;
+                case 'Сімферополь':
+                    $cit = '18';
+                    break;
+                case 'Суми':
+                    $cit = '19';
+                    break;
+                case 'Тернопіль':
+                    $cit = '20';
+                    break;
+                case 'Ужгород':
+                    $cit = '21';
+                    break;
+                case 'Харків':
+                    $cit = '22';
+                    break;
+                case 'Херсон':
+                    $cit = '23';
+                    break;
+                case 'Хмельницький':
+                    $cit = '24';
+                    break;
+                case 'Черкаси':
+                    $cit = '25';
+                    break;
+                default:
+                    $cit = '666';
+            }
+        $city = Input::get('city_id', (int)$cit);
 
         if (!$cities->has($city) || !$industries->has($industry))
             abort(500);
@@ -436,14 +593,29 @@ class VacancyController extends Controller
         elseif($industry > 0 && $city < 1)
             $vacancies = Vacancy::where('branch', $industry)->paginate(25);
         else
-            $vacancies = Vacancy::AllVacancies()->where('position', '=', $specialisation)->paginate(25);
+            $vacancies = VacancyController::ShowFilterVacancies($city, $industry);
+
+        /*return Response::json(View::make('main.filter.vacancy',
+            array('vacancies' => $vacancies,
+                'industries' => $industries,
+                'cities' => $cities,
+                'city_id'=>$city,
+                'industry_id' => $industry)
+        )->render());*/
+
+        /*return View::make('main.filter.vacancy',
+            array('vacancies' => $vacancies,
+                'industries' => $industries,
+                'cities' => $cities,
+                'city_id'=>$city,
+                'industry_id' => $industry)
+        )->render();*/
 
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'industries' => $industries,
             'city_id' => $city,
             'industry_id' => $industry,
-            'cities' => $cities,
-            'specialisation' => $specialisations));
+            'cities' => $cities));
     }
 }

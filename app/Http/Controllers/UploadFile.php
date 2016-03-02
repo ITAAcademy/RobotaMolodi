@@ -11,96 +11,43 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
-use View;
-use File;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UploadFile extends Controller
 {
-    public function upFile()
+    public static function upFile()
     {
         if(Input::hasFile('FileName'))
         {
+            //File Validation Mime Types and size
+            $validator = Validator::make(Request::all(), [
+                'FileName' => 'mimes:doc,docx,odt,rtf,txt,pdf|max:5120',
+            ]);
+            if ($validator->fails()) {
+                return null;
+            }
             $file = Input::file('FileName');
+//
+//            $extensions = array('doc', 'docx', 'odt', 'rtf', 'txt', 'pdf');
+//            $var = 0;
+//
+//            foreach ($extensions as $i)
+//                if ($i == $file->getClientOriginalExtension())
+                    $var = 1;
 
-            $validator = Validator::make(Request::all(), [
-                'FileName' => 'mimes:doc,docx,odt,rtf,txt,pdf|max:2048',
-            ]);
-
-            if($validator->fails())
-            {
-                $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
-                return View::make('errors.uploadFileError', array(
-                    'error' => $error
-                ));//extension error
-            }
-            else
-            {
-                $filename = Auth::user()['email'] . '_' . $file->getClientOriginalName();
+//            if ($var == 1)
+//            {
+                $filename = Auth::user()['email'] . '_' . $file -> getClientOriginalName();
                 $file->move(base_path() . '/public/uploads', $filename);
-                return Redirect::back();
-            }
+                return base_path() . '/public/uploads/'. $filename;
+//            }
+//            else
+//                return view('errors/uploadFileError');
         }
         else
-        {
-            $error = 'Розмiр файлу перевищує 2 мб.';
-            return View::make('errors.uploadFileError', array(
-                'error' => $error
-            ));//size error
-        }
-    }
-
-    public function editImg()
-    {
-        if(Input::hasFile('image'))
-        {
-            $file = Input::file('image');
-
-            $validator = Validator::make(Request::all(), [
-                'image' => 'mimes:jpg,jpeg,png|max:2048',
-            ]);
-
-            if($validator->fails())
-            {
-                $error = 'Необхiдний формат файлу: jpeg, jpg, png розмiром до 2 мб.';
-                return View::make('errors.uploadFileError', array(
-                    'error' => $error
-                ));//size error
-            }
-            else
-            {
-                $extensions = ['.jpg', '.jpeg', '.png'];
-
-                if(Input::get('rov') == 'v')
-                {
-                    foreach($extensions as $i)
-                        if(File::exists(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i))
-                            File::delete(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i);
-
-                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
-                    $file->move(base_path() . '/public/image/vacancy', $filename);
-                }
-                else if(Input::get('rov') == 'r')
-                {
-                    foreach($extensions as $i)
-                        if(File::exists(base_path() . '/public/image/resume/' . Input::get('fname') . $i))
-                            File::delete(base_path() . '/public/image/resume/' . Input::get('fname') . $i);
-
-                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
-                    $file->move(base_path() . '/public/image/resume', $filename);
-                }
-                return Redirect::back();
-            }
-        }
-        else
-        {
-            $error = 'Розмiр файлу перевищує 2 мб.';
-            return View::make('errors.uploadFileError', array(
-                'error' => $error
-            ));//size error
-        }
-
+            return null;
+ //           return view('errors/uploadFileError');
     }
 }
 ?>
