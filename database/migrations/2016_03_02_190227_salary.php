@@ -14,7 +14,7 @@ class Salary extends Migration
     {
         Schema::table('vacancies', function ($table)
         {
-            $table->integer('salary_max', 11)->nullable();
+            $table->integer('salary_max');
         });
         Schema::table('vacancies', function ($table)
         {
@@ -23,7 +23,7 @@ class Salary extends Migration
 
         Schema::table('resumes', function ($table)
         {
-            $table->integer('salary_max', 11)->nullable();
+            $table->integer('salary_max');
         });
         Schema::table('resumes', function ($table)
         {
@@ -38,6 +38,11 @@ class Salary extends Migration
      */
     public function down()
     {
-        //
+       Schema::table('vacancies', function ($table) {
+            $table->dropColumn('salary_max');
+        });
+        Schema::table('resumes', function ($table) {
+            $table->dropColumn('salary_max');
+        });
     }
 }
