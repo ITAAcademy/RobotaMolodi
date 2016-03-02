@@ -4,6 +4,7 @@ use App\Models\City;
 use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
 use App\Models\Vacancy;
+use App\Models\Company;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
 use Illuminate\Database\Eloquent\Collection;
@@ -56,8 +57,12 @@ class SearchController extends Controller
 
     }
 
-    public function filterVacancy()
+    public function showCompanies_search()
     {
+      $search_request = Request::input('search_field');
+          $companies = Company::latest('id')->where('company_name','Like',"%$search_request%")->paginate(25);
+        //  dd($companies);
+          return view('main.filter.filterCompanies', ['companies' => $companies]);
 
     }
 

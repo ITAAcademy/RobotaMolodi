@@ -45,8 +45,9 @@ Route::controllers([
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
 //////Search Route//////////////
-Route::any('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
-Route::any('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
+Route::any('searchVacancies',['as' => 'searchVacancy' ,'uses' => 'SearchController@showVacancies']);
+Route::any('searchResumes',['as' => 'searchResume' ,'uses' => 'SearchController@showResumes']);
+Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchController@showCompanies_search']);
 //Route::get('searchVacancies',['as' => 'searchV' ,'uses' => 'SearchController@showVacancies']);
 //Route::get('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showResumes']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

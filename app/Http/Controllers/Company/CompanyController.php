@@ -101,7 +101,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             }
             else
             {
-                
+
                 return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
             }
 
@@ -180,7 +180,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             }
             else
             {
-                
+
                 $path = 'company.index';
             }
             return redirect()->route($path);

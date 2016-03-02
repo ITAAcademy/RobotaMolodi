@@ -53,44 +53,46 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 				<ul class="nav navbar-nav navbar-right">
-						
-							
+
+
 						<!--
-								
+
 						<li>
-							
+
 							<input type="text" class="nav navbar-nav navbar-right" name="searching_field" placeholder="Введіть запит" />
-							
-						</li>	
+
+						</li>
 						<form method="POST" action="{{ url('searchResumes') }}"name="search_form"></form> -->
-						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
-						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchR','method' => 'POST'])!!}
-						@else{!!Form::open(['route' => 'searchV','method' => 'POST'])!!}
-						@endif</li> 
-						<li> 
+						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
+						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
+						@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
+						@elseif(Request::is('searchCompanies')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
+						@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST'])!!}
+						@endif</li>
+						<li>
 							<div class="nav navbar-nav navbar-right">{!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}</div>
-						</li> 
-						 
-							
-					
-							
+						</li>
+
+
+
+
 						<li>
 							<button type="submit" Style="background-color:gray;color:white;" class="navbar-right btn btn-default"onclick="
 							@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 							@else window.location='{{ url('searchVacancies') }}'
 							@endif">Пошук</button>
-								
+
 						</li>
-						{!!Form::close()!!} 
-					@if (Auth::guest())																			
+						{!!Form::close()!!}
+					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}"><span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> Увійти</a></li>
 						<li><a href="{{ url('/auth/register') }}"><span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> Зареєструватись</a></li>
 					@else
-							
-							
+
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-                            
+
 							<ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
                                 <li><a href="{{ url('/auth/logout') }}"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
@@ -156,4 +158,3 @@ $(document).ready(function() {
 
 	</body>
 </html>
-
