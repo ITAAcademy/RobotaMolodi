@@ -45,12 +45,12 @@ class VacancySeeder extends Seeder
             $position = rand(1, 5);
             ($i < 54) ? $industry = 27 : $industry = rand(1,26);
             switch($position){
-                case 1: $pos = "Бухгалтер"; $sal = 10000;$All_Ukr_Vac=true; $phone = '0637576222'; break;
-                case 2: $pos = "Касир"; $sal = 5000; $phone = '0937555522'; break;
-                case 3: $pos = "Менеджер"; $sal = 8000; $phone = '0507545332'; break;
-                case 4: $pos = "Фермер"; $sal = 12000; $phone = '0637774433'; break;
-                case 5: $pos = "Програміст"; $sal = 25000; $phone = '0324535522'; break;
-                default: $pos = "Rock"; $sal = 50000; $phone = '0655646455'; break;
+                case 1: $pos = "Бухгалтер"; $sal = 10000;$All_Ukr_Vac = true; $phone = '0637576222'; break;
+                case 2: $pos = "Касир"; $sal = 5000; $All_Ukr_Vac = false;$phone = '0937555522'; break;
+                case 3: $pos = "Менеджер"; $sal = 8000;$All_Ukr_Vac = false; $phone = '0507545332'; break;
+                case 4: $pos = "Фермер"; $sal = 12000;$All_Ukr_Vac = false; $phone = '0637774433'; break;
+                case 5: $pos = "Програміст"; $sal = 25000;$All_Ukr_Vac = false; $phone = '0324535522'; break;
+                default: $pos = "Rock"; $sal = 50000; $All_Ukr_Vac = false;$phone = '0655646455'; break;
             }
             switch($position){
                 case 1: $com_id = 1;  break;
@@ -117,9 +117,9 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
             }
             switch($position){
                 case 1; case 2; case 3: $user_id = 1; $name_u = 'Віккі Тестер'; $All_Ukr_Res = true;    $email = '33sorey44@gmail.com'; break;
-                case 4:                 $user_id = 2; $name_u = 'Наталі Тестер';    $email = 'natasha-badora@yandex.ru'; break;
-                case 5:                 $user_id = 3; $name_u = 'Сергій Програмер'; $email = '3sorey4@gmail.com'; break;
-                default:                $user_id = 3; $name_u = 'Ларавел Тейлор';   $email = '37sorey4@gmail.com'; break;
+                case 4:                 $user_id = 2; $name_u = 'Наталі Тестер';  $All_Ukr_Res = false;  $email = 'natasha-badora@yandex.ru'; break;
+                case 5:                 $user_id = 3; $name_u = 'Сергій Програмер';$All_Ukr_Res = false; $email = '3sorey4@gmail.com'; break;
+                default:                $user_id = 3; $name_u = 'Ларавел Тейлор'; $All_Ukr_Res = false;  $email = '37sorey4@gmail.com'; break;
             }
 
             Resume::create([
