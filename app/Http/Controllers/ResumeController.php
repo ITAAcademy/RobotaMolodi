@@ -44,26 +44,26 @@ class ResumeController extends Controller {// Клас по роботі з ре
         return $resume;
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
     private $http;
-	public function index(Resume $resumeModel,Guard $auth)//Output all resumes
-	{
+    public function index(Resume $resumeModel,Guard $auth)//Output all resumes
+    {
         $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
 
         return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
-	}
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
-	{
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
+    {
         $this->http=$_SERVER['HTTP_REFERER'];
 
         if(Auth::check()){
@@ -77,15 +77,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
         {
             return Redirect::to('auth/login');
         }
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
-	{
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
+    {
         Input::flush();
 
         $rules = 'required|min:3';
@@ -108,17 +108,17 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
 
         return redirect()->to ( $this->http);
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
     /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
-	public function show($id,Guard $auth)
-	{
+    public function show($id,Guard $auth)
+    {
         $view = 'Resume.show';
 
         $resume = $this->getResume($id);
@@ -130,10 +130,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $user = auth()->user();
         if(Auth::check())
         {
-        if($user->id == $userResume->id)
-        {
-            $view = "Resume.showMyResume";
-        }
+            if($user->id == $userResume->id)
+            {
+                $view = "Resume.showMyResume";
+            }
         }
 
         return view($view)
@@ -141,16 +141,16 @@ class ResumeController extends Controller {// Клас по роботі з ре
             ->with('city',$city);
 
 
-	}
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id,City $city,Industry $industry)
-	{
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id,City $city,Industry $industry)
+    {
         if(Auth::check())
         {
             $resume = $this->getResume($id);
@@ -159,19 +159,19 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
 
             return view('Resume.edit')
-                        ->with('resume',$resume)
-                        ->with('cities',$cities)
-                        ->with('industries',$industries);
+                ->with('resume',$resume)
+                ->with('cities',$cities)
+                ->with('industries',$industries);
         }
-	}
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-        public function update($id,Request $request,Resume $resume,Guard $auth)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id,Request $request,Resume $resume,Guard $auth)
     {
         $rules = 'required|min:3';
         $this->validate($request,[
@@ -192,26 +192,26 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         return redirect()->route('cabinet.index');
 
-	}
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
         if(!is_numeric($id))
         {
             abort(500);
         }
 
-		Resume::destroy($id);
+        Resume::destroy($id);
 
         return redirect()->route('cabinet.index');
         //$resume->destroy();
-	}
+    }
     public function send_message(Guard $auth,Request $request)
     {
 
@@ -231,7 +231,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 return view('Resume/send_message');
             }
             else
-            return view('Resume/send_message');
+                return view('Resume/send_message');
             //$user = User::find($auth->user()->getAuthIdentifier());
 
 
@@ -244,176 +244,19 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function sortResumes(City $cityModel)
     {
         $industries = Industry::orderBy('name')->get();
-        if(!$ind = Input::get('industry'))
-            $ind = 0;
-        else
-            switch($ind)
-            {
-                case 'Торгівля/продаж':
-                    $ind = '1';
-                    break;
-                case 'Інформаційні технології':
-                    $ind = '2';
-                    break;
-                case 'Керівництво/топ-менеджмент':
-                    $ind = '3';
-                    break;
-                case 'Менеджери/керівники середньої ланки':
-                    $ind = '4';
-                    break;
-                case 'Бухгалтерія/банк/фінанси/аудит':
-                    $ind = '5';
-                    break;
-                case 'Офісний персонал/HR':
-                    $ind = '6';
-                    break;
-                case 'Реклама/маркетинг/pr':
-                    $ind = '7';
-                    break;
-                case 'Інженерія/технології':
-                    $ind = '8';
-                    break;
-                case 'Будівництво/архітектура/нерухомість':
-                    $ind = '9';
-                    break;
-                case 'Юриспруденція/страхування/консалтинг':
-                    $ind = '10';
-                    break;
-                case 'Логістика/склад/митниця':
-                    $ind = '11';
-                    break;
-                case 'Транспорт/служба безпеки/охорона':
-                    $ind = '12';
-                    break;
-                case 'Поліграфія/дизайн/оформлення':
-                    $ind = '13';
-                    break;
-                case 'Виробництво/робітничі спеціальності':
-                    $ind = '14';
-                    break;
-                case 'Краса/фітнес/спорт/туризм':
-                    $ind = '15';
-                    break;
-                case 'Мистецтво/розваги/шоу-бізнес':
-                    $ind = '16';
-                    break;
-                case 'Журналістика/редагування/переклади':
-                    $ind = '17';
-                    break;
-                case 'Освіта/наука/виховання':
-                    $ind = '18';
-                    break;
-                case 'Сфера обслуговування/кулінарія/готелі/ресторани':
-                    $ind = '19';
-                    break;
-                case 'Охорона здоров\'я/фармацевтика':
-                    $ind = '20';
-                    break;
-                case 'Сільське господарство/переробка с/г продукції':
-                    $ind = '21';
-                    break;
-                case 'Домашній персонал/різноробочі':
-                    $ind = '22';
-                    break;
-                case 'Громадські організації/політичні партії':
-                    $ind = '23';
-                    break;
-                case 'Екологія/охорона навколишнього середовища':
-                    $ind = '24';
-                    break;
-                case 'Соціальна сфера':
-                    $ind = '25';
-                    break;
-                default:
-                    $ind = '666';
-            }
-        $industry = Input::get('industry_id', (int)$ind);
+        if(!$i = Input::get('industry_id'))
+            $i = 0;
+        $industry = Input::get('industry_id', (int)$i);
 
         $cities = $cityModel->getCities();
-        if(!$cit = Input::get('city'))
-            $cit = 0;
-        else
-            switch($cit)
-            {
-                case 'Уся Україна':
-                    $cit = '1';
-                    break;
-                case 'Вінниця':
-                    $cit = '2';
-                    break;
-                case 'Дніпропетровськ':
-                    $cit = '3';
-                    break;
-                case 'Донецьк':
-                    $cit = '4';
-                    break;
-                case 'Житомир':
-                    $cit = '5';
-                    break;
-                case 'Запоріжжя':
-                    $cit = '6';
-                    break;
-                case 'Івано-Франківськ':
-                    $cit = '7';
-                    break;
-                case 'Київ':
-                    $cit = '8';
-                    break;
-                case 'Кіровоград':
-                    $cit = '9';
-                    break;
-                case 'Луганськ':
-                    $cit = '10';
-                    break;
-                case 'Луцьк':
-                    $cit = '11';
-                    break;
-                case 'Львів':
-                    $cit = '12';
-                    break;
-                case 'Миколаїв':
-                    $cit = '13';
-                    break;
-                case 'Одеса':
-                    $cit = '14';
-                    break;
-                case 'Полтава':
-                    $cit = '15';
-                    break;
-                case 'Рівне':
-                    $cit = '16';
-                    break;
-                case 'Севастополь':
-                    $cit = '17';
-                    break;
-                case 'Сімферополь':
-                    $cit = '18';
-                    break;
-                case 'Суми':
-                    $cit = '19';
-                    break;
-                case 'Тернопіль':
-                    $cit = '20';
-                    break;
-                case 'Ужгород':
-                    $cit = '21';
-                    break;
-                case 'Харків':
-                    $cit = '22';
-                    break;
-                case 'Херсон':
-                    $cit = '23';
-                    break;
-                case 'Хмельницький':
-                    $cit = '24';
-                    break;
-                case 'Черкаси':
-                    $cit = '25';
-                    break;
-                default:
-                    $cit = '666';
-            }
-        $city = Input::get('city_id', (int)$cit);
+        if(!$c = Input::get('city_id'))
+            $c = 0;
+        $city = Input::get('city_id', (int)$c);
+
+        $specialisations = Resume::groupBy('position')->lists('position');
+        if(!$s = Input::get('specialisation_'))
+            $s = 0;
+        $specialisation = Input::get('specialisation_', $s);
 
         if (!$cities->has($city) || !$industries->has($industry))
             abort(500);
@@ -423,13 +266,14 @@ class ResumeController extends Controller {// Клас по роботі з ре
         elseif($city > 0 && $industry < 1)
             $resumes = Resume::whereIn('city',[$city, 1])->latest('updated_at')->paginate(25);
         else
-            $resumes = Resume::latest('updated_at')->paginate(25);
+            $resumes = Resume::latest('updated_at')->where('position', '=' ,$specialisation)->paginate(25);
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
             'industries' => $industries,
             'city_id' => $city,
             'industry_id' => $industry,
-            'cities' => $cities));
+            'cities' => $cities,
+            'specialisation' => $specialisations));
     }
 }
