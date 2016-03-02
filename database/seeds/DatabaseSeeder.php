@@ -45,7 +45,7 @@ class VacancySeeder extends Seeder
             $position = rand(1, 5);
             ($i < 54) ? $industry = 27 : $industry = rand(1,26);
             switch($position){
-                case 1: $pos = "Бухгалтер"; $sal = 10000; $phone = '0637576222'; break;
+                case 1: $pos = "Бухгалтер"; $sal = 10000;$All_Ukr_Vac=true; $phone = '0637576222'; break;
                 case 2: $pos = "Касир"; $sal = 5000; $phone = '0937555522'; break;
                 case 3: $pos = "Менеджер"; $sal = 8000; $phone = '0507545332'; break;
                 case 4: $pos = "Фермер"; $sal = 12000; $phone = '0637774433'; break;
@@ -65,6 +65,7 @@ class VacancySeeder extends Seeder
                 "date_field" => \Carbon\Carbon::now(),
                 "salary" => $sal,
 				"telephone" => $phone ,
+				'vacancyAllUkraine' => $All_Ukr_Vac,
                 //"city" => $city_r,
                 "description" => $pos." "." bla-bla-bla Зарплата:".$sal]);
         }
@@ -115,7 +116,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
                 default: $pos = "Rock"; $sal = 50000;  break;
             }
             switch($position){
-                case 1; case 2; case 3: $user_id = 1; $name_u = 'Віккі Тестер';     $email = '33sorey44@gmail.com'; break;
+                case 1; case 2; case 3: $user_id = 1; $name_u = 'Віккі Тестер'; $All_Ukr_Res = true;    $email = '33sorey44@gmail.com'; break;
                 case 4:                 $user_id = 2; $name_u = 'Наталі Тестер';    $email = 'natasha-badora@yandex.ru'; break;
                 case 5:                 $user_id = 3; $name_u = 'Сергій Програмер'; $email = '3sorey4@gmail.com'; break;
                 default:                $user_id = 3; $name_u = 'Ларавел Тейлор';   $email = '37sorey4@gmail.com'; break;
@@ -130,6 +131,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
                 'industry' => $industry,
                 'city' => $city,
                 'salary' => $sal,
+				'resumeAllUkraine' => $All_Ukr_Res,
                 'description' => $pos.' програмного забезпечення. Оплата праці:'.$sal,
             ]);
         }
