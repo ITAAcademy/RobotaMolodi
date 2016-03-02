@@ -15,6 +15,7 @@ class VerifyCsrfToken extends BaseVerifier {
 
 	protected $except = [
 		'upfile',
+        'upimg',
 	];
 
 	public function handle($request, Closure $next)

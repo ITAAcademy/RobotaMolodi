@@ -309,9 +309,10 @@ word-wrap: break-word;
 }
 
 .panel-orange {
-	background-color: #fdddcd;
-	border:3px solid #f26c27;
-	font-size: large;
+    background-color: #f5f5f5;
+    border:3px solid #dddddd;
+    font-size: large;
+    color: #333333;
 }
 .text-info{
 	color:#d96123;
@@ -376,17 +377,42 @@ min-width: 300px;
     border-style: solid hidden hidden solid;
 }
 
-#aform
-{
-    border-style: solid hidden hidden hidden;
-    border-radius: 0;
-    border-width: 1px 0;
-}
-
 #vimg
 {
     width: 200px;
     height: 200px;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 25px;
+    margin-top: 80px;
+}
+
+.orangeLinks
+{
+    color: #f48952;
+    word-break: break-all;
+}
+
+.list-group-item
+{
+    background-color: #f5f5f5;
+    word-break: break-all;
+}
+
+#vrBlock
+{
+    border: 1px #dddddd;
+    display: inline-block;
+    border-style: solid hidden solid hidden;
+    border-radius: 0px;
+}
+
+#datAnnoyingSizes
+{
+    width: 650px;
+    float: right;
+}
+
+#yellowCircle
+{
+    color: #f48952;
+    font-size: 27px;
 }

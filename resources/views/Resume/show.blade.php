@@ -1,45 +1,46 @@
 @extends('app')
 
 @section('content')
-    <div class="panel panel-orange">
-        <div class="panel-heading"> <h2>{!!$resume->position!!}  &#183;  {!!$resume->salary!!} грн. <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y, H:i:s', strtotime($resume->created_at))}}</h5></span></h2></div>
-    </div>
-    <div class="panel panel-orange" style="background-color: #ffffff">
-        <ul class="list-group" style="float: right">
+    {!!Form::open(['route' => 'sortResumes', 'method' => 'get', 'name' => 'filthForm', 'id' => 'aform'])!!}
+    <input type = "hidden" name = "specialisation_" id = "idSpec"/>
+    <input type = "hidden" name = "city_id" id = "idCity"/>
+    <input type = "hidden" name = "industry_id" id = "idInd"/>
+    {!!Form::close()!!}
+    <div class="panel panel-orange" id="vrBlock">
+        <div class="panel-heading" id="datAnnoyingSizes">
+            <h2>
+                <a class="orangeLinks" href="javascript:submit('0', '0' , '{{$resume->position}}')">{!!$resume->position!!}</a>
+                <br><span style="color: red">{{$resume->salary}} - {{$resume->salary_max}} {{$resume->currency}}</span>
+            </h2>
+        </div>
+        <ul class="list-group" id="datAnnoyingSizes">
             <li class="list-group-item"> {!!$resume->name_u!!}</li>
-            {!!Form::open(['route' => 'sortResumes', 'method' => 'get', 'name' => 'filthForm', 'id' => 'aform'])!!}
-                <li class="list-group-item"><a href="javascript:submitCity()" id = "valCity">{!!$city->name!!}</a></li>
-                <input type = "hidden" name = "city" id = "idCity"/>
-                <li class="list-group-item"><a href="javascript:submitInd()"  id = "valInd">{!!$resume->Industry()->name!!}</a></li>
-                <input type = "hidden" name = "industry" id = "idInd"/>
-            {!!Form::close()!!}
-            <li class="list-group-item"><span class="heading"> Опис: </span> {!!$resume->description!!}</li>
-            <li class="list-group-item" id="opt-data-low"><a href="{{$resume->id}}/send_message">Написати на пошту</a></li>
+            <li class="list-group-item"><a class="orangeLinks" href="javascript:submit('0', {{$resume->Industry()->id}} ,'empty')">{!!$resume->Industry()->name!!}</a></li>
+            <li class="list-group-item"><span class="heading">Опис: </span> {!!$resume->description!!}</li>
+            <li class="list-group-item"><a class="orangeLinks" href="{{$resume->id}}/send_message">Написати на пошту</a></li>
+            <li class="list-group-item" id="opt-data-low" style="color: #777777;"><a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{!!$city->name!!}</a> <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->created_at))}}</li>
         </ul>
+
         <div class="panel panel-orange" id="vimg">
-            @if(File::exists('image/resume/' . $resume->id . '.png'))
-                {!! Html::image('image/default300.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+            @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
+                {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+            @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')))
+                {!! Html::image('image/resume/' . $resume->id_u . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+            @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')))
+                {!! Html::image('image/resume/' . $resume->id_u . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
             @else
-                {!! Html::image('image/default300.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
             @endif
         </div>
     </div>
 
     <script>
-        function submitCity()
+        function submit(c, i, s)
         {
-            var x = document.getElementById("valCity").innerHTML;
-            document.getElementById("idCity").value = x;
-            document.getElementById("idInd").value = null; //set null to industry
-            document.filthForm.submit();
-        }
-        function submitInd()
-        {
-            var x = document.getElementById("valInd").innerHTML;
-            document.getElementById("idInd").value = x;
-            document.getElementById("idCity").value = null; //set null to city
+            document.getElementById("idCity").value = c;
+            document.getElementById("idInd").value = i;
+            document.getElementById("idSpec").value = s;
             document.filthForm.submit();
         }
     </script>
 @stop
-
