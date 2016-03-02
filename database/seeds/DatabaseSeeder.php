@@ -150,7 +150,6 @@ class CitySeeder extends Seeder
     public function run()
     {
         DB::table("cities")->delete();
-        City::create(['name' => "Уся Україна"]);
         City::create(["name" => "Вінниця"]);
         City::create(["name" => "Дніпропетровськ"]);
         City::create(["name" => "Донецьк"]);
