@@ -54,6 +54,7 @@ Route::any('searchResumes',['as' => 'searchR' ,'uses' => 'SearchController@showR
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
 
+
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
 Route::post('vacancy/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
@@ -78,6 +79,8 @@ Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPast
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
 Route::model('company/{company}/destroy','App\Models\Company');
+Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompany_Vacancies']);
+//Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');
 
