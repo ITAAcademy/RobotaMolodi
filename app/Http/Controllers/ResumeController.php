@@ -125,8 +125,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         $userResume = $resume->ReadUser($id);
 
-        $city = City::find($resume->city);
 
+        $city = null;
+        if (!$resume->getAttribute('resumeAllUkraine')) {
+            $city = City::find($resume->city);
+        }
         $user = auth()->user();
         if(Auth::check())
         {

@@ -188,9 +188,10 @@ class VacancyController extends Controller
         //$resume = 'Зареєструйтесь!';
 
         $userVacation = $vacancy->ReadUser($id);
-
-        $cities = $vacancy->Cities();
-
+        $cities = null;
+        if (!$vacancy->getAttribute('vacancyAllUkraine')) {
+            $cities = $vacancy->Cities();
+        }
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
 

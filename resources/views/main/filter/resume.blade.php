@@ -14,7 +14,7 @@
                                 <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($resume->created_at))}}</h5></span></h3>
                     </div>
                     <div class="panel-body">
-                        <h4 class="list-group-item-heading">{{ $resume->City()->name}}</h4>
+                        <h4 class="list-group-item-heading">@if(!$resume->getAttribute('resumeAllUkraine')){{ $resume->City()->name}} @else {{'Уся Україна'}} @endif </h4>
                         <h4 class="list-group-item-heading">{{ $resume->Industry()->name}}</h4>
                     </div>
                     </div>
