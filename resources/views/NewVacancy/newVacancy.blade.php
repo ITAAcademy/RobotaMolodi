@@ -57,15 +57,24 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Зарплата</label>
-            <div class="col-md-6 col-sm-6">
+            <label for="sector" class="col-md-2 col-sm-2 control-label">Зарплата        </label>
+            <span class="col-md-6 col-sm-6" style="width:5%">від</span>
+            <div class="col-md-6 col-sm-6" style="width:20%">
                 {!! Form::text('salary', Input::old('salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
+
             </div>
+            <span class="col-md-6 col-sm-6" style="width:5%">до</span>
+            <div class="col-md-6 col-sm-6" style="width:20%">
+
+              {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
+
+            </div>
+
             <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
         </div>
     </div>
-	
-	
+
+
 	 <div class="row">
         <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2 col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
@@ -75,9 +84,9 @@
 			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
         </div>
     </div>
-	
-	
-	
+
+
+
     <div class="row">
         <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2  col-sm-2 control-label">Email роботодавця</label>

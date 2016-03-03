@@ -27,7 +27,8 @@ class Resume extends Model {
 
     public function fillResume($id,$auth,$request)
     {
-
+        $request['currency']='FIN';///////////////////удалить после добавления валют в при создании вакансий и резюме
+        $currency = $request['currency'];
         $name_u = $request['name_u'];
         $telephone = $request['telephone'];
         $email = $request['email'];

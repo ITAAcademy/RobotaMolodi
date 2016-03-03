@@ -21,6 +21,7 @@ class Vacancy extends Model {
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
+
         $position = $request['position'];
         $branch = $request['branch'];
         $salary = $request['salary'];
@@ -30,6 +31,8 @@ class Vacancy extends Model {
         $description = $request['description'];
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
+        $request['currency']='FIN';///////////////////удалить после добавления валют в при создании вакансий и резюме
+        $currency = $request['currency'];
 
         if($salary > 1000000000){
             $salary = 1000000000;
