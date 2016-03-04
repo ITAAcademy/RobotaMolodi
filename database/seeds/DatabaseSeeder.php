@@ -222,7 +222,7 @@ class VacancyCitySeeder extends Seeder
 
         for($i = 1;$i < 106;$i++)
         {
-            ($i < 54) ? $city = 27 : $city = rand(1,26);    //  if($i < 54) $city = 27; else $city = rand(1,26);
+            ($i < 54) ? $city = 26 : $city = rand(1,26);    //  if($i < 54) $city = 27; else $city = rand(1,26);
             Vacancy_City::create([
                 'vacancy_id' => $i,
                 'city_id' => $city
