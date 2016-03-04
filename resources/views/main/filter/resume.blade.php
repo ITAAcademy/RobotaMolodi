@@ -10,7 +10,8 @@
                 <div class="list">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h3 class="list-group-item-heading panel-title">{{$resume->branch}} Позиція: <span class="text-info" >{{$resume->position}}</span>  &#183; {{$resume->salary}} грн
+                      <h3 class="list-group-item-heading panel-title">{{$resume->branch}} Позиція: <span class="text-info" >{{$resume->position}}</span>  &#183;
+                        <span style="color: gray">{{$resume->salary}} - {{$resume->salary_max}} {{$resume->currency}}</span>
                                 <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($resume->created_at))}}</h5></span></h3>
                     </div>
                     <div class="panel-body">
