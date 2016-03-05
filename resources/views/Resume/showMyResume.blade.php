@@ -22,7 +22,8 @@
             <li class="list-group-item"> {!!$resume->name_u!!}</li>
             <li class="list-group-item"><a class="orangeLinks" href="javascript:submit('0', {{$resume->Industry()->id}} ,'empty')">{!!$resume->Industry()->name!!}</a></li>
             <li class="list-group-item"><span class="heading">Опис:</span> {!!$resume->description!!} <span class="text-muted text-right pull-right"></span></li>
-            <li class="list-group-item" id="opt-data-low" style="color: #777777;"><a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{!!$city->name!!}</a> <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->created_at))}}</li>
+            <li class="list-group-item" id="opt-data-low" style="color: #777777;">@if(!$resume->getAttribute('resumeAllUkraine'))<a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{!!$city->name!!}</a> @else <a class="orangeLinks" href="/sresume">Уся Україна</a> @endif <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->created_at))}}</li>
+
         </ul>
 
         <div style="height: 270px">

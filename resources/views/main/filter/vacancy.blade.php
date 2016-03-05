@@ -15,7 +15,7 @@
                     <div class="panel-body">
                         <h4 class="list-group-item-heading">{{ $vacancy->Industry()->name}}</h4>
                         <h4 class="list-group-item-heading">{{ $vacancy->Company()->company_name}}</h4>
-                        <h4 class="list-group-item-heading">@foreach($vacancy->City() as $city){{ $city->name}} @endforeach</h4>
+                        <h4 class="list-group-item-heading">@if(!$vacancy->getAttribute('vacancyAllUkraine'))@foreach($vacancy->City() as $city){{ $city->name}} @endforeach @else {{'Уся Україна'}} @endif </h4>
                     </div>
                 </div>
             </div>
