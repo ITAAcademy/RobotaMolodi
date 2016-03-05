@@ -12,7 +12,11 @@
                     <div class="panel-heading">
                         <h2 class="list-group-item-heading panel-title"><span class="text-info" >{{$vacancy->position}} </span> &#183;
                           <span style="color: gray">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->currency}}</span>
-                            <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}</h5></span></h2></div>
+                            <span class="text-muted text-right pull-right"><h5 id="{{$vacancy->id}}">
+                                    <script>
+                                        $('#'+'{{$vacancy->id}}').text(FormatDate({{strtotime($vacancy->created_at)}}));
+                                    </script>
+                                </h5></span></h2></div>
                     <div class="panel-body">
                         <h4 class="list-group-item-heading">{{ $vacancy->Industry()->name}}</h4>
                         <h4 class="list-group-item-heading">{{ $vacancy->Company()->company_name}}</h4>

@@ -12,7 +12,11 @@
                     <div class="panel-heading">
                       <h3 class="list-group-item-heading panel-title">{{$resume->branch}} Позиція: <span class="text-info" >{{$resume->position}}</span>  &#183;
                         <span style="color: gray">{{$resume->salary}} - {{$resume->salary_max}} {{$resume->currency}}</span>
-                                <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($resume->created_at))}}</h5></span></h3>
+                                <span class="text-muted text-right pull-right"><h5 id="{{$resume->id}}">
+                                        <script>
+                                            $('#'+'{{$resume->id}}').text(FormatDate({{strtotime($resume->created_at)}}));
+                                        </script>
+                                    </h5></span></h3>
                     </div>
                     <div class="panel-body">
                         <h4 class="list-group-item-heading">@if(!$resume->getAttribute('resumeAllUkraine')){{ $resume->City()->name}} @else {{'Уся Україна'}} @endif </h4>
