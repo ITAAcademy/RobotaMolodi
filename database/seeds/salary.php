@@ -11,12 +11,9 @@ class salary extends Seeder
      */
     public function run()
     {
-        DB::table('vacancies')->insert([
-            'salary_max' => 60000,
-        ]);
-
-        DB::table('vacancies')->insert([
-            'salary_max' => 60000,
-        ]);
+        DB::table('currencies')->insert(array(
+            array('currency' => 'UAH', 'index' => 1),
+            array('currency' => 'USD', 'index' => 26),
+        ));
     }
 }
