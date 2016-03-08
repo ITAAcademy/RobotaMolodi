@@ -11,8 +11,10 @@ class money extends Seeder
      */
     public function run()
     {
-        DB::table('vacancies')->insert([
-            'salary_max' => 60000,
-        ]);
+        DB::update('update vacancies set salary_max = 60000');
+        DB::update('update resumes set salary_max = 60000');
+
+        DB::update('update vacancies set currency_id = 1');
+        DB::update('update resumes set currency_id = 1');
     }
 }
