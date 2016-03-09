@@ -1,3 +1,8 @@
+@if(count($vacancies) === 0)
+    <br>
+    <?php echo "Немає вакансій по Вашому пошуку"?>
+
+@else
 <address>
 
     @foreach($vacancies as $vacancy)
@@ -7,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2 class="list-group-item-heading panel-title"><span class="text-info" >{{$vacancy->position}} </span> &#183;  {{$vacancy->salary}} грн
-                            <span class="text-muted text-right pull-right"><h5 id="{{$vacancy->id}}">
+                            <span class="text-muted text-right pull-right"><h5 id="{{$vacancy->id}}" title="{{ date('j.m.Y,H:i:s', strtotime($vacancy->created_at))}}">
                                     <script>
                                         $('#'+'{{$vacancy->id}}').text(FormatDate({{strtotime($vacancy->created_at)}}));
                                     </script>
@@ -25,6 +30,7 @@
 
 
     @endforeach
-        {!! str_replace('/?', '?', $vacancies->render()) !!}
+        {{--{!! str_replace('/?', '?', $vacancies->render()) !!}--}}
+        @include('/pagination/pagination', ['paginator' => $vacancies])
 </address>
-<br>
+@endif
