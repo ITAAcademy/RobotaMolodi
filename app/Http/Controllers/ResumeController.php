@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 use View;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Currency;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -71,7 +72,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $industries = $industryModel->getIndustries();
             $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
-            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail,]);
+            $currency = new Currency();
+            $currencies = $currency->getCurrencies();
+
+            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'currencies' => $currencies]);
         }
         else
         {
@@ -157,11 +161,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $cities = $city->getCities();
             $industries = $industry->getIndustries();
 
+            $currency = new Currency();
+            $currencies = $currency->getCurrencies();
+
 
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
-                ->with('industries',$industries);
+                ->with('industries',$industries)
+                ->with('currencies', $currencies);
         }
     }
 

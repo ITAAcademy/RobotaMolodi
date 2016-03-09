@@ -55,12 +55,34 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Зарплата</label>
+        <label for="sector" class="col-sm-2 control-label">Зарплата (мiнiмальна)</label>
         <div class="col-sm-5">
             {!! Form::text('salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
         </br>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px">
+        <label for="sector" class="col-sm-2 control-label">Зарплата (максимальна)</label>
+        <div class="col-sm-5">
+            {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
+        </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
+        </br>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px">
+        <label for="sector" class="col-sm-2 control-label">Валюта</label>
+        <div class="col-sm-5">
+            <select class="form-control" id="selectCurrency" name="currency_id">
+                @foreach($currencies as $currency)
+                    {
+                    <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                    }
+                @endforeach
+            </select>
+        </div></br>
     </div>
 
     <div class="form-group" style="margin-top: 30px">
@@ -73,14 +95,14 @@
     </div>
 
 
-        <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" ">
+        <!--<div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" ">
             <label for="sector" class="col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
             <div class="col-sm-5">
                 {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
             </div>
 			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
-        </div><br>
-  
+        </div><br>-->
+
 	
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>

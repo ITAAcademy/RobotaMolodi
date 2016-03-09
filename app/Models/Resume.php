@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Resume extends Model {
 
     protected $table = "resumes";
-    protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency', 'city', 'description'];
+    protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description'];
 
     public function getResumes()
     {
@@ -36,7 +36,7 @@ class Resume extends Model {
         $position = $request['position'];
         $salary = $request['salary'];
         $salary_max = $request['salary_max'];
-        $currency = $request['currency'];
+        $currency_id = $request['currency_id'];
         $description = $request['description'];
 
         if($salary > 1000000000){
@@ -69,7 +69,7 @@ class Resume extends Model {
         $resume->position = $position;
         $resume->salary = $salary;
         $resume->salary_max = $salary_max;
-        $resume->currency = $currency;
+        $resume->currency_id = $currency_id;
         $resume->description = $description;
 
         return $resume;
@@ -98,4 +98,9 @@ class Resume extends Model {
         return $industry;
     }
 
+    public function Currency()
+    {
+        $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
+        return $currencies;
+    }
 }

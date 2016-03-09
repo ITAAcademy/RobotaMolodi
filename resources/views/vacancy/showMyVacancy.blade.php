@@ -15,13 +15,12 @@
         <div class="panel-heading" id="datAnnoyingSizes">
             <h2>
                 <a class="orangeLinks" href="javascript:submit('0', '0' , '{{$vacancy->position}}')">{{$vacancy->position}}</a>
-                <br><span style="color: red">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->currency}}</span>
+                <br><span style="color: red">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span>
             </h2>
         </div>
         <ul class="list-group"  id="datAnnoyingSizes">
             <li class="list-group-item">{{$user->name}}</li>
             <li class="list-group-item">  <a class="orangeLinks" href="javascript:submit('0', {{$industry->id}} ,'empty')">{{$industry->name}}</a></li>
-            <li class="list-group-item">  {{$vacancy->telephone}}</li>
             <li class="list-group-item" style="border-bottom: none"><span class="heading">Опис: </span>{{$vacancy->description}}</li>
             <li class="list-group-item">  <a style="text-decoration: underline" target="_blank" class="orangeLinks" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>
             <li class="list-group-item" id="opt-data-low" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{{$city->name}}</a>@endforeach <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->created_at))}}</li>
