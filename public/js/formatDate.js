@@ -21,7 +21,7 @@ function FormatDate(dateCreate) {
     if (day < 4) {
         return day + ' дн. тому';
     }
-    var d = date;
+    var d = new Date(dateCreate);
     d = [
         '0' + d.getDate(),
         '0' + (d.getMonth() + 1),
