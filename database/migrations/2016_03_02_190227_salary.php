@@ -14,27 +14,20 @@ class Salary extends Migration
     {
         Schema::table('vacancies', function ($table)
         {
-            $table->integer('salary_max')->nullable();
+            $table->integer('salary_max');
         });
         Schema::table('vacancies', function ($table)
         {
-            $table->integer('currency_id')->default('0');
+            $table->string('currency', 3)->default('UAH');
         });
 
         Schema::table('resumes', function ($table)
         {
-            $table->integer('salary_max')->nullable();
+            $table->integer('salary_max');
         });
         Schema::table('resumes', function ($table)
         {
-            $table->integer('currency_id')->default('0');
-        });
-
-        Schema::create('currencies', function($table)
-        {
-            $table->increments('id');
-            $table->string('currency', 3);
-            $table->float('index');
+            $table->string('currency', 3)->default('UAH');
         });
     }
 
@@ -45,6 +38,11 @@ class Salary extends Migration
      */
     public function down()
     {
-        //
+       Schema::table('vacancies', function ($table) {
+            $table->dropColumn('salary_max');
+        });
+        Schema::table('resumes', function ($table) {
+            $table->dropColumn('salary_max');
+        });
     }
 }

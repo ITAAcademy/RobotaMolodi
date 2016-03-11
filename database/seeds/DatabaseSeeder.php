@@ -106,7 +106,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
         for($i = 0; $i < 105; $i++) {
             $position = rand(1, 5);
             $industry = ($i < 54) ?  27 :  rand(1, 26);
-            ($i < 54) ? $city = 27 : $city = rand(1,26);
+            ($i < 54) ? $city = 26 : $city = rand(1,25);
             switch ($position) {
                 case 1: $pos = "Бухгалтер"; $sal = 11000; break;
                 case 2: $pos = "Тестер"; $sal = 6000;  break;
@@ -222,7 +222,7 @@ class VacancyCitySeeder extends Seeder
 
         for($i = 1;$i < 106;$i++)
         {
-            ($i < 54) ? $city = 27 : $city = rand(1,26);    //  if($i < 54) $city = 27; else $city = rand(1,26);
+            ($i < 54) ? $city = 26 : $city = rand(1,25);    //  if($i < 54) $city = 27; else $city = rand(1,26);
             Vacancy_City::create([
                 'vacancy_id' => $i,
                 'city_id' => $city
