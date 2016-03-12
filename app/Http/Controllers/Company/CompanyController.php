@@ -41,6 +41,8 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
   $cities = $cityModel->getCities();
   $city = Input::get('city_id', 0);
 
+
+$url="http://localhost/scompany/company_vac/";
   $specialisation = Input::get('specc',0);
   $specialisations = Vacancy::groupBy('position')->lists('position');
   //$res= Input::get('id',0);
@@ -65,6 +67,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
                       )->render());
   }*/
   return View::make('main.filter.filterVacancies', array(
+      'url' =>  $url,
       'vacancies' => $vacancies,
       'industries' => $industries,
       'city_id'=>$city,
@@ -91,18 +94,20 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         {
 
             $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+            $url=url('company/');
 
             if(empty($companies[0]))
             {
 
                 $companies = "Зараз у Вас немає компаній. Створіть";
 
-                return  View::make('Company.myCompanies')->nest('child','Company._noCompany',['companies' => $companies]);
+                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
+
             }
             else
             {
 
-                return  View::make('Company.myCompanies')->nest('child','Company._company',['companies' => $companies]);
+                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
             }
 
         }
@@ -201,6 +206,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	public function show($id,Guard $auth)
 	{
         $company = $this->getCompany($id);
+
 
         return view('Company.show')
             ->with('company',$company);

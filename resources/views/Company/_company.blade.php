@@ -3,7 +3,7 @@
     @foreach($companies as $company)
 
         <article>
-            <a href="company/{{$company->id}}" class="link">
+
                 <div class="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+
         </article>
 
 </address>

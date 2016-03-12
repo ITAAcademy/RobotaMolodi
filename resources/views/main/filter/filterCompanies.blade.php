@@ -14,7 +14,22 @@
 @section('content')
 
     <div class="posts">
-        @include('main.filter.company')
+        @if(count($companies) === 0)
+            <br>
+            <?php echo "Немає компаній по Вашому пошуку"?>
+        @else
+            <address>
+                @foreach($companies as $company)
+                    <article>
+
+                        <a href="{{$url}}/{{$company->id}}"  class="link">
+                            @include('Company._company')
+                        </a>
+                    </article>
+            </address>
+                @endforeach
+
+
+        @endif
     </div>
 @stop
-
