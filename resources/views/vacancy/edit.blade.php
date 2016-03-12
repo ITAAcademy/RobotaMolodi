@@ -5,7 +5,7 @@
     <h3>Редагування вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Позиція</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             {!! Form::text('position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
 
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
                 @foreach($industries as $industry)
                     {
@@ -37,7 +37,7 @@
 
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть організацію</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
                     @if($comp->id != Input::old('Organisation'))
@@ -55,22 +55,39 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Зарплата</label>
-        <span class="col-md-6 col-sm-6" style="width:5%">від</span>
-        <div class="col-md-6 col-sm-6" style="width:20%">
-            {!! Form::text('salary', Input::old('salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
-        </div>
-        <span class="col-md-6 col-sm-6" style="width:5%">до</span>
-        <div class="col-md-6 col-sm-6" style="width:20%">
-          {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
+        <label for="sector" class="col-sm-2 control-label">Зарплата (мiнiмальна)</label>
+        <div class="col-sm-5">
+            {!! Form::text('salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
         </br>
     </div>
 
     <div class="form-group" style="margin-top: 30px">
+        <label for="sector" class="col-sm-2 control-label">Зарплата (максимальна)</label>
+        <div class="col-sm-5">
+            {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
+        </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
+        </br>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px">
+        <label for="sector" class="col-sm-2 control-label">Валюта</label>
+        <div class="col-sm-5">
+            <select class="form-control" id="selectCurrency" name="currency_id">
+                @foreach($currencies as $currency)
+                    {
+                    <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                    }
+                @endforeach
+            </select>
+        </div></br>
+    </div>
+
+    <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Email роботодавця</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
         <div > <span style="color: red"  >* <?php echo $errors->first('email',':message'); ?></span> </div>
@@ -78,18 +95,18 @@
     </div>
 
 
-        <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" ">
+        <!--<div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" ">
             <label for="sector" class="col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-sm-5">
                 {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
             </div>
-			<div class="col-md-6 col-sm-6">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
-        </div><br>
+			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
+        </div><br>-->
 
-
+	
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="city[]" id="city" style="width:100%;">
                 @foreach($cities as $city)
                     {
@@ -117,7 +134,7 @@
 
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
-        <div class="col-md-6 col-sm-6">
+        <div class="col-sm-5">
             {!! Form::textarea('description', $vacancy->description, array('class' => 'form-control' )) !!}
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>

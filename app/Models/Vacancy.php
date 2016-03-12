@@ -8,7 +8,7 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary', 'salary_max', 'currency','city', 'description','user_email', 'updated_at'];
+    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at'];
 
 //Read and return company
     public function ReadCompany()
@@ -21,18 +21,15 @@ class Vacancy extends Model {
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
-
         $position = $request['position'];
         $branch = $request['branch'];
         $salary = $request['salary'];
         $salary_max = $request['salary_max'];
-        $currency = $request['currency'];
-        $telephone = $request['telephone'];
+        $currency_id = $request['currency_id'];
+        //$telephone = $request['telephone'];
         $description = $request['description'];
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
-        $request['currency']='FIN';///////////////////удалить после добавления валют в при создании вакансий и резюме
-        $currency = $request['currency'];
 
         if($salary > 1000000000){
             $salary = 1000000000;
@@ -53,10 +50,10 @@ class Vacancy extends Model {
 
         $vacancy->position = $position;
         $vacancy->branch = $branch;
-        $vacancy->telephone = $telephone;
+        //$vacancy->telephone = $telephone;
         $vacancy->salary = $salary;
         $vacancy->salary_max = $salary_max;
-        $vacancy->currency = $currency;
+        $vacancy->currency_id = $currency_id;
         $vacancy->description = $description;
         $vacancy->company_id = $companyId;
         $vacancy->user_email = $userEmail;
@@ -108,10 +105,17 @@ class Vacancy extends Model {
 
         return $cities;
     }
+
     public function scopeAllVacancies()
     {
         $vacancies = $this->latest('updated_at');
 
         return $vacancies;
+    }
+
+    public function Currency()
+    {
+        $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
+        return $currencies;
     }
 }

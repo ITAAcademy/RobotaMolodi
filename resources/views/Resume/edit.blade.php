@@ -75,18 +75,34 @@
 
    <div class="row">
     <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата") !!} <span class="required_field">*</span></div>
-        <span class="col-md-6 col-sm-6" style="width:5%">від</span>
-        <div class="col-md-6 col-sm-6" style="width:20%">
-            {!! Form::text('salary', Input::old('salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
-        </div>
-        <span class="col-md-6 col-sm-6" style="width:5%">до</span>
-        <div class="col-md-6 col-sm-6" style="width:20%">
-          {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
-        </div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (мiнiмальна)") !!} <span class="required_field">*</span></div>
+        <div class=" col-md-6 col-sm-6"> {!! Form::text('salary', $resume->salary, ['class'=>'form-control']) !!}</div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
     </div>
    </div><br>
+
+    <div class="row">
+        <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
+            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (максимальна)") !!} <span class="required_field">*</span></div>
+            <div class=" col-md-6 col-sm-6"> {!! Form::text('salary_max', $resume->salary_max, ['class'=>'form-control']) !!}</div>
+            <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Валюта') !!}</div>
+            <div class=" col-md-6 col-sm-6">
+                <select class="form-control" id="selectCurrency" name="currency_id">
+                    @foreach($currencies as $currency)
+                        {
+                        <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        }
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div><br>
 
     <div class="row">
     <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">

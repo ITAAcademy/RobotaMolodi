@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Requests;
+use App\Models\Currency;
 use App\Models\profOrientation\test1;
 use App\Models\profOrientation\UserSession;
 use App\Models\Vacancy_City;
@@ -67,7 +68,8 @@ class VacancyController extends Controller
 
             session_start();
 
-            if (!empty($hasCompany[0])) {
+            if (!empty($hasCompany[0]))
+            {
 
                 $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
 
@@ -79,11 +81,15 @@ class VacancyController extends Controller
 
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
+                $currency = new Currency();
+                $currencies = $currency->getCurrencies();
+
                 return view('NewVacancy.newVacancy',
                     ['companies' => $countCompany,
                         'cities' => $cities,
                         'industries' => $industries,
                         'userEmail' => $userEmail,
+                        'currencies' => $currencies,
                     ]);
             } else {
                 $_SESSION['path'] = 'vacancy.create';
@@ -145,7 +151,7 @@ class VacancyController extends Controller
                 $rules = 'required|min:3';
                 $this->validate($request, [
                     'position' => $rules,
-                    'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
+                    //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
                     'salary' => 'required|regex:/[^0]+/|min:1|numeric',
                     'email' => 'required|email',
                     'description' => $rules,
@@ -188,10 +194,9 @@ class VacancyController extends Controller
         //$resume = 'Зареєструйтесь!';
 
         $userVacation = $vacancy->ReadUser($id);
-        $cities = null;
-        if (!$vacancy->getAttribute('vacancyAllUkraine')) {
-            $cities = $vacancy->Cities();
-        }
+
+        $cities = $vacancy->Cities();
+
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
 
@@ -227,7 +232,6 @@ class VacancyController extends Controller
      */
     public function edit($id, Guard $auth)
     {
-
         $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
 
         $industry = new Industry();
@@ -235,6 +239,9 @@ class VacancyController extends Controller
 
         $city = new City();
         $cities = $city->getCities();
+
+        $currency = new Currency();
+        $currencies = $currency->getCurrencies();
 
         $vacancy = $this->getVacancy($id);
 
@@ -245,7 +252,8 @@ class VacancyController extends Controller
             ->with('industries', $industries)
             ->with('companies', $companies)
             ->with('cities', $cities)
-            ->with('userEmail', $userEmail);
+            ->with('userEmail', $userEmail)
+            ->with('currencies', $currencies);
     }
 
     /**
@@ -265,7 +273,7 @@ class VacancyController extends Controller
                     'position' => $rules,
                     'salary' => 'required|regex:/[^0]+/|min:1|numeric',
                     'email' => 'required|email',
-                    'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
+                    //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
                     'description' => $rules,
                     'city' => 'required'
                 ]);

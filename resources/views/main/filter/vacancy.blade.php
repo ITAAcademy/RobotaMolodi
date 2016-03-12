@@ -1,8 +1,12 @@
-<address>
+@if(count($vacancies) === 0)
+    <br>
+    <?php echo "Немає вакансій по Вашому пошуку"?>
 
-    @foreach($vacancies as $vacancy)
+@else
+@foreach ($vacancies as $vacancy)
+
     <article>
-        <a href="vacancy/{{$vacancy->id}}" class="link">
+        <a href="/vacancy/{{$vacancy->id}}" class="link">
             <div class="list">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -19,8 +23,7 @@
             </a>
     </article>
 
-
-    @endforeach
-        {!! str_replace('/?', '?', $vacancies->render()) !!}
-</address>
-<br>
+@endforeach
+@include('/pagination/pagination', ['paginator' => $vacancies])
+{{--{!!$vacancies->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
+@endif
