@@ -21,15 +21,15 @@
             <address>
                 @foreach($companies as $company)
                     <article>
-                        <a href="scompany/company_vac/{{$company->id}}"  class="link">
+
+                        <a href="{{$url}}/{{$company->id}}"  class="link">
                             @include('Company._company')
                         </a>
                     </article>
             </address>
                 @endforeach
-            
-            
+
+
         @endif
     </div>
 @stop
-
