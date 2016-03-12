@@ -153,6 +153,7 @@ class MainController extends Controller
                             )->render());
         }
         return View::make('main.filter.filterVacancies', array(
+
             'vacancies' => $vacancies,
             'industries' => $industries,
             'city_id'=>$city,
@@ -162,9 +163,12 @@ class MainController extends Controller
     }
 
     public function showCompanies(){
+
+        $url=url('scompany/company_vac/');
+
         $companies = Company::latest('id')->paginate(25);
-      //  dd($companies);
-        return view('main.filter.filterCompanies', ['companies' => $companies]);
+
+        return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
     }
 
     public function showResumes(City $cityModel)
