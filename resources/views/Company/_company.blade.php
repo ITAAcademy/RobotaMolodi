@@ -1,6 +1,6 @@
 <address>
 
-    @foreach($companies as $company)
+   
 
         <article>
 
@@ -18,4 +18,4 @@
         </article>
 
 </address>
-@endforeach
+
