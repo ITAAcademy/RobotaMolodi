@@ -24,6 +24,10 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')
 				 ->hourly();
+		$schedule->call(function () {
+			$currency = new Currency();
+			$currency->updateData();
+		})->dailyAt('01:00');
 	}
 
 }
