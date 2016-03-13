@@ -80,19 +80,22 @@ class CompanySeeder extends Seeder
             "users_id" => 3,
             "id" => 1,
             "company_name" =>'Ciklum',
-            "company_email" => 'http://www.ciklum.com/'
+            "site" => 'http://www.ciklum.com/',
+            "email" => 'test.profitday@bk.ru'
         ]);
         Company::create([
             "users_id" => 2,
             "id" => 3,
             "company_name" =>'Epam',
-            "company_email" => 'http://www.epam.com/'
+            "site" => 'http://www.epam.com/',
+            "email" => 'test.profitday@bk.ru'
         ]);
         Company::create([
             "users_id" => 1,
             "id" => 2,
             "company_name" =>'Sitecore',
-            "company_email" => 'http://www.sitecore.net/'
+            "site" => 'http://www.sitecore.net/',
+            "email" => 'test.profitday@bk.ru'
         ]);
     }
 }

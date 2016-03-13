@@ -17,7 +17,7 @@ use Eloquent;
 class Company extends Eloquent {
 
     protected $table = 'company';
-    protected $fillable = ['company_name','company_email','users_id', 'created_at', 'updated_at'];
+    protected $fillable = ['company_name','site','email','users_id', 'created_at', 'updated_at'];
 
     public function ReadUser()
     {
@@ -49,8 +49,8 @@ class Company extends Eloquent {
 
         $usersid = $array["id"];
         $companyName = $array["companyName"];
-        $companyEmail = $array["companyEmail"];
-
+        $site = $array["site"];
+        $email = $array["email"];
         $hasCompany = Company::hasMany($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
         dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
@@ -62,7 +62,8 @@ class Company extends Eloquent {
             array(
                 //'id' => $usersid,
                 'company_name' => $companyName,
-                'company_email' => $companyEmail,
+                'site' => $site,
+                'email'=>$email,
                 'created_at' => $date,
                 'updated_at' => $date
             )

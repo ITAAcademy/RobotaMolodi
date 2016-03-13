@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Request;
 
 class UploadFile extends Controller
 {
-    public function upFile()
+    public static function upFile()
     {
         if(Input::hasFile('FileName'))
         {
@@ -39,7 +39,8 @@ class UploadFile extends Controller
             {
                 $filename = Auth::user()['email'] . '_' . $file->getClientOriginalName();
                 $file->move(base_path() . '/public/uploads', $filename);
-                return Redirect::back();
+                //return Redirect::back();
+                return $filename;
             }
         }
         else

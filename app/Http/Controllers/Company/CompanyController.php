@@ -157,21 +157,24 @@ $url="http://localhost/scompany/company_vac/";
 
         $this->validate($request,[
             'company_name' => 'required|min:3',
-            'company_link' => 'url'
+            'company_link' => 'url',
+            'email' => 'email|required'
         ]);
+
+
             $user = $auth->user();
 
                 $company_link = $request['company_link'];
                 $company_name = $request['company_name'];
+                $email = $request['email'];
                 $user_id = $user->getAuthIdentifier();
 
 
                 $companies = new Company();
                 $companies->users_id = $user_id;
                 $companies->company_name = $company_name;
-                $companies->company_email = $company_link;
-
-
+                $companies->site = $company_link;
+                $companies->email = $email;
                 $companies->save();
 
             session_start();
@@ -239,19 +242,19 @@ $url="http://localhost/scompany/company_vac/";
 
         $this->validate($request,[
             'company_name' => 'required|min:3',
-            'company_link' => 'url'
+            'company_link' => 'url',
+            'email' =>'email|required'
         ]);
 
         $company_name = $request['company_name'];
-        $company_email = $request['company_link'];
-
+        $site = $request['company_link'];
+        $email = $request['email'];
         $company = Company::find($id);
-
         $company->company_name = $company_name;
-        $company->company_email = $company_email;
-
+        $company->site = $site;
+        $company->email = $email;
         $company->save();
-        $company->push();
+//        $company->push();
 
         return redirect('cabinet');
 

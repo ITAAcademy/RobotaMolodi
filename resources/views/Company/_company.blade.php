@@ -10,7 +10,7 @@
                             <h3 class="list-group-item-heading panel-title">{{$company->company_name}}</h3>
                         </div>
                         <div class="panel-body">
-                            <h4 class="list-group-item-heading">Сайт:{{ $company->company_email}}</h4>
+                            <h4 class="list-group-item-heading">Сайт: {{ $company->site}}</h4>
                         </div>
                     </div>
                 </div>
