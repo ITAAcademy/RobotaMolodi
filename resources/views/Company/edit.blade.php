@@ -16,15 +16,24 @@
         <span style ="color:red"> * <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span>
     </div>
 
-
     <div class="row">
         <div class="form-group col-md-2 col-sm-2" >
             <label for="level" class=" control-label">Посилання на компанію</label>
         </div>
         <div class="col-md-6 col-sm-6">
-                {!! Form::text('company_link', $company->company_email, array('class' => 'form-control')) !!}
+                {!! Form::text('company_link', $company->site, array('class' => 'form-control')) !!}
         </div>
         <span style ="color:red"><?php echo $errors->first('company_link','поле має бути посиланням в форматі https://'); ?>  </span>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-2 col-sm-2" >
+            <label for="level" class=" control-label">Електронна пошта</label>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            {!! Form::text('email', $company->email, array('class' => 'form-control')) !!}
+        </div>
+        <span style ="color:red">* <?php echo $errors->first('email','Введене значення не є коректною e-mail адресою'); ?>  </span>
     </div>
 <br>
         <div class="row">

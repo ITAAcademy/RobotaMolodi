@@ -20,11 +20,11 @@
             <li class="list-group-item">  <a style="text-decoration: underline" class="orangeLinks" target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a></li>
             <li class="list-group-item" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{{$city->name}}</a>@endforeach <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->created_at))}}</li>
             <li class="list-group-item" id="opt-data-low">
-                <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteLink')@else
+                <button class="btn btn-default @if($emailError)disabled @endif" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteLink')@else
                         window.location='{{ url('auth/login') }}'@endif">Відправити URL</button>
-                <button class="btn btn-default" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteFile')@else
+                <button class="btn btn-default" @if($emailError)disabled @endif for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteFile')@else
                         window.location='{{ url('auth/login') }}'@endif">Відправити файл</button>
-                <button class="btn btn-default" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteResume')@else
+                <button class="btn btn-default @if($emailError)disabled @endif" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteResume')@else
                         window.location='{{ url('auth/login') }}'@endif">Відправити резюме</button>
             </li>
         </ul>

@@ -9,7 +9,8 @@
 		"laravel/framework": "5.1",
         "laravelcollective/html":"~5.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
-		"swiftmailer/swiftmailer": "^5.4"
+		"swiftmailer/swiftmailer": "^5.4",
+		"doctrine/dbal": "^2.5"
 
 	},
 	"require-dev": {
