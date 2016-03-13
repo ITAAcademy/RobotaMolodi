@@ -4,8 +4,8 @@
 @stop
 @section('panelTitle')
     <li role = "presentation" class="active"><a href={{route('head','Всі вакансії')}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>
-    <li role = "presentation"><a href={{ route('main.resumes' ,'Всі резюме')}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
-	<li role = "presentation"><a href={{route('main.companies')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Всі компанії</a></li>
+    <li role = "presentation"><a href={{route('main.resumes' ,'Всі резюме')}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
+	   <li role = "presentation"><a href={{route('main.companies')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Всі компанії</a></li>
 @stop
 
 @section('category')
@@ -13,6 +13,9 @@
     <div class="posts">
         @include('main.filter.vacancy')
     </div>
+
+
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="js/pagination.js"></script>
     <script>
@@ -37,8 +40,15 @@
                 $("div.list-group").empty();
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
-                var url = 'showVacancies';
 				        var specialisation = $('[name=spec]').val();
+                var search_bool = '{{$search_boolean}}';
+
+                if(search_bool=="true"){
+                var url = 'searchVacancies';
+                }
+                else{
+                  var url = 'showVacancies';
+                }
           $.ajax({
 							url: url,
 							type: "POST",
@@ -49,7 +59,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 
@@ -62,7 +72,14 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var url = 'showVacancies';
+                var search_bool = '{{$search_boolean}}';
+
+                if(search_bool=="true"){
+                var url = 'searchVacancies';
+                }
+                else{
+                  var url = 'showVacancies';
+                }
 			$.ajax({
 							url: url,
 							type: "POST",
@@ -73,7 +90,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 
@@ -87,7 +104,15 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var url = 'showVacancies';
+                var search_bool = '{{$search_boolean}}';
+
+                if(search_bool=="true"){
+                var url = 'searchVacancies';
+                }
+                else{
+                  var url = 'showVacancies';
+                }
+
 				$.ajax({
 							url: url,
 							type: "POST",
@@ -98,7 +123,7 @@
 										return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 									}
 								},
-							data: {'specc': specialisation,'city_id': city_id, 'industry_id': industry_id},
+							data: {'specialisation_': specialisation,'city_id': city_id, 'industry_id': industry_id,data:'{{$data}}'},
 							success: function (json) {
 								$('.posts').html(json);
 
