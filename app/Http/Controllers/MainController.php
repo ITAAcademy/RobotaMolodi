@@ -168,7 +168,7 @@ class MainController extends Controller
 
         $companies = Company::latest('id')->paginate(25);
 
-        return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
+        return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url]);
     }
 
     public function showResumes(City $cityModel)

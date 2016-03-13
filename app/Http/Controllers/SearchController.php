@@ -59,10 +59,11 @@ class SearchController extends Controller
 
     public function showCompanies_search()
     {
+      $url=url('scompany/company_vac/');
       $search_request = Request::input('search_field');
           $companies = Company::latest('id')->where('company_name','Like',"%$search_request%")->paginate(25);
         //  dd($companies);
-          return view('main.filter.filterCompanies', ['companies' => $companies]);
+          return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url]);
 
     }
 
