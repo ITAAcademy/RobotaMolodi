@@ -51,11 +51,20 @@ class ResumeController extends Controller {// Клас по роботі з ре
      * @return Response
      */
     private $http;
-    public function index(Resume $resumeModel,Guard $auth)//Output all resumes
+    public function index(Guard $auth)//Output all resumes
     {
-        $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
-
-        return  view('Resume.myResumes', ['resumes'=> $resumes]);//Пердача данных у в юшку myResumes
+        if (Auth::check()) {
+            $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
+            if (!$resumes) {
+                $resumes = "Зараз у Вас немає резюме.";
+                return  view('Resume.myResumes', ['resumes'=> $resumes]);
+            } else {
+                $resumes->sortByDesc('created_at');
+                return  view('Resume.myResumes', ['resumes'=> $resumes]);
+            }
+        } else {
+            return Redirect::to('auth/login');
+        }
     }
 
     /**

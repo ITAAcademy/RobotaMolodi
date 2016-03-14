@@ -124,18 +124,19 @@ class MainController extends Controller
     {
         $industries = Industry::orderBy('name')->get();
 
-
-
+        $search_boolean = 'false';
+        $search_request = Request::input('search_field','');
         $industry = Input::get('industry_id',0);
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
 
-		    $specialisation = Input::get('specc',0);
+		    $specialisation = Input::get('specialisation_',0);
 		    $specialisations = Vacancy::groupBy('position')->lists('position');
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
         if (Request::ajax()) {
-
+            $search_boolean = 'false';
+            $search_request_=Request::get('data');
             $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
             if($vacancies != null)
             {
@@ -149,7 +150,8 @@ class MainController extends Controller
                       'cities' => $cities,
                       'city_id'=>$city,
                       'industry_id' => $industry,
-  			              'specialisation'=>$specialisations)
+  			              'specialisation'=>$specialisations,
+                      'data'=>$search_request_)
                             )->render());
         }
         return View::make('main.filter.filterVacancies', array(
@@ -159,7 +161,9 @@ class MainController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities,
-			      'specialisation'=>$specialisations));
+			      'specialisation'=> $specialisations,
+            'search_boolean'=> $search_boolean,
+            'data'=>$search_request));
     }
 
     public function showCompanies(){
@@ -175,16 +179,18 @@ class MainController extends Controller
     {
         $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
-
+        $search_boolean = 'false';
+        $search_request = Request::input('search_field','');
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
-		    $specialisation = Input::get('specc',0);
+		    $specialisation = Input::get('specialisation_',0);
 		    $specialisations = Resume::groupBy('position')->lists('position');
         $resumes = Resume::latest('updated_at')->paginate(25);
 
         if (Request::ajax()) {
         //dd(Resume::where('city',$city)->latest('id'));
-
+        $search_boolean = 'false';
+        $search_request_=Request::get('data');
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city !='empty' && $industry =='empty' && $specialisation=='empty')
 			      {
@@ -249,7 +255,9 @@ class MainController extends Controller
                     'cities' => $cities,
                     'city_id'=>$city,
                     'industry_id' => $industry,
-			              'specialisation'=>$specialisations)
+			              'specialisation'=>$specialisations,
+                    'specialisation'=>$specialisations,
+                    'data'=>$search_request_)
             )->render());
         }
         return View::make('main.filter.filterResumes', array(
@@ -258,7 +266,9 @@ class MainController extends Controller
             'city_id'=>$city,
             'industry_id' => $industry,
             'cities' => $cities,
-			      'specialisation'=>$specialisations));
+			      'specialisation'=>$specialisations,
+            'search_boolean'=> $search_boolean,
+            'data'=>$search_request));
     }
 
     public function ShowFilterVacancies($city_id,$industry_id,$specialisation)
