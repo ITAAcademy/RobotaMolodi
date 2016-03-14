@@ -12,6 +12,5 @@
 @stop
 
 @section('contents')
-    @yield('contents')
-    <?php echo $child ?>
+    @include('Company._company')
 @stop

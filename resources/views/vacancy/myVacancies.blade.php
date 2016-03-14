@@ -11,6 +11,5 @@
 @stop
 
 @section ('contents')
-    @yield('contents')
-    <?php echo $child ?>
+    @include('vacancy._vacancy')
 @stop
