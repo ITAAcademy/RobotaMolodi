@@ -348,7 +348,7 @@ class VacancyController extends Controller
             return view('errors/uploadFileError');
         Mail::send('emails.vacancyFile', ['user' => $user], function ($message) use ($uploadFile) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
-            $to = $company->company_email;
+            $to = User::find($company->users_id)->email;
             $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
             $message->attach($uploadFile);
         });
@@ -367,7 +367,7 @@ class VacancyController extends Controller
         $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
         Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $link], function ($message) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
-            $to = $company->company_email;
+            $to = User::find($company->users_id)->email;
             $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
         });
 
@@ -385,7 +385,7 @@ class VacancyController extends Controller
         $user = User::find($auth->user()->getAuthIdentifier());
         Mail::send('emails.vacancyResume', ['user' => $user, 'resume' => $resume], function ($message) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
-            $to = $company->company_email;
+            $to = User::find($company->users_id)->email;
             $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
         });
         return view('vacancy/vacancyAnswer');
