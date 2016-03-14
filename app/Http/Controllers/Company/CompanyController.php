@@ -1,4 +1,4 @@
-﻿<?php namespace App\Http\Controllers\Company;
+<?php namespace App\Http\Controllers\Company;
 
 use App\Models\User;
 use App\Models\Industry;
@@ -41,7 +41,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
   $cities = $cityModel->getCities();
   $city = Input::get('city_id', 0);
 
-   $url=url('scompany/company_vac/');
+$url=url('scompany/company_vac/');
 //$url="http://localhost/scompany/company_vac/";
   $specialisation = Input::get('specc',0);
   $specialisations = Vacancy::groupBy('position')->lists('position');
