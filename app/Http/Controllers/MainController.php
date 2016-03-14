@@ -143,7 +143,7 @@ class MainController extends Controller
             }
 
 
-            return Response::json(View::make('main.filter.vacancy',
+            return Response::json(View::make('vacancy._vacancy',
                 array('vacancies' => $vacancies,
                       'industries' => $industries,
                       'cities' => $cities,
@@ -154,12 +154,12 @@ class MainController extends Controller
         }
         return View::make('main.filter.filterVacancies', array(
 
-            'vacancies' => $vacancies,
-            'industries' => $industries,
-            'city_id'=>$city,
-            'industry_id' => $industry,
-            'cities' => $cities,
-			      'specialisation'=>$specialisations));
+                'vacancies' => $vacancies,
+                'industries' => $industries,
+                'city_id' => $city,
+                'industry_id' => $industry,
+                'cities' => $cities,
+                'specialisation' => $specialisations));
     }
 
     public function showCompanies(){
@@ -243,7 +243,7 @@ class MainController extends Controller
                 return "<br /> По вказаним Вами умовах резюме відсутні";
             }
 
-            return Response::json(View::make('main.filter.resume',
+            return Response::json(View::make('Resume._resume',
                 array('resumes' => $resumes,
                     'industries' => $industries,
                     'cities' => $cities,

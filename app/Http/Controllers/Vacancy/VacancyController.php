@@ -110,7 +110,7 @@ class VacancyController extends Controller
      */
 
 
-    public function index(Company $companies, Guard $auth)
+    public function index(Guard $auth)
     {
         if (Auth::check()) {
 
@@ -120,12 +120,10 @@ class VacancyController extends Controller
 
             if (!$vacancies) {
                 $vacancies = "Зараз у Вас немає вакансій.";
-
-                return View::make('vacancy.myVacancies')->nest('child', 'vacancy._noVacancy', ['vacancies' => $vacancies]);
+                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies]);
             } else {
                 $vacancies->sortByDesc('created_at');
-
-                return View::make('vacancy.myVacancies')->nest('child', 'vacancy._vacancy', ['vacancies' => $vacancies]);
+                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies]);
             }
 
         } else {
