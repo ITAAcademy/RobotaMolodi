@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Company;
+﻿<?php namespace App\Http\Controllers\Company;
 
 use App\Models\User;
 use App\Models\Industry;
@@ -40,7 +40,9 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
   $industry = Input::get('industry_id',0);
   $cities = $cityModel->getCities();
   $city = Input::get('city_id', 0);
-  $url="http://localhost/scompany/company_vac/";
+
+   $url=url('scompany/company_vac/');
+//$url="http://localhost/scompany/company_vac/";
   $specialisation = Input::get('specc',0);
   $specialisations = Vacancy::groupBy('position')->lists('position');
   //$res= Input::get('id',0);
@@ -98,14 +100,14 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             {
 
                 $companies = "Зараз у Вас немає компаній. Створіть";
-                return  View::make('Company.myCompanies',['companies' => $companies, 'url' => $url]);
-//                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
+
+                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
 
             }
             else
             {
-                return  View::make('Company.myCompanies',['companies' => $companies, 'url' =>$url]);
-//                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
+
+                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
             }
 
         }
