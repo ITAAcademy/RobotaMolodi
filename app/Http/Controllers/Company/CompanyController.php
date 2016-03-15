@@ -40,10 +40,11 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
   $industry = Input::get('industry_id',0);
   $cities = $cityModel->getCities();
   $city = Input::get('city_id', 0);
-
-$url=url('scompany/company_vac/');
+  $search_boolean = 'false';
+  $url=url('scompany/company_vac/');
+  $data = '';
 //$url="http://localhost/scompany/company_vac/";
-  $specialisation = Input::get('specc',0);
+  //$specialisations = Input::get('specc',0);
   $specialisations = Vacancy::groupBy('position')->lists('position');
   //$res= Input::get('id',0);
   //dd($res);
@@ -73,8 +74,9 @@ $url=url('scompany/company_vac/');
       'city_id'=>$city,
       'industry_id' => $industry,
       'cities' => $cities,
-      'specialisation' =>  $specialisation,
-      'specialisation'=> $specialisations));
+      'specialisation'=> $specialisations,
+      'search_boolean'=> $search_boolean,
+      'data' => $data));
 
 //  return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
 
