@@ -203,10 +203,8 @@ class VacancyController extends Controller
             $user = User::find($auth->user()->getAuthIdentifier());
             if ($userVacation->id == $user->id) {
                 $view = 'vacancy.showMyVacancy';
-
             }
             $resume = $auth->user()->GetResumes()->get();
-
         }
 
 
@@ -344,8 +342,12 @@ class VacancyController extends Controller
     {
         $user = User::find($auth->user()->getAuthIdentifier());
         $uploadFile = UploadFile::upFile();
-        if($uploadFile==null)
-            return view('errors/uploadFileError');
+        if($uploadFile==null) {
+                $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
+                return View::make('errors.uploadFileError', array(
+                    'error' => $error
+                ));
+        }
         Mail::send('emails.vacancyFile', ['user' => $user], function ($message) use ($uploadFile) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
             $to = User::find($company->users_id)->email;

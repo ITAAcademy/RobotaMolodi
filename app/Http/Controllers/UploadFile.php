@@ -30,10 +30,11 @@ class UploadFile extends Controller
 
             if($validator->fails())
             {
-                $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
-                return View::make('errors.uploadFileError', array(
-                    'error' => $error
-                ));//extension error
+//                $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
+//                return View::make('errors.uploadFileError', array(
+//                    'error' => $error
+//                ));//extension error
+                return null;
             }
             else
             {

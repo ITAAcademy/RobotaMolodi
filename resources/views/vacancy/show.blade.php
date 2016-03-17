@@ -20,15 +20,17 @@
             <li class="list-group-item">  <a style="text-decoration: underline" class="orangeLinks" target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a></li>
             <li class="list-group-item" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{{$city->name}}</a>@endforeach <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->created_at))}}</li>
             <li class="list-group-item" id="opt-data-low">
-                <button class="btn btn-default" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteLink')@else
+                <button class="btn btn-default" data-toggle="modal" data-target="#sendLink" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                         window.location='{{ url('auth/login') }}'@endif">Відправити URL</button>
-                <button class="btn btn-default" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteFile')@else
+                <button class="btn btn-default" data-toggle="modal" data-target="#sendFile" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                         window.location='{{ url('auth/login') }}'@endif">Відправити файл</button>
-                <button class="btn btn-default" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="@if(Auth::check())loadForm('pasteResume')@else
+                <button class="btn btn-default" data-toggle="modal" data-target="#sendRes" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                         window.location='{{ url('auth/login') }}'@endif">Відправити резюме</button>
             </li>
         </ul>
-
+        @include('/vacancy/pasteVacancyForm/link')
+        @include('/vacancy/pasteVacancyForm/file')
+        @include('/vacancy/pasteVacancyForm/resume')
         <div class="panel panel-orange" id="vimg">
             @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
                 {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
