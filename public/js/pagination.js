@@ -49,9 +49,9 @@ function getPosts(page) {
     }).done(function (data) {
         $('.posts').html(data);
         location.hash = page;
-    }).fail(function () {
+    });/*.fail(function () {
         alert('Posts could not be loaded.');
-    });
+    });*/
 }
 function sendAjax(city_id,industry_id,url)
 {

@@ -451,6 +451,8 @@ class VacancyController extends Controller
             'city_id' => $city,
             'industry_id' => $industry,
             'cities' => $cities,
-            'specialisation' => $specialisations));
+            'specialisation' => $specialisations,
+            'data'=>1,
+            'search_boolean'=>1));
     }
 }

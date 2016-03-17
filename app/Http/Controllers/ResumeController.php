@@ -291,6 +291,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'city_id' => $city,
             'industry_id' => $industry,
             'cities' => $cities,
-            'specialisation' => $specialisations));
+            'specialisation' => $specialisations,
+            'search_boolean'=>1,
+            'data'=>1));
     }
 }
