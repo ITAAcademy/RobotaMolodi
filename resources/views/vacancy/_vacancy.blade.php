@@ -21,4 +21,4 @@
     </article>
     @endforeach
 @include('/pagination/pagination', ['paginator' => $vacancies])
-        {{--{!! str_replace('/?', '?', $vacancies->render()) !!}--}}
+

@@ -19,7 +19,7 @@ use App\Models\Company;
 class MainController extends Controller
 {
     const paginateCount = 25;
-    const paginateFilter = 'upduted_at';
+    const paginateFilter = 'updated_at';
     /*
     |--------------------------------------------------------------------------
     | Welcome Controller
@@ -123,7 +123,6 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $industries = Industry::orderBy('name')->get();
-
         $search_boolean = 'false';
         $search_request = Request::input('search_field','');
         $industry = Input::get('industry_id',0);
@@ -138,6 +137,10 @@ class MainController extends Controller
             $search_boolean = 'false';
             $search_request_=Request::get('data');
             $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
+            if ($vacancies->count() == 0)
+            {
+                return "<br /> По вказаним Вами умовах вакансії відсутні";
+            }
             if($vacancies != null)
             {
                 $vacancies->sortByDesc('updated_at');
@@ -335,6 +338,7 @@ class MainController extends Controller
             ->where('position','=',$specialisation)
             ->paginate(25);
         }
+
 
 
     }
