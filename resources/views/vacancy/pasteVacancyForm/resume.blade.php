@@ -9,7 +9,7 @@
             <div class="modal-body">
                 {!!Form::open(['route' => 'vacancy.sendresume'])!!}
                 <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
-                @if (!empty($resume->all()))
+                @if ($resume != '' )
                             <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
                                 @foreach($resume as $res)
                                     <option value="{{$res->id}}" selected>{{$res->position}}</option>
@@ -25,7 +25,7 @@
                     @endif
             </div>
             <div class="modal-footer">
-                @if (!empty($resume->all()))
+                @if ($resume != '' )
                 <input type="submit" class="btn btn-default" name="btn" onclick="PasteLink()" style="background: #f48952" value="Відправити резюме">
                 @endif
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
