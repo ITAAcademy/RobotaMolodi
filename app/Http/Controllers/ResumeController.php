@@ -133,7 +133,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function show($id,Guard $auth)
     {
         $view = 'Resume.show';
-
+        $search_boolean = 'false';
+        $search_request = "";
         $resume = $this->getResume($id);
 
         $userResume = $resume->ReadUser($id);
@@ -151,7 +152,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city);
+            ->with('city',$city)
+            ->with('data',$search_request)
+            ->with('search_boolean',$search_boolean);
 
 
     }
@@ -260,6 +263,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
     public function sortResumes(City $cityModel)
     {
+        $search_boolean = 'false';
+        $search_request = "";
         $industries = Industry::orderBy('name')->get();
         if(!$i = Input::get('industry_id'))
             $i = 0;
@@ -291,6 +296,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'city_id' => $city,
             'industry_id' => $industry,
             'cities' => $cities,
-            'specialisation' => $specialisations));
+            'specialisation' => $specialisations,
+            'search_boolean'=> $search_boolean,
+            'data'=>$search_request));
     }
 }

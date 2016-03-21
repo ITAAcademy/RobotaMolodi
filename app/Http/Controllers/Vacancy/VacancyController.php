@@ -190,7 +190,7 @@ class VacancyController extends Controller
         $vacancy = $this->getVacancy($id);
 
         //$resume = 'Зареєструйтесь!';
-
+        $search_boolean='false';
         $userVacation = $vacancy->ReadUser($id);
 
         $cities = $vacancy->Cities();
@@ -216,7 +216,8 @@ class VacancyController extends Controller
             ->with('company', $company)
             ->with('user', $userVacation)
             ->with('cities', $cities)
-            ->with('industry', $industry);
+            ->with('industry', $industry)
+            ->with('search_boolean', $search_boolean);
     }
 //        else{
 //        return redirect('auth/login');
@@ -420,6 +421,8 @@ class VacancyController extends Controller
      */
     public function sortVacancies(City $cityModel)
     {
+        $search_boolean = 'false';
+        $search_request = "";
         $industries = Industry::orderBy('name')->get();
         if(!$i = Input::get('industry_id'))
             $i = 0;
@@ -451,6 +454,8 @@ class VacancyController extends Controller
             'city_id' => $city,
             'industry_id' => $industry,
             'cities' => $cities,
-            'specialisation' => $specialisations));
+            'specialisation' => $specialisations,
+            'search_boolean'=> $search_boolean,
+            'data'=>$search_request));
     }
 }
