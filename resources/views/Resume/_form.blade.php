@@ -97,11 +97,9 @@
         <div>Файл не вибрано</div>
         {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}
     </div>
-    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
+    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div><br>
-
-<input type="hidden" name="fname" value="{{}}">
 
 <div class="row">
 <div class="form-group">

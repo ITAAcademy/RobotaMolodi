@@ -20,7 +20,6 @@ use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 use View;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Currency;
-use File;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -109,27 +108,12 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'email' => 'required|email',
             'position' => $rules,
             'salary' => 'required|regex:/[^0]+/|min:1|numeric',
-            'salary_max' => 'required|regex:/[^0]+/|min:1|numeric',
             'description' => $rules,
-            'city' => 'required',
-            'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
+            'city' => 'required'
         ]);
 
-        if(Input::hasFile('loadResume'))
-        {
-            $fname = $auth->user()->getAuthIdentifier();
 
-            $file = Input::file('loadResume');
-
-            $extensions = ['.jpg', '.jpeg', '.png'];
-
-            foreach($extensions as $i)
-                if(File::exists(base_path() . '/public/image/resume/' . $fname . $i))
-                    File::delete(base_path() . '/public/image/resume/' . $fname . $i);
-
-            $filename = $fname . '.' . $file->getClientOriginalExtension();
-            $file->move(base_path() . '/public/image/resume', $filename);
-        }
+        $file = $_FILES['loadResume'];//$request->file('loadResume');
 
         $resume = $resumeModel->fillResume(0,$auth,$request);
 
