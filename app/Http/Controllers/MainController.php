@@ -138,6 +138,10 @@ class MainController extends Controller
             $search_boolean = 'false';
             $search_request_=Request::get('data');
             $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
+			if ($vacancies->count() == 0)
+			{
+                return "<br /> По вказаним Вами умовах вакансії відсутні";
+            }
             if($vacancies != null)
             {
                 $vacancies->sortByDesc('updated_at');
@@ -194,13 +198,13 @@ class MainController extends Controller
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             if($city !='empty' && $industry =='empty' && $specialisation=='empty')
 			      {
-                $resumes = Resume::whereIn('city',[$city, 1])
+                $resumes = Resume::where('city',$city)
                 ->latest('updated_at')
                 ->paginate(25);
             }
             elseif($city !='empty' && $industry !='empty' && $specialisation=='empty')
 			      {
-                $resumes = Resume::whereIn('city' ,[$city, 1])
+                $resumes = Resume::where('city' ,$city)
                 ->where('industry', '=', $industry)
                 ->latest('updated_at')
                 ->paginate(25);
@@ -218,14 +222,14 @@ class MainController extends Controller
             }
 			      elseif($city !='empty' && $industry =='empty' && $specialisation!='empty')
 			      {
-                $resumes = Resume::whereIn('city',[$city, 1])
+                $resumes = Resume::where('city',$city)
                 ->latest('updated_at')
                 ->where('position','=',$specialisation)
                 ->paginate(25);
             }
             elseif($city !='empty' && $industry !='empty' && $specialisation!='empty')
 			      {
-                $resumes = Resume::whereIn('city' ,[$city, 1])
+                $resumes = Resume::where('city' ,$city)
                 ->where('industry', '=', $industry)
                 ->latest('updated_at')
                 ->where('position','=',$specialisation)
