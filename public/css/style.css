@@ -374,15 +374,7 @@ min-width: 300px;
 
 #opt-data-low
 {
-    border-style: solid hidden hidden solid;
-}
-
-#vimg
-{
-    width: 200px;
-    height: 200px;
-    margin-left: 25px;
-    margin-top: 80px;
+    border-style: solid hidden hidden hidden;
 }
 
 .orangeLinks
@@ -395,24 +387,42 @@ min-width: 300px;
 {
     background-color: #f5f5f5;
     word-break: break-all;
+    border-left: none;
+    border-right: none;
+    width: 700px;
 }
 
 #vrBlock
 {
     border: 1px #dddddd;
-    display: inline-block;
+    display: table;
     border-style: solid hidden solid hidden;
     border-radius: 0px;
+    width: 100%;
+}
+
+#vimg
+{
+    width: 200px;
+    height: 200px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 80px;
 }
 
 #datAnnoyingSizes
 {
-    width: 650px;
-    float: right;
+    display: table-cell;
 }
 
 #yellowCircle
 {
     color: #f48952;
     font-size: 27px;
+}
+
+.logos
+{
+    vertical-align: top;
+    display: table-cell;
 }
