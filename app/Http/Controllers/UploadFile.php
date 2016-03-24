@@ -60,19 +60,19 @@ class UploadFile extends Controller
             $file = Input::file('image');
 
             $validator = Validator::make(Request::all(), [
-                'image' => 'mimes:jpg,jpeg,png|max:2048',
+                'image' => 'mimes:jpg,jpeg,png,bmp|max:2048',
             ]);
 
             if($validator->fails())
             {
-                $error = 'Необхiдний формат файлу: jpeg, jpg, png розмiром до 2 мб.';
+                $error = 'Необхiдний формат файлу: jpeg, jpg, png, bmp розмiром до 2 мб.';
                 return View::make('errors.uploadFileError', array(
                     'error' => $error
                 ));//size error
             }
             else
             {
-                $extensions = ['.jpg', '.jpeg', '.png'];
+                $extensions = ['.jpg', '.jpeg', '.png', '.bmp'];
 
                 if(Input::get('rov') == 'v')
                 {
