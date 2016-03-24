@@ -1,14 +1,13 @@
 <?php
+//==========IMPORTANT!===================
+// On test or production server please set pretend to false
 return [
     'driver' => 'smtp',
-    'host' => 'smtp.bk.ru',
-    'port' => 465,
-    'from' => ['address' => "test.profitday@bk.ru", 'name' => "Сайт РоботаМолоді"],
-    'encryption' => 'ssl',
-    'username' => 'test.profitday@bk.ru',
-    'password' => '1qazxsw2',
-//    'sendmail' => '/usr/sbin/sendmail -bs',
+    'host' => 'localhost',
+    'port' => 25,
+    'from' => ['address' => "noreply@rm.itatests.com", 'name' => "Сайт РоботаМолоді"],
     'pretend' => false,
+
 ];
 //return [
 //
