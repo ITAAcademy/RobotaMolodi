@@ -1,7 +1,7 @@
 @include('/pagination/pagination', ['paginator' => $resumes])
     @foreach ($resumes as $resume)
         <article>
-            <a href="resume/{{$resume->id}}" class="link">
+            <a href="{!!\Illuminate\Support\Facades\URL::to('resume',[$resume->id])!!}" class="link">
                 <div class="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">

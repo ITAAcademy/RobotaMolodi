@@ -361,9 +361,9 @@ class VacancyController extends Controller
 
     public function link(Guard $auth, Request $request)
     {
-//        $this->validate($request,[
-//            'Link' => 'url|required'
-//        ]);
+        $this->validate($request,[
+            'Link' => 'url|required'
+        ]);
         $link = Input::get('Link');
         $user = User::find($auth->user()->getAuthIdentifier());
         $company = Company::find(Vacancy::find(Input::get('id'))->company_id);

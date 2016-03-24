@@ -245,7 +245,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
                     $to = User::find(Resume::find($resumeId)->id_u)->email;
                     $message->to($to, User::find(Resume::find($resumeId)->id_u)->name)->subject(Input::get('name_u'));
                 });
-                return redirect('/resume/'.$resumeId);
+                return view('resume/resumeAnswer');
             }
             else
                 return view('Resume/send_message');
