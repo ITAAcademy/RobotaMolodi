@@ -103,13 +103,13 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 
                 $companies = "Зараз у Вас немає компаній. Створіть";
 
-                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
+                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
 
             }
             else
             {
 
-                  return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url,]);
+                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
             }
 
         }
