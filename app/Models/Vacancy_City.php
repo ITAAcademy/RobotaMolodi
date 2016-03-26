@@ -21,16 +21,6 @@ class Vacancy_City extends Model {
     {
         $cities = $cities_id;
 
-        if($cities_id[0]==1)
-        {
-            $city = new City();
-            $cities = $city->getCities();
-            foreach($cities as $city)
-            {
-                Vacancy_City::FillTable($city->id,$vacancy_id);
-            }
-            return;
-        }
         if(count($cities)<=1)
         {
             Vacancy_City::FillTable($cities[0],$vacancy_id);
@@ -40,7 +30,7 @@ class Vacancy_City extends Model {
         {
         foreach($cities as $city)
         {
-            if($city!=1)
+            if($city!=0)
             {
                 Vacancy_City::FillTable($city,$vacancy_id);
             }

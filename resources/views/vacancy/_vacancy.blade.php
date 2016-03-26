@@ -1,7 +1,7 @@
 @include('/pagination/pagination', ['paginator' => $vacancies])
     @foreach($vacancies as $vacancy)
     <article>
-        <a href="vacancy/{{$vacancy->id}}" class="link">
+        <a href="/vacancy/{{$vacancy->id}}" class="link">
             <div class="list">
                 <div class="panel panel-default">
                     <div class="panel-heading">
