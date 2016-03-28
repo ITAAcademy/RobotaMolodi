@@ -1,7 +1,9 @@
 @extends('app')
 
 @section('content')
+
     <ul class="nav navbar-nav navbar-right">
+        <li> <li> <a href="{{\Illuminate\Support\Facades\URL::to('scompany/company_vac',['id'=>$company->id])}}">Вакансії компанії</a></li></li>
         <li> <li> <a href="{{$company->id}}/destroy" onclick="return ConfirmDelete();">Видалити</a></li></li>
         <li> <a href="{{$company->id}}/edit">Редагувати</a></li>
     </ul>
