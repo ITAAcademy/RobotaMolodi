@@ -1,5 +1,5 @@
-<!-- Modal -->
-<div id="sendLink" class="modal fade" role="dialog">
+@if (\Illuminate\Support\Facades\Auth::check())
+    <div id="sendLink" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -28,3 +28,5 @@
         {!!Form::close()!!}
     </div>
 </div>
+
+@endif

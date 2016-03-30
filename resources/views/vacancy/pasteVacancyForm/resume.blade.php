@@ -1,3 +1,4 @@
+@if (\Illuminate\Support\Facades\Auth::check())
 <div id="sendRes" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -9,7 +10,7 @@
             <div class="modal-body">
                 {!!Form::open(['route' => 'vacancy.sendresume'])!!}
                 <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
-                @if ($resume != '' )
+                @if (!empty($resume->all()))
                             <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
                                 @foreach($resume as $res)
                                     <option value="{{$res->id}}" selected>{{$res->position}}</option>
@@ -25,7 +26,7 @@
                     @endif
             </div>
             <div class="modal-footer">
-                @if ($resume != '' )
+                @if (!empty($resume->all()))
                 <input type="submit" class="btn btn-default" name="btn" onclick="PasteLink()" style="background: #f48952" value="Відправити резюме">
                 @endif
                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
@@ -35,3 +36,4 @@
         {!!Form::close()!!}
     </div>
 </div>
+@endif

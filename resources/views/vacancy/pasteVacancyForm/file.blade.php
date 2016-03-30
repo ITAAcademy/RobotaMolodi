@@ -1,5 +1,5 @@
-<!-- Modal -->
-<div id="sendFile" class="modal fade" role="dialog">
+@if (\Illuminate\Support\Facades\Auth::check())
+    <div id="sendFile" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -36,3 +36,4 @@
 
     </div>
 </div>
+@endif

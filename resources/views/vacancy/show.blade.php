@@ -39,7 +39,7 @@
                 <li class="list-group-item">  <a style="text-decoration: underline" class="orangeLinks" target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a></li>
                 <li class="list-group-item" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit({{$city->id}}, '0' ,'empty')">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->created_at))}}</li>
                 <li class="list-group-item" id="opt-data-low">
-                    <button class="btn btn-default" data-toggle="modal" data-target="#sendLink" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
+                    <button class="btn btn-default" id="sendLinkButton" data-toggle="modal" data-target="#sendLink" for="paste-link-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                             window.location='{{ url('auth/login') }}'@endif">Відправити URL</button>
                     <button class="btn btn-default" data-toggle="modal" data-target="#sendFile" for="paste-file-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                             window.location='{{ url('auth/login') }}'@endif">Відправити файл</button>
@@ -52,6 +52,10 @@
         @include('/vacancy/pasteVacancyForm/link')
         @include('/vacancy/pasteVacancyForm/file')
         @include('/vacancy/pasteVacancyForm/resume')
+        <script>
+
+
+        </script>
     </div>
 
     <div id="formContainer">
@@ -96,30 +100,10 @@
             }
         }
 
-        function PasteLink(){
+        $(document).ready(function() {
+            if ({{$errors-> has('Link')}})
+                $('#sendLinkButton').click();
+        });
 
-            var link = document.getElementById('Link').value;
-
-            var reg = /^(https?:\/\/)?([\w\.]+)\.([a-z]{2,6}\.?)(\/[\w\.]*)*\/?$/;
-
-            if(!reg.test(link)){
-                $("input[name='Link']").removeClass('form-control');
-                $("label[for='sector']").removeClass('form-control');
-                $("input[name='Link']").addClass('errorField');
-                $("label[for='sector']").addClass('error');
-                $("div[name='linkError']").html("Будь ласка,введіть коректне посилання на резюме");
-                $("div[name='linkError']").addClass("error");
-                return false;
-            }
-            else{
-                $("input[name='Link']").removeClass('errorField');
-                $("input[name='Link']").addClass('form-control');
-                $("div[name='linkError']").html("");
-                $("label[for='sector']").removeClass('error');
-
-
-                return true;
-            }
-        }
     </script>
 @stop
