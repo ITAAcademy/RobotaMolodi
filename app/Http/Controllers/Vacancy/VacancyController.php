@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
 
+use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
@@ -362,9 +363,10 @@ class VacancyController extends Controller
 
     public function link(Guard $auth, Request $request)
     {
-        $this->validate($request,[
+       $this->validate($request,[
             'Link' => 'url|required'
-        ]);
+       ]);
+
         $link = Input::get('Link');
         $user = User::find($auth->user()->getAuthIdentifier());
         $company = Company::find(Vacancy::find(Input::get('id'))->company_id);

@@ -35,13 +35,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
     {
         if (!is_numeric($id))
         {
-            abort(500);
+            abort(404);
         }
 
         $resume = Resume::find($id);
         if(!isset($resume))
         {
-            abort(500);
+            abort(404);
         }
         return $resume;
     }
