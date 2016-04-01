@@ -41,13 +41,8 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
-                if(search_bool=="true"){
-                var url = 'searchResumes';
-                }
-                else{
+
                   var url = 'showResumes';
-                }
           $.ajax({
 							url: url,
 							type: "POST",
@@ -71,14 +66,8 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
                 var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
 
-                if(search_bool=="true"){
-                var url = 'searchResumes';
-                }
-                else{
                   var url = 'showResumes';
-                }
 			$.ajax({
 							url: url,
 							type: "POST",
@@ -103,13 +92,8 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
-                if(search_bool=="true"){
-                var url = 'searchResumes';
-                }
-                else{
+
                   var url = 'showResumes';
-                }
 				$.ajax({
 							url: url,
 							type: "POST",
@@ -129,5 +113,8 @@
             });
         });
 
+        @if($search_boolean)
+            fakeFilter('{{$search_boolean}}', '{{$data}}', 'showResumes');
+        @endif
     </script>
 @stop

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Collection;
 
+use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Http\Controllers\Controller;
 use App\Models\City;
@@ -365,6 +366,7 @@ class VacancyController extends Controller
         $this->validate($request,[
             'Link' => 'url|required'
         ]);
+
         $link = Input::get('Link');
         $user = User::find($auth->user()->getAuthIdentifier());
         $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
@@ -421,43 +423,5 @@ class VacancyController extends Controller
      * @param Vacancy $vacancy
      * @return mixed
      */
-    public function sortVacancies(City $cityModel)
-    {
-        $search_boolean = 'false';
-        $search_request = "";
-        $industries = Industry::orderBy('name')->get();
-        if(!$i = Input::get('industry_id'))
-            $i = 0;
-        $industry = Input::get('industry_id', (int)$i);
 
-        $cities = $cityModel->getCities();
-        if(!$c = Input::get('city_id'))
-            $c = 0;
-        $city = Input::get('city_id', (int)$c);
-
-        $specialisations = Vacancy::groupBy('position')->lists('position');
-        if(!$s = Input::get('specialisation_'))
-            $s = 0;
-        $specialisation = Input::get('specialisation_', $s);
-
-        if (!$cities->has($city) || !$industries->has($industry))
-            abort(500);
-
-        if($city > 0 && $industry < 1)
-            $vacancies = City::find($city)->Vacancies()->paginate(25);
-        elseif($industry > 0 && $city < 1)
-            $vacancies = Vacancy::where('branch', $industry)->paginate(25);
-        else
-            $vacancies = Vacancy::AllVacancies()->where('position', '=', $specialisation)->paginate(25);
-
-        return View::make('main.filter.filterVacancies', array(
-            'vacancies' => $vacancies,
-            'industries' => $industries,
-            'city_id' => $city,
-            'industry_id' => $industry,
-            'cities' => $cities,
-            'specialisation' => $specialisations,
-            'search_boolean'=> $search_boolean,
-            'data'=>$search_request));
-    }
 }

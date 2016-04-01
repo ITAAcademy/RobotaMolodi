@@ -35,13 +35,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
     {
         if (!is_numeric($id))
         {
-            abort(500);
+            abort(404);
         }
 
         $resume = Resume::find($id);
         if(!isset($resume))
         {
-            abort(500);
+            abort(404);
         }
         return $resume;
     }
@@ -275,45 +275,5 @@ class ResumeController extends Controller {// Клас по роботі з ре
         else{
             return Redirect::to('auth/login');
         }
-    }
-
-    public function sortResumes(City $cityModel)
-    {
-        $search_boolean = 'false';
-        $search_request = "";
-        $industries = Industry::orderBy('name')->get();
-        if(!$i = Input::get('industry_id'))
-            $i = 0;
-        $industry = Input::get('industry_id', (int)$i);
-
-        $cities = $cityModel->getCities();
-        if(!$c = Input::get('city_id'))
-            $c = 0;
-        $city = Input::get('city_id', (int)$c);
-
-        $specialisations = Resume::groupBy('position')->lists('position');
-        if(!$s = Input::get('specialisation_'))
-            $s = 0;
-        $specialisation = Input::get('specialisation_', $s);
-
-        if (!$cities->has($city) || !$industries->has($industry))
-            abort(500);
-
-        if($industry > 0 && $city < 1)
-            $resumes = Resume::where('industry' , $industry)->latest('updated_at')->paginate(25);
-        elseif($city > 0 && $industry < 1)
-            $resumes = Resume::whereIn('city',[$city, 1])->latest('updated_at')->paginate(25);
-        else
-            $resumes = Resume::latest('updated_at')->where('position', '=' ,$specialisation)->paginate(25);
-
-        return View::make('main.filter.filterResumes', array(
-            'resumes' => $resumes,
-            'industries' => $industries,
-            'city_id' => $city,
-            'industry_id' => $industry,
-            'cities' => $cities,
-            'specialisation' => $specialisations,
-            'search_boolean'=> $search_boolean,
-            'data'=>$search_request));
     }
 }

@@ -122,20 +122,25 @@ class MainController extends Controller
 
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
-        $industries = Industry::orderBy('name')->get();
+        //----------filter from loner vacancy--------------------
+        $search_request = Input::get('filterValue');
+        if(!$search_boolean = Input::get('filterName'))
+            $search_boolean = false;
+        //----------filter ends here-----------------------------
 
-        $search_boolean = 'false';
-        $search_request = Request::input('search_field','');
+        $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
+
         $cities = $cityModel->getCities();
         $city = Input::get('city_id', 0);
 
-		    $specialisation = Input::get('specialisation_',0);
-		    $specialisations = Vacancy::groupBy('position')->lists('position');
+	    $specialisation = Input::get('specialisation_',0);
+	    $specialisations = Vacancy::groupBy('position')->lists('position');
+
         $vacancies = Vacancy::AllVacancies()->paginate(25);
 
-        if (Request::ajax()) {
-            $search_boolean = 'false';
+        if (Request::ajax())
+        {
             $search_request_=Request::get('data');
             $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
 			if ($vacancies->count() == 0)
@@ -181,14 +186,21 @@ class MainController extends Controller
 
     public function showResumes(City $cityModel)
     {
+        //----------filter from loner resume--------------------
+        if(!$search_boolean = Input::get('filterName'))
+            $search_boolean = false;
+        $search_request = Input::get('filterValue');
+        //----------filter ends here-----------------------------
+
         $industries = Industry::orderBy('name')->get();
         $industry = Input::get('industry_id',0);
-        $search_boolean = 'false';
-        $search_request = Request::input('search_field','');
+
         $cities = $cityModel->getCities();
         $city = Input::get('city_id',0);
-		    $specialisation = Input::get('specialisation_',0);
-		    $specialisations = Resume::groupBy('position')->lists('position');
+
+        $specialisation = Input::get('specialisation_',0);
+        $specialisations = Resume::groupBy('position')->lists('position');
+
         $resumes = Resume::latest('updated_at')->paginate(25);
 
         if (Request::ajax()) {
