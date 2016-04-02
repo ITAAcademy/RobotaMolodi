@@ -311,10 +311,12 @@ class VacancyController extends Controller
         if (!is_numeric($id)) {
             abort(500);
         }
+        if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
+            Vacancy::destroy($id);
 
-        Vacancy::destroy($id);
-
-        return redirect('cabinet');
+            return redirect('cabinet');
+        }
+        else abort(403);
 
     }
 

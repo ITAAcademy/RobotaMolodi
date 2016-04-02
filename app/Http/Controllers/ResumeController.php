@@ -246,10 +246,12 @@ class ResumeController extends Controller {// Клас по роботі з ре
         {
             abort(500);
         }
-
-        Resume::destroy($id);
-
-        return redirect()->route('cabinet.index');
+        if (User::find(Resume::find($id)->id_u)->id==Auth::id()) {
+            Resume::destroy($id);
+            return redirect()->route('cabinet.index');
+        }
+        else
+            abort(403);
         //$resume->destroy();
     }
     public function send_message(Guard $auth,Request $request)

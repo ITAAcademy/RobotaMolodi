@@ -276,10 +276,13 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         {
             abort(500);
         }
-		Company::destroy($id);
+        if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
+            Company::destroy($id);
 
-        return redirect('cabinet');
-
+            return redirect('cabinet');
+        }
+        else
+            abort(403);
 	}
 
 }
