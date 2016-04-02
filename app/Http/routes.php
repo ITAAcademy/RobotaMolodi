@@ -19,19 +19,16 @@ use App\Models\Vacancy;
 //use Symfony\Component\HttpFoundation\Response;
 
 
-Route::get('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
-Route::get('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
+Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
+Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
 Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
 Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showCompanies']);
 /////
-Route::post('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
-Route::post('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
+Route::any('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
+Route::any('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
 Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
 
-/////
-Route::get('sortVacancies',['as' => 'sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
-Route::get('sortResumes',['as' => 'sortResumes', 'uses' => 'ResumeController@sortResumes']);
-/////
+
 Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 
 Route::get('home', 'HomeController@index');

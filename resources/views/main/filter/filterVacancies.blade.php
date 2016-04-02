@@ -41,14 +41,7 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
-
-                if(search_bool=="true"){
-                var url = 'searchVacancies';
-                }
-                else{
-                  var url = 'showVacancies';
-                }
+                 var url = 'showVacancies';
           $.ajax({
 							url: url,
 							type: "POST",
@@ -72,14 +65,7 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
-
-                if(search_bool=="true"){
-                var url = 'searchVacancies';
-                }
-                else{
-                  var url = 'showVacancies';
-                }
+                var url = 'showVacancies';
 			$.ajax({
 							url: url,
 							type: "POST",
@@ -104,14 +90,7 @@
                 var city_id = $('[name=city]').val();
                 var industry_id = $('[name=industry]').val();
 				        var specialisation = $('[name=spec]').val();
-                var search_bool = '{{$search_boolean}}';
-
-                if(search_bool=="true"){
-                var url = 'searchVacancies';
-                }
-                else{
-                  var url = 'showVacancies';
-                }
+                var url = 'showVacancies';
 
 				$.ajax({
 							url: url,
@@ -132,5 +111,8 @@
             });
         });
 
+        @if($search_boolean)
+            fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');
+        @endif
     </script>
 @stop
