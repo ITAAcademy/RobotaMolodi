@@ -186,19 +186,23 @@ class ResumeController extends Controller {// Клас по роботі з ре
         if(Auth::check())
         {
             $resume = $this->getResume($id);
+
             $cities = $city->getCities();
             $industries = $industry->getIndustries();
 
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
 
-
+            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id())
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
                 ->with('industries',$industries)
                 ->with('currencies', $currencies);
+            else abort(403);
         }
+        else
+            return Redirect::to('auth/login');
     }
 
     /**
