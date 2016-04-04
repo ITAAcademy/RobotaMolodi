@@ -81,11 +81,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $cities = $cityModel->getCities();
             $industries = $industryModel->getIndustries();
             $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+            $position = Input::get('position_',0);
+            $positions = Resume::groupBy('position')->lists('position');
 
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
 
-            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'currencies' => $currencies]);
+            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'positions'=>$positions, 'currencies' => $currencies]);
         }
         else
         {
