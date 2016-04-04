@@ -81,6 +81,8 @@ class VacancyController extends Controller
                 $cities = $city->getCities();
 
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+                $position = Input::get('position_',0);
+                $positions = Vacancy::groupBy('position')->lists('position');
 
                 $currency = new Currency();
                 $currencies = $currency->getCurrencies();
@@ -90,6 +92,7 @@ class VacancyController extends Controller
                         'cities' => $cities,
                         'industries' => $industries,
                         'userEmail' => $userEmail,
+                        'positions' => $positions,
                         'currencies' => $currencies,
                     ]);
             } else {
