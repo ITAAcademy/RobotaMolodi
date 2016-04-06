@@ -47,6 +47,12 @@ class Resume extends Model {
             $salary_max = 1000000000;
         }
 
+        if($salary_max < $salary){
+          $sal = $salary_max;
+          $salary_max = $salary;
+          $salary = $sal;
+        }
+
         if($id!=0)
         {
             $resume = Resume::find($id);

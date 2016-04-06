@@ -51,9 +51,16 @@
 <div class="row">
 <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
     <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span></div>
-    <div class="col-md-6 col-sm-6"> {!! Form::text('position', Input::old('position'), ['class'=>'form-control']) !!}</div>
+    <div class="col-md-6 col-sm-6">
+        <select name="position" id="position">
+            <option value="empty"></option>
+            @foreach($positions as $spec)
+                <option value="{{$spec}}"> {{$spec}} </option>
+            @endforeach
+        </select>
+     </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('position', '<span class="help-block">:message</span>') !!}</div>
-</div></div><br>
+ </div></div><br>
 
 <div class="row">
 <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
