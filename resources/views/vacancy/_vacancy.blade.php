@@ -1,4 +1,4 @@
-@include('/pagination/pagination', ['paginator' => $vacancies])
+{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}
     @foreach($vacancies as $vacancy)
     <article>
         <a href="/vacancy/{{$vacancy->id}}" class="link">
@@ -20,5 +20,4 @@
         </a>
     </article>
     @endforeach
-@include('/pagination/pagination', ['paginator' => $vacancies])
-        {{--{!! str_replace('/?', '?', $vacancies->render()) !!}--}}
+{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}
