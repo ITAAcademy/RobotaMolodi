@@ -10,10 +10,11 @@
 
 
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
-	<!-- Fonts -->
+    <!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
 
 
@@ -55,6 +56,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 
+                        @include('staticHeaderPages.linksContainer')
 
 						<!--
 
@@ -142,11 +144,16 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> -->
+    {!!Html::script('js/select2.full.js')!!}
 
 <script type="text/javascript">
 $(document).ready(function() {
   $(".js_drop_menu").select2()
+    $("#position").select2({
+  	  tags: []
+    //		tokenSeparators: [",", " "]
+      });
   //$(".js_drop_menu").on("change", function(e){
 	  //console.dir(e);
   //})
