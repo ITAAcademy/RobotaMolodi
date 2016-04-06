@@ -44,13 +44,13 @@ class VacancyController extends Controller
     public function getVacancy($id)
     {
         if (!is_numeric($id)) {
-            abort(500);
+            abort(404);
         }
 
         $vacancy = Vacancy::find($id);
 
         if (!isset($vacancy)) {
-            abort(500);
+            abort(404);
         }
         return $vacancy;
     }
@@ -233,6 +233,7 @@ class VacancyController extends Controller
      */
     public function edit($id, Guard $auth)
     {
+        if (Auth::check()) {
         $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
 
         $industry = new Industry();
@@ -248,6 +249,7 @@ class VacancyController extends Controller
 
         $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
+            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id==Auth::id())
         return view('vacancy.edit')
             ->with('vacancy', $vacancy)
             ->with('industries', $industries)
@@ -255,6 +257,11 @@ class VacancyController extends Controller
             ->with('cities', $cities)
             ->with('userEmail', $userEmail)
             ->with('currencies', $currencies);
+            else
+                abort(403);
+        }
+        else
+            return Redirect::to('auth/login');
     }
 
     /**
@@ -307,10 +314,12 @@ class VacancyController extends Controller
         if (!is_numeric($id)) {
             abort(500);
         }
+        if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
+            Vacancy::destroy($id);
 
-        Vacancy::destroy($id);
-
-        return redirect('cabinet');
+            return redirect('cabinet');
+        }
+        else abort(403);
 
     }
 

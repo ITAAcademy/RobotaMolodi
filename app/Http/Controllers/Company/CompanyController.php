@@ -22,14 +22,14 @@ class CompanyController extends Controller  {
     {
         if (!is_numeric($id))
         {
-            abort(500);
+            abort(404);
         }
 
         $company = Company::find($id);
 
         if (!isset($company))
         {
-            abort(500);
+            abort(404);
         }
 
         return $company;
@@ -224,10 +224,15 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	public function edit($id)
 	{
 //
-
-        $company = $this->getCompany($id);
-
-        return view('Company.edit')->with('company',$company);
+        if (Auth::check()) {
+            $company = $this->getCompany($id);
+            if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
+                return view('Company.edit')->with('company', $company);
+            else
+                abort(403);
+        }
+        else
+            return Redirect::to('auth/login');
 	}
 
 	/**
@@ -271,10 +276,13 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         {
             abort(500);
         }
-		Company::destroy($id);
+        if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
+            Company::destroy($id);
 
-        return redirect('cabinet');
-
+            return redirect('cabinet');
+        }
+        else
+            abort(403);
 	}
 
 }
