@@ -95,7 +95,8 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         if(Auth::check())
         {
 
-            $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+//            $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+            $companies = User::find($auth->user()->getAuthIdentifier())->getCompanies()->paginate(25);
             $url=url('company/');
 
             if(empty($companies[0]))
