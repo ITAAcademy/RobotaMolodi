@@ -10,7 +10,7 @@ class BootstrapTwoPresenter extends BootstrapThreePresenter
             return '';
 
         return sprintf(
-            '<div class="pagination"><ul class="pagination">%s %s %s %s %s</ul></div>',
+            '<div class="text-center"><ul class="pagination pagination-centered">%s %s %s %s %s</ul></div>',
 
             $this->getFirstPage(),
             $this->getPreviousButton('<'),
