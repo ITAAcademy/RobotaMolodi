@@ -56,12 +56,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
     {
         if (Auth::check()) {
             $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
-            if (!$resumes) {
-                $resumes = "Зараз у Вас немає резюме.";
-                return  view('Resume.myResumes', ['resumes'=> $resumes]);
+            if (count($resumes)==0) {
+                $mes = "Зараз у Вас немає резюме. Створіть";
+                return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             } else {
                 $resumes->sortByDesc('created_at');
-                return  view('Resume.myResumes', ['resumes'=> $resumes]);
+                $mes = "";
+                return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             }
         } else {
             return Redirect::to('auth/login');
