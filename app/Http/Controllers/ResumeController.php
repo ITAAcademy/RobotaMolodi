@@ -139,7 +139,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $resume->save();
 
 
-        return redirect()->to ( $this->http);
+        return redirect()->route('cabinet.index');
     }
 
     /**
