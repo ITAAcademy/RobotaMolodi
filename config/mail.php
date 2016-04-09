@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 //==========IMPORTANT!===================
 // On test or production server please set pretend to false
 return [
     'driver' => 'smtp',
     'host' => 'localhost',
     'port' => 25,
-    'from' => ['address' => "noreply@rm.itatests.com", 'name' => "Сайт РоботаМолоді"],
+    'from' => ['address' => "noreply@robotamolodi.org", 'name' => "Сайт РоботаМолоді"],
     'pretend' => false,
 
 ];
