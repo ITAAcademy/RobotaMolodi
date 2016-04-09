@@ -1,4 +1,4 @@
-{{--@include('/pagination/pagination', ['paginator' => $companies])--}}
+{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}
     <address>
         @foreach($companies as $company)
         <article>
@@ -17,5 +17,5 @@
         </article>
         @endforeach
     </address>
-{{--@include('/pagination/pagination', ['paginator' => $companies])--}}
+{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}
 

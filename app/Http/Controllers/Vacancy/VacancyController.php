@@ -69,7 +69,7 @@ class VacancyController extends Controller
 
             session_start();
 
-            if (!empty($hasCompany[0]))
+            if (count($hasCompany)!=0)
             {
 
                 $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
@@ -122,12 +122,13 @@ class VacancyController extends Controller
 
             $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
 
-            if (!$vacancies) {
-                $vacancies = "Зараз у Вас немає вакансій.";
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies]);
+            if (count($vacancies)==0) {
+                $mes = "Зараз у Вас немає вакансій.";
+                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             } else {
                 $vacancies->sortByDesc('created_at');
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies]);
+                $mes ="";
+                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes']);
             }
 
         } else {

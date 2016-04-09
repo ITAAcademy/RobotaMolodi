@@ -12,5 +12,6 @@
 @stop
 
 @section('contents')
+    <span>{{$mes}}</span>
     @include('Company._company')
 @stop

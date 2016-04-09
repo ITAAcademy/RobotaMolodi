@@ -11,5 +11,6 @@
 @stop
 
 @section('contents')
+    <span>{{$mes}}</span>
     @include('Resume._resume')
 @stop

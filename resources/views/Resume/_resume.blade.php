@@ -1,4 +1,4 @@
-@include('/pagination/pagination', ['paginator' => $resumes])
+{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}
     @foreach ($resumes as $resume)
         <article>
             <a href="{!!\Illuminate\Support\Facades\URL::to('resume',[$resume->id])!!}" class="link">
@@ -21,5 +21,4 @@
             </a>
         </article>
     @endforeach
-@include('/pagination/pagination', ['paginator' => $resumes])
-    {{--{!!$resumes->appends(['city_id' => $city_id, 'industry_id' => $industry_id])->render()!!}--}}
+{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}

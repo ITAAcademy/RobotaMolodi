@@ -94,24 +94,19 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	{
         if(Auth::check())
         {
-
-            $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
+            $companies = User::find($auth->user()->getAuthIdentifier())->getCompanies()->paginate(25);
             $url=url('company/');
 
-            if(empty($companies[0]))
+            if(count($companies)==0)
             {
-
-                $companies = "Зараз у Вас немає компаній. Створіть";
-
-                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
-
+                $mes = "Зараз у Вас немає компаній. Створіть";
+                return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
             else
             {
-
-                  return view('Company.myCompanies', ['companies' => $companies,  'url' => $url,]);
+                $mes="";
+                return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
-
         }
         else
         {
