@@ -255,7 +255,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         $company->save();
         $company->push();
 
-        return redirect('cabinet');
+        return redirect('company');
 
 	}
 
@@ -274,7 +274,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
             Company::destroy($id);
 
-            return redirect('cabinet');
+            return redirect('company');
         }
         else
             abort(403);
