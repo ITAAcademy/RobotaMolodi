@@ -8,7 +8,7 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['id','position','company_id','branch','organisation', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at'];
+    protected $fillable = ['id','position','company_id','branch', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at'];
 
 //Read and return company
     public function ReadCompany()

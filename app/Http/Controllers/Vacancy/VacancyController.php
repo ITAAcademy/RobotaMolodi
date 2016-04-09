@@ -65,14 +65,12 @@ class VacancyController extends Controller
     {
         if (Auth::check()) {
 
-            $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
 
+            $companies = Company::where('users_id','=',$auth->user()->getAuthIdentifier())->get();
             session_start();
 
-            if (count($hasCompany)!=0)
+            if (count($companies)!=0)
             {
-
-                $countCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
 
                 $industry = new Industry();
                 $industries = $industry->getIndustries();
@@ -88,7 +86,7 @@ class VacancyController extends Controller
                 $currencies = $currency->getCurrencies();
 
                 return view('NewVacancy.newVacancy',
-                    ['companies' => $countCompany,
+                    ['companies' => $companies,
                         'cities' => $cities,
                         'industries' => $industries,
                         'userEmail' => $userEmail,
@@ -235,19 +233,14 @@ class VacancyController extends Controller
     public function edit($id, Guard $auth)
     {
         if (Auth::check()) {
-        $companies = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();             //подсчет компаний юзера
-
+        $companies = Company::where('users_id','=',$auth->user()->getAuthIdentifier())->get();
         $industry = new Industry();
         $industries = $industry->getIndustries();
-
         $city = new City();
         $cities = $city->getCities();
-
         $currency = new Currency();
         $currencies = $currency->getCurrencies();
-
         $vacancy = $this->getVacancy($id);
-
         $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id==Auth::id())
@@ -288,7 +281,6 @@ class VacancyController extends Controller
                 ]);
 
             $vacancy = $vacancy->fillVacancy($id, $request);
-
             $vacancy->update();
             $vacancy->push();
 
