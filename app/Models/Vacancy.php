@@ -38,6 +38,11 @@ class Vacancy extends Model {
         if($salary_max > 1000000000){
             $salary_max = 1000000000;
         }
+        if($salary_max < $salary){
+            $sal = $salary_max;
+            $salary_max = $salary;
+            $salary = $sal;
+        }
 
         if($id!=0)
         {
