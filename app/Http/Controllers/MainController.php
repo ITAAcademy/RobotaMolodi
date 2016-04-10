@@ -260,10 +260,8 @@ class MainController extends Controller
                 ->where('position','=',$specialisation)
                 ->paginate(25);
             }
-            if ($resumes->count() == 0)
-            {
-                return "<br /> По вказаним Вами умовах резюме відсутні";
-            }
+
+            //$resumes->sortByDesc('updated_at');
 
             return Response::json(View::make('Resume._resume',
                 array('resumes' => $resumes,

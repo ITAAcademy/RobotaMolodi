@@ -119,9 +119,6 @@ Route::post('upimg', ['as'=>'upimg', 'uses' => 'UploadFile@editImg']);
 Route::get('aboutus', function () {
     return view('staticHeaderPages.aboutUs');
 });
-Route::get('partners', function () {
-    return view('staticHeaderPages.partners');
-});
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
