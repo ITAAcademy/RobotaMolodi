@@ -28,7 +28,7 @@
         </div>
     </br>
     <div class="row">
-        <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="...">
+        <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="width: 400px">
         {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
         </div>
        {!!Form::token()!!}
