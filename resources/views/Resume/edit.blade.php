@@ -94,11 +94,14 @@
             <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Валюта') !!}</div>
             <div class=" col-md-6 col-sm-6">
                 <select class="form-control" id="selectCurrency" name="currency_id">
-                    @foreach($currencies as $currency)
-                        {
-                        <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                    @foreach ($currencies as $currency){
+                        @if($currency->id == $resume->currency_id){
+                            <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
                         }
-                    @endforeach
+                        @else{
+                            <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        }@endif
+                    }@endforeach
                 </select>
             </div>
         </div>
