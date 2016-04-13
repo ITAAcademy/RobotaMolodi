@@ -107,17 +107,12 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
-            <select class="form-control" class="js-example-basic-multiple" multiple="multiple" name="city[]" id="city" style="width:100%;">
-                @foreach($cities as $city)
-                    {
-                    <option value="{{$city->id}}">{{$city->name}}</option>
-                    }
-                @endforeach
+            <select class="form-control" class="js-example-basic-multiple" id="e12" multiple="multiple" name="city[]" id="city" style="width:100%;">
                     @if(Input::old('city')!= '')
                         @foreach(Input::old('city') as $cityId)
                             {
                             <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
-                            }
+                            }                            }
                         @endforeach
                     @else
                         @foreach($vacancy->City() as $city)
@@ -126,6 +121,19 @@
                             }
                         @endforeach
                     @endif
+                    @foreach($cities as $city){
+                        @foreach($vacancy->City() as $cityId){
+                            @if ($city->id!= $cityId->id){
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                            }
+                            @endif
+                        }
+                        @endforeach
+                    }
+                    @endforeach
+
+
+
             </select>
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('city',':message'); ?></span> </div>
@@ -161,6 +169,7 @@
                 }
             }
         });
+
 
 
     </script>
