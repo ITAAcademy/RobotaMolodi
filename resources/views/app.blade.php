@@ -41,9 +41,9 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-
+				<div class="text-center">
                   <a href="{{ url('/') }}">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
-
+				</div>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
 					<span class="icon-bar"></span>
@@ -154,6 +154,8 @@ $(document).ready(function() {
 	  tags: []
 //		tokenSeparators: [",", " "]
   });
+	$("#e12").select2({tags:[]});
+
   //$(".js_drop_menu").on("change", function(e){
 	  //console.dir(e);
   //})
