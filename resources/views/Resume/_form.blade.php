@@ -52,7 +52,7 @@
 <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
     <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span></div>
     <div class="col-md-6 col-sm-6">
-        <select name="position" id="position">
+        <select name="position" id="position" class="form-control">
             <option value="empty"></option>
             @foreach($positions as $spec)
                 <option value="{{$spec}}"> {{$spec}} </option>

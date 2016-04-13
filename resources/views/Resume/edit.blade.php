@@ -68,7 +68,19 @@
    <div class="row">
     <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span></div>
-        <div class=" col-md-6 col-sm-6"> {!! Form::text('position', $resume->position, ['class'=>'form-control']) !!}</div>
+        <div class=" col-md-6 col-sm-6">
+            {{--{!! Form::text('position', $resume->position, ['class'=>'form-control']) !!}--}}
+            <select name="position" id="position" class="form-control">
+                <option value="empty"></option>
+                @foreach($positions as $position){
+                    @if($position ==$resume->position){
+                        <option selected value="{{$position}}"> {{$position}} </option>
+                    }@else{
+                        <option value="{{$position}}"> {{$position}} </option>
+                    }@endif
+                }@endforeach
+            </select>
+        </div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('position', '<span class="help-block">:message</span>') !!}</div>
     </div>
    </div><br>
@@ -94,11 +106,14 @@
             <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Валюта') !!}</div>
             <div class=" col-md-6 col-sm-6">
                 <select class="form-control" id="selectCurrency" name="currency_id">
-                    @foreach($currencies as $currency)
-                        {
-                        <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                    @foreach ($currencies as $currency){
+                        @if($currency->id == $resume->currency_id){
+                            <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
                         }
-                    @endforeach
+                        @else{
+                            <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        }@endif
+                    }@endforeach
                 </select>
             </div>
         </div>

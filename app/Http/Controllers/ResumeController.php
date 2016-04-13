@@ -195,12 +195,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
-
+            $positions = Resume::groupBy('position')->lists('position');
             if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id())
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
                 ->with('industries',$industries)
+                ->with('positions', $positions)
                 ->with('currencies', $currencies);
             else abort(403);
         }
