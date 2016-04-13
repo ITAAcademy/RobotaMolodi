@@ -6,6 +6,7 @@ use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use View;
 use Input;
 use Validator;
@@ -202,11 +203,16 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	 */
 	public function show($id,Guard $auth)
 	{
-        $company = $this->getCompany($id);
-
-
-        return view('Company.show')
-            ->with('company',$company);
+        if (Auth::check()) {
+            $company = $this->getCompany($id);
+            if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
+                return view('Company.show')
+                    ->with('company',$company);
+            else
+                abort(403);
+        }
+        else
+            return Redirect::to('auth/login');
 
     }
 
