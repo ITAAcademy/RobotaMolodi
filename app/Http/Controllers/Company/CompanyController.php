@@ -100,12 +100,12 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 
             if(count($companies)==0)
             {
-                $mes = "Зараз у Вас немає компаній. Створіть";
+                $mes = "Зараз у Вас немає компаній.";
                 return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
             else
             {
-                $mes="";
+                $mes=null;
                 return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
         }

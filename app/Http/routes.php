@@ -86,7 +86,7 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route
-Route::get('resume/{resume}/create','ResumeController@create');
+Route::get('resume/create','ResumeController@create');
 Route::get('resume/{resume}/destroy','ResumeController@destroy');
 
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
