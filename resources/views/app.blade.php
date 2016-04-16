@@ -42,7 +42,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<div class="text-center">
-                  <a href="{{ url('/') }}">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
+                  <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
 				</div>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
@@ -80,7 +80,7 @@
 
 
 						<li>
-							<button type="submit" Style="background-color:gray;color:white;" class="navbar-right btn btn-default"onclick="
+							<button type="submit" Style="background-color:gray;color:white;" class="navbar-right btn btn-default afterChange"onclick="
 							@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 							@else window.location='{{ url('searchVacancies') }}'
 							@endif">Пошук</button>
@@ -97,8 +97,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 
 							<ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/cabinet') }}">Особистий кабінет</a></li>
-                                <li><a href="{{ url('/auth/logout') }}"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
+                                <li><a href="{{ url('/cabinet') }}" class="afterChange">Особистий кабінет</a></li>
+                                <li><a href="{{ url('/auth/logout') }}" class="afterChange"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
                             </ul>
                         </li>
 					@endif

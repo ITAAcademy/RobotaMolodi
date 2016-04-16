@@ -22,3 +22,4 @@
         </article>
     @endforeach
 {!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}
+
