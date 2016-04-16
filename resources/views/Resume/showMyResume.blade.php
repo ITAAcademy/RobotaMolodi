@@ -97,7 +97,6 @@
             {
                 //This is Костыль
                 var photo = document.getElementById('vacImg').getAttribute('src').split('/');
-                console.log(photo[photo.length-1]);
                 $.post( '/resume/deletephoto',{_token: '{{ csrf_token() }}', name: photo[photo.length-1] },
                 function( data ) {
                    location.reload()
