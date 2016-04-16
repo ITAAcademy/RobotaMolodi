@@ -65,7 +65,7 @@ Route::model('vacancy/{vacancy}/destroy','App\Models\Vacancy');
 
 Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
 
-Route::post('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
+Route::any('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
 
 //show form to response for a vacancy via AJAX
 Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\\VacancyController@showPasteFileForm");
@@ -88,6 +88,8 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 //Resume Route
 Route::get('resume/{resume}/create','ResumeController@create');
 Route::get('resume/{resume}/destroy','ResumeController@destroy');
+Route::post('resume/deletephoto','ResumeController@deletePhoto');
+
 
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);

@@ -57,6 +57,9 @@
             @foreach($positions as $spec)
                 <option value="{{$spec}}"> {{$spec}} </option>
             @endforeach
+            @if(Input::old('position')!= '')
+                <option value="{{Input::old('position')}}" selected>{{Input::old('position')}}
+            @endif
         </select>
      </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('position', '<span class="help-block">:message</span>') !!}</div>

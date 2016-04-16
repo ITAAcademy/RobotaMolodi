@@ -3,10 +3,11 @@ namespace App\Http\Controllers\Auth;
 // namespace;
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
@@ -33,6 +34,43 @@ class AuthController extends Controller {
 	 * @return void
 	 */
 	// public function __construct(Guard $auth, Registrar $registrar)
+
+	public function getLogin()
+	{
+		if (isset($_SERVER['HTTP_REFERER']))
+			$test = $_SERVER['HTTP_REFERER'];
+		else
+			$test = null;
+
+		session(['key' => $test]);
+		return view('auth.login');
+	}
+
+
+	public function postLogin(Request $request)
+	{
+		$this->validate($request, [
+			'email' => 'required|email', 'password' => 'required',
+		]);
+
+		$credentials = $this->getCredentials($request);
+
+		if (Auth::attempt($credentials, $request->has('remember'))) {
+			if (session('redirect')!=null)
+				return Redirect::to(session('key'));
+			return redirect()->intended($this->redirectPath());
+		}
+
+		return redirect($this->loginPath())
+			->withInput($request->only('email', 'remember'))
+			->withErrors([
+				'email' => $this->getFailedLoginMessage(),
+			]);
+	}
+
+
+
+
 	public function __construct()
 	{
 
@@ -40,10 +78,11 @@ class AuthController extends Controller {
 		// $this->registrar = $registrar;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
+
 	}
 
 	public function getLastRoute(){
-		return redirect()->back();
+		return Redirect::intended();
 	}
 //	public function redirectPath()
 //	{
@@ -81,4 +120,8 @@ class AuthController extends Controller {
 				'password' => bcrypt($data['password']),
 			]);
 		}
+
+
 }
+
+

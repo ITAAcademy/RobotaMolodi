@@ -35,10 +35,10 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
-			return new RedirectResponse(url('/cabinet'));
+			return Redirect::intended();//new RedirectResponse(url('/cabinet'));
 		}
 
-        return $next($request);
+	        return $next($request);
 	}
 
 }

@@ -38,7 +38,8 @@ class Resume extends Model {
         $salary_max = $request['salary_max'];
         $currency_id = $request['currency_id'];
         $description = $request['description'];
-
+        if ($salary_max == '')
+            $salary_max =0;
         if($salary > 1000000000){
             $salary = 1000000000;
         }
@@ -47,7 +48,7 @@ class Resume extends Model {
             $salary_max = 1000000000;
         }
 
-        if($salary_max < $salary){
+        if($salary_max < $salary && $salary_max !=0){
           $sal = $salary_max;
           $salary_max = $salary;
           $salary = $sal;
