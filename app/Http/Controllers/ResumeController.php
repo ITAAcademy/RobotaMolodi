@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 use View;
 use Illuminate\Support\Facades\Mail;
@@ -84,7 +85,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
             $position = Input::get('position_',0);
             $positions = Resume::groupBy('position')->lists('position');
-
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
 
@@ -103,7 +103,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
     {
-        Input::flush();
+        //Input::flush();
 
         $rules = 'required|min:3';
         $this->validate($request,[
@@ -151,6 +151,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
     /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
     public function show($id,Guard $auth)
     {
+        if (!session())
+        session()->regenerate();
+        session(['url', '/resume/'.$id] );
         $view = 'Resume.show';
         $search_boolean = 'false';
         $search_request = "";
@@ -258,6 +261,17 @@ class ResumeController extends Controller {// Клас по роботі з ре
             abort(403);
         //$resume->destroy();
     }
+
+    public function deletePhoto(Request $request)
+    {
+        $test =base_path() . '/public/image/resume/' .$request->input('name');
+
+        if ($request->isMethod('POST'))
+            File::delete(base_path() . '/public/image/resume/' .$request->input('name'));
+
+
+    }
+
     public function send_message(Guard $auth,Request $request)
     {
 

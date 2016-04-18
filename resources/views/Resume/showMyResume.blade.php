@@ -2,7 +2,7 @@
 
 @section('content')
     {!!Form::open(['route' => 'main.resumes', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
-    <input type = "hidden" name = "filterName" id = "filterName"/>
+    <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
     {!!Form::close()!!}
     {!! Form::open(array('route' => 'upimg', 'files' => true, 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}
@@ -26,12 +26,24 @@
                 @else
                     {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                 @endif
-            </div>
 
-            <a style="margin-left: 70px" class="orangeLinks" href="javascript:sendFile()">
-                {!! Html::image('image/update.png', 'del') !!}
-                <span style="font-size: 14px; text-decoration: underline">Змiнити фото</span>
-            </a>
+            </div>
+            <div>
+             <a style="margin-left: 70px" class="orangeLinks" href="javascript:sendFile()">
+                    {!! Html::image('image/update.png', 'del') !!}
+                    <span style="font-size: 14px; text-decoration: underline">Змiнити фото</span>
+                </a>
+                <br>
+                @if(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')) ||
+                    File::exists(public_path('imag/resume/' . $resume->id_u . '.jpeg')) ||
+                    File::exists(public_path('imag/resume/' . $resume->id_u . '.png')) ||
+                    File::exists(public_path('imag/resume/' . $resume->id_u . '.bmp')) )
+           <a style="margin-left: 70px" class="orangeLinks" href="javascript:deletePhoto()">
+                {!! Html::image('image/delete.png', 'del') !!}
+                <span style="font-size: 14px; text-decoration: underline">Видалити фото</span>
+            </a>'
+                    @endif
+            </div>
         </div>
 
         <div id="datAnnoyingSizes">
@@ -77,7 +89,21 @@
             var input = document.getElementById('fileImg');
             input.click();
         }
+        function deletePhoto()
+        {
+            var conf = confirm("Ви дійсно хочете видалити фото?");
 
+            if(conf)
+            {
+                //This is Костыль
+                var photo = document.getElementById('vacImg').getAttribute('src').split('/');
+                $.post( '/resume/deletephoto',{_token: '{{ csrf_token() }}', name: photo[photo.length-1] },
+                function( data ) {
+                   location.reload()
+                });
+            }
+
+        }
         function ConfirmDelete()
         {
             var conf = confirm("Ви дійсно хочете видалити резюме?");

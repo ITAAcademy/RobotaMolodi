@@ -267,6 +267,8 @@ class VacancyController extends Controller
     public function update($id, Guard $auth, Company $company, Vacancy $vacancy, Request $request)
     {
 
+        if (!Vacancy::find($id))
+             return  abort(404);
 
         if (Auth::check()) {
             $rules = 'required|min:3';

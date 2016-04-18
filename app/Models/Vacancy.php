@@ -30,7 +30,8 @@ class Vacancy extends Model {
         $description = $request['description'];
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
-
+        if ($salary_max == '')
+             $salary_max = 0;
         if($salary > 1000000000){
             $salary = 1000000000;
         }
@@ -38,7 +39,7 @@ class Vacancy extends Model {
         if($salary_max > 1000000000){
             $salary_max = 1000000000;
         }
-        if($salary_max < $salary){
+        if($salary_max < $salary && $salary_max !=0){
             $sal = $salary_max;
             $salary_max = $salary;
             $salary = $sal;
