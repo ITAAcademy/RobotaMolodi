@@ -12,6 +12,8 @@
 @stop
 
 @section('contents')
-    <span>{{$mes}}</span>
+    @if($mes)
+        <span>{{$mes}} <a href="{{ url('/company/create') }}">Створiть</a></span>
+    @endif
     @include('Company._company')
 @stop

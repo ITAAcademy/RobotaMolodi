@@ -125,7 +125,7 @@ class VacancyController extends Controller
                 return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             } else {
                 $vacancies->sortByDesc('created_at');
-                $mes ="";
+                $mes =null;
                 return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             }
 
