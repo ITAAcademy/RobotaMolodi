@@ -8,7 +8,6 @@
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
-
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 
@@ -16,7 +15,10 @@
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
-
+    <!-- geoFilter yandex links -->
+    <script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=uk-UA" type="text/javascript"></script>
+    <!-- end here -->
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
@@ -125,6 +127,10 @@
                         </div>
 
                     </div>
+
+                    <div id="geoDiv">
+                    </div>
+
                     <div >
                         @yield('content')
                     </div>
