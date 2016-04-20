@@ -45,7 +45,7 @@
     </div>
 
     <div class="row">
-        <div class="form-group" style="margin-top: 30px">
+        <div class="form-group {{$errors-> has('Organisation') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2 col-sm-2 control-label">Оберіть організацію</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="selectOrgan" name="Organisation">
@@ -58,6 +58,7 @@
                     @endforeach
                 </select>
             </div>
+            <div > <span style="color: red"  >* <?php echo $errors->first('Organisation',':message'); ?></span> </div>
         </div>
     </div>
 
@@ -152,6 +153,31 @@
         </div>
     </div>
     </br>
+
+    <div class="form-group" style="margin-top: 30px">
+        <label class="col-sm-2 control-label">Статус публікації</label>
+        <div class="col-sm-5">
+            <select class="form-control" id="published" name="published" >
+                @if (Input::old('published')=='')
+                    @for($i=0; $i<count($publishedOptions); $i++)
+                        @if ($i==1)
+                            <option selected value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        &@else
+                        <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        @endif
+                    @endfor
+                @else
+                    @for($i=0; $i<count($publishedOptions); $i++)
+                        @if (Input::old('published')==$i)
+                            <option selected value="{{$i}}" >{{$publishedOptions[$i]}}</option>
+                        @else
+                            <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        @endif
+                    @endfor
+                @endif
+            </select>
+        </div></br>
+    </div>
 
     <div class="row">
         <div class="col-sm-offset-2 col-md-2  col-sm-2" style="margin-top: 20px">

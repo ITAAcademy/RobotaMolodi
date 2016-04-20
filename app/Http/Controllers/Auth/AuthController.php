@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+
 class AuthController extends Controller {
 
-	protected $redirectTo = '/';
+//	protected $redirectTo = '/';
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -34,39 +36,6 @@ class AuthController extends Controller {
 	 * @return void
 	 */
 	// public function __construct(Guard $auth, Registrar $registrar)
-
-	public function getLogin()
-	{
-		if (isset($_SERVER['HTTP_REFERER']))
-			$test = $_SERVER['HTTP_REFERER'];
-		else
-			$test = null;
-
-		session(['key' => $test]);
-		return view('auth.login');
-	}
-
-
-	public function postLogin(Request $request)
-	{
-		$this->validate($request, [
-			'email' => 'required|email', 'password' => 'required',
-		]);
-
-		$credentials = $this->getCredentials($request);
-
-		if (Auth::attempt($credentials, $request->has('remember'))) {
-			if (session('redirect')!=null)
-				return Redirect::to(session('key'));
-			return redirect()->intended($this->redirectPath());
-		}
-
-		return redirect($this->loginPath())
-			->withInput($request->only('email', 'remember'))
-			->withErrors([
-				'email' => $this->getFailedLoginMessage(),
-			]);
-	}
 
 
 

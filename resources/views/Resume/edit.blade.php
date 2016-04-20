@@ -127,6 +127,31 @@
     </div>
     </div><br>
 
+    <div class="row">
+        <div class="form-group" style="margin-top: 30px">
+            <label class="col-md-2 col-sm-2 control-label">Статус публікації</label>
+            <div class="col-md-6 col-sm-6">
+                <select class="form-control" id="published" name="published" >
+                    @if (Input::old('published')=='')
+                        @for($i=0; $i<count($publishedOptions); $i++)
+                            <option @if($i==$resume->published) selected="selected" @endif value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        @endfor
+                    @else
+                        @for($i=0; $i<count($publishedOptions); $i++)
+                            @if (Input::old('published')==$i)
+                                <option selected value="{{$i}}" >{{$publishedOptions[$i]}}</option>
+                            @else
+                                <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                            @endif
+                        @endfor
+                    @endif
+                </select>
+            </div></br>
+        </div>
+    </div>
+    </br>
+    </br>
+
    <div class="row">
     <div class="form-group">
         <div class="col-sm-offset-2 col-md-2  col-sm-2"> {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}</div>

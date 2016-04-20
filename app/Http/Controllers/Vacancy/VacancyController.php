@@ -34,6 +34,8 @@ use View;
 class VacancyController extends Controller
 {
 
+
+    private $publishedOptions = ['Недоступно','Доступно всім','Доступно зареєстрованим'];
     /**
      * Returns vacancy if exists and 500 code if id or vacancy incorrect .
      *
@@ -92,6 +94,7 @@ class VacancyController extends Controller
                         'userEmail' => $userEmail,
                         'positions' => $positions,
                         'currencies' => $currencies,
+                        'publishedOptions'=> $this->publishedOptions,
                     ]);
             } else {
                 $_SESSION['path'] = 'vacancy.create';
@@ -117,7 +120,10 @@ class VacancyController extends Controller
         if (Auth::check()) {
 
             setcookie('paths', '');
-
+            if (Auth::user()->role == 1){
+                $vacancies = Vacancy::where('id','>',0)->paginate(25);
+            }
+            else
             $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
 
             if (count($vacancies)==0) {
@@ -156,7 +162,8 @@ class VacancyController extends Controller
                     'salary' => 'required|regex:/[^0]+/|min:1|numeric',
                     'email' => 'required|email',
                     'description' => $rules,
-                    'city' => 'required'
+                    'city' => 'required',
+                    'Organisation' => 'exists:company,id'
                 ]);
 
                 $vacancy = $vacancy->fillVacancy(0, $request);
@@ -187,6 +194,10 @@ class VacancyController extends Controller
      */
     public function show($id, Guard $auth)
     {
+//        if (!session())
+//            session()->start();
+             session(['prev', '/vacancy/'.$id] );
+
         $resume = null;
         $view = 'vacancy.show';
 
@@ -204,7 +215,7 @@ class VacancyController extends Controller
         if (Auth::check()) {
 
             $user = User::find($auth->user()->getAuthIdentifier());
-            if ($userVacation->id == $user->id) {
+            if ($userVacation->id == $user->id  || Auth::user()->role == 1) {
                 $view = 'vacancy.showMyVacancy';
             }
             $resume = $auth->user()->GetResumes()->get();
@@ -233,28 +244,38 @@ class VacancyController extends Controller
     public function edit($id, Guard $auth)
     {
         if (Auth::check()) {
-        $companies = Company::where('users_id','=',$auth->user()->getAuthIdentifier())->get();
-        $industry = new Industry();
-        $industries = $industry->getIndustries();
-        $city = new City();
-        $cities = $city->getCities();
-        $currency = new Currency();
-        $currencies = $currency->getCurrencies();
-        $vacancy = $this->getVacancy($id);
-        $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
 
-            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id==Auth::id())
-        return view('vacancy.edit')
-            ->with('vacancy', $vacancy)
-            ->with('industries', $industries)
-            ->with('companies', $companies)
-            ->with('cities', $cities)
-            ->with('userEmail', $userEmail)
-            ->with('currencies', $currencies);
+            $industry = new Industry();
+            $industries = $industry->getIndustries();
+            $city = new City();
+            $cities = $city->getCities();
+            $currency = new Currency();
+            $currencies = $currency->getCurrencies();
+
+            $vacancy = $this->getVacancy($id);
+            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id != Auth::id() && Auth::user()->role == 1)
+            {
+                $companies = Company::where('users_id', '=',User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id)->get();
+                $userEmail = User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->email;
+            }
+            else {
+                $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
+                $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+            }
+
+
+            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id() || Auth::user()->role == 1)
+                return view('vacancy.edit')
+                    ->with('vacancy', $vacancy)
+                    ->with('industries', $industries)
+                    ->with('companies', $companies)
+                    ->with('cities', $cities)
+                    ->with('userEmail', $userEmail)
+                    ->with('currencies', $currencies)
+                    ->with('publishedOptions', $this->publishedOptions);
             else
                 abort(403);
-        }
-        else
+        } else
             return Redirect::to('auth/login');
     }
 
@@ -283,9 +304,18 @@ class VacancyController extends Controller
                 ]);
 
             $vacancy = $vacancy->fillVacancy($id, $request);
+
             $vacancy->update();
             $vacancy->push();
 
+            if (Company::find($vacancy->company_id)->users_id != Auth::user()->id && Auth::user()->role == 1)
+            {
+                Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була відредагована адміністратором'], function ($message) use ($vacancy) {
+                    $to = User::find(Company::find($vacancy->company_id)->users_id)->email;
+                    $message->to($to, User::find(Company::find($vacancy->company_id)->users_id)->name)->subject('Ваша вакансія була відредагована адміністратором');
+                });
+
+            }
 
             $cities = $request['city'];
             $vacancy_City = new Vacancy_City();

@@ -35,9 +35,9 @@
                 </a>
                 <br>
                 @if(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')) ||
-                    File::exists(public_path('imag/resume/' . $resume->id_u . '.jpeg')) ||
-                    File::exists(public_path('imag/resume/' . $resume->id_u . '.png')) ||
-                    File::exists(public_path('imag/resume/' . $resume->id_u . '.bmp')) )
+                    File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')) ||
+                    File::exists(public_path('image/resume/' . $resume->id_u . '.png')) ||
+                    File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')) )
            <a style="margin-left: 70px" class="orangeLinks" href="javascript:deletePhoto()">
                 {!! Html::image('image/delete.png', 'del') !!}
                 <span style="font-size: 14px; text-decoration: underline">Видалити фото</span>

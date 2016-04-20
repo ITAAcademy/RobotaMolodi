@@ -99,7 +99,34 @@
     <div class="col-md-6 col-sm-6">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control']) !!}</div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
  </div></div><br>
-
+<div class="row">
+<div class="form-group" style="margin-top: 30px">
+    <label class="col-sm-2 control-label">Статус публікації</label>
+    <div class="col-sm-5">
+        <select class="form-control" id="published" name="published" >
+            @if (Input::old('published')=='')
+                @for($i=0; $i<count($publishedOptions); $i++)
+                    @if ($i==1)
+                        <option selected value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        &@else
+                        <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                    @endif
+                @endfor
+            @else
+                @for($i=0; $i<count($publishedOptions); $i++)
+                    @if (Input::old('published')==$i)
+                        <option selected value="{{$i}}" >{{$publishedOptions[$i]}}</option>
+                    @else
+                        <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                    @endif
+                @endfor
+            @endif
+        </select>
+    </div></br>
+</div>
+</div>
+</br>
+</br>
 <div class="row">
 <div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
     <div class="col-sm-offset-2">
