@@ -8,7 +8,7 @@ class Vacancy extends Model {
 
 
     protected $table = 'vacancies';
-    protected $fillable = ['id','position','company_id','branch', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at'];
+    protected $fillable = ['id','position','company_id','branch', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at', 'published'];
 
 //Read and return company
     public function ReadCompany()
@@ -30,6 +30,7 @@ class Vacancy extends Model {
         $description = $request['description'];
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
+        $published = $request['published'];
         if ($salary_max == '')
              $salary_max = 0;
         if($salary > 1000000000){
@@ -63,6 +64,7 @@ class Vacancy extends Model {
         $vacancy->description = $description;
         $vacancy->company_id = $companyId;
         $vacancy->user_email = $userEmail;
+        $vacancy->published = $published;
         return $vacancy;
     }
     //

@@ -141,6 +141,8 @@
         </br>
     </div>
 
+
+
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
@@ -149,14 +151,37 @@
         <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>
         </br>
     </div>
-    </br>
 
+    <div class="form-group" style="margin-top: 230px">
+        <label class="col-sm-2 control-label">Статус публікації</label>
+        <div class="col-sm-5">
+            <select class="form-control" id="published" name="published" >
+                @if (Input::old('published')=='')
+                    @for($i=0; $i<count($publishedOptions); $i++)
+                        <option @if($i==$vacancy->published) selected="selected" @endif value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                    @endfor
+                @else
+                    @for($i=0; $i<count($publishedOptions); $i++)
+                        @if (Input::old('published')==$i)
+                            <option selected value="{{$i}}" >{{$publishedOptions[$i]}}</option>
+                        @else
+                            <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
+                        @endif
+                    @endfor
+                @endif
+            </select>
+        </div></br>
+    </div>
 
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
         <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
     </div>
+
     {!!Form::token()!!}
     {!!Form::close()!!}
+
+
+
 
 @endsection
 @section('footer')

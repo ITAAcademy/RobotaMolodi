@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Resume extends Model {
 
     protected $table = "resumes";
-    protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description'];
+    protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description','published'];
 
     public function getResumes()
     {
@@ -38,6 +38,7 @@ class Resume extends Model {
         $salary_max = $request['salary_max'];
         $currency_id = $request['currency_id'];
         $description = $request['description'];
+        $published = $request['published'];
         if ($salary_max == '')
             $salary_max =0;
         if($salary > 1000000000){
@@ -78,7 +79,7 @@ class Resume extends Model {
         $resume->salary_max = $salary_max;
         $resume->currency_id = $currency_id;
         $resume->description = $description;
-
+        $resume->published = $published;
         return $resume;
 
     }

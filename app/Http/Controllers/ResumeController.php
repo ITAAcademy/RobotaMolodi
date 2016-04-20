@@ -25,6 +25,7 @@ use File;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
+    private $publishedOptions = ['Недоступно','Доступно всім','Доступно зареєстрованим'];
     /**
      * Returns resume if exists and 500 code if id or resume incorrect .
      *
@@ -56,7 +57,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function index(Guard $auth)//Output all resumes
     {
         if (Auth::check()) {
-            $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
+            if (Auth::user()->role == 1){
+                $resumes = Resume::where('id','>',0)->paginate(25);
+            }
+                else
+                    $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
             if (count($resumes)==0) {
                 $mes = "Зараз у Вас немає резюме.";
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
@@ -77,7 +82,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
     {
-        $this->http=$_SERVER['HTTP_REFERER'];
+        $this->http->$_SERVER['HTTP_REFERER'];
 
         if(Auth::check()){
             $cities = $cityModel->getCities();
@@ -88,7 +93,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
 
-            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'positions'=>$positions, 'currencies' => $currencies]);
+            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'positions'=>$positions, 'currencies' => $currencies, 'publishedOptions'=> $this->publishedOptions]);
         }
         else
         {
@@ -166,7 +171,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $user = auth()->user();
         if(Auth::check())
         {
-            if($user->id == $userResume->id)
+            if($user->id == $userResume->id  || Auth::user()->role == 1)
             {
                 $view = "Resume.showMyResume";
             }
@@ -199,13 +204,14 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
             $positions = Resume::groupBy('position')->lists('position');
-            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id())
+            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id() || Auth::user()->role == 1)
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
                 ->with('industries',$industries)
                 ->with('positions', $positions)
-                ->with('currencies', $currencies);
+                ->with('currencies', $currencies)
+                ->with('publishedOptions',$this->publishedOptions);
             else abort(403);
         }
         else
@@ -236,7 +242,14 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $updateResume->push();
 
         $updateResume->save();
+        if ($updateResume->id_u != Auth::user()->id && Auth::user()->role == 1)
+        {
+            Mail::send('emails.notificationEdit', ['messageText' => 'Ваше резюме було відредаговане адміністратором'], function ($message) use ($updateResume) {
+                $to = User::find($updateResume->id_u)->email;
+                $message->to($to, User::find($updateResume->id_u)->name)->subject('Ваше резюме було відредаговане адміністратором');
+            });
 
+        }
         return redirect()->route('cabinet.index');
 
     }
@@ -264,8 +277,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
     public function deletePhoto(Request $request)
     {
-        $test =base_path() . '/public/image/resume/' .$request->input('name');
-
         if ($request->isMethod('POST'))
             File::delete(base_path() . '/public/image/resume/' .$request->input('name'));
 
