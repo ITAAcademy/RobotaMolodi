@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="row">
-    {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data'))!!}
+    {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data', 'id'=>'form_id'))!!}
     <div class="form-group {{$errors-> has('name_u') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Прізвище та ім'я") !!} <span class="required_field">*</span></div>
         <div class="col-md-6 col-sm-6"> {!! Form::text('name_u', $resume->name_u, ['class'=>'form-control']) !!}</div>
@@ -175,21 +175,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-            $('.afterChange').click(function(){
-                if (confirm("Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?"))
-                    return true;
-                else return false;
+            $(window).bind('beforeunload', function () {
+                return 'Збережіть будь ласка всі внесені нові дані!';
             });
-            window.onbeforeunload = function (evt) {
-                var message = "Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?";
-                if (typeof evt == "undefined") {
-                    evt = window.event;
-                }
-                if (evt) {
-                    evt.returnValue = message;
-                }
-                return message;
-            }
+            $('#form_id').submit(function () {
+                $(window).unbind('beforeunload');
+            });
         });
 
     });

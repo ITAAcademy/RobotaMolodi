@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put'))!!}
+    {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put', 'id'=>'form_id'))!!}
     <h3>Редагування вакансії</h3>
     <div > <span style="color: red"><h4><?php echo $errors->first('deleted',':message'); ?></h4></span> </div>
     <div class="form-group" style="margin-top: 30px">
@@ -206,21 +206,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-            $('.afterChange').click(function(){
-                if (confirm("Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?"))
-                    return true;
-                else return false;
+            $(window).bind('beforeunload', function () {
+                return 'Збережіть будь ласка всі внесені нові дані!';
             });
-            window.onbeforeunload = function (evt) {
-                var message = "Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?";
-                if (typeof evt == "undefined") {
-                    evt = window.event;
-                }
-                if (evt) {
-                    evt.returnValue = message;
-                }
-                return message;
-            }
+            $('#form_id').submit(function () {
+                $(window).unbind('beforeunload');
+            });
         });
 
     });
