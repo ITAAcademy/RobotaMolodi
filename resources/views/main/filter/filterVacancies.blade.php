@@ -90,6 +90,25 @@
 
         @if($search_boolean)
             fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');
+        @else
+            window.onload = function()
+            {
+                var optionsF = document.getElementById('selectCity').childNodes;
+                var valueF = ymaps.geolocation.city;
+
+                var cityId = null;
+
+                for(var i = 0; i < optionsF.length; i++)
+                    if(optionsF[i].innerHTML == ' ' + valueF + ' ' && !getCookie('geo'))
+                    {
+                        cityId = (i - 1) / 2;
+                        document.getElementById('selectCity').selectedIndex = cityId;
+                        document.getElementById('select2-selectCity-container').innerHTML = valueF;
+                        document.cookie = "geo=true";
+                        fakeFilter('selectCity', cityId, 'showVacancies');
+                        break;
+                    }
+            }
         @endif
     </script>
 @stop
