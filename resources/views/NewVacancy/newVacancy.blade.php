@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()'])!!}
+    {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()', 'id'=>'form_id'])!!}
 
     <div class="row">
         <h3 class="formTitle"><b>Створення вакансії</b></h3>
@@ -209,21 +209,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-            $('.afterChange').click(function(){
-                if (confirm("Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?"))
-                    return true;
-                else return false;
+            $(window).bind('beforeunload', function () {
+                return 'Збережіть будь ласка всі внесені нові дані!';
             });
-            window.onbeforeunload = function (evt) {
-                var message = "Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?";
-                if (typeof evt == "undefined") {
-                    evt = window.event;
-                }
-                if (evt) {
-                    evt.returnValue = message;
-                }
-                return message;
-            }
+            $('#form_id').submit(function () {
+                $(window).unbind('beforeunload');
+            });
         });
 
     });
