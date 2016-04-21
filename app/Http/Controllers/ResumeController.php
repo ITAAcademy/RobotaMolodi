@@ -82,7 +82,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
     {
-        $this->http->$_SERVER['HTTP_REFERER'];
+	if (isset($_SERVER['HTTP_REFERER']))
+	        $this->http=$_SERVER['HTTP_REFERER'];
 
         if(Auth::check()){
             $cities = $cityModel->getCities();

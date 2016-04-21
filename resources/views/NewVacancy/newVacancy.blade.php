@@ -147,7 +147,7 @@
         <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2 col-sm-2 control-label">Опис</label>
             <div class="col-md-6 col-sm-6">
-                {!! Form::textarea('description', Input::old('description'), array('class' => 'form-control','onfocus' =>'validateDisc(this)')) !!}
+                {!! Form::textarea('description', Input::old('description'), array('class' => 'form-control','id'=>'description','onfocus' =>'validateDisc(this)')) !!}
             </div>
             <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>
         </div>
@@ -219,3 +219,11 @@
 
     });
 </script>
+
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+	$(document).ready(function() {
+		CKEDITOR.replace( 'description' );
+	});
+</script>
+

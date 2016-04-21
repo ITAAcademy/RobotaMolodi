@@ -146,7 +146,7 @@
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
-            {!! Form::textarea('description', $vacancy->description, array('class' => 'form-control' )) !!}
+            {!! Form::textarea('description', $vacancy->description, array('class' => 'form-control', 'id'=>'description' )) !!}
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>
         </br>
@@ -215,4 +215,10 @@
         });
 
     });
+</script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+	$(document).ready(function() {
+		CKEDITOR.replace( 'description' );
+	});
 </script>
