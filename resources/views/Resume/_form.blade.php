@@ -96,7 +96,7 @@
 <div class="row">
 <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">
     <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Опис') !!} <span class="required_field">*</span></div>
-    <div class="col-md-6 col-sm-6">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control']) !!}</div>
+    <div class="col-md-6 col-sm-6">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}</div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
  </div></div><br>
 <div class="row">
@@ -202,4 +202,11 @@
 				}).change();
 
     </script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+	$(document).ready(function() {
+		CKEDITOR.replace( 'description' );
+	});
+</script>
+
 @stop
