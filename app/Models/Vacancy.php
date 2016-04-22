@@ -55,7 +55,7 @@ class Vacancy extends Model {
             $vacancy = new Vacancy();
         }
 
-        $vacancy->position = $position;
+        $vacancy->position = strip_tags($position);
         $vacancy->branch = $branch;
         //$vacancy->telephone = $telephone;
         $vacancy->salary = $salary;
