@@ -129,10 +129,10 @@
 </br>
 <div class="row">
 <div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
-    <div class="col-sm-offset-2">
-        <button type="button">Виберіть файл</button>
-        <div>Файл не вибрано</div>
-        {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}
+    <div>
+        <button type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+        <div id="filename">Файл не вибрано</div>
+        {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
     </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
