@@ -69,12 +69,12 @@ class Resume extends Model {
             $resume->id_u = $user->id;
         }
 
-        $resume->name_u = $name_u;
+        $resume->name_u =strip_tags($name_u);
         $resume->telephone = $telephone;
         $resume->email = $email;
         $resume->city = $city;
         $resume->industry = $industry;
-        $resume->position = $position;
+        $resume->position = strip_tags($position);
         $resume->salary = $salary;
         $resume->salary_max = $salary_max;
         $resume->currency_id = $currency_id;
