@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\profOrientation\test1;
 use App\Models\profOrientation\UserSession;
 use App\Models\Vacancy_City;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session;
@@ -119,7 +120,7 @@ class VacancyController extends Controller
     {
         if (Auth::check()) {
 
-            setcookie('paths', '');
+
             if (Auth::user()->role == 1){
                 $vacancies = Vacancy::where('id','>',0)->paginate(25);
             }
@@ -196,8 +197,7 @@ class VacancyController extends Controller
     {
 //        if (!session())
 //            session()->start();
-             session(['prev', '/vacancy/'.$id] );
-
+        Cookie::queue('url', 'vacancy/'.$id);
         $resume = null;
         $view = 'vacancy.show';
 

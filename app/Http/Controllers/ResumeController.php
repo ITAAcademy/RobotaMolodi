@@ -157,9 +157,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
     /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
     public function show($id,Guard $auth)
     {
-        if (!session())
-        session()->regenerate();
-        session(['url', '/resume/'.$id] );
+        Cookie::queue('url', 'resume/'.$id);
         $view = 'Resume.show';
         $search_boolean = 'false';
         $search_request = "";
