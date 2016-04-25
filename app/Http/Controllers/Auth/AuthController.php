@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Validator;
@@ -43,10 +44,6 @@ class AuthController extends Controller {
 	public function __construct()
 	{
 
-		// $this->auth = $auth;
-		// $this->registrar = $registrar;
-
-		$test = Cookie::get('url');
 		if (Cookie::get('url')!='')
 			$this->redirectPath =  Cookie::get('url');
 		$this->middleware('guest', ['except' => 'getLogout']);
