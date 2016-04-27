@@ -53,13 +53,24 @@
     <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span></div>
     <div class="col-md-6 col-sm-6">
         <select name="position" id="position" class="form-control">
-            <option value="empty"></option>
-            @foreach($positions as $spec)
-                <option value="{{$spec}}"> {{$spec}} </option>
+        @if(Input::old('position')== '')
+            @foreach($positions as $position)
+                <option value="empty"></option>
+                @if($position == $resume->position)
+                    <option value="{{$position}}" selected>{{$position}}</option>
+                @else
+                    <option value="{{$position}}">{{$position}}</option>
+                @endif
             @endforeach
-            @if(Input::old('position')!= '')
-                <option value="{{Input::old('position')}}" selected>{{Input::old('position')}}
-            @endif
+        @else
+            @foreach($positions as $position)
+                @if($position == Input::old('position'))
+                    <option value="{{$position}}" selected>{{$position}}</option>
+                @else
+                    <option value="{{$position}}">{{$position}}</option>
+                @endif
+            @endforeach
+        @endif
         </select>
      </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('position', '<span class="help-block">:message</span>') !!}</div>

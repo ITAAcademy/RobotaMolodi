@@ -11,7 +11,7 @@
             <div class="col-md-6 col-sm-6">
                 <!-- {!! Form::text('position', Input::old('position'), array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!} -->
                 <select name="position" id="position" class="form-control" onsubmit="checkForm(this)">
-                    <option value="empty"></option>
+                    @if ((Input::old('position')!= ''))<option value="{{Input::old('position')}}"> {{Input::old('position')}} @else</option>  <option value="empty"></option>@endif
                     @foreach($positions as $spec)
                         <option value="{{$spec}}"> {{$spec}} </option>
                     @endforeach

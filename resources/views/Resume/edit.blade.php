@@ -71,15 +71,23 @@
         <div class=" col-md-6 col-sm-6">
             {{--{!! Form::text('position', $resume->position, ['class'=>'form-control']) !!}--}}
             <select name="position" id="position" class="form-control">
-                <option value="empty"></option>
-
-                @foreach($positions as $position){
-                    @if($position ==$resume->position){
-                        <option selected value="{{$position}}"> {{$position}} </option>
-                    }@else{
-                        <option value="{{$position}}"> {{$position}} </option>
-                    }@endif
-                }@endforeach
+                @if(Input::old('position')== '')
+                    @foreach($positions as $position)
+                        @if($position == $resume->position)
+                            <option value="{{$position}}" selected>{{$position}}</option>
+                        @else
+                            <option value="{{$position}}">{{$position}}</option>
+                        @endif
+                    @endforeach
+                @else
+                    @foreach($positions as $position)
+                        @if($position == Input::old('position'))
+                            <option value="{{$position}}" selected>{{$position}}</option>
+                        @else
+                            <option value="{{$position}}">{{$position}}</option>
+                        @endif
+                    @endforeach
+                @endif
             </select>
         </div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('position', '<span class="help-block">:message</span>') !!}</div>

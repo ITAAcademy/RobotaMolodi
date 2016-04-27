@@ -18,19 +18,22 @@
         <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
+                @if (Input::old('branch')==''))
                 @foreach($industries as $industry)
                     {
                     <option value="{{$industry->id}}">{{$industry->name}}</option>
                     }
                 @endforeach
-                @if(Input::old('branch')!= '')
+                @else
                     @foreach($industries as $industry)
-                        @if($industry->id == Input::old('branch'))
-                            <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                        {
+                        @if($industry->id !=  Input::old('branch'))
+                            <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @else
+                            <option selected value="{{$industry->id}}">{{$industry->name}}</option>
+                            }
                         @endif
                     @endforeach
-                @else
-                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Industry()->name}}</option>
                 @endif
             </select>
         </div></br>
