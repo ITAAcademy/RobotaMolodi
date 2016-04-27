@@ -152,6 +152,11 @@ class VacancyController extends Controller
         //dd($request);
         if (Auth::check()) {
             Input::flash();
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+                if ($value < $request['salary_max'])
+                    return true;
+                else return false;
+            });
 
             $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
             //
@@ -160,7 +165,8 @@ class VacancyController extends Controller
                 $this->validate($request, [
                     'position' => $rules,
                     //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
-                    'salary' => 'required|regex:/[^0]+/|min:1|numeric',
+                    'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+                    'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
                     'email' => 'required|email',
                     'description' => $rules,
                     'city' => 'required',
@@ -215,7 +221,7 @@ class VacancyController extends Controller
         if (Auth::check()) {
 
             $user = User::find($auth->user()->getAuthIdentifier());
-            if ($userVacation->id == $user->id  || Auth::user()->role == 1) {
+            if ($userVacation->id == $user->id) {
                 $view = 'vacancy.showMyVacancy';
             }
             $resume = $auth->user()->GetResumes()->get();
@@ -264,7 +270,7 @@ class VacancyController extends Controller
             }
 
 
-            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id() || Auth::user()->role == 1)
+            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
                 return view('vacancy.edit')
                     ->with('vacancy', $vacancy)
                     ->with('industries', $industries)
@@ -395,6 +401,22 @@ class VacancyController extends Controller
         });
         File::delete($uploadFile);
         return view('vacancy/vacancyAnswer');
+
+    }
+
+    public function block(Request $request, Guard $auth)
+    {
+        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+            $updateVacancy = Vacancy::find($request['id']);
+            $updateVacancy->published =0;
+            $updateVacancy->save();
+            Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була заблокована адміністратором'], function ($message) use ($updateVacancy) {
+                $to = User::find(Company::find($updateVacancy->company_id)->users_id)->email;
+                $message->to($to, User::find(Company::find($updateVacancy->company_id)->users_id)->name)->subject('Ваша вакансія була заблокована адміністратором');
+            });
+        }
+        else
+            return redirect()->back();
 
     }
 

@@ -73,12 +73,12 @@
     </div>
 
     <div class="row">
-        <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}" style="margin-top: 30px">
+        <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2 col-sm-2 control-label">Зарплата (максимальна)</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
             </div>
-            <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
+            <div > <span style="color: red"  >* <?php echo $errors->first('salary_max',':message'); ?></span> </div>
         </div>
     </div>
 

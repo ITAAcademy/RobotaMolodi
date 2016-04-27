@@ -72,6 +72,7 @@
             {{--{!! Form::text('position', $resume->position, ['class'=>'form-control']) !!}--}}
             <select name="position" id="position" class="form-control">
                 <option value="empty"></option>
+
                 @foreach($positions as $position){
                     @if($position ==$resume->position){
                         <option selected value="{{$position}}"> {{$position}} </option>

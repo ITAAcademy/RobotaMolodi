@@ -69,7 +69,7 @@
         <div class="col-sm-5">
             {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
         </div>
-        <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary_max',':message'); ?></span> </div>
         </br>
     </div>
 

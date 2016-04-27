@@ -39,8 +39,25 @@
                 <li class="list-group-item"><a class="orangeLinks" href="{{$resume->id}}/send_message">Написати на пошту</a></li>
                 <li class="list-group-item" id="opt-data-low" style="color: #777777;"><a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{!!$city->name!!}</a> <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->updated_at))}}</li>
             </ul>
+
         </div>
 
-
     </div>
+        @if(Auth::check()) @if(Auth::user()->role ==1)<div><button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">Заблокувати</button></div>@endif @endif
+
+    <script>
+        function blockResume()
+        {
+            var dialogResult = confirm("Ви дійсно бажаєте заблокувати резюме?");
+            if(dialogResult)
+            {
+                $.post( '/resume/block',{_token: '{{ csrf_token() }}', id: '{{ $resume->id }}' },
+                        function( data ) {
+                            location="{{URL::to('resume')}}";
+
+                        });
+            }
+
+        }
+    </script>
 @stop

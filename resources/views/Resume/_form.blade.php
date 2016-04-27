@@ -73,10 +73,10 @@
 </div></div><br>
 
 <div class="row">
-    <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
+    <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (максимальна)") !!} <span class="required_field">*</span></div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']) !!}</div>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
+        <div class=" col-md-4 col-sm-4">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
     </div></div><br>
 
 <div class="row">

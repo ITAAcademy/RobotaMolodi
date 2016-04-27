@@ -44,6 +44,7 @@
                             window.location='{{ url('auth/login') }}'@endif">Відправити файл</button>
                     <button class="btn btn-default" data-toggle="modal" data-target="#sendRes" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="@if(!Auth::check())
                             window.location='{{ url('auth/login') }}'@endif">Відправити резюме</button>
+                    @if(Auth::check()) @if(Auth::user()->role ==1)<button class="btn btn-default" for="paste-resume-form" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">Заблокувати</button>@endif @endif
                 </li>
             </ul>
         </div>
@@ -98,4 +99,21 @@
         });
 
     </script>
+
+    <script>
+        function blockVacancy()
+        {
+            var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
+            if(dialogResult)
+            {
+                $.post( '/vacancy/block',{_token: '{{ csrf_token() }}', id: '{{ $vacancy->id }}' },
+                        function( data ) {
+                            location="{{URL::to('/')}}";
+
+                        });
+            }
+
+        }
+    </script>
+
 @stop

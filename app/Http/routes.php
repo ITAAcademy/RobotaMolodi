@@ -73,6 +73,7 @@ Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\\VacancyController@showPasteF
 Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\\VacancyController@showPasteLinkForm");
 
 Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPasteResumeForm");
+Route::post('vacancy/block','Vacancy\\VacancyController@block');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
@@ -89,7 +90,7 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 Route::get('resume/create','ResumeController@create');
 Route::get('resume/{resume}/destroy','ResumeController@destroy');
 Route::post('resume/deletephoto','ResumeController@deletePhoto');
-
+Route::post('resume/block','ResumeController@block');
 
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index']);
