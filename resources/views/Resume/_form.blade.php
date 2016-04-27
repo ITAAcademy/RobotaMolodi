@@ -84,11 +84,23 @@
         <div class="col-md-2 col-sm-2 control-label"> {!! Form::label('Валюта') !!}<span class="required_field">*</span></div>
         <div class="col-md-6 col-sm-6">
             <select class="form-control" id="selectCurrency" name="currency_id" style="width: auto" >
-                @foreach($currencies as $currency)
-                    {
-                    <option value="{{$currency->id}}">{{$currency->currency}}</option>
-                    }
-                @endforeach
+                @if (Input::old('currency_id') ==''))
+                    @foreach($currencies as $currency)
+                        {
+                        <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        }
+                    @endforeach
+                @else
+                    @foreach($currencies as $currency)
+                        {
+                        @if($currency->id !=  Input::old('currency_id'))
+                            <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        @else
+                            <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
+                            }
+                        @endif
+                    @endforeach
+                @endif
             </select>
         </div>
     </div></div><br>

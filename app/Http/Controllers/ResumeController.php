@@ -59,10 +59,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function index(Guard $auth)//Output all resumes
     {
         if (Auth::check()) {
-            if (Auth::user()->role == 1){
-                $resumes = Resume::where('id','>',0)->paginate(25);
-            }
-                else
                     $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
             if (count($resumes)==0) {
                 $mes = "Зараз у Вас немає резюме.";
@@ -233,15 +229,25 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function update($id,Request $request,Resume $resume,Guard $auth)
     {
+
+        Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+            if ($value < $request['salary_max'])
+                return true;
+            else return false;
+        });
+
+
         $rules = 'required|min:3';
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|regex:/[^0]+/|min:1|numeric',
+            'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+            'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
             'description' => $rules,
-            'city' => 'required'
+            'city' => 'required',
+            'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $updateResume = $resume->fillResume($id,$auth,$request);

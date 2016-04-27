@@ -95,10 +95,10 @@
    </div><br>
 
     <div class="row">
-        <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
+        <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (максимальна)") !!} <span class="required_field">*</span></div>
             <div class=" col-md-6 col-sm-6"> {!! Form::text('salary_max', $resume->salary_max, ['class'=>'form-control']) !!}</div>
-            <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
+            <div class=" col-md-4 col-sm-4">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
         </div>
     </div><br>
 
@@ -107,14 +107,23 @@
             <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Валюта') !!}</div>
             <div class=" col-md-6 col-sm-6">
                 <select class="form-control" id="selectCurrency" name="currency_id">
-                    @foreach ($currencies as $currency){
-                        @if($currency->id == $resume->currency_id){
-                            <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
-                        }
-                        @else{
+                    @if (Input::old('currency_id')==''))
+                        @foreach($currencies as $currency)
+                            {
                             <option value="{{$currency->id}}">{{$currency->currency}}</option>
-                        }@endif
-                    }@endforeach
+                            }
+                        @endforeach
+                    @else
+                        @foreach($currencies as $currency)
+                            {
+                            @if($currency->id !=  Input::old('currency_id'))
+                                <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                            @else
+                                <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
+                                }
+                            @endif
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

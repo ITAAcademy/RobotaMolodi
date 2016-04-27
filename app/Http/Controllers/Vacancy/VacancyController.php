@@ -120,11 +120,6 @@ class VacancyController extends Controller
     {
         if (Auth::check()) {
 
-
-            if (Auth::user()->role == 1){
-                $vacancies = Vacancy::where('id','>',0)->paginate(25);
-            }
-            else
             $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
 
             if (count($vacancies)==0) {
@@ -259,15 +254,9 @@ class VacancyController extends Controller
             $currencies = $currency->getCurrencies();
 
             $vacancy = $this->getVacancy($id);
-            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id != Auth::id() && Auth::user()->role == 1)
-            {
-                $companies = Company::where('users_id', '=',User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id)->get();
-                $userEmail = User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->email;
-            }
-            else {
                 $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
-            }
+
 
 
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
@@ -298,16 +287,24 @@ class VacancyController extends Controller
              return  abort(404);
 
         if (Auth::check()) {
+
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+                if ($value < $request['salary_max'])
+                    return true;
+                else return false;
+            });
+
             $rules = 'required|min:3';
-            $this->validate($request,
-                [
-                    'position' => $rules,
-                    'salary' => 'required|regex:/[^0]+/|min:1|numeric',
-                    'email' => 'required|email',
-                    //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
-                    'description' => $rules,
-                    'city' => 'required'
-                ]);
+            $this->validate($request, [
+                'position' => $rules,
+                //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
+                'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+                'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
+                'email' => 'required|email',
+                'description' => $rules,
+                'city' => 'required',
+                'Organisation' => 'exists:company,id'
+            ]);
 
             $vacancy = $vacancy->fillVacancy($id, $request);
 
