@@ -178,6 +178,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 $view = "Resume.showMyResume";
             }
         }
+        if(!Auth::check() && $resume->published == 0) {
+            abort(404);
+        }
+        else{
+            if (Auth::check())
+                if(Auth::user()->id != $userResume->id && $resume->published == 0 && Auth::user()->role !=1 )
+                    abort(404);
+        }
+
 
         return view($view)
             ->with('resume',$resume)
