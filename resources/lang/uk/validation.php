@@ -12,7 +12,6 @@ return [
 	| as the size rules. Feel free to tweak each of these messages here.
 	|
 	*/
-
 	"accepted"             => "The :attribute must be accepted.",
 	"active_url"           => "The :attribute is not a valid URL.",
 	"after"                => "The :attribute must be a date after :date.",
@@ -57,7 +56,7 @@ return [
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "The :attribute must be a number.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "The :attribute field is required.",
+	"required"             => "Поле обов'язове для заповнення",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -73,7 +72,6 @@ return [
 	"unique"               => "The :attribute has already been taken.",
 	"url"                  => "The :attribute format is invalid.",
 	"timezone"             => "The :attribute must be a valid zone.",
-
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines
@@ -86,13 +84,18 @@ return [
 	*/
 
 	'custom' => [
+
 		'attribute-name' => [
 			'rule-name' => 'custom-message',
+
 		],
         'email' => [
             'required' => 'Поле обов\'язкове для заповнення!',
             'email' => 'Введіть корректний email!',
         ],
+			'salary_max' => [
+					'required' => 'Поле обов\'язкове для заповнення!',
+			],
 	],
 
 	/*

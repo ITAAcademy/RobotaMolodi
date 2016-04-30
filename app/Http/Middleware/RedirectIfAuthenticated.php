@@ -35,7 +35,7 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
-			return Redirect::intended();//new RedirectResponse(url('/cabinet'));
+			return redirect()->back();
 		}
 
 	        return $next($request);

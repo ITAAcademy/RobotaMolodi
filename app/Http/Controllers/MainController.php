@@ -13,6 +13,7 @@ use Request;
 use Session;
 use DB;
 use View;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Models\Company;
@@ -123,6 +124,7 @@ class MainController extends Controller
 
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
+        Cookie::queue('url', '/');
         //----------filter from loner vacancy--------------------
         $search_request = Input::get('filterValue');
         if(!$search_boolean = Input::get('filterName'))
@@ -188,6 +190,7 @@ class MainController extends Controller
 
     public function showResumes(City $cityModel)
     {
+        Cookie::queue('url', 'sresume');
         //----------filter from loner resume--------------------
         if(!$search_boolean = Input::get('filterName'))
             $search_boolean = false;

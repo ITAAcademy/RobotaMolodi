@@ -42,7 +42,7 @@ return [
 	"integer"              => "The :attribute must be an integer.",
 	"ip"                   => "The :attribute must be a valid IP address.",
 	"max"                  => [
-		"numeric" => "The :attribute may not be greater than :max.",
+		"numeric" => "Поле не може мати значення більше :max.",
 		"file"    => "The :attribute may not be greater than :max kilobytes.",
 		"string"  => "The :attribute may not be greater than :max characters.",
 		"array"   => "The :attribute may not have more than :max items.",
@@ -110,11 +110,20 @@ return [
             'min' => 'Поле повинно містити мінімум 3 символів!',
         ],
         'salary' => [
-            'required' => 'Поле обов\'язкове для заповнення!',
+            'required' => 'Поле обов\'язкове для заповнення',
             'min' => 'Введіть коректне ціле число!',
-            'numeric' => 'Поле повинно містити числове значення!',
+			"max" => "Поле не може мати значення більше :max.",
+            'numeric' => 'Поле повинно містити числове значення',
             'regex' => 'Введіть коректну суму!',
+			'min_salary' => 'Мінімальна зарплата має бути меншою за максимальну',
         ],
+		'salary_max' => [
+			'required' => 'Поле обов\'язкове для заповнення',
+			'min' => 'Введіть коректне ціле число!',
+			"max" => "Поле не може мати значення більше :max.",
+			'numeric' => 'Поле повинно містити числове значення',
+			'regex' => 'Введіть коректну суму!',
+		],
         'description' => [
             'required' => 'Поле обов\'язкове для заповнення!',
             'min' => 'Поле повинно містити мінімум 3 символів!',

@@ -13,8 +13,10 @@ use App\Models\City;
 use App\Models\Industry;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
@@ -57,10 +59,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function index(Guard $auth)//Output all resumes
     {
         if (Auth::check()) {
-            if (Auth::user()->role == 1){
-                $resumes = Resume::where('id','>',0)->paginate(25);
-            }
-                else
                     $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
             if (count($resumes)==0) {
                 $mes = "Зараз у Вас немає резюме.";
@@ -110,6 +108,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
     {
         //Input::flush();
+        Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+            if ($value < $request['salary_max'])
+                return true;
+            else return false;
+        });
 
         $rules = 'required|min:3';
         $this->validate($request,[
@@ -117,8 +120,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|regex:/[^0]+/|min:1|numeric',
-            'salary_max' => 'required|regex:/[^0]+/|min:1|numeric',
+            'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+            'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
             'description' => $rules,
             'city' => 'required',
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
@@ -157,9 +160,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
     /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
     public function show($id,Guard $auth)
     {
-        if (!session())
-        session()->regenerate();
-        session(['url', '/resume/'.$id] );
+        Cookie::queue('url', 'resume/'.$id);
         $view = 'Resume.show';
         $search_boolean = 'false';
         $search_request = "";
@@ -172,11 +173,20 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $user = auth()->user();
         if(Auth::check())
         {
-            if($user->id == $userResume->id  || Auth::user()->role == 1)
+            if($user->id == $userResume->id)
             {
                 $view = "Resume.showMyResume";
             }
         }
+        if(!Auth::check() && $resume->published == 0) {
+            abort(404);
+        }
+        else{
+            if (Auth::check())
+                if(Auth::user()->id != $userResume->id && $resume->published == 0 && Auth::user()->role !=1 )
+                    abort(404);
+        }
+
 
         return view($view)
             ->with('resume',$resume)
@@ -198,14 +208,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
         if(Auth::check())
         {
             $resume = $this->getResume($id);
-
+            Session::put('salary_min', $resume->salary);
+            Session::put('salary_max', $resume->salary_max);
             $cities = $city->getCities();
             $industries = $industry->getIndustries();
 
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
             $positions = Resume::groupBy('position')->lists('position');
-            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id() || Auth::user()->role == 1)
+            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id())
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
@@ -227,33 +238,51 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function update($id,Request $request,Resume $resume,Guard $auth)
     {
+
+        Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+            if ($value < $request['salary_max'])
+                return true;
+            else return false;
+        });
+
+
         $rules = 'required|min:3';
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => $rules,
-            'salary' => 'required|regex:/[^0]+/|min:1|numeric',
+            'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+            'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
             'description' => $rules,
-            'city' => 'required'
+            'city' => 'required',
+            'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $updateResume = $resume->fillResume($id,$auth,$request);
-
         $updateResume->push();
-
         $updateResume->save();
-        if ($updateResume->id_u != Auth::user()->id && Auth::user()->role == 1)
-        {
-            Mail::send('emails.notificationEdit', ['messageText' => 'Ваше резюме було відредаговане адміністратором'], function ($message) use ($updateResume) {
-                $to = User::find($updateResume->id_u)->email;
-                $message->to($to, User::find($updateResume->id_u)->name)->subject('Ваше резюме було відредаговане адміністратором');
-            });
 
-        }
         return redirect()->route('cabinet.index');
 
     }
+
+    public function block(Request $request, Guard $auth)
+    {
+        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+            $updateResume = Resume::find($request['id']);
+            $updateResume->published =0;
+            $updateResume->save();
+                Mail::send('emails.notificationEdit', ['messageText' => 'Ваше резюме було заблоковано адміністратором'], function ($message) use ($updateResume) {
+                    $to = User::find($updateResume->id_u)->email;
+                    $message->to($to, User::find($updateResume->id_u)->name)->subject('Ваше резюме було відредаговане адміністратором');
+                });
+        }
+        else
+        return redirect()->back();
+
+    }
+
 
     /**
      * Remove the specified resource from storage.

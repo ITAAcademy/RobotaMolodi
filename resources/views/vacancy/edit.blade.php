@@ -18,19 +18,22 @@
         <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
+                @if (Input::old('branch')==''))
                 @foreach($industries as $industry)
                     {
                     <option value="{{$industry->id}}">{{$industry->name}}</option>
                     }
                 @endforeach
-                @if(Input::old('branch')!= '')
+                @else
                     @foreach($industries as $industry)
-                        @if($industry->id == Input::old('branch'))
-                            <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                        {
+                        @if($industry->id !=  Input::old('branch'))
+                            <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @else
+                            <option selected value="{{$industry->id}}">{{$industry->name}}</option>
+                            }
                         @endif
                     @endforeach
-                @else
-                    <option value="{{$vacancy->branch}}" selected>{{$vacancy->Industry()->name}}</option>
                 @endif
             </select>
         </div></br>
@@ -69,7 +72,7 @@
         <div class="col-sm-5">
             {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
         </div>
-        <div > <span style="color: red"  >* <?php echo $errors->first('salary',':message'); ?></span> </div>
+        <div > <span style="color: red"  >* <?php echo $errors->first('salary_max',':message'); ?></span> </div>
         </br>
     </div>
 
@@ -77,11 +80,23 @@
         <label for="sector" class="col-sm-2 control-label">Валюта</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectCurrency" name="currency_id">
+                @if (Input::old('currency_id')==''))
                 @foreach($currencies as $currency)
                     {
                     <option value="{{$currency->id}}">{{$currency->currency}}</option>
                     }
                 @endforeach
+                    @else
+                        @foreach($currencies as $currency)
+                        {
+                            @if($currency->id !=  Input::old('currency_id'))
+                                <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                            @else
+                                <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
+                        }
+                            @endif
+                        @endforeach
+                @endif
             </select>
         </div></br>
     </div>

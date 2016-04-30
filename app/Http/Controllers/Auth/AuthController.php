@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 
 class AuthController extends Controller {
 
-//	protected $redirectTo = '/';
+	protected $redirectPath = '/';
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -43,9 +44,8 @@ class AuthController extends Controller {
 	public function __construct()
 	{
 
-		// $this->auth = $auth;
-		// $this->registrar = $registrar;
-
+		if (Cookie::get('url')!='')
+			$this->redirectPath =  Cookie::get('url');
 		$this->middleware('guest', ['except' => 'getLogout']);
 
 	}
@@ -53,6 +53,17 @@ class AuthController extends Controller {
 	public function getLastRoute(){
 		return Redirect::intended();
 	}
+
+
+//
+//	public function redirectPath()
+//	{
+//		$test = Cookie::get('url');
+//		if (Cookie::get('url')!='')
+//			return redirect(Cookie::get('name'));
+//		else
+//			return redirect('/');
+//	}
 //	public function redirectPath()
 //	{
 //		return redirect()->back();

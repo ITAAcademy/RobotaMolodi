@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\profOrientation\test1;
 use App\Models\profOrientation\UserSession;
 use App\Models\Vacancy_City;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
 //use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session;
@@ -119,11 +120,6 @@ class VacancyController extends Controller
     {
         if (Auth::check()) {
 
-            setcookie('paths', '');
-            if (Auth::user()->role == 1){
-                $vacancies = Vacancy::where('id','>',0)->paginate(25);
-            }
-            else
             $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
 
             if (count($vacancies)==0) {
@@ -151,6 +147,11 @@ class VacancyController extends Controller
         //dd($request);
         if (Auth::check()) {
             Input::flash();
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+                if ($value < $request['salary_max'])
+                    return true;
+                else return false;
+            });
 
             $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
             //
@@ -159,7 +160,8 @@ class VacancyController extends Controller
                 $this->validate($request, [
                     'position' => $rules,
                     //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
-                    'salary' => 'required|regex:/[^0]+/|min:1|numeric',
+                    'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+                    'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
                     'email' => 'required|email',
                     'description' => $rules,
                     'city' => 'required',
@@ -196,8 +198,7 @@ class VacancyController extends Controller
     {
 //        if (!session())
 //            session()->start();
-             session(['prev', '/vacancy/'.$id] );
-
+        Cookie::queue('url', 'vacancy/'.$id);
         $resume = null;
         $view = 'vacancy.show';
 
@@ -215,12 +216,20 @@ class VacancyController extends Controller
         if (Auth::check()) {
 
             $user = User::find($auth->user()->getAuthIdentifier());
-            if ($userVacation->id == $user->id  || Auth::user()->role == 1) {
+            if ($userVacation->id == $user->id) {
                 $view = 'vacancy.showMyVacancy';
             }
             $resume = $auth->user()->GetResumes()->get();
         }
 
+        if(!Auth::check() && $vacancy->published == 0) {
+            abort(404);
+        }
+        else{
+            if (Auth::check())
+                if(Auth::user()->id != $userVacation->id && $vacancy->published == 0 && Auth::user()->role !=1 )
+                    abort(404);
+        }
 
         return view($view)
             ->with('resume', $resume)
@@ -253,18 +262,12 @@ class VacancyController extends Controller
             $currencies = $currency->getCurrencies();
 
             $vacancy = $this->getVacancy($id);
-            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id != Auth::id() && Auth::user()->role == 1)
-            {
-                $companies = Company::where('users_id', '=',User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id)->get();
-                $userEmail = User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->email;
-            }
-            else {
                 $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
-            }
 
 
-            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id() || Auth::user()->role == 1)
+
+            if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
                 return view('vacancy.edit')
                     ->with('vacancy', $vacancy)
                     ->with('industries', $industries)
@@ -292,16 +295,24 @@ class VacancyController extends Controller
              return  abort(404);
 
         if (Auth::check()) {
+
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+                if ($value < $request['salary_max'])
+                    return true;
+                else return false;
+            });
+
             $rules = 'required|min:3';
-            $this->validate($request,
-                [
-                    'position' => $rules,
-                    'salary' => 'required|regex:/[^0]+/|min:1|numeric',
-                    'email' => 'required|email',
-                    //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
-                    'description' => $rules,
-                    'city' => 'required'
-                ]);
+            $this->validate($request, [
+                'position' => $rules,
+                //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
+                'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
+                'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
+                'email' => 'required|email',
+                'description' => $rules,
+                'city' => 'required',
+                'Organisation' => 'exists:company,id'
+            ]);
 
             $vacancy = $vacancy->fillVacancy($id, $request);
 
@@ -395,6 +406,22 @@ class VacancyController extends Controller
         });
         File::delete($uploadFile);
         return view('vacancy/vacancyAnswer');
+
+    }
+
+    public function block(Request $request, Guard $auth)
+    {
+        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+            $updateVacancy = Vacancy::find($request['id']);
+            $updateVacancy->published =0;
+            $updateVacancy->save();
+            Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була заблокована адміністратором'], function ($message) use ($updateVacancy) {
+                $to = User::find(Company::find($updateVacancy->company_id)->users_id)->email;
+                $message->to($to, User::find(Company::find($updateVacancy->company_id)->users_id)->name)->subject('Ваша вакансія була заблокована адміністратором');
+            });
+        }
+        else
+            return redirect()->back();
 
     }
 

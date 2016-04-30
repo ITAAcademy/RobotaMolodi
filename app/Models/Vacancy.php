@@ -31,21 +31,6 @@ class Vacancy extends Model {
         $userEmail = $request['email'];
         $companyId = $request['Organisation'];
         $published = $request['published'];
-        if ($salary_max == '')
-             $salary_max = 0;
-        if($salary > 1000000000){
-            $salary = 1000000000;
-        }
-
-        if($salary_max > 1000000000){
-            $salary_max = 1000000000;
-        }
-        if($salary_max < $salary && $salary_max !=0){
-            $sal = $salary_max;
-            $salary_max = $salary;
-            $salary = $sal;
-        }
-
         if($id!=0)
         {
             $vacancy = Vacancy::find($id);
