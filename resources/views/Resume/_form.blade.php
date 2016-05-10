@@ -56,7 +56,7 @@
         @if(Input::old('position')== '')
             @foreach($positions as $position)
                 <option value="empty"></option>
-                @if($position == $resume->position)
+                @if($position == Input::old('position'))
                     <option value="{{$position}}" selected>{{$position}}</option>
                 @else
                     <option value="{{$position}}">{{$position}}</option>

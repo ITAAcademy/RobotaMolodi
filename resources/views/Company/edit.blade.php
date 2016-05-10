@@ -7,7 +7,7 @@
 <br>
     <div class="row">
         <div class="form-group col-md-2 col-sm-2" >
-             {!!Form::model($company,array('route' =>array('company.update',$company->id),'method' => 'put'))!!}
+             {!!Form::model($company,array('route' =>array('company.update',$company->id),'method' => 'put', 'id'=>'form'))!!}
             <label for="sector" class=" control-label">Назва компанії</label>
         </div>
         <div class="col-md-6 col-sm-6">
@@ -38,23 +38,14 @@
 @stop
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $( ".form-control" ).change(function() {
-            $('.afterChange').click(function(){
-                if (confirm("Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?"))
-                    return true;
-                else return false;
+    $(document).ready(function () {
+        $(".form-control").change(function () {
+            $(window).bind('beforeunload', function () {
+                return 'Збережіть будь ласка всі внесені нові дані!';
             });
-            window.onbeforeunload = function (evt) {
-                var message = "Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?";
-                if (typeof evt == "undefined") {
-                    evt = window.event;
-                }
-                if (evt) {
-                    evt.returnValue = message;
-                }
-                return message;
-            }
+            $('#form').submit(function () {
+                $(window).unbind('beforeunload');
+            });
         });
 
     });

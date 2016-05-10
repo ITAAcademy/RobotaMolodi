@@ -157,7 +157,7 @@
     </div>
 
 
-
+    <div class="row">
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Опис</label>
         <div class="col-sm-5">
@@ -166,8 +166,9 @@
         <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>
         </br>
     </div>
-
-    <div class="form-group" style="margin-top: 230px">
+    </div>
+    <div class="row">
+    <div class="form-group" style="margin-top: 30px">
         <label class="col-sm-2 control-label">Статус публікації</label>
         <div class="col-sm-5">
             <select class="form-control" id="published" name="published" >
@@ -187,10 +188,12 @@
             </select>
         </div></br>
     </div>
-
-    <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
+        </div>
+    <div class="row">
+    <div class="form-group" style="margin-top: 20px;  text-align: center;">
         <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
     </div>
+        </div>
 
     {!!Form::token()!!}
     {!!Form::close()!!}

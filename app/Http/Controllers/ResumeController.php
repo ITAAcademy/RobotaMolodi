@@ -64,7 +64,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 $mes = "Зараз у Вас немає резюме.";
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             } else {
-                $resumes->sortByDesc('created_at');
+
+                $resumes->sortBy('created_at');
                 $mes = null;
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             }
@@ -178,7 +179,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 $view = "Resume.showMyResume";
             }
         }
-        if(!Auth::check() && $resume->published == 0) {
+        if(!Auth::check() && ($resume->published == 0 || $resume->published == 2)) {
             abort(404);
         }
         else{
