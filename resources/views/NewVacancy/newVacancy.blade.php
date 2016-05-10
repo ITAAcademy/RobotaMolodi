@@ -192,8 +192,8 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-offset-2 col-md-2  col-sm-2" style="margin-top: 20px">
-            <input type="submit" class="btn btn-default" style="background: #f48952" value="Зареєструвати вакансію">
+        <div class="form-group" style="margin-top: 20px;  text-align: center;">
+            <input type="submit" class="btn btn-default" style="background: #f48952;" value="Зареєструвати вакансію">
         </div>
     </div>
 

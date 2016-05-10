@@ -3,14 +3,14 @@
 @section('contents')
 
 
-    {!!Form::open(['route' => 'company.store'])!!}
+    {!!Form::open(['route' => 'company.store', 'id'=>'form'])!!}
     <div class="row">
     <h3 class="formTitle">Створення компанії</h3>
         </br>
     <div class="form-group" >
         <label for="sector" class="col-md-2 col-sm-2 control-label">Назва компанії</label>
         <div class="col-md-6 col-sm-6">
-            {!! Form::text('company_name', null, array('class' => 'form-control' )) !!}
+            {!! Form::text('company_name', null, array('class' => 'form-control')) !!}
         </div>
         <div ><span style ="color:red">* <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span> {{$company}}</div>
     </div>
@@ -39,23 +39,14 @@
 @endsection
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $( ".form-control" ).change(function() {
-            $('.afterChange').click(function(){
-                if (confirm("Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?"))
-                    return true;
-                else return false;
+    $(document).ready(function () {
+        $(".form-control").change(function () {
+            $(window).bind('beforeunload', function () {
+                return 'Збережіть будь ласка всі внесені нові дані!';
             });
-            window.onbeforeunload = function (evt) {
-                var message = "Дані не збережені!! Bи впевнені, що хочете залишити цю сторінку?";
-                if (typeof evt == "undefined") {
-                    evt = window.event;
-                }
-                if (evt) {
-                    evt.returnValue = message;
-                }
-                return message;
-            }
+            $('#form').submit(function () {
+                $(window).unbind('beforeunload');
+            });
         });
 
     });

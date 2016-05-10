@@ -222,7 +222,7 @@ class VacancyController extends Controller
             $resume = $auth->user()->GetResumes()->get();
         }
 
-        if(!Auth::check() && $vacancy->published == 0) {
+        if(!Auth::check() && ($vacancy->published == 0 || $vacancy->published == 2)) {
             abort(404);
         }
         else{
