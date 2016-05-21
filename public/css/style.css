@@ -425,4 +425,6 @@ min-width: 300px;
 {
     vertical-align: top;
     display: table-cell;
+    width: 200px;
+
 }
