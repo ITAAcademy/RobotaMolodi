@@ -43,9 +43,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<div class="text-center">
-                  <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна',['id'=>'logoImg']) !!} </a>
-				</div>
+
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
 					<span class="icon-bar"></span>
@@ -58,7 +56,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 
-					@include('staticHeaderPages.linksContainer')
+
 
 						<!--
 
@@ -68,27 +66,7 @@
 
 						</li>
 						<form method="POST" action="{{ url('searchResumes') }}"name="search_form"></form> -->
-						<li>@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
-						@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
-						@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
-						@elseif(Request::is('searchCompanies')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
-						@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST'])!!}
-						@endif</li>
-						<li>
-							<div class="nav navbar-nav navbar-right">{!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}</div>
-						</li>
 
-
-
-
-						<li>
-							<button type="submit" Style="background-color:gray;color:white;" class="navbar-right btn btn-default afterChange"onclick="
-							@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
-							@else window.location='{{ url('searchVacancies') }}'
-							@endif">Пошук</button>
-
-						</li>
-						{!!Form::close()!!}
 					@if (Auth::guest())
 						<li><a href="{{ url('/auth/login') }}"><span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> Увійти</a></li>
 						<li><a href="{{ url('/auth/register') }}"><span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> Зареєструватись</a></li>
@@ -108,7 +86,32 @@
 			</div>
 		</div><!--class="container-fluid"-->
 	</nav>
+	<div class="col-md-offset-5" id="logoImg">
+		<a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!} </a>
+	</div>
+	<div class="row">
+		@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
+		@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
+		@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
+		@elseif(Request::is('searchCompanies')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
+		@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST','class' => 'span2'])!!}
+		@endif
+		<div class="col-md-10 col-md-offset-2" style="margin-top: 5px; margin-bottom: 5px;">
+			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/aboutus') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
+			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
+			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
+			<span class="col-md-4">
+				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default afterChange"onclick="
+				@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
+				@else window.location='{{ url('searchVacancies') }}'
+				@endif">Пошук</button>
+			<span class="col-md-6"> {!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
 
+				{!!Form::close()!!}
+
+			</span>
+		</div>
+	</div>
         <div class="row">
             <div class="col-md-10 col-md-offset-1" >
                 <div class="col-md-10 col-md-offset-1" >

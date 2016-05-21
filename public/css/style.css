@@ -40,7 +40,7 @@ body
 {
 	margin-bottom: 5px;
 }
-#logo
+#logoImg
 {
 	font-family: "Impact", "Tahoma", Arial, "Geneva", sans-serif;
 	font-size: 24px;
@@ -201,10 +201,7 @@ img
 {
 	box-sizing: border-box;
 }
-#logoImg
-{
-    width: 100px;
-}
+
 #logoImg:hover
 {
     opacity: 0.5;
@@ -326,7 +323,7 @@ a.link{
 	border:2px solid #d96123;
 }
 .navbar-right{
-margin: 10px 10px;
+margin-top: 20px;
 }
 .formTitle{
 	text-indent: 1.5em;
@@ -348,8 +345,12 @@ li[role='treeitem'].select2-results__option{
 	float:right;
 }
 #logoImg{
-min-width: 300px;
-	padding: 15px 15px;
+    min-width: 300px;
+    padding: 15px 15px;
+    width: 100px;    
+    position: relative; 
+    z-index: 2;
+    margin-top: -90px;
 }
 #dropTitle{
 	display:inline-block;
@@ -428,3 +429,27 @@ min-width: 300px;
     width: 200px;
 
 }
+
+.staticLinks
+{
+    height: 40px;
+    margin-right: 5%;
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+
+}
+
+.staticLinks > .btn:hover, 
+.staticLinks > .btn:focus
+{
+    border: 1px solid #f48952;
+    border-radius: 10px;
+    color: #f48952 !important;     
+    font-weight:bold;    
+}
+.navbar-default
+{
+    position: relative; 
+    z-index: 1;
+}
+
+
