@@ -39,6 +39,22 @@ class Resume extends Model {
         $currency_id = $request['currency_id'];
         $description = $request['description'];
         $published = $request['published'];
+        if ($salary_max == '')
+            $salary_max =0;
+        if($salary > 1000000000){
+            $salary = 1000000000;
+        }
+
+        if($salary_max > 1000000000){
+            $salary_max = 1000000000;
+        }
+
+        if($salary_max < $salary && $salary_max !=0){
+          $sal = $salary_max;
+          $salary_max = $salary;
+          $salary = $sal;
+        }
+
         if($id!=0)
         {
             $resume = Resume::find($id);
@@ -53,12 +69,12 @@ class Resume extends Model {
             $resume->id_u = $user->id;
         }
 
-        $resume->name_u =strip_tags($name_u);
+        $resume->name_u = $name_u;
         $resume->telephone = $telephone;
         $resume->email = $email;
         $resume->city = $city;
         $resume->industry = $industry;
-        $resume->position = strip_tags($position);
+        $resume->position = $position;
         $resume->salary = $salary;
         $resume->salary_max = $salary_max;
         $resume->currency_id = $currency_id;
@@ -69,13 +85,11 @@ class Resume extends Model {
     }
     public function Cities()
     {
-        $this->belongsToMany('App\Models\City','resume_city')->get();
+        $this->belongsTo('App\Models\City')->get();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Scopes
-
-
     public function scopeCity()
     {
         $city = $this->hasOne('App\Models\City','id','city')->first();

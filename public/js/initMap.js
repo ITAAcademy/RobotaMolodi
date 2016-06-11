@@ -1,5 +1,5 @@
 
-// var allCities, arrCities;
+var arrResult = [];
 var urlRoute;
 var latitudeMap=50.45;
 var longitudeMap=30.52;
@@ -13,7 +13,6 @@ function loadMap() {
 	document.body.appendChild(script);
 	return dfd.promise();
 }
-
 function finishMapLoading() {
 	dfd.resolve();
 }
@@ -28,31 +27,17 @@ function loadData(latMap, lngMap, zoomMap, map, geocoder, arrResult, arrCities, 
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		geocoder = new google.maps.Geocoder();
-		geocodeAddress(geocoder, map, arrResult, arrCities, markers);
+		for(var i=0; i<arrResult.length; i++) {
+			geocodeAddress(geocoder, map, arrResult[i], arrCities, markers);
+		}
 		map.addListener('click', function(e) {
-			placeMarkerClick(e.latLng, map, arrResult, arrCities, markers);
+		addMarkerClick(e.latLng, map, arrResult, arrCities, markers);
 		});
+		
 	});
 }
-function addAddress(geocoder, resultMap, arrCities){
-	$('#selectCity').on('select2:select',function (evt) {
-		var address = arrCities[evt.params.data.id];
-		geocoder.geocode({'address': address}, function (results, status){
-			var marker = new google.maps.Marker({
-				map: resultMap,
-				position: results[0].geometry.location
-			});
-			// var markerArr = [];
-			// markerArr.push(marker);
-			// markerArr.push(arrCities[j]);
-			// markers.push(markerArr);
-		})
-	});
-}
-
-function geocodeAddress(geocoder, resultsMap, arrResult, arrCities, markers) {
-	for (var i = 0; i < arrResult.length; i++) {
-		var index = arrResult[i]-1;
+function geocodeAddress(geocoder, resultsMap, result, arrCities, markers) {
+		var index = result-1;
 		var address = arrCities[index];
 		geocoder.geocode({'address': address}, function (results, status) {
 			if (status === google.maps.GeocoderStatus.OK) {
@@ -80,10 +65,10 @@ function geocodeAddress(geocoder, resultsMap, arrResult, arrCities, markers) {
 				alert('Geocode was not successful for the following reason: ' + status);
 			}
 		})
-	}
+
 }
 
-function placeMarkerClick(latLng, map, citiesRes, arrCities, markers) {
+function addMarkerClick(latLng, map, citiesRes, arrCities, markers) {
 	var marker = new google.maps.Marker({
 		position: latLng,
 		map: map
@@ -143,12 +128,13 @@ function placeMarkerClick(latLng, map, citiesRes, arrCities, markers) {
 			}
 		});
 	}
-function setMap(map, marker) {
-		marker.setMap(map);
-}
-
-function clearMarkers() {
-	setMap(null);
+function deleteMarker(arrMarkers, nameCity){
+	for(var i = 0; i<arrMarkers.length; i++){
+		if(arrMarkers[i][0] == nameCity){
+			arrMarkers[i][1].setMap(null);
+			arrMarkers.pop(i);
+		}
+	}
 }
 
 			

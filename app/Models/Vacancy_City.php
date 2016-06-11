@@ -62,6 +62,9 @@ class Vacancy_City extends Model {
         return $vacancies;
 
     }
+
+
+
     public function ClearHole($vacancy_id)
     {
         $vacancy_city_list = Vacancy_City::where('vacancy_id', '=',$vacancy_id)->get();
