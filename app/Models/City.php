@@ -15,10 +15,13 @@ class City extends Model {
 
         return $cities;
     }
-
     public function Vacancies()
     {
         return $this->belongsToMany('App\Models\Vacancy','vacancy_city');//->latest('updated_at');
+    }
+    public function Resumes()
+    {
+        return $this->hasMany('App\Models\Resume');
     }
 
     public function GetCollection($cityId,$industryId)

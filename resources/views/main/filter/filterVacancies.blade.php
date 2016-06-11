@@ -14,8 +14,6 @@
         @include('vacancy._vacancy')
     </div>
     <script>
-
-
            $(document).ready(function() {
                 $('#selectCity').select2({
                     placeholder: 'Вся Україна',
@@ -54,18 +52,16 @@
     //-----------------event-remove-from-select-cities----------------------------
                 $('#selectCity').on('select2:unselect', function (evt) {
                     var idRemoveCity = evt.params.data.id;
+                    var nameRemoveCity = evt.params.data.text;
+                    deleteMarker(markers, nameRemoveCity);
                     citiesRes.pop(idRemoveCity);
-                    console.log(citiesRes);
                     ajaxSend(citiesRes, urlRoute);
                 });
     //-----------------event-add-to-select-cities----------------------------
                 $('#selectCity').on('select2:select',function (evt) {
                     idAddCity = evt.params.data.id;
                     citiesRes.push(idAddCity);
-//                    addAddress(geocoder, map, arrCities[idAddCity]);
-                    console.log( $('#selectCity').select2('val'));
                     ajaxSend($('[name=city]').select2().val(), urlRoute);
-                    console.log(markers);
                 });
     //-----------------event-select-in-select-industries----------------------------
                 $('#selectIndustry').change(function () {
@@ -76,29 +72,9 @@
                     ajaxSend($('[name=city]').select2().val(), urlRoute);
                 });
             });
-        {{--@if($search_boolean)--}}
-            {{--fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');--}}
-        {{--@else--}}
-            {{--window.onload = function()--}}
-            {{--{--}}
-                {{--var optionsF = document.getElementById('selectCity').childNodes;--}}
-                {{--valueF = ymaps.geolocation.city;--}}
-
-                {{--var cityId = null;--}}
-
-                {{--for(var i = 0; i < optionsF.length; i++)--}}
-                    {{--if(optionsF[i].innerHTML == ' ' + valueF + ' ' && !getCookie('geo'))--}}
-                    {{--{--}}
-                        {{--cityId = (i - 1) / 2;--}}
-                        {{--document.getElementById('selectCity').selectedIndex = cityId;--}}
-                        {{--document.getElementById('select2-selectCity-container').innerHTML = valueF;--}}
-                        {{--document.cookie = "geo=true";--}}
-                        {{--fakeFilter('selectCity', cityId, 'showVacancies');--}}
-                        {{--break;--}}
-                    {{--}--}}
-            {{--}--}}
-
-        {{--@endif--}}
+        @if($search_boolean)
+            fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');
+         @endif
     </script>
 
 @stop
