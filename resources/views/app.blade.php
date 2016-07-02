@@ -24,6 +24,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
     {!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
+	{!!Html::script('js/initMap.js')!!}
     {{--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">--}}
     {{--<link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">--}}
 
@@ -163,7 +164,7 @@ $(document).ready(function() {
 	  tags: []
 //		tokenSeparators: [",", " "]
   });
-	//$("#e12").select2({tags:[]});
+//	$("#e12").select2({tags:[]});
 
   //$(".js_drop_menu").on("change", function(e){
 	  //console.dir(e);
