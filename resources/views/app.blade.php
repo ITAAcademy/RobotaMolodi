@@ -98,7 +98,7 @@
 		@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST','class' => 'span2'])!!}
 		@endif
 		<div class="col-md-10 col-md-offset-2" style="margin-top: 5px; margin-bottom: 5px;">
-			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/aboutus') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
+			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
 			<span class="col-md-4">
