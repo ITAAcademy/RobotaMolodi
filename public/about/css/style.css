@@ -997,6 +997,7 @@ header .tads_panel .nav-tabs > li > a {
     font-size: 15px;
     font-family: "SegoeUIRegular";
     height: 80px;
+    margin-top: 150px;
     /*line-height: 80px;*/
 }
 
