@@ -88,7 +88,6 @@ header .header_top {
 
 header .header_top .dropdown-block {
     height: 100px;
-    cursor: pointer;
     position: relative;
     padding: 0;
 
@@ -97,6 +96,7 @@ header .header_top .dropdown-block {
 header .header_top .dropdown-block .dropdown-block-img {
     height: 100px;
     line-height: 100px;
+    display: none;
 }
 
 header .header_top .dropdown-block .main-menu {
@@ -1037,6 +1037,7 @@ header .tads_panel .nav-tabs > li > a {
     padding-left: 15px;
 }
 
+
 /*** FOOTER BLOCK ***/
 
 @media (max-width: 1228px) {
@@ -1116,6 +1117,7 @@ header .tads_panel .nav-tabs > li > a {
     header .small_logo {
         display: inline-block;
     }
+
 
     .content .article .years .galleries .gallery-item {
         width: 33%;
@@ -1199,6 +1201,9 @@ header .tads_panel .nav-tabs > li > a {
 
     header .small_logo {
         display: inline-block;
+    }
+    header .header_top .dropdown-block .dropdown-block-img {
+        display: block;
     }
 
     header .auth .navbar-right {
