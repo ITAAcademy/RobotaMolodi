@@ -1213,7 +1213,8 @@ header .tads_panel .nav-tabs > li > a {
 
     header .header_navigation .header_menu .nav-pills > li {
         padding-right: 0px;
-        width: 145px;
+        /*width: 145px;*/
+
     }
 
     header .header_navigation .header_menu ul > li > a {

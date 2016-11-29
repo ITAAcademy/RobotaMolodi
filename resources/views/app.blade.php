@@ -101,16 +101,19 @@
 			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
-			<span class="col-md-4">
+		</div>
+		<div class="col-md-10 col-md-offset-2">
+			<span class="paddlft">
+				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
+			{!!Form::close()!!}
+
+			</span>
+			<span class="paddlft">
 				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default afterChange"onclick="
 				@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 				@else window.location='{{ url('searchVacancies') }}'
 				@endif">Пошук</button>
-			<span class="col-md-6"> {!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
-
-				{!!Form::close()!!}
-
-			</span>
+            </span>
 		</div>
 	</div>
         <div class="row">
