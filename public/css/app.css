@@ -1856,7 +1856,7 @@ pre code {
     margin-left: 50%;
   }
   .col-md-offset-5 {
-    margin-left: 41.66666667%;
+    margin-left: 17%; /*Stoha*/
   }
   .col-md-offset-4 {
     margin-left: 33.33333333%;
@@ -3116,6 +3116,7 @@ input[type="button"].btn-block {
 .collapse.in {
   display: block;
   visibility: visible;
+  float: right;/*Stoha*/
 }
 tr.collapse.in {
   display: table-row;
@@ -3803,7 +3804,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   overflow-x: visible;
   padding-right: 15px;
   padding-left: 15px;
-  border-top: 1px solid transparent;
+  /*border-top: 1px solid transparent;*/
+  /*border-left: 1px solid transparent; !*Stoha*!*/
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch;
 }
@@ -3849,6 +3851,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px;
+  margin-top: 7px; /*Stoha*/
 }
 @media (min-width: 768px) {
   .container > .navbar-header,
@@ -4109,7 +4112,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background-color: #f8f8f8;
-  border-color: #e7e7e7;
+  /*border-color: #e7e7e7;*/ /*Stoha*/
 }
 .navbar-default .navbar-brand {
   color: #777777;
