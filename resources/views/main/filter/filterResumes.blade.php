@@ -1,6 +1,6 @@
 @extends('main/filter/ajax')
 @section('Create_res_vac')
-    <h4 class="btn btn-default" style="background:wheat; color:#ffffff; ">{!! link_to_route('vacancy.create', 'Створити вакансію') !!}</h4>
+    <h4 class="btn btn-default" style="background:#f5f5f5; color:#ffffff; ">{!! link_to_route('vacancy.create', 'Створити вакансію') !!}</h4>
 @stop
 @section('panelTitle')
     <meta name="csrf_token" content="{{ csrf_token() }}" />

@@ -7,7 +7,7 @@
 @stop
 
 @section('Create_res_vac')
-    <h4 class="btn btn-default" style="background:wheat; color:#ffffff;">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
+    <h4 class="btn btn-default" style="background:#f5f5f5; color:#ffffff;">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
 @stop
 
 @section('contents')
