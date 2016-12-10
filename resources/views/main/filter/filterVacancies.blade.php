@@ -1,6 +1,6 @@
 @extends('main/filter/ajax')
 @section('Create_res_vac')
-    <h4 class="btn btn-default" style="background:wheat; color:#ffffff;">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
+    <h4 class="btn btn-default" style="background:#f5f5f5;/*Stoha*/ color:#ffffff;">{!! link_to_route('resume.create', 'Написати резюме') !!}</h4>
 @stop
 @section('panelTitle')
     <li role = "presentation" id="presVac" class="active"><a href={{route('head')}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>

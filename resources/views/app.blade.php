@@ -41,6 +41,7 @@
 		<![endif]-->
 </head>
 <body>
+<div class="container-fluid container-main">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -90,7 +91,7 @@
 	<div class="col-md-offset-5" id="logoImg">
 		<a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!} </a>
 	</div>
-	<div class="row">
+	<div class="row search">
 		@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
@@ -101,21 +102,28 @@
 			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
-			<span class="col-md-4">
-				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default afterChange"onclick="
+		</div>
+		{{--<div class="col-md-10 col-md-offset-2 rovn">--}}
+            <div clas="col-md-12" >
+
+
+			{{--<span class="paddlft">--}}
+				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
+			{!!Form::close()!!}
+
+			{{--</span>--}}
+			{{--<span class="paddlft">--}}
+				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default btn-serch"onclick="
 				@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 				@else window.location='{{ url('searchVacancies') }}'
 				@endif">Пошук</button>
-			<span class="col-md-6"> {!! Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
-
-				{!!Form::close()!!}
-
-			</span>
-		</div>
+            {{--</span>--}}
+            </div>
+		{{--</div>--}}
 	</div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1" >
-                <div class="col-md-10 col-md-offset-1" >
+            {{--<div class="col-md-10 col-md-offset-1" >--}}{{-- Stoha--}}
+                <div class="col-md-10 col-md-offset-1" > {{-- Stoha --}}
                     <div class="panel-heading" style="background-color: #ffffff;">
                         <div class="row">
                             <div>
@@ -132,14 +140,14 @@
 
                     </div>
 
-                    <div id="geoDiv">
-                    </div>
+                    {{--<div id="geoDiv">--}}
+                    {{--</div>--}}{{-- Stoha--}}
 
                     <div >
                         @yield('content')
                     </div>
                 </div><!--class="col-md-10 col-md-offset-1"-->
-            </div><!--class="col-md-10 col-md-offset-1"-->
+            {{--</div><!--class="col-md-10 col-md-offset-1"-->--}}{{--  Stoha--}}
         </div><!--class="row"-->
 <div id="formContainer">
 
@@ -194,7 +202,7 @@ $(document).ready(function() {
     ga('send', 'pageview');
 
 </script>
-
-	</body>
+</div>
+</body>
 
 </html>

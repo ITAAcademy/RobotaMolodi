@@ -1,7 +1,7 @@
 @extends('cabinet/cabinet')
 @section('btn')
     <div>
-        <h4 class="btn btn-default btn_cr" style="background:wheat; color:#ffffff;">{!!link_to_route('company.create','Створити компанію')!!}</h4>
+        <h4 class="btn btn-default btn_cr" style="background:#f5f5f5; color:#ffffff;">{!!link_to_route('company.create','Створити компанію')!!}</h4>
     </div>
 @stop
 @section('titles')
