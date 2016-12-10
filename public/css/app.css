@@ -1223,12 +1223,6 @@ ol ol {
   padding-left: 5px;
   padding-right: 5px;
 }
-.list-inline a {
-    padding-left: 5px;
-    color: darkorange;
-    /*text-decoration: underline;*/
-    --webkit--font-size: 20px;
-}
 dl {
   margin-top: 0;
   margin-bottom: 20px;
@@ -2343,7 +2337,7 @@ output {
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
@@ -5189,7 +5183,6 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 0;
 }
 .panel-group {
-  margin-top: 5px; /*Stoha*/
   margin-bottom: 20px;
 }
 .panel-group .panel {
@@ -6291,20 +6284,8 @@ label,
 .text {
     text-align:  center;
 }
-.btn-search {
-    width: 14%;
-    margin-left: -1%;
-    border-radius: 0 4px 4px 0;
-}
-.col-search{
-  padding-left: 0;
-  padding-right: 0;
-  margin-right: -19px;
-}
-
-.list-inline {
-  margin-top: 30px;
-  list-style-type: none;
-  color: darkorange;
-  margin-bottom: 20px;
+.btn-serch{
+    width: 15%;
+    max-width: 80px;
+    min-width: 70px;
 }

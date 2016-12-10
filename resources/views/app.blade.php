@@ -13,8 +13,6 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
     <!-- geoFilter yandex links -->
@@ -24,7 +22,7 @@
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
-	{!!Html::script('js/robotaMolodiUtils.js')!!}
+    {!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}
     {{--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">--}}
@@ -93,33 +91,32 @@
 	<div class="col-md-offset-5" id="logoImg">
 		<a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!} </a>
 	</div>
-	<div class="row col-md-10">
+	<div class="row search">
 		@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
 		@elseif(Request::is('searchCompanies')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
 		@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST','class' => 'span2'])!!}
 		@endif
-		<div class="col-md-10 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-2" style="margin-top: 5px; margin-bottom: 5px;">
 			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
 		</div>
 		{{--<div class="col-md-10 col-md-offset-2 rovn">--}}
-            <div class="col-md-12 col-search" >
+            <div clas="col-md-12" >
 
 
 			{{--<span class="paddlft">--}}
-				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}
+				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
 			{!!Form::close()!!}
 
 			{{--</span>--}}
 			{{--<span class="paddlft">--}}
-				<input type="submit" class="btn btn-default btn-search navbar-default" onclick="
+				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default btn-serch"onclick="
 				@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 				@else window.location='{{ url('searchVacancies') }}'
-				@endif" value="Пошук">
-				</input>
+				@endif">Пошук</button>
             {{--</span>--}}
             </div>
 		{{--</div>--}}
