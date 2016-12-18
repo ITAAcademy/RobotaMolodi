@@ -5183,6 +5183,7 @@ a.list-group-item-danger.active:focus {
   margin-bottom: 0;
 }
 .panel-group {
+  margin-top: 5px; /*Stoha*/
   margin-bottom: 20px;
 }
 .panel-group .panel {
@@ -6288,4 +6289,8 @@ label,
     width: 15%;
     max-width: 80px;
     min-width: 70px;
+}
+.col-search{
+  padding-left: 0;
+  padding-right: 0;
 }
