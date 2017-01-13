@@ -91,32 +91,33 @@
 	<div class="col-md-offset-5" id="logoImg">
 		<a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!} </a>
 	</div>
-	<div class="row search">
+	<div class="row col-md-10">
 		@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 		@elseif(Request::is('scompany')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
 		@elseif(Request::is('searchCompanies')){!!Form::open(['route' => 'searchCompany','method' => 'POST'])!!}
 		@else{!!Form::open(['route' => 'searchVacancy','method' => 'POST','class' => 'span2'])!!}
 		@endif
-		<div class="col-md-10 col-md-offset-2" style="margin-top: 5px; margin-bottom: 5px;">
+		<div class="col-md-10 col-md-offset-2">
 			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
 		</div>
 		{{--<div class="col-md-10 col-md-offset-2 rovn">--}}
-            <div clas="col-md-12" >
+            <div class="col-md-12 col-search" >
 
 
 			{{--<span class="paddlft">--}}
-				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!} </span>
+				{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}
 			{!!Form::close()!!}
 
 			{{--</span>--}}
 			{{--<span class="paddlft">--}}
-				<button type="submit" Style="background-color:gray;color:white;" class="btn btn-default btn-serch"onclick="
+				<input type="submit" class="btn btn-default btn-search navbar-default" onclick="
 				@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
 				@else window.location='{{ url('searchVacancies') }}'
-				@endif">Пошук</button>
+				@endif" value="Пошук">
+				</input>
             {{--</span>--}}
             </div>
 		{{--</div>--}}
