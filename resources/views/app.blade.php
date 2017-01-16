@@ -13,6 +13,8 @@
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
     <!-- geoFilter yandex links -->
@@ -22,7 +24,7 @@
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
-    {!!Html::script('js/robotaMolodiUtils.js')!!}
+	{!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}
     {{--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">--}}

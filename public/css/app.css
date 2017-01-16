@@ -1223,6 +1223,12 @@ ol ol {
   padding-left: 5px;
   padding-right: 5px;
 }
+.list-inline a {
+    padding-left: 5px;
+    color: darkorange;
+    /*text-decoration: underline;*/
+    --webkit--font-size: 20px;
+}
 dl {
   margin-top: 0;
   margin-bottom: 20px;
