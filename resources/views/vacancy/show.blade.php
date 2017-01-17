@@ -39,13 +39,28 @@
                 <li class="list-group-item" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->updated_at))}}</li>
                 <li class="list-inline" id="opt-data-low">
                     <ul class="list-inline">
-                    <li><i class="fa fa-link"><a href="#" id="sendLinkButton" data-toggle="modal" data-target="#sendLink" for="paste-link-form" @if(!Auth::check())
-                            window.location='{{ url('auth/login') }}'@endif>Відправити URL</a></i></li>
-                    <li><i class="fa fa-file-o"><a href="#" data-toggle="modal" data-target="#sendFile" for="paste-file-form" @if(!Auth::check())
-                            window.location='{{ url('auth/login') }}'@endif>Відправити файл</a></i></li>
-                    <li><i class="fa fa-file-text"><a href="#" data-toggle="modal" data-target="#sendRes" for="paste-resume-form" @if(!Auth::check())
-                            window.location='{{ url('auth/login') }}'@endif>Відправити резюме</a></i></li>
-                    @if(Auth::check()) @if(Auth::user()->role ==1)<li><i class="fa fa-check-square"><a href="#" for="paste-resume-form" onclick="blockVacancy()">Заблокувати</a></i></li>@endif @endif
+                    <li>
+                        <i class="fa fa-link">
+                            <a href="#" id="sendLinkButton" data-toggle="modal" data-target="#sendLink" for="paste-link-form" onclick="@if(!Auth::check())
+                                window.location='{{ url('auth/login') }}'@endif">Відправити URL
+                            </a>
+                        </i>
+                    </li>
+                    <li>
+                        <i class="fa fa-file-o">
+                            <a href="#" data-toggle="modal" data-target="#sendFile" for="paste-file-form" onclick="@if(!Auth::check())
+                                window.location='{{ url('auth/login') }}'@endif">Відправити файл
+                            </a>
+                        </i>
+                    </li>
+                    <li>
+                        <i class="fa fa-file-text">
+                            <a href="#" data-toggle="modal" data-target="#sendRes" for="paste-resume-form" @if(!Auth::check())
+                                window.location='{{ url('auth/login') }}'@endif>Відправити резюме
+                            </a>
+                        </i>
+                    </li>
+                    @if(Auth::check()) @if(Auth::user()->role ==1)<li><i class="fa fa-check-square"><a href="#" for="paste-resume-form" x`ick="blockVacancy()">Заблокувати</a></i></li>@endif @endif
                 </ul>
                         </li>
             </ul>
