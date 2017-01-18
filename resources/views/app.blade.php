@@ -125,8 +125,8 @@
 		{{--</div>--}}
 	</div>
         <div class="row">
-            {{--<div class="col-md-10 col-md-offset-1" >--}}{{-- Stoha--}}
-                <div class="col-md-10 col-md-offset-1" > {{-- Stoha --}}
+            <div class="col-md-10 col-md-offset-1" >
+                <div class="col-md-10 col-md-offset-1" >
                     <div class="panel-heading" style="background-color: #ffffff;">
                         <div class="row">
                             <div>
@@ -143,14 +143,14 @@
 
                     </div>
 
-                    {{--<div id="geoDiv">--}}
-                    {{--</div>--}}{{-- Stoha--}}
+                    <div id="geoDiv">
+                    </div>
 
                     <div >
                         @yield('content')
                     </div>
                 </div><!--class="col-md-10 col-md-offset-1"-->
-            {{--</div><!--class="col-md-10 col-md-offset-1"-->--}}{{--  Stoha--}}
+            </div><!--class="col-md-10 col-md-offset-1"-->
         </div><!--class="row"-->
 <div id="formContainer">
 
@@ -205,7 +205,7 @@ $(document).ready(function() {
     ga('send', 'pageview');
 
 </script>
-</div>
-</body>
+
+	</body>
 
 </html>
