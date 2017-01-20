@@ -58,7 +58,7 @@ body
 	font-size: 18px;
 	color: 	#696969;
 }
-.textalign,#phName,#center,#content_tests,#tip,#buttons_table,#phName1,p,#start_button
+.textalign,#phName,#center,#content_tests,#tip,#buttons_table,#phName1,#p,#start_button
 {
 	text-align: center;
 }
