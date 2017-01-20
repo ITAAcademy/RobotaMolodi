@@ -6308,3 +6308,37 @@ label,
   color: darkorange;
   margin-bottom: 20px;
 }
+
+/*Oleh Rostov*/
+.c_h3{
+  margin-left: 30px;
+}
+.icon{
+  color: rgb(240, 124, 1);
+  font-size: 18px;
+  padding-right: 0px;
+  width: 45px;
+}
+.c_link{
+  font-size: 18px;
+  padding-left: 0px;
+}
+.c_link a:link{
+  color: black;
+  text-decoration: none;
+}
+.c_link a:visited{
+  color: black;
+  text-decoration: none;
+}
+.c_phone > p {
+  font-size: 18px;
+  padding-left: 0px;
+  font-weight: 400;
+}
+@media (max-width: 767px){
+  .c_xs{
+    margin-left: 25px;
+  }
+}
+/*Oleh Rostov*/
