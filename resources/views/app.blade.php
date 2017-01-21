@@ -106,19 +106,20 @@
 			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
 		</div>
 		{{--<div class="col-md-10 col-md-offset-2 rovn">--}}
-		<div class="col-md-12 col-search" >
-			{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}
-			{!!Form::close()!!}
-			<input type="submit" class="btn btn-default btn-search navbar-default" onclick="
-			@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'
-			@else window.location='{{ url('searchVacancies') }}'
-			@endif" value="Пошук">
-		</div>
+		{{--<div class="col-md-12 col-search" >--}}
+			{{--{!!Form::text('search_field','',array( 'class' => 'form-control','placeholder' => 'Введіть запит' )) !!}--}}
+			{{--{!!Form::close()!!}--}}
+			{{--<input type="submit" class="btn btn-default btn-search navbar-default" onclick="--}}
+			{{--@if(Request::is('sresume')) window.location='{{ url('searchResumes') }}'--}}
+			{{--@else window.location='{{ url('searchVacancies') }}'--}}
+			{{--@endif" value="Пошук">--}}
+		{{--</div>--}}
 	</div>
 	<div class="row">
 		{{--<div class="col-md-10 col-md-offset-1" >--}}{{-- Stoha--}}
 		<div class="col-md-10 col-md-offset-1" >
 			@yield('search')
+			@if(Route::getFacadeRoot()->current()->uri() == '/') @include('search/search') @endif
 			{{-- Stoha --}}
 			<div class="panel-heading" style="background-color: #ffffff;">
 				<div class="row">
@@ -128,7 +129,6 @@
 					<div id="dropTitle">
 						@yield('title')
 					</div>
-
 					<div class="crResVac">
 						@yield('Create_res_vac')
 					</div>
