@@ -1,7 +1,3 @@
-@extends('app')
-
-@section('search')
-
 <div class="col-md-12 col-search" >
 
 
@@ -17,4 +13,3 @@
     @endif" value="Пошук">
     {{--</span>--}}
 </div>
-@endsection
