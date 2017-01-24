@@ -2332,21 +2332,7 @@ output {
   line-height: 1.42857143;
   color: #555555;
 }
-.form-control {
-  /*display: block;*/
-  width:85%;
-  height: 44px; /*Stoha*/
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555555;
-  background-color: #ffffff;
-  background-image: none;
-  border: 1px solid #cccccc;
-  border-radius: 4px 0 0 4px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
+
 .form-control:focus {
   border-color: #66afe9;
   outline: 0;
@@ -6291,17 +6277,27 @@ label,
 .text {
   text-align:  center;
 }
-.btn-search {
-  width: 14%;
-  margin-left: -1%;
-  border-radius: 0 4px 4px 0;
-}
 .col-search{
-  padding-left: 0;
-  padding-right: 0;
-  margin-right: -19px;
+    margin: 10px 0;
 }
-
+.form-control {
+    width:85%;
+    display: inline-block;
+    height: 44px; /*Stoha*/
+    font-size: 14px;
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px 0 0 4px;
+}
+.btn-search {
+    width: 15%;
+    margin-left: -4px;
+    vertical-align: top;
+    border-radius: 0 4px 4px 0;
+    display: inline-block;
+    border-left: none;
+}
 .list-inline {
   margin-top: 30px;
   list-style-type: none;
@@ -6342,3 +6338,74 @@ label,
   }
 }
 /*Oleh Rostov*/
+
+/********FOOTER********/
+
+.footer{
+    font-family: SegoeUIRegular;
+    overflow:hidden;
+}
+.down-footer img{
+    margin-left: 10px;
+}
+.footer ul, .footer  li{
+    list-style-type:none;
+    padding-bottom: 10px;
+}
+
+.footer a{
+    color: #9d9d9d;
+}
+
+.container-footer {
+    background-color: #3f3e3e;
+    padding: 20px 0;
+    margin-top: 30px;
+    color: #9d9d9d;
+    font-size: 18px;
+    float: left;
+}
+.container-footer i{
+    color: #d17c11;
+    margin-right: 15px;
+}
+
+.inner-footer{
+    float: left;
+}
+.inner-footer img{
+    margin-right: 10px;
+}
+
+.inner-footer hr{
+    margin:0px 0px 20px 0px;
+}
+
+.down-footer{
+
+    background-color: #8f8f8f;
+    font-size: 14px;
+    padding: 20px;
+}
+
+.li_header{
+    margin: 30px 0px 20px 0px;
+    padding: 0px;
+    font-family: ACLine;
+    font-size:24px;
+    color: white;
+    font-weight: bold;
+}
+
+.li_header img{
+    margin-right: 10px;
+}
+
+.footer a:hover{
+    color: #d17c11;
+    text-decoration: none;
+}
+
+.footer :link{
+    text-decoration: none;
+}
