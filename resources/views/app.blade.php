@@ -34,10 +34,10 @@
 	<div class="container-fluid container-main">
 		@include('header/header')
 		<div class="main">
-		<div class="col-md-10 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-2 menu">
 			<span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
-			<span class="col-md-1 staticLinks"><a class="btn" href="#" onclick="window.open('http://www.profitday.info')" style="color: #333333">Дні кар'єри</a> </span>
-			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" style="color: #333333" class="afterChange">Контакти</a> </span>
+			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('http://www.profitday.info')}}" class="afterChange" style="color: #333333">Дні кар'єри</a> </span>
+			<span class="col-md-1 staticLinks"><a class="btn" href="{{ url('/contacts') }}" class="afterChange" style="color: #333333">Контакти</a> </span>
 		</div>
 			@if(Request::is('sresume')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
 			@elseif(Request::is('searchResumes')){!!Form::open(['route' => 'searchResume','method' => 'POST'])!!}
