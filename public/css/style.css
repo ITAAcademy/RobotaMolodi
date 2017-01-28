@@ -350,7 +350,7 @@ li[role='treeitem'].select2-results__option{
     width: 100px;    
     position: relative; 
     z-index: 2;
-    margin-top: -90px;
+    margin-top: -80px;
 }
 #dropTitle{
 	display:inline-block;

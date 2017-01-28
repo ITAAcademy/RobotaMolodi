@@ -4,6 +4,20 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+@font-face {
+  font-family: ACLine;
+  src:    url('../fonts/ACLine.eot') format('embedded-opentype'),
+  url('../fonts/ACLine.woff2') format('woff2'),
+  url('../fonts/ACLine.woff') format('woff'),
+  url('../fonts/ACLine.ttf') format('truetype'),
+  url('../fonts/ACLine.svg#ACLine') format('svg');
+}
+@font-face {
+  font-family: SegoeUIRegular;
+  src:    url('../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
+  url('../fonts/SegoeUIRegular.woff') format('woff'),
+  url('../fonts/SegoeUIRegular.ttf') format('truetype');
+}
 body {
   margin: 0;
 }
@@ -6277,6 +6291,9 @@ label,
 .text {
   text-align:  center;
 }
+.menu {
+    margin: 10px;
+}
 .col-search{
     margin: 10px 0;
 }
@@ -6409,3 +6426,6 @@ label,
 .footer :link{
     text-decoration: none;
 }
+////////////* HEADER_NEW */
+
+

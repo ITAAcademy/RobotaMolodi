@@ -28,7 +28,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-offset-5" id="logoImg">
+        <div class="col-md-offset-4" id="logoImg">
             <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!} </a>
         </div>
     </nav>
