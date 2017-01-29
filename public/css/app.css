@@ -6361,6 +6361,9 @@ label,
 .footer{
     font-family: SegoeUIRegular;
     overflow:hidden;
+    margin-left: 0;
+    margin-right: 0;
+
 }
 .down-footer img{
     margin-left: 10px;
