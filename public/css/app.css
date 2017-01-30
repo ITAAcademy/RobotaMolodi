@@ -5004,6 +5004,7 @@ a.list-group-item-danger.active:focus {
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
 }
+
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -6355,6 +6356,71 @@ label,
   }
 }
 /*Oleh Rostov*/
+
+/*Bohdan Levitski START*/
+.position_resume{
+  color: #666666;
+  font-size: 24px;
+  font-family: SegoeUI;
+}
+
+.price_resume{
+  color: #CD2626;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.name_resume{
+  font-size: 24px;
+  font-family: SegoeUI;
+  padding-top: 10px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.writeOnPost{
+  border:1px solid #f68c06;
+  border-radius: 5px;
+  background-color: #f68c06;
+  height: 44px;
+  width: 250px;
+  text-align: center;
+  line-height: 44px;
+  cursor: pointer;
+  font-family: SegoeUI;
+  display: inline-block;
+  float: right;
+}
+.button-city-time a{
+  text-decoration: none;
+}
+
+#writeOnPost{
+  text-decoration: none;
+  color: white;
+}
+
+#city_resume{
+  text-decoration: none;
+  color: #f68c06;
+}
+
+.cityTime_resume{
+  font-size: 24px;
+  color:#f68c06;
+  font-family: SegoeUI;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.button-city-time{
+  display: inline-block;
+  width: 100%;
+}
+/*Bohdan Levitski END*/
+
 
 /********FOOTER********/
 
