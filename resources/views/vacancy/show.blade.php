@@ -7,22 +7,42 @@
     {!!Form::close()!!}
 
     <div class="panel panel-orange" id="vrBlock">
-
-        <div class="logos">
-            <div class="panel panel-orange" id="vimg">
-                @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @else
-                    <h3 style="text-align: center; color: #f48952; margin-top: 80px">логотип вiдсутнiй</h3>
-                @endif
+        <div class="row">
+            <div class="logos">
+                <div class="panel panel-orange" id="vimg">
+                    @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @else
+                        <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
+                    @endif
+                </div>
+                <div class="case">
+  						<span>
+  							<i style="font-size:25px;" class="fa">&#xf0b1;</i>
+  						</span>
+                    <div class="consult">
+                        <a href="#">запланувати консультацію</a>
+                    </div>
+                </div>
+                <div class="share">
+                    <p>Поділитись</p>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/" target="_blank"><i class="fa">&#xf08c;</i></a>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa">&#xf082;</i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa">&#xf081;</i></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa" >&#xf189;</i></a>
+                    <a href="https://plus.google.com" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                </div>
             </div>
         </div>
+
 
         <div id="datAnnoyingSizes">
             <div class="panel-heading">
