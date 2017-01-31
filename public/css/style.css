@@ -397,7 +397,6 @@ li[role='treeitem'].select2-results__option{
 #vrBlock
 {
     border: 1px #dddddd;
-  /*  display: table;*/
     border-style: solid hidden solid hidden;
     border-radius: 0px;
     width: 100%;
@@ -422,14 +421,13 @@ li[role='treeitem'].select2-results__option{
 {
     color: #f48952;
     font-size: 27px;
-
 }
 
 .logos
 {
-	/*  vertical-align: top;
+	  vertical-align: top;
       display: table-cell;
-      width: 200px;*/
+      width: 200px;
 }
 
 .staticLinks
