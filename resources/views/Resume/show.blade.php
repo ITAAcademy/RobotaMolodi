@@ -8,7 +8,7 @@
 
     <div class="panel panel-orange" id="vrBlock">
 
-        <div class="logos col-md-3">
+        <div class="col-md-3">
             <div class="panel panel-orange" id="vimg">
                 @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
                     {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
@@ -27,7 +27,7 @@
         <div id="datAnnoyingSizes">
             <div class="panel-heading">
                 <p class="position_resume">
-                    <a class="orangeLinks" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
+                    <a class="orangColor" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
                 </p>
                     <br/>
                 <p class="price_resume">
@@ -37,7 +37,7 @@
                 <p class="name_resume">{!!$resume->name_u!!}</p>
             </div>
             <div class="panel-heading">
-                <p class="position_resume"><a class="orangeLinks" href="javascript:submit('selectIndustry', {{$resume->Industry()->id}})">{!!$resume->Industry()->name!!}</a></p>
+                <p class="position_resume"><a class="orangColor" href="javascript:submit('selectIndustry', {{$resume->Industry()->id}})">{!!$resume->Industry()->name!!}</a></p>
                 <hr/>
                 <p><span class="heading bold">Телефон: </span> {!!$resume->telephone!!}</p>
                 <hr/>
@@ -45,7 +45,7 @@
                 <hr/>
                 <div class="button-city-time">
                     <p class="cityTime_resume">
-                        <a id="city_resume" href="javascript:submit('selectCity', {{$city->id}})">{!!$city->name!!}</a>
+                        <a class="orangColor" href="javascript:submit('selectCity', {{$city->id}})">{!!$city->name!!}</a>
                         <span id="yellowCircle">&#183;</span>
                         {{ date('j.m.Y, H:i:s', strtotime($resume->updated_at))}}
                     </p>
