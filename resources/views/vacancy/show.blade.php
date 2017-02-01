@@ -111,7 +111,8 @@
         }
 
         $(document).ready(function() {
-            if ({{$errors-> has('Link')}})
+            var x = "{{$errors -> has('Link')}}";
+            if (x)
                 $('#sendLinkButton').click();
         });
 
