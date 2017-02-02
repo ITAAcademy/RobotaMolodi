@@ -10,6 +10,8 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
+	@yield('head')
+
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -30,7 +32,6 @@
 {!!Html::script('js/robotaMolodiUtils.js')!!}
 {!!Html::script('js/formatDate.js')!!}
 {!!Html::script('js/initMap.js')!!}
-
 </head>
 <body>
 	<div class="container-fluid container-main">
