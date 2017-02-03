@@ -10,7 +10,9 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
+
 	@yield('head')
+
 
 
 	<!-- Fonts -->
