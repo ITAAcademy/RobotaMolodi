@@ -1,4 +1,7 @@
 @extends('app')
+@section('head')
+    <link href="{{ asset('/css/vacancy_show_blade.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
     {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
@@ -7,130 +10,164 @@
     {!!Form::close()!!}
 
     <div class="panel panel-orange" id="vrBlock">
-
-        <div class="logos">
-            <div class="panel panel-orange" id="vimg">
-                @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
-                    {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @else
-                    <h3 style="text-align: center; color: #f48952; margin-top: 80px">логотип вiдсутнiй</h3>
-                @endif
+        <div class="row">
+            <div class="col-md-2">
+                <div class="logos">
+                <div class="panel panel-orange" id="vimg">
+                    @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
+                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @else
+                        <h3 class="nologo">логотип вiдсутнiй</h3>
+                    @endif
+                </div>
+                <div class="case">
+  						<span>
+  							<i class="fa">&#xf0b1;</i>
+  						</span>
+                    <div class="consult">
+                        <a href="#">запланувати консультацію</a>
+                    </div>
+                </div>
+                <div class="share">
+                    <p>Поділитись</p>
+                </div>
+                <div class="social">
+                    <a href="https://www.linkedin.com/" target="_blank"><i class="fa">&#xf08c;</i></a>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa">&#xf082;</i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa">&#xf081;</i></a>
+                    <a href="https://vk.com" target="_blank"><i class="fa" >&#xf189;</i></a>
+                    <a href="https://plus.google.com" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-10">
+                <div id="datAnnoyingSizes">
+                <div class="panel-headings">
+                    <a class="greyLinks" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
+                </div>
+                <div>
+                    <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                </div>
+                <div>
+                    <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                </div>
+                <div>
+                    <div class="text_vac otstup1"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
+                </div>
+                <div>
+                    <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}} </div>
+                </div>
+                <div>
+                    <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>
+                </div>
+            </div>
             </div>
         </div>
-
-        <div id="datAnnoyingSizes">
-            <div class="panel-heading">
-                <h2>
-                    <a class="orangeLinks" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
-                    <br><span style="color: red">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span>
-                </h2>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item">  {{$user->name}}</li>
-                <li class="list-group-item">  <a class="orangeLinks" href="javascript:submit('selectIndustry', {{$industry->id}})">{{$industry->name}}</a> </li>
-                <li class="list-group-item" style="border-bottom: none"><span class="heading">Опис: </span>{{$vacancy->description}}</li>
-                <li class="list-group-item">  <a style="text-decoration: underline" class="orangeLinks" target="_blank" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a></li>
-                <li class="list-group-item" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->updated_at))}}</li>
-                <li class="list-inline" id="opt-data-low">
+        <div class="right_colomn">
+            <div class="right_vac">
+                <div class="list_but">
                     <ul class="list-inline">
-                    <li>
-                        <i class="fa fa-link">
-                            <a href="#" id="sendLinkButton" data-toggle="modal" data-target="#sendLink" for="paste-link-form" onclick="@if(!Auth::check())
-                                window.location='{{ url('auth/login') }}'@endif">Відправити URL
-                            </a>
-                        </i>
-                    </li>
-                    <li>
-                        <i class="fa fa-file-o">
-                            <a href="#" data-toggle="modal" data-target="#sendFile" for="paste-file-form" onclick="@if(!Auth::check())
-                                window.location='{{ url('auth/login') }}'@endif">Відправити файл
-                            </a>
-                        </i>
-                    </li>
-                    <li>
-                        <i class="fa fa-file-text">
-                            <a href="#" data-toggle="modal" data-target="#sendRes" for="paste-resume-form" @if(!Auth::check())
-                                window.location='{{ url('auth/login') }}'@endif>Відправити резюме
-                            </a>
-                        </i>
-                    </li>
-                    @if(Auth::check()) @if(Auth::user()->role ==1)<li><i class="fa fa-check-square"><a href="#" for="paste-resume-form" x`ick="blockVacancy()">Заблокувати</a></i></li>@endif @endif
-                </ul>
+                        <li class="li_link send_url_link">
+                            <i class="fa fa-link"></i>
+                            <button type="button" class="btn btn-link" onclick="showDiv('send_URL_vacancy')" onclick="@if(!Auth::check())
+                                    window.location='{{ url('auth/login') }}'@endif">відправити URL</button>
+
                         </li>
-            </ul>
+                        <li class="li_link send_file_link">
+                            <i class="fa fa-file-o"></i>
+                            <button type="button" class="btn btn-link" onclick="showDiv('send_file_vacancy')" onclick="@if(!Auth::check())
+                                    window.location='{{ url('auth/login') }}'@endif">відправити файл</button>
+
+                        </li>
+                        <li class="li_link send_resume_link">
+                            <i class="fa fa-file-text-o"></i>
+                            <button type="button" class="btn btn-link" onclick="showDiv('send_resume_vacancy')" onclick="@if(!Auth::check())
+                                    window.location='{{ url('auth/login') }}'@endif">відправити резюме</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Form URL -->
+                <div id="send_URL_vacancy" class="send_block">
+                    <form class="URL_vacancy">
+                        <span class="bold_vacancy">Вставити посилання на резюме:</span>
+                        <input class="form-control" type="text" placeholder="URL">
+                    </form>
+
+                    <form class="send">
+                        <button type="button" class="sent_file_button">Відправити</button>
+                    </form>
+                </div>
+                <!-- End of Form URL -->
+
+                <!-- Form File -->
+                <div id="send_file_vacancy" class="send_block">
+                    <form class="send_form" method="post">
+                        <span class="bold_vacancy" style="font-size: 18px; color: #797979">Завантажити файл:</span>
+                        <div style=" margin-top:5px; height: 44px;">
+                            <div class="file_upload">
+                                <button type="button" class="sent_file_button" id="choose_file">Вибрати файл</button>
+                                <input type="file" class="insert_file" id="uploaded-file" onchange="getFileName ();">
+                            </div>
+                            <p class="text_vac dont_choose" id="file-name">Файл не выбран</p>
+                        </div>
+
+                        <button type="button" class="sent_file_button">Відправити</button>
+                    </form>
+                </div>
+                <!-- End of Form File -->
+
+                <!-- Form Resume -->
+                <div id="send_resume_vacancy" class="send_block">
+                    <form class="URL_vacancy">
+                        <span class="bold_vacancy">Вставити посилання на резюме:</span>
+                        <select class="form-control">
+                            <option>resume 1</option>
+                            <option>resume 2</option>
+                            <option>resume 3</option>
+                        </select>
+                    </form>
+
+                    <form class="send">
+                        <button type="button" class="sent_file_button">Відправити</button>
+                    </form>
+                </div>
+                <!-- end of Form Resume -->
+
+            </div>
         </div>
+        {{--<script src="/public/js/script_one_vacancy.js"></script>--}}
+        <script>
+            function showDiv(id){
+                var closeAll = false;
+                if(document.getElementById(id).style.display == "block")
+                    closeAll = true;
+                document.getElementById('send_URL_vacancy').style.display = "none";
+                document.getElementById('send_file_vacancy').style.display = "none";
+                document.getElementById('send_resume_vacancy').style.display = "none";
+                if(!closeAll)
+                    document.getElementById(id).style.display = "block";
+            }
+
+            function getFileName () {
+                var file = document.getElementById ('uploaded-file').value;
+                file = file.replace(/\\/g, "/").split('/').pop();
+                document.getElementById ('file-name').innerHTML = file;
+            }
+        </script>
 
         @include('/vacancy/pasteVacancyForm/link')
         @include('/vacancy/pasteVacancyForm/file')
         @include('/vacancy/pasteVacancyForm/resume')
         <script>
 
-
         </script>
     </div>
-
-    <div id="formContainer">
-
-    </div>
-
-    <script>
-
-        function loadForm(f) {
-            var id = {{$vacancy->id}};
-            //console.log ("/vacancy/" + id + '/' + f);
-            $.ajax({
-                {{--{{dd('vacancy/' + (string) $vacancy->id)}};--}}
-                url:"/vacancy/" + id + '/' + f,
-                type: "GET",
-                success: function (data) {
-                    //$data = $(data);
-                    $("#formContainer").html(data);
-                }
-            })
-        }
-
-        function buttonHandler(e)
-        {
-            var button = e.target;
-            var formId = button.getAttribute("for");
-            var forms = document.getElementsByClassName("col-sm-offset-2 col-sm-10 form");
-
-            for(var i=0; i<forms.length; i++){
-                if(forms[i].getAttribute("id") == formId){
-                    forms[i].style.display = "block";
-                }
-                else { forms[i].style.display = "none";}
-
-            }
-        }
-
-        $(document).ready(function() {
-            if ({{$errors-> has('Link')}})
-                $('#sendLinkButton').click();
-        });
-
-    </script>
-
-    <script>
-        function blockVacancy()
-        {
-            var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
-            if(dialogResult)
-            {
-                $.post( '/vacancy/block',{_token: '{{ csrf_token() }}', id: '{{ $vacancy->id }}' },
-                        function( data ) {
-                            location="{{URL::to('/')}}";
-
-                        });
-            }
-
-        }
-    </script>
 
 @stop
