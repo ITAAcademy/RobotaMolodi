@@ -38,7 +38,7 @@ class VacancyController extends Controller
 
     private $publishedOptions = ['Недоступно','Доступно всім','Доступно зареєстрованим'];
     /**
-     * Returns vacancy if exists and 500 code if id or vacancy incorrect .
+     * Returns vacancies if exists and 500 code if id or vacancies incorrect .
      *
      * @param  int $id
      * @return Vacancy
@@ -98,7 +98,7 @@ class VacancyController extends Controller
                         'publishedOptions'=> $this->publishedOptions,
                     ]);
             } else {
-                $_SESSION['path'] = 'vacancy.create';
+                $_SESSION['path'] = 'vacancies.create';
 
                 return redirect()->route('company.create');
 
@@ -124,11 +124,11 @@ class VacancyController extends Controller
 
             if (count($vacancies)==0) {
                 $mes = "Зараз у Вас немає вакансій.";
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+                return  view('vacancies.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             } else {
                 $vacancies->sortByDesc('created_at');
                 $mes =null;
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+                return  view('vacancies.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             }
 
         } else {
@@ -178,7 +178,7 @@ class VacancyController extends Controller
                 $vacancy_City->FillHole($cities, $vacancy->id);
 
 
-                return redirect()->route('vacancy.index');
+                return redirect()->route('vacancies.index');
             } else {
                 return redirect()->route('company.create');
             }
@@ -198,9 +198,9 @@ class VacancyController extends Controller
     {
 //        if (!session())
 //            session()->start();
-        Cookie::queue('url', 'vacancy/'.$id);
+        Cookie::queue('url', 'vacancies/'.$id);
         $resume = null;
-        $view = 'vacancy.show';
+        $view = 'vacancies.show';
 
         $vacancy = $this->getVacancy($id);
 
@@ -217,7 +217,7 @@ class VacancyController extends Controller
 
             $user = User::find($auth->user()->getAuthIdentifier());
             if ($userVacation->id == $user->id) {
-                $view = 'vacancy.showMyVacancy';
+                $view = 'vacancies.showMyVacancy';
             }
             $resume = $auth->user()->GetResumes()->get();
         }
@@ -233,7 +233,7 @@ class VacancyController extends Controller
 
         return view($view)
             ->with('resume', $resume)
-            ->with('vacancy', $vacancy)
+            ->with('vacancies', $vacancy)
             ->with('company', $company)
             ->with('user', $userVacation)
             ->with('cities', $cities)
@@ -268,8 +268,8 @@ class VacancyController extends Controller
 
 
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
-                return view('vacancy.edit')
-                    ->with('vacancy', $vacancy)
+                return view('vacancies.edit')
+                    ->with('vacancies', $vacancy)
                     ->with('industries', $industries)
                     ->with('companies', $companies)
                     ->with('cities', $cities)
@@ -359,7 +359,7 @@ class VacancyController extends Controller
 
     }
 
-    //Show response form (take one param "id" vacancy)
+    //Show response form (take one param "id" vacancies)
     /**
      * @param $id
      * @return mixed
@@ -376,8 +376,8 @@ class VacancyController extends Controller
 
         $userVacation = $company->ReadUser();
 
-//        return view('vacancy/response')
-//                    ->with('vacancy',$vacancy)
+//        return view('vacancies/response')
+//                    ->with('vacancies',$vacancies)
 //                    ->with('user',$user)
 //                    ->with('userVacation',$userVacation);
 //        }
@@ -385,7 +385,7 @@ class VacancyController extends Controller
 //        {
 //            return Redirect::to('auth/login');
 //        }
-        return view('vacancy/vacancyAnswer');
+        return view('vacancies/vacancyAnswer');
     }
 
     public function sendFile(Guard $auth, Request $request)
@@ -405,7 +405,7 @@ class VacancyController extends Controller
             $message->attach($uploadFile);
         });
         File::delete($uploadFile);
-        return view('vacancy/vacancyAnswer');
+        return view('vacancies/vacancyAnswer');
 
     }
 
@@ -445,7 +445,7 @@ class VacancyController extends Controller
 
         //     $link ->save();
 
-        return view('vacancy/vacancyAnswer');
+        return view('vacancies/vacancyAnswer');
     }
 
     public function sendResume(Guard $auth, Request $request)
@@ -457,21 +457,21 @@ class VacancyController extends Controller
             $to = User::find($company->users_id)->email;
             $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
         });
-        return view('vacancy/vacancyAnswer');
+        return view('vacancies/vacancyAnswer');
     }
 
     public function showPasteFileForm($id, Guard $auth, Request $request)
     {
         $vacancy = $this->getVacancy($id);
         $user = User::find($auth->user()->getAuthIdentifier());
-        return View::make('vacancy.pasteVacancyForm.file', array("vacancy" => $vacancy, "user" => $user));
+        return View::make('vacancies.pasteVacancyForm.file', array("vacancies" => $vacancy, "user" => $user));
     }
 
     public function showPasteLinkForm($id, Guard $auth, Request $request)
     {
         $vacancy = $this->getVacancy($id);
         $user = User::find($auth->user()->getAuthIdentifier());
-        return View::make('vacancy.pasteVacancyForm.link', array("vacancy" => $vacancy, "user" => $user));
+        return View::make('vacancies.pasteVacancyForm.link', array("vacancies" => $vacancy, "user" => $user));
     }
 
     public function showPasteResumeForm($id, Guard $auth, Request $request)
@@ -479,7 +479,7 @@ class VacancyController extends Controller
         $vacancy = $this->getVacancy($id);
         $user = User::find($auth->user()->getAuthIdentifier());
         $resume = $auth->user()->GetResumes()->get();
-        return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
+        return View::make('vacancies.pasteVacancyForm.resume', array("vacancies" => $vacancy, "user" => $user, "resume" => $resume));
     }
 
     /**

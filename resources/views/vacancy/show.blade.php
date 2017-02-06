@@ -21,7 +21,7 @@
                     @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
                         {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
-                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        {!! Html::image('vacancies' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         <h3 class="nologo">логотип вiдсутнiй</h3>
                     @endif

@@ -1,3 +1,4 @@
+
 <div class="main">
     <div class="col-md-10 col-md-offset-2 menu">
         <span class="col-md-1 staticLinks"><a class="btn"  href="{{ url('/about/index.html') }}" class="afterChange" style="color: #333333; font-size: 14px">Про нас</a> </span>
