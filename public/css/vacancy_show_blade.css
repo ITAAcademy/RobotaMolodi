@@ -113,15 +113,16 @@ i.fa-google-plus-square {
     margin-top: 5px;
 }
 .anagraph{
-    color: #f68c06;
+    /*color: #f68c06;*/
     font-size: 16px;
     font-weight: 700;
 }
 .text_data{
     color: #777777;
 }
-#yellowCircle{
+#yellowCirclev{
     color: #f68c06;
+    /*font-size: 27px;*/
     font-weight: 900;
 }
 
