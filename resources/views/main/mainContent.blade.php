@@ -38,8 +38,10 @@
                     </div>
                 </div>
             </div>
-            <div>
-                @yield('content')
+            <div class="row">
+                <div>
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>

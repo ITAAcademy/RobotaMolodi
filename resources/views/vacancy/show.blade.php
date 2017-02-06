@@ -61,7 +61,7 @@
                     <div class="text_vac otstup1"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                 </div>
                 <div>
-                    <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}} </div>
+                    <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}}</div>
                 </div>
                 <div>
                     <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>

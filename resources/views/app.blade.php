@@ -7,13 +7,20 @@
 	<title>Robota Molodi</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+
+	<!-- sort -->
+	<link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/sortAds/jquery-datapicker-theme.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/sortAds/jquery-datapicker-ui.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/sortAds/jquery-ui-datapicer-structure.css') }}" rel="stylesheet">
+	<!-- EndSort -->
 
 	@yield('head')
-
-
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,10 +31,17 @@
 
 	<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
+	<!--<script type="text/javascript" src="/newDesign/JS/sortAds.js"></script>
+
 	<!-- geoFilter yandex links -->
 	<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=uk-UA" type="text/javascript"></script>
 	<!-- end here -->
+
+	<!-- sort -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- EndSort -->
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
@@ -51,6 +65,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<!-- Sort -->
+	<script type="text/javascript" src="newDesign/JS/datapicker-ul.js"></script>
+	<script type="text/javascript" src="newDesign/JS/script.js"></script>
+	<!-- EndSort -->
+
 	{!!Html::script('js/select2.full.js')!!}
 
 		<script type="text/javascript">
