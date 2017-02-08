@@ -54,7 +54,7 @@
 <body>
 	<div class="container-fluid container-main">
 		@include('header/header')
-		@include('newDesign/navTab')
+		@include('newDesign/navTab/navTab')
 		@include('main/mainContent')
 	</div>
 	<footer>
