@@ -1,0 +1,85 @@
+.header-tabs{
+	margin-bottom:-2px;
+}
+.header-tabs>ul>li {
+	padding-bottom:0;
+	font-family: SegoeUIRegular;
+	font-size: 18px;
+}
+.header-tabs img {
+	margin-right:10px;
+}
+
+.header-tabs>ul>li.active>a, .header-tabs>ul>li.active>a:focus, .header-tabs>ul>li.active>a:hover {
+	color:#999999;
+}
+
+.header-tabs>ul>li>a, .header-tabs>ul>li>a:focus, .header-tabs>ul>li>a:hover {
+	color:#666666;
+}
+
+.header-tabs>ul>li>a {
+	border: 1px solid #dddddd;
+	margin-right:-1px;
+	height:50px;
+}
+
+.padding-top-div{
+	padding-top:20px;
+	margin:0;
+}
+
+.add-list-group {
+	font-family: "SegoeUIRegular";
+	float: right;
+	padding-top:10px;
+}
+.list-inline {
+	padding-left: 0px;
+	margin-left: 0px;
+	margin-bottom:0;
+}
+
+.list-unstyled_plus {
+	margin-right: 7px;
+}
+
+.add {
+	font-size: 18px;
+	color: #999999;
+	font-family: "SegoeUIRegular";
+}
+.glyphicon-plus {
+	font-size: 18px;
+	color: #999999;
+	font-family: "SegoeUIRegular";
+}
+
+.list-unstyled_vacansy a {
+	color:  #F68C06;
+	font-family: "SegoeUIRegular";
+	text-decoration: underline;
+	font-size: 18px;
+}
+
+.list-unstyled_company a {
+	color:  #F68C06;
+	font-family: "SegoeUIRegular";
+	text-decoration: underline;
+	font-size: 18px;
+}
+.list-unstyled_resume a {
+	color:  #F68C06;
+	font-family: "SegoeUIRegular";
+	text-decoration: underline;
+	font-size: 18px;
+.bottom-line4row {
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 10px;
+    width: 50%;
+}
+.conteiner-fluid.few {
+	 border-bottom: 1px solid #dddddd;
+	 background-color: red;
+}
+

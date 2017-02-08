@@ -1425,9 +1425,9 @@ pre code {
 .col-xs-12 {
   width: 100%;
 }
-.col-xs-11 {
+/*.col-xs-11 {
   width: 91.66666667%;
-}
+}*/
 .col-xs-10 {
   width: 83.33333333%;
 }
@@ -6316,12 +6316,12 @@ label,
     display: inline-block;
     border-left: none;
 }
-.list-inline {
+/*.list-inline {
   margin-top: 30px;
   list-style-type: none;
   color: darkorange;
   margin-bottom: 20px;
-}
+}*/
 
 /*Oleh Rostov*/
 .c_h3{

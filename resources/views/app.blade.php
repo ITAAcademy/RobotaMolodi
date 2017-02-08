@@ -12,6 +12,8 @@
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
+	<!--<link rel="stylesheet" type="text/css" href="newDesign/css/navTab.css">-->
 
 	<!-- sort -->
 	<link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
@@ -52,6 +54,7 @@
 <body>
 	<div class="container-fluid container-main">
 		@include('header/header')
+		@include('newDesign/navTab')
 		@include('main/mainContent')
 	</div>
 	<footer>
