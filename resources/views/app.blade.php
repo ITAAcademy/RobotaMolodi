@@ -36,13 +36,15 @@
 	<!--<script type="text/javascript" src="/newDesign/JS/sortAds.js"></script>
 
 	<!-- geoFilter yandex links -->
-	<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+	
 	<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=uk-UA" type="text/javascript"></script>
 	<!-- end here -->
 
 	<!-- sort -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- EndSort -->
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>

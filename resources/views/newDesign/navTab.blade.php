@@ -45,7 +45,7 @@
 												<!-- Add new: -Vac -Comp -Res. +dropdown -->
 		<div class="col-xs-1 hidden-md hidden-lg dropdown plus-dropdn">
 		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-			<span class="">+</span>
+			<span id="cross">+</span>
 		  </button>
 		  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuPlus">
 			<li class="plus-dropdn-h">Додати:</li>
