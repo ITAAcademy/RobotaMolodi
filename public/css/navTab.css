@@ -81,5 +81,36 @@
 .conteiner-fluid.few {
 	 border-bottom: 1px solid #dddddd;
 	 background-color: red;
+
 }
+.dropdown-menu{
+	width: 100%;
+}
+#dropdownMenu1 {
+    border: none;
+    background-color: red;
+    height: 80px;
+}
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.plus-dropdn span {
+    color: #cccccc;
+    font-size: 36px;
+    line-height: 36px;
+}
+.btn-default {
+    /* color: #333; */
+    /* background-color: #fff; */
+    border-color: #ccc;
+}
+.plus-dropdn span {
+    color: #cccccc;
+    font-size: 36px;
+    line-height: 36px;
+}
+
+
 

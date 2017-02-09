@@ -2739,7 +2739,7 @@ select[multiple].form-group-lg .form-control {
   user-select: none;
   height: 44px; /*Stoha*/
 }
-.btn:focus,
+/*.btn:focus,
 .btn:active:focus,
 .btn.active:focus,
 .btn.focus,
@@ -2748,7 +2748,7 @@ select[multiple].form-group-lg .form-control {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
-}
+}*/
 .btn:hover,
 .btn:focus,
 .btn.focus {
@@ -3148,7 +3148,7 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
-.dropdown-toggle:focus {
+/*.dropdown-toggle:focus {
   outline: 0;
 }
 .dropdown-menu {
@@ -3246,7 +3246,7 @@ tbody.collapse.in {
   bottom: 0;
   top: 0;
   z-index: 990;
-}
+}*/
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
