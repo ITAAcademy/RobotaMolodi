@@ -1,5 +1,5 @@
 .header-tabs{
-	margin-bottom:-2px;
+	margin-bottom:-0px;
 }
 .header-tabs>ul>li {
 	padding-bottom:0;
@@ -120,12 +120,35 @@
     color: #cccccc;
     font-size: 36px;
     line-height: 36px;
-    background-color: red !important;
-}
-plus-dropdn dropdownMenu1 span{
- color: red!important;
-    font-size: 36px;
-    line-height: 36px;
+   /* background-color: red !important;*/
 }
 
-
+.plus-dropdn-h {
+    color: #f68c06;
+    padding: 0 10px;
+    font-weight: bold;
+}
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+.nav-tabs {
+     border-bottom:none;
+}
