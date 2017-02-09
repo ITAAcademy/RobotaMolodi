@@ -14,24 +14,13 @@ a{
     text-decoration: none;
 }
 
-.links:hover h4 {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links:hover a {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
 .links:hover p {
     display: block;
     color: orange;
     text-decoration: none;
 }
 
-.links:hover span {
+.line:hover span {
     display: block;
     color: orange;
     text-decoration: none;
@@ -41,6 +30,10 @@ a{
     text-decoration: none;
 }
 
+.section{
+    max-height: 140px;
+    overflow: hidden;
+}
 
 .section p {
     color: #696969;
@@ -48,6 +41,7 @@ a{
     font-family: SegoeUIRegular;
     margin: 0;
     line-height: normal;
+
 }
 
 .section h3 {
@@ -102,4 +96,11 @@ a{
 
 hr {
     border-top: 1px solid darkgrey;
+}
+
+.read-next{
+    text-align: right;
+    color: royalblue;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
 }
