@@ -1,6 +1,6 @@
 @extends('app')
 @section('head')
-    <link href="{{ asset('/css/vacancy_show_blade.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -64,7 +64,7 @@
                     <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}} </div>
                 </div>
                 <div>
-                    <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>
+                    <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircleVacancy">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>
                 </div>
             </div>
             </div>

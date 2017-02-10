@@ -1,0 +1,14 @@
+.staticLinksMenu
+{
+    /*height: 40px;*/
+    font-family: "Roboto",Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+.staticLinksMenu > .btn:hover,
+.staticLinksMenu > .btn:focus
+{
+    border: 1px solid #f48952;
+    border-radius: 10px;
+    color: #f48952 !important;
+    font-weight:bold;
+}
