@@ -22,6 +22,10 @@
         @endif" value="Пошук">
     </div>
 
+    {{--<div class="col-xs-12">--}}
+        {{--@include('../newDesign/sortAds/sort')--}}
+    {{--</div>--}}
+
     <div class="row">
         <div class="col-md-12" >
             <div class="panel-heading" style="background-color: #ffffff;">
