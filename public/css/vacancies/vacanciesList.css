@@ -1,0 +1,106 @@
+a{
+    text-decoration: none;
+}
+
+.links:hover{
+    display: block;
+    color: orange;
+    text-decoration: none;
+}
+
+.links:hover h3 {
+    display: block;
+    color: orange;
+    text-decoration: none;
+}
+
+.links:hover p {
+    display: block;
+    color: orange;
+    text-decoration: none;
+}
+
+.line:hover span {
+    display: block;
+    color: orange;
+    text-decoration: none;
+}
+
+.links :-webkit-any-link{
+    text-decoration: none;
+}
+
+.section{
+    max-height: 140px;
+    overflow: hidden;
+}
+
+.section p {
+    color: #696969;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    margin: 0;
+    line-height: normal;
+
+}
+
+.section h3 {
+    color: #4F4F4F;
+    font-size: 24px;
+    font-family: SegoeUIRegular;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.section h4 {
+    color: #CD2626;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+}
+
+.text-left{
+    text-align:justify;
+}
+
+.below-section  {
+    color: #A6A6A6;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: SegoeUIRegular;
+    padding-right: 15px;
+    line-height: normal;
+    padding-bottom: 24px;
+}
+
+.line {
+    display: flex;
+}
+
+.town {
+    color: gray;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+}
+
+.drop {
+    color: orange;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    padding: 0 10px;
+}
+.data {
+    color: grey;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+}
+
+hr {
+    border-top: 1px solid darkgrey;
+}
+
+.read-next{
+    text-align: right;
+    color: royalblue;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+}

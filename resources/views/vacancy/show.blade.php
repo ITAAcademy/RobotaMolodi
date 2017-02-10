@@ -21,7 +21,7 @@
                     @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
                         {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
-                        {!! Html::image('image/vacancy/' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        {!! Html::image('vacancies' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         <h3 class="nologo">логотип вiдсутнiй</h3>
                     @endif
@@ -61,7 +61,7 @@
                     <div class="text_vac otstup1"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                 </div>
                 <div>
-                    <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}} </div>
+                    <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}}</div>
                 </div>
                 <div>
                     <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircleVacancy">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>

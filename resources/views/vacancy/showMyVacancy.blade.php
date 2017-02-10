@@ -15,7 +15,7 @@
 
         <div class="logos">
             <div class="panel panel-orange" id="vimg">
-                @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
+                @if(File::exists(public_path('vacancies' . $vacancy->company_id . '.png')))
                     {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                 @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
                     {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}

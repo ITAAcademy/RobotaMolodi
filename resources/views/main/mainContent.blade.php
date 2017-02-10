@@ -1,5 +1,6 @@
 @include('newDesign/search/show')
 
+
 <div class="main">
     @include('newDesign/aboutUs/show')
 
@@ -27,8 +28,11 @@
                     </div>
                 </div>
             </div>
-            <div>
-                @yield('content')
+            <div class="row">
+                <div>
+                   {{--@include('../newDesign/vacancies/vacanciesList')--}}
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
