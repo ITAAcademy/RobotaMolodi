@@ -1137,6 +1137,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-02-03T21:25:39+00:00"
         },
         {
@@ -1247,6 +1248,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-01-25T12:11:45+00:00"
         },
         {
@@ -1302,7 +1304,9 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-01-20T16:54:19+00:00"
+
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1516,7 +1520,9 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-02-02T13:27:35+00:00"
+
         },
         {
             "name": "symfony/http-kernel",
@@ -1598,7 +1604,9 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-02-06T12:06:02+00:00"
+
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1814,7 +1822,9 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+
             "time": "2017-02-02T13:55:53+00:00"
+
         },
         {
             "name": "symfony/routing",
@@ -1888,7 +1898,9 @@
                 "uri",
                 "url"
             ],
+
             "time": "2017-01-23T20:38:04+00:00"
+
         },
         {
             "name": "symfony/translation",
@@ -2010,7 +2022,9 @@
                 "debug",
                 "dump"
             ],
+
             "time": "2017-01-21T16:37:26+00:00"
+
         },
         {
             "name": "unisharp/laravel-ckeditor",
@@ -2802,7 +2816,9 @@
                 "testing",
                 "xunit"
             ],
+
             "time": "2017-02-06T05:18:07+00:00"
+
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3285,7 +3301,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2017-01-21T17:06:35+00:00"
+=======
+            "time": "2017-01-21 17:06:35"
+>>>>>>> master
         },
         {
             "name": "webmozart/assert",

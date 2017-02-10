@@ -40,6 +40,7 @@
             </div>
             <div class="row">
                 <div>
+                   {{--@include('../newDesign/vacancies/vacanciesList')--}}
                     @yield('content')
                 </div>
             </div>
