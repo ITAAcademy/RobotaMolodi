@@ -11,7 +11,6 @@
     @else{!!Form::open(['route' => 'searchVacancy','method' => 'POST','class' => 'span2'])!!}
     @endif
 
-
     <div class="row">
         <div class="col-md-12" >
             <div class="panel-heading" style="background-color: #ffffff;">

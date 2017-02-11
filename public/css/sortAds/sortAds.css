@@ -28,3 +28,7 @@ hr.line-sort-box {
     border-top: 1px solid #cccccc;
     margin-top: 0;
 }
+
+.sort-rating, .sort-date{
+    margin-top: 4px;
+}
