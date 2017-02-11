@@ -1425,9 +1425,9 @@ pre code {
 .col-xs-12 {
   width: 100%;
 }
-.col-xs-11 {
+/*.col-xs-11 {
   width: 91.66666667%;
-}
+}*/
 .col-xs-10 {
   width: 83.33333333%;
 }
@@ -2736,7 +2736,7 @@ select[multiple].form-group-lg .form-control {
   user-select: none;
   height: 44px; /*Stoha*/
 }
-.btn:focus,
+/*.btn:focus,
 .btn:active:focus,
 .btn.active:focus,
 .btn.focus,
@@ -2745,7 +2745,7 @@ select[multiple].form-group-lg .form-control {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
-}
+}*/
 .btn:hover,
 .btn:focus,
 .btn.focus {
@@ -3145,7 +3145,7 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
-.dropdown-toggle:focus {
+/*.dropdown-toggle:focus {
   outline: 0;
 }
 .dropdown-menu {
@@ -3243,7 +3243,7 @@ tbody.collapse.in {
   bottom: 0;
   top: 0;
   z-index: 990;
-}
+}*/
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
@@ -3634,9 +3634,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
   max-width: none;
 }
-.nav-tabs {
+/*.nav-tabs {
   border-bottom: 1px solid #dddddd;
-}
+}*/
 .nav-tabs > li {
   float: left;
   margin-bottom: -1px;
@@ -3655,7 +3655,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:focus {
   color: #555555;
   background-color: #ffffff;
-  border: 1px solid #dddddd;
+  /*border: 1px solid #dddddd;*/
   border-bottom-color: transparent;
   cursor: default;
 }
@@ -6313,12 +6313,12 @@ label,
     display: inline-block;
     border-left: none;
 }
-.list-inline {
+/*.list-inline {
   margin-top: 30px;
   list-style-type: none;
   color: darkorange;
   margin-bottom: 20px;
-}
+}*/
 
 /*Oleh Rostov*/
 .c_h3{
