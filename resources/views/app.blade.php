@@ -11,6 +11,7 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<!--<link rel="stylesheet" type="text/css" href="newDesign/css/navTab.css">-->
@@ -24,15 +25,20 @@
 
 	@yield('head')
 
+
+
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css"/>
 
 	<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 	<!--<script type="text/javascript" src="/newDesign/JS/sortAds.js"></script>
 
 	<!-- geoFilter yandex links -->
@@ -49,9 +55,10 @@
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
-{!!Html::script('js/robotaMolodiUtils.js')!!}
-{!!Html::script('js/formatDate.js')!!}
-{!!Html::script('js/initMap.js')!!}
+	{!!Html::script('js/robotaMolodiUtils.js')!!}
+	{!!Html::script('js/formatDate.js')!!}
+	{!!Html::script('js/initMap.js')!!}
+	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
 </head>
 <body>
 	<div class="container-fluid container-main">
@@ -109,5 +116,11 @@
 			ga('create', 'UA-83807118-1', 'auto');
 			ga('send', 'pageview');
 		</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+
 </body>
 </html>
