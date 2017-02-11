@@ -1,4 +1,6 @@
-
+<!-- sort -->
+<link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
+<!-- EndSort -->
 <div class='row sort-box'>
 
 		<div class='col-xs-12 sort-box'>

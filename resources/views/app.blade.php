@@ -11,17 +11,11 @@
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<!--<link rel="stylesheet" type="text/css" href="newDesign/css/navTab.css">-->
 
-	<!-- sort -->
-	<link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/sortAds/jquery-datapicker-theme.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/sortAds/jquery-datapicker-ui.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/sortAds/jquery-ui-datapicer-structure.css') }}" rel="stylesheet">
-	<!-- EndSort -->
+
 
 	@yield('head')
 
@@ -42,12 +36,12 @@
 	<!--<script type="text/javascript" src="/newDesign/JS/sortAds.js"></script>
 
 	<!-- geoFilter yandex links -->
-	
+
 	<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=uk-UA" type="text/javascript"></script>
 	<!-- end here -->
 
 	<!-- sort -->
-	
+
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -59,11 +53,13 @@
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}
 	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
+	@yield('headLinks')
 </head>
 <body>
 	<div class="container-fluid container-main">
 		@include('header/header')
-		@include('newDesign/navTab/navTab')
+
+
 		@include('main/mainContent')
 	</div>
 	<footer>
