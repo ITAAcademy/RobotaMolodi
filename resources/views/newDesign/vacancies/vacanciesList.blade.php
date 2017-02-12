@@ -1,7 +1,7 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 @foreach($vacancies as $vacancy)
-
             <div id="vac0">
                 <div class="section">
                     <a class="links" href="/vacancy/{{$vacancy->id}}">
@@ -31,5 +31,28 @@
 
                 <hr>
             </div>
-
 @endforeach
+
+<div class="row paginator">
+    <hr>
+
+        <div class="sort-by">
+            <p class="pag-text">Показувати по:</p>
+            <div class="pag-block">20</div>
+            <div class="pag-block activ-pag-block">50</div>
+            <div class="pag-block">100</div>
+        </div>
+        <div class="paginator-page">
+            <div class="pag-block">&lt;&lt;</div>
+            <div class="pag-block">&lt;</div>
+            <div class="pag-block">1</div>
+            <div class="pag-block">2</div>
+            <div class="pag-block">3</div>
+            <div class="pag-block activ-pag-block">4</div>
+            <div class="pag-block">...</div>
+            <div class="pag-block">50</div>
+            <div class="pag-block">&gt;</div>
+            <div class="pag-block">&gt;&gt;</div>
+        </div>
+
+</div>
