@@ -1,5 +1,6 @@
 <!-- sort -->
 <link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/sortAds/tcal.css') }}" rel="stylesheet">
 <!-- EndSort -->
 <div class='row sort-box'>
 
@@ -12,14 +13,13 @@
 				<span class='label-sort-box'>по даті:</span>
 				<span class='opsion-sort-box'>спочатку нові</span>
 			</div>
-			<div class='col-xs-6'>
+			<div class='col-xs-6 input-sort-box'>
 				<span class='label-sort-box'>по проміжку дат:</span>
-				<label for="from"><span class ='opsion-sort-box'>від</span></label>
-				<input type="date" name="startDate">
+				<label for="startDate"><span class ='opsion-sort-box'>від</span></label>
+				<input type="text" name="startDate" class="tcal" value="" />
 
-
-				<label for="to"><span class ='opsion-sort-box'>до</span></label>
-				<input type="date" name="endDate">
+				<label for="endDate"><span class ='opsion-sort-box'>до</span></label>
+				<input type="text" name="endDate" class="tcal" value="" />
 			</div>
 		</div>
 

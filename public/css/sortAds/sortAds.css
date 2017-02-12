@@ -32,3 +32,15 @@ hr.line-sort-box {
 .sort-rating, .sort-date{
     margin-top: 4px;
 }
+
+#startDate{
+    width: 130px;
+}
+
+#endDate{
+    width: 130px;
+}
+
+.input-sort-box{
+    padding: 0;
+}

@@ -15,11 +15,7 @@
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<!--<link rel="stylesheet" type="text/css" href="newDesign/css/navTab.css">-->
 
-
-
 	@yield('head')
-
-
 
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -33,7 +29,6 @@
 	<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-	<!--<script type="text/javascript" src="/newDesign/JS/sortAds.js"></script>
 
 	<!-- geoFilter yandex links -->
 
@@ -45,6 +40,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="js/sortAds/tcal.js"></script>
 	<!-- EndSort -->
 
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -73,11 +69,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-	<!-- Sort -->
-	<script type="text/javascript" src="newDesign/JS/datapicker-ul.js"></script>
-	<script type="text/javascript" src="newDesign/JS/script.js"></script>
-	<!-- EndSort -->
 
 	{!!Html::script('js/select2.full.js')!!}
 
