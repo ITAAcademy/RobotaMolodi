@@ -49,7 +49,7 @@
             <div class="pag-block">2</div>
             <div class="pag-block">3</div>
             <div class="pag-block activ-pag-block">4</div>
-            <div class="pag-block">...</div>
+            <div class="empty-pag-block">...</div>
             <div class="pag-block">50</div>
             <div class="pag-block">&gt;</div>
             <div class="pag-block">&gt;&gt;</div>
