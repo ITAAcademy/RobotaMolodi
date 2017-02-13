@@ -3,7 +3,6 @@
 @include('newDesign/navTab/navTab')
 @include('newDesign/search/show')
 
-
 <div class="main">
     <div class="row">
         <div class="col-md-12" >
