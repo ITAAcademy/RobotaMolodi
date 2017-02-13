@@ -5,7 +5,7 @@
     <div class="row list-section" >
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
-                <img src="image/region.png" alt="Регіон" align="left">
+                <img src="/image/region.png" alt="Регіон" align="left">
                 <label>Регіон</label>
             </div>
             <!-- Build select: -->
@@ -15,7 +15,7 @@
                     <option value="2">Вінниця</option>
                     <option value="3">Волинь</option>
                     <option value="4">Донецька</option>
-                    <option value="5">Дніпропетровсяка</option>
+                    <option value="5">Дніпропетровська</option>
                     <option value="6">Житомирська</option>
                     <option value="7">Кіровоградська</option>
                     <option value="8">Луганська</option>
@@ -44,7 +44,7 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-specialization">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="image/spetials.png" alt="Сфера діяльності" align="left">
+                <img src="/image/spetials.png" alt="Сфера діяльності" align="left">
                 <label>Спеціальність</label>
             </div>
             <!-- Build select: -->
