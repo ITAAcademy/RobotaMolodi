@@ -5,7 +5,7 @@
     <div class="row list-section" >
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
-                <img src="/image/region.png" alt="Регіон" align="left">
+                <img src="{{ asset('/image/region.png') }}" alt="Регіон" align="left">
                 <label>Регіон</label>
             </div>
             <!-- Build select: -->
@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-indastry">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="/image/bell.png" alt="Сфера діяльності" align="left">
+                <img src="{{ asset('/image/bell.png') }}" alt="Сфера діяльності" align="left">
                 <label>Сфера діяльності</label>
             </div>
             <!-- Build select: -->
@@ -44,7 +44,7 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-specialization">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="/image/spetials.png" alt="Сфера діяльності" align="left">
+                <img src="{{asset('/image/spetials.png')}}" alt="Сфера діяльності" align="left">
                 <label>Спеціальність</label>
             </div>
             <!-- Build select: -->
