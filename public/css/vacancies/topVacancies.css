@@ -1,21 +1,21 @@
 @font-face {
-    font-family: ACLine;
-    src:    url('../fonts/ACLine.eot') format('embedded-opentype'),
-            url('../fonts/ACLine.woff2') format('woff2'),
-            url('../fonts/ACLine.woff') format('woff'),
-            url('../fonts/ACLine.ttf') format('truetype'),
-            url('../fonts/ACLine.svg#ACLine') format('svg');
+	font-family: ACLine;
+	src:    url('../fonts/ACLine.eot') format('embedded-opentype'),
+	url('../fonts/ACLine.woff2') format('woff2'),
+	url('../fonts/ACLine.woff') format('woff'),
+	url('../fonts/ACLine.ttf') format('truetype'),
+	url('../fonts/ACLine.svg#ACLine') format('svg');
 }
 @font-face {
-    font-family: SegoeUIRegular;
-    src:    url('../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
-            url('../fonts/SegoeUIRegular.woff') format('woff'),
-            url('../fonts/SegoeUIRegular.ttf') format('truetype');
+	font-family: SegoeUIRegular;
+	src:    url('../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
+	url('../fonts/SegoeUIRegular.woff') format('woff'),
+	url('../fonts/SegoeUIRegular.ttf') format('truetype');
 }
 html,body{
 	max-width: 1300px;
-    padding:0;
-    margin:0 auto;
+	padding:0;
+	margin:0 auto;
 }
 
 .news{margin-top: 10px;}
@@ -23,19 +23,19 @@ html,body{
 .top-vac p {margin-bottom:0px;}
 
 .tv-news-list li img{
-    width: 100%;
-    border: 1px solid #f68c06;
+	width: 100%;
+	border: 1px solid #f68c06;
 	margin-bottom:10px;
 	margin-top:5px;
 }
 
 .tv-news-list li img[src="#"] {
-    display: none;
+	display: none;
 }
 
-		/*----------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------*/
 .tv-news-footer img{
-    width:100%;
+	width:100%;
 }
 
 .tv-news-header1 {
@@ -43,17 +43,17 @@ html,body{
 	margin:6px 0 0 0;
 }
 .tv-news-header2 {
-	color:#f68c06; 
-	font-family:ACLine; 
+	color:#f68c06;
+	font-family:ACLine;
 	font-size:32px;
 	font-weight:bold;
-    text-align:center;
+	text-align:center;
 }
 .close-bt{
 	height:18px;
 	width:18px;
 	border-radius:2px;
-	background-color:#faeae5; 
+	background-color:#faeae5;
 	float:right;
 	text-align:center;
 	line-height:14px;
@@ -67,8 +67,8 @@ html,body{
 	font-weight:bold;
 	text-align:center;
 	text-decoration:none;
-    color: #cc3300;
-    margin-bottom: 10px;
+	color: #cc3300;
+	margin-bottom: 10px;
 }
 
 .add2top span{text-decoration: underline;}
@@ -78,38 +78,38 @@ html,body{
 .add2top :-webkit-any-link {text-decoration: none;}
 
 .tv-news-list{
-    height: 520px;
-    font-family: SegoeUIRegular;
+	height: 520px;
+	font-family: SegoeUIRegular;
 	color: #cc3300;
-    overflow-y:scroll;
+	overflow-y:scroll;
 }
 
 .tv-news-list ul {
-    list-style-position:inside;
-    padding:5px;
-	color:#f68c06; 
-	font-size: 18px;	
+	list-style-position:inside;
+	padding:5px;
+	color:#f68c06;
+	font-size: 18px;
 	line-height:16px;
 }
 
 .tv-news-date{
-    font-size: 11px;
-    color:grey;
+	font-size: 11px;
+	color:grey;
 	margin-left: -15px;
 	line-height:normal;
 }
 
 .tvl-position {
-    font-weight: bold;
-    text-decoration: underline;
-    color:black;
+	font-weight: bold;
+	text-decoration: underline;
+	color:black;
 	font-size: 14px;
 	line-height:normal;
 }
 
 .tvl-salary {
-    color:grey;
-    padding-bottom:10px;
+	color:grey;
+	padding-bottom:10px;
 	font-size: 14px;
 	line-height:normal;
 }
@@ -118,19 +118,19 @@ html,body{
 .tv-link:-webkit-any-link {text-decoration: none;}
 
 .cool-scroll::-webkit-scrollbar{
-    width: 8px;
-    background: #ddd;
+	width: 8px;
+	background: #ddd;
 }
 .cool-scroll::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 4px;
 }
 .cool-scroll::-webkit-scrollbar-thumb{
-    background: #888 url(../image/Thumb.png) no-repeat;
-    background-position: center center;
+	background: #888 url(../image/Thumb.png) no-repeat;
+	background-position: center center;
 }
 
-			/*******Header tabs *********/
+/*******Header tabs *********/
 .header-tabs{
 	margin-bottom:-1px;
 }
@@ -207,24 +207,24 @@ html,body{
 	text-decoration: underline;
 	font-size: 18px;
 }
-			/****** Vacancy*******/
+/****** Vacancy*******/
 .section h3 {
 	color: #4F4F4F;
-	font-size: 24px; 
+	font-size: 24px;
 	font-family: SegoeUIRegular;
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 .section h4 {
-	color: #CD2626; 
-	font-size: 18px; 
+	color: #CD2626;
+	font-size: 18px;
 	font-family: SegoeUIRegular;
 }
 
 .section p {
-	color: #696969; 
-	font-size: 18px; 
+	color: #696969;
+	font-size: 18px;
 	font-family: SegoeUIRegular;
 	margin: 0;
 	line-height: normal;
@@ -245,24 +245,24 @@ html,body{
 }
 
 .below_section i {
-	color: #CD2626; 
+	color: #CD2626;
 	font-size: 28px;
 	line-height: normal;
-	
+
 }
 .below_section span:nth-child(3) {
-	color: #CD2626; 
+	color: #CD2626;
 	font-size: 22px;
 	padding-right: 15px;
 }
 .below_section i:nth-child(4) {
-	color: grey; 
+	color: grey;
 	font-size: 28px;
 	line-height: normal;
 
 }
 .below_section span:nth-child(5) {
-	color: grey; 
+	color: grey;
 	font-size: 20px;
 }
 .town {
@@ -291,7 +291,29 @@ hr {
 	margin-bottom:10px;
 	width:100%;
 }
-		/********FOOTER********/
+/********COMPANY********/
+.rha{
+	border-radius: 10px;
+	border-width: 1px;
+	border-color:  #f26522;
+	border-style: solid;
+	width: 134px;
+	height: 134px;
+	display: block;
+	padding-top: 0px;
+}
+.none-decoration:hover{
+	text-decoration: none;
+}
+.img-company{
+	float: left;
+	margin: 5px 20px;
+}
+.work_company{
+	/*width:800px;
+	height:70px;*/
+}
+/********FOOTER********/
 
 .footer{
 	font-family: SegoeUIRegular;
@@ -313,7 +335,7 @@ hr {
 	background-color: #3f3e3e;
 	padding: 20px 0;
 	margin-top: 30px;
-	color: #9d9d9d; 
+	color: #9d9d9d;
 	font-size: 18px;
 }
 .container-footer i{
@@ -363,19 +385,19 @@ hr {
 
 /*  List selected */
 .list-section{
-    margin-top:20px;
+	margin-top:20px;
 	margin-bottom:10px;
 	margin-left:0;
 	width:100%;
 }
 span.multiselect-selected-text{
-    float:left;
-    color:#666666;
-    font-size: 18px;
+	float:left;
+	color:#666666;
+	font-size: 18px;
 }
 b.caret{
-    float:right;
-    margin-top: 10px;
+	float:right;
+	margin-top: 10px;
 }
 div.wrapper-list{
 	padding:0;
@@ -387,7 +409,7 @@ div.wrapper-list-select-box, div.wrapper-list-label-box{
 
 div.wrapper-list-label-box{
 	margin-bottom:5px;
-	padding-left:10px;  
+	padding-left:10px;
 }
 .wrapper-list-label-box label{
 	color:#f68c06;
@@ -397,35 +419,35 @@ div.wrapper-list-label-box{
 
 
 .multiselect-container>li.active>a,
-.multiselect-container>li.active>a:hover{		
+.multiselect-container>li.active>a:hover{
 	background-color:#f68c06;
 }
 .dropdown-menu::-webkit-scrollbar {
-    width: 8px;
-    background: #ddd;
+	width: 8px;
+	background: #ddd;
 }
 .dropdown-menu::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 4px; 
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 4px;
 }
 
 .dropdown-menu::-webkit-scrollbar-thumb {
-    background: #888 url(../image/Thumb.png) no-repeat;
-    background-position: center center; 
+	background: #888 url(../image/Thumb.png) no-repeat;
+	background-position: center center;
 }
 .dropdown-menu{
 	width: 100%;
 }
 
 
-             /* Hidden_Likes */
+/* Hidden_Likes */
 
 .likes {
 	visibility: hidden;
 	display: flex;
 }
 
-            /* change text, links  */
+/* change text, links  */
 
 
 .links :-webkit-any-link {
@@ -484,7 +506,7 @@ span.opsion-sort-box{
 	font-weight: normal;
 }
 span.label-sort-box{
-	color: #666666; 
+	color: #666666;
 	font-family: SegoeUIRegular;
 	font-size:12px;
 	margin: 0;
@@ -492,7 +514,7 @@ span.label-sort-box{
 hr.line-sort-box {
 	border-top: 1px solid #cccccc;
 	margin-top: 0;
-}	
+}
 span.opsion-sort-box:hover{
 	color:#e8641b;
 }
@@ -514,16 +536,20 @@ span.opsion-sort-box:hover{
 	float:right;
 }
 .plus-dropdn span{
-	color: #cccccc; 
+	color: #cccccc;
 	font-size:36px;
 	line-height:36px;
 }
 .plus-dropdn-h{
 	color:#f68c06;
 	padding:0 10px;
-	font-weight:bold;	
+	font-weight:bold;
 }
 
 .main-tab-div{
 	min-height:700px;
+}
+
+#dropdownMenu1{
+	border:none;
 }
