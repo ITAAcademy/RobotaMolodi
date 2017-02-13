@@ -33,6 +33,8 @@
             </div>
 @endforeach
 
+
+
 <div class="row paginator">
     <hr>
 
@@ -43,16 +45,21 @@
             <div class="pag-block">100</div>
         </div>
         <div class="paginator-page">
-            <div class="pag-block">&lt;&lt;</div>
-            <div class="pag-block">&lt;</div>
-            <div class="pag-block">1</div>
-            <div class="pag-block">2</div>
-            <div class="pag-block">3</div>
-            <div class="pag-block activ-pag-block">4</div>
-            <div class="empty-pag-block">...</div>
-            <div class="pag-block">50</div>
+            <a href="?page=1"><div class="pag-block">&lt;&lt;</div></a>
+            <a href=""><div class="pag-block">&lt;</div></a>
+
+            @for ($i = 1; $i <= ($vacancies->total()/2); $i++)
+                <a href="?page={{$i}}"><div class="pag-block">{{$i}}</div></a>
+            @endfor
+
+            {{--<div class="pag-block">1</div>--}}
+            {{--<div class="pag-block">2</div>--}}
+            {{--<div class="pag-block">3</div>--}}
+            {{--<div class="pag-block activ-pag-block">4</div>--}}
+            {{--<div class="empty-pag-block">...</div>--}}
+            {{--<div class="pag-block">50</div>--}}
             <div class="pag-block">&gt;</div>
-            <div class="pag-block">&gt;&gt;</div>
+            <a href="?page={{$vacancies->total()/2}}"><div class="pag-block">&gt;&gt;</div></a>
         </div>
 
 </div>
