@@ -1,3 +1,4 @@
+<link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 
 @foreach($vacancies as $vacancy)
 

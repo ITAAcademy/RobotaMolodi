@@ -1,8 +1,6 @@
-
-@section('searchShows')
-    {{--<link href="{{ asset('/css/searchShows.css') }}" rel="stylesheet">--}}
-@endsection
-
+{{--@section('headLinks')--}}
+    <link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
+{{--@endsection--}}
 
     <div class="row list-section" >
         <div class="col-md-2 wrapper-list" id="list-selected-region">
@@ -27,7 +25,7 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-indastry">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="image/bell.png" alt="Сфера діяльності" align="left">
+                <img src="/image/bell.png" alt="Сфера діяльності" align="left">
                 <label>Сфера діяльності</label>
             </div>
             <!-- Build select: -->

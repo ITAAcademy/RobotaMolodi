@@ -1,3 +1,4 @@
+<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
 
 <div class="row">
     <div class="col-xs-12">

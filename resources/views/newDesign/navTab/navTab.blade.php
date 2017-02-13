@@ -1,24 +1,22 @@
-<!--@section('css')
-    <link rel="stylesheet" type="text/css" href="newDesign/css/navTab.css">
-@endsection-->
+
 <div class="row bottom-line4row few">
 		<div class="col-xs-11 col-md-7 header-tabs">
 		  <ul class="nav nav-tabs">
-			<li class="active">
-				<a data-toggle="tab" href="#vacancy-tab">
-					<img src="image/allvacancies.png" alt="" class="">
+			<li>
+				<a href="{{route('head')}}">
+					<img src="/image/allvacancies.png" alt="" class="">
 					Всі вакансії
 				</a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#resume-tab">
-					<img src="image/allresumes.png" alt="" class="">
+				<a href="{{route('main.resumes')}}">
+					<img src="/image/allresumes.png" alt="" class="">
 					Всі резюме
 				</a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#allcompanies-tab">
-					<img src="image/allcompanies.png" alt="" class="">
+				<a href="{{route('main.companies')}}">
+					<img src="/image/allcompanies.png" alt="" class="">
 					Всі компанії
 				</a>
 			</li>
