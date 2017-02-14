@@ -1,16 +1,12 @@
-@extends('#root')
-
-@section('css')
-    <link rel="stylesheet" type="text/css" href="newDesign/css/topVacancies.css">
-@endsection
+<link  href="{{ asset('/css/vacancies/topVacancies.css') }}" rel="stylesheet">
 
 <div id="topvac" class="col-sm-3 hidden-xs top-vac">
 
     <div id="topvac0">
         <a id="close-top-vac" class="close-bt" href="#" title="Закрити Топ вакансії. З'явиться знов після перезавантаження сторінки" onclick="topVacClose()">
-            <img id="closetv" src="newDesign/image/topVacancies/modal_close_icon.png" alt="image_close">
+            <img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
         </a>
-        <img id="topvac1" class="tv-news-header1" src="newDesign/image/topVacancies/topvacancies.png" alt="topvacancies">
+        <img id="topvac1" class="tv-news-header1" src="/image/topVacancies/topvacancies.png" alt="topvacancies">
         <p id="topvac2" class="tv-news-header2">топ вакансій</p>
     </div>
 
@@ -130,6 +126,6 @@
     </div>
 
     <div class="tv-news-footer">
-        <img src="newDesign/image/topVacancies/footer_logo.png" alt="image_logo_footer">
+        <img src="/image/topVacancies/footer_logo.png" alt="image_logo_footer">
     </div>
 </div>

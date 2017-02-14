@@ -3,13 +3,14 @@
 @include('newDesign/navTab/navTab')
 @include('newDesign/search/show')
 
-
 <div class="main">
     <div class="row">
         <div class="col-md-12" >
             <div class="row">
                 <div>
                     @yield('content')
+                    @include('newDesign/topNews')
+                    @include('newDesign/vacancies/topVacancies')
                 </div>
             </div>
         </div>
