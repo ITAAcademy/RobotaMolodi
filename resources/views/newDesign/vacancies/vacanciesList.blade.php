@@ -33,33 +33,24 @@
             </div>
 @endforeach
 
-
-
-<div class="row paginator">
+<div class="row paginatorr">
     <hr>
-
+    @if($vacancies->lastPage() > 1)
         <div class="sort-by">
             <p class="pag-text">Показувати по:</p>
-            <div class="pag-block">20</div>
-            <div class="pag-block activ-pag-block">50</div>
-            <div class="pag-block">100</div>
+            <div class="pag-block-by no-active-pag-block">20</div>
+            <div class="pag-block-by active-pag-block">50</div>
+            <div class="pag-block-by no-active-pag-block">100</div>
         </div>
-        <div class="paginator-page">
-            <a href="?page=1"><div class="pag-block">&lt;&lt;</div></a>
-            <a href=""><div class="pag-block">&lt;</div></a>
-
-            @for ($i = 1; $i <= ($vacancies->total()/2); $i++)
-                <a href="?page={{$i}}"><div class="pag-block">{{$i}}</div></a>
-            @endfor
-
-            {{--<div class="pag-block">1</div>--}}
-            {{--<div class="pag-block">2</div>--}}
-            {{--<div class="pag-block">3</div>--}}
-            {{--<div class="pag-block activ-pag-block">4</div>--}}
-            {{--<div class="empty-pag-block">...</div>--}}
-            {{--<div class="pag-block">50</div>--}}
-            <div class="pag-block">&gt;</div>
-            <a href="?page={{$vacancies->total()/2}}"><div class="pag-block">&gt;&gt;</div></a>
-        </div>
-
+        @include('newDesign.default', ['paginator' => $vacancies])
+    @endif
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.pag-block-by').click(function () {
+            $('.active-pag-block').removeClass('active-pag-block');
+            $(this).toggleClass('active-pag-block');
+        })
+    })
+</script>
