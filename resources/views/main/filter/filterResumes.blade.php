@@ -1,20 +1,29 @@
-@extends('main/filter/ajax')
-@section('Create_res_vac')
-    <h4 class="btn btn-default" style="background:#f5f5f5; color:#ffffff; ">{!! link_to_route('vacancy.create', 'Створити вакансію') !!}</h4>
-@stop
-@section('panelTitle')
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
-    <li role = "presentation" id="presVac"><a href={{route('head')}}><span>{!! Html::image('image/allvacancies.png','Головна',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>
-    <li role = "presentation" id="presRes" class="active"><a href={{route('main.resumes')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>
-    <li role = "presentation" id="presComp"><a href={{route('main.companies')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Всі компанії</a></li>
+{{--@extends('main/filter/ajax')--}}
+{{--@section('Create_res_vac')--}}
+    {{--<h4 class="btn btn-default" style="background:#f5f5f5; color:#ffffff; ">{!! link_to_route('vacancy.create', 'Створити вакансію') !!}</h4>--}}
+{{--@stop--}}
+{{--@section('panelTitle')--}}
+    {{--<meta name="csrf_token" content="{{ csrf_token() }}" />--}}
+    {{--<li role = "presentation" id="presVac"><a href={{route('head')}}><span>{!! Html::image('image/allvacancies.png','Головна',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>--}}
+    {{--<li role = "presentation" id="presRes" class="active"><a href={{route('main.resumes')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>--}}
+    {{--<li role = "presentation" id="presComp"><a href={{route('main.companies')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Всі компанії</a></li>--}}
 
-@stop
+{{--@stop--}}
 
-@section('category')
+@section('content')
+	<div class="col-xs-9">
+		@include('newDesign/sortAds/sort')
+		@include('newDesign/resume/resumesList')
+	</div>
+	<div class="col-xs-3">
+		@include('newDesign/topNews')
+		@include('newDesign/vacancies/topVacancies')
+	</div>
+	{{--@section('category')--}}
 
-    <div class="posts">
-        @include('Resume._resume')
-    </div>
+	{{--<div class="posts">--}}
+	{{--@include('Resume._resume')--}}
+	{{--</div>--}}
     <script>
         $(document).ready(function() {
 			$('#selectCity').select2({

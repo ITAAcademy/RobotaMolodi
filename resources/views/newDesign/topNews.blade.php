@@ -2,7 +2,7 @@
 <link  href="{{ asset('/css/vacancies/topVacancies.css') }}" rel="stylesheet">
 
 
-<div id="news" class="hidden-xs col-sm-3 news">
+<div id="news" class="hidden-xs news">
 
     <div>
         <a class="close-bt" href="#" title="Закрити Новини. З'явиться знов після перезавантаження сторінки" onclick="newsClose()">
