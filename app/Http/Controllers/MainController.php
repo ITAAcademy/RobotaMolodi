@@ -160,8 +160,10 @@ class MainController extends Controller
             'data'=>$search_request));
     }
     public function showCompanies(){
+//        todo create private field for $pag (count of pagination)
+        $pag = 2;
         $url=url('scompany/company_vac/');
-        $companies = Company::latest('id')->paginate(25);
+        $companies = Company::latest('id')->paginate($pag);
         return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url]);
     }
     public function showResumes(City $cityModel)
