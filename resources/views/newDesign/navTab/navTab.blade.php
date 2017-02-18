@@ -22,7 +22,7 @@
 			</ul>
 		</div>
 													<!-- Add new: -Vac -Comp -Res.  Line  -->
-		<div class="col-md-5 hidden-xs hidden-sm add-list-group">
+		<div class="col-md-5 hidden-xs hidden-sm add-list-group-nav-tab">
 			<ul class="list-inline ">
 				<li class="list-unstyled_plus">
 					<span class="glyphicon glyphicon-plus"></span>
