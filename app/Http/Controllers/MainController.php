@@ -105,7 +105,6 @@ class MainController extends Controller
     }
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
-        $pag = 4;
         Cookie::queue('url', '/');
         //----------filter from loner vacancy--------------------
         $search_request = Input::get('filterValue');
@@ -120,10 +119,10 @@ class MainController extends Controller
         $specialisations = Vacancy::groupBy('position')->lists('position');
 
         if (Auth::check()){
-            $vacancies = Vacancy::AllVacancies()->where('published', '>', 0)->paginate($pag);
+            $vacancies = Vacancy::AllVacancies()->where('published', '>', 0)->paginate();
 
         }else{
-            $vacancies = Vacancy::AllVacancies()->where('published', '=', 1)->paginate($pag);
+            $vacancies = Vacancy::AllVacancies()->where('published', '=', 1)->paginate();
 
         }
         if (Request::ajax())
@@ -161,14 +160,13 @@ class MainController extends Controller
     }
     public function showCompanies(){
 //        todo create private field for $pag (count of pagination)
-        $pag = 2;
+
         $url=url('scompany/company_vac/');
-        $companies = Company::latest('id')->paginate($pag);
+        $companies = Company::latest('id')->paginate();
         return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url]);
     }
     public function showResumes(City $cityModel)
     {
-        $pag = 5;
         Cookie::queue('url', 'sresume');
         //----------filter from loner resume--------------------
         if(!$search_boolean = Input::get('filterName'))
@@ -182,9 +180,9 @@ class MainController extends Controller
         $specialisation = Input::get('specialisation_',0);
         $specialisations = Resume::groupBy('position')->lists('position');
         if (Auth::check())
-            $resumes = Resume::latest('updated_at')->where('published','>',0)->paginate($pag);
+            $resumes = Resume::latest('updated_at')->where('published','>',0)->paginate();
         else
-            $resumes = Resume::latest('updated_at')->where('published','=',1)->paginate($pag);
+            $resumes = Resume::latest('updated_at')->where('published','=',1)->paginate();
         if (Request::ajax()) {
             //dd(Resume::where('city',$city)->latest('id'));
             $search_boolean = 'false';

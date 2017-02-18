@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resume extends Model {
 
+    protected $perPage = 5;
     protected $table = "resumes";
     protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description','published'];
 
