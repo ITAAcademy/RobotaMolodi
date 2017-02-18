@@ -152,3 +152,10 @@
 .nav-tabs {
      border-bottom:none;
 }
+.add-list-group-nav-tab .list-inline{
+    margin-top: 15px;
+}
+.row.bottom-line4row.few col-md-5.hidden-xs.hidden-sm.add-list-group-nav-tab{
+
+    height: 50px;
+}
