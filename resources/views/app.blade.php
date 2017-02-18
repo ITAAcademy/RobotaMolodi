@@ -57,7 +57,7 @@
 
 
 		@include('main/mainContent')
-	</div>
+	{{--</div>--}}
 	<footer>
 		@include('footer/footer')
 	</footer>
