@@ -18,4 +18,3 @@
         @endforeach
     </address>
 {!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}
-
