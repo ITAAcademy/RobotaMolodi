@@ -19,6 +19,7 @@ use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Models\Company;
 class MainController extends Controller
 {
+
     const paginateCount = 25;
     const paginateFilter = 'upduted_at';
     /*
@@ -91,11 +92,11 @@ class MainController extends Controller
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////
             //$vacancies = Vacancy::where('branch','=',$industry);
             if ($city > 0 && $industry < 1) {
-                $vacancies = Vacancy::where('city', '=', $city)->latest('id')->paginate(2);
+                $vacancies = Vacancy::where('city', '=', $city)->latest('id')->paginate(25);
             } elseif ($city > 0 && $industry > 0) {
-                $vacancies = Vacancy::where('city', '=', $city)->where('branch', '=', $industry)->latest('id')->paginate(2);
+                $vacancies = Vacancy::where('city', '=', $city)->where('branch', '=', $industry)->latest('id')->paginate(25);
             } elseif ($industry > 0 && $city < 1) {
-                $vacancies = Vacancy::where('branch', $industry)->paginate(2);
+                $vacancies = Vacancy::where('branch', $industry)->paginate(25);
             } else {
                 $vacancies = Vacancy::latest('id')->paginate(25);
             }
@@ -104,6 +105,7 @@ class MainController extends Controller
     }
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
+        $pag = 2;
         Cookie::queue('url', '/');
         //----------filter from loner vacancy--------------------
         $search_request = Input::get('filterValue');
@@ -116,14 +118,19 @@ class MainController extends Controller
         $citiesSelect = Input::get('city_id');
         $specialisation = Input::get('specialisation_',0);
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        if (Auth::check())
-            $vacancies = Vacancy::AllVacancies()->where('published', '>', 0)->paginate(25);
-        else
-            $vacancies = Vacancy::AllVacancies()->where('published', '=', 1)->paginate(25);
+
+        if (Auth::check()){
+            $vacancies = Vacancy::AllVacancies()->where('published', '>', 0)->paginate($pag);
+
+        }else{
+            $vacancies = Vacancy::AllVacancies()->where('published', '=', 1)->paginate($pag);
+
+        }
         if (Request::ajax())
         {
             $search_request_=Request::get('data');
             $vacancies = MainController::ShowFilterVacancies($citiesSelect, $industry,$specialisation);
+
             if ($vacancies->count() == 0)
             {
                 return "<br /> По вказаним Вами умовах вакансії відсутні";

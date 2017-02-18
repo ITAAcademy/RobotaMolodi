@@ -1,8 +1,8 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 @foreach($vacancies as $vacancy)
-
-            <div id="vac0">
+            <div>
                 <div class="section">
                     <a class="links" href="/vacancy/{{$vacancy->id}}">
                         <h3>{{ $vacancy->position}}</h3>
@@ -31,5 +31,26 @@
 
                 <hr>
             </div>
-
 @endforeach
+
+<div class="row paginatorr">
+    <hr>
+    @if($vacancies->lastPage() > 1)
+        <div class="sort-by">
+            <p class="pag-text">Показувати по:</p>
+            <div class="pag-block-by no-active-pag-block">20</div>
+            <div class="pag-block-by active-pag-block">50</div>
+            <div class="pag-block-by no-active-pag-block">100</div>
+        </div>
+        @include('newDesign.default', ['paginator' => $vacancies])
+    @endif
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.pag-block-by').click(function () {
+            $('.active-pag-block').removeClass('active-pag-block');
+            $(this).toggleClass('active-pag-block');
+        })
+    })
+</script>
