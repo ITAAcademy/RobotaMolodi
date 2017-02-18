@@ -9,8 +9,6 @@
             <div class="row">
                 <div>
                     @yield('content')
-                    @include('newDesign/topNews')
-                    @include('newDesign/vacancies/topVacancies')
                 </div>
             </div>
         </div>

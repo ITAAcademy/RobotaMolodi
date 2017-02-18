@@ -8,8 +8,8 @@
 
     </div>
     <div class="col-xs-3">
-        {{--@include('newDesign/vacancies/topVacancies')--}}
-        {{--@include('newDesign/topNews')--}}
+        @include('newDesign/vacancies/topVacancies')
+        @include('newDesign/topNews')
 
     </div>
     {{--<div class="posts">--}}

@@ -12,7 +12,17 @@
 
 @stop
 @section('content')
-    <div class="posts">
-        @include('Company._company')
+    <div class="col-xs-9">
+        @include('newDesign/sortAds/sort')
+        @include('newDesign/company/companiesList')
+
     </div>
+    <div class="col-xs-3">
+        @include('newDesign/vacancies/topVacancies')
+        @include('newDesign/topNews')
+
+    </div>
+    {{--<div class="posts">--}}
+        {{--@include('Company._company')--}}
+    {{--</div>--}}
 @stop
