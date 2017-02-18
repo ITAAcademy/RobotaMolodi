@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 
 class Vacancy extends Model {
 
-
+    protected $perPage = 4;
     protected $table = 'vacancies';
     protected $fillable = ['id','position','company_id','branch', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at', 'published'];
 
