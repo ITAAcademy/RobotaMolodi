@@ -1,4 +1,5 @@
 <link href="{{ asset('/css/resumes/resumesList.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 @foreach ($resumes as $resume)
     <div>
@@ -31,3 +32,25 @@
         <hr class="limit-line">
     </div>
 @endforeach
+
+<div class="row paginatorr">
+    <hr>
+    @if($resumes->lastPage() > 1)
+        <div class="sort-by">
+            <p class="pag-text">Показувати по:</p>
+            <div class="pag-block-by no-active-pag-block">20</div>
+            <div class="pag-block-by active-pag-block">50</div>
+            <div class="pag-block-by no-active-pag-block">100</div>
+        </div>
+        @include('newDesign.default', ['paginator' => $resumes])
+    @endif
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.pag-block-by').click(function () {
+            $('.active-pag-block').removeClass('active-pag-block');
+            $(this).toggleClass('active-pag-block');
+        })
+    })
+</script>
