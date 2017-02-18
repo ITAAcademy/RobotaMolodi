@@ -166,6 +166,7 @@ class MainController extends Controller
     }
     public function showResumes(City $cityModel)
     {
+        $pag = 5;
         Cookie::queue('url', 'sresume');
         //----------filter from loner resume--------------------
         if(!$search_boolean = Input::get('filterName'))
@@ -179,9 +180,9 @@ class MainController extends Controller
         $specialisation = Input::get('specialisation_',0);
         $specialisations = Resume::groupBy('position')->lists('position');
         if (Auth::check())
-            $resumes = Resume::latest('updated_at')->where('published','>',0)->paginate(25);
+            $resumes = Resume::latest('updated_at')->where('published','>',0)->paginate($pag);
         else
-            $resumes = Resume::latest('updated_at')->where('published','=',1)->paginate(25);
+            $resumes = Resume::latest('updated_at')->where('published','=',1)->paginate($pag);
         if (Request::ajax()) {
             //dd(Resume::where('city',$city)->latest('id'));
             $search_boolean = 'false';
