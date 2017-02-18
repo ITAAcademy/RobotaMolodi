@@ -124,3 +124,7 @@ Route::get('aboutus', function () {
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
+
+Route::get('createResume', function () {
+    return view('newDesign.resume.createResume');
+});
