@@ -2,17 +2,18 @@
     <div class="container-footer col-xs-12">
         <div class="inner-footer col-sm-6 col-md-3">
             <ul>
-                <li class="li_header"><img src="../image/redHat.png">IНФОРМАЦIЯ</li>
+                <li class="li_header"><img src="image/redHat.png">IНФОРМАЦIЯ</li>
                 <hr>
                 <li><a href="#">Про нас</a></li>
                 <li><a href="#">Партнери</a></li>
                 <li><a href="#">Підтримка</a></li>
                 <li><a href="#">Бізнес-ідеї</a></li>
             </ul>
+
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul>
-                <li class="li_header"><img src="../image/redHat.png">НАВЧАННЯ</li>
+                <li class="li_header"><img src="image/redHat.png">НАВЧАННЯ</li>
                 <hr>
                 <li><a href="#">Навчальні заклади</a></li>
                 <li><a href="#">Тренінги і семінари</a></li>
@@ -22,7 +23,7 @@
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul>
-                <li class="li_header"><img src="../image/redHat.png">ПОСЛУГИ</li>
+                <li class="li_header"><img src="image/redHat.png">ПОСЛУГИ</li>
                 <hr>
                 <li><a href="#">Довідник</a></li>
                 <li><a href="#">Навчання</a></li>
@@ -31,7 +32,7 @@
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul>
-                <li class="li_header"><img src="../image/redHat.png">КОНТАКТИ</li>
+                <li class="li_header"><img src="image/redHat.png">КОНТАКТИ</li>
                 <hr>
                 <li>
                     <i class="fa fa-phone-square" aria-hidden="true"></i>
@@ -48,18 +49,20 @@
             </ul>
         </div>
     </div>
+
     <div class="down-footer col-xs-12">
-        <div class="inner-footer col-xs-12 col-md-6">
+        <div class="inner-footer col-md-6">
             © 2012 | Проект реалізовано за підтримки міжнародного фонду "Відродження"
-            <img src="../image/vidrodjenja.png">
+            <img src="image/vidrodjenja.png">
         </div>
-        <div class="inner-footer col-xs-12 col-md-6" style="text-align: right;">
+        <div class="inner-footer col-md-6" style="text-align: center;">
             Поділитись у соцмережах:
-            <a href="https://www.linkedin.com/"><img src="../image/lnk.png" onmouseout="this.src='../image/lnk.png'" onmouseover="this.src='../image/lnk-h.png'"></a>
-            <a href="https://www.facebook.com/"><img src="../image/fb.png" onmouseout="this.src='../image/fb.png'" onmouseover="this.src='../image/fb-h.png'"></a>
-            <a href="https://www.twitter.com/"><img src="../image/ttr.png" onmouseout="this.src='../image/ttr.png'" onmouseover="this.src='../image/ttr-h.png'"></a>
-            <a href="https://www.vk.com/"><img src="../image/vk.png" onmouseout="this.src='../image/vk.png'" onmouseover="this.src='../image/vk-h.png'"></a>
-            <a href="https://www.google.com/"><img src="../image/ggl.png" onmouseout="this.src='../image/ggl.png'" onmouseover="this.src='../image/ggl-h.png'"></a>
+            <a href="https://www.vk.com/"><i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/"><i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.twitter.com/"><i class="fa-soc fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.google.com/"><i class="fa-soc fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>
         </div>
     </div>
 </footer>
+</div>

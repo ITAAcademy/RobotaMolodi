@@ -78,6 +78,7 @@ mark {
 }
 .required_field {
   color:red;
+
 }
 small {
   font-size: 80%;
@@ -1425,9 +1426,9 @@ pre code {
 .col-xs-12 {
   width: 100%;
 }
-/*.col-xs-11 {
+.col-xs-11 {
   width: 91.66666667%;
-}*/
+}
 .col-xs-10 {
   width: 83.33333333%;
 }
@@ -2376,16 +2377,19 @@ input[type="search"] {
   -webkit-appearance: none;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="date"],
   input[type="time"],
   input[type="datetime-local"],
   input[type="month"] {
     line-height: 34px;
   }
+  input[type="date"].input-sm,
   input[type="time"].input-sm,
   input[type="datetime-local"].input-sm,
   input[type="month"].input-sm {
     line-height: 30px;
   }
+  input[type="date"].input-lg,
   input[type="time"].input-lg,
   input[type="datetime-local"].input-lg,
   input[type="month"].input-lg {
@@ -2736,7 +2740,7 @@ select[multiple].form-group-lg .form-control {
   user-select: none;
   height: 44px; /*Stoha*/
 }
-/*.btn:focus,
+.btn:focus,
 .btn:active:focus,
 .btn.active:focus,
 .btn.focus,
@@ -2745,7 +2749,7 @@ select[multiple].form-group-lg .form-control {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
-}*/
+}
 .btn:hover,
 .btn:focus,
 .btn.focus {
@@ -3145,7 +3149,7 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
-/*.dropdown-toggle:focus {
+.dropdown-toggle:focus {
   outline: 0;
 }
 .dropdown-menu {
@@ -3243,7 +3247,7 @@ tbody.collapse.in {
   bottom: 0;
   top: 0;
   z-index: 990;
-}*/
+}
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
@@ -3634,9 +3638,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
   max-width: none;
 }
-/*.nav-tabs {
+.nav-tabs {
   border-bottom: 1px solid #dddddd;
-}*/
+}
 .nav-tabs > li {
   float: left;
   margin-bottom: -1px;
@@ -3655,7 +3659,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:focus {
   color: #555555;
   background-color: #ffffff;
-  /*border: 1px solid #dddddd;*/
+  border: 1px solid #dddddd;
   border-bottom-color: transparent;
   cursor: default;
 }
@@ -5001,7 +5005,6 @@ a.list-group-item-danger.active:focus {
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
 }
-
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -6313,12 +6316,12 @@ label,
     display: inline-block;
     border-left: none;
 }
-/*.list-inline {
+.list-inline {
   margin-top: 30px;
   list-style-type: none;
   color: darkorange;
   margin-bottom: 20px;
-}*/
+}
 
 /*Oleh Rostov*/
 .c_h3{
@@ -6355,78 +6358,86 @@ label,
 /*Oleh Rostov*/
 
 /********FOOTER********/
-
 .footer{
-    font-family: SegoeUIRegular;
-    overflow:hidden;
-    margin-left: 0;
-    margin-right: 0;
-
+  font-family: SegoeUIRegular;
+  overflow:hidden;
 }
 .down-footer img{
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .footer ul, .footer  li{
-    list-style-type:none;
-    padding-bottom: 10px;
+  list-style-type:none;
+  padding-bottom: 10px;
 }
 
 .footer a{
-    color: #9d9d9d;
+  color: #9d9d9d;
 }
 
 .container-footer {
-    background-color: #3f3e3e;
-    padding: 20px 0;
-    margin-top: 30px;
-    color: #9d9d9d;
-    font-size: 18px;
-    float: left;
+  background-color: #3f3e3e;
+  padding: 20px 0;
+  margin-top: 30px;
+  color: #9d9d9d;
+  font-size: 18px;
 }
 .container-footer i{
-    color: #d17c11;
-    margin-right: 15px;
+  color: #d17c11;
+  margin-right: 15px;
 }
 
 .inner-footer{
-    float: left;
+  float: left;
 }
 .inner-footer img{
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .inner-footer hr{
-    margin:0px 0px 20px 0px;
+  margin:0px 0px 20px 0px;
 }
 
 .down-footer{
 
-    background-color: #8f8f8f;
-    font-size: 14px;
-    padding: 20px;
+  background-color: #8f8f8f;
+  font-size: 14px;
+  padding: 20px;
 }
 
+
 .li_header{
-    margin: 30px 0px 20px 0px;
-    padding: 0px;
-    font-family: ACLine;
-    font-size:24px;
-    color: white;
-    font-weight: bold;
+  margin: 30px 0px 20px 0px;
+  padding: 0px;
+  font-family: ACLine;
+  font-size:24px;
+  color: white;
+  font-weight: bold;
 }
 
 .li_header img{
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .footer a:hover{
-    color: #d17c11;
-    text-decoration: none;
+  color: #d17c11;
+  text-decoration: none;
 }
 
 .footer :link{
-    text-decoration: none;
+  text-decoration: none;
 }
+
+.fa-soc {
+  color: #3f3e3e;
+  margin-left: 10px;
+}
+.fa-soc:hover {
+  color:#d17c11;
+
+}
+
+
+
 ////////////* HEADER_NEW */
 
 
