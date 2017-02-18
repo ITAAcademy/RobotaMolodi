@@ -105,7 +105,7 @@ class MainController extends Controller
     }
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
-        $pag = 2;
+        $pag = 4;
         Cookie::queue('url', '/');
         //----------filter from loner vacancy--------------------
         $search_request = Input::get('filterValue');
