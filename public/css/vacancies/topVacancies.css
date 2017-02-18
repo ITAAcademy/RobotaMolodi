@@ -81,7 +81,7 @@ html,body{
 	height: 520px;
 	font-family: SegoeUIRegular;
 	color: #cc3300;
-	overflow-y:scroll;
+	overflow-y: auto;
 }
 
 .tv-news-list ul {
@@ -95,7 +95,7 @@ html,body{
 .tv-news-date{
 	font-size: 11px;
 	color:grey;
-	margin-left: -15px;
+	/*margin-left: -15px;*/
 	line-height:normal;
 }
 
