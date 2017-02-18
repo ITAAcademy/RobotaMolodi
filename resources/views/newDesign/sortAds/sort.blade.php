@@ -16,10 +16,10 @@
 			<div class='col-xs-6 input-sort-box'>
 				<span class='label-sort-box'>по проміжку дат:</span>
 				<label for="startDate"><span class ='opsion-sort-box'>від</span></label>
-				<input type="text" name="startDate" class="tcal" value="" />
+				<input type="text" id="sDate" name="startDate" class="tcal" value="" />
 
 				<label for="endDate"><span class ='opsion-sort-box'>до</span></label>
-				<input type="text" name="endDate" class="tcal" value="" />
+				<input type="text" id="eDate" name="endDate" class="tcal" value="" />
 			</div>
 		</div>
 

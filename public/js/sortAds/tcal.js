@@ -346,4 +346,12 @@ function f_tcalAddOnload (f_func) {
 	}
 }
 
+$(document).mouseup(function (e) {
+	if($('#sDate').hasClass('tcalActive') || $('#eDate').hasClass('tcalActive')){
+		if ($("#tcal").has(e.target).length === 0){
+			f_tcalCancel();
+		}
+	}
+});
+
 f_tcalAddOnload (f_tcalInit);
