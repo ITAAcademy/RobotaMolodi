@@ -51,6 +51,7 @@ Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchControll
 //Vacancy Route
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
+$router->resource('vacancy','Vacancy\VacancyController');
 
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);

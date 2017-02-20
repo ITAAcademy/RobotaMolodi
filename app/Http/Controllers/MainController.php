@@ -165,6 +165,7 @@ class MainController extends Controller
         $companies = Company::latest('id')->paginate();
         return view('main.filter.filterCompanies', ['companies' => $companies,  'url' => $url]);
     }
+
     public function showResumes(City $cityModel)
     {
         Cookie::queue('url', 'sresume');

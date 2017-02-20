@@ -2,6 +2,7 @@
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 @foreach($vacancies as $vacancy)
+
             <div>
                 <div class="section">
                     <a class="links" href="/vacancy/{{$vacancy->id}}">
