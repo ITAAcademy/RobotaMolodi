@@ -34,8 +34,9 @@
                 <p class="read-next-link">Читати далі...</p>
             </a>
         </div>
+        <hr class="col-xs-12 limit-line-w">
     </div>
-    <hr class="limit-line-w">
+
 @endforeach
 
 <div class="row paginatorr">
