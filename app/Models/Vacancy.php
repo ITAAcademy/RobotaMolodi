@@ -111,11 +111,5 @@ class Vacancy extends Model {
         $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
         return $currencies;
     }
-    public static function countVacancies()
-    {   $results = DB::select(['company_id' => 53]);
 
-        $users = DB::select('select * from users where active = ?', [1]);
-
-        return view('user.index', ['users' => $users]);
-    }
 }

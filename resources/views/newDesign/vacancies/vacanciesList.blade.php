@@ -2,7 +2,6 @@
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 @foreach($vacancies as $vacancy)
-
             <div>
                 <div class="section">
                     <a class="links" href="/vacancy/{{$vacancy->id}}">
@@ -29,7 +28,6 @@
                         <span class="data">{{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>
                 </a>
-
                 <hr>
             </div>
 @endforeach

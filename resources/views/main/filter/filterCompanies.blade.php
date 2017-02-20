@@ -5,7 +5,6 @@
     </div>
 @stop
 @section('titles')
-
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <li role = "presentation" ><a href={{route('head')}}><span>{!! Html::image('image/allvacancies.png','Головна',['id'=>'allvacancies']) !!}</span> Всі вакансії</a></li>
     <li role = "presentation" ><a href={{route('main.resumes')}}><span>{!! Html::image('image/allresumes.png','Головна',['id'=>'allresumes']) !!}</span> Всі резюме</a></li>

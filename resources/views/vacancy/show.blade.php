@@ -52,7 +52,7 @@
                     <a class="greyLinks" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
                 </div>
                 <div>
-                    <div class="text_vac otstup1"><span>5Компанія: </span><a class="orangeLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                    <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                 </div>
                 <div>
                     <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
