@@ -59,10 +59,14 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $vacancies = Vacancy::AllVacancies()->paginate();
-
+//        $specialisations = Special
         return View::make('main.filter.filterVacancies', array(
-            'vacancies' => $vacancies
+            'vacancies' => $vacancies,
+            'cities' => City::all(),
+            'industries' => Industry::all()
         ));
+
+
     }
 
     public function showCompanies(){
@@ -78,5 +82,7 @@ class MainController extends Controller
             'resumes' => $resumes
         ));
     }
+
+
 
 }

@@ -11,15 +11,9 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box" >
                 <select class="getting-list-selected-box"  data-placeholder="Вся країна" multiple="multiple" name="selected-region">
-                    <option value="1">АР Крим</option>
-                    <option value="2">Вінниця</option>
-                    <option value="3">Волинь</option>
-                    <option value="4">Донецька</option>
-                    <option value="5">Дніпропетровська</option>
-                    <option value="6">Житомирська</option>
-                    <option value="7">Кіровоградська</option>
-                    <option value="8">Луганська</option>
-                    <option value="9">Хмельницька</option>
+                    @foreach($cities as $city)
+                        <option value={{$city->id}}>{{$city->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -31,14 +25,9 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
-                    <option value="1">Соцільна сфера</option>
-                    <option value="2">Державна служба/Державний сектор</option>
-                    <option value="3">Медицина</option>
-                    <option value="4">ІТ</option>
-                    <option value="5">ЖКХ</option>
-                    <option value="6">Будівництво</option>
-                    <option value="7">Торгівля</option>
-                    <option value="8">Реклама</option>
+                    @foreach($industries as $industry)
+                        <option value={{$industry->id}}>{{$industry->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
