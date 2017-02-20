@@ -39,13 +39,17 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі спеціалізації" multiple="multiple" name="selected-specialization">
-                    <option value="1">Программер</option>
-                    <option value="2">Спеціаліст по тяжким випадкам</option>
-                    <option value="3">Спеціаліст по викопуванню</option>
-                    <option value="4">Тестировщик лопат</option>
-                    <option value="5">Няня для програміста</option>
-                    <option value="6">Говорун</option>
-                    <option value="7">Менеджер по роботі з кліетнами</option>
+                    @foreach($specialisations as $specialisation)
+                        <option>{{$specialisation}}</option>
+                    @endforeach
+
+                    {{--<option value="1">Программер</option>--}}
+                    {{--<option value="2">Спеціаліст по тяжким випадкам</option>--}}
+                    {{--<option value="3">Спеціаліст по викопуванню</option>--}}
+                    {{--<option value="4">Тестировщик лопат</option>--}}
+                    {{--<option value="5">Няня для програміста</option>--}}
+                    {{--<option value="6">Говорун</option>--}}
+                    {{--<option value="7">Менеджер по роботі з кліетнами</option>--}}
                 </select>
             </div>
         </div>

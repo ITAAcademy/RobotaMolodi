@@ -59,11 +59,12 @@ class MainController extends Controller
     public function showVacancies(City $cityModel,Vacancy $vacancy)
     {
         $vacancies = Vacancy::AllVacancies()->paginate();
-//        $specialisations = Special
+        $specialisations = Vacancy::groupBy('position')->lists('position');
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
-            'industries' => Industry::all()
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations
         ));
 
 
@@ -77,9 +78,12 @@ class MainController extends Controller
     public function showResumes(City $cityModel)
     {
         $resumes = Resume::latest('updated_at')->paginate();
-
+        $specialisations = Resume::groupBy('position')->lists('position');
         return View::make('main.filter.filterResumes', array(
-            'resumes' => $resumes
+            'resumes' => $resumes,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations
         ));
     }
 
