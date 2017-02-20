@@ -108,8 +108,8 @@
 //				ajaxSend($('[name=city]').val(), urlRoute);
 //			});
 		});
-        @if($search_boolean)
-            fakeFilter('{{$search_boolean}}', '{{$data}}', 'showResumes');
-        @endif
+        {{--@if($search_boolean)--}}
+            {{--fakeFilter('{{$search_boolean}}', '{{$data}}', 'showResumes');--}}
+        {{--@endif--}}
     </script>
 @stop
