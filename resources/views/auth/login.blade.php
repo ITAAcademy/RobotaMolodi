@@ -48,10 +48,10 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<div>
-									<button type="submit" class="btn btn-primary">Увійти</button>
+									<button type="submit" class="btn btn-primary enter-button">Увійти</button>
 									<div >
-										<a class="btn btn-link" href="{{ url('/password/email') }}">Забули свій пароль?</a>
-										<a class="btn btn-link" href="{{ url('/auth/register') }}">Зареєструватися</a>
+										<a class="btn btn-link login-text" href="{{ url('/password/email') }}">Забули свій пароль?</a>
+										<a class="btn btn-link login-text" href="{{ url('/auth/register') }}">Зареєструватися</a>
 									</div>
 								</div>
 							</div>

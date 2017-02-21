@@ -461,3 +461,20 @@ li[role='treeitem'].select2-results__option{
 	background-color: #f26522;
 	border-color: #f26522;
 }
+.form-group .enter-button{
+	background-color: #f68c06;
+	border-color: #f68c06;
+}
+.form-group .enter-button:hover{
+	background-color: #f26522;
+	border-color: #f26522;
+}
+.form-group a.login-text{
+	color: #f68c06;
+	text-decoration: none;
+}
+.form-group a.login-text:hover{
+	color: #f26522;
+	font-weight: bold;
+	text-decoration: none;
+}
