@@ -1,6 +1,7 @@
+<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 
-<div class="row bottom-line4row few">
-		<div class="col-xs-11 col-md-7 header-tabs">
+<div class="row bottom-line4row-tab few">
+		<div class="col-xs-11 col-md-7 header-nav-tabs">
 		  <ul class="nav nav-tabs">
 			<li class="{{Request::path() == '/' ? 'active' : ''}}">
 				<a href="{{route('head')}}">

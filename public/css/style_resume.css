@@ -1,10 +1,13 @@
-/*Bohdan Levitski START*/
 .position_resume{
-    color: #666666;
     font-size: 24px;
     font-family: SegoeUI;
+    margin: 0;
+    color: #f26522;
 }
-
+/*#datAnnoyingSizes .panel-description-resume*/
+#resImg{
+    border-radius: 10px;
+}
 .price_resume{
     color: #CD2626;
     font-size: 18px;
@@ -14,13 +17,26 @@
 .name_resume{
     font-size: 24px;
     font-family: SegoeUI;
-    padding-top: 10px;
+    color: #797979;
+    margin: 0;
+}
+.phone-nomber-resume{
+    font-size: 18px;
+    color: #797979;
+    font-family: SegoeUI;
 }
 
-.bold{
+.description-one-resume{
     font-weight: bold;
+    font-size: 24px;
+    font-family: SegoeUI;
+    color: #797979;
 }
-
+.description-footer-resume{
+    font-family: SegoeUI;
+    font-size: 14px;
+    color: #797979;
+}
 .writeOnPost{
     border:1px solid #f68c06;
     border-radius: 5px;
@@ -39,20 +55,25 @@
     text-decoration: none;
 }
 
-.orangColor{
-    color: #f68c06;
+.orangColor-resume{
+    color: #f26522;
 }
 
-.orangColor:hover {
+.orangColor-resume:hover {
     color: #f68c06;
 }
-
+.orangColor-resume-name{
+    color: #797979;
+}
+.orangColor-resume-name:hover{
+    color: #f68c06;
+}
 #writeOnPost{
     color: white;
 }
 
 .cityTime_resume{
-    font-size: 24px;
+    font-size: 20px;
     color:#f68c06;
     font-family: SegoeUI;
     display: inline-block;
@@ -63,6 +84,8 @@
     display: inline-block;
     width: 100%;
 }
-
-
-/*Bohdan Levitski END*/
+#yellowCircle-resume
+{
+    color: #f48952;
+    font-size: 24px;
+}
