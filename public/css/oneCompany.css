@@ -1,0 +1,160 @@
+@font-face{
+    -ms-font-family: "SegoeUI";
+    -ms-src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
+    font-family: "SegoeUI";
+    src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
+}
+* {
+    margin: 0;
+    font-family: "SegoeUI";
+}
+.nologo{  text-align: center; color: #f48952; margin-top: 40px  }
+div.case{
+    display: block;
+    width: 134px;
+    height:30px;
+    clear:both;
+}
+ i.fa.newFa{
+    color:  #f68c06;
+    width: 24px;
+    height: 21px;
+    padding-top: 5px;
+    float: left;
+    padding-left: 20px;
+    font-size: 25px;
+    display: block;
+}
+div.consult {
+    padding-top: 3px;
+    width: 84px;
+    height: 25px;
+    display: flex;
+    margin-left: 17px;
+    float: left;
+    text-align: justify;
+}
+.consult a {
+    font-family: 'Segoe UI';
+    color:  #f68c06;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-align: left;
+    line-height: 11px;
+    text-align: justify;
+    margin-left: 17px;
+}
+.share {
+    font-family: 'Segoe UI';
+    color:  #cc0000;
+    font-size: 14.93px;
+    font-weight: 600;
+    text-align: left;
+    display:block;
+    margin-top:10px;
+    margin-left: 17px;
+}
+div.social {
+    padding-top: 2px;
+    height:30px;
+    text-align: justify-all;
+    display:block;
+    margin-left: 17px;
+}
+.social i {
+    color: #cccccc;
+    font-size: 25px;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+.social i:hover {
+    color: orange;
+}
+
+.orangeLinks{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: #f68c06;
+    word-break: break-all;
+}
+.anagraph {
+    color: #f68c06;
+    font-size: 16px;
+    font-weight: 700;
+}
+.greyLinks{
+    padding: 0;
+    margin: 0;
+    font-size: 17px;
+    color: #797979;
+    word-break: break-all;
+    font-weight: 600;
+}
+.description p{
+    font-family: "SegoeUI";
+    font-size: 16px;
+    text-align:justify;
+}
+.panelHeadings{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-bottom-width: 0px;
+}
+
+.textCompany{
+    padding: 0;
+    margin: 0;
+    color: #797979;
+    font-size: 16px;
+}
+.verticalIndent{
+    margin-top: 5px;
+}
+
+@media(max-width:768px){
+    .left_colomn{
+        width:100%;
+        display:block;
+    }
+
+    .right_colomn{
+        margin-left:0;
+    }
+}
+
+.file_upload input[type=file]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(2);
+    letter-spacing: 1em;     /* IE 9 fix */
+    -ms-transform: scale(2); /* IE 9 fix */
+    opacity: 0;
+    cursor: pointer;
+}
+input{
+    background-color: #F68C06;
+    color: white;
+    font-size: 16px;
+    border-radius: 12px;
+    border:0;
+    height: 36px;
+    padding: 5px;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
