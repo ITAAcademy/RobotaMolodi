@@ -202,70 +202,20 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id,Guard $auth)
-	{/*
-	    if (Auth::check()) {
-            $company = $this->getCompany($id);
-            if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
-                return view('Company.show')
-                    ->with('company',$company);
-            else
-                abort(403);
-        }
-        else
-            return Redirect::to('auth/login');*/
-
+		public function show($id)
+	{
         Cookie::queue('url', 'company/'.$id);
-        $company = null;
         $view = 'newDesign.company.show';
-
         $vacancy = $this->getCompany($id);
-
-        //$resume = 'Зареєструйтесь!';
-        $search_boolean='false';
-        /*$userVacation = $company->ReadUser($id);*/
-
-       /* $cities = $vacancy->Cities();*/
-
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->id);
 
-        /*if (Auth::check()) {
-
-            $user = User::find($auth->user()->getAuthIdentifier());
-            if ($userVacation->id == $user->id) {
-                $view = 'vacancy.showMyVacancy';
-            }
-            $resume = $auth->user()->GetResumes()->get();
-        }
-
-        if(!Auth::check() && ($vacancy->published == 0 || $vacancy->published == 2)) {
-            abort(404);
-        }
-        else{
-            if (Auth::check())
-                if(Auth::user()->id != $userVacation->id && $vacancy->published == 0 && Auth::user()->role !=1 )
-                    abort(404);
-        }*/
-
         return view($view)
-           /* ->with('resume', $resume)*/
             ->with('vacancy', $vacancy)
             ->with('company', $company)
-           /* ->with('user', $userVacation)*/
-            /*->with('cities', $cities)*/
-           ->with('industry', $industry)
-            ->with('search_boolean', $search_boolean);
-
-
+            ->with('industry', $industry);
     }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 //
