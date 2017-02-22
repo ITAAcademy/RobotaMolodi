@@ -36,7 +36,7 @@
 					<a href="index_company.html">Компанію</a>
 				</li>
 				<li class="list-unstyled_resume">
-					<a href="">Резюме</a>
+					<a href="http://localhost:8000/createResume">Резюме</a>
 				</li>
 			</ul>
 		</div>
