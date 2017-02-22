@@ -111,4 +111,8 @@ class Vacancy extends Model {
         $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
         return $currencies;
     }
+
+    public function scopeByIndustries($industries){
+        return $this->whereIn('branch',$industries);
+    }
 }

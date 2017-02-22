@@ -74,6 +74,7 @@ Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\\VacancyController@showPasteL
 
 Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPasteResumeForm");
 Route::post('vacancy/block','Vacancy\\VacancyController@block');
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
@@ -100,9 +101,9 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Other Route
-Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
-
-Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
+//Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
+//
+//Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
 $router->resource('cabinet','cabinet\CabinetController');
 
@@ -124,3 +125,4 @@ Route::get('aboutus', function () {
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
+Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
