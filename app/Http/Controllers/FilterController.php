@@ -7,14 +7,15 @@ use App\Models\Vacancy;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 
 class FilterController extends Controller
 {
     public function vacancies(Request $request)
     {
-//        dd($request->all());
-        $vacancies = Vacancy::all();
-        $vacancies = $vacancies->byIndustries([2]);
+     // dd($request->all());
+        $vacancies = $request->all();
+        $vacancies = Vacancy::ByIndustries($vacancies["industries"])->get();
         dd($vacancies);
 
 

@@ -112,7 +112,7 @@ class Vacancy extends Model {
         return $currencies;
     }
 
-    public function scopeByIndustries($industries){
-        return $this->whereIn('branch',$industries);
+    public function scopeByIndustries($query,$vacancies){
+        return $query->whereIn('branch',$vacancies);
     }
 }
