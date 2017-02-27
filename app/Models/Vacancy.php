@@ -64,7 +64,8 @@ class Vacancy extends Model {
 
     public function Cities()
     {
-        return $this->belongsToMany('App\Models\City','vacancy_city')->get();
+        return $this->belongsToMany('App\Models\City','vacancy_city');
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -112,7 +113,26 @@ class Vacancy extends Model {
         return $currencies;
     }
 
-    public function scopeByIndustries($query,$vacancies){
-        return $query->whereIn('branch',$vacancies);
+    public function scopeByIndustries($query,$industries)
+    {
+        if (!empty($industries)) {
+            return $query->whereIn('branch', $industries);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeByRegions($query,$regions){
+//        return $query->whereIn('vacancy_city',$regions);
+//        return $this->belongsToMany('App\Models\City','vacancy_city')->Cities($regions);
+        return $this->Cities()->whereIn('id',$regions);
+    }
+
+    public function scopeBySpecialisations($query,$specialisations){
+        if (!empty($specialisations)) {
+            return $query->whereIn('position', $specialisations);
+        }else{
+            return $query;
+        }
     }
 }
