@@ -1,5 +1,7 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+<div class="test">
+
 
 @foreach($vacancies as $vacancy)
             <div>
@@ -45,7 +47,7 @@
         @include('newDesign.default', ['paginator' => $vacancies])
     @endif
 </div>
-
+</div>
 <script>
     $(document).ready(function () {
         $('.pag-block-by').click(function () {
@@ -65,8 +67,8 @@
             $.ajax({
                 url: '{{route('filter.vacancies')}}',
                 data: getFilters(),
-                success: function(){
-                    alert('Load was performed.');
+                success: function(data){
+                    $('.test').html(data);
                 }
             });
         })

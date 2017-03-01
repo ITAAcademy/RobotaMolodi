@@ -123,9 +123,13 @@ class Vacancy extends Model {
     }
 
     public function scopeByRegions($query,$regions){
-//        return $query->whereIn('vacancy_city',$regions);
-//        return $this->belongsToMany('App\Models\City','vacancy_city')->Cities($regions);
-        return $this->Cities()->whereIn('id',$regions);
+        if(!empty($regions)){
+            return $query->whereHas('Cities', function($q) use ($regions) {
+                $q->whereIn('vacancy_city.city_id',$regions);
+            });
+        }else{
+            return $regions;
+        }
     }
 
     public function scopeBySpecialisations($query,$specialisations){
