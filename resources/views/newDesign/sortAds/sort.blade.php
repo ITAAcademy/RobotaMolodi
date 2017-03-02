@@ -1,6 +1,6 @@
 <!-- sort -->
 <link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
-<link href="{{ asset('/css/sortAds/tcal.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/sortAds/oneCompany.css') }}" rel="stylesheet">
 <!-- EndSort -->
 <div class='row sort-box'>
 

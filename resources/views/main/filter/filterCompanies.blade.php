@@ -20,6 +20,7 @@
         @include('newDesign/sortAds/sort')
         @include('newDesign/company/companiesList')
 
+
     </div>
     <div class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')

@@ -196,10 +196,12 @@ ul{
 
 li{
     color: #f68c06;
+    font-size:16px;
 }
 
 li span{
     color: #797979;
+    font-size:16px;
 }
 
 .bold_vacancy{
@@ -296,4 +298,15 @@ p.dont_choose{
     -ms-transform: scale(2); /* IE 9 fix */
     opacity: 0;
     cursor: pointer;
+}
+input{
+    background-color: #F68C06;
+    color: white;
+    font-size: 16px;
+    border-radius: 12px;
+    border:0;
+    height: 36px;
+    padding: 5px;
+    margin: 5px;
+    text-transform: uppercase;
 }
