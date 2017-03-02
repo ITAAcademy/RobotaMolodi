@@ -30,7 +30,6 @@
                         <span class="data">{{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>
                 </a>
-
                 <hr>
             </div>
 @endforeach

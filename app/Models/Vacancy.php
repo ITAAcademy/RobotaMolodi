@@ -113,6 +113,7 @@ class Vacancy extends Model {
         return $currencies;
     }
 
+
     public function scopeByIndustries($query,$industries)
     {
         if (!empty($industries)) {
@@ -139,4 +140,5 @@ class Vacancy extends Model {
             return $query;
         }
     }
+
 }

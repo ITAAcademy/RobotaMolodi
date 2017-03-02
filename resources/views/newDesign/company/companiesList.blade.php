@@ -24,7 +24,7 @@
                     </a>
                 </div>
                 <div class="amount-companies-list">
-                    <p>1 Вакансія</p>
+                    <p>  <a href="{{$url}}/{{$company->id}}"  class="link">1 Вакансія</a></p>
                 </div>
                 <div class="row description-companies">
                     <div>{{strip_tags($company->description)}}</div>
@@ -34,8 +34,9 @@
                 <p class="read-next-link">Читати далі...</p>
             </a>
         </div>
+        <hr class="col-xs-12 limit-line-w">
     </div>
-    <hr class="limit-line-w">
+
 @endforeach
 
 <div class="row paginatorr">

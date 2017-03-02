@@ -354,6 +354,8 @@ li[role='treeitem'].select2-results__option{
     position: relative; 
     z-index: 2;
     margin-top: -80px;
+	padding-bottom: 0px;
+	padding-top: 20px;
 }
 #dropTitle{
 	display:inline-block;
@@ -392,7 +394,9 @@ li[role='treeitem'].select2-results__option{
     border: 1px #dddddd;
     border-style: solid hidden solid hidden;
     border-radius: 0px;
-    width: 100%;
+    /*width: 100%;*/
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 
@@ -448,5 +452,29 @@ li[role='treeitem'].select2-results__option{
     position: relative; 
     z-index: 1;
 }
+.form-group .register-button{
+	background-color: #f68c06;
+	border-color: #f68c06;
+}
 
-
+.form-group .register-button:hover{
+	background-color: #f26522;
+	border-color: #f26522;
+}
+.form-group .enter-button{
+	background-color: #f68c06;
+	border-color: #f68c06;
+}
+.form-group .enter-button:hover{
+	background-color: #f26522;
+	border-color: #f26522;
+}
+.form-group a.login-text{
+	color: #f68c06;
+	text-decoration: none;
+}
+.form-group a.login-text:hover{
+	color: #f26522;
+	font-weight: bold;
+	text-decoration: none;
+}

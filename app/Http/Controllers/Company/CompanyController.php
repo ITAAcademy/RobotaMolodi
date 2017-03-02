@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Vacancy;
+use Illuminate\Support\Facades\Cookie;
 //use Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -201,27 +202,20 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id,Guard $auth)
+		public function show($id)
 	{
-        if (Auth::check()) {
-            $company = $this->getCompany($id);
-            if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
-                return view('Company.show')
-                    ->with('company',$company);
-            else
-                abort(403);
-        }
-        else
-            return Redirect::to('auth/login');
+        Cookie::queue('url', 'company/'.$id);
+        $view = 'newDesign.company.show';
+        $vacancy = $this->getCompany($id);
+        $industry = Industry::find($vacancy->branch);
+        $company = Company::find($vacancy->id);
 
+        return view($view)
+            ->with('vacancy', $vacancy)
+            ->with('company', $company)
+            ->with('industry', $industry);
     }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
 //

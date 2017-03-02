@@ -1,24 +1,25 @@
-.header-tabs{
+.header-nav-tabs{
 	margin-bottom:-0px;
+    padding-left: 0px;
 }
-.header-tabs>ul>li {
+.header-nav-tabs>ul>li {
 	padding-bottom:0;
 	font-family: SegoeUIRegular;
 	font-size: 18px;
 }
-.header-tabs img {
+.header-nav-tabs img {
 	margin-right:10px;
 }
 
-.header-tabs>ul>li.active>a, .header-tabs>ul>li.active>a:focus, .header-tabs>ul>li.active>a:hover {
+.header-nav-tabs>ul>li.active>a, .header-nav-tabs>ul>li.active>a:focus, .header-nav-tabs>ul>li.active>a:hover {
 	color:#999999;
 }
 
-.header-tabs>ul>li>a, .header-tabs>ul>li>a:focus, .header-tabs>ul>li>a:hover {
+.header-nav-tabs>ul>li>a, .header-nav-tabs>ul>li>a:focus, .header-nav-tabs>ul>li>a:hover {
 	color:#666666;
 }
 
-.header-tabs>ul>li>a {
+.header-nav-tabs>ul>li>a {
 	border: 1px solid #dddddd;
 	margin-right:-1px;
 	height:50px;
@@ -76,7 +77,7 @@
 	text-decoration: underline;
 	font-size: 18px;
 }
-.bottom-line4row {
+.bottom-line4row-tab {
     border-bottom: 1px solid #dddddd;
     margin-bottom: 10px;
     margin-left: 5px;
@@ -101,7 +102,7 @@
     border-color: #adadad;
 }
 #cross{
-    color: red
+    color: red;
     font-size: 36px;
     line-height: 36px;
 }
@@ -155,7 +156,13 @@
 .add-list-group-nav-tab .list-inline{
     margin-top: 15px;
 }
-.row.bottom-line4row.few col-md-5.hidden-xs.hidden-sm.add-list-group-nav-tab{
-
+.row.bottom-line4row-tab.few col-md-5.hidden-xs.hidden-sm.add-list-group-nav-tab{
+    padding-right: 0px;
+    padding-left: 0px;
     height: 50px;
+}
+.row.bottom-line4row-tab.few{
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 10px;
 }

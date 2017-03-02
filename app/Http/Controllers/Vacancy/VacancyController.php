@@ -195,8 +195,7 @@ class VacancyController extends Controller
      * @return Response
      */
     public function show($id, Guard $auth)
-    {
-//        if (!session())
+    {   //        if (!session())
 //            session()->start();
         Cookie::queue('url', 'vacancy/'.$id);
         $resume = null;
