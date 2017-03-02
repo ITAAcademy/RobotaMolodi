@@ -78,9 +78,9 @@
                     ajaxSend($('[name=city]').select2().val(), urlRoute);
                 });
             });
-        @if($search_boolean)
-            fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');
-         @endif
+        {{--@if($search_boolean)--}}
+            {{--fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');--}}
+         {{--@endif--}}
     </script>
 
 @stop

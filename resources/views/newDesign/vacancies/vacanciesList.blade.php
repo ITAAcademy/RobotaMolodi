@@ -1,5 +1,7 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+<div class="test">
+
 
 @foreach($vacancies as $vacancy)
             <div>
@@ -44,12 +46,32 @@
         @include('newDesign.default', ['paginator' => $vacancies])
     @endif
 </div>
-
+</div>
 <script>
     $(document).ready(function () {
         $('.pag-block-by').click(function () {
             $('.active-pag-block').removeClass('active-pag-block');
             $(this).toggleClass('active-pag-block');
         })
+        
+        function getFilters() {
+            return {
+                regions: $('select[name="selected-region"]').val(),
+                industries: $('select[name="selected-indastry"]').val(),
+                specialisations: $('select[name="selected-specialization"]').val()
+            }
+        }
+        
+        $('.getting-list-selected-box').on('change',function () {
+            $.ajax({
+                url: '{{route('filter.vacancies')}}',
+                data: getFilters(),
+                success: function(data){
+                    $('.test').html(data);
+                }
+            });
+        })
     })
+
+    
 </script>

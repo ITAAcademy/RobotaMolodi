@@ -480,7 +480,6 @@ class VacancyController extends Controller
         $resume = $auth->user()->GetResumes()->get();
         return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
     }
-
     /**
      * @param City $cityModel
      * @param Vacancy $vacancy
