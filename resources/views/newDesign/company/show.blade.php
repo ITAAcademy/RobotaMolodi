@@ -8,7 +8,7 @@
     <input type = "hidden" name = "filterName" id = "filterName"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
     {!!Form::close()!!}
-
+    <html>
       <body>
         <!-- the left part of vacancy -->
         <div class="row">
