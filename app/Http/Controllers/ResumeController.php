@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\Resume;
 use App\Models\City;
 use App\Models\Industry;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
@@ -172,6 +173,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $city = City::find($resume->city);
 
         $user = auth()->user();
+
+        /*--------for search.show------------*/
+        $indusrties = Industry::all();
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        $cities = City::all();
+        /*-----------------------------------------*/
+
         if(Auth::check())
         {
             if($user->id == $userResume->id)
@@ -193,6 +201,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
             ->with('resume',$resume)
             ->with('city',$city)
             ->with('data',$search_request)
+            ->with('industries', $indusrties)
+            ->with('specialisations', $specialisations)
+            ->with('cities',$cities)
             ->with('search_boolean',$search_boolean);
 
 
