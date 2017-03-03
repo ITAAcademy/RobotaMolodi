@@ -72,7 +72,13 @@ class MainController extends Controller
 
     public function showCompanies(){
         $companies = Company::latest('id')->paginate();
-        return view('main.filter.filterCompanies', ['companies' => $companies]);
+        $specialisations = Resume::groupBy('position')->lists('position');
+        return view('main.filter.filterCompanies', array(
+            'companies' => $companies,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations
+        ));
     }
 
     public function showResumes(City $cityModel)
