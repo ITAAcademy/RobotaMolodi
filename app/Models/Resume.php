@@ -110,4 +110,29 @@ class Resume extends Model {
         $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
         return $currencies;
     }
+
+    public function scopeByIndustries($query, $industries)
+    {
+        if (!empty($industries)) {
+            return $query->whereIn('industry', $industries);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeByRegions($query, $regions){
+        if (!empty($regions)) {
+            return $query->whereIn('city', $regions);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeBySpecialisations($query, $specialisations){
+        if (!empty($specialisations)) {
+            return $query->whereIn('position', $specialisations);
+        }else{
+            return $query;
+        }
+    }
 }

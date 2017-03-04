@@ -125,4 +125,6 @@ Route::get('aboutus', function () {
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
+
 Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
+Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);

@@ -1,8 +1,7 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+
 <div class="test">
-
-
 @foreach($vacancies as $vacancy)
             <div>
                 <div class="section">
@@ -25,7 +24,8 @@
 
                 <a class="links" href="#">
                     <div class="line">
-                        <span class="town">@foreach($vacancy->City() as $city){{ $city->name}} @endforeach</span>
+
+                        <span class="town">@foreach($vacancy->Cities()->get() as $city){{ $city->name}} @endforeach</span>
                         <span class="drop">&bull;</span>
                         <span class="data">{{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>

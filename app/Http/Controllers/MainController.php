@@ -85,6 +85,7 @@ class MainController extends Controller
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
+//        dd($specialisations);
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
             'cities' => City::all(),
