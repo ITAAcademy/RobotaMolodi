@@ -2,11 +2,13 @@
 	margin-bottom:-0px;
     padding-left: 0px;
 }
+
 .header-nav-tabs>ul>li {
 	padding-bottom:0;
 	font-family: SegoeUIRegular;
 	font-size: 18px;
 }
+
 .header-nav-tabs img {
 	margin-right:10px;
 }
@@ -25,8 +27,6 @@
 	height:50px;
 }
 
-
-
 .padding-top-div{
 	padding-top:20px;
 	margin:0;
@@ -37,6 +37,7 @@
 	float: right;
 	padding-top:10px;
 }
+
 .list-inline {
 	padding-left: 0px;
 	margin-left: 0px;
@@ -52,6 +53,7 @@
 	color: #999999;
 	font-family: "SegoeUIRegular";
 }
+
 .glyphicon-plus {
 	font-size: 18px;
 	color: #999999;
@@ -77,40 +79,39 @@
 	text-decoration: underline;
 	font-size: 18px;
 }
+
 .bottom-line4row-tab {
     border-bottom: 1px solid #dddddd;
     margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right:5px;
-    
+    margin-left: 15px;
+    margin-right:15px;
 }
-/*.conteiner-fluid.few {
-	 border-bottom: 1px solid #dddddd;
-	 background-color: red;
 
-}*/
 .dropdown-menu{
 	width: 100%;
 }
+
 #dropdownMenu1 {
     border: none;
     margin-right: 15px;
 }
+
 .btn-default:hover {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
 }
+
 #cross{
     color: red;
     font-size: 36px;
     line-height: 36px;
 }
+
 .btn-default {
-    /* color: #333; */
-    /* background-color: #fff; */
     border-color: #ccc;
 }
+
 .plus-dropdn span {
     color: #cccccc;
     font-size: 36px;
@@ -121,7 +122,6 @@
     color: #cccccc;
     font-size: 36px;
     line-height: 36px;
-   /* background-color: red !important;*/
 }
 
 .plus-dropdn-h {
@@ -129,12 +129,14 @@
     padding: 0 10px;
     font-weight: bold;
 }
+
 .dropdown-menu .divider {
     height: 1px;
     margin: 9px 0;
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
 .dropdown-menu>li>a {
     display: block;
     padding: 3px 20px;
@@ -144,25 +146,28 @@
     color: #333;
     white-space: nowrap;
 }
+
 .dropdown-menu .divider {
     height: 1px;
     margin: 9px 0;
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
 .nav-tabs {
-     border-bottom:none;
+    border-bottom:none;
 }
+
 .add-list-group-nav-tab .list-inline{
     margin-top: 15px;
 }
+
 .row.bottom-line4row-tab.few col-md-5.hidden-xs.hidden-sm.add-list-group-nav-tab{
     padding-right: 0px;
     padding-left: 0px;
     height: 50px;
 }
+
 .row.bottom-line4row-tab.few{
-    margin-right: 15px;
-    margin-left: 15px;
     margin-top: 10px;
 }

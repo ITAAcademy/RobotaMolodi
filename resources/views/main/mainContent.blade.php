@@ -1,7 +1,7 @@
-@include('newDesign/aboutUs/show')
+{{--@include('newDesign/aboutUs/show')--}}
 
-@include('newDesign/navTab/navTab')
-@include('newDesign/search/show')
+{{--@include('newDesign/navTab/navTab')--}}
+{{--@include('newDesign/search/show')--}}
 
 
 <div class="main">
