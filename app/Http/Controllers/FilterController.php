@@ -29,8 +29,19 @@ class FilterController extends Controller
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->paginate();
-//        dd();
+
         return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
     }
+
+//    public function companies(Request $request)
+//    {
+//        $companies = Vacancy::byIndustries($request->get('industries',[]))
+//            ->bySpecialisations($request->get('specialisations',[]))
+//            ->byRegions($request->get('regions',[]))
+//            ->where('')
+//            ->paginate();
+//
+//        return view('newDesign.company.companiesList', ['companies' => $companies]);
+//    }
 
 }

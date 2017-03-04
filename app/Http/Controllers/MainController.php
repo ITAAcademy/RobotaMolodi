@@ -66,13 +66,11 @@ class MainController extends Controller
             'industries' => Industry::all(),
             'specialisations' => $specialisations
         ));
-
-
     }
 
     public function showCompanies(){
         $companies = Company::latest('id')->paginate();
-        $specialisations = Resume::groupBy('position')->lists('position');
+        $specialisations = Vacancy::groupBy('position')->lists('position');
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
             'cities' => City::all(),
@@ -81,11 +79,10 @@ class MainController extends Controller
         ));
     }
 
-    public function showResumes(City $cityModel)
+    public function showResumes()
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
-//        dd($specialisations);
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
             'cities' => City::all(),
