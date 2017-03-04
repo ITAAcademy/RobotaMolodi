@@ -212,6 +212,11 @@ class VacancyController extends Controller
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
 
+        /*--------for search.show------------*/
+            $indusrties = Industry::all();
+            $specialisations = Vacancy::groupBy('position')->lists('position');
+        /*-----------------------------------------*/
+
         if (Auth::check()) {
 
             $user = User::find($auth->user()->getAuthIdentifier());
@@ -237,6 +242,8 @@ class VacancyController extends Controller
             ->with('user', $userVacation)
             ->with('cities', $cities)
             ->with('industry', $industry)
+            ->with('industries', $indusrties)
+            ->with('specialisations', $specialisations)
             ->with('search_boolean', $search_boolean);
     }
 //        else{
