@@ -4,13 +4,6 @@
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
-    {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
-    <input type = "hidden" name = "filterName" id = "filterName"/>
-    <input type = "hidden" name = "filterValue" id = "filterValue"/>
-    {!!Form::close()!!}
-
-      <body>
-        <!-- the left part of vacancy -->
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">
@@ -71,6 +64,4 @@
                 </div>
             </div>
         </div>
-      </body>
-    </html>
 @stop
