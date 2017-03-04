@@ -30,13 +30,13 @@
 					<span class="add">Додати:</span>
 				</li>
 				<li class="list-unstyled_vacansy">
-					<a href="index_vacancy.html">Вакансію</a>
+					<a href="{{route('vacancy.create')}}">Вакансію</a>
 				</li>
 				<li class="list-unstyled_company">
-					<a href="index_company.html">Компанію</a>
+					<a href="{{route('company.create')}}">Компанію</a>
 				</li>
 				<li class="list-unstyled_resume">
-					<a href="">Резюме</a>
+					<a href="{{route('resume.create')}}">Резюме</a>
 				</li>
 			</ul>
 		</div>
@@ -46,11 +46,11 @@
 			<span class="">+</span>
 		  </button>
 		  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuPlus">
-			<li class="plus-dropdn-h">Додати:</li>
-			<li role="separator" class="divider"></li>
-			<li><a href="index_vacancy.html">Вакансію</a></li>
-			<li><a href="#">Компанію</a></li>
-			<li><a href="#">Резюме</a></li>
+			  <li class="plus-dropdn-h">Додати:</li>
+			  <li role="separator" class="divider"></li>
+			  <li><a href="{{route('vacancy.create')}}">Вакансію</a></li>
+			  <li><a href="{{route('company.create')}}">Компанію</a></li>
+			  <li><a href="{{route('resume.create')}}">Резюме</a></li>
 		  </ul>
 		</div>
 	

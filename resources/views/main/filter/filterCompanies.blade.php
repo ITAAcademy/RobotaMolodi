@@ -15,7 +15,7 @@
     @include('newDesign/aboutUs/show')
 
     @include('newDesign/navTab/navTab')
-    {{--@include('newDesign/search/show')--}}
+    @include('newDesign/search/show')
     <div class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/company/companiesList')
