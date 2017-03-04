@@ -1,8 +1,6 @@
-{{--@section('headLinks')--}}
-    <link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
-{{--@endsection--}}
+<link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
 
-    <div class="row list-section" >
+    <div class="row list-section-filter" >
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
                 <img src="{{ asset('/image/region.png') }}" alt="Регіон" align="left">
@@ -42,14 +40,6 @@
                     @foreach($specialisations as $specialisation)
                         <option>{{$specialisation}}</option>
                     @endforeach
-
-                    {{--<option value="1">Программер</option>--}}
-                    {{--<option value="2">Спеціаліст по тяжким випадкам</option>--}}
-                    {{--<option value="3">Спеціаліст по викопуванню</option>--}}
-                    {{--<option value="4">Тестировщик лопат</option>--}}
-                    {{--<option value="5">Няня для програміста</option>--}}
-                    {{--<option value="6">Говорун</option>--}}
-                    {{--<option value="7">Менеджер по роботі з кліетнами</option>--}}
                 </select>
             </div>
         </div>
