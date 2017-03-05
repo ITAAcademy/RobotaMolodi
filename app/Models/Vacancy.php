@@ -141,4 +141,11 @@ class Vacancy extends Model {
         }
     }
 
+    public function scopeBySort($query, $click){
+        if($click){
+            return $query->orderBy('updated_at','asc');
+        }
+        return $query;
+    }
+
 }

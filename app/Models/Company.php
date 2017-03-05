@@ -134,5 +134,7 @@ class Company extends Eloquent {
             return $query;
         }
     }
+
+
 }
 

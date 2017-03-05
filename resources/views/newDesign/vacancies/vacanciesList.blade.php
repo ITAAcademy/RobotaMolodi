@@ -2,7 +2,7 @@
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 <div class="test">
-@foreach($vacancies as $vacancy)
+    @foreach($vacancies as $vacancy)
             <div>
                 <div class="section">
                     <a class="links" href="/vacancy/{{$vacancy->id}}">
@@ -32,21 +32,22 @@
                 </a>
                 <hr>
             </div>
-@endforeach
+    @endforeach
 
-<div class="row paginatorr">
-    <hr>
-    @if($vacancies->lastPage() > 1)
-        <div class="sort-by">
-            <p class="pag-text">Показувати по:</p>
-            <div class="pag-block-by no-active-pag-block">20</div>
-            <div class="pag-block-by active-pag-block">50</div>
-            <div class="pag-block-by no-active-pag-block">100</div>
-        </div>
-        @include('newDesign.default', ['paginator' => $vacancies])
-    @endif
+    <div class="row paginatorr">
+        <hr>
+        @if($vacancies->lastPage() > 1)
+            <div class="sort-by">
+                <p class="pag-text">Показувати по:</p>
+                <div class="pag-block-by no-active-pag-block">20</div>
+                <div class="pag-block-by active-pag-block">50</div>
+                <div class="pag-block-by no-active-pag-block">100</div>
+            </div>
+            @include('newDesign.default', ['paginator' => $vacancies])
+        @endif
+    </div>
 </div>
-</div>
+
 <script>
     $(document).ready(function () {
         $('.pag-block-by').click(function () {
@@ -66,6 +67,20 @@
             $.ajax({
                 url: '{{route('filter.vacancies')}}',
                 data: getFilters(),
+                success: function(data){
+                    $('.test').html(data);
+                }
+            });
+        })
+
+        function click() {
+            return {click:true};
+        }
+
+        $('.opsion-sort-box').click(function () {
+            $.ajax({
+                url: '{{route('filter.vacancies')}}',
+                data: click(),
                 success: function(data){
                     $('.test').html(data);
                 }

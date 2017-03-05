@@ -61,22 +61,37 @@
             $(this).toggleClass('active-pag-block');
         })
 
-        {{--function getFilters() {--}}
-            {{--return {--}}
-                {{--regions: $('select[name="selected-region"]').val(),--}}
-                {{--industries: $('select[name="selected-indastry"]').val(),--}}
-                {{--specialisations: $('select[name="selected-specialization"]').val()--}}
-            {{--}--}}
-        {{--}--}}
+        function getFilters() {
+            return {
+                regions: $('select[name="selected-region"]').val(),
+                industries: $('select[name="selected-indastry"]').val(),
+                specialisations: $('select[name="selected-specialization"]').val()
+            }
+        }
 
-        {{--$('.getting-list-selected-box').on('change',function () {--}}
-            {{--$.ajax({--}}
-                {{--url: '{{route('filter.companies')}}',--}}
-                {{--data: getFilters(),--}}
-                {{--success: function(data){--}}
-                    {{--$('.test').html(data);--}}
-                {{--}--}}
-            {{--});--}}
-        {{--})--}}
+        $('.getting-list-selected-box').on('change',function () {
+            $.ajax({
+                url: '{{route('filter.companies')}}',
+                data: getFilters(),
+                success: function(data){
+                    $('.test').html(data);
+                }
+            });
+        })
+
+
+        function click() {
+            return {click:true};
+        }
+
+        $('.opsion-sort-box').click(function () {
+            $.ajax({
+                url: '{{route('filter.companies')}}',
+                data: click(),
+                success: function(data){
+                    $('.test').html(data);
+                }
+            });
+        })
     })
 </script>
