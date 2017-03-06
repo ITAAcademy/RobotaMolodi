@@ -86,5 +86,24 @@
                 }
             });
         })
+
+        function getDateSort() {
+            return {
+                startDate:$('#sDate').val(),
+                endDate:$('#eDate').val()
+            };
+        }
+
+
+        $('.tcal').on('change',function () {
+            $.ajax({
+                url: '{{route('filter.vacancies')}}',
+                data: getDateSort(),
+                success: function(data){
+                    $('.test').html(data);
+                }
+            });
+        })
+
     })
 </script>
