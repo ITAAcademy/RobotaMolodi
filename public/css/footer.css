@@ -1,13 +1,15 @@
 .footer{
     font-family: SegoeUIRegular;
     overflow:hidden;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .down-footer img{
     margin-left: 10px;
 }
 .footer ul, .footer  li{
     list-style-type:none;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
 }
 
 .footer a{
@@ -16,10 +18,12 @@
 
 .container-footer {
     background-color: #3f3e3e;
-    padding: 20px 0;
+    padding: 10px 0;
     margin-top: 30px;
     color: #9d9d9d;
     font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .container-footer i{
     color: #d17c11;
@@ -28,11 +32,22 @@
 
 .inner-footer{
     float: left;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .inner-footer img{
     margin-right: 10px;
 }
-
+.inner-footer.col-sm-6.col-md-3{
+    padding: 0;
+}
+.footer-list{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.footer-list li{
+    font-size: 16px;
+}
 .inner-footer hr{
     margin:0px 0px 20px 0px;
 }
@@ -41,17 +56,17 @@
 
     background-color: #8f8f8f;
     font-size: 14px;
-    padding: 20px;
+    padding: 10px;
 }
 
 
 .li_header{
-    margin: 30px 0px 20px 0px;
-    padding: 0px;
+    margin: 30px 0px 10px 0px;
     font-family: ACLine;
     font-size:24px;
     color: white;
     font-weight: bold;
+    padding-bottom: 0px;
 }
 
 .li_header img{
