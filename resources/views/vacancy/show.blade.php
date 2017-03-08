@@ -26,16 +26,16 @@
                         <h3 class="nologo">логотип вiдсутнiй</h3>
                     @endif
                 </div>
-                <div class="case">
-  						<span>
-  							<i class="fa">&#xf0b1;</i>
-  						</span>
-                    <div class="consult">
+                <div class="col-xs-12 case">
+  					<div class="col-xs-2 case-img">
+  							<i class="fa vacancy">&#xf0b1;</i>
+  					</div>
+                    <div class="col-xs-10 consult">
                         <a href="#">запланувати консультацію</a>
                     </div>
                 </div>
                 <div class="share">
-                    <p>Поділитись</p>
+                    <p id="share-vacancy">Поділитись</p>
                 </div>
                 <div class="social">
                     <a href="https://www.linkedin.com/" target="_blank"><i class="fa">&#xf08c;</i></a>
