@@ -120,7 +120,7 @@ class VacancyController extends Controller
     {
         if (Auth::check()) {
 
-            $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate(25);
+            $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate();
 
             if (count($vacancies)==0) {
                 $mes = "Зараз у Вас немає вакансій.";
@@ -194,6 +194,16 @@ class VacancyController extends Controller
      * @param  int $id
      * @return Response
      */
+//    public function showVacancies(Request $request){
+//        $vacancies = Vacancy::latest('created_at')->paginate();
+//
+//        if($request->ajax()){
+//            return View::make('newDesign.vacancies.vacanciesList', array('vacancies' => $vacancies))->render();
+//        }
+////        return view('newDesign.vacancies.vacanciesList', compact('vacancies'));
+//    }
+
+
     public function show($id, Guard $auth)
     {   //        if (!session())
 //            session()->start();

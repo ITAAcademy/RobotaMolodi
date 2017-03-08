@@ -15,59 +15,15 @@
 				<span class='opsion-sort-box'>спочатку нові</span>
 			</div>
 			<div class='col-xs-6 input-sort-box'>
-				{{--<span class='label-sort-box'>по проміжку дат:</span>--}}
-				{{--<label for="startDate"><span class ='opsion-sort-box'>від</span></label>--}}
-				{{--<input type="text" id="sDate" name="startDate" class="tcal" value="" />--}}
+				<span class='label-sort-box'>по проміжку дат:</span>
+				<label for="startDate"><span class ='opsion-sort-box'>від</span></label>
+				<input type="text" id="sDate" name="startDate" class="tcal" value="" />
 
-				{{--<label for="endDate"><span class ='opsion-sort-box'>до</span></label>--}}
-				{{--<input type="text" id="eDate" name="endDate" class="tcal" value="" />--}}
-
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-				<div class="container">
-					<div class='col-md-5'>
-						<div class="form-group">
-							<div class='input-group date' id='datetimepicker6'>
-								<input type='text' class="form-control" />
-								<span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-							</div>
-						</div>
-					</div>
-					<div class='col-md-5'>
-						<div class="form-group">
-							<div class='input-group date' id='datetimepicker7'>
-								<input type='text' class="form-control" />
-								<span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
+				<label for="endDate"><span class ='opsion-sort-box'>до</span></label>
+				<input type="text" id="eDate" name="endDate" class="tcal" value="" />
 			</div>
 		</div>
 
 </div>
 
 	<hr class='line-sort-box'>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datepicker();
-        $('#datetimepicker7').datepicker({
-            useCurrent: false //Important! See issue #1075
-        });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
-</script>

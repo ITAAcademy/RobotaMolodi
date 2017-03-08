@@ -56,10 +56,15 @@ class MainController extends Controller
         return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
     }
 
-    public function showVacancies(City $cityModel,Vacancy $vacancy)
+    public function showVacancies()
     {
         $vacancies = Vacancy::AllVacancies()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
+        if(Request::ajax()){
+            return view('newDesign.vacancies.vacanciesList', array(
+                'vacancies' => $vacancies
+            ));
+        }
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),

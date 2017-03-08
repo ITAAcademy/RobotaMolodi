@@ -16,13 +16,11 @@ class FilterController extends Controller
 {
     public function vacancies(Request $request)
     {
-//        $vac = $request->get();
-//        dd($request->get('startDate'));
-
+//        dd($request->all());
         $vacancies = Vacancy::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
-//            ->bySort($request->get('click'))
+            ->bySort($request->get('sortDate'))
             ->paginate();
 
         return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
