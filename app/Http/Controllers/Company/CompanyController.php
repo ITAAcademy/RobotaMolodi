@@ -3,6 +3,8 @@
 use App\Models\User;
 use App\Models\Industry;
 use App\Models\City;
+use App\Models\Company;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -12,8 +14,6 @@ use Input;
 use Validator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use App\Models\Company;
-use App\Models\Vacancy;
 use Illuminate\Support\Facades\Cookie;
 //use Request;
 use Illuminate\Support\Facades\Redirect;
@@ -206,12 +206,16 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	{
         Cookie::queue('url', 'company/'.$id);
         $view = 'newDesign.company.show';
-        $vacancy = $this->getCompany($id);
-        $industry = Industry::find($vacancy->branch);
-        $company = Company::find($vacancy->id);
+        $company = $this->getCompany($id);
 
+        $vacancies = Vacancy::where('company_id','=',$id);
+
+        $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
+        $industryName = Industry::where('id','=',$industry)->lists('name');
+//            dd($industryName);
         return view($view)
-            ->with('vacancy', $vacancy)
+            ->with('vacancy', $vacancies)
+            ->with('industryName', $industryName)
             ->with('company', $company)
             ->with('industry', $industry);
     }

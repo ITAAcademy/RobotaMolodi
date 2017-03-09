@@ -4,25 +4,18 @@
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
-    {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
-    <input type = "hidden" name = "filterName" id = "filterName"/>
-    <input type = "hidden" name = "filterValue" id = "filterValue"/>
-    {!!Form::close()!!}
-    <html>
-      <body>
-        <!-- the left part of vacancy -->
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
-                        @if(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.png')))
-                            {!! Html::image('image/vacancy/' . $vacancy->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpg')))
-                            {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.jpeg')))
-                            {!! Html::image('image/vacancy/' . $vacancy->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $vacancy->company_id . '.bmp')))
-                            {!! Html::image('vacancies' . $vacancy->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @if(File::exists(public_path('image/vacancy/' . $company->id . '.png')))
+                            {!! Html::image('image/vacancy/' . $company->id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.jpg')))
+                            {!! Html::image('image/vacancy/' . $company->id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.jpeg')))
+                            {!! Html::image('image/vacancy/' . $company->id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.bmp')))
+                            {!! Html::image('vacancies' . $company->id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
                             <h3 class="nologo">логотип вiдсутнiй</h3>
                         @endif
@@ -54,7 +47,7 @@
                         <div class="textCompany verticalIndent"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
                     <div>
-                        <div class="textCompany verticalIndent"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="textCompany verticalIndent"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry}})">{{$industryName[0]}}</a> </div>
                     </div>
                     <div>
                         <span class="textCompany verticalIndent"><span class="anagraph verticalIndent">Подробиці </span><span class="description">{!! $company->description !!}</span></span>
@@ -71,6 +64,4 @@
                 </div>
             </div>
         </div>
-      </body>
-    </html>
 @stop
