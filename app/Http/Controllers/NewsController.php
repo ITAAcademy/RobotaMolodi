@@ -19,7 +19,7 @@ class NewsController extends Controller
     {
         $news =News::all();
 
-        return view('newDesign.News.newsIndex',$news);
+        return view('newDesign.News.newsIndex',['news'=>$news]);
     }
 
     /**
