@@ -41,9 +41,9 @@
 			var arrCities = new Array;
 			var citiesRes = new Array;
 			var urlRoute = 'showResumes';
-			for (var i = 0; i < allCities.options.length; i++) {
-				arrCities[i] = allCities.options[i].text;
-			}
+//			for (var i = 0; i < allCities.options.length; i++) {
+//				arrCities[i] = allCities.options[i].text;
+//			}
 
 			//------------------event-click-on-button-map-------------------------------
 			$('#collapseButton').one('click', function(){

@@ -107,5 +107,34 @@ class Company extends Eloquent {
 
         return $vacancies;//$this->hasMany('App\Models\Vacancy','company_id')->get();
     }
+
+    public function scopeByIndustries($query,$industries)
+    {
+        if (!empty($industries)) {
+            return $query->whereIn('branch', $industries);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeByRegions($query,$regions){
+        if(!empty($regions)){
+            return $query->whereHas('Cities', function($q) use ($regions) {
+                $q->whereIn('vacancy_city.city_id',$regions);
+            });
+        }else{
+            return $regions;
+        }
+    }
+
+    public function scopeBySpecialisations($query,$specialisations){
+        if (!empty($specialisations)) {
+            return $query->whereIn('position', $specialisations);
+        }else{
+            return $query;
+        }
+    }
+
+
 }
 

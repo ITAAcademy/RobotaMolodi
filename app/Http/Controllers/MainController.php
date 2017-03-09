@@ -56,23 +56,26 @@ class MainController extends Controller
         return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
     }
 
-    public function showVacancies(City $cityModel,Vacancy $vacancy)
+    public function showVacancies()
     {
         $vacancies = Vacancy::AllVacancies()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
+        if(Request::ajax()){
+            return view('newDesign.vacancies.vacanciesList', array(
+                'vacancies' => $vacancies
+            ));
+        }
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations
         ));
-
-
     }
 
     public function showCompanies(){
         $companies = Company::latest('id')->paginate();
-        $specialisations = Resume::groupBy('position')->lists('position');
+        $specialisations = Vacancy::groupBy('position')->lists('position');
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
             'cities' => City::all(),
@@ -81,7 +84,7 @@ class MainController extends Controller
         ));
     }
 
-    public function showResumes(City $cityModel)
+    public function showResumes()
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
