@@ -129,6 +129,3 @@ Route::get('contacts', function () {
 Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
 Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
-
-Route::get('ajax_vacancies',['as'=>'ajax.vacancies','uses'=>'Vacancy/VacancyController@showVacancies']);
-//Route::resource('filter_vacancies', 'Vacancy/VacancyController@showVacancies');

@@ -16,7 +16,6 @@ class FilterController extends Controller
 {
     public function vacancies(Request $request)
     {
-//        dd($request->all());
         $vacancies = Vacancy::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
@@ -31,6 +30,7 @@ class FilterController extends Controller
         $resumes = Resume::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
+            ->bySort($request->get('sortDate'))
             ->paginate();
 
         return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
@@ -38,14 +38,19 @@ class FilterController extends Controller
 
     public function companies(Request $request)
     {
-        $com = Vacancy::byIndustries($request->get('industries',[]))
-            ->bySpecialisations($request->get('specialisations',[]))
-            ->byRegions($request->get('regions',[]))->get();
+        $coms = Vacancy::byIndustries($request->get('industries', []))
+            ->bySpecialisations($request->get('specialisations', []))
+            ->byRegions($request->get('regions', []))
+            ->get();
 
-//        $val = $request->get();
-//        dd($request->get('click'));
-//        $companies = Company::whereIn('id',$com['company_id'])
-//            ->paginate();
+            $comId = [];
+            foreach ($coms as $com) {
+                $comId[] = $com->company_id;
+            }
+
+            $companies = Company::getCompany($comId)
+                ->bySort($request->get('sortDate'))
+                ->paginate();
 
         return view('newDesign.company.companiesList', ['companies' => $companies]);
     }
