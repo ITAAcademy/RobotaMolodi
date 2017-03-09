@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Models\News;
 
 class NewsController extends Controller
@@ -17,9 +16,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news =News::all();
+        $news = News::all();
 
-        return view('newDesign.News.newsIndex',['news'=>$news]);
+        return view('newDesign.News.newsIndex', ['news' => $news]);
     }
 
     /**
@@ -39,25 +38,40 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->isMethod('post')) {
-
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
-
-            $destinationPath = 'image/uploads/news';
-            $file->move($destinationPath, $file->getClientOriginalName());
-            $news = new News();
-            $news->createModel($request,$fileName);
-            $news=News::all();
+        if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'title' => 'required|unique:news,id',
+                'description' => 'required',
+                'image' => 'sometimes|image|required|max:10240',
+            ]);
+//            $validator = Validator::make($request->all(), [
+//                'title' => 'required|unique:news,id',
+//                'description' => 'required',
+//                'image' => 'image|required|max:10240',
+//            ]);
 //
-            return view('newDesign.News.newsIndex',['news'=>$news]);
+//            if ($validator->fails())
+//            {
+//                return redirect()->back()->withErrors($validator->errors());
+//            }
         }
+        $file = $request->file('image');
+        $fileName = $file->getClientOriginalName();
+        $destinationPath = 'image/uploads/news';
+        $file->move($destinationPath, $file->getClientOriginalName());
+
+        $news = new News();
+//        $news->validation($request);
+//        $news->errors();
+        $news->createModel($request, $fileName);
+        $news = News::all();
+        return view('newDesign.News.newsIndex', ['news' => $news]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show($id)
@@ -68,7 +82,7 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit($id)
@@ -79,7 +93,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update($id)
@@ -90,7 +104,7 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy($id)

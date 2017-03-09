@@ -1,6 +1,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <div class="col-md-8">
-         <h1>Create news</h1>
+        <h1>Create news</h1>
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                </ul>
+            </div>
+        @endif
         {!! Form::open(array('url' => '/news','files'=>true)) !!}
 
         <div class="form-group">
