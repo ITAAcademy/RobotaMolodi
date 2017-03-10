@@ -43,55 +43,59 @@
     <div class="row paginatorr">
         <hr>
         @if($companies->lastPage() > 1)
-            <div class="sort-by">
+            <div class="sort-by hidden"> {{--for open need delete class "hidden"--}}
                 <p class="pag-text">Показувати по:</p>
-                <div class="pag-block-by no-active-pag-block">20</div>
-                <div class="pag-block-by active-pag-block">50</div>
-                <div class="pag-block-by no-active-pag-block">100</div>
+                <div class="pag-block-by no-active-pag-block">5</div>
+                <div class="pag-block-by active-pag-block">10</div>
+                <div class="pag-block-by no-active-pag-block">15</div>
             </div>
             @include('newDesign.default', ['paginator' => $companies])
         @endif
     </div>
 
 </div>
-<script>
-    $(document).ready(function () {
-        $('.pag-block-by').click(function () {
-            $('.active-pag-block').removeClass('active-pag-block');
-            $(this).toggleClass('active-pag-block');
-        })
 
-        function getFilters() {
-            return {
-                regions: $('select[name="selected-region"]').val(),
-                industries: $('select[name="selected-indastry"]').val(),
-                specialisations: $('select[name="selected-specialization"]').val()
-            }
-        }
+@include('newDesign.jsForFilter', ['urlController' => 'filter.companies'])
+{{--<script>--}}
+    {{--$(document).ready(function () {--}}
+        {{--$('.pag-block-by').click(function () {--}}
+            {{--$('.active-pag-block').removeClass('active-pag-block');--}}
+            {{--$(this).toggleClass('active-pag-block');--}}
+        {{--})--}}
 
-        $('.getting-list-selected-box').on('change',function () {
-            $.ajax({
-                url: '{{route('filter.companies')}}',
-                data: getFilters(),
-                success: function(data){
-                    $('.test').html(data);
-                }
-            });
-        })
+        {{--function getFilters() {--}}
+            {{--return {--}}
+                {{--regions: $('select[name="selected-region"]').val(),--}}
+                {{--industries: $('select[name="selected-indastry"]').val(),--}}
+                {{--specialisations: $('select[name="selected-specialization"]').val()--}}
+            {{--}--}}
+        {{--}--}}
 
+        {{--$('.getting-list-selected-box').on('change',function () {--}}
+            {{--$.ajax({--}}
+                {{--url: '{{route('filter.companies')}}',--}}
+                {{--data: getFilters(),--}}
+                {{--success: function(data){--}}
+                    {{--$('.test').html(data);--}}
+                {{--}--}}
+            {{--});--}}
+        {{--})--}}
 
-        function click() {
-            return {click:true};
-        }
+        {{--$(document).on('click', '.pagination a', function(e) {--}}
+            {{--e.preventDefault();--}}
+            {{--var url = $(this).attr('href');--}}
+            {{--getVacancies(url);--}}
+            {{--window.history.pushState("", "", url);--}}
+        {{--});--}}
 
-        $('.opsion-sort-box').click(function () {
-            $.ajax({
-                url: '{{route('filter.companies')}}',
-                data: click(),
-                success: function(data){
-                    $('.test').html(data);
-                }
-            });
-        })
-    })
-</script>
+        {{--function getVacancies(url) {--}}
+            {{--$.ajax({--}}
+                {{--url : url--}}
+            {{--}).done(function (data) {--}}
+                {{--$('.test').html(data);--}}
+            {{--}).fail(function () {--}}
+                {{--alert('Could not be loaded.');--}}
+            {{--});--}}
+        {{--}--}}
+    {{--})--}}
+ {{--</script>--}}

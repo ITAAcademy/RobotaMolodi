@@ -8,11 +8,12 @@
 
 namespace App\Models;
 
-//use App\Models\Vacancy;
+use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use DB;
 use Eloquent;
+
 
 class Company extends Eloquent {
 
@@ -108,7 +109,7 @@ class Company extends Eloquent {
         return $vacancies;//$this->hasMany('App\Models\Vacancy','company_id')->get();
     }
 
-    public function scopeByIndustries($query,$industries)
+    public function scopeByIndustries($query, $industries)
     {
         if (!empty($industries)) {
             return $query->whereIn('branch', $industries);
@@ -117,7 +118,7 @@ class Company extends Eloquent {
         }
     }
 
-    public function scopeByRegions($query,$regions){
+    public function scopeByRegions($query, $regions){
         if(!empty($regions)){
             return $query->whereHas('Cities', function($q) use ($regions) {
                 $q->whereIn('vacancy_city.city_id',$regions);
@@ -127,7 +128,7 @@ class Company extends Eloquent {
         }
     }
 
-    public function scopeBySpecialisations($query,$specialisations){
+    public function scopeBySpecialisations($query, $specialisations){
         if (!empty($specialisations)) {
             return $query->whereIn('position', $specialisations);
         }else{
@@ -135,6 +136,16 @@ class Company extends Eloquent {
         }
     }
 
+    public function scopeBySort($query, $order){
+        return $query->orderBy('updated_at', $order);
+    }
 
+    public function scopeGetCompany($query, $vac){
+        return $query->whereIn('company.id', $vac);
+    }
+
+//    public function vacancyModel(){
+//        return $this->hasMany(Vacancy::class);
+//    }
 }
 

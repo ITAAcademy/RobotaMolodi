@@ -145,4 +145,8 @@ class Vacancy extends Model {
         return $query->orderBy('updated_at', $order);
     }
 
+//    public function companyModel(){
+//        return $this->belongsTo(Company::class);
+//    }
+
 }
