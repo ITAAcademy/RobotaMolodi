@@ -144,6 +144,24 @@ class Company extends Eloquent {
         return $query->whereIn('company.id', $vac);
     }
 
+    public function scopeByStartDate($query, $date)
+    {
+        if (!empty($date)) {
+            return $query->where('updated_at','>=',$date);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeByEndDate($query, $date)
+    {
+        if (!empty($date)) {
+            $date = $date.' 23:59:59';
+            return $query->where('updated_at','<=',$date);
+        }else{
+            return $query;
+        }
+    }
 //    public function vacancyModel(){
 //        return $this->hasMany(Vacancy::class);
 //    }

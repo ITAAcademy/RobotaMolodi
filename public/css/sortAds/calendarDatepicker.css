@@ -1,0 +1,15 @@
+#datepicker1{
+    width: 100px;
+    color: black;
+    text-align: center;
+}
+
+#datepicker2{
+    width: 100px;
+    color: black;
+    text-align: center;
+}
+
+.block-datepicker{
+    display: inline-block;
+}
