@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Validation;
-
+use Illuminate\Http\Request;
 //use Validator;
 class News extends Model
 {
@@ -18,13 +18,27 @@ class News extends Model
 
     public function createModel($request, $pictureName)
     {
-        $patch = 'image/uploads/news/';
+
         $news = new News;
         $news->name = $request->input('title');
         $news->description = $request->input('description');
-        $news->img = $patch . $pictureName;
+        $news->img =$pictureName;
         $news->published = '1';
         $news->save();
+
+    }
+    public function savePicture(Request $request){
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $pictureName = $file->getClientOriginalName();
+            $destinationPath = 'image/uploads/news';
+            $file->move($destinationPath, $file->getClientOriginalName());
+        }
+        else{
+            $pictureName="Not picture";
+        }
+        return $pictureName;
 
     }
 

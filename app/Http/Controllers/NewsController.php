@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests;
@@ -9,6 +9,8 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
+    protected $patch = 'image/uploads/news/';
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,7 @@ class NewsController extends Controller
     {
         $news = News::all();
 
-        return view('newDesign.News.newsIndex', ['news' => $news]);
+        return view('newDesign.News.newsIndex', ['news' => $news,'patch'=>$this->patch]);
     }
 
     /**
@@ -37,13 +39,19 @@ class NewsController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
-        if ($request->isMethod('post')) {
-            $this->validate($request, [
-                'title' => 'required|unique:news,id',
-                'description' => 'required',
-                'image' => 'sometimes|image|required|max:10240',
-            ]);
+    {  if ($request->isMethod('post')) {
+
+
+        $news = new News();
+        $this->validate($request, [
+            'title' => 'required|unique:news,name|max:150',
+            'description' => 'required',
+            'image' => 'sometimes|image|required|max:10240',
+        ]);
+
+        $fileName = $news->savePicture($request);
+//        dd($request);
+//            dd($request);
 //            $validator = Validator::make($request->all(), [
 //                'title' => 'required|unique:news,id',
 //                'description' => 'required',
@@ -54,18 +62,20 @@ class NewsController extends Controller
 //            {
 //                return redirect()->back()->withErrors($validator->errors());
 //            }
-        }
-        $file = $request->file('image');
-        $fileName = $file->getClientOriginalName();
-        $destinationPath = 'image/uploads/news';
-        $file->move($destinationPath, $file->getClientOriginalName());
+//
+//        $file = $request->file('image');
+//        $fileName = $file->getClientOriginalName();
+//        $destinationPath = 'image/uploads/news';
+//        $file->move($destinationPath, $file->getClientOriginalName());
 
-        $news = new News();
-//        $news->validation($request);
-//        $news->errors();
+
+////        $news->validation($request);
+////        $news->errors();
         $news->createModel($request, $fileName);
         $news = News::all();
-        return view('newDesign.News.newsIndex', ['news' => $news]);
+    }
+//        return redirect()->back();
+        return view('newDesign.News.newsIndex', ['news' => $news,'patch'=>$this->patch]);
     }
 
     /**
