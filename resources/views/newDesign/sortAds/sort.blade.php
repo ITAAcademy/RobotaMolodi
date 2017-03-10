@@ -8,11 +8,11 @@
 		<div class='col-xs-12 sort-box'>
 			<div class='col-xs-3 sort-rating'>
 				<span class='label-sort-box'>Сортувати по:</span>
-				<span class ='opsion-sort-box'>рейтингу</span>
+				<span class ='opsion-sort-box rating'>рейтингу</span>
 			</div>
 			<div class='col-xs-3 sort-date'>
 				<span class='label-sort-box'>по даті:</span>
-				<span class='opsion-sort-box'>спочатку нові</span>
+				<span class='opsion-sort-box first-news'>спочатку нові</span>
 			</div>
 			<div class='col-xs-6 input-sort-box'>
 				<span class='label-sort-box'>по проміжку дат:</span>

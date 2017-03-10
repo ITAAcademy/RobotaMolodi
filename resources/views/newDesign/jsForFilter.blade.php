@@ -4,24 +4,21 @@ $(document).ready(function () {
     //paginate by N count
 
      $('.pag-block-by').click(function () {
-         alert('6');
          $('.active-pag-block').removeClass('active-pag-block');
          $(this).toggleClass('active-pag-block');
      })
 
     //filter
     function getFilters() {
-        alert('5');
         return {
             regions: $('select[name="selected-region"]').val(),
             industries: $('select[name="selected-indastry"]').val(),
             specialisations: $('select[name="selected-specialization"]').val(),
-            sortDate: $('.opsion-sort-box').hasClass('active') ? 'asc' : 'desc'
+            sortDate: $('.first-news').hasClass('active') ? 'asc' : 'desc'
         }
     }
 
     $('.getting-list-selected-box').on('change',function () {
-        alert('4');
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(),
@@ -32,21 +29,19 @@ $(document).ready(function () {
     })
 
    //filter asc/desc
-    $('.opsion-sort-box').click(function () {
-        alert('10');
+    $('.first-news').unbind('click').click(function (e) {
         $(this).toggleClass('active');
-        alert('1');
         $.ajax({
             url: '{{route($urlController)}}',
-            data: getFilters(),
+            data: getFilters(e),
             success: function(data){
                 $('.test').html(data);
             }
         });
     })
 
+    //pagination
     $(document).on('click', '.pagination a', function(e) {
-        alert('2');
         e.preventDefault();
         var url = $(this).attr('href');
         getVacancies(url);
@@ -54,7 +49,6 @@ $(document).ready(function () {
     });
 
     function getVacancies(url) {
-        alert('3');
         $.ajax({
             url : url,
             data : getFilters()
