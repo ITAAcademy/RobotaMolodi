@@ -1,26 +1,56 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@extends('newDesign.layouts.admin')
 
-<style type="text/css">
-    .picture{
-        width:15%;
-    }
-</style>
-<h1>Index</h1>
-@if(Session::has('flash_message'))
-    <div class="alert alert-success">
-        {{ Session::get('flash_message') }}
-    </div>
-@endif
-<button href="{{ route('news.create') }}" type="button" class="btn btn-default">Create</button>
-<a href="http://robotamolodi.local/news/create" class="btn btn-info" role="button">Link Button</a>
-@foreach ($news as $new)
-<p> {{ $new->name }}</p>
-<p> {!!  $new->description !!}</p>
-@if($new->img!='Not picture')
+@section('content')
 
-    <img class="picture" src="{{ asset($patch.$new->img) }}">
-@endif
+    <div class="createNews"><a href="{{ URL::route('news.create') }}" class="btn btn-success btn-lg"> Create news</a></div>
 
-<button type="button" class="btn btn-primary">Update</button>
-<button type="button" class="btn btn-primary">Delete</button>
-@endforeach
+    <table class="table  table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Picture</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach ($news as $new)
+            <tr>
+                <td>{{ $new->id }}</td>
+                <td><h4>{{ $new->name }}</h4></td>
+                <td>{!!  $new->description !!}</td>
+
+                <td>
+                    @if($new->img!='Not picture')
+                        <img class="picture" src="{{ asset($patch.$new->img) }}">
+                    @else
+                        Not picture
+                    @endif
+                </td>
+                <td>
+                    <a href="{{ route('news.show', $new->id) }}" class="btn btn-info">View Task</a>
+                    <button type="button" class="btn btn-primary">Update</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                </td>
+            </tr>
+
+        @endforeach
+
+        </tbody>
+    </table>
+
+    {{--@if(Session::has('flash_message'))--}}
+    {{--<div class="alert alert-success">--}}
+    {{--{{ Session::get('flash_message') }}--}}
+    {{--</div>--}}
+    {{--@endif--}}
+
+
+
+
+@endsection

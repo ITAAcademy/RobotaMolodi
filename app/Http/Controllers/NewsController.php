@@ -86,7 +86,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $newsOne = News::findOrFail($id);
+        return view('newDesign.News.newsOne',['newsOne' => $newsOne,'patch'=>$this->patch]);
     }
 
     /**
@@ -97,7 +98,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+         $newsOne= News::findOrFail($id);
+        return view('newDesign.News.newsEdit',['newsOne' => $newsOne]);
     }
 
     /**

@@ -15,6 +15,12 @@ class News extends Model
         'image' => 'required',
 
     );
+    protected $fillable = [
+        'id',
+        'title',
+        'description',
+        'img'
+    ];
 
     public function createModel($request, $pictureName)
     {
