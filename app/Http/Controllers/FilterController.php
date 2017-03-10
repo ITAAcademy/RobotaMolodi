@@ -19,6 +19,8 @@ class FilterController extends Controller
         $vacancies = Vacancy::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
+            ->byStartDate($request->get('startDate',[]))
+            ->byEndDate($request->get('endDate',[]))
             ->bySort($request->get('sortDate'))
             ->paginate();
 
@@ -30,6 +32,8 @@ class FilterController extends Controller
         $resumes = Resume::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
+            ->byStartDate($request->get('startDate',[]))
+            ->byEndDate($request->get('endDate',[]))
             ->bySort($request->get('sortDate'))
             ->paginate();
 
@@ -49,6 +53,8 @@ class FilterController extends Controller
             }
 
             $companies = Company::getCompany($comId)
+                ->byStartDate($request->get('startDate',[]))
+                ->byEndDate($request->get('endDate',[]))
                 ->bySort($request->get('sortDate'))
                 ->paginate();
 

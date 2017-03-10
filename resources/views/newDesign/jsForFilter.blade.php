@@ -14,7 +14,9 @@ $(document).ready(function () {
             regions: $('select[name="selected-region"]').val(),
             industries: $('select[name="selected-indastry"]').val(),
             specialisations: $('select[name="selected-specialization"]').val(),
-            sortDate: $('.first-news').hasClass('active') ? 'asc' : 'desc'
+            sortDate: $('.first-news').hasClass('active') ? 'asc' : 'desc',
+            startDate: $('#datepicker1').val(),
+            endDate: $('#datepicker2').val()
         }
     }
 
@@ -58,6 +60,28 @@ $(document).ready(function () {
             alert('Could not be loaded.');
         });
     }
+
+    //calendar
+
+    $( function() {
+        $( "#datepicker1" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $( "#datepicker2" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    } );
+
+    $('.datePicker').on('change',function () {
+        $.ajax({
+            url: '{{route($urlController)}}',
+            data: getFilters(),
+            success: function(data){
+                $('.test').html(data);
+            }
+        });
+    })
+
 })
 </script>
 
