@@ -14,7 +14,7 @@ $(document).ready(function () {
             regions: $('select[name="selected-region"]').val(),
             industries: $('select[name="selected-indastry"]').val(),
             specialisations: $('select[name="selected-specialization"]').val(),
-            sortDate: $('.first-news').hasClass('active') ? 'asc' : 'desc',
+            sortDate: $('.sort-date').hasClass('active') ? 'asc' : 'desc',
             startDate: $('#datepicker1').val(),
             endDate: $('#datepicker2').val()
         }
@@ -31,8 +31,10 @@ $(document).ready(function () {
     })
 
    //filter asc/desc
-    $('.first-news').unbind('click').click(function (e) {
-        $(this).toggleClass('active');
+    $('.sort-by-date').unbind('click').click(function (e) {
+        $('.sort-date').toggleClass('active');
+        $('.opsion-sort-box').removeClass('hidden');
+        $(this).addClass('hidden');
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(e),

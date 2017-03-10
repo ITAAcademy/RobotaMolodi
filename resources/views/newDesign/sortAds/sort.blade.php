@@ -12,7 +12,8 @@
 			</div>
 			<div class='col-xs-3 sort-date'>
 				<span class='label-sort-box'>по даті:</span>
-				<span class='opsion-sort-box first-news'>спочатку нові</span>
+				<span class='opsion-sort-box sort-by-date hidden'>спочатку нові</span>
+				<span class='opsion-sort-box sort-by-date'>спочатку старі</span>
 			</div>
 			<div class='col-xs-6 input-sort-box'>
 				<span class='label-sort-box'>по проміжку дат:</span>
