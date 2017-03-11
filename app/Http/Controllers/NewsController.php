@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,8 +20,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-
-        return view('newDesign.News.newsIndex', ['news' => $news,'patch'=>$this->patch]);
+        return view('newDesign.News.newsIndex', ['news' => $news, 'patch' => $this->patch]);
     }
 
     /**
@@ -39,43 +39,19 @@ class NewsController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {  if ($request->isMethod('post')) {
+    {
+        if ($request->isMethod('post')) {
+            $news = new News();
+            $this->validate($request, [
+                'title' => 'required|max:150',
+                'description' => 'required',
+                'image' => 'sometimes|image|required|max:10240',
+            ]);
+            $fileName = $news->savePicture($request);
+            $news->createModel($request, $fileName);
 
-
-        $news = new News();
-        $this->validate($request, [
-            'title' => 'required|unique:news,name|max:150',
-            'description' => 'required',
-            'image' => 'sometimes|image|required|max:10240',
-        ]);
-
-        $fileName = $news->savePicture($request);
-//        dd($request);
-//            dd($request);
-//            $validator = Validator::make($request->all(), [
-//                'title' => 'required|unique:news,id',
-//                'description' => 'required',
-//                'image' => 'image|required|max:10240',
-//            ]);
-//
-//            if ($validator->fails())
-//            {
-//                return redirect()->back()->withErrors($validator->errors());
-//            }
-//
-//        $file = $request->file('image');
-//        $fileName = $file->getClientOriginalName();
-//        $destinationPath = 'image/uploads/news';
-//        $file->move($destinationPath, $file->getClientOriginalName());
-
-
-////        $news->validation($request);
-////        $news->errors();
-        $news->createModel($request, $fileName);
-        $news = News::all();
-    }
-//        return redirect()->back();
-        return view('newDesign.News.newsIndex', ['news' => $news,'patch'=>$this->patch]);
+        }
+        return redirect()->route('news.index');
     }
 
     /**
@@ -87,7 +63,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $newsOne = News::findOrFail($id);
-        return view('newDesign.News.newsOne',['newsOne' => $newsOne,'patch'=>$this->patch]);
+        return view('newDesign.News.newsOne', ['newsOne' => $newsOne, 'patch' => $this->patch]);
     }
 
     /**
@@ -98,8 +74,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-         $newsOne= News::findOrFail($id);
-        return view('newDesign.News.newsEdit',['newsOne' => $newsOne]);
+        $newsOne = News::findOrFail($id);
+        return view('newDesign.News.newsEdit', ['newsOne' => $newsOne]);
     }
 
     /**
@@ -108,9 +84,28 @@ class NewsController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        $newsOne = News::findOrFail($id);
+        $this->validate($request, [
+            'name' => 'required|max:150',
+            'description' => 'required',
+            'image' => 'sometimes|image|required|max:10240',
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $pictureName = $file->getClientOriginalName();
+            $destinationPath = 'image/uploads/news';
+            $file->move($destinationPath, $file->getClientOriginalName());
+            $newsOne->img = $pictureName;
+        } else {
+            $newsOne->img = "Not picture";
+        }
+        $input = $request->all();
+        $newsOne->fill($input)->save();
+        Session::flash('flash_message', 'Task successfully added!');
+        return redirect()->route('news.index');
+
     }
 
     /**
@@ -121,6 +116,14 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::findOrFail($id);
+
+        $news->delete();
+
+        Session::flash('flash_message', 'Task successfully deleted!');
+
+        return redirect()->route('news.index');
     }
+
+
 }

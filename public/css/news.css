@@ -10,10 +10,10 @@ body{
     float:right;
     margin:15px 5px 15px;
 }
-.picture {
+.imageOneNews {
     width: 100%;
 
 }
-.wrapperOneNews{
-
+.titleNews{
+    max-width: 20px;
 }
