@@ -1,0 +1,19 @@
+.picture {
+    width: 250px;
+
+}
+body{
+    background-color: #c8c8b2;
+
+}
+.createNews{
+    float:right;
+    margin:15px 5px 15px;
+}
+.imageOneNews {
+    width: 100%;
+
+}
+.titleNews{
+    max-width: 20px;
+}
