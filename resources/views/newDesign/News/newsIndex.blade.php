@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div class="createNews"><a href="{{ URL::route('news.create') }}" class="btn btn-success btn-lg"> Create news</a></div>
+    <div class="createNews"><a href="{{ URL::route('news.create') }}" class="btn btn-success btn-lg"> Create news</a>
+    </div>
 
     <table class="table  table-bordered">
         <thead>
@@ -11,8 +12,8 @@
             <th>Title</th>
             <th>Description</th>
             <th>Picture</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th>Show news</th>
+            <th>Delete news</th>
         </tr>
         </thead>
         <tbody>
@@ -31,26 +32,21 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('news.show', $new->id) }}" class="btn btn-info">View Task</a>
-                    <button type="button" class="btn btn-primary">Update</button>
+                    <a href="{{ route('news.show', $new->id) }}" class="btn btn-primary">Show news</a>
+                    {{--<button type="button" class="btn btn-primary">Update</button>--}}
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </td>
+                {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['news.destroy', $new->id]
+                ]) !!}
+                {!! Form::submit('Delete news', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+                    </td>
             </tr>
-
         @endforeach
 
         </tbody>
     </table>
 
-    {{--@if(Session::has('flash_message'))--}}
-    {{--<div class="alert alert-success">--}}
-    {{--{{ Session::get('flash_message') }}--}}
-    {{--</div>--}}
-    {{--@endif--}}
-
-
-
-
-@endsection
+@stop
