@@ -53,7 +53,11 @@ class MainController extends Controller
         $vacancies = Vacancy::latest('id')->paginate(25);
         Session::forget('city');
         Session::forget('industry');
-        return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
+        return view('main.index', array(
+            'vacancies' => $vacancies,
+            'cities' => $cities,
+            'industries' => $industries
+        ));
     }
 
     public function showVacancies()
@@ -76,6 +80,11 @@ class MainController extends Controller
     public function showCompanies(){
         $companies = Company::latest('id')->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
+        if(Request::ajax()){
+            return view('newDesign.company.companiesList', array(
+                'companies' => $companies
+            ));
+        }
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
             'cities' => City::all(),
@@ -88,6 +97,11 @@ class MainController extends Controller
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
+        if(Request::ajax()){
+            return view('newDesign.resume.resumesList', array(
+                'resumes' => $resumes
+            ));
+        }
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
             'cities' => City::all(),

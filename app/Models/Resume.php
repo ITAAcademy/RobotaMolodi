@@ -135,4 +135,27 @@ class Resume extends Model {
             return $query;
         }
     }
+
+    public function scopeBySort($query, $order){
+        return $query->orderBy('updated_at', $order);
+    }
+
+    public function scopeByStartDate($query, $date)
+    {
+        if (!empty($date)) {
+            return $query->where('updated_at','>=',$date);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeByEndDate($query, $date)
+    {
+        if (!empty($date)) {
+            $date = $date.' 23:59:59';
+            return $query->where('updated_at','<=',$date);
+        }else{
+            return $query;
+        }
+    }
 }

@@ -51,7 +51,7 @@ Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchControll
 //Vacancy Route
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
-
+Route::resource('/news','NewsController');
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
@@ -129,6 +129,3 @@ Route::get('contacts', function () {
 Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
 Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
-
-Route::get('ajax_vacancies',['as'=>'ajax.vacancies','uses'=>'Vacancy/VacancyController@showVacancies']);
-//Route::resource('filter_vacancies', 'Vacancy/VacancyController@showVacancies');

@@ -37,46 +37,46 @@
     <div class="row paginatorr">
         <hr>
         @if($resumes->lastPage() > 1)
-            <div class="sort-by">
+            <div class="sort-by hidden"> {{--for open need delete class "hidden"--}}
                 <p class="pag-text">Показувати по:</p>
-                <div class="pag-block-by no-active-pag-block">20</div>
-                <div class="pag-block-by active-pag-block">50</div>
-                <div class="pag-block-by no-active-pag-block">100</div>
+                <div class="pag-block-by no-active-pag-block">5</div>
+                <div class="pag-block-by active-pag-block">10</div>
+                <div class="pag-block-by no-active-pag-block">15</div>
             </div>
             @include('newDesign.default', ['paginator' => $resumes])
         @endif
     </div>
-
 </div>
 
-<script>
-    $(document).ready(function () {
-        $('.pag-block-by').click(function () {
-            $('.active-pag-block').removeClass('active-pag-block');
-            $(this).toggleClass('active-pag-block');
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        function getFilters() {
-            return {
-                regions: $('select[name="selected-region"]').val(),
-                industries: $('select[name="selected-indastry"]').val(),
-                specialisations: $('select[name="selected-specialization"]').val()
-            }
-        }
+@include('newDesign.jsForFilter', ['urlController' => 'filter.resumes'])
+{{--<script>--}}
+    {{--$(document).ready(function () {--}}
+        {{--$('.pag-block-by').click(function () {--}}
+            {{--$('.active-pag-block').removeClass('active-pag-block');--}}
+            {{--$(this).toggleClass('active-pag-block');--}}
+        {{--})--}}
+    {{--})--}}
+{{--</script>--}}
+{{--<script>--}}
+    {{--$(document).ready(function () {--}}
+        {{--function getFilters() {--}}
+            {{--return {--}}
+                {{--regions: $('select[name="selected-region"]').val(),--}}
+                {{--industries: $('select[name="selected-indastry"]').val(),--}}
+                {{--specialisations: $('select[name="selected-specialization"]').val()--}}
+            {{--}--}}
+        {{--}--}}
 
-        $('.getting-list-selected-box').on('change',function () {
-            $.ajax({
-                url: '{{route('filter.resumes')}}',
-                data: getFilters(),
-                success: function(data){
-                    $('.test').html(data);
-                }
-            });
-        })
-    })
+        {{--$('.getting-list-selected-box').on('change',function () {--}}
+            {{--$.ajax({--}}
+                {{--url: '{{route('filter.resumes')}}',--}}
+                {{--data: getFilters(),--}}
+                {{--success: function(data){--}}
+                    {{--$('.test').html(data);--}}
+                {{--}--}}
+            {{--});--}}
+        {{--})--}}
+    {{--})--}}
 
 
-</script>
+{{--</script>--}}
