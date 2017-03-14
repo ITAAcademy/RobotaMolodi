@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +20,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-        return view('newDesign.News.newsIndex', ['news' => $news, 'patch' => $this->patch]);
+        return view('newDesign.News.index', ['news' => $news, 'patch' => $this->patch]);
     }
 
     /**
@@ -30,7 +30,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('newDesign.News.newsForm');
+        return view('newDesign.News.form');
     }
 
     /**
@@ -40,17 +40,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $news = new News();
             $this->validate($request, [
-                'title' => 'required|max:150',
+                'name' => 'required|max:150',
                 'description' => 'required',
                 'image' => 'sometimes|image|required|max:10240',
             ]);
-            $fileName = $news->savePicture($request);
-            $news->createModel($request, $fileName);
-
-        }
+            $news = new News;
+            $news->name = $request->input('name');
+            $news->description = $request->input('description');
+            $news->img = $news->savePicture($request);
+            $news->save();
         return redirect()->route('news.index');
     }
 
@@ -62,8 +61,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $newsOne = News::findOrFail($id);
-        return view('newDesign.News.newsOne', ['newsOne' => $newsOne, 'patch' => $this->patch]);
+        $newsOne = News::find($id);
+
+        return view('newDesign.News.one', ['newsOne' => $newsOne, 'patch' => $this->patch]);
     }
 
     /**
@@ -74,8 +74,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $newsOne = News::findOrFail($id);
-        return view('newDesign.News.newsEdit', ['newsOne' => $newsOne]);
+        $newsOne = News::find($id);
+        return view('newDesign.News.edit', ['newsOne' => $newsOne]);
     }
 
     /**
@@ -86,21 +86,16 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newsOne = News::findOrFail($id);
+        $newsOne = News::find($id);
+        $news=new News;
+//        $news->validator();
         $this->validate($request, [
             'name' => 'required|max:150',
             'description' => 'required',
             'image' => 'sometimes|image|required|max:10240',
         ]);
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $pictureName = $file->getClientOriginalName();
-            $destinationPath = 'image/uploads/news';
-            $file->move($destinationPath, $file->getClientOriginalName());
-            $newsOne->img = $pictureName;
-        } else {
-            $newsOne->img = "Not picture";
-        }
+        $news->deleteOldPicture($id);
+        $newsOne->img=$news->savePicture($request);
         $input = $request->all();
         $newsOne->fill($input)->save();
         Session::flash('flash_message', 'Task successfully added!');
@@ -116,12 +111,11 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::findOrFail($id);
-
+        $news = News::find($id);
+        $deleteImage=new News;
+        $deleteImage->checkNameImage($news->img);
         $news->delete();
-
         Session::flash('flash_message', 'Task successfully deleted!');
-
         return redirect()->route('news.index');
     }
 
