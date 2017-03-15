@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-        return view('newDesign.News.index', ['news' => $news, 'patch' => $this->patch]);
+        return view('newDesign.news.index', ['news' => $news, 'patch' => $this->patch]);
     }
 
     /**
@@ -30,7 +32,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('newDesign.News.form');
+        return view('newDesign.news.form');
     }
 
     /**
@@ -40,16 +42,13 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-            $this->validate($request, [
-                'name' => 'required|max:150',
-                'description' => 'required',
-                'image' => 'sometimes|image|required|max:10240',
-            ]);
-            $news = new News;
-            $news->name = $request->input('name');
-            $news->description = $request->input('description');
-            $news->img = $news->savePicture($request);
-            $news->save();
+        $this->validateNews($request);
+        $news = new News;
+        $news->name = $request->input('name');
+        $news->description = $request->input('description');
+        $news->img = $news->savePicture($request);
+        $news->save();
+        Session::flash('flash_message', 'news successfully created!');
         return redirect()->route('news.index');
     }
 
@@ -63,7 +62,7 @@ class NewsController extends Controller
     {
         $newsOne = News::find($id);
 
-        return view('newDesign.News.one', ['newsOne' => $newsOne, 'patch' => $this->patch]);
+        return view('newDesign.news.one', ['newsOne' => $newsOne, 'patch' => $this->patch]);
     }
 
     /**
@@ -75,7 +74,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $newsOne = News::find($id);
-        return view('newDesign.News.edit', ['newsOne' => $newsOne]);
+        return view('newDesign.news.edit', ['newsOne' => $newsOne]);
     }
 
     /**
@@ -87,20 +86,14 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $newsOne = News::find($id);
-        $news=new News;
-//        $news->validator();
-        $this->validate($request, [
-            'name' => 'required|max:150',
-            'description' => 'required',
-            'image' => 'sometimes|image|required|max:10240',
-        ]);
+        $this->validateNews($request);
+        $news = new News;
         $news->deleteOldPicture($id);
-        $newsOne->img=$news->savePicture($request);
+        $newsOne->img = $news->savePicture($request);
         $input = $request->all();
         $newsOne->fill($input)->save();
-        Session::flash('flash_message', 'Task successfully added!');
+        Session::flash('flash_message', 'news successfully added!');
         return redirect()->route('news.index');
-
     }
 
     /**
@@ -112,11 +105,18 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::find($id);
-        $deleteImage=new News;
+        $deleteImage = new News;
         $deleteImage->checkNameImage($news->img);
         $news->delete();
-        Session::flash('flash_message', 'Task successfully deleted!');
+        Session::flash('flash_message', 'news successfully deleted!');
         return redirect()->route('news.index');
+    }
+    public function validateNews(Request $request){
+        $this->validate($request, [
+            'name' => 'required|max:150',
+            'description' => 'required',
+            'image' => 'sometimes|image|required|max:10240',
+        ]);
     }
 
 

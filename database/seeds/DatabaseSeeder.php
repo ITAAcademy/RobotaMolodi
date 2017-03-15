@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('IndustrySeeder');
         $this->call('Test1Seeder');
         $this->call('VacancyCitySeeder');
+        $this->call(NewsSeeder::class);
 	}
 
 }
