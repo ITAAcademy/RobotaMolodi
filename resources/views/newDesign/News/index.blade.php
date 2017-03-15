@@ -1,7 +1,11 @@
 @extends('newDesign.layouts.admin')
 
 @section('content')
-
+    @if(Session::has('flash_message'))
+        <div class="alert alert-success">
+            {{ Session::get('flash_message') }}
+        </div>
+    @endif
     <div class="createNews"><a href="{{ URL::route('news.create') }}" class="btn btn-success btn-lg"> Create news</a>
     </div>
 

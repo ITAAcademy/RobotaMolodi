@@ -25,17 +25,6 @@ class News extends Model
         'img',
     ];
 
-    public function validator()
-    {
-        $validator = Validator::make([
-
-                'title' => 'required|max:1',
-                'description' => 'required',
-                'image' => 'required',]
-//            $this->rules,
-        );
-    }
-
     public function savePicture(Request $request)
     {
         if ($request->hasFile('image')) {
@@ -54,8 +43,6 @@ class News extends Model
     {
         $images = News::find($id);
         $this->checkNameImage($images->img);
-        if ($images->img != 'Not picture')
-            $this->deleteImage($images->img);
     }
 
     public function checkNameImage($name)
@@ -67,15 +54,9 @@ class News extends Model
 
     private function deleteImage($name)
     {
+        $exists = Storage::disk('local')->has($this->patch.$name);
+        if($exists)
         Storage::delete($this->patch . $name);
-    }
-
-    private function changeDirectory()
-    {
-        $files = Storage::files($this->patch);
-        Storage::makeDirectory($this->patch . "/new");
-        Storage::put($files[0], $this->patch."/new");
-
     }
 
 }
