@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-        return view('newDesign.News.newsIndex', ['news' => $news, 'patch' => $this->patch]);
+        return view('newDesign.news.index', ['news' => $news, 'patch' => $this->patch]);
     }
 
     /**
@@ -30,7 +32,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('newDesign.News.newsForm');
+        return view('newDesign.news.form');
     }
 
     /**
@@ -40,17 +42,13 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $news = new News();
-            $this->validate($request, [
-                'title' => 'required|max:150',
-                'description' => 'required',
-                'image' => 'sometimes|image|required|max:10240',
-            ]);
-            $fileName = $news->savePicture($request);
-            $news->createModel($request, $fileName);
-
-        }
+        $this->validateNews($request);
+        $news = new News;
+        $news->name = $request->input('name');
+        $news->description = $request->input('description');
+        $news->img = $news->savePicture($request);
+        $news->save();
+        Session::flash('flash_message', 'news successfully created!');
         return redirect()->route('news.index');
     }
 
@@ -62,8 +60,9 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $newsOne = News::findOrFail($id);
-        return view('newDesign.News.newsOne', ['newsOne' => $newsOne, 'patch' => $this->patch]);
+        $newsOne = News::find($id);
+
+        return view('newDesign.news.one', ['newsOne' => $newsOne, 'patch' => $this->patch]);
     }
 
     /**
@@ -74,8 +73,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $newsOne = News::findOrFail($id);
-        return view('newDesign.News.newsEdit', ['newsOne' => $newsOne]);
+        $newsOne = News::find($id);
+        return view('newDesign.news.edit', ['newsOne' => $newsOne]);
     }
 
     /**
@@ -86,26 +85,15 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newsOne = News::findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required|max:150',
-            'description' => 'required',
-            'image' => 'sometimes|image|required|max:10240',
-        ]);
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $pictureName = $file->getClientOriginalName();
-            $destinationPath = 'image/uploads/news';
-            $file->move($destinationPath, $file->getClientOriginalName());
-            $newsOne->img = $pictureName;
-        } else {
-            $newsOne->img = "Not picture";
-        }
+        $newsOne = News::find($id);
+        $this->validateNews($request);
+        $news = new News;
+        $news->deleteOldPicture($id);
+        $newsOne->img = $news->savePicture($request);
         $input = $request->all();
         $newsOne->fill($input)->save();
-        Session::flash('flash_message', 'Task successfully added!');
+        Session::flash('flash_message', 'news successfully added!');
         return redirect()->route('news.index');
-
     }
 
     /**
@@ -116,13 +104,19 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::findOrFail($id);
-
+        $news = News::find($id);
+        $deleteImage = new News;
+        $deleteImage->checkNameImage($news->img);
         $news->delete();
-
-        Session::flash('flash_message', 'Task successfully deleted!');
-
+        Session::flash('flash_message', 'news successfully deleted!');
         return redirect()->route('news.index');
+    }
+    public function validateNews(Request $request){
+        $this->validate($request, [
+            'name' => 'required|max:150',
+            'description' => 'required',
+            'image' => 'sometimes|image|required|max:10240',
+        ]);
     }
 
 
