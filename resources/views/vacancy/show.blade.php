@@ -98,18 +98,18 @@
                     {!!Form::close()!!}
                 </div>
 
-                {{--<div id="send-file-vacancy">--}}
-                    {{--{!!Form::open(array(['route' => 'vacancy.show','method'=>"post", 'enctype' => 'multipart/form-data', 'files' => true]))!!}--}}
-                    {{--{!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}--}}
-                    {{--<div align="right">--}}
-                        {{--{!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}--}}
-                    {{--</div>--}}
-                    {{--{!!Form::close()!!}--}}
-                {{--</div>--}}
+                <div id="send-file-vacancy">
+                    {!!Form::model(array(['route' => 'vacancy.show','method'=>"post", 'enctype' => 'multipart/form-data', 'files' => true]))!!}
+                    {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
+                    <div align="right">
+                        {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
+                    </div>
+                    {!!Form::close()!!}
+                </div>
 
-                {{--<div id="send-resume-vacancy">--}}
-                    {{--{!!Form::open(['route' => 'vacancy.show'])!!}--}}
-                    {{--<div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >--}}
+                <div id="send-resume-vacancy">
+                    {!!Form::model(['route' => 'vacancy.show'])!!}
+                    <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
                         {{--@if (!empty($resume->all()))--}}
                         {{--<select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">--}}
                         {{--@foreach($resume as $res)--}}
@@ -123,59 +123,11 @@
                         {{--<p>У вас немає резюме.Перейти до створення резюме</p>--}}
                         {{--<p>{!!link_to_route('resume.create','Створення резюме')!!}</p>--}}
                         {{--@endif--}}
-                        {{--<div align="right">--}}
-                            {{--{!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}--}}
-                        {{--</div>--}}
-                        {{--{!!Form::close()!!}--}}
-                    {{--</div>--}}
-
-
-                    {{--<!-- Form URL -->--}}
-                    {{--<div id="send-URL-vacancy" class="send_block">--}}
-                    {{--<form class="URL_vacancy">--}}
-                    {{--<span class="bold_vacancy">Вставити посилання на резюме:</span>--}}
-                    {{--<input class="form-control" type="text" placeholder="URL">--}}
-                    {{--</form>--}}
-
-                    {{--<form class="send">--}}
-                    {{--<button type="button" class="sent_file_button">Відправити</button>--}}
-                    {{--</form>--}}
-                    {{--</div>--}}
-                    {{--<!-- End of Form URL -->--}}
-
-                    {{--<!-- Form File -->--}}
-                    {{--<div id="send-file-vacancy" class="send_block">--}}
-                    {{--<form class="send_form" method="post">--}}
-                    {{--<span class="bold_vacancy" style="font-size: 18px; color: #797979">Завантажити файл:</span>--}}
-                    {{--<div style=" margin-top:5px; height: 44px;">--}}
-                    {{--<div class="file_upload">--}}
-                    {{--<button type="button" class="sent_file_button" id="choose_file">Вибрати файл</button>--}}
-                    {{--<input type="file" class="insert_file" id="uploaded-file" onchange="getFileName ();">--}}
-                    {{--</div>--}}
-                    {{--<p class="text_vac dont_choose" id="file-name">Файл не выбран</p>--}}
-                    {{--</div>--}}
-
-                    {{--<button type="button" class="sent_file_button">Відправити</button>--}}
-                    {{--</form>--}}
-                    {{--</div>--}}
-                    {{--<!-- End of Form File -->--}}
-
-                    {{--<!-- Form Resume -->--}}
-                    {{--<div id="send-resume-vacancy" class="send_block">--}}
-                    {{--<form class="URL_vacancy">--}}
-                    {{--<span class="bold_vacancy">Вставити посилання на резюме:</span>--}}
-                    {{--<select class="form-control">--}}
-                    {{--<option>resume 1</option>--}}
-                    {{--<option>resume 2</option>--}}
-                    {{--<option>resume 3</option>--}}
-                    {{--</select>--}}
-                    {{--</form>--}}
-
-                    {{--<form class="send">--}}
-                    {{--<button type="button" class="sent_file_button">Відправити</button>--}}
-                    {{--</form>--}}
-                    {{--</div>--}}
-                    {{--<!-- end of Form Resume -->--}}
+                        <div align="right">
+                            {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
+                        </div>
+                        {!!Form::close()!!}
+                    </div>
 
                 </div>
             </div>
@@ -206,5 +158,6 @@
 
             </script>
         </div>
+    </div>
 
 @stop
