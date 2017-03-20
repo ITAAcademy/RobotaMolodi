@@ -30,7 +30,7 @@
 
                 <td>
                     @if($new->img!='Not picture')
-                        <img class="picture" src="{{ asset($patch.$new->img) }}">
+                        <img class="picture" src="{{ asset($new->getPatch().$new->img) }}">
                     @else
                         Not picture
                     @endif
@@ -40,13 +40,13 @@
                     {{--<button type="button" class="btn btn-primary">Update</button>--}}
                 </td>
                 <td>
-                {!! Form::open([
-                'method' => 'DELETE',
-                'route' => ['news.destroy', $new->id]
-                ]) !!}
-                {!! Form::submit('Delete news', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-                    </td>
+                    {!! Form::open([
+                    'method' => 'DELETE',
+                    'route' => ['news.destroy', $new->id]
+                    ]) !!}
+                    {!! Form::submit('Delete news', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                </td>
             </tr>
         @endforeach
 
