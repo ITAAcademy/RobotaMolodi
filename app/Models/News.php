@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
@@ -9,10 +8,9 @@ use Illuminate\Http\Request;
 
 class News extends Model
 {
-    const DELETE = 'delete image';
     const NOT_PICTURE = 'Not picture';
-    private $patch = 'image/uploads/news/';
-    public $errorsMessages;
+    private $path = 'image/uploads/news/';
+    private $errorsMessages;
 
     private $rules = array(
         'name' => 'required|max:150',
@@ -24,35 +22,37 @@ class News extends Model
         'name',
         'description',
         'img',
+        'created_at',
+        'updated_at',
     ];
-
-    public function savePicture(Request $request)
+    public function saveImage(Request $request)
     {
         if (!$this->img && $request->hasFile('image')) {
             $pictureName = $this->fileSave($request);
-        }
-        else if ($this->img && $request->hasFile('image')) {
+        } else if ($this->img && $request->hasFile('image')) {
             $pictureName = $this->fileSave($request);
-            $this->deleteObj(self::DELETE);
-        }
-        else if ($this->img && !$request->hasFile('image')) {
+            $this->deletePicture();
+        } else if ($this->img && !$request->hasFile('image')) {
             $pictureName = self::NOT_PICTURE;
-            $this->deleteObj(self::DELETE);
-        }
-        else{
+            $this->deletePicture();
+        } else {
             $pictureName = self::NOT_PICTURE;
         }
         $this->img = $pictureName;
     }
 
-    public function deleteObj($string)
+    private function deletePicture()
     {
-        if ($string != self::DELETE) {
-            $this->delete();
-        }
-        $exists = Storage::disk('local')->has($this->patch . $this->img);
+        $exists = Storage::disk('local')->has($this->getImage());
         if ($exists)
-            Storage::delete($this->patch . $this->img);
+            Storage::delete($this->getImage());
+
+    }
+
+    public function deleteNews()
+    {
+        $this->deletePicture();
+        $this->delete();
     }
 
     private function fileSave($request)
@@ -61,7 +61,7 @@ class News extends Model
         $pictureName = $file->getClientOriginalName();
         $timestamp = time();
         $pictureName = $timestamp . "_" . $pictureName;
-        $file->move($this->patch, $pictureName);
+        $file->move($this->path, $pictureName);
         return $pictureName;
     }
 
@@ -75,9 +75,28 @@ class News extends Model
         return true;
     }
 
-    public function getPatch()
+    public function getPath()
     {
-        return $this->patch;
+        return $this->path;
     }
+
+    public function getErrorsMessages()
+    {
+        return $this->errorsMessages;
+    }
+
+    private function getImage()
+    {
+        return $this->getPath() . $this->img;
+    }
+    public function scopePublished($query){
+        return $query->limit(10);
+    }
+    public function getNews()
+    {
+        $news = $this->latest('id')->published()->get();
+        return $news;
+    }
+
 
 }

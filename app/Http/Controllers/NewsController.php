@@ -10,7 +10,7 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    const DELETE='delete object';
+//    const DELETE='delete object';
 
     public function index()
     {
@@ -27,14 +27,11 @@ class NewsController extends Controller
     {
         $news = new News;
         if ($news->validateForm($request->all())) {
-            $news->savePicture($request);
-            $input = $request->all();
-            $news->fill($input);
-            $news->save();
+            $this->helperSave($news,$request);
             Session::flash('flash_message', 'news successfully created!');
             return redirect()->route('news.index');
         } else {
-            return redirect()->route('news.create')->withInput()->withErrors($news->errorsMessages);
+            return redirect()->route('news.create')->withInput()->withErrors($news->getErrorsMessages());
         }
     }
 
@@ -53,17 +50,16 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         /**
-         * @var News $newsOne 
+         * @var News $newsOne
          */
         $newsOne = News::find($id);
         if ($newsOne->validateForm($request->all())) {
-            $newsOne->savePicture($request);
-            $input = $request->all();
-            $newsOne->fill($input)->save();
+            $this->helperSave($newsOne,$request);
             Session::flash('flash_message', 'news successfully added!');
             return redirect()->route('news.index');
         } else {
-            return redirect()->route('news.edit', ['newsOne' => $newsOne])->withInput()->withErrors($newsOne->errorsMessages);
+            return redirect()->route('news.edit', ['newsOne' => $newsOne])->withInput()->withErrors($newsOne->getErrorsMessages());
+
         }
     }
 
@@ -73,9 +69,14 @@ class NewsController extends Controller
          * @var News $news
          */
         $news = News::find($id);
-        $news->deleteObj( self::DELETE);
+        $news->deleteNews();
         Session::flash('flash_message', 'news successfully deleted!');
         return redirect()->route('news.index');
+    }
+    private function helperSave($news,$request){
+        $news->saveImage($request);
+        $input = $request->all();
+        $news->fill($input)->save();
     }
 
 

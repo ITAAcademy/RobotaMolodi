@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
+use App\Models\News;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class FilterController extends Controller
             ->bySort($request->get('sortDate'))
             ->paginate();
 
-        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
+        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies,'news'=>$this->dataNews()]);
     }
 
     public function resumes(Request $request)
@@ -37,7 +38,7 @@ class FilterController extends Controller
             ->bySort($request->get('sortDate'))
             ->paginate();
 
-        return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
+        return view('newDesign.resume.resumesList', ['resumes' => $resumes,'news'=>$this->dataNews()]);
     }
 
     public function companies(Request $request)
@@ -58,7 +59,11 @@ class FilterController extends Controller
                 ->bySort($request->get('sortDate'))
                 ->paginate();
 
-        return view('newDesign.company.companiesList', ['companies' => $companies]);
+        return view('newDesign.company.companiesList', ['companies' => $companies,'news'=>$this->dataNews()]);
+    }
+    private function dataNews(){
+        $news=new News();
+        return $news=$news->getNews();
     }
 
 }

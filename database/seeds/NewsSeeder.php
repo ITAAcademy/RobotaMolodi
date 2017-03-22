@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\News;
+use Carbon\Carbon;
 class NewsSeeder extends Seeder
 {
     /**
@@ -35,7 +36,8 @@ class NewsSeeder extends Seeder
 
                                     <p><a href=\"http://from-ua.com/obzor-pressi/395859-gugl-nezametno-podslushivaet-vas-cherez-mikrofon-vot-kak-naiti-zapis.html\">Джерело</a></p>",
                 'img'=>"google.jpg",
-
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
             ],
             [   'name'=>"У Китаї заступив на службу перший робокоп",
                 'description'=>"    <p>У китайській провінції Хенань на службу заступив перший робот-поліцейський. Він займається патрулюванням залу очікування залізничного вокзалу у місті Чженчжоу.</p>
@@ -48,6 +50,8 @@ class NewsSeeder extends Seeder
 
                                    <p>Наразі&nbsp;<a href=\"https://www.ukrinform.ru/tag-kitaj\" target=\"_blank\">китайський&nbsp;</a>робот чергує в тестовому режимі. Планується, що скоро він почне працювати в нічний час, коли в залах очікування найбільше пасажирів.</p>",
                 'img'=>"robocop.jpg",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
 
             ],
             [   'name'=>"iPhone 7 Plus лідирує в рейтингу продуктивності AnTuTu протягом останніх шести місяців",
@@ -57,6 +61,8 @@ class NewsSeeder extends Seeder
 
                                    <p>На четвертому місці опинився LeEco Le Pro 3 (159 163 бали), п&rsquo;яте місце дісталося Smartisan M1L, який продемонстрував 154 559 балів. Продовжується&nbsp;історія, що в рейтингу найбільш продуктивних пристроїв відсутні продукти південнокорейської компанії Samsung і китайських Huawei і Meizu.</p>",
                 'img'=>"iPhone.jpg",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
 
             ],
             [   'name'=>"Сьогодні Apple запатентувала нове покоління клавіатур з підтримкою 3D Touch",
@@ -75,6 +81,8 @@ class NewsSeeder extends Seeder
                                    <br />
                                    &nbsp;</p>",
                 'img'=>"keyboard.jpg",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
 
             ],
             [   'name'=>"Газове питання: які зміни чекають споживачів?",
@@ -104,6 +112,8 @@ class NewsSeeder extends Seeder
 
                                    <p>Також в матеріалі йдеться про дражливе питання: а чи не розбавляють газ повітрям або азотом. На обидва питання відповідь негативна: у випадку з повітрям його вміст від 5 до 15 відсотків робитиме суміш вибухонебезпечною. Азот, в свою чергу, коштує до 41 гривні за куб, в той час як найбільша ціна на природний газ &ndash; 10 грн.</p>",
                 'img'=>"price.jpg",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
 
             ],
             [   'name'=>"Нова мала планета Сонячної системи отримала назву",
@@ -121,6 +131,8 @@ class NewsSeeder extends Seeder
 
                                    <p>Раніше повідомлялося, що&nbsp;астрономи із США звернулися за допомогою до добровольців і попросили волонтерів, щоб ті разом з ними&nbsp;<a href=\"http://nv.ua/ukr/world/countries/astronomi-ssha-poprosili-dobrovoltsiv-dopomogti-znajti-dev-jatu-planetu-667709.html\">займалися пошуками Дев&#39;ятої планети</a>.</p>",
                 'img'=>"Not picture",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
             ],
             [   'name'=>"Японія запланувала на 2020 рік пошуки води на Марсі",
                 'description'=>    "<p>Японські вчені створюють надмалий супутник для відправки на орбіту Марса в найближчі роки.</p>
@@ -135,6 +147,8 @@ class NewsSeeder extends Seeder
 
                                    <p>Раніше&nbsp;<strong>НВ</strong>&nbsp;повідомляло, що дослідники з Університету Уейк-Форест в США виявили, що&nbsp;<a href=\"http://nv.ua/ukr/techno/science/vcheni-nazvali-novu-nebezpeku-polotiv-na-mars-778811.html\">тривалий вплив космічного випромінювання підвищує ризик лейкемії</a>.</p>",
                 'img' => "mars.jpg",
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime,
             ]
         ]
         );

@@ -11,59 +11,21 @@
         <img class="tv-news-header1" src="/image/topVacancies/news.png" alt="image logo news">
         <p id="topvac2" class="tv-news-header2">НОВИНИ</p>
     </div>
-
     <div class="tv-news-list cool-scroll">
+    @foreach($news as $oneNews)
+
         <ul>
             <li>
-                <span class="tv-news-date">10.06.2014</span><br>
+                <span class="tv-news-date">{{$oneNews->created_at->format('d.m.Y')}}</span><br>
                 <a class="tv-link" href="#">
-                    <p class="tvl-position">Як Google непомітно підслуховує вас через мікрофон</p>
-                    <img src="#" alt="image">
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">У Китаї заступив на службу перший робокоп</p>
-                    <img src="#" alt="image">
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">Likeapp: знайти дівчину в мережі стало простіше</p>
-                    {{--<img src="/image/topVacancies/elephant_1.png" alt="image_elephant">--}}
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">iPhone 7 Plus залишається найпродуктивнішим у світі смартфоном</p>
-                    <img src="#" alt="image">
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">Apple запатентувала нову клавіатуру</p>
-                    {{--<img src="/image/topVacancies/elephant_2.png" alt="image_elephant">--}}
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">Газове питання: які зміни чекають споживачів?</p>
-                    <img src="#" alt="image_elephant">
-                </a>
-            </li>
-            <li>
-                <span class="tv-news-date">10.06.2014</span><br>
-                <a class="tv-link" href="#">
-                    <p class="tvl-position">Нова планета Сонячної системи отримала назву</p>
-                    {{--<img src="/image/topVacancies/elephant_2.png" alt="image_elephant">--}}
+                    <p class="tvl-position">{{$oneNews->name}}</p>
+                    @if($oneNews->img!='Not picture')
+                    <img class="picture" src="{{ asset($oneNews->getPath().$oneNews->img) }}">
+                    @endif
                 </a>
             </li>
         </ul>
+    @endforeach
     </div>
     <div class="tv-news-footer">
         {{--<img src="/image/topVacancies/footer_logo.png" alt="image_logo_footer">--}}
