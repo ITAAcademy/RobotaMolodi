@@ -4,10 +4,6 @@
 @endsection
 
 @section('content')
-    {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
-    <input type = "hidden" name = "filterName" id = "filterName"/>
-    <input type = "hidden" name = "filterValue" id = "filterValue"/>
-    {!!Form::close()!!}
 
     <div class="panel panel-orange" id="vrBlock">
         <div class="row">
@@ -46,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            {{--TODO refactor href--}}
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
@@ -64,74 +61,95 @@
                         <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}}</div>
                     </div>
                     <div>
-                        <div class="text_data otstup1">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity'{{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircleVacancy">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</div>
+                        <div class="text_data otstup1">
+                            @foreach($cities->get() as $city)
+                                <a class="orangeLinks" href="javascript:submit('selectCity', '{{$city->id}}')">
+                                    {!!$city->name!!}
+                                </a>
+                            @endforeach
+                                <span id="yellowCircleVacancy">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
-        <div class="right-colomn-vacancy">
-            <div class="right-vac">
-                <div class="list-but-vac">
-                    <ul class="list-inline">
-                        <li class="li-link send-url-link" data-type="url">
-                            <i class="fa fa-link"></i>
-                            <button type="button" class="btn btn-link" onclick="showDiv('send-URL-vacancy')">відправити URL</button>
-                        </li>
-                        <li class="li-link send-file-link" data-type="file">
-                            <i class="fa fa-file-o"></i>
-                            <button type="button" class="btn btn-link" onclick="showDiv('send-file-vacancy')">відправити файл</button>
-                        </li>
-                        <li class="li-link send-resume-link" data-type="resume">
-                            <i class="fa fa-file-text-o"></i>
-                            <button type="button" class="btn btn-link" onclick="showDiv('send-resume-vacancy')">відправити резюме</button>
-                        </li>
-                    </ul>
+    </div>
+    <div class="right-colomn-vacancy">
+        <div class="right-vac">
+            <div class="list-but-vac">
+                <ul class="list-inline">
+                    <li class="li-link send-url-link" data-type="url">
+                        <i class="fa fa-link"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-URL-vacancy')">відправити URL</button>
+                    </li>
+                    <li class="li-link send-file-link" data-type="file">
+                        <i class="fa fa-file-o"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-file-vacancy')">відправити файл</button>
+                    </li>
+                    <li class="li-link send-resume-link" data-type="resume">
+                        <i class="fa fa-file-text-o"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-resume-vacancy')">відправити резюме</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="send-URL-vacancy">
+                {!!Form::open(['route' => ['vacancy.response.link',$vacancy->id],'method'=>'get']) !!}
+                {!!Form::label('url', 'Вставити посилання на URL:',['class' => 'url-text-vac'] )!!}
+                {!!Form::text('link',null,array('class' => 'form-control url-input-vac','placeholder' =>'URL:','autocomplete'=>"off",'required','id'=>'Link'))!!}
+                <div align="right">
+                    {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
                 </div>
 
-                <div id="send-URL-vacancy">
-                    {!!Form::open(['route' => ['vacancy.response.link',$vacancy->id]]) !!}
-                    {!!Form::label('url', 'Вставити посилання на URL:',['class' => 'url-text-vac'] )!!}
-                    {!!Form::text('link',null,array('class' => 'form-control url-input-vac','placeholder' =>'URL:','autocomplete'=>"off",'required','id'=>'Link'))!!}
-                    <div align="right">
-                        {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
-                    </div>
-                    {!!Form::close()!!}
+                {!!Form::close()!!}
+            </div>
+
+            <div id="send-file-vacancy">
+                {!!Form::open(['route' => ['vacancy.response.sendFile',$vacancy->id],'method'=>"POST", 'enctype' => 'multipart/form-data', 'files' => true])!!}
+                {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
+                <div align="right">
+                    {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
                 </div>
 
-                <div id="send-file-vacancy">
-                    {!!Form::model(array(['route' => 'vacancy.show','method'=>"post", 'enctype' => 'multipart/form-data', 'files' => true]))!!}
-                    {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
-                    <div align="right">
-                        {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
-                    </div>
-                    {!!Form::close()!!}
-                </div>
+                {!!Form::close()!!}
+            </div>
 
-                <div id="send-resume-vacancy">
-                    {!!Form::model(['route' => 'vacancy.show'])!!}
+
+            <div id="send-resume-vacancy">
+                <div>
+                    <h3 style="margin-top: 5px">Виберіть резюме</h3>
+                </div>
+                <div>
+                    {!!Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"])!!}
                     <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
-                        {{--@if (!empty($resume->all()))--}}
-                        {{--<select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">--}}
-                        {{--@foreach($resume as $res)--}}
-                        {{--<option value="{{$res->id}}" selected>{{$res->position}}</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-                        {{--</div>--}}
-                        {{--{!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}--}}
-
-                        {{--@else--}}
-                        {{--<p>У вас немає резюме.Перейти до створення резюме</p>--}}
-                        {{--<p>{!!link_to_route('resume.create','Створення резюме')!!}</p>--}}
-                        {{--@endif--}}
+                        @if(!empty($resume))
+                            <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
+                                @foreach($resume as $res)
+                                    <option value="{{$res->id}}" selected>{{$res->position}}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                    {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
+                    @else
+                        <p>У вас немає резюме.Перейти до створення резюме</p>
+                        <p>{!!link_to_route('resume.create','Створення резюме','','style="color:#f68c06"')!!}</p>
+                    @endif
+                </div>
+                <div>
+                    @if (!empty($resume))
                         <div align="right">
                             {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
                         </div>
-                        {!!Form::close()!!}
-                    </div>
-
+                    @endif
                 </div>
+
+                {!!Form::close()!!}
             </div>
-            {{--<script src="/public/js/script_one_vacancy.js"></script>--}}
+
+            </div>
+        </div>
+        {{--<script src="/public/js/script_one_vacancy.js"></script>--}}
             <script>
                 function showDiv(id){
                     var closeAll = false;
@@ -144,16 +162,13 @@
                         document.getElementById(id).style.display = "block";
                 }
 
-                function getFileName () {
-                    var file = document.getElementById ('uploaded-file').value;
-                    file = file.replace(/\\/g, "/").split('/').pop();
-                    document.getElementById ('file-name').innerHTML = file;
-                }
+//                function getFileName() {
+//                    var file = document.getElementById ('uploaded-file').value;
+//                    file = file.replace(/\\/g, "/").split('/').pop();
+//                    document.getElementById ('file-name').innerHTML = file;
+//                }
             </script>
 
-            {{--@include('/vacancy/pasteVacancyForm/link')--}}
-            {{--@include('/vacancy/pasteVacancyForm/file')--}}
-            {{--@include('/vacancy/pasteVacancyForm/resume')--}}
             <script>
 
             </script>
