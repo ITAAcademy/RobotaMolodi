@@ -117,7 +117,7 @@ class MainController extends Controller
     }
     private function dataNews(){
         $news=new News();
-        return $news=$news->getNews();
+        return $news=$news->getNewsForMainPage();
     }
 
 
