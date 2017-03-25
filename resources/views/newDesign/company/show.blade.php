@@ -47,15 +47,19 @@
                         <div class="textCompany verticalIndent"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
                     <div>
-                        <div class="textCompany verticalIndent"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry}})">{{$industryName[0]}}</a> </div>
+                        <div class="textCompany verticalIndent"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry')">{{$industryName}}</a> </div>
                     </div>
                     <div>
-                        <span class="textCompany verticalIndent"><span class="anagraph verticalIndent">Подробиці </span><span class="description">{!! $company->description !!}</span></span>
+                        <div class="textCompany verticalIndent">
+                            <span class="anagraph verticalIndent">Подробиці </span>
+                            <br><div class="description">{!! $company->description !!}</div>
+                        </div>
                     </div>
                     <div>
                         <div class="text_data verticalIndent"> <a class="textCompany"> </a></div>
                     </div>
                 </div>
+                {{--{{ dd('test')}}--}}
                 <div class="button_vac">
                     <a href="#"><input type="submit" class="recall" value="Переглянути вакансії"></a>
                     <a href="#"><input type="submit" class="recall" value="Відправити файл"></a>

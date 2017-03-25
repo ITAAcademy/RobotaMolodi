@@ -202,22 +202,30 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
 	 * @param  int  $id
 	 * @return Response
 	 */
-		public function show($id)
+		public function show($id, Guard $auth)
 	{
         Cookie::queue('url', 'company/'.$id);
         $view = 'newDesign.company.show';
+        $search_boolean = 'false';
+        //$company = Company::find($id);
         $company = $this->getCompany($id);
+
+        $userCompany = $company->ReadUser($id);
 
         $vacancies = Vacancy::where('company_id','=',$id);
 
+
         $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
-        $industryName = Industry::where('id','=',$industry)->lists('name');
+        $industryName = Industry::where('id','=',$industry)->lists('name')->first();
+
 //            dd($industryName);
         return view($view)
             ->with('vacancy', $vacancies)
+            ->with('user', $userCompany)
             ->with('industryName', $industryName)
             ->with('company', $company)
-            ->with('industry', $industry);
+            ->with('industry', $industry)
+            ->with('search_boolean',$search_boolean);
     }
 
 	public function edit($id)

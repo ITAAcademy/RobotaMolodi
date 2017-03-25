@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Industry extends Model {
 
     protected $table = 'industries';
-    protected $fillable = ['name'];
+    protected $fillable = ['id','name'];
 // Get all industries order by name
     public function getIndustries()
     {
