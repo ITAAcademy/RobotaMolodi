@@ -20,7 +20,6 @@ class UploadFile extends Controller
 {
     public static function upFile()
     {
-        //dd(Input::file('FileName'));
         if(Input::hasFile('FileName'))
         {
             $file = Input::file('FileName');
@@ -53,14 +52,14 @@ class UploadFile extends Controller
         }
     }
 
-    public static function editImg()
+    public function editImg()
     {
-        if(Input::hasFile('FileName'))
+        if(Input::hasFile('image'))
         {
-            $file = Input::file('FileName');
+            $file = Input::file('image');
 
             $validator = Validator::make(Request::all(), [
-                'FileName' => 'mimes:jpg,jpeg,png,bmp|max:2048',
+                'image' => 'mimes:jpg,jpeg,png,bmp|max:2048',
             ]);
 
             if($validator->fails())
