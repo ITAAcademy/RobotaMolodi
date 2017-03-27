@@ -26,7 +26,7 @@
             <p style="color:  #3f3e3e">+38 (097) 934-25-24</p>
         </div>
     </div>
-    <div class="row ">
+    <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-1 col-xs-1 icon " style="text-align: right">
             <i class="fa fa-skype" aria-hidden="true"></i>
@@ -35,5 +35,13 @@
             <a href="skype:robotamolodi" style="color:  #3f3e3e">Skype: robotamolodi</a>
         </div>
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 @stop
