@@ -170,7 +170,7 @@ button.btn.btn-link {
     border: 0;
     outline: none;
 }
-.right_colomn.btn {
+.right-colomn-vacancy.btn {
     font-size: 20px;
     color: darkorange;
     font-family: "SegoeUI";
@@ -179,16 +179,15 @@ button.btn.btn-link {
     color: darkorange;
 }
 
-.right_colomn input{
+.right-colomn-vacancy input{
     /*background-color: #F68C06;*/
     /*color: white;*/
-    font-size: 16px;
-    border-radius: 12px;
-    border:0;
+    /*font-size: 16px;*/
+    /*border-radius: 12px;*/
     height: 36px;
     padding: 5px;
-    margin: 5px;
-    text-transform: uppercase;
+    margin-bottom: 9px;
+    /*text-transform: uppercase;*/
 }
 
 ul{
@@ -217,35 +216,57 @@ li span{
         display:block;
     }
 
-    .right_colomn{
+    .right-colomn-vacancy{
         margin-left:0;
     }
 }
 
 /*block of link*/
 
-.right_vac #send_URL_vacancy{
+.right-vac #send-URL-vacancy{
     display: none;
 }
 
 
-#send_file_vacancy{
+#send-file-vacancy{
     display: none;
 }
 
-#send_resume_vacancy{
+#send-resume-vacancy{
     display: none;
 }
 
 form.URL_vacancy {
     width: 100%;
 }
-
-.right_colomn input.form-control {
-    margin: 0;
-    margin-top: 5px;
-    border: 1px solid darkorange;
+.url-text-vac{
+    width: 100%;
+}
+.url-input-vac{
+    width: 100%;
+    background-color: white;
+    border: 1px solid #f26522;
+}
+input.btn.btn-warning.btn-send{
+    background-color: #f68c06;
+    align: right;
+}
+input.btn.btn-warning.btn-send:hover{
+    background-color:#f26522;
+}
+.open-file-vac{
+    color: white;
     border-radius: 3px;
+}
+
+.right-colomn-vacancy input.form-control {
+    /*margin: 0;*/
+    /*margin-top: 5px;*/
+    border: 2px solid #f26522;
+    border-radius: 3px;
+}
+.right-colomn-vacancy input.form-control:hover{
+    border: 2px solid #66afe9;
 }
 
 .URL_vacancy span{

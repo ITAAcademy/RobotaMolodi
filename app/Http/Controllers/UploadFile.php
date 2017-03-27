@@ -23,7 +23,6 @@ class UploadFile extends Controller
         if(Input::hasFile('FileName'))
         {
             $file = Input::file('FileName');
-
             $validator = Validator::make(Request::all(), [
                 'FileName' => 'mimes:doc,docx,odt,rtf,txt,pdf|max:2048',
             ]);
