@@ -11,6 +11,7 @@
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 
 	@yield('head')
 
