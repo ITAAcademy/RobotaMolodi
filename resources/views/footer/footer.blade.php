@@ -56,7 +56,7 @@
             <span>© 2012 | Проект реалізовано за підтримки міжнародного фонду "Відродження"</span>
             <img src="{{asset('image/vidrodjenja.png')}}">
         </div>
-        <div class="inner-footer col-md-5" style="text-align: center;">
+        <div class="inner-footer col-md-5" style="text-align: right;">
             <span>Поділитись у соцмережах:</span>
             <a href="https://www.vk.com/"><i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i></a>
             <a href="https://www.linkedin.com/"><i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
