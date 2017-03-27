@@ -25,7 +25,7 @@ class FilterController extends Controller
             ->bySort($request->get('sortDate'))
             ->paginate();
 
-        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies,'news'=>$this->dataNews()]);
+        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
     }
 
     public function resumes(Request $request)
@@ -38,7 +38,7 @@ class FilterController extends Controller
             ->bySort($request->get('sortDate'))
             ->paginate();
 
-        return view('newDesign.resume.resumesList', ['resumes' => $resumes,'news'=>$this->dataNews()]);
+        return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
     }
 
     public function companies(Request $request)
@@ -59,11 +59,7 @@ class FilterController extends Controller
                 ->bySort($request->get('sortDate'))
                 ->paginate();
 
-        return view('newDesign.company.companiesList', ['companies' => $companies,'news'=>$this->dataNews()]);
-    }
-    private function dataNews(){
-        $news=new News();
-        return $news=$news->getNewsForMainPage();
+        return view('newDesign.company.companiesList', ['companies' => $companies]);
     }
 
 }
