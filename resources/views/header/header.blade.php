@@ -29,6 +29,7 @@
             </div>
         </div>
         <div class="col-md-offset-4" id="logoImg">
+            <div class="header-logo" style="margin-top: 5px; margin-bottom: 5px"><a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!}</a></div>
         </div>
     </nav>
 </header>
