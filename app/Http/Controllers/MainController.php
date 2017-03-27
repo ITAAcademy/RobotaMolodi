@@ -2,6 +2,7 @@
 use App\Models\City;
 use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
+use App\Models\News;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
@@ -73,11 +74,13 @@ class MainController extends Controller
             'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
-            'specialisations' => $specialisations
+            'specialisations' => $specialisations,
+            'news'=>$this->dataNews(),
         ));
     }
 
     public function showCompanies(){
+
         $companies = Company::latest('id')->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
@@ -89,7 +92,8 @@ class MainController extends Controller
             'companies' => $companies,
             'cities' => City::all(),
             'industries' => Industry::all(),
-            'specialisations' => $specialisations
+            'specialisations' => $specialisations,
+            'news'=>$this->dataNews(),
         ));
     }
 
@@ -102,12 +106,18 @@ class MainController extends Controller
                 'resumes' => $resumes
             ));
         }
+
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
             'cities' => City::all(),
             'industries' => Industry::all(),
-            'specialisations' => $specialisations
+            'specialisations' => $specialisations,
+            'news'=>$this->dataNews(),
         ));
+    }
+    private function dataNews(){
+        $news=new News();
+        return $news=$news->getNewsForMainPage();
     }
 
 

@@ -6,7 +6,7 @@
         <div><h2>{{ $newsOne->name }}</h2></div>
         <div>
             @if($newsOne->img!='Not picture')
-                <img class="imageOneNews" src="{{ asset($patch.$newsOne->img) }}">
+                <img class="imageOneNews" src="{{ asset($newsOne->getPath().$newsOne->img) }}">
             @endif
         </div>
         <div>{!! $newsOne->description !!}</div>

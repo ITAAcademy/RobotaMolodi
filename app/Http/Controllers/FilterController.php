@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
+use App\Models\News;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
