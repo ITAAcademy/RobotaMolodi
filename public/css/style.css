@@ -472,7 +472,9 @@ li[role='treeitem'].select2-results__option{
 .form-group a.login-text{
 	color: #f68c06;
 	text-decoration: none;
+	padding-left: 0px;
 }
+
 .form-group a.login-text:hover{
 	color: #f26522;
 	font-weight: bold;
