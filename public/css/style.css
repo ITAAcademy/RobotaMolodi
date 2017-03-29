@@ -469,6 +469,10 @@ li[role='treeitem'].select2-results__option{
 	background-color: #f26522;
 	border-color: #f26522;
 }
+button.btn.btn-primary.enter-button:focus{
+	background-color: #f26522;
+	border-color: #f26522;
+}
 .form-group a.login-text{
 	color: #f68c06;
 	text-decoration: none;
