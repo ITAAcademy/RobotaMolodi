@@ -56,16 +56,22 @@
 }
 
 .orangColor-resume{
-    color: #f26522;
+    color: #f68c06;
 }
 
-.orangColor-resume:hover {
-    color: #f68c06;
+.orangColor-resume:hover{
+    color: #f26522;
+}
+.orangColor-resume:focus{
+    color: #f26522;
 }
 .orangColor-resume-name{
     color: #797979;
 }
 .orangColor-resume-name:hover{
+    color: #f68c06;
+}
+.orangColor-resume-name:focus{
     color: #f68c06;
 }
 #writeOnPost{
