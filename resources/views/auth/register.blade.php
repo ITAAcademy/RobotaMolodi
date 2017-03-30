@@ -51,7 +51,7 @@
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary register-button">
+								<button type="submit" tabindex="1" class="btn btn-primary register-button">
 									Реєстрація
 								</button>
 							</div>
