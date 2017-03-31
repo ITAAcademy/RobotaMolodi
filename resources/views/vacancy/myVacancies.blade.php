@@ -12,7 +12,7 @@
 
 @section ('contents')
     @if($mes)
-        <span>{{$mes}} <a href="{{ url('vacancy/create') }}">Створiть</a></span>
+        <span>{{$mes}} <a href="{{ url('/vacancy/create') }}">Створiть</a></span>
     @endif
     @include('vacancy._vacancy')
 @stop

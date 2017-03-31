@@ -1,6 +1,7 @@
 @extends('app')
 @section('title')
 
+@stop
 @section('content')
     <div class="row">
         <div class="col-xs-11 col-md-7 header-tabs">
