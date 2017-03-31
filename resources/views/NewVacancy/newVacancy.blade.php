@@ -5,9 +5,9 @@
     {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()', 'id'=>'form_id'])!!}
 
     <div class="row">
-        <h3 class="formTitle"><b>Створення вакансії</b></h3>
+        <h3 class="formTitle header-text-vacancy"><b>додати вакансiю</b></h3>
         <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Позиція</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Позиція</label>
             <div class="col-md-6 col-sm-6">
                 <!-- {!! Form::text('position', Input::old('position'), array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!} -->
                 <select name="position" id="position" class="form-control" onsubmit="checkForm(this)">
@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="form-group" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Оберіть галузь</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Оберіть галузь</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control"  id="selectGaluz" name="branch">
                     @foreach($industries as $industry)
@@ -46,7 +46,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('Organisation') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Оберіть організацію</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Оберіть організацію</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="selectOrgan" name="Organisation">
                     @foreach($companies as $comp)
@@ -64,7 +64,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Зарплата (мiнiмальна)</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Зарплата (мiнiмальна)</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('salary', Input::old('salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
             </div>
@@ -74,7 +74,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Зарплата (максимальна)</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Зарплата (максимальна)</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
             </div>
@@ -84,7 +84,7 @@
 
     <div class="row">
         <div class="form-group" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Валюта</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Валюта</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="selectCurrency" name="currency_id">
                     @if (Input::old('currency_id')==''))
@@ -124,7 +124,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2  col-sm-2 control-label">Email роботодавця</label>
+            <label for="sector" class="col-md-2  col-sm-2 control-label label-text-vacancy">Email роботодавця</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
             </div>
@@ -134,7 +134,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label  for="sector" class="col-md-2 col-sm-2 control-label">Виберіть місто</label>
+            <label  for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Виберіть місто</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
                     @foreach($cities as $city)
@@ -157,7 +157,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">Опис</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Опис</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::textarea('description', Input::old('description'), array('class' => 'form-control','id'=>'description','onfocus' =>'validateDisc(this)')) !!}
             </div>
@@ -167,7 +167,7 @@
     </br>
 
     <div class="form-group" style="margin-top: 30px">
-        <label class="col-sm-2 control-label">Статус публікації</label>
+        <label class="col-sm-2 control-label label-text-vacancy">Статус публікації</label>
         <div class="col-sm-5">
             <select class="form-control" id="published" name="published" >
                 @if (Input::old('published')=='')
