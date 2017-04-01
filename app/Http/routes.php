@@ -39,6 +39,12 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+
+//admin
+Route::group(['prefix' => 'admin', 'middleware' => 'auth, admin'], function (){
+    Route::get('/',['as' => 'admin_index', 'uses' => 'Admin\AdminController@index']);
+});
+
 Route::get('nata', function(){return 'Get well, Nataly!';});
 
 //////Search Route//////////////
