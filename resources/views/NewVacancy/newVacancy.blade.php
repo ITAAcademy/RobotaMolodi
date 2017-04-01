@@ -236,6 +236,7 @@
 <script>
 	$(document).ready(function() {
 		CKEDITOR.replace( 'description' );
+		$(".js-example-basic-multiple").select2();
 	});
 </script>
 
