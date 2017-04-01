@@ -25,7 +25,8 @@
                         </a>
                     </div>
                     <div class="amount-companies-list">
-                        <p>  <a href="{{$company->url}}{{$company->id}}"  class="link">1 Вакансія</a></p>
+                        {{--<p>  <a href="{{route('main.showVacancies', $company->id)}}" class="link">Вакансій</a></p>--}}
+                        <p>  <a href="{{route('main.showCompanyVacancies', $company->id)}}" class="showCompanyVacancies">Вакансій</a></p>
                     </div>
                     <div class="row description-companies">
                         <div>{{strip_tags($company->description)}}</div>
@@ -56,3 +57,4 @@
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.companies'])
+

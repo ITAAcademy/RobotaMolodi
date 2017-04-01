@@ -119,7 +119,20 @@ class MainController extends Controller
         $news=new News();
         return $news=$news->getNewsForMainPage();
     }
-
-
+//    public function showVacanciesCompany($id){
+//        $vacancies = Vacancy::AllVacancies()->paginate();
+////        $vacancies = Vacancy::find($id);
+//        $specialisations = Vacancy::groupBy('position')->lists('position');
+//        if(Request::ajax()){
+//            return view('newDesign.vacancies.vacanciesList', array(
+//                'vacancies' => $vacancies
+//            ));
+//        }
+//    }
+//    public function showCompanyVacancies($companyId){
+//        dd('dsd');
+//        $vacancies = Company::find($companyId)->Vacancies();
+//        return view('main.filter.filterVacancies', ['vacancies' => $vacancies]);
+//    }
 
 }

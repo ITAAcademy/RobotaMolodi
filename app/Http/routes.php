@@ -134,3 +134,4 @@ Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterControlle
 Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
 Route::resource('/news','NewsController');
+Route::any('showCompanyVacancies',['as'=>'main.showCompanyVacancies','uses'=>'Company\CompanyController@showCompanyVacancies']);

@@ -242,6 +242,11 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             return Redirect::to('auth/login');
 	}
 
+	public function showCompanyVacancies(Company $company){
+		    dd($company);
+      $vacancies = Company::find($company->id)->Vacancies();
+      return view('main.filter.filterVacancies', ['vacancies' => $vacancies]);
+    }
 	/**
 	 * Update the specified resource in storage.
 	 *
