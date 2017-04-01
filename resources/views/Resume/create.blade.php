@@ -24,6 +24,7 @@
                 $(window).unbind('beforeunload');
             });
         });
+        $(".js-example-basic-multiple").select2();
 
     });
 </script>
