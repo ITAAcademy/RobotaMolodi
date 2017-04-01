@@ -49,9 +49,10 @@
 							<div class="col-md-6 col-md-offset-4">
 								<div>
 									<button type="submit" class="btn btn-primary enter-button">Увійти</button>
-									<div >
-										<a class="btn btn-link login-text" href="{{ url('/password/email') }}">Забули свій пароль?</a>
-										<a class="btn btn-link login-text" href="{{ url('/auth/register') }}">Зареєструватися</a>
+									<div>
+										<a class="btn btn-link login-text" style="margin-top: 6px"  href="{{ url('/password/email') }}">Забули свій пароль?</a>
+										<br>
+										<a class="btn btn-link login-text" style="padding-top: 0px" href="{{ url('/auth/register') }}">Зареєструватися</a>
 									</div>
 								</div>
 							</div>
