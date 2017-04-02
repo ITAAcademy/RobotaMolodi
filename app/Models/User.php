@@ -42,9 +42,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     /**
      * @return array
      */
-    public function User_Role()
+    public function Role()
     {
-        return $this->belongsTo('App\Models\User_Role');
+        return $this->belongsTo('App\Models\Role');
     }
     
     public function hasAnyCompany()

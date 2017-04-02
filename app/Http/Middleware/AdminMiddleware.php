@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use User;
+use App\Models\User;
+use App\Models\User_Role;
+use Auth;
 
 class AdminMiddleware
 {
@@ -16,6 +18,17 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::User()){
+            $user = User::find(Auth::user()->id);
 
+            if ($user->role->name == 'Admin')
+            {
+                return $next($request);
+            }else{
+                return redirect()->guest('/');
+            }
+        }else{
+            return redirect()->guest('auth/login');
+        }
     }
 }
