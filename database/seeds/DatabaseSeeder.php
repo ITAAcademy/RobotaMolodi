@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder {
 }
 
 
-
 class VacancySeeder extends Seeder
 {
     public function Run()

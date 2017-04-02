@@ -10,7 +10,8 @@
         "laravelcollective/html":"~5.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
 		"swiftmailer/swiftmailer": "^5.4",
-		"unisharp/laravel-ckeditor": "^4.5"
+		"unisharp/laravel-ckeditor": "^4.5",
+		"doctrine/dbal": "v2.5.12"
 
 	},
 	"require-dev": {
