@@ -1,4 +1,3 @@
-<link href="{{ asset('/css/footer.css') }}" rel="stylesheet">
 <footer class="row footer">
     <div class="container-footer col-xs-12">
         <div class="inner-footer col-sm-6 col-md-3">
