@@ -57,11 +57,11 @@
         </div>
         <div class="inner-footer col-md-5" style="text-align: right;">
             <span>Поділитись у соцмережах:</span>
-            <a href="https://www.vk.com/"><i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.linkedin.com/"><i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/"><i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.twitter.com/"><i class="fa-soc fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.google.com/"><i class="fa-soc fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://vk.com/intita"><i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i></a>
+            <a href="https://intita.com/studentreg"><i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/intita.hr/"><i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/INTITA_EDU"><i class="fa-soc fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://plus.google.com/u/0/116490432477798418410"><i class="fa-soc fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>
         </div>
     </div>
 </footer>
