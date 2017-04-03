@@ -1,5 +1,5 @@
 @extends('app')
-
+<link href="{{ asset('/css/resumes/myResume.css') }}" rel="stylesheet">
 @section('content')
     {!!Form::open(['route' => 'main.resumes', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
     <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
@@ -12,56 +12,59 @@
     {!! Form::close() !!}
 
     <div class="panel panel-orange" id="vrBlock">
-
-        <div class="logos">
-            <div class="panel panel-orange" id="vimg">
-                @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
-                    {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')))
-                    {!! Html::image('image/resume/' . $resume->id_u . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')))
-                    {!! Html::image('image/resume/' . $resume->id_u . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')))
-                    {!! Html::image('image/resume/' . $resume->id_u . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @else
-                    {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                @endif
-
-            </div>
-            <div>
-             <a style="margin-left: 70px" class="orangeLinks" href="javascript:sendFile()">
-                    {!! Html::image('image/update.png', 'del') !!}
-                    <span style="font-size: 14px; text-decoration: underline">Змiнити фото</span>
-                </a>
-                <br>
-                @if(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')) ||
-                    File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')) ||
-                    File::exists(public_path('image/resume/' . $resume->id_u . '.png')) ||
-                    File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')) )
-           <a style="margin-left: 70px" class="orangeLinks" href="javascript:deletePhoto()">
-                {!! Html::image('image/delete.png', 'del') !!}
-                <span style="font-size: 14px; text-decoration: underline">Видалити фото</span>
-            </a>'
+        <div>
+            <div class="col-md-3">
+                <div class="panel panel-orange" id="vimg">
+                    @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
+                        {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')))
+                        {!! Html::image('image/resume/' . $resume->id_u . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')))
+                        {!! Html::image('image/resume/' . $resume->id_u . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')))
+                        {!! Html::image('image/resume/' . $resume->id_u . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @else
+                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
+                </div>
+                <div>
+                    <a class="orangeLinks" href="javascript:sendFile()">
+                        {!! Html::image('image/update.png', 'del') !!}
+                        <span style="font-size: 14px; text-decoration: underline">Змiнити фото</span>
+                    </a>
+                    <br>
+                    @if(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')) ||
+                        File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')) ||
+                        File::exists(public_path('image/resume/' . $resume->id_u . '.png')) ||
+                        File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')) )
+                    <a class="orangeLinks" href="javascript:deletePhoto()">
+                        {!! Html::image('image/delete.png', 'del') !!}
+                        <span style="font-size: 14px; text-decoration: underline">Видалити фото</span>
+                    </a>'
+                   @endif
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="datAnnoyingSizes">
+                    <div class="panel-heading">
+                        <p class="position_resume">
+                            <a class="orangColor-resume-name" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
+                            <br>
+                        </p>
+                        <p class="price_resume">
+                            <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
+                        </p>
+                        <p class="name_resume"> {!!$resume->name_u!!}</p>
+                    </div>
+                    <div class="panel-description-resume">
+                        <p class="position_resume"><a class="orangColor-resume" href="javascript:submit('selectIndustry', {{$resume->Industry()->id}})">{!!$resume->Industry()->name!!}</a></p>
+                        <p class="list-group-item"><span class="heading">Телефон: </span> {!!$resume->telephone!!}</p>
+                        <p class="list-group-item"><span class="heading">Опис:</span> {!!$resume->description!!} <span class="text-muted text-right pull-right"></span></p>
+                        <p class="list-group-item" id="opt-data-low" style="color: #777777;"><a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{!!$city->name!!}</a> <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->updated_at))}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div id="datAnnoyingSizes">
-            <div class="panel-heading">
-                <h2>
-                    <a class="orangeLinks" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
-                    <br><span style="color: red">{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
-                </h2>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item"> {!!$resume->name_u!!}</li>
-                <li class="list-group-item"><a class="orangeLinks" href="javascript:submit('selectIndustry', {{$resume->Industry()->id}})">{!!$resume->Industry()->name!!}</a></li>
-                <li class="list-group-item"><span class="heading">Телефон: </span> {!!$resume->telephone!!}</li>
-                <li class="list-group-item"><span class="heading">Опис:</span> {!!$resume->description!!} <span class="text-muted text-right pull-right"></span></li>
-                <li class="list-group-item" id="opt-data-low" style="color: #777777;"><a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{!!$city->name!!}</a> <span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($resume->updated_at))}}</li>
-            </ul>
-        </div>
-
     </div>
 
     <ul class="nav navbar-nav navbar-left"  style="margin-left: 225px">
