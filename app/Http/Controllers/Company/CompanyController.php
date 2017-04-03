@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use App\Models\News;
 use View;
 use Input;
 use Validator;
@@ -242,10 +243,27 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             return Redirect::to('auth/login');
 	}
 
-	public function showCompanyVacancies(Company $company){
-		    dd($company);
-      $vacancies = Company::find($company->id)->Vacancies();
-      return view('main.filter.filterVacancies', ['vacancies' => $vacancies]);
+	public function showCompanyVacancies(Company $company, $id){
+        $id = $company->get();
+//		    dd($id);
+		    //dd($company->Vacancies());
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        $vacancies = Vacancy::where('company_id','=',$id)->get();
+//      $vacancies = $company->Vacancies()->whereIn('company_id',$id)->get();
+
+//      dd($vac);
+      return view('main.filter.filterVacancies', array(
+          'vacancies' => $vacancies,
+          'cities' => City::all(),
+          'industries' => Industry::all(),
+          'specialisations' => $specialisations,
+          'news'=>$this->dataNews(),
+      ));
+    }
+
+    private function dataNews(){
+        $news=new News();
+        return $news=$news->getNewsForMainPage();
     }
 	/**
 	 * Update the specified resource in storage.
