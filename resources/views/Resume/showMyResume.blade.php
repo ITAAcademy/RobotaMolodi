@@ -73,15 +73,16 @@
                 </p>
             </div>
             <div class="col-xs-12 button-change-resume">
-                <div class="col-xs-12 col-md-4"></div>
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-12 col-md-3"></div>
+                <div class="col-xs-4 col-md-3"></div>
+                <div class="col-xs-4 col-md-3">
                     <a id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <span class="writeOnPost"><span>Видалити</span></span>
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-4">
+                <div class="col-xs-4 col-md-3">
                     <a id="writeOnPost" href="{{$resume->id}}/edit">
-                        <div class="writeOnPost chg-btn">Редагувати</div>
+                        <div class="writeOnPost">Редагувати</div>
                     </a>
                 </div>
             </div>
