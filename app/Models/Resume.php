@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Resume extends Model {
 
@@ -156,6 +157,20 @@ class Resume extends Model {
             return $query->where('updated_at','<=',$date);
         }else{
             return $query;
+        }
+    }
+    
+    public function scopeCheckNoAccess($query){
+        $user = auth()->user();
+        if(Auth::check()){
+            if($user->role_id == 1){
+                return $query;
+            }else{
+                return $query->where('published','!=',0)
+                             ->orWhere('id_u','=',$user->id);
+            }
+        }else{
+            return $query->where('published','!=',0);
         }
     }
 }

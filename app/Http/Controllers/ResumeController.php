@@ -60,7 +60,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function index(Guard $auth)//Output all resumes
     {
         if (Auth::check()) {
-                    $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
+            $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
             if (count($resumes)==0) {
                 $mes = "Зараз у Вас немає резюме.";
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
@@ -167,7 +167,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $search_boolean = 'false';
         $search_request = "";
         $resume = $this->getResume($id);
-
         $userResume = $resume->ReadUser($id);
 
         $city = City::find($resume->city);
@@ -188,11 +187,12 @@ class ResumeController extends Controller {// Клас по роботі з ре
             }
         }
         if(!Auth::check() && ($resume->published == 0 || $resume->published == 2)) {
-            abort(404);
+//            abort(404);
+            $view ="Resume.noAccessResume";
         }
         else{
             if (Auth::check())
-                if(Auth::user()->id != $userResume->id && $resume->published == 0 && Auth::user()->role !=1 )
+                if(Auth::user()->id != $userResume->id && $resume->published == 0 && Auth::user()->role_id !=1 )
                     abort(404);
         }
 
@@ -281,7 +281,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
     public function block(Request $request, Guard $auth)
     {
-        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+        if (Auth::user()->role_id == 1 && $request->isMethod('post')) {
             $updateResume = Resume::find($request['id']);
             $updateResume->published =0;
             $updateResume->save();
