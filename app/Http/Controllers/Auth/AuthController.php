@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller {
 
-	protected $redirectPath = '/';
+	protected $redirectPath = '/resume';
 	/*
 	|--------------------------------------------------------------------------
 	| Registration & Login Controller
@@ -44,16 +44,14 @@ class AuthController extends Controller {
 	public function __construct()
 	{
 
-		if (Cookie::get('url')!='')
-			$this->redirectPath =  Cookie::get('url');
-		$this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
+
 
 	}
 
 	public function getLastRoute(){
 		return Redirect::intended();
 	}
-
 
 //
 //	public function redirectPath()
