@@ -1,20 +1,21 @@
-.position_resume{
+.position-resume{
     font-size: 24px;
     font-family: SegoeUI;
     margin: 0;
     color: #f26522;
 }
+
 /*#datAnnoyingSizes .panel-description-resume*/
 #resImg{
     border-radius: 10px;
 }
-.price_resume{
+.price-resume{
     color: #CD2626;
     font-size: 18px;
     font-weight: bold;
 }
 
-.name_resume{
+.name-resume{
     font-size: 24px;
     font-family: SegoeUI;
     color: #797979;
@@ -42,25 +43,37 @@
     border-radius: 5px;
     background-color: #f68c06;
     height: 44px;
-    width: 250px;
+    width: 90%;
     text-align: center;
     line-height: 44px;
     cursor: pointer;
     font-family: SegoeUI;
     display: inline-block;
     float: right;
+    margin: 1%;
 }
-
+.writeOnPost:hover{
+    border:1px solid #f26522;
+    background-color: #f26522;
+}
+@media screen and (max-width: 990px) {
+    .writeOnPost{
+        font-size: 16px;
+    }
+}
 #vrBlock a{
     text-decoration: none;
 }
 
 .orangColor-resume{
-    color: #f26522;
+    color: #f68c06;
 }
 
-.orangColor-resume:hover {
-    color: #f68c06;
+.orangColor-resume:hover{
+    color: #f26522;
+}
+.orangColor-resume:focus{
+    color: #f26522;
 }
 .orangColor-resume-name{
     color: #797979;
@@ -68,11 +81,14 @@
 .orangColor-resume-name:hover{
     color: #f68c06;
 }
+.orangColor-resume-name:focus{
+    color: #f26522;
+}
 #writeOnPost{
     color: white;
 }
 
-.cityTime_resume{
+.cityTime-resume{
     font-size: 20px;
     color:#f68c06;
     font-family: SegoeUI;
@@ -88,4 +104,26 @@
 {
     color: #f48952;
     font-size: 24px;
+}
+.button-change-resume{
+    margin-bottom: 10px;
+    font-family: SegoeUI;
+    font-size: 20px;
+}
+.button-change-resume div{
+    padding: 0px;
+}
+.change-img-myresume{
+    font-family: SegoeUI;
+    font-size: 14px;
+    margin-left: 15px;
+}
+.orange-link-myresume{
+    color:#f68c06;
+}
+.orange-link-myresume:hover{
+    color: #f26522;
+}
+.orange-link-myresume:focus{
+    color: #f26522;
 }

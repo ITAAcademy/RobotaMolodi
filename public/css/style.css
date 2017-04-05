@@ -480,3 +480,8 @@ li[role='treeitem'].select2-results__option{
 	font-weight: bold;
 	text-decoration: none;
 }
+#vimg img{
+	border-radius: 7px;
+	/*width: 100%;*/
+	height: 100%;
+}
