@@ -1,0 +1,28 @@
+.header-tabs{
+    margin-bottom:-0px;
+    padding-left: 0px;
+}
+
+.header-tabs>ul>li {
+    padding-bottom:0;
+    font-family: SegoeUIRegular;
+    font-size: 18px;
+}
+
+.header-tabs img {
+    margin-right:10px;
+}
+
+.header-tabs>ul>li.active>a, .header-tabs>ul>li.active>a:focus, .header-tabs>ul>li.active>a:hover {
+    color:#999999;
+}
+
+.header-tabs>ul>li>a, .header-tabs>ul>li>a:focus, .header-tabs>ul>li>a:hover {
+    color:#666666;
+}
+
+.header-tabs>ul>li>a {
+    border: 1px solid #dddddd;
+    margin-right:-1px;
+    height:50px;
+}

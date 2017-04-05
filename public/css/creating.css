@@ -1,0 +1,117 @@
+/*//////////////////NEW VACANCY//////////////*/
+
+@font-face {
+    -ms-font-family: "SegoeUI";
+    -ms-src: url(../fonts/SegoeUIRegular.ttf);
+    font-family: "SegoeUI";
+    src: url(../fonts/SegoeUIRegular.ttf);
+    -ms-font-family: "ACLine";
+    -ms-src: url(../fonts/ACLine.ttf);
+    font-family: "ACLine";
+    src: url(../fonts/ACLine.ttf);
+}
+
+.header-text-vacancy {
+    color: #F68C06;
+    /*margin-left: 15px;*/
+    margin-bottom: 0;
+    font-family: "ACLine";
+    -ms-font-family: "ACLine";
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.label-text-vacancy{
+    /*margin-right: -15px;*/
+    line-height: 44px;
+    display: inline-block;
+    text-align: right;
+    /*margin-bottom: -3px;*/
+    min-width: 167px;
+    font-family: "Segoe UI", sans-serif;
+    -ms-font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color:#666666;
+}
+
+.inputPlace{
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid #D6D6D6;
+}
+
+
+
+
+/*///////////////NEW COMPANY////////////*/
+
+.header-text-company {
+    color: #F68C06;
+    /*margin-left: 15px;*/
+    margin-bottom: 0;
+    font-family: "ACLine";
+    -ms-font-family: "ACLine";
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.label-text-company{
+    /*margin-right: -15px;*/
+    line-height: 44px;
+    display: inline-block;
+    text-align: right;
+    /*margin-bottom: -3px;*/
+    min-width: 167px;
+    font-family: "Segoe UI", sans-serif;
+    -ms-font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color:#666666;
+}
+
+.inputPlace2{
+    width: 100%;
+    height: 44px;
+    border-radius: 5px;
+    border: 1px solid #D6D6D6;
+}
+
+.inputPlace-description{
+    height: 150px;
+}
+
+
+
+/*//////////////////NEW RESUME////////////*/
+
+.header-resume {
+    margin-bottom: 20px;
+}
+
+.header-text-resume {
+    color: #F68C06;
+    /*margin-left: 15px;*/
+    margin-bottom: 0;
+    font-family: "ACLine";
+    -ms-font-family: "ACLine";
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.label-text-resume{
+    /*margin-right: -15px;*/
+    line-height: 44px;
+    display: inline-block;
+    text-align: right;
+    /*margin-bottom: 3px;*/
+    min-width: 167px;
+    font-family: "Segoe UI", sans-serif;
+    -ms-font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color:#666666;
+}
+
+

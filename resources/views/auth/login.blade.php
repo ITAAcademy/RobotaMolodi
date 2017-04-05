@@ -52,6 +52,7 @@
 									<div >
 										<a class="btn btn-link login-text" href="{{ url('/password/email') }}">Забули свій пароль?</a>
 										<a class="btn btn-link login-text" href="{{ url('/auth/register') }}">Зареєструватися</a>
+
 									</div>
 								</div>
 							</div>
