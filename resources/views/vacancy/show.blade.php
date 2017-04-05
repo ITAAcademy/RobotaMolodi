@@ -46,19 +46,19 @@
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        <a class="greyLinks" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
+                        <a class="greyLinks" tabindex="1" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                        <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
                     </div>
                     <div>
                         <div class="text_vac otstup1"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{$vacancy->description}}</div>
+                        <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{strip_tags($vacancy->description)}}</div>
                     </div>
                     <div>
                         <div class="text_data otstup1">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
+use App\Models\News;
 use View;
 use Input;
 use Validator;
@@ -241,6 +242,8 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         else
             return Redirect::to('auth/login');
 	}
+
+
 
 	/**
 	 * Update the specified resource in storage.

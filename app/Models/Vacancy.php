@@ -163,6 +163,7 @@ class Vacancy extends Model {
             return $query;
         }
     }
+
 //    public function companyModel(){
 //        return $this->belongsTo(Company::class);
 //    }
