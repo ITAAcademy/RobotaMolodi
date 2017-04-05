@@ -32,27 +32,21 @@
     text-decoration: none;
 }
 .links-line-companies-list{
+    color: #4F4F4F;
+    text-decoration: none;
+}
+.links-line-companies-list:hover{
     color: #f68c06;
+    text-decoration: none;
+}
+.links-line-companies-list:focus{
+    color: #f26522;
     text-decoration: none;
 }
 a{
     text-decoration: none;
 }
-.links-line-companies-list:hover{
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links-line-companies-list:hover h3 {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links-line-companies-list:hover p {
-    display: block;
-    color: orange;
+a:hover{
     text-decoration: none;
 }
 .links-line :-webkit-any-link{
@@ -86,6 +80,25 @@ a{
     font-size: 18px;
     font-family: SegoeUIRegular;
 }
-.amount-companies-list p{
+.showCompanyVacancies{
+    color: #f68c06;
     font-size: 14px;
+    font-family: SegoeUIRegular;
+}
+.showCompanyVacancies:hover{
+    color: #f26522;
+}
+.showCompanyVacancies:focus{
+    color: #f26522;
+    text-decoration: none;
+}
+.read-next-link .next-com-list{
+    color: #f68c06;
+}
+.read-next-link .next-com-list:hover{
+    color: #f26522;
+}
+.read-next-link .next-com-list:focus{
+    color: #f26522;
+    text-decoration: none;
 }
