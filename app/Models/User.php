@@ -32,13 +32,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 
 	protected $hidden = ['password', 'remember_token'];
-
+    
     private function hasCompany()
     {
 //       return $this->hasMany('App\Models\Company','users_id')->get();
         return $this->hasMany('App\Models\Company','users_id');
     }
 
+    public function role(){
+        return $this->belongsTo('App\Models\Role');    
+    }
+    
     public function hasAnyCompany()
     {
         $hasAnyCompany = User::hasCompany();
