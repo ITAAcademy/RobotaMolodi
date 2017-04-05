@@ -1,41 +1,127 @@
-.orangColor-resume-name{
-    color: #797979;
-    text-decoration: none;
-}
-.orangColor-resume-name:hover{
-    color: #f68c06;
-}
-.position_resume{
+.position-resume{
     font-size: 24px;
     font-family: SegoeUI;
     margin: 0;
     color: #f26522;
 }
-#vrBlock a{
-    text-decoration: none;
+
+/*#datAnnoyingSizes .panel-description-resume*/
+#resImg{
+    border-radius: 10px;
 }
-.price_resume{
+.price-resume{
     color: #CD2626;
     font-size: 18px;
     font-weight: bold;
 }
-.name_resume{
+
+.name-resume{
     font-size: 24px;
     font-family: SegoeUI;
     color: #797979;
     margin: 0;
 }
-
-.orangColor-resume{
-    color: #f26522;
+.phone-nomber-resume{
+    font-size: 18px;
+    color: #797979;
+    font-family: SegoeUI;
 }
 
-.orangColor-resume:hover {
+.description-one-resume{
+    font-weight: bold;
+    font-size: 24px;
+    font-family: SegoeUI;
+    color: #797979;
+}
+.description-footer-resume{
+    font-family: SegoeUI;
+    font-size: 14px;
+    color: #797979;
+}
+.writeOnPost{
+    border:1px solid #f68c06;
+    border-radius: 5px;
+    background-color: #f68c06;
+    height: 44px;
+    width: 60%;
+    text-align: center;
+    line-height: 44px;
+    cursor: pointer;
+    font-family: SegoeUI;
+    display: inline-block;
+    float: right;
+    margin: 1%;
+}
+.writeOnPost:hover{
+    border:1px solid #f26522;
+    background-color: #f26522;
+}
+
+#vrBlock a{
+    text-decoration: none;
+}
+
+.orangColor-resume{
     color: #f68c06;
+}
+
+.orangColor-resume:hover{
+    color: #f26522;
+}
+.orangColor-resume:focus{
+    color: #f26522;
 }
 .orangColor-resume-name{
     color: #797979;
 }
 .orangColor-resume-name:hover{
     color: #f68c06;
+}
+.orangColor-resume-name:focus{
+    color: #f26522;
+}
+#writeOnPost{
+    color: white;
+}
+
+.cityTime-resume{
+    font-size: 20px;
+    color:#f68c06;
+    font-family: SegoeUI;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.button-city-time{
+    display: inline-block;
+    width: 100%;
+}
+#yellowCircle-resume
+{
+    color: #f48952;
+    font-size: 24px;
+}
+.button-change-resume{
+    margin-bottom: 10px;
+    font-family: SegoeUI;
+    font-size: 20px;
+}
+.change-img-myresume{
+    font-family: SegoeUI;
+    font-size: 14px;
+    margin-left: 15px;
+}
+.orange-link-myresume{
+    color:#f68c06;
+}
+.orange-link-myresume:hover{
+    color: #f26522;
+}
+.orange-link-myresume:focus{
+    color: #f26522;
+}
+#vimg img{
+    border-radius: 7px;
+    /*width: 100%;*/
+    height: 100%;
 }
