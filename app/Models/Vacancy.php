@@ -163,11 +163,7 @@ class Vacancy extends Model {
             return $query;
         }
     }
-////    public function scopeByVacanciesCompany($query, $vacancies){
-//////        $company = $this->belongsTo('App\Models\Company','company_id')->get();
-//////        return $company;
-//
-//    }
+
 //    public function companyModel(){
 //        return $this->belongsTo(Company::class);
 //    }

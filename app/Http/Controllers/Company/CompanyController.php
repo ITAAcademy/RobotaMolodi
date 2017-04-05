@@ -243,28 +243,8 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             return Redirect::to('auth/login');
 	}
 
-	public function showCompanyVacancies(Company $company, $id){
-        $id = $company->get();
-//		    dd($id);
-		    //dd($company->Vacancies());
-        $specialisations = Vacancy::groupBy('position')->lists('position');
-        $vacancies = Vacancy::where('company_id','=',$id)->get();
-//      $vacancies = $company->Vacancies()->whereIn('company_id',$id)->get();
 
-//      dd($vac);
-      return view('main.filter.filterVacancies', array(
-          'vacancies' => $vacancies,
-          'cities' => City::all(),
-          'industries' => Industry::all(),
-          'specialisations' => $specialisations,
-          'news'=>$this->dataNews(),
-      ));
-    }
 
-    private function dataNews(){
-        $news=new News();
-        return $news=$news->getNewsForMainPage();
-    }
 	/**
 	 * Update the specified resource in storage.
 	 *
