@@ -9,7 +9,7 @@
                     </div>
                     <div class="panel-body">
                         <h4 class="list-group-item-heading">{{ $vacancy->Industry()->name}}</h4>
-                        <h4 class="list-group-item-heading">{{ $vacancy->Company()->company_name}}</h4>
+                        <h4 class="list-group-item-heading">{{ $vacancy->company->company_name}}</h4>
                         <h4 class="list-group-item-heading">@foreach($vacancy->City() as $city){{ $city->name}} @endforeach</h4>
                     </div>
                 </div>

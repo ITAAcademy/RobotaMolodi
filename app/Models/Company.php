@@ -32,6 +32,7 @@ class Company extends Eloquent {
     {
         return $this->hasMany('App\Models\Vacancy');
     }
+    
     public function ReadCompany()
     {
 

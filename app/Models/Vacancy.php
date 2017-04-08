@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Company;
+
 use Illuminate\Support\Facades\Session;
 
 class Vacancy extends Model {
@@ -16,6 +19,10 @@ class Vacancy extends Model {
         $company = $this->belongsTo('App\Models\Company','company_id')->first();
 
         return $company;
+    }
+
+    public function Company(){
+        return $this->belongsTo('App\Models\Company');
     }
 
 //Fill and return vacancy Model
@@ -163,8 +170,21 @@ class Vacancy extends Model {
             return $query;
         }
     }
-//    public function companyModel(){
-//        return $this->belongsTo(Company::class);
-//    }
+
+    public function scopeCheckNoAccess($query){
+        $user = auth()->user();
+
+        if(Auth::check()){
+            if($user->role_id == 1){
+                return $query;
+            }else{
+                $comId = Company::where('users_id','=',$user->id)->get()->pluck('id');
+                return $query->whereIn('vacancies.company_id',$comId->toArray())
+                             ->orWhere('published','!=',0);
+            }
+        }else{
+            return $query->where('published','!=',0);
+        }
+    }
 
 }

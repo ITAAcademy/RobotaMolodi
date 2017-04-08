@@ -63,7 +63,7 @@ class MainController extends Controller
 
     public function showVacancies()
     {
-        $vacancies = Vacancy::AllVacancies()->paginate();
+        $vacancies = Vacancy::AllVacancies()->checkNoAccess()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
