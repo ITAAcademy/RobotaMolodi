@@ -120,6 +120,4 @@ class MainController extends Controller
         return $news=$news->getNewsForMainPage();
     }
 
-
-
 }

@@ -20,20 +20,21 @@
             <div class="col-xs-9 content-companies-list">
                 <div class="section-links">
                     <div>
-                        <a class="links-line-companies-list" href="/company/{{$company->id}}" >
-                            <h3 class="name-companies-list">{{$company->company_name}}</h3>
-                        </a>
+                        <h3 class="name-companies-list">
+                            <a class="links-line-companies-list" href="/company/{{$company->id}}" >{{$company->company_name}}</a>
+                        </h3>
                     </div>
                     <div class="amount-companies-list">
-                        <p>  <a href="{{$company->url}}{{$company->id}}"  class="link">1 Вакансія</a></p>
+{{--                        <p>  <a href="{{route('main.showVacancies', $company->id)}}" class="link">Вакансій</a></p>--}}
+                        <p>  <a href="/company/{{$company->id}}" class="showCompanyVacancies">Вакансій {{$company->Vacancies()->count()}}</a></p>
                     </div>
                     <div class="row description-companies">
                         <div>{{strip_tags($company->description)}}</div>
                     </div>
                 </div>
-                <a class="links-line-companies-list" href="/company/{{$company->id}}">
-                    <p class="read-next-link">Читати далі...</p>
-                </a>
+                <div>
+                    <p class="read-next-link"><a class="next-com-list" href="/company/{{$company->id}}">Читати далі...</a></p>
+                </div>
             </div>
             <hr class="col-xs-12 limit-line-w">
         </div>
@@ -56,3 +57,4 @@
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.companies'])
+

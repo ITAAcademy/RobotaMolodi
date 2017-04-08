@@ -88,6 +88,12 @@ i.fa-google-plus-square {
     color: #f68c06;
     word-break: break-all;
 }
+.orangeLinks:hover{
+    color: #f26522;
+}
+.orangeLinks:focus{
+    color: #f26522;
+}
 .greyLinks{
     padding: 0;
     margin: 0;
@@ -95,6 +101,12 @@ i.fa-google-plus-square {
     color: #797979;
     word-break: break-all;
     font-weight: 600;
+}
+.greyLinks:hover{
+    color: #f26522;
+}
+.greyLinks:focus{
+    color: #f26522;
 }
 .panel-headings{
     padding-top: 5px;

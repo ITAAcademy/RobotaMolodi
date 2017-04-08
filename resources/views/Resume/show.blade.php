@@ -1,10 +1,6 @@
 @extends('app')
 <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
 @section('content')
-    {!!Form::open(['route' => 'main.resumes', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
-    <input type = "hidden" name = "filterName" id = "filterName"/>
-    <input type = "hidden" name = "filterValue" id = "filterValue"/>
-    {!!Form::close()!!}
 
     <div class="panel panel-orange" id="vrBlock">
         <div>
@@ -27,7 +23,7 @@
             <div id="datAnnoyingSizes">
                 <div class="panel-heading">
                     <p class="position_resume">
-                        <a class="orangColor-resume-name" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
+                        <a tabindex="1" class="orangColor-resume-name" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
                     </p>
                     <p class="price_resume">
                         {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
@@ -36,13 +32,13 @@
                     </br>
                 </div>
                 <div class="panel-description-resume">
-                    <p class="position_resume"><a class="orangColor-resume" href="javascript:submit('selectIndustry','{{$resume->Industry()->id}}')">{!!$resume->Industry()->name!!}</a></p>
-                    {{--<hr/>--}}
+                    <p class="position_resume"><a tabindex="1" class="orangColor-resume" href="javascript:submit('selectIndustry','{{$resume->Industry()->id}}')">{!!$resume->Industry()->name!!}</a></p>
+
                     <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
-                    {{--<hr/>--}}
+
                     <p><span class="description-one-resume">Опис: </span></p>
-                    <p class="description-footer-resume"> {!!$resume->description!!}</p>
-                    {{--<hr/>--}}
+                    <p class="description-footer-resume"> {!!strip_tags($resume->description)!!}</p>
+
                     <div class="button-city-time">
                         <p class="cityTime_resume">
                             <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>

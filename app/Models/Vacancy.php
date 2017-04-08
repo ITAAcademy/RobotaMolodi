@@ -24,7 +24,7 @@ class Vacancy extends Model {
     public function Company(){
         return $this->belongsTo('App\Models\Company');
     }
-
+    
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
@@ -170,10 +170,9 @@ class Vacancy extends Model {
             return $query;
         }
     }
-
     public function scopeCheckNoAccess($query){
         $user = auth()->user();
-
+        
         if(Auth::check()){
             if($user->role_id == 1){
                 return $query;
@@ -186,5 +185,4 @@ class Vacancy extends Model {
             return $query->where('published','!=',0);
         }
     }
-
 }

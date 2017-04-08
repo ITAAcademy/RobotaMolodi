@@ -26,5 +26,9 @@
         });
         $(".js-example-basic-multiple").select2();
 
+        $("#selectIndustry").select2();
+
+        $("#selectCurrency").select2();
+
     });
 </script>
