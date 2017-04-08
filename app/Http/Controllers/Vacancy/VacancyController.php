@@ -237,7 +237,8 @@ class VacancyController extends Controller
         }
 
         if(!Auth::check() && ($vacancy->published == 0 || $vacancy->published == 2)) {
-            abort(404);
+//            abort(404);
+            $view ="vacancy.noAccessVacancy";
         }
         else{
             if (Auth::check())
