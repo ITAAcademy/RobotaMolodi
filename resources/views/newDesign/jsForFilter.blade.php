@@ -84,6 +84,34 @@ $(document).ready(function () {
         });
     })
 
+    //script for close top vacancies
+
+    $('#close-top-vac').on('click', function (e) {
+        e.preventDefault();
+        if($('#news').hasClass('hidden')){
+            $('#topvac').addClass('hidden');
+            $('#left-content-column').removeClass('col-xs-9');
+            $('#right-content-column').removeClass('col-xs-3');
+            $('#left-content-column').addClass('col-xs-12');
+        }else{
+            $('#topvac').addClass('hidden');
+        }
+    })
+
+    //script for close news
+
+    $('#close-news').on('click', function (e) {
+        e.preventDefault();
+        if($('#topvac').hasClass('hidden')){
+            $('#news').addClass('hidden');
+            $('#left-content-column').removeClass('col-xs-9');
+            $('#right-content-column').removeClass('col-xs-3');
+            $('#left-content-column').addClass('col-xs-12');
+        }else{
+            $('#news').addClass('hidden');
+        }
+    })
+
 })
 </script>
 
