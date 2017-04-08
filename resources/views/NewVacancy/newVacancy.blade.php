@@ -128,7 +128,9 @@
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
             </div>
-            <div > <span style="color: red"  >* <?php echo $errors->first('email',':message'); ?></span> </div>
+            <div>
+                <span style="color: red"  >* <?php echo $errors->first('email',':message'); ?></span>
+            </div>
         </div>
     </div>
 
@@ -161,7 +163,9 @@
             <div class="col-md-6 col-sm-6">
                 {!! Form::textarea('description', Input::old('description'), array('class' => 'form-control','id'=>'description','onfocus' =>'validateDisc(this)')) !!}
             </div>
-            <div > <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span> </div>
+            <div>
+                <span style="color: red"> * <?php echo $errors->first('description',':message'); ?></span>
+            </div>
         </div>
     </div>
     </br>
@@ -240,6 +244,9 @@
 	$(document).ready(function() {
 		CKEDITOR.replace( 'description' );
 		$(".js-example-basic-multiple").select2();
+        $("#selectCurrency").select2();
+        $("#selectGaluz").select2();
+        $("#selectOrgan").select2();
 	});
 </script>
 
