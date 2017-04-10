@@ -12,7 +12,7 @@
                 @elseif(File::exists(public_path('image/vacancy/' . $company->company_id . '.bmp')))
                     {!! Html::image('vacancies' . $company->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                 @else
-                    <h3 class="nologo-companies-list">логотип вiдсутнiй</h3>
+                    <p class="nologo-companies-list" style="margin-top: 10px; font-size: 15px">логотип вiдсутнiй</p>
                 @endif
             </div>
             <a href="{{$url}}/{{$company->id}}"  class="link">
