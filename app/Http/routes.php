@@ -58,7 +58,7 @@ $router->resource('vacancy','Vacancy\VacancyController');
 Route::get('vacancy/{vacancy}/response/link',['as'=>'vacancy.response.link', 'uses' => 'Vacancy\ResponseController@link', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendFile',['as'=>'vacancy.response.sendFile', 'uses' => 'Vacancy\ResponseController@sendFile', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendResume',['as'=>'vacancy.response.sendResume', 'uses' => 'Vacancy\ResponseController@sendResume', 'middleware'=>'auth']);
-
+Route::post('company/{company}/response/sendFile',['as'=>'company.response.sendFile', 'uses' =>'Company\ResponseController@sendFile', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
