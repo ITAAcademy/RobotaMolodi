@@ -243,7 +243,17 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             return Redirect::to('auth/login');
 	}
 
-
+    public function showCompanyVacancies($id){
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        $vacancies = Vacancy::where('company_id', $id)->paginate();
+        return view('newDesign.vacancies.vacanciesList', array(
+            'vacancies' => $vacancies,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations,
+            'news'=>News::all(),
+        ));
+    }
 
 	/**
 	 * Update the specified resource in storage.

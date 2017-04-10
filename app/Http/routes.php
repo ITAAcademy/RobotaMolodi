@@ -86,7 +86,7 @@ Route::post('vacancy/block','Vacancy\\VacancyController@block');
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
 Route::model('company/{company}/destroy','App\Models\Company');
-Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompany_Vacancies']);
+Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompanyVacancies']);
 //Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');

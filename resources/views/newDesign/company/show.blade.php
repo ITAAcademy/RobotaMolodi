@@ -59,13 +59,41 @@
                         <div class="text_data verticalIndent"> <a class="textCompany"> </a></div>
                     </div>
                 </div>
+                <div>
+
+                </div>
                 {{--{{ dd('test')}}--}}
                 <div class="button_vac">
-                    <a href="#"><input type="submit" class="recall" value="Переглянути вакансії"></a>
-                    <a href="#"><input type="submit" class="recall" value="Відправити файл"></a>
-                    <a href="#"><input type="submit" class="recall" value="Відправити резюме"></a>
-                    <a href="#"><input type="submit" class="recall" value="Відгукнутись"></a>
+                    <a href="{{route('scompany.company_vacancies',$company->id)}}" class="vac-call btn-default btn"><span>Переглянути вакансії</span></a>
+                    <a href="{{route('scompany.company_vacancies',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
+                    <a href="{{route('scompany.company_vacancies',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
+                    <a href="{{route('scompany.company_vacancies',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
                 </div>
             </div>
         </div>
+        <div class="test">
+
+        </div>
+    <script>
+        $(document).ready(function () {
+           $('a.vac-call').click(function () {
+               var link = $(this).attr('href');
+
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                   }
+               });
+               $.ajax({
+                   url: link,
+                   success: function(data){
+                       $('.test').html(data);
+                   }
+
+               })
+               return false;
+           })
+        })
+//        }
+    </script>
 @stop
