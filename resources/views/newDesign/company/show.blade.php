@@ -71,7 +71,8 @@
                 </div>
             </div>
         </div>
-        <div class="test">
+        <br>
+        <div class="downlist">
 
         </div>
     <script>
@@ -87,12 +88,13 @@
                $.ajax({
                    url: link,
                    success: function(data){
-                       $('.test').html(data);
-                   }
+                       $('.downlist').toggle().html(data);
 
+                   }
                })
                return false;
            })
+
         })
 //        }
     </script>

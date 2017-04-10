@@ -150,7 +150,12 @@ input{
     margin: 5px;
     text-transform: uppercase;
 }
-
+.downlist{
+    display: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-top: 1px solid darkgrey;
+}
 
 
 
