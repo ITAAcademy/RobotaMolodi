@@ -164,13 +164,10 @@ class Resume extends Model {
         $res = $this->isActive();
         if(Auth::check()){
             $user = auth()->user();
-//            dd($user);
             if($user->isAdmin()){
                 $res = $query;
             }else{
-
-                $res = $this->isActive()->orWhere('id_u','=',$user->id);
-//                dd($res);
+                $res = $res->orWhere('id_u','=',$user->id);
             }
         }
         return $res;

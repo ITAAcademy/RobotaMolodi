@@ -99,7 +99,7 @@ class MainController extends Controller
 
     public function showResumes()
     {
-        $resumes = Resume::latest('updated_at')->checkNoAccess()->paginate();
+        $resumes = Resume::checkNoAccess()->latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.resume.resumesList', array(

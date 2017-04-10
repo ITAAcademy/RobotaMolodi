@@ -11,8 +11,8 @@
 @stop
 
 @section('contents')
-    @if($mes)
-        <span>{{$mes}} <a href="{{ url('/resume/create') }}">Створiть</a></span>
-    @endif
+    {{--@if($mes)--}}
+        {{--<span>{{$mes}} <a href="{{ url('/resume/create') }}">Створiть</a></span>--}}
+    {{--@endif--}}
     @include('Resume._resume')
 @stop
