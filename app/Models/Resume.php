@@ -161,16 +161,24 @@ class Resume extends Model {
     }
     
     public function scopeCheckNoAccess($query){
-        $user = auth()->user();
+        $res = $this->isActive();
         if(Auth::check()){
-            if($user->role_id == 1){
-                return $query;
+            $user = auth()->user();
+//            dd($user);
+            if($user->isAdmin()){
+                $res = $query;
             }else{
-                return $query->where('published','!=',0)
-                             ->orWhere('id_u','=',$user->id);
+
+                $res = $this->isActive()->orWhere('id_u','=',$user->id);
+//                dd($res);
             }
-        }else{
-            return $query->where('published','!=',0);
         }
+        return $res;
     }
+
+    public function scopeIsActive($query){
+        return $query->where('published','!=',0);
+    }
+
+
 }
