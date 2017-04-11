@@ -171,18 +171,27 @@ class Vacancy extends Model {
         }
     }
     public function scopeCheckNoAccess($query){
-        $user = auth()->user();
-        
+        $res = $this->isActive();
+
         if(Auth::check()){
-            if($user->role_id == 1){
-                return $query;
+            $user = auth()->user();
+            if($user->isAdmin()){
+                $res = $query;
             }else{
-                $comId = Company::where('users_id','=',$user->id)->get()->pluck('id');
-                return $query->whereIn('vacancies.company_id',$comId->toArray())
-                             ->orWhere('published','!=',0);
+                $comId = $this->userVacancies($user)->get()->pluck('id');
+                $res = $res->orWhereIn('vacancies.company_id',$comId->toArray());
             }
-        }else{
-            return $query->where('published','!=',0);
         }
+        return $res;
+
+    }
+
+    public function scopeIsActive($query){
+        return $query->where('published','!=',0);
+    }
+
+    public function scopeUserVacancies($query, $user){
+        $query = Company::where('users_id','=',$user->id);
+        return $query;
     }
 }
