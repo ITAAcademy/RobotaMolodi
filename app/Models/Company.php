@@ -23,9 +23,7 @@ class Company extends Eloquent {
 
     public function ReadUser()
     {
-
         return $this->belongsTo('App\Models\User','users_id')->first();
-
     }
 
     public function Vacancies()
