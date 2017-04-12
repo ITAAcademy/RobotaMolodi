@@ -11,10 +11,24 @@
         </div>
     </div>
 
-    @yield('contents')
 
+    <div class="contentAjax">
+        @yield('contents')
 
+    </div>
+<script>
+    $('li[role="presentation"] a').click(function(){
+        var link = $(this).attr('href');
+        $.ajax({
+            url: link,
+            success: function(data){
+                $('.contentAjax').html(data)
+            }
+        });
 
+        return false;
+    })
+</script>
 
 @stop
 

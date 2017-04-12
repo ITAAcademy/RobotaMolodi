@@ -28,9 +28,9 @@
                 @endif
             </div>
 
-            <a style="margin-left: 70px" class="orangeLinks" href="javascript:sendFile()">
+            <a style="margin-left: 15px" class="orangeLinks" href="javascript:sendFile()">
                 {!! Html::image('image/update.png', 'del') !!}
-                <span style="font-size: 14px; text-decoration: underline">Змiнити лого</span>
+                <span style="font-size: 14px; text-decoration: none">Змiнити лого</span>
             </a>
         </div>
 
@@ -43,10 +43,10 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item">{{$user->name}}</li>
-                <li class="list-group-item">  <a class="orangeLinks" href="javascript:submit('selectIndustry', {{$industry->id}})">{{$industry->name}}</a></li>
+                <li class="list-group-item">  <a class="orangeLinks" href="javascript:submit('selectIndustry' {{$industry->id}})">{{$industry->name}}</a></li>
                 <li class="list-group-item" style="border-bottom: none"><span class="heading">Опис: </span>{{$vacancy->description}}</li>
                 <li class="list-group-item">  <a style="text-decoration: underline" target="_blank" class="orangeLinks" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>
-                <li class="list-group-item" id="opt-data-low" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity', {{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->updated_at))}}</li>
+                <li class="list-group-item" id="opt-data-low" style="color: #777777;">@foreach($cities as $city)<a class="orangeLinks" href="javascript:submit('selectCity' {{$city->id}})">{{$city->name}} </a>@endforeach<span id="yellowCircle">&#183;</span> {{ date('j.m.Y, H:i:s', strtotime($vacancy->updated_at))}}</li>
             </ul>
         </div>
 
