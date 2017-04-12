@@ -143,8 +143,7 @@ class VacancyController extends Controller
      */
     public function store(Guard $auth, Company $company, Vacancy $vacancy, Vacancy_City $vacancy_City, Request $request)
     {
-
-        //dd($request);
+        
         if (Auth::check()) {
             Input::flash();
             Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
@@ -204,19 +203,12 @@ class VacancyController extends Controller
 //    }
 
 
-    public function show($id, Guard $auth)
+    public function show($id)
     {   //        if (!session())
 //            session()->start();
         Cookie::queue('url', 'vacancy/'.$id);
-
-//        $resume = null;
         $view = 'vacancy.show';
         $vacancy = $this->getVacancy($id);
-
-        //$resume = 'Зареєструйтесь!';
-//        $search_boolean='false';
-//        $userVacation = $vacancy->ReadUser($id);
-
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
@@ -245,9 +237,6 @@ class VacancyController extends Controller
             ->with('cities', $cities)
             ->with('industry', $industry);
     }
-//        else{
-//        return redirect('auth/login');
-
 
     /**
      * Show the form for editing the specified resource.
