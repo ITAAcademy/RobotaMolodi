@@ -236,15 +236,14 @@ class VacancyController extends Controller
             $resume = $auth->user()->GetResumes()->get();
         }
 
-        if(!Auth::check() && ($vacancy->published == 0 || $vacancy->published == 2)) {
-//            abort(404);
+        if(!Auth::check() && $vacancy->published != 1) {
             $view ="vacancy.noAccessVacancy";
         }
-        else{
-            if (Auth::check())
-                if(Auth::user()->id != $userVacation->id && $vacancy->published == 0 && Auth::user()->role !=1 )
-                    abort(404);
-        }
+//        else{
+//            if (Auth::check())
+//                if(Auth::user()->id != $userVacation->id && $vacancy->published == 0 && Auth::user()->role !=1 )
+//                    abort(404);
+//        }
 
         return view($view)
             ->with('resume', $resume)
