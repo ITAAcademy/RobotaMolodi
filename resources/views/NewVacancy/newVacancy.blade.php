@@ -138,7 +138,7 @@
         <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label  for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Виберіть місто</label>
             <div class="col-md-6 col-sm-6">
-                <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
+                <select class="form-control js-example-basic-multiple"  name="city[]" id="city">
                     @foreach($cities as $city)
                         {
                         <option value="{{$city->id}}">{{$city->name}}</option>
