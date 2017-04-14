@@ -59,6 +59,7 @@ Route::get('vacancy/{vacancy}/response/link',['as'=>'vacancy.response.link', 'us
 Route::post('vacancy/{vacancy}/response/sendFile',['as'=>'vacancy.response.sendFile', 'uses' => 'Vacancy\ResponseController@sendFile', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendResume',['as'=>'vacancy.response.sendResume', 'uses' => 'Vacancy\ResponseController@sendResume', 'middleware'=>'auth']);
 Route::post('company/{company}/response/sendFile',['as'=>'company.response.sendFile', 'uses' =>'Company\ResponseController@sendFile', 'middleware'=>'auth']);
+Route::post('company/{company}/response/sendResume',['as'=>'company.response.sendResume', 'uses' =>'Company\ResponseController@sendResume', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
@@ -87,6 +88,8 @@ Route::post('vacancy/block','Vacancy\\VacancyController@block');
 Route::get('showCompany','Company\CompanyController@showCompany');
 Route::model('company/{company}/destroy','App\Models\Company');
 Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompanyVacancies']);
+Route::get('company/{company}/formSendFileCompany', ['as'=>'scompany.company_formSendFile', 'uses' => 'Company\CompanyController@showFormSendFile']);
+Route::get('company/{company}/formSendResumeCompany', ['as'=>'scompany.company_formSendResume', 'uses' => 'Company\CompanyController@showFormSendResume']);
 //Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');

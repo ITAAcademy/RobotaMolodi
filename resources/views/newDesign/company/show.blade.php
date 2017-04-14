@@ -65,82 +65,43 @@
                 {{--{{ dd('test')}}--}}
                 <div class="button_vac">
                     <a href="{{route('scompany.company_vacancies',$company->id)}}" class="vac-call btn-default btn"><span>Переглянути вакансії</span></a>
-                    <a href="#" class="file-call btn-default btn">Відправити файл</a>
-                    <a href="#" class="resume-call btn-default btn">Відправити резюме</a>
+                    <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
+                    <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
                     <a href="#" class="response-call btn-default btn">Відгукнутись</a>
                 </div>
             </div>
         </div>
 
-        <div class="downlist">
-        </div>
-        <div class="send-file-company" style='display: none;'>
-            {!!Form::open(['route' => ['company.response.sendFile',$company->id],'method'=>"POST", 'enctype' => 'multipart/form-data', 'files' => true])!!}
-            {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
-            <div align="right">
-                {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
-            </div>
-
-            {!!Form::close()!!}
-        </div>
-        <div class="send-resume-company" style='display: none;'>
-            <div>
-                <h3 style="margin-top: 5px">Виберіть резюме</h3>
-            </div>
-            {{--<div>--}}
-                {{--{!!Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"])!!}--}}
-                {{--<div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >--}}
-                    {{--@if(!empty($resume))--}}
-                        {{--<select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">--}}
-                            {{--@foreach($resume as $res)--}}
-                                {{--<option value="{{$res->id}}" selected>{{$res->position}}</option>--}}
-                            {{--@endforeach--}}
-                        {{--</select>--}}
-                {{--</div>--}}
-                {{--{!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}--}}
-                {{--@else--}}
-                    {{--<p>У вас немає резюме.Перейти до створення резюме</p>--}}
-                    {{--<p>{!!link_to_route('resume.create','Створення резюме','','style="color:#f68c06"')!!}</p>--}}
-                {{--@endif--}}
-            {{--</div>--}}
-            {{--<div>--}}
-                {{--@if (!empty($resume))--}}
-                    {{--<div align="right">--}}
-                        {{--{!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}--}}
-                    {{--</div>--}}
-                {{--@endif--}}
-            {{--</div>--}}
-
-            {!!Form::close()!!}
-        </div>
+        <div class="downlist"></div>
 
 
     <script>
         $(document).ready(function () {
-           $('a.vac-call').click(function () {
+           $('a.vac-call, a.file-call, a.resume-call').click(function () {
+               var that = this;
                var link = $(this).attr('href');
+               if($(that).hasClass('active')){
+                   $(that).removeClass('active');
+                   $('.downlist').hide('slow');
+               }else{
+                   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
+                   $.ajax({
+                       url: link,
+                       success: function(data){
+                           $('.active').removeClass('active');
 
-               $.ajaxSetup({
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                   }
-               });
-               $.ajax({
-                   url: link,
-                   success: function(data){
-                       $('.downlist').toggle().html(data);
+                           $('.downlist').show('slow').html(data);
+                           $(that).addClass('active');
+                       }
+                   })
+               }
 
-                   }
-               })
                return false;
            })
-            $("a.file-call").click(function(){
-                $(".send-file-company").toggle();
-            });
-            $("a.resume-call").click(function(){
-                $(".send-resume-company").toggle();
-            });
+//            $("a.resume-call").click(function(){
+//                $(".send-resume-company").toggle();
+//            });
         })
-//        }
+
     </script>
 @stop

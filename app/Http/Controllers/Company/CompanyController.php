@@ -5,6 +5,7 @@ use App\Models\Industry;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Vacancy;
+use App\Models\Resume;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -255,6 +256,30 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         ));
     }
 
+    public function showFormSendFile($id, Guard $auth){
+        if(auth()->user()){
+            $view = 'newDesign.company.formSendFile';
+            $company = $this->getCompany($id);
+            return view('newDesign.company.formSendFile',['company' => $company]);
+        }else{
+            return "Ви не зареєстровані";
+        }
+    }
+    public function showFormSendResume($id, Guard $auth){
+        if(auth()->user()){
+            $company = $this->getCompany($id);
+            $view = 'newDesign.company.formSendResume';
+            $vacancies = Vacancy::where('company_id','=',$id)->get();
+            $user = auth()->user();
+            $resume = Resume::where('id_u','=',$user->id)->get();
+            return view($view)
+                ->with('company', $company)
+                ->with('vacancy', $vacancies)
+                ->with('resume', $resume);
+        }else{
+            return "Ви не зареєстровані";
+        }
+    }
 	/**
 	 * Update the specified resource in storage.
 	 *
