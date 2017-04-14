@@ -143,8 +143,7 @@ class VacancyController extends Controller
      */
     public function store(Guard $auth, Company $company, Vacancy $vacancy, Vacancy_City $vacancy_City, Request $request)
     {
-
-        //dd($request);
+        
         if (Auth::check()) {
             Input::flash();
             Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
@@ -204,61 +203,40 @@ class VacancyController extends Controller
 //    }
 
 
-    public function show($id, Guard $auth)
+    public function show($id)
     {   //        if (!session())
 //            session()->start();
         Cookie::queue('url', 'vacancy/'.$id);
-        $resume = null;
         $view = 'vacancy.show';
-
         $vacancy = $this->getVacancy($id);
-
-        //$resume = 'Зареєструйтесь!';
-        $search_boolean='false';
-        $userVacation = $vacancy->ReadUser($id);
-
         $cities = $vacancy->Cities();
 
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
 
         /*--------for search.show------------*/
-            $indusrties = Industry::all();
-            $specialisations = Vacancy::groupBy('position')->lists('position');
+//            $indusrties = Industry::all();
+//            $specialisations = Vacancy::groupBy('position')->lists('position');
         /*-----------------------------------------*/
 
         if (Auth::check()) {
-
-            $user = User::find($auth->user()->getAuthIdentifier());
-            if ($userVacation->id == $user->id) {
+            $user = auth()->user();
+            if ($vacancy->company->users_id == $user->id) {
                 $view = 'vacancy.showMyVacancy';
             }
-            $resume = $auth->user()->GetResumes()->get();
         }
 
-        if(!Auth::check() && ($vacancy->published == 0 || $vacancy->published == 2)) {
-            abort(404);
-        }
-        else{
-            if (Auth::check())
-                if(Auth::user()->id != $userVacation->id && $vacancy->published == 0 && Auth::user()->role !=1 )
-                    abort(404);
+        if(!Auth::check() && $vacancy->published != 1) {
+            $view ="vacancy.noAccessVacancy";
         }
 
         return view($view)
-            ->with('resume', $resume)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
-            ->with('user', $userVacation)
+            ->with('user', $user)
             ->with('cities', $cities)
-            ->with('industry', $industry)
-            ->with('industries', $indusrties)
-            ->with('specialisations', $specialisations)
-            ->with('search_boolean', $search_boolean);
+            ->with('industry', $industry);
     }
-//        else{
-//        return redirect('auth/login');
-
 
     /**
      * Show the form for editing the specified resource.

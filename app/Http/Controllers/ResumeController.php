@@ -59,20 +59,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
     private $http;
     public function index(Guard $auth)//Output all resumes
     {
-        if (Auth::check()) {
-                    $resumes = User::find($auth->user()->getAuthIdentifier())->GetResumes()->paginate(25);
-            if (count($resumes)==0) {
-                $mes = "Зараз у Вас немає резюме.";
-                return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
-            } else {
+        $resumes = $auth->user()->GetResumes()->bySort('desc')->paginate(25);
 
-                $resumes->sortBy('created_at');
-                $mes = null;
-                return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
-            }
-        } else {
-            return Redirect::to('auth/login');
-        }
+        return  view('Resume.myResumes', ['resumes'=> $resumes]);
     }
 
     /**
@@ -160,53 +149,34 @@ class ResumeController extends Controller {// Клас по роботі з ре
      * @return Response
      */
     /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
-    public function show($id,Guard $auth)
+    public function show($id)
     {
         Cookie::queue('url', 'resume/'.$id);
         $view = 'Resume.show';
-        $search_boolean = 'false';
-        $search_request = "";
         $resume = $this->getResume($id);
-
-        $userResume = $resume->ReadUser($id);
-
         $city = City::find($resume->city);
-
         $user = auth()->user();
 
         /*--------for search.show------------*/
-        $indusrties = Industry::all();
-        $specialisations = Vacancy::groupBy('position')->lists('position');
-        $cities = City::all();
+//        $indusrties = Industry::all();
+//        $specialisations = Vacancy::groupBy('position')->lists('position');
+//        $cities = City::all();
         /*-----------------------------------------*/
 
         if(Auth::check())
         {
-            if($user->id == $userResume->id)
+            if($user->id == $resume->id_u)
             {
                 $view = "Resume.showMyResume";
             }
         }
-        if(!Auth::check() && ($resume->published == 0 || $resume->published == 2)) {
-            abort(404);
+        if(!Auth::check() && $resume->published != 1) {
+            $view ="Resume.noAccessResume";
         }
-        else{
-            if (Auth::check())
-                if(Auth::user()->id != $userResume->id && $resume->published == 0 && Auth::user()->role !=1 )
-                    abort(404);
-        }
-
 
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city)
-            ->with('data',$search_request)
-            ->with('industries', $indusrties)
-            ->with('specialisations', $specialisations)
-            ->with('cities',$cities)
-            ->with('search_boolean',$search_boolean);
-
-
+            ->with('city',$city);
     }
 
     /**
@@ -281,7 +251,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
     public function block(Request $request, Guard $auth)
     {
-        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+        if (Auth::user()->role_id == 1 && $request->isMethod('post')) {
             $updateResume = Resume::find($request['id']);
             $updateResume->published =0;
             $updateResume->save();

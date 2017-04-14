@@ -18,7 +18,7 @@
                 </a>
 
                 <div class="below-section">
-                    <span>{{ $vacancy->Company()->company_name}}</span>
+                    <span>{{ $vacancy->company->company_name}}</span>
                 </div>
 
                 <a class="links" href="#">

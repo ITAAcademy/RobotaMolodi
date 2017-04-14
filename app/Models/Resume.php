@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Resume extends Model {
 
@@ -158,4 +159,23 @@ class Resume extends Model {
             return $query;
         }
     }
+    
+    public function scopeCheckNoAccess($query){
+        $res = $this->isActive();
+        if(Auth::check()){
+            $user = auth()->user();
+            if($user->isAdmin()){
+                $res = $query;
+            }else{
+                $res = $res->orWhere('id_u','=',$user->id);
+            }
+        }
+        return $res;
+    }
+
+    public function scopeIsActive($query){
+        return $query->where('published','!=',0);
+    }
+
+
 }
