@@ -17,7 +17,8 @@ class FilterController extends Controller
 {
     public function vacancies(Request $request)
     {
-        $vacancies = Vacancy::byIndustries($request->get('industries',[]))
+        $vacancies = Vacancy::checkNoAccess()
+            ->byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
@@ -30,7 +31,8 @@ class FilterController extends Controller
 
     public function resumes(Request $request)
     {
-        $resumes = Resume::byIndustries($request->get('industries',[]))
+        $resumes = Resume::checkNoAccess()
+            ->byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))

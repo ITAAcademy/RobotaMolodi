@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Company;
+
 use Illuminate\Support\Facades\Session;
 
 class Vacancy extends Model {
@@ -18,6 +21,10 @@ class Vacancy extends Model {
         return $company;
     }
 
+    public function Company(){
+        return $this->belongsTo('App\Models\Company');
+    }
+    
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
@@ -163,9 +170,28 @@ class Vacancy extends Model {
             return $query;
         }
     }
+    public function scopeCheckNoAccess($query){
+        $res = $this->isActive();
 
-//    public function companyModel(){
-//        return $this->belongsTo(Company::class);
-//    }
+        if(Auth::check()){
+            $user = auth()->user();
+            if($user->isAdmin()){
+                $res = $query;
+            }else{
+                $comId = $this->userVacancies($user)->get()->pluck('id');
+                $res = $res->orWhereIn('vacancies.company_id',$comId->toArray());
+            }
+        }
+        return $res;
 
+    }
+
+    public function scopeIsActive($query){
+        return $query->where('published','!=',0);
+    }
+
+    public function scopeUserVacancies($query, $user){
+        $query = Company::where('users_id','=',$user->id);
+        return $query;
+    }
 }
