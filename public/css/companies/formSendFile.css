@@ -1,0 +1,12 @@
+input.btn.btn-warning.btn-send{
+    background-color: #f68c06;
+}
+.send-file-company input[type=file]{
+    color: white;
+    background-color: #f68c06;
+    border-radius: 3px;
+    padding: 7px;
+}
+.send-file-company{
+    margin-top: 15px;
+}
