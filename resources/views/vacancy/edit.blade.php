@@ -81,21 +81,21 @@
         <div class="col-sm-5">
             <select class="form-control" id="selectCurrency" name="currency_id">
                 @if (Input::old('currency_id')==''))
-                @foreach($currencies as $currency)
-                    {
-                    <option value="{{$currency->id}}">{{$currency->currency}}</option>
-                    }
-                @endforeach
-                    @else
-                        @foreach($currencies as $currency)
+                    @foreach($currencies as $currency)
                         {
-                            @if($currency->id !=  Input::old('currency_id'))
-                                <option value="{{$currency->id}}">{{$currency->currency}}</option>
-                            @else
-                                <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
+                        <option value="{{$currency->id}}">{{$currency->currency}}</option>
                         }
-                            @endif
-                        @endforeach
+                    @endforeach
+                @else
+                    @foreach($currencies as $currency)
+                    {
+                        @if($currency->id !=  Input::old('currency_id'))
+                            <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        @else
+                            <option selected value="{{$currency->id}}">{{$currency->currency}}</option>
+                    }
+                        @endif
+                    @endforeach
                 @endif
             </select>
         </div></br>
@@ -120,36 +120,24 @@
         </div><br>-->
 
 
-    <div class="form-group" style="margin-top: 30px">
+
+    <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
+
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
-            <select class="form-control" class="js-example-basic-multiple" id="e12" multiple="multiple" name="city[]" id="city" style="width:100%;">
-                    @if(Input::old('city')!= '')
-                        @foreach(Input::old('city') as $cityId)
-                            {
-                            <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
-                            }                            }
-                        @endforeach
-                    @else
-                        @foreach($vacancy->City() as $city)
-                            {
-                            <option selected value="{{$city->id}}">{{$city->name}}</option>
-                            }
-                        @endforeach
-                    @endif
-                    @foreach($cities as $city){
-                        @foreach($vacancy->City() as $cityId){
-                            @if ($city->id!= $cityId->id){
-                                <option value="{{$city->id}}">{{$city->name}}</option>
-                            }
-                            @endif
-                        }
-                        @endforeach
+            <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
+                @foreach($cities as $city)
+                    {
+                    <option value="{{$city->id}}">{{$city->name}}</option>
                     }
+                @endforeach
+                @if(Input::old('city')!= '')
+                    @foreach(Input::old('city') as $cityId)
+                        {
+                        <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
+                        }
                     @endforeach
-
-
-
+                @endif
             </select>
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('city',':message'); ?></span> </div>
@@ -203,9 +191,7 @@
 
 @endsection
 @section('footer')
-
     <script type="text/javascript">
-
         $('#city').select2({
             "language": {
                 "noResults": function(){
@@ -213,9 +199,6 @@
                 }
             }
         });
-
-
-
     </script>
 @stop
 
@@ -238,5 +221,6 @@
 <script>
 	$(document).ready(function() {
 		CKEDITOR.replace( 'description' );
+        $("#city").select2();
 	});
 </script>
