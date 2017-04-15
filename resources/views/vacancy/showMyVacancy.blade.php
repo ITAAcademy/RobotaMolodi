@@ -42,7 +42,7 @@
                 </h2>
             </div>
             <ul class="list-group">
-                <li class="list-group-item">{{$user->name}}</li>
+                <li class="list-group-item">{{auth()->user()->name}}</li>
                 <li class="list-group-item">  <a class="orangeLinks" href="javascript:submit('selectIndustry' {{$industry->id}})">{{$industry->name}}</a></li>
                 <li class="list-group-item" style="border-bottom: none"><span class="heading">Опис: </span>{{$vacancy->description}}</li>
                 <li class="list-group-item">  <a style="text-decoration: underline" target="_blank" class="orangeLinks" href="@if($company->company_email != ''){{$company->company_email}} @else #@endif">{{$company->company_name}}</a>

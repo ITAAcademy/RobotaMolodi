@@ -204,8 +204,7 @@ class VacancyController extends Controller
 
 
     public function show($id)
-    {   //        if (!session())
-//            session()->start();
+    {
         Cookie::queue('url', 'vacancy/'.$id);
         $view = 'vacancy.show';
         $vacancy = $this->getVacancy($id);
@@ -214,14 +213,8 @@ class VacancyController extends Controller
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
 
-        /*--------for search.show------------*/
-//            $indusrties = Industry::all();
-//            $specialisations = Vacancy::groupBy('position')->lists('position');
-        /*-----------------------------------------*/
-
         if (Auth::check()) {
-            $user = auth()->user();
-            if ($vacancy->company->users_id == $user->id) {
+            if ($vacancy->company->users_id == auth()->user()->id) {
                 $view = 'vacancy.showMyVacancy';
             }
         }
@@ -233,7 +226,6 @@ class VacancyController extends Controller
         return view($view)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
-            ->with('user', $user)
             ->with('cities', $cities)
             ->with('industry', $industry);
     }
