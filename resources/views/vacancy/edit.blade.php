@@ -119,7 +119,7 @@
 			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
         </div><br>-->
 
-	
+
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
