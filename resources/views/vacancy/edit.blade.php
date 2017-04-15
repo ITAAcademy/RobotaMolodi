@@ -120,7 +120,9 @@
         </div><br>-->
 
 
+
     <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
+
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
         <div class="col-sm-5">
             <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
