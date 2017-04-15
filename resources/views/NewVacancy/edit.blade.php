@@ -1,7 +1,6 @@
 @extends('NewVacancy/layout')
 
 @section('contents')
-
     {!!Form::open(['route' => 'vacancy.store'])!!}
     <h3>Створення вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
