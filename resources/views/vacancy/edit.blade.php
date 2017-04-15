@@ -48,7 +48,7 @@
                         @if($comp->id != $vacancy->company_id)
                             <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                         @else
-                            <option value="{{$vacancy->company_id}}" selected>{{$vacancy->Company()->company_name}}</option>
+                            <option value="{{$vacancy->company_id}}" selected>{{$vacancy->company->company_name}}</option>
                         @endif
                     @else($comp->id == Input::old('Organisation'))
                         <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>

@@ -1,5 +1,5 @@
 {!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}
-    @foreach ($resumes as $resume)
+    @forelse ($resumes as $resume)
         <article>
             <div class="list">
                 <a href="{!!\Illuminate\Support\Facades\URL::to('resume',[$resume->id])!!}" class="link">
@@ -24,5 +24,7 @@
                 </a>
             </div>
         </article>
-    @endforeach
+    @empty
+        <span>Зараз у Вас немає резюме. <a href="{{ url('/resume/create') }}">Створiть</a></span>
+    @endforelse
 {!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}

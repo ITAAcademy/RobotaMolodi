@@ -4,11 +4,11 @@
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
     @include('newDesign/search/show')
-    <div class="col-xs-9">
+    <div id="left-content-column" class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/vacancies/vacanciesList')
     </div>
-    <div class="col-xs-3">
+    <div id="right-content-column" class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')
         @include('newDesign/topNews')
     </div>
