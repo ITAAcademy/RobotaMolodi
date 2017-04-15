@@ -1,6 +1,5 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
-
 <div class="test">
     @foreach($vacancies as $vacancy)
             <div>

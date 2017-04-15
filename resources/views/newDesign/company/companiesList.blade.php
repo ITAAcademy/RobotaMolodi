@@ -26,7 +26,7 @@
                     </div>
                     <div class="amount-companies-list">
 {{--                        <p>  <a href="{{route('main.showVacancies', $company->id)}}" class="link">Вакансій</a></p>--}}
-                        <p>  <a href="/company/{{$company->id}}" class="showCompanyVacancies">Вакансій {{$company->Vacancies()->count()}}</a></p>
+                        <p>  <a href="/company/{{$company->id}}" class="showCompanyVacancies"><span class="vacancy-text">Вакансій</span> {{$company->Vacancies()->count()}}</a></p>
                     </div>
                     <div class="row description-companies">
                         <div>{{strip_tags($company->description)}}</div>

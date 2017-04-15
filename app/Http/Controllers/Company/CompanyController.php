@@ -5,6 +5,7 @@ use App\Models\Industry;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Vacancy;
+use App\Models\Resume;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -37,56 +38,7 @@ class CompanyController extends Controller  {
 
         return $company;
     }
-public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $request){
-  $industries = Industry::orderBy('name')->get();
-  $res = $request->id;
-  $industry = Input::get('industry_id',0);
-  $cities = $cityModel->getCities();
-  $city = Input::get('city_id', 0);
-  $search_boolean = 'false';
-  $url=url('scompany/company_vac/');
-  $data = '';
-//$url="http://localhost/scompany/company_vac/";
-  //$specialisations = Input::get('specc',0);
-  $specialisations = Vacancy::groupBy('position')->lists('position');
-  //$res= Input::get('id',0);
-  //dd($res);
-  $vacancies = Vacancy::AllVacancies()->where('company_id','=',$res)->paginate(25);
-/*  if (Request::ajax()) {
 
-      $vacancies = MainController::ShowFilterVacancies($city, $industry,$specialisation);
-      if($vacancies != null)
-      {
-          $vacancies->sortByDesc('updated_at');
-      }
-
-
-      return Response::json(View::make('main.filter.vacancy',
-          array('vacancies' => $vacancies,
-                'industries' => $industries,
-                'cities' => $cities,
-                'city_id'=>$city,
-                'industry_id' => $industry,
-                'specialisation'=>$specialisations)
-                      )->render());
-  }*/
-  return View::make('main.filter.filterVacancies', array(
-      'url' =>  $url,
-      'vacancies' => $vacancies,
-      'industries' => $industries,
-      'city_id'=>$city,
-      'industry_id' => $industry,
-      'cities' => $cities,
-      'specialisation'=> $specialisations,
-      'search_boolean'=> $search_boolean,
-      'data' => $data));
-
-//  return view('main.index', ['vacancies' => $vacancies, 'cities' => $cities, 'industries' => $industries]);
-
-/*return View::make('main.filter.vacancy', array(
-    'vacancies' => $vacancies
-));*/
-}
 
 	/**
 	 * Display a listing of the resource.
@@ -219,7 +171,7 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
         $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
         $industryName = Industry::where('id','=',$industry)->lists('name')->first();
 
-//            dd($industryName);
+
         return view($view)
             ->with('vacancy', $vacancies)
             ->with('user', $userCompany)
@@ -243,8 +195,42 @@ public function showCompany_Vacancies(City $cityModel,Vacancy $vacancy,Request $
             return Redirect::to('auth/login');
 	}
 
+    public function showCompanyVacancies($id){
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        $vacancies = Vacancy::where('company_id', $id)->paginate();
+        return view('newDesign.vacancies.vacanciesList', array(
+            'vacancies' => $vacancies,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations,
+            'news'=>News::all(),
+        ));
+    }
 
+    public function showFormSendFile($id, Guard $auth){
+        if(auth()->user()){
 
+            $company = $this->getCompany($id);
+            return view('newDesign.company.formSendFile',['company' => $company]);
+        }else{
+            return "Ви не зареєстровані";
+        }
+    }
+    public function showFormSendResume($id, Guard $auth){
+        if(auth()->user()){
+            $company = $this->getCompany($id);
+            $view = 'newDesign.company.formSendResume';
+            $vacancies = Vacancy::where('company_id','=',$id)->get();
+            $user = auth()->user();
+            $resume = Resume::where('id_u','=',$user->id)->get();
+            return view($view)
+                ->with('company', $company)
+                ->with('vacancy', $vacancies)
+                ->with('resume', $resume);
+        }else{
+            return "Ви не зареєстровані";
+        }
+    }
 	/**
 	 * Update the specified resource in storage.
 	 *
