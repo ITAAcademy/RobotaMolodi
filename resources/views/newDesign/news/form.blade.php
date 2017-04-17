@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    {!! Form::open(array('url' => '/news','files'=>true)) !!}
+    {!! Form::open(array('url' => '/admin/news','files'=>true)) !!}
     <div class="form-group">
         {!! Form::label('name', 'Title:', ['class' => 'focus']) !!}
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
