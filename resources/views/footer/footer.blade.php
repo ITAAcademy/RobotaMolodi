@@ -5,7 +5,7 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">IНФОРМАЦIЯ</li>
                 <hr>
                 <li><a href="about/index.html">Про нас</a></li>
-                <li><a href="#">Партнери</a></li>
+                <li><a href="https://profitday.info/allcompanies">Партнери</a></li>
                 <li><a href="#">Підтримка</a></li>
                 <li><a href="#">Бізнес-ідеї</a></li>
             </ul>
@@ -26,7 +26,7 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">ПОСЛУГИ</li>
                 <hr>
                 <li><a href="#">Довідник</a></li>
-                <li><a href="#">Навчання</a></li>
+                <li><a href="https://intita.com/courses">Навчання</a></li>
                 <li><a href="#">Бізнес-ідеї</a></li>
             </ul>
         </div>
@@ -36,15 +36,15 @@
                 <hr>
                 <li>
                     <i class="fa fa-phone-square" aria-hidden="true"></i>
-                    <a href="#">+38-0432 52-82-67</a>
+                    <a href="#" class="no-click">+38-0432 52-82-67</a>
                 </li>
                 <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <a href="#">robotamolodi@gmail.com</a>
+                    <a href="#" class="no-click">robotamolodi@gmail.com</a>
                 </li>
                 <li>
                     <i class="fa fa-skype" aria-hidden="true"></i>
-                    <a href="#">robotamolodi</a>
+                    <a href="#" class="no-click">robotamolodi</a>
                 </li>
             </ul>
         </div>
@@ -65,3 +65,11 @@
         </div>
     </div>
 </footer>
+
+<script>
+    $(document).ready(function () {
+        $('.no-click').on('click', function (e) {
+            e.preventDefault();
+        })
+    })
+</script>
