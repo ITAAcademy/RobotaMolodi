@@ -16,13 +16,15 @@
 
     <div id="tv-news-list" class="tv-news-list cool-scroll">
         <ul>
-            <li id="top-vac-li-1">
-                <span id="top-vac-li-1-date" class="tv-news-date">10.06.2014</span>
-                <a id="top-vac-1" class="tv-link" href="index_resume_2.html">
-                    <p id="top-vac-1-pos" class="tvl-position">Senior Project Manager, Nikolaev</p>
-                    <p id="top-vac-li-1-salary" class="tvl-salary">2600 USD</p>
+            @foreach($topVacancy as $vacancy)
+            <li id="top-vac-li-{{$vacancy->id}}">
+                <span id="top-vac-li-{{$vacancy->id}}-date" class="tv-news-date">{{date('j.m.Y', strtotime($vacancy->updated_at))}}</span>
+                <a id="top-vac-{{$vacancy->id}}" class="tv-link" href="index_resume_2.html">
+                    <p id="top-vac-{{$vacancy->id}}-pos" class="tvl-position">{{$vacancy->position}}@foreach($vacancy->Cities()->get() as $city), {{ $city->name}}@endforeach</p>
+                    <p id="top-vac-li-{{$vacancy->id}}-salary" class="tvl-salary">{{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</p>
                 </a>
             </li>
+            @endforeach
         </ul>
     </div>
 
