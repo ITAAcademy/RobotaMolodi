@@ -85,7 +85,7 @@ class MainController extends Controller
 
     public function showCompanies(){
 
-        $companies = Company::latest('id')->paginate();
+        $companies = Company::latest('id')->orderByDateCompany()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.company.companiesList', array(
