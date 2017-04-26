@@ -92,12 +92,17 @@ class MainController extends Controller
                 'companies' => $companies
             ));
         }
+
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
+
         ));
     }
 
@@ -110,6 +115,8 @@ class MainController extends Controller
                 'resumes' => $resumes
             ));
         }
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
@@ -117,6 +124,7 @@ class MainController extends Controller
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
         ));
     }
     private function dataNews(){
