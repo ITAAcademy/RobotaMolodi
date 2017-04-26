@@ -19,7 +19,7 @@
             @foreach($topVacancy as $vacancy)
             <li id="top-vac-li-{{$vacancy->id}}">
                 <span id="top-vac-li-{{$vacancy->id}}-date" class="tv-news-date">{{date('j.m.Y', strtotime($vacancy->updated_at))}}</span>
-                <a id="top-vac-{{$vacancy->id}}" class="tv-link" href="index_resume_2.html">
+                <a id="top-vac-{{$vacancy->id}}" class="tv-link" href="/vacancy/{{$vacancy->id}}">
                     <p id="top-vac-{{$vacancy->id}}-pos" class="tvl-position">{{$vacancy->position}}@foreach($vacancy->Cities()->get() as $city), {{ $city->name}}@endforeach</p>
                     <p id="top-vac-li-{{$vacancy->id}}-salary" class="tvl-salary">{{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</p>
                 </a>
