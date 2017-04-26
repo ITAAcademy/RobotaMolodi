@@ -70,12 +70,16 @@ class MainController extends Controller
                 'vacancies' => $vacancies
             ));
         }
+        //Show top vacancies:
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
         ));
     }
 
