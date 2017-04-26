@@ -161,7 +161,7 @@ class Company extends Eloquent {
             return $query;
         }
     }
-    public function scopeOrderByDateCompany($query){
+    public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
 //    public function vacancyModel(){
