@@ -151,6 +151,9 @@ class Vacancy extends Model {
     public function scopeBySort($query, $order){
         return $query->orderBy('updated_at', $order);
     }
+    public function scopeOrderByDate($query){
+        return $query->orderBy('updated_at', 'desc');
+    }
 
     public function scopeByStartDate($query, $date)
     {
