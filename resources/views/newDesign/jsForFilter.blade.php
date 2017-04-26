@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
 
     //pagination
-    $(document).unbind('click').on('click', '.pagination a', function(e) {
+    $(document).on('click', '.pagination a', function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
         getVacancies(url);
