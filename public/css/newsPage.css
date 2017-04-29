@@ -1,0 +1,36 @@
+a{
+    text-decoration: none;
+}
+
+.sectionNews{
+    word-wrap: break-word;
+
+}
+
+.sectionNews p {
+    color: #696969;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    line-height: 30px;
+    text-align:justify;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.sectionNews h3 {
+    color: #4F4F4F;
+    font-size: 24px;
+    font-family: SegoeUIRegular;
+    margin-bottom:30px;
+}
+.sectionNews h4 {
+    color: #4F4F4F;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    display: inline;
+}
+
+.sectionNews .picture{
+    width:100%;
+}
