@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <div class="col-xs-3 staticLinksMenu">
+        <div class="col-xs-3 staticLinksMenu about-us-btn">
             <a class="btn" href="{{ url('aboutus') }}" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;" >Про нас</a>
         </div>
         <div class="col-xs-2 staticLinksMenu">

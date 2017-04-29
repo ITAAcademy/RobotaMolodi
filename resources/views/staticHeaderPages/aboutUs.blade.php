@@ -5,6 +5,8 @@
 @stop
 
 @section('content')
+    @include('newDesign/aboutUs/show')
+
     <section class="content">
                 <ol class="breadcrumb">
                     <li><a href="/">Головна</a></li>
