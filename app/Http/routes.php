@@ -35,14 +35,8 @@ Route::get('home', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
-    
-    Route::get('/news', ['as' => 'news.index', 'uses' => 'Admin\NewsController@index']);
-    Route::get('/news/create', ['as' => 'news.create', 'uses' => 'Admin\NewsController@create']);
-    Route::post('/news', ['as' => 'news.store', 'uses' => 'Admin\NewsController@store']);
-    Route::get('/news/{id}', ['as' => 'news.show', 'uses' => 'Admin\NewsController@show']);
-    Route::get('/news/{id}/edit', ['as' => 'news.edit', 'uses' => 'Admin\NewsController@edit']);
-    Route::put('/news/{id}', ['as' => 'news.update', 'uses' => 'Admin\NewsController@update']);
-    Route::delete('/news/{id}', ['as' => 'news.destroy', 'uses' => 'Admin\NewsController@destroy']);
+
+    Route::resource('/news', 'Admin\NewsController');
 });
 
 //------------SHOW NEWS------------------------------------------------------

@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\City;
-use App\Models\Industry;
-use App\Models\Vacancy;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,12 +16,12 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-        return view('newDesign.news.index', ['news' => $news]);
+        return view('newDesign.admin.news.index', ['news' => $news]);
     }
 
     public function create()
     {
-        return view('newDesign.news.form');
+        return view('newDesign.admin.news.form');
     }
 
     public function store(Request $request)
@@ -33,22 +30,23 @@ class NewsController extends Controller
         if ($news->validateForm($request->all())) {
             $this->helperSave($news,$request);
             Session::flash('flash_message', 'news successfully created!');
-            return redirect()->route('news.index');
+            return redirect()->route('admin.news.index');
         } else {
-            return redirect()->route('news.create')->withInput()->withErrors($news->getErrorsMessages());
+            return redirect()->route('admin.news.create')->withInput()->withErrors($news->getErrorsMessages());
         }
     }
 
     public function show($id)
     {
+
         $newsOne = News::find($id);
-        return view('newDesign.news.one', ['newsOne' => $newsOne]);
+        return view('newDesign.admin.news.one', ['newsOne' => $newsOne]);
     }
 
     public function edit($id)
     {
         $newsOne = News::find($id);
-        return view('newDesign.news.edit', ['newsOne' => $newsOne]);
+        return view('newDesign.admin.news.edit', ['newsOne' => $newsOne]);
     }
 
     public function update(Request $request, $id)
@@ -60,9 +58,9 @@ class NewsController extends Controller
         if ($newsOne->validateForm($request->all())) {
             $this->helperSave($newsOne,$request);
             Session::flash('flash_message', 'news successfully added!');
-            return redirect()->route('news.index');
+            return redirect()->route('admin.news.index');
         } else {
-            return redirect()->route('news.edit', ['newsOne' => $newsOne])->withInput()->withErrors($newsOne->getErrorsMessages());
+            return redirect()->route('admin.news.edit', ['newsOne' => $newsOne])->withInput()->withErrors($newsOne->getErrorsMessages());
 
         }
     }
@@ -75,7 +73,7 @@ class NewsController extends Controller
         $news = News::find($id);
         $news->deleteNews();
         Session::flash('flash_message', 'news successfully deleted!');
-        return redirect()->route('news.index');
+        return redirect()->route('admin.news.index');
     }
     private function helperSave($news,$request){
         $news->saveImage($request);
