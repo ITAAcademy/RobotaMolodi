@@ -11,6 +11,10 @@
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/aboutUs/aboutUs.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/aboutUs/featherlight.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/aboutUs/featherlight.gallery.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/aboutUs/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 

@@ -63,37 +63,46 @@ class MainController extends Controller
 
     public function showVacancies()
     {
-        $vacancies = Vacancy::AllVacancies()->checkNoAccess()->paginate();
+        $vacancies = Vacancy::AllVacancies()->checkNoAccess()->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies
             ));
         }
+        //Show top vacancies:
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
         ));
     }
 
     public function showCompanies(){
 
-        $companies = Company::latest('id')->paginate();
+        $companies = Company::latest('id')->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.company.companiesList', array(
                 'companies' => $companies
             ));
         }
+
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
+
         ));
     }
 
@@ -106,6 +115,8 @@ class MainController extends Controller
                 'resumes' => $resumes
             ));
         }
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
@@ -113,6 +124,7 @@ class MainController extends Controller
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
+            'topVacancy' => $topVacancy,
         ));
     }
     private function dataNews(){

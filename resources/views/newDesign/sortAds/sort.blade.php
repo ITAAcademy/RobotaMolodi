@@ -8,7 +8,7 @@
 		<div class='col-xs-12 sort-box'>
 			<div class='col-xs-3 sort-rating'>
 				<span class='label-sort-box'>Сортувати по:</span>
-				<span class ='opsion-sort-box rating'>рейтингу</span>
+				<span style="display: none" class ='opsion-sort-box rating'>рейтингу</span>
 			</div>
 			<div class='col-xs-3 sort-date'>
 				<span class='label-sort-box'>по даті:</span>
