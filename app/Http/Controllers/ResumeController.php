@@ -135,18 +135,28 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Input::hasFile('loadResume'))
         {
-            $fname = $auth->user()->getAuthIdentifier();
-
+//            $fname = $auth->user()->getAuthIdentifier();
+//
             $file = Input::file('loadResume');
-
-            $extensions = ['.jpg', '.jpeg', '.png'];
-
-            foreach($extensions as $i)
-                if(File::exists(base_path() . '/public/image/resume/' . $fname . $i))
-                    File::delete(base_path() . '/public/image/resume/' . $fname . $i);
-
-            $filename = $fname . '.' . $file->getClientOriginalExtension();
-            $file->move(base_path() . '/public/image/resume', $filename);
+            $filename = $file->getClientOriginalName();
+            $file->move(base_path() . '/public/image/resume/'. $auth->user()->getAuthIdentifier().'/', $filename);
+//            'abc.jpg';
+//            $resume->img = $filename;
+//            $resume->getImage();
+//            ResumeUploader.getImage($resume);
+//            ResumeUploader.setImage($resume, $file);
+//            img src=$resume->getImage();
+//            $file->move(base_path() . '/public/image/resume/'. $auth->user()->getAuthIdentifier().'/', $filename);
+//
+//            $extensions = ['.jpg', '.jpeg', '.png'];
+//
+//            foreach($extensions as $i)
+//                if(File::exists(base_path() . '/public/image/resume/' . $fname . $i))
+//                    File::delete(base_path() . '/public/image/resume/' . $fname . $i);
+//
+//            $filename = $fname . '.' . $file->getClientOriginalExtension();
+//
+//            $file->move(base_path() . '/public/image/resume', $filename);
         }
 
         $resume = $resumeModel->fillResume(0,$auth,$request);
