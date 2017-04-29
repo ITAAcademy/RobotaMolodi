@@ -444,6 +444,8 @@
         ga('create', 'UA-83807118-1', 'auto');
         ga('send', 'pageview');
 
+        $(".profitday-btn").html("Події");
+
     </script>
 @stop
 
