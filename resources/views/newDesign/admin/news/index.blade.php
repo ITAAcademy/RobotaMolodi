@@ -6,7 +6,7 @@
             {{ Session::get('flash_message') }}
         </div>
     @endif
-    <div class="createNews"><a href="{{ URL::route('news.create') }}" class="btn btn-success btn-lg"> Create news</a>
+    <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg"> Create news</a>
     </div>
 
     <table class="table  table-bordered">
@@ -36,13 +36,13 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('news.show', $new->id) }}" class="btn btn-primary">Show news</a>
+                    <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary">Show news</a>
                     {{--<button type="button" class="btn btn-primary">Update</button>--}}
                 </td>
                 <td>
                     {!! Form::open([
                     'method' => 'DELETE',
-                    'route' => ['news.destroy', $new->id]
+                    'route' => ['admin.news.destroy', $new->id]
                     ]) !!}
                     {!! Form::submit('Delete news', ['class' => 'btn btn-danger']) !!}
                     {!! Form::close() !!}
