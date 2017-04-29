@@ -45,6 +45,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::delete('/news/{id}', ['as' => 'news.destroy', 'uses' => 'NewsController@destroy']);
 });
 
+//------------SHOW NEWS------------------------------------------------------
+Route::any('news', ['as' => 'news.all', 'uses' => 'NewsController@showListNews']);
+Route::any('news/{id}', ['as' => 'news.page', 'uses' => 'NewsController@showPageNews']);
+//---------------------------------------------------------------------------
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
