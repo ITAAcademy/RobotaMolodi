@@ -19,17 +19,17 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::User()){
-            $user = User::find(Auth::user()->id);
+//        if(Auth::User()){
+//            $user = Auth::user();
 
-            if ($user->role->name == 'Admin')
+            if (Auth::user()->isAdmin())
             {
                 return $next($request);
             }else{
                 return redirect()->guest('/');
             }
-        }else{
-            return redirect()->guest('auth/login');
-        }
+//        }else{
+//            return redirect()->guest('auth/login');
+//        }
     }
 }

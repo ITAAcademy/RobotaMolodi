@@ -35,7 +35,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     
     private function hasCompany()
     {
-//       return $this->hasMany('App\Models\Company','users_id')->get();
         return $this->hasMany('App\Models\Company','users_id');
     }
 
@@ -65,13 +64,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function GetResumes()
     {
         $userResumes = User::HasManyResumes()->orderBy('updated_at', 'desc');
-
-        //dd($userResumes);
-//        $resumes = array();
-//        foreach($userResumes as $resume)
-//        {
-//            array_push($resumes,$resume);
-//        }
 
         return $userResumes;
     }
