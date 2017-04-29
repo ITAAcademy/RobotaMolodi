@@ -33,7 +33,7 @@ Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => '
 
 Route::get('home', 'HomeController@index');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
     
     Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
