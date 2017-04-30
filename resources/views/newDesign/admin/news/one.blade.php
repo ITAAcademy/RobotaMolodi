@@ -11,8 +11,8 @@
         </div>
         <div>{!! $newsOne->description !!}</div>
 
-        <a href="{{ route('news.edit', $newsOne->id) }}" class="btn btn-primary">Edit News</a>
-        <a href="{{ route('news.index', $newsOne->id) }}" class="btn btn-primary">Show All</a>
+        <a href="{{ route('admin.news.edit', $newsOne->id) }}" class="btn btn-primary">Edit News</a>
+        <a href="{{ route('admin.news.index', $newsOne->id) }}" class="btn btn-primary">Show All</a>
     </div>
 
 @endsection
