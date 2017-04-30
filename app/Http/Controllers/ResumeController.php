@@ -3,6 +3,7 @@
 use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
@@ -135,34 +136,16 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Input::hasFile('loadResume'))
         {
-//            $fname = $auth->user()->getAuthIdentifier();
-//
             $file = Input::file('loadResume');
-            $filename = $file->getClientOriginalName();
-            $file->move(base_path() . '/public/image/resume/'. $auth->user()->getAuthIdentifier().'/', $filename);
-//            'abc.jpg';
-//            $resume->img = $filename;
-//            $resume->getImage();
-//            ResumeUploader.getImage($resume);
-//            ResumeUploader.setImage($resume, $file);
-//            img src=$resume->getImage();
-//            $file->move(base_path() . '/public/image/resume/'. $auth->user()->getAuthIdentifier().'/', $filename);
-//
-//            $extensions = ['.jpg', '.jpeg', '.png'];
-//
-//            foreach($extensions as $i)
-//                if(File::exists(base_path() . '/public/image/resume/' . $fname . $i))
-//                    File::delete(base_path() . '/public/image/resume/' . $fname . $i);
-//
-//            $filename = $fname . '.' . $file->getClientOriginalExtension();
-//
-//            $file->move(base_path() . '/public/image/resume', $filename);
+            $filename = $file->getClientOriginalName();                 //бере імя файла
+            $directory = 'image/resume/'. Auth::user()->id . '/';       //робить шлях до папки
+            Storage::makeDirectory($directory);                  //створює папку
+            $file->move(base_path() . '/public/'.$directory, $filename);
         }
 
         $resume = $resumeModel->fillResume(0,$auth,$request);
-
+        $resume->image = $filename;
         $resume->save();
-
 
         return redirect()->route('cabinet.index');
     }

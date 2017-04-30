@@ -184,13 +184,15 @@
     <div class="col-md-2 col-sm-2">
     </div>
     <div class="col-md-4 col-sm-4">
-        <button type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+        <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
         <div id="filename">Файл не вибрано</div>
         {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
     </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
-</div><br>
+</div>
+
+<br>
 
 <input type="hidden" name="fname" value="{{}}">
 
@@ -206,6 +208,29 @@
     {!!Form::token()!!}
 </div>
 <br>
+
+<div id="imageBox" class="modal fade">
+    @include('Resume.modalForImage')
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#loadResume').on('change', function(e) {
+            $('#imageBox').modal('show');
+
+            var file = e.currentTarget.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                $('#img-src').attr('src', reader.result);
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                $('#img-src').attr('src', '');
+            }
+        });
+    })
+</script>
 
 @section('footer')
 
