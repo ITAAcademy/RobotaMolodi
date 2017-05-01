@@ -40,8 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
 });
 
 //------------SHOW NEWS------------------------------------------------------
-Route::any('news', ['as' => 'news.all', 'uses' => 'NewsController@showListNews']);
-Route::any('news/{id}', ['as' => 'news.page', 'uses' => 'NewsController@showPageNews']);
+Route::any('news', ['as' => 'news.all', 'uses' => 'NewsController@index']);
+Route::any('news/{id}', ['as' => 'news.page', 'uses' => 'NewsController@show']);
 //---------------------------------------------------------------------------
 
 Route::controllers([
