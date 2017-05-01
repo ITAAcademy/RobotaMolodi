@@ -71,9 +71,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
                 $resumes->sortBy('created_at');
                 $mes = null;
-                if($request->ajax()){
-                    return  view('Resume._resume', ['resumes'=> $resumes, 'mes'=>$mes]);
-                }
+//                if($request->ajax()){
+//                    return  view('Resume._resume', ['resumes'=> $resumes, 'mes'=>$mes]);
+//                }
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             }
         } else {

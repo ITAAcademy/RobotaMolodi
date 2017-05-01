@@ -60,7 +60,8 @@ class CompanyController extends Controller  {
             else
             {
                 $mes=null;
-                return view('Company._company', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
+//                return view('Company._company', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
+                return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
         }
         else
