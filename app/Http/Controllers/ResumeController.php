@@ -26,6 +26,7 @@ use View;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Currency;
 use File;
+use App\Repositoriy\Crop;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -112,9 +113,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
      *
      * @return Response
      */
-    public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
+    public function store(Resume $resumeModel, Request $request, Guard $auth)//Save resume in DB
     {
-        //Input::flush();
         Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
             if ($value < $request['salary_max'])
                 return true;
@@ -136,11 +136,13 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Input::hasFile('loadResume'))
         {
+            $cropcoord = explode(',', $request->fcoords);
+            
             $file = Input::file('loadResume');
             $filename = $file->getClientOriginalName();                 //бере імя файла
             $directory = 'image/resume/'. Auth::user()->id . '/';       //робить шлях до папки
-            Storage::makeDirectory($directory);                  //створює папку
-            $file->move(base_path() . '/public/'.$directory, $filename);
+            Storage::makeDirectory($directory);                         //створює папку
+            Crop::input($cropcoord, $filename, $file, $directory);      //обрізає картинку та зберігає у відповідну директорію
         }
 
         $resume = $resumeModel->fillResume(0,$auth,$request);
