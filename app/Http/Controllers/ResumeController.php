@@ -138,10 +138,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         {
             $cropcoord = explode(',', $request->fcoords);
             $file = Input::file('loadResume');
-            $filename = $file->getClientOriginalName();                 //бере імя файла
-            $directory = 'image/resume/'. Auth::user()->id . '/';       //робить шлях до папки
-            Storage::makeDirectory($directory);                         //створює папку
-            Crop::input($cropcoord, $filename, $file, $directory);      //обрізає картинку та зберігає у відповідну директорію
+            $filename = $file->getClientOriginalName();                 //take file name
+            $directory = 'image/resume/'. Auth::user()->id . '/';       //create url to directory
+            Storage::makeDirectory($directory);                         //create directory
+            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
         }
 
         $resume = $resumeModel->fillResume(0,$auth,$request);

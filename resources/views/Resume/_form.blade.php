@@ -257,8 +257,8 @@
             setApi();
 
             $('#crop').click(function() {
-                var wigth = $('.jcrop-active').width(); //ширина картинки на екрані
-                var natural_width = $('canvas').attr('width');  //натуральна ширина картинки
+                var wigth = $('.jcrop-active').width();         //width picture on screen
+                var natural_width = $('canvas').attr('width');  //natural width picture
                 var mas = [x1,x2,y1,y2,wigth,natural_width];
                 $('#coords').attr('value', mas);
                 jcrop_api.destroy();
