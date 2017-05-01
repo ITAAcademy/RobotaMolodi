@@ -219,104 +219,52 @@
         $('#loadResume').on('change', function(e) {
             $('#imageBox').modal('show');
 
-            jQuery(function ($) {
+            var x1, y1, x2, y2;
+            var  jcrop_api;
+
+            function setApi(){
+                $('#img-src').Jcrop({
+                    onChange: showCoords,
+                    onSelect: showCoords
+                },function(){
+                    jcrop_api = this;
+                    jcrop_api.setOptions({ aspectRatio: 1/1 });
+                    jcrop_api.setOptions({ minSize: [ 130, 130 ] });
+                    $('#crop').show();
+                });
+
                 function showCoords(c){
                     x1 = c.x;
                     y1 = c.y;
                     x2 = c.x2;
                     y2 = c.y2;
                 }
+            }
 
-                function setApi(){
-                    $('#img-src').Jcrop({
-                        onChange: showCoords,
-                        onSelect: showCoords
-                    },function(){
-                        jcrop_api = this;
-                        jcrop_api.setOptions({ aspectRatio: 1/1 });
-                        jcrop_api.setOptions({ minSize: [ 130, 130 ] });
-                    });
+            if (e.currentTarget.files[0]) {
+                var file = e.currentTarget.files[0];
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    $('.jcrop-active').replaceWith('');
+                    $('#img-src').replaceWith('<img id="img-src" src="' + reader.result + '"/>');
+                    setApi();
                 }
-                function readUrl(){
+                reader.readAsDataURL(file);
+            } else {
+                $('#img-src').attr('src', '');
+            }
 
-                }
-                if (file) {
-                    var file = e.currentTarget.files[0];
-                    var reader = new FileReader();
-                    reader.onloadend = function () {
-                        $('.jcrop-holder').replaceWith('');
-                        $('#img-src').replaceWith('<img id="img-src" src="' + reader.result + '"/>');
-
-                        setApi();
-                    }
-                    reader.readAsDataURL(file);
-                }
-
-                setApi();
-
-
-
-
-
-            })
-
-
-
-//            var file = e.currentTarget.files[0];
-//            var reader = new FileReader();
-//            reader.onloadend = function () {
-//                $('.jcrop-holder').replaceWith('');
-//                $('#img-src').replaceWith('<img id="img-src" src="' + reader.result + '"/>');
-////                $('#img-src').attr('src', reader.result);
-//            }
-
-//            if (file) {
-//                reader.readAsDataURL(file);
-//            } else {
-//                $('#img-src').attr('src', '');
-//            }
-
-
-//
-//            var x1, y1, x2, y2;
-//            var  jcrop_api;
-
-//            function setApi(){
-//                $('#img-src').Jcrop({
-//                    onChange: showCoords,
-//                    onSelect: showCoords
-//                },function(){
-//                    jcrop_api = this;
-//                    jcrop_api.setOptions({ aspectRatio: 1/1 });
-//                    jcrop_api.setOptions({ minSize: [ 130, 130 ] });
-//                    $('#crop').show();
-//                });
-//
-//                function showCoords(c){
-//                    x1 = c.x;
-//                    y1 = c.y;
-//                    x2 = c.x2;
-//                    y2 = c.y2;
-//                }
-//            }
-
-//            setApi();
+            setApi();
 
             $('#crop').click(function() {
                 var wigth = $('.jcrop-active').width(); //ширина картинки на екрані
                 var natural_width = $('canvas').attr('width');  //натуральна ширина картинки
                 var mas = [x1,x2,y1,y2,wigth,natural_width];
                 $('#coords').attr('value', mas);
-
                 jcrop_api.destroy();
                 $('#img-src').removeAttr('style');
-
                 $('#imageBox').modal('hide');
             });
-
-
-
-
         });
     })
 </script>

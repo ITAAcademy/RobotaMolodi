@@ -137,7 +137,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
         if(Input::hasFile('loadResume'))
         {
             $cropcoord = explode(',', $request->fcoords);
-            
             $file = Input::file('loadResume');
             $filename = $file->getClientOriginalName();                 //бере імя файла
             $directory = 'image/resume/'. Auth::user()->id . '/';       //робить шлях до папки
