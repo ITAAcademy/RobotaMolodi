@@ -81,9 +81,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     
     public function isAdmin(){
-	if (isset($this->role))
+	if (isset($this->role_id))
 	{
-    	    return $this->role->id == Role::ADMIN;
+        return $this->role_id == Role::ADMIN;
 	}
 	return false;
     }
