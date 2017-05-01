@@ -125,10 +125,12 @@ class VacancyController extends Controller
             if (count($vacancies)==0) {
                 $mes = "Зараз у Вас немає вакансій.";
                 return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+
             } else {
                 $vacancies->sortByDesc('created_at');
                 $mes =null;
-                return  view('vacancy._vacancy', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+//                return  view('vacancy._vacancy', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
             }
 
         } else {
