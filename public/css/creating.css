@@ -113,5 +113,26 @@
     font-weight: 500;
     color:#666666;
 }
+.change_description{
+    display: none;
+}
+.change_description p{
+    margin-left: 20px;
+}
+input.btn.btn-primary{
+    color: white;
+    background-color: #F68C06;
+    border-color: #F68C06;
+}
+input.btn.btn-primary:hover{
+    color: white;
+    background-color: #f26522;
+    border-color: #f26522;
+}
+input.btn.btn-primary:focus{
+    color: white;
+    background-color: #f26522;
+    border-color: #f26522;
+}
 
 

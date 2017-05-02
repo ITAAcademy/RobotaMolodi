@@ -11,7 +11,7 @@
     <input type="hidden" name="fname" value="{{$resume->id_u}}">
     {!! Form::close() !!}
 
-    <div class="panel panel-orange" id="vrBlock">
+    <div class="panel" id="vrBlock">
         <div class="row">
             <div class="col-xs-12 col-md-3">
                 <div class="panel panel-orange" id="vimg">
@@ -65,7 +65,7 @@
             </div>
             <div class="col-xs-12">
                 <p class="description-one-resume"><span>Опис:</span></p>
-                <p class="description-footer-resume">{{strip_tags($resume->description)}}</p>
+                <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                 <p class="cityTime-resume">
                     <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
                     <span id="yellowCircle-resume">&#183;</span>
