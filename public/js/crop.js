@@ -12,7 +12,7 @@ function crop(e) {
             jcrop_api = this;
             jcrop_api.setOptions({aspectRatio: 1 / 1});
             jcrop_api.setOptions({minSize: [130, 130]});
-            jcrop_api.setOptions({setSelect: [0,0,50,50]});
+            jcrop_api.setOptions({setSelect: [0,0,130,130]});
         });
 
         function showCoords(c) {
@@ -20,7 +20,7 @@ function crop(e) {
             y1 = c.y;
             x2 = c.x2;
             y2 = c.y2;
-            changeCss2();
+            changeJcropSelectionTopBack();
         }
     }
 
@@ -37,15 +37,15 @@ function crop(e) {
         $('#img-src').attr('src', '');
     }
 
-    function changeCss(){
-        $('.jcrop-selection').addClass('myClass');
+    function changeJcropSelectionTop(){
+        $('.jcrop-selection').addClass('jcrop-selection-top');
     }
-    function changeCss2(){
-        $('.jcrop-selection').removeClass('myClass');
+    function changeJcropSelectionTopBack(){
+        $('.jcrop-selection').removeClass('jcrop-selection-top');
     }
 
     setApi();
-    setTimeout(changeCss, 100);
+    setTimeout(changeJcropSelectionTop, 100);
 
     $('#crop').click(function () {
         var wigth = $('.jcrop-active').width();         //width picture on screen

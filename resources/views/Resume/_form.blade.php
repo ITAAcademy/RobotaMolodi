@@ -211,16 +211,10 @@
 <br>
 
 <div id="imageBox" class="modal fade">
-    @include('newDesign.modalForImage')
+    @include('newDesign.cropModal')
 </div>
 
 {!!Html::script('js/crop.js')!!}
-
-<style>
-    .myClass{
-        top: 0 !important;
-    }
-</style>
 
 <script>
     $(document).ready(function () {
