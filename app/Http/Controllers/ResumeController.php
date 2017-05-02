@@ -3,6 +3,7 @@
 use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ use View;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Currency;
 use File;
+use App\Repositoriy\Crop;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
 
@@ -69,9 +71,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
                 $resumes->sortBy('created_at');
                 $mes = null;
-                if($request->ajax()){
-                    return  view('Resume._resume', ['resumes'=> $resumes, 'mes'=>$mes]);
-                }
+//                if($request->ajax()){
+//                    return  view('Resume._resume', ['resumes'=> $resumes, 'mes'=>$mes]);
+//                }
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             }
         } else {
@@ -111,9 +113,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
      *
      * @return Response
      */
-    public function store(Resume $resumeModel, Request $request,Guard $auth)//Save resume in DB
+    public function store(Resume $resumeModel, Request $request, Guard $auth)//Save resume in DB
     {
-        //Input::flush();
         Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
             if ($value < $request['salary_max'])
                 return true;
@@ -135,24 +136,17 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Input::hasFile('loadResume'))
         {
-            $fname = $auth->user()->getAuthIdentifier();
-
+            $cropcoord = explode(',', $request->fcoords);
             $file = Input::file('loadResume');
-
-            $extensions = ['.jpg', '.jpeg', '.png'];
-
-            foreach($extensions as $i)
-                if(File::exists(base_path() . '/public/image/resume/' . $fname . $i))
-                    File::delete(base_path() . '/public/image/resume/' . $fname . $i);
-
-            $filename = $fname . '.' . $file->getClientOriginalExtension();
-            $file->move(base_path() . '/public/image/resume', $filename);
+            $filename = $file->getClientOriginalName();                 //take file name
+            $directory = 'image/resume/'. Auth::user()->id . '/';       //create url to directory
+            Storage::makeDirectory($directory);                         //create directory
+            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
         }
 
         $resume = $resumeModel->fillResume(0,$auth,$request);
-
+        $resume->image = $filename;
         $resume->save();
-
 
         return redirect()->route('cabinet.index');
     }

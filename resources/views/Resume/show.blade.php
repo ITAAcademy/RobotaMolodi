@@ -6,16 +6,10 @@
         <div>
             <div class="col-md-3">
                 <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
+                        {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
-                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'resImg', 'width' => '100%', 'height' => '100%')) !!}
+                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => 'auto', 'height' => '100%')) !!}
                     @endif
                 </div>
             </div>

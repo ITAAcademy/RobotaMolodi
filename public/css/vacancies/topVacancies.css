@@ -1,16 +1,16 @@
 @font-face {
 	font-family: ACLine;
-	src:    url('../fonts/ACLine.eot') format('embedded-opentype'),
-	url('../fonts/ACLine.woff2') format('woff2'),
-	url('../fonts/ACLine.woff') format('woff'),
-	url('../fonts/ACLine.ttf') format('truetype'),
-	url('../fonts/ACLine.svg#ACLine') format('svg');
+	src:    url('../../fonts/ACLine.eot') format('embedded-opentype'),
+	url('../../fonts/ACLine.woff2') format('woff2'),
+	url('../../fonts/ACLine.woff') format('woff'),
+	url('../../fonts/ACLine.ttf') format('truetype'),
+	url('../../fonts/ACLine.svg#ACLine') format('svg');
 }
 @font-face {
 	font-family: SegoeUIRegular;
-	src:    url('../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
-	url('../fonts/SegoeUIRegular.woff') format('woff'),
-	url('../fonts/SegoeUIRegular.ttf') format('truetype');
+	src:    url('../../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
+	url('../../fonts/SegoeUIRegular.woff') format('woff'),
+	url('../../fonts/SegoeUIRegular.ttf') format('truetype');
 }
 html,body{
 	max-width: 1300px;
@@ -126,7 +126,7 @@ html,body{
 	border-radius: 4px;
 }
 .cool-scroll::-webkit-scrollbar-thumb{
-	background: #888 url(../image/Thumb.png) no-repeat;
+	background: #888 url(../../image/topVacancies/Thumb.png) no-repeat;
 	background-position: center center;
 }
 
@@ -432,7 +432,7 @@ div.wrapper-list-label-box{
 }
 
 .dropdown-menu::-webkit-scrollbar-thumb {
-	background: #888 url(../image/Thumb.png) no-repeat;
+	background: #888 url(../../image/topVacancies/Thumb.png) no-repeat;
 	background-position: center center;
 }
 .dropdown-menu{

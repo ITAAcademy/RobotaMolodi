@@ -18,7 +18,7 @@
     <hr>
     {!! Form::model($newsOne, array(
     'method' => 'PUT',
-    'route' => ['news.update', $newsOne->id,
+    'route' => ['admin.news.update', $newsOne->id,
      ],
      'files'=>true))!!}
 
