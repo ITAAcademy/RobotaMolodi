@@ -7,12 +7,12 @@ function crop(e) {
     function setApi() {
         $('#img-src').Jcrop({
             onChange: showCoords,
-            onSelect: showCoords
+            onSelect: showCoords,
         }, function () {
             jcrop_api = this;
             jcrop_api.setOptions({aspectRatio: 1 / 1});
             jcrop_api.setOptions({minSize: [130, 130]});
-            $('#crop').show();
+            jcrop_api.setOptions({setSelect: [0,0,50,50]});
         });
 
         function showCoords(c) {
@@ -20,6 +20,7 @@ function crop(e) {
             y1 = c.y;
             x2 = c.x2;
             y2 = c.y2;
+            changeCss2();
         }
     }
 
@@ -36,7 +37,15 @@ function crop(e) {
         $('#img-src').attr('src', '');
     }
 
+    function changeCss(){
+        $('.jcrop-selection').addClass('myClass');
+    }
+    function changeCss2(){
+        $('.jcrop-selection').removeClass('myClass');
+    }
+
     setApi();
+    setTimeout(changeCss, 100);
 
     $('#crop').click(function () {
         var wigth = $('.jcrop-active').width();         //width picture on screen

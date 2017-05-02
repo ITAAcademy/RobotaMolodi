@@ -22,4 +22,5 @@
         height: auto !important;
         margin: auto;
     }
+
 </style>

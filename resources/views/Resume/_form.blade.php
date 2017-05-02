@@ -216,6 +216,12 @@
 
 {!!Html::script('js/crop.js')!!}
 
+<style>
+    .myClass{
+        top: 0 !important;
+    }
+</style>
+
 <script>
     $(document).ready(function () {
          $('#loadResume').on('change', function(e) {
