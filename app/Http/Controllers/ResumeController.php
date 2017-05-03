@@ -134,6 +134,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
 
+        $resume = $resumeModel->fillResume(0,$auth,$request);
+
         if(Input::hasFile('loadResume'))
         {
             $cropcoord = explode(',', $request->fcoords);
@@ -142,10 +144,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $directory = 'image/resume/'. Auth::user()->id . '/';       //create url to directory
             Storage::makeDirectory($directory);                         //create directory
             Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+            $resume->image = $filename;
         }
 
-        $resume = $resumeModel->fillResume(0,$auth,$request);
-        $resume->image = $filename;
         $resume->save();
 
         return redirect()->route('cabinet.index');
