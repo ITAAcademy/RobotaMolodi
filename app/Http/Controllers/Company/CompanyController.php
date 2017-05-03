@@ -9,16 +9,20 @@ use App\Models\Resume;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 use App\Models\News;
+use File;
 use View;
-use Input;
+//use Input;
 use Validator;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 //use Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Repositoriy\Crop;
+
 
 class CompanyController extends Controller  {
 
@@ -104,49 +108,57 @@ class CompanyController extends Controller  {
 	 */
 	public function store(Guard $auth,Company $companyModel,Request $request)
 	{
+//        dd($request);
+//        if(Auth::check()) {
 
-        if(Auth::check())
+//        $this->validate($request,[
+//            'company_name' => 'required|min:3',
+//            'company_link' => 'url'
+//        ]);
+//
+//        $user = $auth->user();
+//
+//        $company_link = $request['company_link'];
+//        $company_name = $request['company_name'];
+//        $user_id = $user->getAuthIdentifier();
+//
+//
+//        $companies = new Company();
+//        $companies->users_id = $user_id;
+//        $companies->company_name = $company_name;
+//        $companies->company_email = $company_link;
+
+//        $file = Input::file('loadCompany');
+        dd(Input::file('loadCompany'));
+        
+        if(Input::hasFile('loadCompany'))
         {
+            $cropcoord = explode(',', $request->fcoords);
+            $file = Input::file('loadCompany');
+            $filename = $file->getClientOriginalName();                 //take file name
+            $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+            Storage::makeDirectory($directory);                         //create directory
+            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
 
-        $this->validate($request,[
-            'company_name' => 'required|min:3',
-            'company_link' => 'url'
-        ]);
-            $user = $auth->user();
-
-                $company_link = $request['company_link'];
-                $company_name = $request['company_name'];
-                $user_id = $user->getAuthIdentifier();
-
-
-                $companies = new Company();
-                $companies->users_id = $user_id;
-                $companies->company_name = $company_name;
-                $companies->company_email = $company_link;
-
-
-                $companies->save();
-
-            session_start();
-
-            if(isset ($_SESSION['path']))
-            {
-
-
-                $path = $_SESSION['path'];
-                session_unset();
-            }
-            else
-            {
-
-                $path = 'company.index';
-            }
-            return redirect()->route($path);
+            dd('f');
         }
-        else
-        {
-            return Redirect::to('auth/login');
+
+//        $companies->save();
+
+        session_start();
+
+        if(isset ($_SESSION['path'])) {
+            $path = $_SESSION['path'];
+            session_unset();
+        } else {
+            $path = 'company.index';
         }
+
+        return redirect()->route($path);
+
+//        } else {
+//            return Redirect::to('auth/login');
+//        }
 
     }
 

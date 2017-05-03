@@ -7,7 +7,7 @@ function crop(e) {
     function setApi() {
         $('#img-src').Jcrop({
             onChange: showCoords,
-            onSelect: showCoords,
+            onSelect: showCoords
         }, function () {
             jcrop_api = this;
             jcrop_api.setOptions({aspectRatio: 1 / 1});
