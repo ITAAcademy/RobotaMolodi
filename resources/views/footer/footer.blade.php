@@ -57,15 +57,53 @@
         </div>
         <div class="inner-footer col-md-5" style="text-align: right;">
             <span>Поділитись у соцмережах:</span>
-            <a href="https://vk.com/intita"><i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i></a>
-            <a href="https://intita.com/studentreg"><i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/intita.hr/"><i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://twitter.com/INTITA_EDU"><i class="fa-soc fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-            <a href="https://plus.google.com/u/0/116490432477798418410"><i class="fa-soc fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/"
+               target="_blank" title="Share on facebook.com">
+                <i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+            </a>
+            <a href="http://vk.com/share.php?url=http://robotamolodi.org/&title=РОБОТАМОЛОДІ&image=http://robotamolodi.org/image/logo.png"
+               target="_blank" title="Share on vk.com">
+                <i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i>
+            </a>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp&title=РОБОТАМОЛОДІ&url=http://robotamolodi.org/"
+               target="_blank">
+                <i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=http://robotamolodi.org/&text=РОБОТАМОЛОДІ"
+               target="_blank" title="Share on twitter.com">
+                <i class="fa-soc fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+            </a>
+            <a href="https://plus.google.com/share?url=http://robotamolodi.org/"
+               target="_blank" title="Share on plus.google.com">
+                <i class="fa-soc fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
 </footer>
+<script>
+    var popupSize = {
+        width: 780,
+        height: 550
+    };
 
+    $(document).on('click', '.inner-footer > a', function(e){
+
+        var
+            verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+            horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+        var popup = window.open($(this).prop('href'), 'social',
+            'width='+popupSize.width+',height='+popupSize.height+
+            ',left='+verticalPos+',top='+horisontalPos+
+            ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+        if (popup) {
+            popup.focus();
+            e.preventDefault();
+        }
+
+    });
+</script>
 <script>
     $(document).ready(function () {
         $('.no-click').on('click', function (e) {

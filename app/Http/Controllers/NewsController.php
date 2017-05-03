@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Industry;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
@@ -79,5 +82,27 @@ class NewsController extends Controller
         $news->fill($input)->save();
     }
 
+    public function showListNews()
+    {
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        return view('newDesign.news.includeNews.newsList', [
+            'news'=>(new News())->getNewsForMainPage(),
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'topVacancy' => $topVacancy,
+        ]);
+    }
+    public function showPageNews($id)
+    {
+        $newsOne = News::find($id);
+        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        return view('newDesign.news.includeNews.newsPage', [
+            'news'=>(new News())->getNewsForMainPage(),
+            'newsOne' => $newsOne,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'topVacancy' => $topVacancy,
+        ]);
+    }
 
 }

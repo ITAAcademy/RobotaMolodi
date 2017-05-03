@@ -33,7 +33,7 @@ Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => '
 
 Route::get('home', 'HomeController@index');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
     
     Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
@@ -44,6 +44,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
     Route::put('/news/{id}', ['as' => 'news.update', 'uses' => 'NewsController@update']);
     Route::delete('/news/{id}', ['as' => 'news.destroy', 'uses' => 'NewsController@destroy']);
 });
+
+//------------SHOW NEWS------------------------------------------------------
+Route::any('news', ['as' => 'news.all', 'uses' => 'NewsController@showListNews']);
+Route::any('news/{id}', ['as' => 'news.page', 'uses' => 'NewsController@showPageNews']);
+//---------------------------------------------------------------------------
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

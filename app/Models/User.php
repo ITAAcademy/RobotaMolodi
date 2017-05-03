@@ -35,7 +35,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     
     private function hasCompany()
     {
-//       return $this->hasMany('App\Models\Company','users_id')->get();
         return $this->hasMany('App\Models\Company','users_id');
     }
 
@@ -70,13 +69,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         $userResumes = User::HasManyResumes()->orderBy('updated_at', 'desc');
 
-        //dd($userResumes);
-//        $resumes = array();
-//        foreach($userResumes as $resume)
-//        {
-//            array_push($resumes,$resume);
-//        }
-
         return $userResumes;
     }
 
@@ -93,7 +85,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     
     public function isAdmin(){
-        return $this->role_id == 1;
+        return $this->role->id == Role::ADMIN;
     }
 
 }

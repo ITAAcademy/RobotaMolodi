@@ -6,7 +6,7 @@
             <a class="btn" href="{{ url('aboutus') }}" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;" >Про нас</a>
         </div>
         <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;">Дні кар'єри</a>
+            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank" class="afterChangesBtn " style="color: #333333; line-height: 30px; font-size: 14px;"><span class="profitday-btn">Дні кар'єри</span></a>
         </div>
         <div class="col-xs-2 staticLinksMenu">
             <a class="btn" href="{{ url('https://intita.com/courses')}}" target="_blank" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;">Навчання</a>
