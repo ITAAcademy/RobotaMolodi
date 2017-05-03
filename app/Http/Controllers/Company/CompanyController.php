@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 //use Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use App\Repositoriy\Crop;
 
 
@@ -129,18 +130,22 @@ class CompanyController extends Controller  {
 //        $companies->company_email = $company_link;
 
 //        $file = Input::file('loadCompany');
-        dd(Input::file('loadCompany'));
-        
         if(Input::hasFile('loadCompany'))
         {
+
             $cropcoord = explode(',', $request->fcoords);
             $file = Input::file('loadCompany');
+
             $filename = $file->getClientOriginalName();                 //take file name
+
             $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+
             Storage::makeDirectory($directory);                         //create directory
+            dd('d');
+            dd('f');
             Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
 
-            dd('f');
+
         }
 
 //        $companies->save();

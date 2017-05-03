@@ -3,7 +3,7 @@
 @section('contents')
 
 
-    {!!Form::open(['route' => 'company.store', 'id'=>'form'])!!}
+    {!!Form::open(['route' => 'company.store', 'enctype' => 'multipart/form-data', 'id'=>'form'])!!}
     <div class="row">
         <h3 class="formTitle header-text-company">додати компанію</h3>
         </br>
