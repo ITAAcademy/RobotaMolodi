@@ -6435,6 +6435,9 @@ label,
   color:#d17c11;
 
 }
-
+footer.row.footer{
+  margin-left: 0px;
+  margin-right: 0px;
+}
 
 
