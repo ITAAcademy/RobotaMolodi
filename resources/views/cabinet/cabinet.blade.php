@@ -16,7 +16,7 @@
         @yield('contents')
 
     </div>
-{{--<script>--}}
+<script>
 //    $('li[role="presentation"] a').click(function(){
 //        var link = $(this).attr('href');
 //        $.ajax({
@@ -28,7 +28,7 @@
 //
 //        return false;
 //    })
-{{--</script>--}}
+</script>
 
 @stop
 

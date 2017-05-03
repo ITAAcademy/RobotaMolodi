@@ -234,7 +234,7 @@
 </script>
 
 <div id="imageBox" class="modal fade">
-    @include('newDesign.modalForImage')
+    @include('newDesign.cropModal')
 </div>
 
 {!!Html::script('js/crop.js')!!}

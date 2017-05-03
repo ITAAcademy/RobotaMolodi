@@ -22,4 +22,8 @@
         height: auto !important;
         margin: auto;
     }
+
+    .jcrop-selection-top{
+        top: 0 !important;
+    }
 </style>
