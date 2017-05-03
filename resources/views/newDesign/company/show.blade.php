@@ -32,11 +32,11 @@
                         <p>Поділитись</p>
                     </div>
                     <div class="social">
-                        <a href="https://www.linkedin.com/" target="_blank"><i class="fa">&#xf08c;</i></a>
-                        <a href="https://www.facebook.com" target="_blank"><i class="fa">&#xf082;</i></a>
-                        <a href="https://www.twitter.com" target="_blank"><i class="fa">&#xf081;</i></a>
-                        <a href="https://vk.com" target="_blank"><i class="fa" >&#xf189;</i></a>
-                        <a href="https://plus.google.com" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Компанія{{' '.$company->company_name}}&url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa">&#xf08c;</i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf082;</i></a>
+                        <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/company/{{$company->id}}&text=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf081;</i></a>
+                        <a href="http://vk.com/share.php?url=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
+                        <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
                     </div>
                  </div>
             </div>
@@ -74,6 +74,11 @@
 
         <div class="downlist"></div>
 
+    {!!Html::script('js/socialNetWork.js')!!}
+
+    <script>
+        socialNetWork('.social > a');
+    </script>
 
     <script>
         $(document).ready(function () {
