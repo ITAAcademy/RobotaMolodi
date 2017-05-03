@@ -177,5 +177,4 @@ class Resume extends Model {
         return $query->where('published','!=',0);
     }
 
-
 }

@@ -184,14 +184,17 @@
     <div class="col-md-2 col-sm-2">
     </div>
     <div class="col-md-4 col-sm-4">
-        <button type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+        <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
         <div id="filename">Файл не вибрано</div>
         {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
+
     </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
-</div><br>
+</div>
 
+<br>
+<input type="hidden" name="fcoords" id="coords" value="">
 <input type="hidden" name="fname" value="{{}}">
 
 <div class="row">
@@ -207,6 +210,19 @@
 </div>
 <br>
 
+<div id="imageBox" class="modal fade">
+    @include('newDesign.modalForImage')
+</div>
+
+{!!Html::script('js/crop.js')!!}
+
+<script>
+    $(document).ready(function () {
+         $('#loadResume').on('change', function(e) {
+             crop(e);
+         });
+    })
+</script>
 @section('footer')
 
     <script type="text/javascript">

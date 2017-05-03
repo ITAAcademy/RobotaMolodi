@@ -5,7 +5,7 @@
 <div id="news" class="hidden-xs news">
 
     <div>
-        <a id="close-news" class="close-bt" href="#" title="Закрити Новини. З'явиться знов після перезавантаження сторінки" onclick="newsClose()">
+        <a id="close-news" class="close-bt" href="#" title="Закрити Новини. З'явиться знов після перезавантаження сторінки" >
             <img id="closenews" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
         </a>
         <img class="tv-news-header1" src="/image/topVacancies/news.png" alt="image logo news">

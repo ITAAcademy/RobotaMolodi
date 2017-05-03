@@ -3,7 +3,7 @@
 <div id="topvac" class=" hidden-xs top-vac">
 
     <div id="topvac0">
-        <a id="close-top-vac" class="close-bt" href="#" title="Закрити Топ вакансії. З'явиться знов після перезавантаження сторінки" onclick="topVacClose()">
+        <a id="close-top-vac" class="close-bt" href="#" title="Закрити Топ вакансії. З'явиться знов після перезавантаження сторінки" >
             <img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
         </a>
         <img id="topvac1" class="tv-news-header1" src="/image/topVacancies/topvacancies.png" alt="topvacancies">
