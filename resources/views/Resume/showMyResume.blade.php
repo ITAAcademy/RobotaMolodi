@@ -11,18 +11,12 @@
     <input type="hidden" name="fname" value="{{$resume->id_u}}">
     {!! Form::close() !!}
 
-    <div class="panel panel-orange" id="vrBlock">
+    <div class="panel" id="vrBlock">
         <div class="row">
             <div class="col-xs-12 col-md-3">
                 <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/resume/' . $resume->id_u . '.png')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @elseif(File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')))
-                        {!! Html::image('image/resume/' . $resume->id_u . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
+                        {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => 'auto', 'height' => '100%')) !!}
                     @endif
@@ -65,7 +59,7 @@
             </div>
             <div class="col-xs-12">
                 <p class="description-one-resume"><span>Опис:</span></p>
-                <p class="description-footer-resume">{{strip_tags($resume->description)}}</p>
+                <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                 <p class="cityTime-resume">
                     <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
                     <span id="yellowCircle-resume">&#183;</span>
