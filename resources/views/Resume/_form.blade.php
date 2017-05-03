@@ -145,8 +145,8 @@
 <div class="row">
     <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('description', 'Опис', ['class'=>'label-text-resume']) !!}</div>
-        <div class="col-md-6 col-sm-6">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}</div>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
+        <div class="col-md-8 col-sm-8 zxc">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}</div>
+        <div class=" col-md-2 col-sm-2">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
         <span class="required_field">*</span>
     </div>
 </div>
@@ -184,14 +184,18 @@
     <div class="col-md-2 col-sm-2">
     </div>
     <div class="col-md-4 col-sm-4">
-        <button type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+        <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
         <div id="filename">Файл не вибрано</div>
         {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
+
     </div>
     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
-</div><br>
+</div>
 
+
+<br>
+<input type="hidden" name="fcoords" id="coords" value="">
 <input type="hidden" name="fname" value="{{}}">
 
 <div class="row">
@@ -201,12 +205,47 @@
 
 <div class="row">
     <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="width: 400px">
-        {!!Form::submit('Зареєструвати резюме',['class' => 'btn btn-primary'])!!}
+        {!!Form::submit('Зареєструвати резюме',['class' => 'btn btn-primary registr'])!!}
     </div>
     {!!Form::token()!!}
 </div>
 <br>
+<div class="change_description" >
+    <span><b>Контактна інформація:</b></span>
+    <p>- регіон проживання:</p>
+    <p>- тел: +38 (000)-000-00-00</p>
+    <p>- e-mail: <em>example@mail.com</em></p>
+    <p>- linkedIn:</p>
+    <p>- skype:</p>
+    <div><span><b>Бажана посада:</b></span></div>
+    <div><span><b>Досвід роботи:</b></span></div>
+    <div><span><b>Освіта:</b></span></div>
+    <div><span><b>Додаткова освіта:</b></span></div>
+    <div><span><b>Сертифікати:</b></span></div>
+</div>
+<script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+    $(document).ready(function () {
+        var chg_tx = document.getElementsByClassName('change_description');
+        $('#description').text($('.change_description').html());
 
+    })
+</script>
+
+<div id="imageBox" class="modal fade">
+    @include('newDesign.cropModal')
+</div>
+
+{!!Html::script('js/crop.js')!!}
+
+<script>
+    $(document).ready(function () {
+         $('#loadResume').on('change', function(e) {
+             crop(e);
+         });
+    })
+</script>
 @section('footer')
 
     <script type="text/javascript">
@@ -257,11 +296,5 @@
 				}).change();
 
     </script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-	$(document).ready(function() {
-		CKEDITOR.replace( 'description' );
-	});
-</script>
 
 @stop
