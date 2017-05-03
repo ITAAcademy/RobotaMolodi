@@ -33,7 +33,7 @@
     font-family: SegoeUI;
     color: #797979;
 }
-.description-footer-resume{
+p.description-footer-resume{
     font-family: SegoeUI;
     font-size: 14px;
     color: #797979;
@@ -126,4 +126,7 @@
 }
 .orange-link-myresume:focus{
     color: #f26522;
+}
+div#vrBlock.panel strong{
+    font-size: 17px;
 }
