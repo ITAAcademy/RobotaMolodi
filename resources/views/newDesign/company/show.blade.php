@@ -67,7 +67,7 @@
                     <a href="{{route('scompany.company_vacancies',$company->id)}}" class="vac-call btn-default btn"><span>Переглянути вакансії</span></a>
                     <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
                     <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
-                    <a href="{{route('scompany.company_comments',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
+                    <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
                 </div>
             </div>
         </div>

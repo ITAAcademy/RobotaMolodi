@@ -17,38 +17,40 @@ use App\Models\News;
 use View;
 use Input;
 use Validator;
-//use Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+//use Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 
 class CommentsController extends Controller
 {
     public function showComments($id, Guard $auth){
-        $company = Company::find($id);
 
-        if(Request::ajax()){
-            if($_REQUEST == null){
-                $comments = Comment::where('company_id', '=', $id)->get();
-            }else{
-                dd('d');
-                $com = new Comment();
-                $com->users_id = auth()->user()->user_id;
-                $com->company_id = $id;
-                $com->comment = $_REQUEST[''];
-                $com->save();
-                $comments = Comment::where('company_id', '=', $id)->get();
-            }
-            return view('newDesign.company.comments',['comments' => $comments, 'company' =>$company]);
-        }
+
+//        if(Request::ajax()){
+//            dd('q');
+//            if($_REQUEST == null){
+//                $comments = Comment::where('company_id', '=', $id)->get();
+//                dd('ddd');
+//            }else{
+//                dd('d');
+//                $com = new Comment();
+//                $com->users_id = auth()->user()->user_id;
+//                $com->company_id = $id;
+//                $com->comment = $_REQUEST[''];
+//                $com->save();
+//                $comments = Comment::where('company_id', '=', $id)->get();
+//            }
+//            return view('newDesign.company.comments',['comments' => $comments, 'company' =>$company]);
+//        }
 
     }
 
     public function updateComments($id, Request $request){
         $comments = Comment::where('company_id', '=', $id)->get();
         $company = Company::find($id);
-        dd($request->all());
+        //dd($request->all());
         return view('newDesign.company.comments',['comments' => $comments, 'company' =>$company]);
     }
     /**
@@ -56,9 +58,11 @@ class CommentsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index($company)
     {
-        //
+        $company = Company::find($company);
+        $comments = $company->comments;
+        return view('newDesign.company.comments',['comments' => $comments, 'company' =>$company]);
     }
 
     /**
@@ -76,9 +80,22 @@ class CommentsController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|min:3|max:2000',
+        ]);
+
+        $company = Company::find($id);
+        $comment = $company->comments()->create([
+            'comment' => $request->comment,
+            'user_id' => Auth::User()->id
+        ]);
+
+        $comment->save();
+        Session::flash('success', 'Comment was added');
+
+        return redirect(route('company.response.index',['company' => $company]));
     }
 
     /**

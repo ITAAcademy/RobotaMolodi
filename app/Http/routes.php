@@ -98,9 +98,10 @@ Route::model('company/{company}/destroy','App\Models\Company');
 Route::get('scompany/company_vac/{id}',['as' => 'scompany.company_vacancies' ,'uses' => 'Company\CompanyController@showCompanyVacancies']);
 Route::get('company/{company}/formSendFileCompany', ['as'=>'scompany.company_formSendFile', 'uses' => 'Company\CompanyController@showFormSendFile']);
 Route::get('company/{company}/formSendResumeCompany', ['as'=>'scompany.company_formSendResume', 'uses' => 'Company\CompanyController@showFormSendResume']);
-Route::get('company/{company}/showComment',['as'=>'scompany.company_comments', 'uses'=>'Company\CommentsController@showComments']);
-Route::post('company/{company}/showComment',['as'=>'scompany.company', 'uses'=>'Company\CommentsController@showComments']);
-Route::post('company/{company}/comments',['as'=>'scompany.company_allComments', 'uses'=>'Company\CommentsController@updateComments']);
+//Route::get('company/{company}/showComment',['as'=>'scompany.company_comments', 'uses'=>'Company\CommentsController@showComments']);
+//Route::post('company/{company}/showComment',['as'=>'scompany.company', 'uses'=>'Company\CommentsController@showComments']);
+//Route::post('company/{company}/comments',['as'=>'scompany.company_allComments', 'uses'=>'Company\CommentsController@store']);
+Route::resource('company.response','Company\CommentsController');
 //Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');
