@@ -55,8 +55,9 @@
             <p class="col-md-2 col-sm-2 control-label label-text-company">Виберіть місто</p>
             <div class="col-md-6 col-sm-6">
                 <select class="inputPlace2">
-                    <option value=""></option>
-                    <option value=""></option>
+                    @foreach($cities as $city)
+                        <option value="{{$city->name}}">{{$city->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
