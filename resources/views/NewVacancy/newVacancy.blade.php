@@ -26,10 +26,11 @@
             <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Оберіть галузь</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control"  id="selectGaluz" name="branch">
+                    <option value="{{$top->name}}">{{$top->name}}</option>
                     @foreach($industries as $industry)
-                        {
-                        <option value="{{$industry->id}}">{{$industry->name}}</option>
-                        }
+                        @if($industry->name != $top->name)
+                            <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @endif
                     @endforeach
                     @if(Input::old('branch')!= '')
                         @foreach($industries as $industry)
@@ -138,7 +139,7 @@
         <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label  for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Виберіть місто</label>
             <div class="col-md-6 col-sm-6">
-                <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
+                <select class="form-control js-example-basic-multiple"  name="city[]" id="city">
                     @foreach($cities as $city)
                         {
                         <option value="{{$city->id}}">{{$city->name}}</option>

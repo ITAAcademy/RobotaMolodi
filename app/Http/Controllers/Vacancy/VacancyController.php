@@ -87,11 +87,13 @@ class VacancyController extends Controller
 
                 $currency = new Currency();
                 $currencies = $currency->getCurrencies();
+                $top = $industry->topIndustries();
 
                 return view('NewVacancy.newVacancy',
                     ['companies' => $companies,
                         'cities' => $cities,
                         'industries' => $industries,
+                        'top' => $top,
                         'userEmail' => $userEmail,
                         'positions' => $positions,
                         'currencies' => $currencies,

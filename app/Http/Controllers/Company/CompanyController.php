@@ -89,7 +89,8 @@ class CompanyController extends Controller  {
         {
             $company = Session::get('company');
         }
-        return view('Company.regCompany',['company' => $company]);
+        $cities = City::select(['name'])->get();
+        return view('Company.regCompany',['company' => $company, 'cities'=>$cities]);
 
         }
         else
