@@ -1,11 +1,13 @@
 <?php namespace App\Http\Controllers\Company;
 
+
 use App\Models\User;
 use App\Models\Industry;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\Resume;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -16,10 +18,10 @@ use File;
 use View;
 //use Input;
 use Validator;
+use Request;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-//use Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use App\Repositoriy\Crop;
@@ -249,6 +251,7 @@ class CompanyController extends Controller  {
             return "Ви не зареєстровані";
         }
     }
+
 	/**
 	 * Update the specified resource in storage.
 	 *
