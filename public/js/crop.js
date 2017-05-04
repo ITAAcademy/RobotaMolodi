@@ -51,7 +51,7 @@ function crop(e) {
         var wigth = $('.jcrop-active').width();         //width picture on screen
         var natural_width = $('canvas').attr('width');  //natural width picture
         var mas = [x1, x2, y1, y2, wigth, natural_width];
-        $('#coords').attr('value', mas);
+        $('.coords').attr('value', mas);
         jcrop_api.destroy();
         $('#img-src').removeAttr('style');
         $('#imageBox').modal('hide');

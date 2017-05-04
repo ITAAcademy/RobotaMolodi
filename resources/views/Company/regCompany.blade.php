@@ -2,7 +2,6 @@
 
 @section('contents')
 
-
     {!!Form::open(['route' => 'company.store', 'enctype' => 'multipart/form-data', 'id'=>'form'])!!}
     <div class="row">
         <h3 class="formTitle header-text-company">додати компанію</h3>
@@ -104,7 +103,7 @@
         </div>
     </div>
 
-    <input type="hidden" name="fcoords" id="coords" value="">
+    <input type="hidden" name="fcoords" class="coords" value="">
 
     </br>
 
@@ -120,8 +119,6 @@
     <div id="imageBox" class="modal fade">
         @include('newDesign.cropModal')
     </div>
-
-
 
     {!!Html::script('js/crop.js')!!}
 

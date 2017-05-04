@@ -8,14 +8,8 @@
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
-                        @if(File::exists(public_path('image/vacancy/' . $company->id . '.png')))
-                            {!! Html::image('image/vacancy/' . $company->id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.jpg')))
-                            {!! Html::image('image/vacancy/' . $company->id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.jpeg')))
-                            {!! Html::image('image/vacancy/' . $company->id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                        @elseif(File::exists(public_path('image/vacancy/' . $company->id . '.bmp')))
-                            {!! Html::image('vacancies' . $company->id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)))
+                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
                             <h3 class="nologo">логотип вiдсутнiй</h3>
                         @endif
