@@ -3,7 +3,7 @@
         @foreach($companies as $company)
         <article>
             <div class="col-xs-3 imeg-companies-list">
-                @if(File::exists(public_path('image/vacancy/' . $company->company_id . '.png')))
+                @if(File::exists(public_path('image/company/' . $company->company_id . '.png')))
                     {!! Html::image('image/vacancy/' . $company->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                 @elseif(File::exists(public_path('image/vacancy/' . $company->company_id . '.jpg')))
                     {!! Html::image('image/vacancy/' . $company->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
