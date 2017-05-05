@@ -13,7 +13,9 @@
             </li>
         @endfor
         <li class="color {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled color' : '' }}">
-            <a href="{{ $paginator->url($paginator->currentPage()+1) }}" ><b>&gt;</b></a>
+            <a href="{{ ($paginator->currentPage() !== $paginator->lastPage())
+            ? $paginator->url($paginator->currentPage()+1)
+            : $paginator->url($paginator->currentPage()) }}" ><b>&gt;</b></a>
         </li>
         <li class="color {{ ($paginator->currentPage() == $paginator->lastPage()) ? ' disabled color' : '' }}">
             <a href="{{ $paginator->url($paginator->lastPage()) }}" ><b>&gt;&gt;</b></a>

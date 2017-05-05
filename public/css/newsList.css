@@ -7,6 +7,7 @@ a{
     margin-top: 35px;
     background: #ffffff;
     padding-left: 0px;
+    margin-bottom: 35px;
 }
 
 .newsListBreadcrumb .breadcrumb li a {
@@ -48,13 +49,14 @@ a{
     font-size: 24px;
     font-family: SegoeUIRegular;
     padding-bottom: 0px;
-    margin-top:5px;
+    margin-top:0px;
     word-wrap: break-word;
 }
 
-.sectionNewsList .picture{
-    width:60%;
-    margin-top:20px;
+.sectionNewsList .pictureList{
+    width:100%;
+    margin-top:0px;
+    margin-bottom:10px;
 }
 
 hr {
@@ -66,7 +68,6 @@ hr {
     color: royalblue;
     font-size: 18px;
     font-family: SegoeUIRegular;
-    margin-top: 5px;
 }
 
 .sectionNewsList h4 {
@@ -87,4 +88,20 @@ hr {
     color: #696969;
     font-size: 16px;
     font-family: SegoeUIRegular;
+}
+
+.contentNewsList .title {
+    padding-left: 15px;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    color: #666666;
+    font-size: 30px;
+    font-family: "SegoeUIRegular";
+}
+
+.contentNewsList .dateLink{
+    margin-top:15px;
+}
+.sectionNewsList {
+    margin-top:24px;
 }
