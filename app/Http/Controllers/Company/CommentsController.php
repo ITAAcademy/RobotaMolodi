@@ -58,11 +58,19 @@ class CommentsController extends Controller
      *
      * @return Response
      */
-    public function index($company)
+    public function index($company, Request $request)
     {
         $company = Company::find($company);
-        $comments = $company->comments;
-        return view('newDesign.company.comments',['comments' => $comments, 'company' =>$company]);
+        $id = $company->id;
+        //$comments = $company->comments;
+        $comments = Comment::where('company_id', '=', $id)->latest('created_at')->simplePaginate(5);
+        $links = str_replace('/?', '?', $comments->render());
+        //dd($links);
+        if ($request->ajax()) {
+            return view('newDesign.company.comments', ['comments' => $comments, 'company' =>$company, 'links'=>$links])->render();
+        }
+        //dd($comments);
+        return view('newDesign.company.comments', ['comments' => $comments, 'company' =>$company]);
     }
 
     /**
@@ -85,7 +93,7 @@ class CommentsController extends Controller
         $this->validate($request, [
             'comment' => 'required|min:3|max:2000',
         ]);
-
+//        dd('d');
         $company = Company::find($id);
         $comment = $company->comments()->create([
             'comment' => $request->comment,
@@ -96,6 +104,7 @@ class CommentsController extends Controller
         Session::flash('success', 'Comment was added');
 
         return redirect(route('company.response.index',['company' => $company]));
+//        return view('newDesign.company.comments',['company' => $company]);
     }
 
     /**
