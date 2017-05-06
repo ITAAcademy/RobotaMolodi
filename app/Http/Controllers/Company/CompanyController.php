@@ -11,16 +11,19 @@ use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 use App\Models\News;
+use File;
 use View;
-use Input;
 use Validator;
-use Request;
 use Illuminate\Contracts\Auth\Guard;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use App\Repositoriy\Crop;
+
 
 class CompanyController extends Controller  {
 
@@ -81,75 +84,58 @@ class CompanyController extends Controller  {
 	{
         if(Auth::check())
         {
-
             $company = ' ';
-
-
-        if(Session::get('company') != '')
-        {
-            $company = Session::get('company');
+            
+            if(Session::get('company') != '')
+            {
+                $company = Session::get('company');
+            }
+            return view('Company.regCompany',['company' => $company]);
+    
+        } else {
+            return Redirect::to('auth/login');
         }
-        return view('Company.regCompany',['company' => $company]);
-
-        }
-        else
-        {
-        return Redirect::to('auth/login');
-        }
-
-}
+    }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(Guard $auth,Company $companyModel,Request $request)
+	public function store(Request $request)
 	{
-
-        if(Auth::check())
-        {
-
         $this->validate($request,[
             'company_name' => 'required|min:3',
             'company_link' => 'url'
         ]);
-            $user = $auth->user();
 
-                $company_link = $request['company_link'];
-                $company_name = $request['company_name'];
-                $user_id = $user->getAuthIdentifier();
+        $companies = new Company();
+        $companies->users_id = Auth::User()->id;
+        $companies->company_name = $request['company_name'];
+        $companies->company_email = $request['company_link'];
 
-
-                $companies = new Company();
-                $companies->users_id = $user_id;
-                $companies->company_name = $company_name;
-                $companies->company_email = $company_link;
-
-
-                $companies->save();
-
-            session_start();
-
-            if(isset ($_SESSION['path']))
-            {
-
-
-                $path = $_SESSION['path'];
-                session_unset();
-            }
-            else
-            {
-
-                $path = 'company.index';
-            }
-            return redirect()->route($path);
-        }
-        else
-        {
-            return Redirect::to('auth/login');
+        if(Input::hasFile('loadCompany')) {
+            $cropcoord = explode(',', $request->fcoords);
+            $file = Input::file('loadCompany');
+            $filename = $file->getClientOriginalName();                 //take file name
+            $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+            Storage::makeDirectory($directory);                         //create directory
+            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+            $companies->image = $filename;
         }
 
+        $companies->save();
+
+        session_start();
+
+        if(isset ($_SESSION['path'])) {
+            $path = $_SESSION['path'];
+            session_unset();
+        } else {
+            $path = 'company.index';
+        }
+
+        return redirect()->route($path);
     }
 
 	/**

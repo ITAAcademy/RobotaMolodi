@@ -195,7 +195,7 @@
 
 
 <br>
-<input type="hidden" name="fcoords" id="coords" value="">
+<input type="hidden" name="fcoords" class="coords" id="coords" value="">
 <input type="hidden" name="fname" value="{{}}">
 
 <div class="row">
