@@ -16,12 +16,9 @@
 
     <section class="contentNewsPage">
 
-        <div class="col-xs-9 nameNews">
-            <h3>{{ $newsOne->name}}</h3>
-        </div>
-
         <div class="sectionNews">
             <div id="left-content-column" class="col-xs-9">
+                <h3 class="nameNews">{{ $newsOne->name}}</h3>
                 @if($newsOne->img!='Not picture')
                     <div><img class="picture" src="{{ asset($newsOne->getPath().$newsOne->img) }}" ></div>
                 @endif

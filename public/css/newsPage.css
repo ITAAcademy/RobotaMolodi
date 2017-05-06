@@ -37,17 +37,18 @@ a{
     font-family: SegoeUIRegular;
     line-height: 30px;
     text-align:justify;
-    margin-top:10px;
-    margin-bottom:30px;
+    margin-top:0px;
+    margin-bottom:20px;
 }
 
-.nameNews h3 {
+.sectionNews .nameNews {
     color: #4F4F4F;
     font-size: 24px;
     font-family: SegoeUIRegular;
     margin-bottom:20px;
     margin-top:5px;
 }
+
 .sectionNews h4 {
     color: #4F4F4F;
     font-weight: bold;
@@ -58,13 +59,14 @@ a{
 
 .sectionNews .picture{
     width:100%;
-    margin-top:20px;
-    margin-bottom:10px;
+    margin-top:15px;
+    margin-bottom:0px;
 }
 
 .sectionNews span{
     color: #696969;
     font-size: 16px;
     font-family: SegoeUIRegular;
-    display: inline;
+    display: inline-block;
+    margin-top:20px;
 }

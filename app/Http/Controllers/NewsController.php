@@ -20,30 +20,32 @@ class NewsController extends Controller
 
         if(Request::ajax()){
             return view('newDesign.news.includeNews.newsListContent', array(
-                'newsPagin' => $news->paginate(4)
+                'newsPagin' => $news->paginate(5)
             ));
         }
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
         return view('newDesign.news.includeNews.newsList', [
             'news'=> $news->get(),
-            'newsPagin' => $news->paginate(4),
+            'newsPagin' => $news->paginate(5),
             'cities' => City::all(),
             'industries' => Industry::all(),
             'topVacancy' => $topVacancy,
         ]);
     }
 
-    public function create()
-    {
-    }
-
-    public function store(Request $request)
-    {
-    }
-
     public function show($id)
     {
+        if (!is_numeric($id))
+        {
+            abort(404);
+        }
+
         $newsOne = News::find($id);
+        if(!isset($newsOne))
+        {
+            abort(404);
+        }
+
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
 
         return view('newDesign.news.includeNews.newsPage', [
@@ -53,18 +55,6 @@ class NewsController extends Controller
             'industries' => Industry::all(),
             'topVacancy' => $topVacancy,
         ]);
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request, $id)
-    {
-    }
-
-    public function destroy($id)
-    {
     }
 
 }
