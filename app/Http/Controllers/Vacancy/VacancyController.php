@@ -214,7 +214,7 @@ class VacancyController extends Controller
 
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
-
+        
         if (Auth::check()) {
             if ($vacancy->company->users_id == auth()->user()->id) {
                 $view = 'vacancy.showMyVacancy';

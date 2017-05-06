@@ -3,16 +3,10 @@
         @foreach($companies as $company)
         <article>
             <div class="col-xs-3 imeg-companies-list">
-                @if(File::exists(public_path('image/company/' . $company->company_id . '.png')))
-                    {!! Html::image('image/vacancy/' . $company->company_id . '.png', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $company->company_id . '.jpg')))
-                    {!! Html::image('image/vacancy/' . $company->company_id . '.jpg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $company->company_id . '.jpeg')))
-                    {!! Html::image('image/vacancy/' . $company->company_id . '.jpeg', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                @elseif(File::exists(public_path('image/vacancy/' . $company->company_id . '.bmp')))
-                    {!! Html::image('vacancies' . $company->company_id . '.bmp', 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
+                    {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                 @else
-                    <p class="nologo-companies-list" style="margin-top: 10px; font-size: 15px">логотип вiдсутнiй</p>
+                    <h3 class="nologo">логотип вiдсутнiй</h3>
                 @endif
             </div>
             <a href="{{$url}}/{{$company->id}}"  class="link">

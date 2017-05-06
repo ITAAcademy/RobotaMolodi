@@ -8,7 +8,7 @@
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
-                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)))
+                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
                             {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
                             <h3 class="nologo">логотип вiдсутнiй</h3>
