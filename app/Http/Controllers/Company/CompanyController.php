@@ -123,7 +123,6 @@ class CompanyController extends Controller  {
             Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
             $companies->image = $filename;
         }
-
         $companies->save();
 
         session_start();

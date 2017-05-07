@@ -10,8 +10,8 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <button type="button" id="crop" class="btn btn-primary">Сохранить изменения</button>
+            <button type="button" id="closeModalBtn" class="btn btn-default" data-dismiss="modal">Закрити</button>
+            <button type="button" id="crop" class="btn btn-primary">Зберегти</button>
         </div>
     </div>
 </div>

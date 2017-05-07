@@ -5,11 +5,13 @@
     <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
     {!!Form::close()!!}
-    {!! Form::open(array('route' => 'upimg', 'files' => true, 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}
-    <input type="file" name="image" id="fileImg">
-    <input type="hidden" name="rov" value="r">
-    <input type="hidden" name="fname" value="{{$resume->id_u}}">
-    {!! Form::close() !!}
+{{--    {!! Form::open(array('route' => 'upimg', 'enctype' => 'multipart/form-data', 'id'=>'updateImgResume', 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}--}}
+        {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none',)) !!}
+    {{--<input type="file" name="image" id="fileImg">--}}
+        {{--<input type="hidden" name="rov" value="r">--}}
+        {{--<input type="hidden" name="fname" value="">--}}
+        <input type="hidden" name="fcoords" id="coords" class="coords" value="">
+{{--    {!! Form::close() !!}--}}
 
     <div class="panel" id="vrBlock">
         <div class="row">
@@ -22,20 +24,18 @@
                     @endif
                 </div>
                 <div class="change-img-myresume">
-                    <a class="orange-link-myresume" href="javascript:sendFile()">
+                    <span class="orange-link-myresume"  id="changeImage">
                         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                         <span>Змiнити фото</span>
-                    </a>
+                    </span>
+                    <div id="sendImage">Відправити</div>
                     <br>
-                    @if(File::exists(public_path('image/resume/' . $resume->id_u . '.jpg')) ||
-                        File::exists(public_path('image/resume/' . $resume->id_u . '.jpeg')) ||
-                        File::exists(public_path('image/resume/' . $resume->id_u . '.png')) ||
-                        File::exists(public_path('image/resume/' . $resume->id_u . '.bmp')) )
-                    <a class="orange-link-myresume" href="javascript:deletePhoto()">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        <span>Видалити фото</span>
-                    </a>
-                   @endif
+                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
+                        <a class="orange-link-myresume" href="javascript:deletePhoto()">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <span>Видалити фото</span>
+                        </a>
+                    @endif
                 </div>
             </div>
 
@@ -83,11 +83,88 @@
         </div>
     </div>
 
+    <div id="changeImageBox" class="modal fade">
+        @include('newDesign.cropModal')
+    </div>
+
+    {!!Html::script('js/crop.js')!!}
     <script>
-        document.getElementById("fileImg").onchange = function()
-        {
-            document.uploadImgForm.submit();
-        };
+        $(document).ready(function () {
+            $('#changeImage').on('click', function () {
+                $('#fileImg').click();
+            });
+
+            $('#closeModalBtn').on('click', function () {
+                $('#sendImage').css('display', 'none');
+            });
+
+            $('#fileImg').on('change', function (e) {
+                $('#changeImageBox').modal('show');
+                crop(e, 'img-src', '#crop', '#changeImageBox');
+                $('#sendImage').css('display', 'block');
+            });
+
+
+
+
+            $('#sendImage').on('click', function () {
+                var $input = $("#fileImg");
+                var fd = new FormData;
+                fd.append('fileImg', $input.prop('files')[0]);
+                fd.append('coords', $('.coords').val());
+
+                $.ajax({
+                    url: '{{ route('upimg') }}',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+
+
+
+
+
+
+            {{--var $input = $("#fileImg");--}}
+            {{--var fd = new FormData;--}}
+            {{--fd.append('img', $input.prop('files')[0]);--}}
+
+            {{--$.ajax({--}}
+                {{--url: '{{ route('upimg') }}',--}}
+                {{--data: fd,--}}
+                {{--processData: false,--}}
+                {{--contentType: false,--}}
+                {{--type: 'POST',--}}
+                {{--success: function (data) {--}}
+                    {{--alert(data);--}}
+                {{--}--}}
+            {{--});--}}
+
+
+//            javascript:sendFile()
+
+//            $('#changeResumeImg').on('change', function(e) {
+//                $('#newfilename').text($('#changeResumeImg').val());
+//                crop(e, 'img-src-resume', '#changeImageBox', '#cropBtn');
+//            });
+//
+//            $('#cropBtn').on('click', function () {
+//                console.log($('.coords').val());
+//            });
+//
+//            $("#changeResumeImg").replaceWith($("#changeResumeImg").val('').clone(true));
+        });
+
+//        document.getElementById("fileImg").onchange = function()
+//        {
+////            document.uploadImgForm.submit();
+//        };
+
         function sendFile()
         {
             var input = document.getElementById('fileImg');

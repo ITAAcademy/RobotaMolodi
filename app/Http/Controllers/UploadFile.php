@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use View;
 use File;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use App\Repositoriy\Crop;
 
 class UploadFile extends Controller
 {
@@ -52,55 +53,68 @@ class UploadFile extends Controller
         }
     }
 
-    public function editImg()
+    public function editImg(Request $request)
     {
-        if(Input::hasFile('image'))
-        {
-            $file = Input::file('image');
 
-            $validator = Validator::make(Request::all(), [
-                'image' => 'mimes:jpg,jpeg,png,bmp|max:2048',
-            ]);
+        $file = $request->fileImg;
+        $cropcoord = explode(',', $request->coords);
+        $filename = $file->getClientOriginalName();
+        $directory = 'image/resume/'. Auth::user()->id . '/';
+        Crop::input($cropcoord, $filename, $file, $directory);
 
-            if($validator->fails())
-            {
-                $error = 'Необхiдний формат файлу: jpeg, jpg, png, bmp розмiром до 2 мб.';
-                return View::make('errors.uploadFileError', array(
-                    'error' => $error
-                ));//size error
-            }
-            else
-            {
-                $extensions = ['.jpg', '.jpeg', '.png', '.bmp'];
 
-                if(Input::get('rov') == 'v')
-                {
-                    foreach($extensions as $i)
-                        if(File::exists(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i))
-                            File::delete(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i);
+//        Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
 
-                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
-                    $file->move(base_path() . '/public/image/vacancy', $filename);
-                }
-                else if(Input::get('rov') == 'r')
-                {
-                    foreach($extensions as $i)
-                        if(File::exists(base_path() . '/public/image/resume/' . Input::get('fname') . $i))
-                            File::delete(base_path() . '/public/image/resume/' . Input::get('fname') . $i);
-
-                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
-                    $file->move(base_path() . '/public/image/resume', $filename);
-                }
-                return Redirect::back();
-            }
-        }
-        else
-        {
-            $error = 'Розмiр файлу перевищує 2 мб.';
-            return View::make('errors.uploadFileError', array(
-                'error' => $error
-            ));//size error
-        }
+//
+////        fileImg
+//        if(Input::hasFile('image'))
+//        {
+//
+//            $file = Input::file('image');
+//
+//            $validator = Validator::make(Request::all(), [
+//                'image' => 'mimes:jpg,jpeg,png,bmp|max:2048',
+//            ]);
+//
+//            if($validator->fails())
+//            {
+//                $error = 'Необхiдний формат файлу: jpeg, jpg, png, bmp розмiром до 2 мб.';
+//                return View::make('errors.uploadFileError', array(
+//                    'error' => $error
+//                ));//size error
+//            }
+//            else
+//            {
+//                $extensions = ['.jpg', '.jpeg', '.png', '.bmp'];
+//
+//                if(Input::get('rov') == 'v')
+//                {
+//                    foreach($extensions as $i)
+//                        if(File::exists(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i))
+//                            File::delete(base_path() . '/public/image/vacancy/' . Input::get('fname') . $i);
+//
+//                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
+//                    $file->move(base_path() . '/public/image/vacancy', $filename);
+//                }
+//                else if(Input::get('rov') == 'r')
+//                {
+//                    foreach($extensions as $i)
+//                        if(File::exists(base_path() . '/public/image/resume/' . Input::get('fname') . $i))
+//                            File::delete(base_path() . '/public/image/resume/' . Input::get('fname') . $i);
+//
+//                    $filename = Input::get('fname') . '.' . $file->getClientOriginalExtension();
+//                    $file->move(base_path() . '/public/image/resume', $filename);
+//                }
+//                return Redirect::back();
+//            }
+//        }
+//        else
+//        {
+//            $error = 'Розмiр файлу перевищує 2 мб.';
+//            return View::make('errors.uploadFileError', array(
+//                'error' => $error
+//            ));//size error
+//        }
 
     }
 }

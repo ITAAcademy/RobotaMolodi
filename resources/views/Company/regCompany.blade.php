@@ -125,7 +125,8 @@
     <script>
         $(document).ready(function () {
             $('#loadCompany').on('change', function(e) {
-                crop(e);
+                $('#imageBox').modal('show');
+                crop(e, 'img-src', '#crop', '#imageBox');
             });
         })
     </script>

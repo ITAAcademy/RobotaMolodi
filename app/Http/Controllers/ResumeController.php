@@ -297,6 +297,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         //$resume->destroy();
     }
 
+    public function change_image(Request $request){
+        
+    }
+    
     public function deletePhoto(Request $request)
     {
         if ($request->isMethod('POST'))
