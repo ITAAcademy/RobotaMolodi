@@ -14,6 +14,7 @@ div.case{
     width: 134px;
     height:30px;
     clear:both;
+    margin-top:5px;
 }
  i.fa.newFa{
     color:  #f68c06;
@@ -52,11 +53,10 @@ div.consult {
     font-weight: 600;
     text-align: left;
     display:block;
-    margin-top:10px;
+    margin-top:15px;
     margin-left: 17px;
 }
 div.social {
-    padding-top: 2px;
     height:30px;
     text-align: justify-all;
     display:block;
@@ -111,9 +111,15 @@ div.social {
     margin: 0;
     color: #797979;
     font-size: 16px;
+
 }
+
+.navi{
+    margin-top:30px;
+}
+
 .verticalIndent{
-    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 @media(max-width:768px){
@@ -165,6 +171,9 @@ input{
     border-top: 1px solid darkgrey;
 }
 
+.button_vac{
+    margin-top:20px;
+}
 
 
 

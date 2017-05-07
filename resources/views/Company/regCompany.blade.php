@@ -11,7 +11,7 @@
             <div class="col-md-6 col-sm-6">
               {!! Form::text('company_name', null, array('class' => 'form-control')) !!}
             </div>
-            <div><span style ="color:red">* <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span> {{$company}}</div>
+            <div><span style ="color:red">* <?php echo $errors->first('company_name','Не менше двох символів'); ?> </span></div>
         </div>
     </div>
 
@@ -21,8 +21,9 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Коротка назва організації</p>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="inputPlace">
+                {!! Form::text('short_name', null, array('class' => 'form-control')) !!}
             </div>
+            <div><span style ="color:red">* <?php echo $errors->first('short_name','Не менше двох символiв'); ?> </span></div>
         </div>
     </div>
 
@@ -30,11 +31,9 @@
         <div class="form-group" style="margin-top: 20px">
             <label for="level" class="col-md-2 col-sm-2 control-label label-text-company">Посилання на компанію</label>
             <div class="col-md-6 col-sm-6">
-                {!! Form::text('company_link', null, array('class' => 'form-control')) !!}
+                {!! Form::text('link_company', null, array('class' => 'form-control')) !!}
             </div>
-            <div>
-                <span style ="color:red"><?php echo $errors->first('company_link','поле має бути посиланням в форматі https://'); ?> </span> {{$company}}
-            </div>
+            <div><span style ="color:red">* <?php echo $errors->first('link_company','Посилання у форматi https://'); ?> </span></div>
         </div>
     </div>
 
@@ -42,9 +41,17 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Оберіть галузь</p>
             <div class="col-md-6 col-sm-6">
-                <select class="inputPlace2" id="inputPlace2">
-                    <option value=""></option>
-                    <option value=""></option>
+                <select class="inputPlace2" name="industries_id" id="industries_id">
+                    @foreach($industries as $industry)
+                        <option value="{{$industry->id}}">{{$industry->name}}</option>
+                    @endforeach
+                    @if(Input::old('branch')!= '')
+                        @foreach($industries as $industry)
+                            @if($industry->id == Input::old('branch'))
+                                <option value="{{$industry->id}}" selected>{{$industry->name}}</option>
+                            @endif
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -54,9 +61,10 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Виберіть місто</p>
             <div class="col-md-6 col-sm-6">
-                <select class="inputPlace2">
-                    <option value=""></option>
-                    <option value=""></option>
+                <select class="inputPlace2" name="cities_id" id="cities_id">
+                    @foreach($cities as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -66,8 +74,9 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Телефон</p>
                 <div class="col-md-6 col-sm-6">
-                     <input type="text" class="inputPlace">
+                    {!! Form::text('phone', null, array('class' => 'form-control')) !!}
                 </div>
+            <div><span style ="color:red">* <?php echo $errors->first('phone','Не менше 10 цифр'); ?> </span></div>
         </div>
     </div>
 
@@ -75,8 +84,9 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">E-mail</p>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="inputPlace" id="inputPlace4">
+                {!! Form::text('company_email', null, array('class' => 'form-control')) !!}
             </div>
+            <div><span style ="color:red">* <?php echo $errors->first('company_email','Введiть корректний емейл'); ?> </span></div>
         </div>
     </div>
 
@@ -84,8 +94,9 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Опис</p>
             <div class="col-md-6 col-sm-6">
-                <textarea type="text" class="inputPlace inputPlace-description"></textarea>
+                {!! Form::text('description', null, array('class' => 'form-control')) !!}
             </div>
+            <div><span style ="color:red">* <?php echo $errors->first('description','Опишiть компанiю (не менше 10 символiв)'); ?> </span></div>
         </div>
     </div>
 

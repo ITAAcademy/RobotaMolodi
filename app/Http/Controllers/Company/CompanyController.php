@@ -85,12 +85,23 @@ class CompanyController extends Controller  {
         if(Auth::check())
         {
             $company = ' ';
+
+            $industry = new Industry();
+            $industries = $industry->getIndustries();
+
+            $city = new City();
+            $cities = $city->getCities();
+
             
             if(Session::get('company') != '')
             {
                 $company = Session::get('company');
             }
-            return view('Company.regCompany',['company' => $company]);
+            return view('Company.regCompany',[
+                'company' => $company,
+                'industries' => $industries,
+                'cities' => $cities,
+            ]);
     
         } else {
             return Redirect::to('auth/login');
@@ -105,14 +116,26 @@ class CompanyController extends Controller  {
 	public function store(Request $request)
 	{
         $this->validate($request,[
-            'company_name' => 'required|min:3',
-            'company_link' => 'url'
+            'company_name' => 'required|min:2',
+            'company_email' => 'required||email',
+            'description' => 'required|min:10',
+            'phone' => 'required|min:10|numeric',
+            'link_company' => 'required|min:12',
+            'short_name' => 'required|min:2',
+            'industries_id' => 'required',
+            'cities_id' => 'required',
         ]);
 
         $companies = new Company();
         $companies->users_id = Auth::User()->id;
         $companies->company_name = $request['company_name'];
-        $companies->company_email = $request['company_link'];
+        $companies->company_email = $request['company_email'];
+        $companies->description = $request['description'];
+        $companies->phone = $request['phone'];
+        $companies->link_company = $request['link_company'];
+        $companies->short_name = $request['short_name'];
+        $companies->industries_id = $request['industries_id'];
+        $companies->cities_id = $request['cities_id'];
 
         if(Input::hasFile('loadCompany')) {
             $cropcoord = explode(',', $request->fcoords);
@@ -148,26 +171,15 @@ class CompanyController extends Controller  {
 	{
         Cookie::queue('url', 'company/'.$id);
         $view = 'newDesign.company.show';
-        $search_boolean = 'false';
-        //$company = Company::find($id);
+
         $company = $this->getCompany($id);
-
-        $userCompany = $company->ReadUser($id);
-
-        $vacancies = Vacancy::where('company_id','=',$id);
-
-
-        $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
-        $industryName = Industry::where('id','=',$industry)->lists('name')->first();
-
+        $cities = City::find($company->cities_id);
+        $industries = Industry::find($company->industries_id);
 
         return view($view)
-            ->with('vacancy', $vacancies)
-            ->with('user', $userCompany)
-            ->with('industryName', $industryName)
-            ->with('company', $company)
-            ->with('industry', $industry)
-            ->with('search_boolean',$search_boolean);
+            ->with('industries', $industries)
+            ->with('cities', $cities)
+            ->with('company', $company);
     }
 
 	public function edit($id)
