@@ -6361,7 +6361,24 @@ label,
 .footer{
   font-family: SegoeUIRegular;
   overflow:hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:440px;
 }
+html{
+  position:relative;
+  min-height: 100%;
+}
+html,body{
+  margin:0;
+  padding:0;
+}
+.container-main{
+  margin-bottom:440px;
+}
+
 .down-footer img{
   margin-left: 10px;
 }
