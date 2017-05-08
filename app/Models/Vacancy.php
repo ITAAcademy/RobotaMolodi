@@ -173,21 +173,21 @@ class Vacancy extends Model {
             return $query;
         }
     }
-    public function scopeCheckNoAccess($query){
-        $res = $this->isActive();
-
-        if(Auth::check()){
-            $user = auth()->user();
-            if($user->isAdmin()){
-                $res = $query;
-            }else{
-                $comId = $this->userVacancies($user)->get()->pluck('id');
-                $res = $res->orWhereIn('vacancies.company_id',$comId->toArray());
-            }
-        }
-        return $res;
-
-    }
+//    public function scopeCheckNoAccess($query){
+//        $res = $this->isActive();
+//
+//        if(Auth::check()){
+//            $user = auth()->user();
+//            if($user->isAdmin()){
+//                $res = $query;
+//            }else{
+//                $comId = $this->userVacancies($user)->get()->pluck('id');
+//                $res = $res->orWhereIn('vacancies.company_id',$comId->toArray());
+//            }
+//        }
+//        return $res;
+//
+//    }
 
     public function scopeIsActive($query){
         return $query->where('published','!=',0);
