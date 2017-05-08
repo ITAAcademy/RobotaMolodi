@@ -35,16 +35,30 @@
                 $('.btn-commit').attr('disabled','disable');
             }
         }
+        $('ul.pager:visible:first').hide();
+        $('div.test').jscroll({
+            loadingHtml: '<img src="/image/loading.gif" alt="Loading" /> Loading...',
+            debug: true,
+            autoTrigger: true,
+            nextSelector: 'li a[rel="next"]',
+            contentSelector: 'div.test',
+            callback: function() {
 
+                $('ul.pager:visible:first').hide();
+
+            }
+        });
         $('#comment').keyup(function(e){
             checkComment();
         });
+        var url = $(this).attr('href');
         $('.btn-commit').on('click', function () {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
-            var url = $(this).attr('href');
-//            window.history.pushState("", "", url)
-            $.ajax({
-                url:url,
+
+            //window.history.pushState("", "", url);
+            $.ajax(url)({
+                url: url,
+                //cache: false,
                 method: 'POST',
                 data: {comment: $('#comment').val()},
                 success: function(data){
@@ -55,16 +69,5 @@
         })
     });
 
-    $('ul.pager:visible:first').hide();
-    $('div.test').jscroll({
-        debug: true,
-        autoTrigger: true,
-        nextSelector: 'li a[rel="next"]',
-        contentSelector: 'div.test',
-        callback: function() {
 
-            $('ul.pager:visible:first').hide();
-
-        }
-    });
 </script>
