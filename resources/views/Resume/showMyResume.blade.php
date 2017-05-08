@@ -6,11 +6,11 @@
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
     {!!Form::close()!!}
 {{--    {!! Form::open(array('route' => 'upimg', 'enctype' => 'multipart/form-data', 'id'=>'updateImgResume', 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}--}}
-        {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none',)) !!}
+        {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg')) !!}
     {{--<input type="file" name="image" id="fileImg">--}}
         {{--<input type="hidden" name="rov" value="r">--}}
         {{--<input type="hidden" name="fname" value="">--}}
-        <input type="hidden" name="fcoords" id="coords" class="coords" value="">
+        <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
 {{--    {!! Form::close() !!}--}}
 
     <div class="panel" id="vrBlock">
@@ -28,7 +28,6 @@
                         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                         <span>Змiнити фото</span>
                     </span>
-                    <div id="sendImage">Відправити</div>
                     <br>
                     @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
                         <a class="orange-link-myresume" href="javascript:deletePhoto()">
@@ -94,38 +93,31 @@
                 $('#fileImg').click();
             });
 
-            $('#closeModalBtn').on('click', function () {
-                $('#sendImage').css('display', 'none');
-            });
-
             $('#fileImg').on('change', function (e) {
                 $('#changeImageBox').modal('show');
                 crop(e, 'img-src', '#crop', '#changeImageBox');
-                $('#sendImage').css('display', 'block');
             });
 
+            $('#changeImageBox').on('hidden.bs.modal', function () {
+                if($('#coords').val()){
+                    var $input = $("#fileImg");
+                    var fd = new FormData;
+                    fd.append('fileImg', $input.prop('files')[0]);
+                    fd.append('coords', $('.coords').val());
+                    fd.append('id', $('.coords').attr('data-id'));
 
-
-
-            $('#sendImage').on('click', function () {
-                var $input = $("#fileImg");
-                var fd = new FormData;
-                fd.append('fileImg', $input.prop('files')[0]);
-                fd.append('coords', $('.coords').val());
-
-                $.ajax({
-                    url: '{{ route('upimg') }}',
-                    data: fd,
-                    processData: false,
-                    contentType: false,
-                    type: 'POST',
-                    success: function (data) {
-                        alert(data);
-                    }
-                });
+                    $.ajax({
+                        url: '{{ route('upimg') }}',
+                        data: fd,
+                        processData: false,
+                        contentType: false,
+                        type: 'POST',
+                        success: function (data) {
+                            $('#vimg img').attr('src', window.location.origin + '/' + data);
+                        }
+                    });
+                }
             });
-
-
 
 
 
