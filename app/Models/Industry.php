@@ -10,8 +10,15 @@ class Industry extends Model {
     public function getIndustries()
     {
         $industries = $this->orderBy('name')->get();
-
-        return $industries;
+        $indTmp = array();
+        foreach ($industries as $industry){
+            if($industry->name == 'Інформаційні технології'){
+                array_unshift($indTmp, $industry);
+            }else{
+                array_push($indTmp, $industry);
+            }
+        }
+        return $indTmp;
     }
     public function GetVacancies()
     {

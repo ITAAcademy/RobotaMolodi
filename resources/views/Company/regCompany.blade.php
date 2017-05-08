@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group" style="margin-top: 20px">
             <label for="level" class="col-md-2 col-sm-2 control-label label-text-company">Посилання на компанію</label>
             <div class="col-md-6 col-sm-6">
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Оберіть галузь</p>
             <div class="col-md-6 col-sm-6">
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Виберіть місто</p>
             <div class="col-md-6 col-sm-6">
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Телефон</p>
                 <div class="col-md-6 col-sm-6">
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">E-mail</p>
             <div class="col-md-6 col-sm-6">
@@ -90,15 +90,17 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row verticalCorrect">
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Опис</p>
             <div class="col-md-6 col-sm-6">
-                {!! Form::text('description', null, array('class' => 'form-control')) !!}
+                {!! Form::textarea('description', null, ['class'=>'form-control', 'id'=>'description']) !!}
             </div>
             <div><span style ="color:red">* <?php echo $errors->first('description','Опишiть компанiю (не менше 10 символiв)'); ?> </span></div>
         </div>
     </div>
+    <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 
     </br>
 
@@ -116,7 +118,12 @@
 
     <input type="hidden" name="fcoords" class="coords" value="">
 
-    </br>
+    <div class="row required">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-md-4  col-sm-2"><span class="required_field">*</span> – Обов'язкові для заповнення.</div>
+        </div>
+    </div>
+    <br>
 
     <div class="row">
         <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="width: 400px">
