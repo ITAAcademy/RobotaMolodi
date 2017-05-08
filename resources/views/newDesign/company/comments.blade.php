@@ -54,7 +54,6 @@
         var url = $(this).attr('href');
         $('.btn-commit').on('click', function () {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
-
             //window.history.pushState("", "", url);
             $.ajax(url)({
                 url: url,
