@@ -43,25 +43,36 @@
             nextSelector: 'li a[rel="next"]',
             contentSelector: 'div.test',
             callback: function() {
-
                 $('ul.pager:visible:first').hide();
-
             }
         });
-        $('#comment').keyup(function(e){
+        $(document).on('keyup', '#comment',function(e){
             checkComment();
         });
-        var url = $(this).attr('href');
-        $('.btn-commit').on('click', function () {
+
+        $(document).on('submit', 'form', function (event) {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
             //window.history.pushState("", "", url);
-            $.ajax(url)({
-                url: url,
-                //cache: false,
+            var $form = $(this);
+
+            var post_url = $(this).attr("action");
+            $.ajax({
+                url: post_url,
                 method: 'POST',
                 data: {comment: $('#comment').val()},
                 success: function(data){
+                    $form.remove();
                     $('.test').html(data);
+                    $('div.test').jscroll({
+                        loadingHtml: '<img src="/image/loading.gif" alt="Loading" /> Loading...',
+                        debug: true,
+                        autoTrigger: true,
+                        nextSelector: 'li a[rel="next"]',
+                        contentSelector: 'div.test',
+                        callback: function() {
+                            $('ul.pager:visible:first').hide();
+                        }
+                    });
                 }
             });
             return false;
