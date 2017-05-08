@@ -9,7 +9,7 @@
                     @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
                         {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
-                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => 'auto', 'height' => '100%')) !!}
+                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
                 </div>
             </div>
