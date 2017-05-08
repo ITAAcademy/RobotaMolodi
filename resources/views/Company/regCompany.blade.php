@@ -97,7 +97,7 @@
             <div class="col-md-4 col-sm-4">
                 <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
                 <div id="filename">Файл не вибрано</div>
-                {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
+                {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
             </div>
             <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
         </div>

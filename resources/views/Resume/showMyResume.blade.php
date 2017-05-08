@@ -5,13 +5,9 @@
     <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
     {!!Form::close()!!}
-{{--    {!! Form::open(array('route' => 'upimg', 'enctype' => 'multipart/form-data', 'id'=>'updateImgResume', 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}--}}
-        {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg')) !!}
-    {{--<input type="file" name="image" id="fileImg">--}}
-        {{--<input type="hidden" name="rov" value="r">--}}
-        {{--<input type="hidden" name="fname" value="">--}}
-        <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
-{{--    {!! Form::close() !!}--}}
+
+    {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+    <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
 
     <div class="panel" id="vrBlock">
         <div class="row">
@@ -29,12 +25,12 @@
                         <span>Змiнити фото</span>
                     </span>
                     <br>
-                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
-                        <a class="orange-link-myresume" href="javascript:deletePhoto()">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            <span>Видалити фото</span>
-                        </a>
-                    @endif
+{{--                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))--}}
+                    <span class="orange-link-myresume" id="deleteImage">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span>Видалити фото</span>
+                    </span>
+                    {{--@endif--}}
                 </div>
             </div>
 
@@ -119,36 +115,6 @@
                 }
             });
 
-
-
-
-            {{--var $input = $("#fileImg");--}}
-            {{--var fd = new FormData;--}}
-            {{--fd.append('img', $input.prop('files')[0]);--}}
-
-            {{--$.ajax({--}}
-                {{--url: '{{ route('upimg') }}',--}}
-                {{--data: fd,--}}
-                {{--processData: false,--}}
-                {{--contentType: false,--}}
-                {{--type: 'POST',--}}
-                {{--success: function (data) {--}}
-                    {{--alert(data);--}}
-                {{--}--}}
-            {{--});--}}
-
-
-//            javascript:sendFile()
-
-//            $('#changeResumeImg').on('change', function(e) {
-//                $('#newfilename').text($('#changeResumeImg').val());
-//                crop(e, 'img-src-resume', '#changeImageBox', '#cropBtn');
-//            });
-//
-//            $('#cropBtn').on('click', function () {
-//                console.log($('.coords').val());
-//            });
-//
 //            $("#changeResumeImg").replaceWith($("#changeResumeImg").val('').clone(true));
         });
 

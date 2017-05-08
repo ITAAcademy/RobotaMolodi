@@ -1,4 +1,4 @@
-function crop(e, img_src, btn, modalBox) {
+function crop(e, img_src, confirmBtn, modalBox, closeBtn) {
     var x1, y1, x2, y2;
     var jcrop_api;
 
@@ -45,7 +45,7 @@ function crop(e, img_src, btn, modalBox) {
     setApi();
     setTimeout(changeJcropSelectionTop, 100);
 
-    $(btn).click(function () {
+    $(confirmBtn).click(function () {
         var wigth = $('.jcrop-active').width();         //width picture on screen
         var natural_width = $('canvas').attr('width');  //natural width picture
         var mas = [x1, x2, y1, y2, wigth, natural_width];
@@ -54,4 +54,8 @@ function crop(e, img_src, btn, modalBox) {
         $('#' + img_src).removeAttr('style');
         $(modalBox).modal('hide');
     });
+
+    $(closeBtn).on('click', function () {
+        // $("#changeResumeImg").replaceWith($("#changeResumeImg").val('').clone(true));
+    })
 }

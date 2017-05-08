@@ -55,7 +55,7 @@ class UploadFile extends Controller
             ));//size error
         }
     }
-
+    
     public function editImg(Request $request)
     {
         $resume = Resume::find($request->id);
