@@ -57,9 +57,14 @@
     font-weight: bold;
 }
 
+.verticalCorrect{
+    line-height: 44px;
+    margin-bottom:10px;
+}
+
 .label-text-company{
     /*margin-right: -15px;*/
-    line-height: 44px;
+    line-height: 20px;
     display: inline-block;
     text-align: right;
     /*margin-bottom: -3px;*/
@@ -82,6 +87,9 @@
     height: 150px;
 }
 
+.required{
+    margin-top:20px;
+}
 
 
 /*//////////////////NEW RESUME////////////*/

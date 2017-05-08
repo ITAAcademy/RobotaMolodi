@@ -35,28 +35,65 @@
                  </div>
             </div>
             <div class="col-md-10">
-
                 <div id="datAnnoyingSizes">
+
                     <div class="panelHeadings">
-                        <div class="textCompany verticalIndent"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                        <div class="textCompany"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
-                    <div>
-                        <div class="textCompany verticalIndent"><span>Галузь: </span><a class="orangeLinks" href="javascript:submit('selectIndustry')">{{$industryName}}</a> </div>
+
+                    <div class="row textCompany verticalIndent">
+                        <div class="col-xs-3">
+                            <span>Аббревиатура: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <span>{{$company->short_name}}</span>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <span>Галузь: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <span>{{$industries->name}}</span>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <span>Посилання: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <a class="orangeLinks" href="{{$company->link_company}}">{{$company->link_company}}</a>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <span>Мiсто: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <span>{{$cities->name}}</span>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <span>Електронна пошта: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <span>{{$company->company_email}}</span>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <span>Телефон: </span>
+                        </div>
+                        <div class="col-xs-9">
+                            <span>{{$company->phone}}</span>
+                        </div>
                     </div>
+
                     <div>
                         <div class="textCompany verticalIndent">
                             <span class="anagraph verticalIndent">Подробиці </span>
                             <br><div class="description">{!! $company->description !!}</div>
                         </div>
                     </div>
-                    <div>
-                        <div class="text_data verticalIndent"> <a class="textCompany"> </a></div>
-                    </div>
-                </div>
-                <div>
 
                 </div>
-                {{--{{ dd('test')}}--}}
+
                 <div class="button_vac">
                     <a href="{{route('scompany.company_vacancies',$company->id)}}" class="vac-call btn-default btn"><span>Переглянути вакансії</span></a>
                     <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
