@@ -137,8 +137,8 @@ Route::post('proforient/start',['as' => 'proforient.start','uses' => 'ProfOrient
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //UploadFile
-Route::post('upimg', ['as'=>'upimg', 'uses' => 'UploadFile@editImg']);
-Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteImg']);
+Route::post('upimg', ['as'=>'upimg', 'uses' => 'UploadFile@editResumeImg']);
+Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeImg']);
 
 //staticHeaderPages
 Route::get('aboutus', function () {

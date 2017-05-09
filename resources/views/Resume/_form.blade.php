@@ -192,7 +192,6 @@
     </div>
 </div>
 
-
 <br>
 <input type="hidden" name="fcoords" class="coords" id="coords" value="">
 <input type="hidden" name="fname" value="{{}}">
@@ -224,13 +223,6 @@
 </div>
 <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    $(document).ready(function () {
-        var chg_tx = document.getElementsByClassName('change_description');
-        $('#description').text($('.change_description').html());
-
-    })
-</script>
 
 <div id="imageBox" class="modal fade">
     @include('newDesign.cropModal')
@@ -241,11 +233,17 @@
 <script>
     $(document).ready(function () {
          $('#loadResume').on('change', function(e) {
-             $('#imageBox').modal('show');
+             $('#imageBox').modal({
+                 show: true,
+                 backdrop: 'static'
+             });
              crop(e, 'img-src', '#crop', '#imageBox');
          });
+
+        $('#description').text($('.change_description').html());
     })
 </script>
+
 @section('footer')
 
     <script type="text/javascript">

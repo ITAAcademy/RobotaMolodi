@@ -10,42 +10,36 @@ use App\Models\Resume;
 
 class UploadFile extends Controller
 {
-    public function editImg(Request $request){
-        $resume = Resume::find($request->id);
-
-        if($resume->image != ''){
-            $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
-
-            if (File::exists($file))
-            {
-                Storage::delete($file);
-            }
-        }
-
+    public function savePhoto(Request $request, $directory){
         $file = $request->fileImg;
         $cropcoord = explode(',', $request->coords);
         $filename = time().'-'.$file->getClientOriginalName();
-        $directory = 'image/resume/'. Auth::user()->id . '/';
         Crop::input($cropcoord, $filename, $file, $directory);
+        return $filename;
+    }
 
-        $resume->image = $filename;
+    public function editResumeImg(Request $request){
+        $resume = Resume::find($request->id);
+        if($resume->image != ''){
+            $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
+            if (File::exists($file)) {
+                Storage::delete($file);
+            }
+        }
+        $directory = 'image/resume/'. Auth::user()->id . '/';
+        $resume->image = $this->savePhoto($request, $directory);
         $resume->save();
-
-        return $directory.$filename;
+        return $directory.$resume->image;
     }
     
-    public function deleteImg(Request $request){
+    public function deleteResumeImg(Request $request){
         $resume = Resume::find($request->id);
         $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
-
-        if (File::exists($file))
-        {
+        if (File::exists($file)) {
             Storage::delete($file);
         }
-
         $resume->image = '';
         $resume->save();
-
         return $directory = 'image/m.jpg';
     }
 }

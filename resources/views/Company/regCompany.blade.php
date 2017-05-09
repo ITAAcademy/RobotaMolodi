@@ -125,7 +125,10 @@
     <script>
         $(document).ready(function () {
             $('#loadCompany').on('change', function(e) {
-                $('#imageBox').modal('show');
+                $('#imageBox').modal({
+                    show: true,
+                    backdrop: 'static'
+                });
                 crop(e, 'img-src', '#crop', '#imageBox');
             });
         })

@@ -91,7 +91,10 @@
             });
 
             $('#fileImg').on('change', function (e) {
-                $('#changeImageBox').modal('show');
+                $('#changeImageBox').modal({
+                    show: true,
+                    backdrop: 'static'
+                });
                 crop(e, 'img-src', '#crop', '#changeImageBox');
             });
 

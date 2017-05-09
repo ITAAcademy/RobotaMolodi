@@ -4,7 +4,7 @@ class Crop{
     public static function resize($file_input, $file_output, $w_o, $h_o, $percent = false) {
         list($w_i, $h_i, $type) = getimagesize($file_input);
         if (!$w_i || !$h_i) {
-            echo '���������� �������� ����� � ������ �����������';
+            echo '';
             return;
         }
         $types = array('','gif','jpeg','png');
@@ -13,7 +13,7 @@ class Crop{
             $func = 'imagecreatefrom'.$ext;
             $img = $func($file_input);
         } else {
-            echo '������������ ������ �����';
+            echo '';
             return;
         }
         if ($percent) {
@@ -36,7 +36,7 @@ class Crop{
     public static function crop($file_input, $file_output, $crop = 'square',$percent = false) {
         list($w_i, $h_i, $type) = getimagesize($file_input);
         if (!$w_i || !$h_i) {
-            echo '���������� �������� ����� � ������ �����������';
+            echo '';
             return;
         }
         $types = array('','gif','jpeg','png');
@@ -45,7 +45,7 @@ class Crop{
             $func = 'imagecreatefrom'.$ext;
             $img = $func($file_input);
         } else {
-            echo '������������ ������ �����';
+            echo '';
             return;
         }
         if ($crop == 'square') {
@@ -98,8 +98,8 @@ class Crop{
         }
         
         $x1 = self::prov($crop[0])*$koef;
-        $x2 = self::prov($crop[1])*$koef;
-        $y1 = self::prov($crop[2])*$koef;
+        $y1 = self::prov($crop[1])*$koef;
+        $x2 = self::prov($crop[2])*$koef;
         $y2 = self::prov($crop[3])*$koef;
 
         self::crop($img, $directory.$filename, array($x1, $y1, $x2, $y2));

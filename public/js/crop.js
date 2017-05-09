@@ -1,4 +1,4 @@
-function crop(e, img_src, confirmBtn, modalBox, closeBtn) {
+function crop(e, img_src, confirmBtn, modalBox) {
     var x1, y1, x2, y2;
     var jcrop_api;
 
@@ -10,14 +10,21 @@ function crop(e, img_src, confirmBtn, modalBox, closeBtn) {
             jcrop_api = this;
             jcrop_api.setOptions({aspectRatio: 1 / 1});
             jcrop_api.setOptions({minSize: [100, 100]});
-            jcrop_api.setOptions({setSelect: [0,0,130,130]});
+            jcrop_api.setOptions({setSelect: [0,0,100,100]});
         });
 
         function showCoords(c) {
-            x1 = c.x;
-            y1 = c.y;
-            x2 = c.x2;
-            y2 = c.y2;
+            if(c.y < 0 || c.x < 0){
+                x1 = 0;
+                y1 = 0;
+                x2 = 100;
+                y2 = 100;
+            }else{
+                x1 = c.x;
+                y1 = c.y;
+                x2 = c.x2;
+                y2 = c.y2;
+            }
             changeJcropSelectionTopBack();
         }
     }
@@ -48,14 +55,15 @@ function crop(e, img_src, confirmBtn, modalBox, closeBtn) {
     $(confirmBtn).click(function () {
         var wigth = $('.jcrop-active').width();         //width picture on screen
         var natural_width = $('canvas').attr('width');  //natural width picture
-        var mas = [x1, x2, y1, y2, wigth, natural_width];
+        var mas = [x1, y1, x2, y2, wigth, natural_width];
         $('.coords').attr('value', mas);
         jcrop_api.destroy();
         $('#' + img_src).removeAttr('style');
         $(modalBox).modal('hide');
     });
 
-    $(closeBtn).on('click', function () {
-        // $("#changeResumeImg").replaceWith($("#changeResumeImg").val('').clone(true));
+    $('#closeModalBtn').on('hidden.bs.modal', function () {
+        $('.coords').attr('value', '');
+        $("#img-src").replaceWith($("#img-src").val('').clone(true));
     })
 }
