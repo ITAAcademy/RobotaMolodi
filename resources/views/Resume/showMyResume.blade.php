@@ -8,12 +8,13 @@
 
     {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <div class="panel" id="vrBlock">
         <div class="row">
             <div class="col-xs-12 col-md-3">
                 <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
+                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
                         {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => 'auto', 'height' => '100%')) !!}
@@ -25,12 +26,12 @@
                         <span>Змiнити фото</span>
                     </span>
                     <br>
-{{--                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))--}}
-                    <span class="orange-link-myresume" id="deleteImage">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        <span>Видалити фото</span>
-                    </span>
-                    {{--@endif--}}
+                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
+                        <span class="orange-link-myresume" id="deleteImage">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <span>Видалити фото</span>
+                        </span>
+                    @endif
                 </div>
             </div>
 
@@ -101,7 +102,6 @@
                     fd.append('fileImg', $input.prop('files')[0]);
                     fd.append('coords', $('.coords').val());
                     fd.append('id', $('.coords').attr('data-id'));
-
                     $.ajax({
                         url: '{{ route('upimg') }}',
                         data: fd,
@@ -115,41 +115,34 @@
                 }
             });
 
-//            $("#changeResumeImg").replaceWith($("#changeResumeImg").val('').clone(true));
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            });
+
+            $('#deleteImage').on('click', function () {
+                if(ConfirmDelete()){
+                    $.ajax({
+                        url: '{{ route('deleteimg') }}',
+                        data: {'id' : $('.coords').attr('data-id')},
+                        type: 'POST',
+                        success: function (data) {
+                            $('#vimg img').attr('src', window.location.origin + '/' + data);
+                        }
+                    })
+                }
+            })
         });
 
-//        document.getElementById("fileImg").onchange = function()
-//        {
-////            document.uploadImgForm.submit();
-//        };
-
-        function sendFile()
-        {
-            var input = document.getElementById('fileImg');
-            input.click();
-        }
-        function deletePhoto()
-        {
+        function ConfirmDelete() {
             var conf = confirm("Ви дійсно хочете видалити фото?");
 
-            if(conf)
-            {
-                //This is Костыль
-                var photo = document.getElementById('vacImg').getAttribute('src').split('/');
-                $.post( '/resume/deletephoto',{_token: '{{ csrf_token() }}', name: photo[photo.length-1] },
-                function( data ) {
-                   location.reload()
-                });
+            if(conf){
+                return true;
+            } else{
+                return false;
             }
-
-        }
-        function ConfirmDelete()
-        {
-            var conf = confirm("Ви дійсно хочете видалити резюме?");
-
-            if(conf) return true;
-
-            else return false;
         }
     </script>
 @stop
