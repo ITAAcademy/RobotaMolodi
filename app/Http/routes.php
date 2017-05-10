@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
 
     Route::resource('/news', 'Admin\NewsController');
+    Route::resource('/slider', 'Admin\SliderController');
 });
 
 //------------SHOW NEWS------------------------------------------------------
@@ -153,3 +154,5 @@ Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@re
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
+
+//slider
