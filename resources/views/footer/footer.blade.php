@@ -4,7 +4,7 @@
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">IНФОРМАЦIЯ</li>
                 <hr>
-                <li><a href="about/index.html">Про нас</a></li>
+                <li><a href="aboutus">Про нас</a></li>
                 <li><a href="https://profitday.info/allcompanies">Партнери</a></li>
                 <li><a href="#">Підтримка</a></li>
                 <li><a href="#">Бізнес-ідеї</a></li>
