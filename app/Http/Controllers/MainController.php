@@ -63,7 +63,7 @@ class MainController extends Controller
 
     public function showVacancies()
     {
-        $vacancies = Vacancy::AllVacancies()->checkNoAccess()->orderByDate()->paginate();
+        $vacancies = Vacancy::AllVacancies()->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
@@ -108,7 +108,7 @@ class MainController extends Controller
 
     public function showResumes()
     {
-        $resumes = Resume::checkNoAccess()->latest('updated_at')->paginate();
+        $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.resume.resumesList', array(

@@ -17,22 +17,19 @@ class FilterController extends Controller
 {
     public function vacancies(Request $request)
     {
-        $vacancies = Vacancy::checkNoAccess()
-            ->byIndustries($request->get('industries',[]))
+        $vacancies = Vacancy::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
             ->bySort($request->get('sortDate'))
             ->paginate();
-
         return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
     }
 
     public function resumes(Request $request)
     {
-        $resumes = Resume::checkNoAccess()
-            ->byIndustries($request->get('industries',[]))
+        $resumes = Resume::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))

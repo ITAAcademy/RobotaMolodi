@@ -21,6 +21,7 @@ $(document).ready(function () {
     }
 
     $('.getting-list-selected-box').on('change',function () {
+        console.log(getFilters());
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(),
