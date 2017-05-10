@@ -239,11 +239,9 @@
     });
 </script>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script>
 	$(document).ready(function() {
-		CKEDITOR.replace( 'description' );
-		$(".js-example-basic-multiple").select2();
+        $(".js-example-basic-multiple").select2();
         $("#selectCurrency").select2();
         $("#selectGaluz").select2();
         $("#selectOrgan").select2();
