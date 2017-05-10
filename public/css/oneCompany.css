@@ -164,7 +164,9 @@ input{
     margin-top: 15px;
     border-top: 1px solid darkgrey;
 }
-
+ul.pager{
+    display: none;
+}
 
 
 
