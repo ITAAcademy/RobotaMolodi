@@ -1,13 +1,12 @@
-<div class="slick-slider" style="padding-top: 60px">
-    <div>
-        <a href="http://google.com" target="_blank" >
-            <img src="image/sliders/1494439219-1200x300-2.gif" alt="" style="width:100%; height: auto">
-        </a>
-    </div>
-    <div>
-        <a href="http://vk.com" target="_blank" >
-            <img src="image/sliders/1494439555-1200x300_02.gif" alt="" style="width:100%; height: auto">
-        </a>
+<div class="slider-block">
+    <div class="slick-slider" style="padding-top: 60px">
+        @foreach($sliders as $slider)
+            <div>
+                <a href="{{ $slider->url }}" target="_blank" >
+                    <img src="{{ $slider->image }}" alt="" style="width:100%; height: auto">
+                </a>
+            </div>
+        @endforeach
     </div>
 </div>
 
@@ -19,5 +18,14 @@
             infinite: false,
             speed: 1000
         });
+        {{--$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});--}}
+        {{--$.ajax({--}}
+            {{--url: '{{route('setCategory')}}',--}}
+            {{--data: { category: $('.category').val() },--}}
+            {{--type: 'POST',--}}
+            {{--success: function (data) {--}}
+                {{--$('.slick-slider').html(data);--}}
+            {{--}--}}
+        {{--})--}}
     })
 </script>

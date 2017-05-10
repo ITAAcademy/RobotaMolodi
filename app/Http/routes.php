@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
 
     Route::resource('/news', 'Admin\NewsController');
     Route::resource('/slider', 'Admin\SliderController');
+    Route::post('/slider/category', ['as' => 'setCategory','uses' => 'Admin\SliderController@setSliderForCategory']);
 });
 
 //------------SHOW NEWS------------------------------------------------------

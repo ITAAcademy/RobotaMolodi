@@ -120,4 +120,13 @@ class SliderController extends Controller
 
         return redirect()->route('admin.slider.index');
     }
+
+//    public function setSliderForCategory(Request $request){
+//        $sliders = Slider::where('category', '=', $request->category)->get();
+//
+//        return view('newDesign.sliders._form', [
+//            'sliders' => $sliders,
+//            'category' => $request->category
+//        ]);
+//    }
 }

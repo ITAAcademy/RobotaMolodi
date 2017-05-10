@@ -3,6 +3,7 @@ use App\Models\City;
 use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
 use App\Models\News;
+use App\Models\Slider;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
@@ -72,7 +73,9 @@ class MainController extends Controller
         }
         //Show top vacancies:
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
-
+        $sliders = Slider::where('category', '=', 1)->get();
+//        $sliders = Slider::where('category', '=', 2)->get();
+        
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
@@ -80,6 +83,8 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
+            'sliders' => $sliders,
+//            'slidersMenu' => $slidersMenu
         ));
     }
 

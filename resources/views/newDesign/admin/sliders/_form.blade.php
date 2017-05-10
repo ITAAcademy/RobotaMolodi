@@ -20,4 +20,4 @@
     {!! Form::label('category', 'Category:', ['class' => 'control-label']) !!}
     {!! Form::text('category', null, ['class' => 'form-control']) !!}
 </div>
-{!! Form::submit('Create slider', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

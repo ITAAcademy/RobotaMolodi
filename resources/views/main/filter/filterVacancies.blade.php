@@ -7,10 +7,12 @@
     <div id="left-content-column" class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/vacancies/vacanciesList')
-        @include('newDesign/sliders/sliders')
+        @include('newDesign/sliders/sliders', ['sliders' => $sliders])
+
     </div>
     <div id="right-content-column" class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')
+{{--        @include('newDesign/sliders/sliders', ['sliders' => $sliders])--}}
         @include('newDesign/topNews')
     </div>
     {{--<div class="posts">--}}
