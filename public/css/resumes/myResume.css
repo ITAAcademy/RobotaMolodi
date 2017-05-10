@@ -9,6 +9,20 @@
 #resImg{
     border-radius: 10px;
 }
+
+#fileImg{
+    display: none;
+}
+#sendImage{
+    color:#f68c06;
+    display: none;
+}
+
+#sendImage:hover{
+    color: #f26522;
+    cursor: pointer;
+}
+
 .price-resume{
     color: #CD2626;
     font-size: 18px;
@@ -117,12 +131,14 @@ p.description-footer-resume{
     font-family: SegoeUI;
     font-size: 14px;
     margin-left: 15px;
+    margin-top: 5px;
 }
 .orange-link-myresume{
     color:#f68c06;
 }
 .orange-link-myresume:hover{
     color: #f26522;
+    cursor: pointer;
 }
 .orange-link-myresume:focus{
     color: #f26522;

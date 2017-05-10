@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\URL;
 use Symfony\Component\HttpKernel\Tests\DataCollector\DumpDataCollectorTest;
 use View;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Currency;
-use File;
 use App\Repositoriy\Crop;
 
 class ResumeController extends Controller {// Клас по роботі з резюме
@@ -297,6 +297,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         //$resume->destroy();
     }
 
+    public function change_image(Request $request){
+        
+    }
+    
     public function deletePhoto(Request $request)
     {
         if ($request->isMethod('POST'))

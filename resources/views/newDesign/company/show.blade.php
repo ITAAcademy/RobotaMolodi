@@ -1,6 +1,5 @@
 @extends('app')
 @section('head')
-{{--<link href="{{ asset('..resources/views/newDesign/css/oneCompany.css') }}" rel="stylesheet">--}}
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')

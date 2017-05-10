@@ -180,19 +180,17 @@
 </br>
 </br>
 <div class="row">
-<div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
-    <div class="col-md-2 col-sm-2">
+    <div class="form-group {{$errors-> has('loadResume') ? 'has-error' : ''}}">
+        <div class="col-md-2 col-sm-2">
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+            <div id="filename">Файл не вибрано</div>
+            {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
+        </div>
+        <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
     </div>
-    <div class="col-md-4 col-sm-4">
-        <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
-        <div id="filename">Файл не вибрано</div>
-        {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
-
-    </div>
-    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
 </div>
-</div>
-
 
 <br>
 <input type="hidden" name="fcoords" class="coords" id="coords" value="">
@@ -225,13 +223,6 @@
 </div>
 <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    $(document).ready(function () {
-        var chg_tx = document.getElementsByClassName('change_description');
-        $('#description').text($('.change_description').html());
-
-    })
-</script>
 
 <div id="imageBox" class="modal fade">
     @include('newDesign.cropModal')
@@ -242,10 +233,17 @@
 <script>
     $(document).ready(function () {
          $('#loadResume').on('change', function(e) {
-             crop(e);
+             $('#imageBox').modal({
+                 show: true,
+                 backdrop: 'static'
+             });
+             crop(e, 'img-src', '#crop', '#imageBox');
          });
+
+        $('#description').text($('.change_description').html());
     })
 </script>
+
 @section('footer')
 
     <script type="text/javascript">
