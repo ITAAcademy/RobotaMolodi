@@ -1,24 +1,19 @@
 <?php namespace App\Http\Controllers;
 use App\Models\City;
-use App\Models\FilterVacanciesModels;
 use App\Models\Resume;
 use App\Models\News;
-use App\Models\Slider;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests;
 use Input;
 use Request;
 use Session;
 use DB;
 use View;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use App\Models\Company;
+
 class MainController extends Controller
 {
 
@@ -73,8 +68,6 @@ class MainController extends Controller
         }
         //Show top vacancies:
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
-        $sliders = Slider::where('category', '=', 1)->get();
-//        $sliders = Slider::where('category', '=', 2)->get();
         
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
@@ -82,9 +75,7 @@ class MainController extends Controller
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
-            'topVacancy' => $topVacancy,
-            'sliders' => $sliders,
-//            'slidersMenu' => $slidersMenu
+            'topVacancy' => $topVacancy
         ));
     }
 
@@ -136,5 +127,7 @@ class MainController extends Controller
         $news=new News();
         return $news=$news->getNewsForMainPage();
     }
+
+    
 
 }

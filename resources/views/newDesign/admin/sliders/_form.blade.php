@@ -18,6 +18,10 @@
 </div>
 <div class="form-group">
     {!! Form::label('category', 'Category:', ['class' => 'control-label']) !!}
-    {!! Form::text('category', null, ['class' => 'form-control']) !!}
+    <select name="category_id" id="categorySelect" class="form-control">
+        @foreach($categories as $category)
+            <option value="{{ $category->id}}">{{ $category->name}}</option>
+        @endforeach
+    </select>
 </div>
 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

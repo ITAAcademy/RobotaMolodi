@@ -1,7 +1,7 @@
 <link href="{{ asset('/css/companies/companiesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
-<div class="test">
+<div class="row test">
     @foreach($companies as $company)
         <div class="col-xs-12 oll-companies-list">
             <div class="col-xs-3 imeg-companies-list">

@@ -1,6 +1,6 @@
 <link  href="{{ asset('/css/vacancies/topVacancies.css') }}" rel="stylesheet">
 
-<div id="topvac" class=" hidden-xs top-vac">
+<div id="topvac" class="row hidden-xs top-vac">
 
     <div id="topvac0">
         <a id="close-top-vac" class="close-bt" href="#" title="Закрити Топ вакансії. З'явиться знов після перезавантаження сторінки" >

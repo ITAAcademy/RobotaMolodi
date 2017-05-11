@@ -38,8 +38,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
 
     Route::resource('/news', 'Admin\NewsController');
     Route::resource('/slider', 'Admin\SliderController');
-    Route::post('/slider/category', ['as' => 'setCategory','uses' => 'Admin\SliderController@setSliderForCategory']);
+    Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
 });
+
+Route::post('/slider/category', ['as' => 'setCategory','uses' => 'FilterController@setSliderForCategory']);
 
 //------------SHOW NEWS------------------------------------------------------
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);

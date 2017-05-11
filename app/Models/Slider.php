@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'url', 'category'];
+    protected $fillable = ['image', 'url', 'category_id'];
 
     public $timestamps = false;
-    
-    private $rules = array(
-        'category' => 'required|max:150',
-        'url' => 'required',
-        'image' => 'sometimes|image|max:2048',
-    );
+
+    public function category(){
+        return $this->belongsTo('App\Models\Category');
+    }
 }

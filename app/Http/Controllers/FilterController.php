@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
 use App\Models\Company;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
-use App\Models\News;
-
+use App\Models\Slider;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,4 +59,8 @@ class FilterController extends Controller
         return view('newDesign.company.companiesList', ['companies' => $companies]);
     }
 
+    public function setSliderForCategory(Request $request){
+        $sliders = Slider::where('category_id', '=', $request->category)->get();
+        return view('newDesign.sliders.'.$request->slider, [ 'sliders' => $sliders ]);
+    }
 }

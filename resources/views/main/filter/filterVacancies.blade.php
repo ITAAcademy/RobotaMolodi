@@ -7,12 +7,14 @@
     <div id="left-content-column" class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/vacancies/vacanciesList')
-        @include('newDesign/sliders/sliders', ['sliders' => $sliders])
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" class="category" data-id="sliderUnderFooter" value="1">
+        <div class="slider1"  style="padding-top: 60px"></div>
     </div>
     <div id="right-content-column" class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')
-{{--        @include('newDesign/sliders/sliders', ['sliders' => $sliders])--}}
+        <input type="hidden" class="category2" data-id="sliderRightNews" value="2">
+        <div class="slider2"></div>
         @include('newDesign/topNews')
     </div>
     {{--<div class="posts">--}}
@@ -20,6 +22,29 @@
     {{--</div>--}}
     <script>
            $(document).ready(function() {
+               $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
+               $.ajax({
+                   url: '{{route('setCategory')}}',
+                   data: { category: $('.category').val(),
+                            slider: $('.category').attr('data-id')},
+                   type: 'POST',
+                   success: function (data) {
+                       $('.slider1').html(data);
+                   }
+               });
+
+               $.ajax({
+                   url: '{{route('setCategory')}}',
+                   data: { category: $('.category2').val(),
+                           slider: $('.category2').attr('data-id')},
+                   type: 'POST',
+                   success: function (data) {
+                       $('.slider2').html(data);
+                   }
+               });
+
+
+
                 $('#selectCity').select2({
                     placeholder: 'Вся Україна',
                 });

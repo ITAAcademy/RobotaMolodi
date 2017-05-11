@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use App\Models\Category;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,8 +21,11 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
+//        
         
-        return view('newDesign.admin.sliders.index', ['sliders' => $sliders]);
+        return view('newDesign.admin.sliders.index', [
+            'sliders' => $sliders
+        ]);
     }
 
     /**
@@ -33,7 +35,8 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('newDesign.admin.sliders.create');
+        $categories = Category::all();
+        return view('newDesign.admin.sliders.create', ['categories' => $categories]);
     }
 
     /**
@@ -120,13 +123,11 @@ class SliderController extends Controller
 
         return redirect()->route('admin.slider.index');
     }
-
-//    public function setSliderForCategory(Request $request){
-//        $sliders = Slider::where('category', '=', $request->category)->get();
-//
-//        return view('newDesign.sliders._form', [
-//            'sliders' => $sliders,
-//            'category' => $request->category
-//        ]);
-//    }
+    
+    public function saveCategory(Request $request){
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+        return 'Категорія була успішно створена';
+    }
 }
