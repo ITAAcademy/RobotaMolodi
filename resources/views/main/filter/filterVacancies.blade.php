@@ -18,27 +18,7 @@
         {{--@include('vacancy._vacancy')--}}
     {{--</div>--}}
     <script>
-
            $(document).ready(function() {
-
-
-
-               {{--$slider = $('.slider[data-view="{{$viewName}}"]');--}}
-               {{--$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});--}}
-               {{--$.ajax({--}}
-                   {{--url: '{{route('slidersByCategory')}}',--}}
-                   {{--data: { category: $slider.data('category'),--}}
-                       {{--slider: $slider.data('view')},--}}
-                   {{--type: 'POST',--}}
-                   {{--success: function (data) {--}}
-                       {{--$slider.html(data);--}}
-                   {{--}--}}
-               {{--});--}}
-//                getSlider('news', 2).then(getSlider('underFooter', 1));
-
-
-
-
                 $('#selectCity').select2({
                     placeholder: 'Вся Україна',
                 });
