@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
 });
 
-Route::post('/slider/category', ['as' => 'setCategory','uses' => 'FilterController@setSliderForCategory']);
+Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
 
 //------------SHOW NEWS------------------------------------------------------
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);

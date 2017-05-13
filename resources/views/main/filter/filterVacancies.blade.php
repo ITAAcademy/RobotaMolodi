@@ -7,41 +7,35 @@
     <div id="left-content-column" class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/vacancies/vacanciesList')
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" class="category" data-id="sliderUnderFooter" value="1">
-        <div class="slider1"  style="padding-top: 60px"></div>
+        @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])
     </div>
     <div id="right-content-column" class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')
-        <input type="hidden" class="category2" data-id="sliderRightNews" value="2">
-        <div class="slider2"></div>
+        @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2])
         @include('newDesign/topNews')
     </div>
     {{--<div class="posts">--}}
         {{--@include('vacancy._vacancy')--}}
     {{--</div>--}}
     <script>
-           $(document).ready(function() {
-               $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
-               $.ajax({
-                   url: '{{route('setCategory')}}',
-                   data: { category: $('.category').val(),
-                            slider: $('.category').attr('data-id')},
-                   type: 'POST',
-                   success: function (data) {
-                       $('.slider1').html(data);
-                   }
-               });
 
-               $.ajax({
-                   url: '{{route('setCategory')}}',
-                   data: { category: $('.category2').val(),
-                           slider: $('.category2').attr('data-id')},
-                   type: 'POST',
-                   success: function (data) {
-                       $('.slider2').html(data);
-                   }
-               });
+           $(document).ready(function() {
+
+
+
+               {{--$slider = $('.slider[data-view="{{$viewName}}"]');--}}
+               {{--$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});--}}
+               {{--$.ajax({--}}
+                   {{--url: '{{route('slidersByCategory')}}',--}}
+                   {{--data: { category: $slider.data('category'),--}}
+                       {{--slider: $slider.data('view')},--}}
+                   {{--type: 'POST',--}}
+                   {{--success: function (data) {--}}
+                       {{--$slider.html(data);--}}
+                   {{--}--}}
+               {{--});--}}
+//                getSlider('news', 2).then(getSlider('underFooter', 1));
+
 
 
 
