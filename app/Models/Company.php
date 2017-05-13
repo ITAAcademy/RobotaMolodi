@@ -17,7 +17,7 @@ use Eloquent;
 
 class Company extends Eloquent {
 
-    protected $perPage = 2;
+    protected $perPage = 5;
     protected $table = 'company';
     protected $fillable = ['id','company_name','company_email','users_id', 'created_at', 'updated_at'];
 

@@ -37,7 +37,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
 
     Route::resource('/news', 'Admin\NewsController');
+    Route::resource('/slider', 'Admin\SliderController');
+    Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
 });
+
+Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
 
 //------------SHOW NEWS------------------------------------------------------
 Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);
@@ -153,3 +157,5 @@ Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@re
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
+
+//slider

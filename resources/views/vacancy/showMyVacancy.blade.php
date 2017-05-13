@@ -157,11 +157,7 @@
 
         function ConfirmDelete()
         {
-            var conf = confirm("Ви дійсно хочете видалити вакансію?");
-
-            if(conf) return true;
-
-            else return false;
+            confirm("Ви дійсно хочете видалити вакансію?");
         }
     </script>
 
