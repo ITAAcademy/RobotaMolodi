@@ -1,0 +1,101 @@
+@font-face {
+    font-family: "SegoeUIRegular";
+    src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular.eot') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular.woff') format('truetype');
+}
+#vrBlock a{
+    text-decoration: none;
+}
+.change-img-myVacancy{
+    font-size: 14px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+.orange-link-myVacancy{
+    color:#f68c06;
+}
+.orange-link-myVacancy:hover{
+    color: #f26522;
+    cursor: pointer;
+}
+.orange-link-myVacancy:focus{
+    color: #f26522;
+}
+.position-myVacancy{
+    font-size: 24px;
+    margin: 0;
+    color: #f26522;
+    font-family: SegoeUIRegular;
+}
+.orangColor-myVacancy{
+    color: #f68c06;
+}
+.orangColor-myVacancy:hover{
+    color: #f26522;
+}
+.orangColor-myVacancy:focus{
+    color: #f26522;
+}
+.orangColor-myVacancy-name{
+    color: #797979;
+}
+.orangColor-myVacancy-name:hover{
+    color: #f68c06;
+}
+.orangColor-myVacancy-name:focus{
+    color: #f26522;
+}
+.nameCompany-myVacancy{
+    color: #f26522;
+}
+.nameCompany-myVacancy:hover{
+    color: #f26522;
+}
+.nameCompany-myVacancy:focus{
+     color: #f26522;
+ }
+.city-myVacancy{
+    color: #797979;
+}
+.city-myVacancy:hover{
+    color: #f68c06;
+}
+.city-myVacancy:focus{
+    color: #f68c06;
+}
+.price-myVacancy{
+    color: #CD2626;
+    font-size: 18px;
+    font-weight: bold;
+}
+/*.company-name-myVacancy{*/
+    /*font-size: 24px;*/
+    /*font-family: SegoeUIRegular;*/
+    /*color: #797979;*/
+    /*margin: 0;*/
+/*}*/
+p.description-footer-myVacancy{
+    font-family: SegoeUIRegular;
+    font-size: 14px;
+    color: #797979;
+}
+.cityTime-myVacancy{
+    font-size: 20px;
+    color: #797979;
+    font-family: SegoeUI;
+    display: inline-block;
+    margin-top: 10px;
+}
+#yellowCircle-myVacancy{
+    color: #f48952;
+    font-size: 24px;
+}
+.orangColor-myVacancy span{
+    text-decoration: underline;
+}
+.orangColor-myVacancy img{
+    color: #f68c06;
+    width: 16px;
+}
+
