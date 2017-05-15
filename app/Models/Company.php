@@ -13,13 +13,47 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use DB;
 use Eloquent;
+use Illuminate\Validation\Validator;
+
 
 
 class Company extends Eloquent {
 
     protected $perPage = 2;
     protected $table = 'company';
-    protected $fillable = ['id','company_name','company_email','users_id', 'created_at', 'updated_at'];
+    protected $fillable = ['id','company_name','company_email','users_id','created_at', 'updated_at',
+        'link','phone', 'description', 'short_name', 'industry_id', 'city_id', ];
+
+    private $rules = array(
+        'company_name' => 'required|min:2|max:50',
+        'company_email' => 'required|min:6|max:50',
+        'link' => 'required|min:12|max:100',
+        'phone' => 'required|min:10|max:12',
+        'description' => 'required|min:10|max:225',
+        'short_name' => 'required|min:2|max:50',
+        'industry_id' => 'required',
+        'city_id' => 'required',
+    );
+
+    private $errorsMessages;
+
+    public function getErrorsMessages()
+    {
+        return $this->errorsMessages;
+    }
+
+    public function validateForm($company)
+    {
+        $validatorCompany = Validator::make($company, $this->rules);
+
+        if ($validatorCompany->fails()) {
+
+            $this->errorsMessages = $validatorCompany->getMessageBag()->all();
+            return false;
+        }
+
+        return true;
+    }
 
     public function ReadUser()
     {

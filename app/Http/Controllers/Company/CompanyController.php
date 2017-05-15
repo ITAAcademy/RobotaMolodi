@@ -85,13 +85,17 @@ class CompanyController extends Controller  {
         if(Auth::check())
         {
             $company = ' ';
-            
+            $cities = City::all();
+            $industries = Industry::all();
+
+            /*
             if(Session::get('company') != '')
             {
                 $company = Session::get('company');
             }
-            return view('Company.regCompany',['company' => $company]);
-    
+            */
+            return view('Company.regCompany',[/*'company' => $company, */'cities' => $cities, 'industries' => $industries]);
+
         } else {
             return Redirect::to('auth/login');
         }
@@ -104,37 +108,31 @@ class CompanyController extends Controller  {
 	 */
 	public function store(Request $request)
 	{
-        $this->validate($request,[
-            'company_name' => 'required|min:3',
-            'company_link' => 'url'
-        ]);
+        $company = new Company;
+        $input = $request->all();
 
-        $companies = new Company();
-        $companies->users_id = Auth::User()->id;
-        $companies->company_name = $request['company_name'];
-        $companies->company_email = $request['company_link'];
+        if ($company->validateForm($request->all())) {
 
-        if(Input::hasFile('loadCompany')) {
-            $cropcoord = explode(',', $request->fcoords);
-            $file = Input::file('loadCompany');
-            $filename = $file->getClientOriginalName();                 //take file name
-            $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
-            Storage::makeDirectory($directory);                         //create directory
-            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
-            $companies->image = $filename;
-        }
-        $companies->save();
+            $company->users_id = Auth::User()->id;
 
-        session_start();
+            if(Input::hasFile('loadCompany')) {
+                $cropcoord = explode(',', $request->fcoords);
+                $file = Input::file('loadCompany');
+                $filename = $file->getClientOriginalName();                 //take file name
+                $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+                Storage::makeDirectory($directory);                         //create directory
+                Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+                $company->image = $filename;
+            }
 
-        if(isset ($_SESSION['path'])) {
-            $path = $_SESSION['path'];
-            session_unset();
+            $company->fill($input)->save();
+
+            Session::flash('flash_message', 'news successfully created!');
+            return redirect()->route('company.index');
         } else {
-            $path = 'company.index';
+            return redirect()->route('company.create',['company' => $company])->withInput()->withErrors($company->getErrorsMessages());
         }
 
-        return redirect()->route($path);
     }
 
 	/**

@@ -11,7 +11,7 @@
             <div class="col-md-6 col-sm-6">
               {!! Form::text('company_name', null, array('class' => 'form-control')) !!}
             </div>
-            <div><span style ="color:red">* <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span> {{$company}}</div>
+            <div><span style ="color:red">* <?php echo $errors->first('company_name','поле має містити не менше трьох символів'); ?>  </span></div>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Коротка назва організації</p>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="inputPlace">
+                {!! Form::text('short_name', null, array('class' => 'form-control')) !!}
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 {!! Form::text('company_link', null, array('class' => 'form-control')) !!}
             </div>
             <div>
-                <span style ="color:red"><?php echo $errors->first('company_link','поле має бути посиланням в форматі https://'); ?> </span> {{$company}}
+                <span style ="color:red"><?php echo $errors->first('company_link','поле має бути посиланням в форматі https://'); ?> </span>
             </div>
         </div>
     </div>
@@ -42,9 +42,11 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Оберіть галузь</p>
             <div class="col-md-6 col-sm-6">
-                <select class="inputPlace2" id="inputPlace2">
-                    <option value=""></option>
-                    <option value=""></option>
+                <select class="inputPlace2" id="inputPlace2" name="industry_id">
+                    <option disabled selected value>Виберіть галузь</option>
+                    @foreach($industries as $industry)
+                    <option value="{{$industry->id}}">{{$industry->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -54,9 +56,11 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Виберіть місто</p>
             <div class="col-md-6 col-sm-6">
-                <select class="inputPlace2">
-                    <option value=""></option>
-                    <option value=""></option>
+                <select class="inputPlace2" id="inputPlace2" name="city_id">
+                    <option disabled selected value>Виберіть місто</option>
+                    @foreach($cities as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -66,7 +70,7 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Телефон</p>
                 <div class="col-md-6 col-sm-6">
-                     <input type="text" class="inputPlace">
+                    {!! Form::text('phone', null, array('class' => 'form-control')) !!}
                 </div>
         </div>
     </div>
@@ -75,7 +79,7 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">E-mail</p>
             <div class="col-md-6 col-sm-6">
-                <input type="text" class="inputPlace" id="inputPlace4">
+                {!! Form::text('company_email', null, array('class' => 'form-control')) !!}
             </div>
         </div>
     </div>
@@ -84,7 +88,7 @@
         <div class="form-group">
             <p class="col-md-2 col-sm-2 control-label label-text-company">Опис</p>
             <div class="col-md-6 col-sm-6">
-                <textarea type="text" class="inputPlace inputPlace-description"></textarea>
+                {!! Form::textarea('description', null, array('class' => 'form-control')) !!}
             </div>
         </div>
     </div>
