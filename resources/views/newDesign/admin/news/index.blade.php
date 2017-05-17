@@ -16,6 +16,7 @@
             <th>Title</th>
             <th>Description</th>
             <th>Picture</th>
+            <th>Published</th>
             <th>Show news</th>
             <th>Delete news</th>
         </tr>
@@ -33,6 +34,13 @@
                         <img class="picture" src="{{ asset($new->getPath().$new->img) }}">
                     @else
                         Not picture
+                    @endif
+                </td>
+                <td>
+                    @if($new->published)
+                        <div>Published</div>
+                    @else
+                        <div>NotPublished</div>
                     @endif
                 </td>
                 <td>

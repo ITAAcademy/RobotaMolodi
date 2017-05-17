@@ -29,6 +29,11 @@
         {!! Form::label('image', 'Add image:') !!}
         {!!Form::file('image',['class' => 'btn'])!!}
     </div>
+    <div>
+        {!! Form::label('published', 'Опублікувати:') !!}
+        {!! Form::checkbox('published') !!}
+        <br>
+    </div>
     {!! Form::submit('Create news', ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 
