@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
     Route::resource('/news', 'Admin\NewsController');
     Route::resource('/slider', 'Admin\SliderController');
     Route::resource('/industry', 'Admin\IndustryController');
+    Route::post('/industry/set_main', ['as'=>'setMainIndustry', 'uses'=>'Admin\IndustryController@setMainIndustry']);
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
 });
 

@@ -94,4 +94,9 @@ class IndustryController extends Controller
         Industry::destroy($id);
         return redirect()->route('admin.industry.index');
     }
+    
+    public function setMainIndustry(Request $request){
+        Industry::where('main', true)->update(array('main' => false));
+        return Industry::where('id', $request->id)->update(array('main' => true));
+    }
 }

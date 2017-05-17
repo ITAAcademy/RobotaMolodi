@@ -19,11 +19,15 @@
         </thead>
         <tbody>
             @foreach ($industries as $count => $industry)
-                <tr>
+                <tr >
                     <td>{{ $count + 1 }}</td>
                     <td>{{ $industry->name }}</td>
-                    <td>
-                        <i class="fa fa-square-o"></i>
+                    <td data-id="{{$industry->id}}">
+                        @if($industry->main)
+                            <i class="fa fa-check-square-o set-main"></i>
+                        @else
+                            <i class="fa fa-square-o set-main"></i>
+                        @endif
                     </td>
                     <td>
                         <div>
@@ -32,7 +36,7 @@
                         </span>
                         <span style="display: inline-block">
                             {!! Form::open(['method' => 'DELETE','route' => ['admin.industry.destroy', $industry->id]]) !!}
-                            {!! Form::submit('Видалити', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::submit('Видалити', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </span>
                         </div>
@@ -41,5 +45,24 @@
             @endforeach
         </tbody>
     </table>
-
+    <script>
+        $(document).ready(function () {
+            $('.set-main').click(function () {
+                var that = $(this);
+                var id = that.parent().data('id');
+                $.ajax({
+                    url:'{{ route('setMainIndustry') }}',
+                    method: 'post',
+                    data: {id: id},
+                    success: function () {
+                        $('.fa-check-square-o')
+                            .removeClass('fa-check-square-o')
+                            .addClass('fa-square-o');
+                        that.removeClass('fa-square-o')
+                            .addClass('fa-check-square-o');
+                    }
+                })
+            });
+        })
+    </script>
 @endsection
