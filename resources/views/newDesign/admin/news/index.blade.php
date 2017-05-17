@@ -9,7 +9,7 @@
     <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg"> Create news</a>
     </div>
 
-    <table class="table  table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Id</th>
