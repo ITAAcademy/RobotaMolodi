@@ -14,7 +14,6 @@
     </div>
     <div class="tv-news-list cool-scroll">
     @foreach($news as $oneNews)
-
         <ul>
             <li>
                 <span class="tv-news-date">{{$oneNews->created_at->format('d.m.Y')}}</span><br>

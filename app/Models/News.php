@@ -23,6 +23,7 @@ class News extends Model
         'name',
         'description',
         'img',
+        'published',
         'created_at',
         'updated_at',
     ];
@@ -92,8 +93,12 @@ class News extends Model
     }
     public function getNewsForMainPage()
     {
-        $news = $this->latest('id')->limit(self::NEWS_ON_MAIN_PAGE)->get();
+        $news = $this->latest('id')->getPublished()->limit(self::NEWS_ON_MAIN_PAGE)->get();
         return $news;
+    }
+    
+    public function scopeGetPublished(){
+        return News::where('published','=',1);
     }
 
 

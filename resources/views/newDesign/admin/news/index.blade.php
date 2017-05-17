@@ -9,13 +9,14 @@
     <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg"> Create news</a>
     </div>
 
-    <table class="table  table-bordered">
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
             <th>Picture</th>
+            <th>Published</th>
             <th>Show news</th>
             <th>Delete news</th>
         </tr>
@@ -33,6 +34,13 @@
                         <img class="picture" src="{{ asset($new->getPath().$new->img) }}">
                     @else
                         Not picture
+                    @endif
+                </td>
+                <td>
+                    @if($new->published)
+                        <div>Published</div>
+                    @else
+                        <div>NotPublished</div>
                     @endif
                 </td>
                 <td>
