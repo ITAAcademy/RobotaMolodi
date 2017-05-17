@@ -2,7 +2,6 @@
 
 @section('contents')
 
-    {!!Form::open(['route' => 'company.store', 'enctype' => 'multipart/form-data', 'id'=>'form'])!!}
     <div class="row">
         <h3 class="formTitle header-text-company">додати компанію</h3>
         </br>
@@ -157,7 +156,7 @@
        {!!Form::token()!!}
     </div>
 
-    {!!Form::close()!!}
+
 
     <div id="imageBox" class="modal fade">
         @include('newDesign.cropModal')
