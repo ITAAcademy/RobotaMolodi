@@ -1,0 +1,26 @@
+.scrollup{
+    width:64px;
+    height:64px;
+    opacity:0.5;
+    position:fixed;
+    bottom:70%;
+    right:7%;
+    display:none;
+    z-index:99999999;
+    /*text-indent:-9999px;*/
+    background: url('/image/arrow-up64.png') no-repeat;
+}
+
+@media (min-width: 360px) and (max-width: 720px){
+    .scrollup{
+        width:64px;
+        height:64px;
+        opacity:0.5;
+        position:fixed;
+        bottom:65%;
+        right:7%;
+        display:none;
+        z-index:99999999;
+        background: url('/image/arrow-up32.png') no-repeat;
+    }
+}

@@ -78,7 +78,7 @@ html,body{
 .add2top :-webkit-any-link {text-decoration: none;}
 
 .tv-news-list{
-	height: 520px;
+	height: 400px;
 	font-family: SegoeUIRegular;
 	color: #cc3300;
 	overflow-y: auto;

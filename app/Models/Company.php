@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Company extends Eloquent {
 
-    protected $perPage = 2;
+    protected $perPage = 5;
     protected $table = 'company';
     private $errorsMessages;
 

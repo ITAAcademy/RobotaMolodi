@@ -1,20 +1,24 @@
 {{--@extends('main/filter/ajax')--}}
 
 @section('content')
+    @include('newDesign.scrollup')
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
     @include('newDesign/search/show')
     <div id="left-content-column" class="col-xs-9">
         @include('newDesign/sortAds/sort')
         @include('newDesign/vacancies/vacanciesList')
+        @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])
     </div>
     <div id="right-content-column" class="col-xs-3">
         @include('newDesign/vacancies/topVacancies')
+        @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2])
         @include('newDesign/topNews')
     </div>
     {{--<div class="posts">--}}
         {{--@include('vacancy._vacancy')--}}
     {{--</div>--}}
+    {!!Html::script('js/scrollup.js')!!}
     <script>
            $(document).ready(function() {
                 $('#selectCity').select2({
