@@ -1,6 +1,7 @@
 {{--@extends('main/filter/ajax')--}}
 
 @section('content')
+    @include('newDesign.scrollup')
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
     @include('newDesign/search/show')
@@ -17,6 +18,7 @@
     {{--<div class="posts">--}}
         {{--@include('vacancy._vacancy')--}}
     {{--</div>--}}
+    {!!Html::script('js/scrollup.js')!!}
     <script>
            $(document).ready(function() {
                 $('#selectCity').select2({
