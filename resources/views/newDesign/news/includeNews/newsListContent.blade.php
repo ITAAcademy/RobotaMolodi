@@ -3,8 +3,7 @@
 <div class="ajaxLoader">
     <hr>
 
-@foreach($newsPagin as $oneNews)
-
+    @foreach($newsPagin as $oneNews)
         <div class="sectionNewsList">
             <div class="row">
                 <div id="pc" class="col-sm-4">

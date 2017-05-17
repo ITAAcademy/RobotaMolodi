@@ -21,6 +21,5 @@
         $('.slider').each(function (index, item) {
            getSlider($(item).data('view'), $(item).data('category'))
         });
-
     })
 </script>
