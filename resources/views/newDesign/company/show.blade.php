@@ -3,6 +3,7 @@
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
+    @include('newDesign.scrollup')
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">
@@ -68,7 +69,7 @@
         <div class="downlist"></div>
 
     {!!Html::script('js/socialNetWork.js')!!}
-
+    {!!Html::script('js/scrollup.js')!!}
     <script>
         socialNetWork('.social > a');
     </script>
