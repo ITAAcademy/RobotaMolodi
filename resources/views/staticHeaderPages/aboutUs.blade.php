@@ -6,12 +6,15 @@
 
 @section('content')
     @include('newDesign/aboutUs/show')
-
+    <div>
+        <div class="routeBreadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Головна</a></li>
+                <li class="active">Про нас</li>
+            </ol>
+        </div>
+    </div>
     <section class="content">
-                <ol class="breadcrumb">
-                    <li><a href="/">Головна</a></li>
-                    <li class="active">Про нас</li>
-                </ol>
                 <div class="article">
                     <h1 class="title">Про нас</h1>
                     <div class="row full-content">

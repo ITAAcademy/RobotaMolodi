@@ -1,7 +1,14 @@
 @extends('app')
 
 @section('content')
-
+    <div>
+        <div class="routeBreadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Головна</a></li>
+                <li class="active">Контакти </li>
+            </ol>
+        </div>
+    </div>
     <div class="row c_xs">
         <div class="col-sm-1"></div>
         <div class="col-sm-4 c_h3">

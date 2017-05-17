@@ -3,6 +3,15 @@
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
+        <div>
+            <div class="routeBreadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="/">Головна</a></li>
+                    <li class="active">Компанія: {{$company->company_name}} </li>
+                </ol>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">

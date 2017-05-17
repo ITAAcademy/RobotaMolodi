@@ -4,6 +4,14 @@
 @endsection
 
 @section('content')
+    <div>
+        <div class="routeBreadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/">Головна</a></li>
+                <li class="active">Вакансія: {{$vacancy->position}} </li>
+            </ol>
+        </div>
+    </div>
 
     <div class="panel panel-orange" id="vrBlock">
         <div class="row">
