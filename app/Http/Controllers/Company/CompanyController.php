@@ -80,22 +80,13 @@ class CompanyController extends Controller  {
 	 *
 	 * @return Response
 	 */
-	public function create(Company $company)
+	public function create()
 	{
         if(Auth::check())
         {
-            $company = ' ';
             $cities = City::all();
             $industries = Industry::all();
-
-            /*
-            if(Session::get('company') != '')
-            {
-                $company = Session::get('company');
-            }
-            */
-            return view('Company.regCompany',[/*'company' => $company, */'cities' => $cities, 'industries' => $industries]);
-
+            return view('Company.regCompany',['cities' => $cities, 'industries' => $industries]);
         } else {
             return Redirect::to('auth/login');
         }
@@ -111,7 +102,7 @@ class CompanyController extends Controller  {
         $company = new Company;
         $input = $request->all();
 
-        if ($company->validateForm($request->all())) {
+        if ($company->validateForm($input)) {
 
             $company->users_id = Auth::User()->id;
 
@@ -124,17 +115,15 @@ class CompanyController extends Controller  {
                 Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
                 $company->image = $filename;
             }
-
             $company->fill($input)->save();
-
             Session::flash('flash_message', 'news successfully created!');
             return redirect()->route('company.index');
         } else {
-            return redirect()->route('company.create',['company' => $company])->withInput()->withErrors($company->getErrorsMessages());
+           // dd($company->getErrorsMessages());
+                return redirect()->route('company.create')->withInput()->withErrors($company->getErrorsMessages());
         }
 
     }
-
 	/**
 	 * Display the specified resource.
 	 *

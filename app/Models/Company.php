@@ -13,29 +13,28 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use DB;
 use Eloquent;
-use Illuminate\Validation\Validator;
-
+use Illuminate\Support\Facades\Validator;
 
 
 class Company extends Eloquent {
 
     protected $perPage = 2;
     protected $table = 'company';
+    private $errorsMessages;
+
     protected $fillable = ['id','company_name','company_email','users_id','created_at', 'updated_at',
         'link','phone', 'description', 'short_name', 'industry_id', 'city_id', ];
 
     private $rules = array(
-        'company_name' => 'required|min:2|max:50',
-        'company_email' => 'required|min:6|max:50',
-        'link' => 'required|min:12|max:100',
-        'phone' => 'required|min:10|max:12',
+        'company_name' => 'required|min:2|max:225',
+        'short_name' => 'required|min:2|max:225',
+        'company_email' => 'required|email|min:6|max:100',
+        'phone' => 'required|min:3|max:13',
+        'link' => 'url|min:12|max:225',
         'description' => 'required|min:10|max:225',
-        'short_name' => 'required|min:2|max:50',
         'industry_id' => 'required',
         'city_id' => 'required',
     );
-
-    private $errorsMessages;
 
     public function getErrorsMessages()
     {
@@ -45,13 +44,10 @@ class Company extends Eloquent {
     public function validateForm($company)
     {
         $validatorCompany = Validator::make($company, $this->rules);
-
         if ($validatorCompany->fails()) {
-
-            $this->errorsMessages = $validatorCompany->getMessageBag()->all();
+            $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
             return false;
         }
-
         return true;
     }
 
@@ -91,7 +87,7 @@ class Company extends Eloquent {
         $companyEmail = $array["companyEmail"];
 
         $hasCompany = Company::hasMany($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
-        dd($hasCompany);
+        //dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
             return "Компанія з таким ім'ям вже зареєстрована";
@@ -105,11 +101,8 @@ class Company extends Eloquent {
                 'created_at' => $date,
                 'updated_at' => $date
             )
-
         );
             return "Компанія зареєстрована";
-
-
         }
     }
 
@@ -202,8 +195,5 @@ class Company extends Eloquent {
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
-//    public function vacancyModel(){
-//        return $this->hasMany(Vacancy::class);
-//    }
 }
 
