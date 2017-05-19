@@ -1,10 +1,5 @@
-@extends ('NewVacancy/users')
-
-@section('contents')
-
+   <br/>
     <div class="row">
-        <h3 class="formTitle header-text-company">додати компанію</h3>
-        </br>
         <div class="form-group">
             <label for="sector" class="col-md-3 col-sm-3 control-label label-text-company">Назва компанії</label>
             <div class="col-md-6 col-sm-6">
@@ -224,8 +219,6 @@
         }).change();
 
     </script>
-
-@endsection
 
 <script type="text/javascript">
     $(document).ready(function () {

@@ -86,7 +86,7 @@ class CompanyController extends Controller  {
         {
             $cities = City::all();
             $industries = Industry::all();
-            return view('Company.regCompany',['cities' => $cities, 'industries' => $industries]);
+            return view('Company.create',['cities' => $cities, 'industries' => $industries]);
         } else {
             return Redirect::to('auth/login');
         }
@@ -158,11 +158,16 @@ class CompanyController extends Controller  {
 
 	public function edit($id)
 	{
-//
         if (Auth::check()) {
             $company = $this->getCompany($id);
+            $cities = City::all();
+            $industries = Industry::all();
+
             if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
-                return view('Company.edit')->with('company', $company);
+                return view('Company.edit')
+                    ->with('company', $company)
+                    ->with('cities', $cities)
+                    ->with('industries', $industries);
             else
                 abort(403);
         }
