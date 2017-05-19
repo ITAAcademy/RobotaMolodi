@@ -1,31 +1,50 @@
-   <br/>
+
+<style>
+    .rw-words{
+        color:red;
+    }
+
+    .rw-words span{
+        position: relative;
+        color: white;
+        animation-name: err;
+        animation-duration: 5s;
+    }
+    /*
+.transition3:not(:hover) {
+  transition: 3s;
+}
+     */
+
+    @keyframes err {
+        0%   {color: white;}
+        75%  {color: red; left:0px; top:0px;}
+        100% {color: white; left:200px; top:0px;}
+    }
+</style>
+
+<br/>
     <div class="row">
         <div class="form-group">
             <label for="sector" class="col-md-3 col-sm-3 control-label label-text-company">Назва компанії</label>
             <div class="col-md-6 col-sm-6">
-              {!! Form::text('company_name', null, array('class' => 'form-control')) !!}
+              {!! Form::text('company_name', $company->company_name, array('class' => 'form-control')) !!}
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('company_name')}}
-                </span></div>
-            @endif
+            <div class="rw-words">
+                * <span>@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
+            </div>
         </div>
     </div>
-
-    </br>
 
     <div class="row">
         <div class="form-group">
             <p class="col-md-3 col-sm-3 control-label label-text-company">Коротка назва організації</p>
             <div class="col-md-6 col-sm-6">
-                {!! Form::text('short_name', null, array('class' => 'form-control')) !!}
+                {!! Form::text('short_name', $company->short_name, array('class' => 'form-control')) !!}
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('short_name')}}
-                </span></div>
-            @endif
+            <div class="rw-words">
+                * <span>@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
+            </div>
         </div>
     </div>
 
@@ -33,14 +52,11 @@
         <div class="form-group" style="margin-top: 20px">
             <label for="level" class="col-md-3 col-sm-3 control-label label-text-company">Посилання на компанію</label>
             <div class="col-md-6 col-sm-6">
-                {!! Form::text('link', null, array('class' => 'form-control')) !!}
+                {!! Form::text('link', $company->link, array('class' => 'form-control')) !!}
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">
-                        {{$errors->first('link')}}
-                </span></div>
-
-            @endif
+            <div class="rw-words">
+                 <span>@if(isset($errors) && !empty($errors->first('link')))* {{$errors->first('link')}}@endif</span>
+            </div>
         </div>
     </div>
 
@@ -49,17 +65,15 @@
             <p class="col-md-3 col-sm-3 control-label label-text-company">Оберіть галузь</p>
             <div class="col-md-6 col-sm-6">
                 <select class="inputPlace2" id="inputPlace2" name="industry_id">
-                    <option disabled selected value>Виберіть галузь</option>
                     @foreach($industries as $industry)
-                    <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @if($industry->id == $company->industry_id )
+                            <option selected value="{{$industry->id}}">{{$industry->name}}</option>
+                        @else
+                            <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('industry_id')}}
-                </span></div>
-            @endif
         </div>
     </div>
 
@@ -68,32 +82,27 @@
             <p class="col-md-3 col-sm-3 control-label label-text-company">Виберіть місто</p>
             <div class="col-md-6 col-sm-6">
                 <select class="inputPlace2" id="inputPlace2" name="city_id">
-                    <option disabled selected value>Виберіть місто</option>
                     @foreach($cities as $city)
-                        <option value="{{$city->id}}">{{$city->name}}</option>
+                        @if($city->id == $company->city_id )
+                            <option selected value="{{$city->id}}">{{$city->name}}</option>
+                        @else
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('city_id')}}
-                </span></div>
-            @endif
         </div>
     </div>
-
 
     <div class="row">
         <div class="form-group">
             <p class="col-md-3 col-sm-3 control-label label-text-company">Телефон</p>
                 <div class="col-md-6 col-sm-6">
-                    {!! Form::text('phone', null, array('class' => 'form-control')) !!}
+                    {!! Form::text('phone', $company->phone, array('class' => 'form-control')) !!}
                 </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('phone')}}
-                </span></div>
-            @endif
+            <div class="rw-words">
+                * <span>@if(isset($errors)){{$errors->first('phone')}}@endif</span>
+            </div>
         </div>
     </div>
 
@@ -101,13 +110,11 @@
         <div class="form-group">
             <p class="col-md-3 col-sm-3 control-label label-text-company">E-mail</p>
             <div class="col-md-6 col-sm-6">
-                {!! Form::text('company_email', null, array('class' => 'form-control')) !!}
+                {!! Form::text('company_email', $company->company_email, array('class' => 'form-control')) !!}
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('company_email')}}
-                </span></div>
-            @endif
+            <div class="rw-words">
+                * <span>@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
+            </div>
         </div>
     </div>
 
@@ -115,15 +122,14 @@
         <div class="form-group">
             <p class="col-md-3 col-sm-3 control-label label-text-company">Опис</p>
             <div class="col-md-6 col-sm-6">
-                {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'description']) !!}
+                {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
             </div>
-            @if(isset($errors))
-                <div><span style ="color:red">*
-                        {{$errors->first('description')}}
-                </span></div>
-            @endif
+            <div class="rw-words">
+                * <span>@if(isset($errors)){{$errors->first('description')}}@endif</span>
+            </div>
         </div>
     </div>
+
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     </br>

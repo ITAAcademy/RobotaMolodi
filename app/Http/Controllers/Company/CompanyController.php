@@ -84,9 +84,10 @@ class CompanyController extends Controller  {
 	{
         if(Auth::check())
         {
+            $company = new Company;
             $cities = City::all();
             $industries = Industry::all();
-            return view('Company.create',['cities' => $cities, 'industries' => $industries]);
+            return view('Company.create',['company' => $company, 'cities' => $cities, 'industries' => $industries]);
         } else {
             return Redirect::to('auth/login');
         }
@@ -159,7 +160,9 @@ class CompanyController extends Controller  {
 	public function edit($id)
 	{
         if (Auth::check()) {
-            $company = $this->getCompany($id);
+           // $company = $this->getCompany($id);
+           // dd($id);
+            $company = Company::where('id', $id)->first();
             $cities = City::all();
             $industries = Industry::all();
 
