@@ -53,10 +53,14 @@
             <div class="col-md-6 col-sm-6">
                 <select name="industry" style="width: 100%" class="form-control" id="selectIndustry">
                     @foreach($industries as $industry)
-                        <option value="{{$industry->id}}"> {{$industry->name}} </option>
+                        @if($industry->main)
+                            <option value="{{$industry->id}}" selected> {{$industry->name}} </option>
+                        @else
+                            <option value="{{$industry->id}}"> {{$industry->name}} </option>
+                        @endif
                     @endforeach
                     @if(Input::old('industry')!= '')
-                    <option value="{{Input::old('industry')}}" selected>{{\App\Models\Industry::find(Input::old('industry'))->name}}
+                        <option value="{{Input::old('industry')}}" selected>{{\App\Models\Industry::find(Input::old('industry'))->name}}
                     @endif
                     </option>
                 </select>
