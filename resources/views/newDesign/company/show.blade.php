@@ -4,14 +4,15 @@
 @stop
 @section('content')
     @include('newDesign.scrollup')
-        <div>
-            <div class="routeBreadcrumb">
-                <ol class="breadcrumb">
-                    <li><a href="/">Головна</a></li>
-                    <li class="active">Компанія: {{$company->company_name}} </li>
-                </ol>
-            </div>
-        </div>
+    @include('newDesign.breadcrumb',['mainrout'=>'head','lip'=>'Головна', 'lil'=>'Компанія:','displays'=>'','secondrout'=>'head', 'lip2'=>'ds'])
+        {{--<div>--}}
+            {{--<div class="routeBreadcrumb">--}}
+                {{--<ol class="breadcrumb">--}}
+                    {{--<li><a href="/">Головна</a></li>--}}
+                    {{--<li class="active">Компанія: {{$company->company_name}} </li>--}}
+                {{--</ol>--}}
+            {{--</div>--}}
+        {{--</div>--}}
 
         <div class="row">
             <div class="col-md-2">
