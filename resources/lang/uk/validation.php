@@ -56,7 +56,7 @@ return [
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "The :attribute must be a number.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "Поле обов'язове для заповнення",
+	"required"             => "Поле обов'язкове для заповнення",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -101,7 +101,7 @@ return [
 		],
 		'description'=>[
             "min" => "Не меньше ніж 10 символи!",
-            "max" => "Не більше ніж 225 символів!",
+            "max" => "Не більше ніж 500 символів!",
 		],
 		'image'=>[
 			'image'=>'Необхiдний формат файлу: jpeg, jpg, png, bmp!',

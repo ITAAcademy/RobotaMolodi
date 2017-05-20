@@ -4,8 +4,9 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
         </div>
-        <div class="rw-words">
-            * <span>@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
+        <div class="err-info">
+            <span class="red-star"> * </span>
+            <span class="err-message">@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
         </div>
     </div>
 
@@ -14,8 +15,9 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
         </div>
-        <div class="rw-words">
-            * <span>@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
+        <div class="err-info">
+            <span class="red-star"> * </span>
+            <span class="err-message">@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
         </div>
     </div>
 
@@ -24,8 +26,8 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::text('link', $company->link, ['class' => 'form-control', 'id' => 'link']) !!}
         </div>
-        <div class="rw-words">
-            <span>@if(isset($errors) && !empty($errors->first('link')))* {{$errors->first('link')}}@endif</span>
+        <div class="err-info">
+            <span class="err-message left">@if(isset($errors) && !empty($errors->first('link'))){{$errors->first('link')}}@endif</span>
         </div>
     </div>
 
@@ -64,8 +66,9 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
         </div>
-        <div class="rw-words">
-            * <span>@if(isset($errors)){{$errors->first('phone')}}@endif</span>
+        <div class="err-info">
+            <span class="red-star"> * </span>
+            <span class="err-message">@if(isset($errors)){{$errors->first('phone')}}@endif</span>
         </div>
     </div>
 
@@ -74,8 +77,9 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_email', $company->company_email, ['class' => 'form-control', 'id' => 'company_email']) !!}
         </div>
-        <div class="rw-words">
-            * <span>@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
+        <div class="err-info">
+            <span class="red-star"> * </span>
+            <span class="err-message">@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
         </div>
     </div>
 
@@ -84,31 +88,36 @@
         <div class="col-md-6 col-sm-6">
             {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
         </div>
-        <div class="rw-words">
-            * <span>@if(isset($errors)){{$errors->first('description')}}@endif</span>
+        <div class="err-info">
+            <span class="red-star"> * </span>
+            <span class="err-message">@if(isset($errors)){{$errors->first('description')}}@endif</span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-            <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
-            <div id="filename">Файл не вибрано</div>
-            {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
-        </div>
-        <div class="col-sm-offset-3 col-md-9 col-sm-9">
-            <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
-        </div>
-    </div>
-        <div class="row">
-        <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-            <span class="required_field">*</span> – Обов'язкові для заповнення
-        </div>
-        </div>
-            <div class="row">
-        <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-            {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
-        </div>
+        <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
+            <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
+                <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
+                <div id="filename">Файл не вибрано</div>
+                {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
             </div>
+            <input type="hidden" name="fcoords" class="coords" id="coords" value="">
+            <input type="hidden" name="fname" value="">
+
+            <div class="col-sm-offset-3 col-md-9 col-sm-9">
+                <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
+            </div>
+
+            <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
+                <span class="required_field">*</span> – Обов'язкові для заповнення
+            </div>
+
+            <div class="row">
+                <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
+                    {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+                </div>
+            </div>
+        </div>
     </div>
 
     {!!Form::token()!!}

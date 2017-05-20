@@ -104,7 +104,6 @@ class CompanyController extends Controller  {
         $input = $request->all();
 
         if ($company->validateForm($input)) {
-
             $company->users_id = Auth::User()->id;
 
             if(Input::hasFile('loadCompany')) {
@@ -116,13 +115,14 @@ class CompanyController extends Controller  {
                 Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
                 $company->image = $filename;
             }
+
             $company->fill($input)->save();
             Session::flash('flash_message', 'news successfully created!');
             return redirect()->route('company.index');
-        } else {
-                return redirect()->route('company.create')->withInput()->withErrors($company->getErrorsMessages());
         }
-
+        else {
+            return redirect()->route('company.create')->withInput()->withErrors($company->getErrorsMessages());
+        }
     }
 	/**
 	 * Display the specified resource.
@@ -142,10 +142,8 @@ class CompanyController extends Controller  {
 
         $vacancies = Vacancy::where('company_id','=',$id);
 
-
         $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
         $industryName = Industry::where('id','=',$industry)->lists('name')->first();
-
 
         return view($view)
             ->with('vacancy', $vacancies)
@@ -170,8 +168,7 @@ class CompanyController extends Controller  {
                     ->with('industries', $industries);
             else
                 abort(403);
-        }
-        else
+        } else
             return Redirect::to('auth/login');
 	}
 
@@ -256,7 +253,7 @@ class CompanyController extends Controller  {
         if (!is_numeric($id)) {
             abort(500);
         }
-        if(empty(Company::find($id))){
+        if(empty(Company::find($id))) {
             abort(404);
         }
         if (User::find(Company::find($id)->users_id)->id == Auth::id()) {

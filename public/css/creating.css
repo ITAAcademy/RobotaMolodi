@@ -44,11 +44,11 @@
 
 
 /*///////////////NEW COMPANY////////////*/
-.rw-words{
-    color:red;
-}
 
-.rw-words span:not(:hover) {
+.left{padding-left:17px;}
+.red-star{color:red;}
+.err-info{color:white;}
+.err-info .err-message:not(:hover) {
     position: relative;
     color: white;
     animation-name: err;
@@ -93,6 +93,10 @@
     height: 35px;
     border-radius: 5px;
     border: 1px solid #D6D6D6;
+}
+
+.dangerIco{
+    width:20px;
 }
 
 
