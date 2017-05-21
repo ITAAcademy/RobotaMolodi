@@ -2,9 +2,9 @@
 
 @font-face {
     -ms-font-family: "SegoeUI";
-    -ms-src: url(../fonts/SegoeUIRegular.ttf);
+    -ms-src: url(../fonts/SegoeUIRegular/SegoeUIRegular.ttf);
     font-family: "SegoeUI";
-    src: url(../fonts/SegoeUIRegular.ttf);
+    src: url(../fonts/SegoeUIRegular/SegoeUIRegular.ttf);
     -ms-font-family: "ACLine";
     -ms-src: url(../fonts/ACLine.ttf);
     font-family: "ACLine";

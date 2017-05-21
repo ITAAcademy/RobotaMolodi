@@ -1,8 +1,8 @@
 @font-face {
     font-family: "SegoeUIRegular";
-    src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
-    src: url('/public/fonts/SegoeUIRegular.eot') format('truetype');
-    src: url('/public/fonts/SegoeUIRegular.woff') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.eot') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.woff') format('truetype');
 }
 #vrBlock a{
     text-decoration: none;

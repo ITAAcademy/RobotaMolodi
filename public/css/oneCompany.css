@@ -1,8 +1,8 @@
 @font-face{
     -ms-font-family: "SegoeUI";
-    -ms-src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
+    -ms-src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
     font-family: "SegoeUI";
-    src: url('/public/fonts/SegoeUIRegular.ttf') format('truetype');
+    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
 }
 * {
     margin: 0;
