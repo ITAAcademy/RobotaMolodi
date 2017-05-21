@@ -36,11 +36,11 @@
                         Not picture
                     @endif
                 </td>
-                <td>
+                <td style="text-align: center">
                     @if($new->published)
-                        <div>Published</div>
+                        <i class="fa fa-check-square-o set-main"></i>
                     @else
-                        <div>NotPublished</div>
+                        <i class="fa fa-square-o set-main"></i>
                     @endif
                 </td>
                 <td>
