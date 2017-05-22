@@ -10,8 +10,13 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$vacancy->company_id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Вакансія: ','thirdRoutName'=>$vacancy->position,'showDisplay'=>'','secondRout'=>'resumes', 'nameSecondRout'=>'Особистий кабінет'])
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
+        ['name' => 'Вакансія: '.$vacancy->position, 'url' => false]
+        ]
+    )
+    )
     <div class="panel" id="vrBlock">
     <div class="row">
         <div class="col-xs-12 col-md-2">

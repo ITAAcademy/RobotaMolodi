@@ -4,9 +4,12 @@
 @endsection
 
 @section('content')
-    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Вакансія: ','thirdRoutName'=>$vacancy->position,'showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
-
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+           ['url'=> 'head','name'=>'Головна'],
+           ['name' => 'Вакансія: '.$vacancy->position , 'url' => false]
+           ]
+       )
+       )
     <div class="panel panel-orange" id="vrBlock">
         <div class="row">
             <div class="col-md-2">

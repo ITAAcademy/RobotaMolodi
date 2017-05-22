@@ -4,8 +4,12 @@
 @stop
 @section('content')
     @include('newDesign.scrollup')
-    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Компанія:','thirdRoutName'=>$company->company_name,'showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+       ['url'=> 'head','name'=>'Головна'],
+       ['name' => 'Компанія: '.$company->company_name, 'url' => false]
+       ]
+   )
+   )
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">

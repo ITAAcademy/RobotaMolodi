@@ -6,8 +6,12 @@
 
 @section('content')
     @include('newDesign/aboutUs/show')
-    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Про нас','thirdRoutName'=>'','showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+           ['url'=> 'head','name'=>'Головна'],
+           ['name' => 'Про нас ', 'url' => false]
+           ]
+       )
+       )
     <section class="content">
                 <div class="article">
                     <h1 class="title">Про нас</h1>

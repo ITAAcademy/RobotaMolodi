@@ -3,8 +3,12 @@
 
 @stop
 @section('content')
-    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Особистий кабінет','thirdRoutName'=>'','showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+            ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
+            ['name' => 'Особистий кабінет ', 'url' => false]
+            ]
+        )
+        )
     <div class="row">
         <div class="col-xs-11 col-md-7 header-tabs">
             <ul class="nav nav-tabs">
