@@ -41,7 +41,7 @@
         <div class="row paginatorr">
             <hr>
             @if($newsPagin->lastPage() > 1)
-                @include('newDesign.default', ['paginator' => $newsPagin])
+                @include('newDesign.paginator', ['paginator' => $newsPagin])
             @endif
         </div>
 </div>
