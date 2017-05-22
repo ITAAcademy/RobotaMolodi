@@ -1,19 +1,94 @@
-.picture {
-    width: 250px;
+/*.picture {*/
+    /*width: 250px;*/
+
+/*}*/
+/*body{*/
+    /*background-color: #c8c8b2;*/
+
+/*}*/
+/*.createNews{*/
+    /*float:right;*/
+    /*margin:15px 5px 15px;*/
+/*}*/
+/*.imageOneNews {*/
+    /*width: 100%;*/
+
+/*}*/
+/*.titleNews{*/
+    /*max-width: 20px;*/
+/*}*/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+a:hover{
+    text-decoration: none;
+}
+
+.logo>img{
+    margin: 20px 0 20px 20px;
 
 }
-body{
-    background-color: #c8c8b2;
-
-}
-.createNews{
-    float:right;
-    margin:15px 5px 15px;
-}
-.imageOneNews {
+.colorBlack, header{
+    background-color: #1C1C1C;
     width: 100%;
+    color: #8c8c8c;
+}
+.columnLeft{
+    background:  #1C1C1C;
+    height: 1000px;
 
 }
-.titleNews{
-    max-width: 20px;
+.menu{
+
+    color: #8c8c8c;
+    margin-top: 100px;
+}
+.menu>a>div{
+    height: 30px;
+    width: 100%;
+    background: #f68c06;
+}
+.menu>a>div>li>p{
+    color: black;
+    margin-left: 20%;
+}
+.menu>a>div{
+    margin-top: 10px;
+}
+.menu>a>div:hover{
+    color: black;
+    height: 30px;
+    width: 100%;
+    background-color: #e8641b;
+
+}
+.dropdown-toggle {
+    margin-top: 27px;
+    background-color: #f68c06;
+    border-color: #3F2B22;
+    color: #000000;
+}
+.dropdown-toggle:hover{
+    background-color: #e8641b;
+    color: black;
+}
+footer{
+    /*position: fixed;*/
+    /*!*left: 0; bottom: 0;*!*/
+    width: 100%;
+}
+.foterStile{
+    padding: 5px;
+}
+.anchor{
+    margin-left: 90%;
+}
+.contentAndmin{
+    margin-top:30px;
+    padding: 0;
 }

@@ -5,18 +5,26 @@
     @yield('ckeditor')
 </head>
 <body>
-<div class="container">
+
 
     <header class="row">
         @include('newDesign.layouts.includes.header')
     </header>
-
-    <div id="main" class="row">
-        <div class="wrapper">
-            @yield('content')
+    <div class="row">
+        @include('newDesign.layouts.includes.columnLeft')
+        <div class="col-md-10">
+            <div id="main">
+                <div class="contentAndmin">
+                    <div class="wrapper">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-</div>
+{{--<footer>--}}
+    {{--@include('newDesign.layouts.includes.footer')--}}
+{{--</footer>--}}
 </body>
 </html>
