@@ -167,7 +167,7 @@ input{
 ul.pager{
     display: none;
 }
-.configButton{
+.configButton .btn{
     border: 1px solid #f68c06;
     border-radius: 5px;
     background-color: #f68c06;

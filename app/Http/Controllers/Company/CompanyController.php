@@ -133,6 +133,13 @@ class CompanyController extends Controller  {
 		public function show($id, Guard $auth)
 	{
        //Cookie::queue('url', 'company/'.$id);
+        if (!is_numeric($id)) {
+            abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
+        }
+
         $company = Company::find($id);
         $industry = Industry::find($company->industry_id);
         $city = City::find($company->industry_id);
@@ -247,7 +254,7 @@ class CompanyController extends Controller  {
         if(empty(Company::find($id))) {
             abort(404);
         }
-        if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
+        if (Company::find($id)->users_id == Auth::id()) {
             Company::destroy($id);
             return redirect('company');
         }

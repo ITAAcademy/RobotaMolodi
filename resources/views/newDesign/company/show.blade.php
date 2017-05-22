@@ -42,6 +42,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-10 contentConpany">
             <div id="datAnnoyingSizes">
 
@@ -116,23 +117,12 @@
 
             <hr/>
 
-            <div class="col-xs-12">
-                <div>
-                    <a class="configButton" href="{{$company->id}}/destroy" onclick="return ConfirmDelete();">Видалити</a>
-                </div>
-                <div>
-                    <a class="configButton" href="{{$company->id}}/edit">Редагувати</a>
-                </div>
-                <div>
-                    <a class="configButton" href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
-                </div>
-                <div>
-                    <a class="configButton" href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
-                </div>
-                <div>
-                    <a class="configButton" href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
-                </div>
-
+            <div class="col-xs-12 configButton">
+                <a href="{{$company->id}}/destroy" class="btn" onclick="return ConfirmDelete();">Видалити</a>
+                <a href="{{$company->id}}/edit" class="btn">Редагувати</a>
+                <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
+                <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
+                <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
             </div>
 
         </div>
