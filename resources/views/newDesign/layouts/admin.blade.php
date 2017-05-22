@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <meta name="_token" content="{{ csrf_token() }}">
     @include('newDesign.layouts.includes.head')
     @yield('ckeditor')
 </head>
@@ -26,5 +27,18 @@
 {{--<footer>--}}
     {{--@include('newDesign.layouts.includes.footer')--}}
 {{--</footer>--}}
+
+    <div id="main" class="row">
+        <div class="wrapper">
+            @yield('content')
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
+    })
+</script>
 </body>
 </html>

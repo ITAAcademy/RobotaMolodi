@@ -14,9 +14,9 @@ html {
 }
 @font-face {
   font-family: SegoeUIRegular;
-  src:    url('../fonts/SegoeUIRegular.eot') format('embedded-opentype'),
-  url('../fonts/SegoeUIRegular.woff') format('woff'),
-  url('../fonts/SegoeUIRegular.ttf') format('truetype');
+  src:    url('../fonts/SegoeUIRegular/SegoeUIRegular.eot') format('embedded-opentype'),
+  url('../fonts/SegoeUIRegular/SegoeUIRegular.woff') format('woff'),
+  url('../fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
 }
 body {
   margin: 0;

@@ -3,8 +3,7 @@
 <div class="ajaxLoader">
     <hr>
 
-@foreach($newsPagin as $oneNews)
-
+    @foreach($newsPagin as $oneNews)
         <div class="sectionNewsList">
             <div class="row">
                 <div id="pc" class="col-sm-4">
@@ -42,7 +41,7 @@
         <div class="row paginatorr">
             <hr>
             @if($newsPagin->lastPage() > 1)
-                @include('newDesign.default', ['paginator' => $newsPagin])
+                @include('newDesign.paginator', ['paginator' => $newsPagin])
             @endif
         </div>
 </div>

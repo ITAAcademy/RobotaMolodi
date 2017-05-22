@@ -13,13 +13,43 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use DB;
 use Eloquent;
+use Illuminate\Support\Facades\Validator;
 
 
 class Company extends Eloquent {
 
     protected $perPage = 5;
     protected $table = 'company';
-    protected $fillable = ['id','company_name','company_email','users_id', 'created_at', 'updated_at'];
+    private $errorsMessages;
+
+    protected $fillable = ['id','company_name','company_email','users_id','created_at', 'updated_at',
+        'link','phone', 'description', 'short_name', 'industry_id', 'city_id', ];
+
+    private $rules = array(
+        'company_name' => 'required|min:2|max:225',
+        'short_name' => 'required|min:2|max:225',
+        'company_email' => 'required|email|min:6|max:100',
+        'phone' => 'required|min:3|max:13',
+        'link' => 'url|min:12|max:225',
+        'description' => 'required|min:10|max:500',
+        'industry_id' => 'required',
+        'city_id' => 'required',
+    );
+
+    public function getErrorsMessages()
+    {
+        return $this->errorsMessages;
+    }
+
+    public function validateForm($company)
+    {
+        $validatorCompany = Validator::make($company, $this->rules);
+        if ($validatorCompany->fails()) {
+            $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
+            return false;
+        }
+        return true;
+    }
 
     public function ReadUser()
     {
@@ -57,7 +87,7 @@ class Company extends Eloquent {
         $companyEmail = $array["companyEmail"];
 
         $hasCompany = Company::hasMany($companyName);//DB::select('SELECT company_name FROM company Where company_id = ?',array($companyName) );         //проверка на совпадение имен
-        dd($hasCompany);
+        //dd($hasCompany);
         if($hasCompany!=null)                                                                                           //если уже есть такая компания
         {
             return "Компанія з таким ім'ям вже зареєстрована";
@@ -71,11 +101,8 @@ class Company extends Eloquent {
                 'created_at' => $date,
                 'updated_at' => $date
             )
-
         );
             return "Компанія зареєстрована";
-
-
         }
     }
 
@@ -168,8 +195,5 @@ class Company extends Eloquent {
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
-//    public function vacancyModel(){
-//        return $this->hasMany(Vacancy::class);
-//    }
 }
 

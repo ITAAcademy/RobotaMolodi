@@ -2,9 +2,9 @@
 
 @font-face {
     -ms-font-family: "SegoeUI";
-    -ms-src: url(../fonts/SegoeUIRegular.ttf);
+    -ms-src: url(../fonts/SegoeUIRegular/SegoeUIRegular.ttf);
     font-family: "SegoeUI";
-    src: url(../fonts/SegoeUIRegular.ttf);
+    src: url(../fonts/SegoeUIRegular/SegoeUIRegular.ttf);
     -ms-font-family: "ACLine";
     -ms-src: url(../fonts/ACLine.ttf);
     font-family: "ACLine";
@@ -43,13 +43,26 @@
 }
 
 
-
-
 /*///////////////NEW COMPANY////////////*/
+
+.left{padding-left:17px;}
+.red-star{color:red;}
+.err-info{color:white;}
+.err-info .err-message:not(:hover) {
+    position: relative;
+    color: white;
+    animation-name: err;
+    animation-duration: 5s;
+}
+
+@keyframes err {
+    0%   {color: white;}
+    75%  {color: red; left:0px; top:0px;}
+    100% {color: white; left:200px; top:0px;}
+}
 
 .header-text-company {
     color: #F68C06;
-    /*margin-left: 15px;*/
     margin-bottom: 0;
     font-family: "ACLine";
     -ms-font-family: "ACLine";
@@ -58,11 +71,9 @@
 }
 
 .label-text-company{
-    /*margin-right: -15px;*/
-    line-height: 44px;
+    line-height: 45px;
     display: inline-block;
     text-align: right;
-    /*margin-bottom: -3px;*/
     min-width: 167px;
     font-family: "Segoe UI", sans-serif;
     -ms-font-family: "Segoe UI", sans-serif;
@@ -71,17 +82,22 @@
     color:#666666;
 }
 
+.after-form-item{
+    margin-top: 15px;
+    text-align: left;
+    line-height: 30px;
+}
+
 .inputPlace2{
     width: 100%;
-    height: 44px;
+    height: 35px;
     border-radius: 5px;
     border: 1px solid #D6D6D6;
 }
 
-.inputPlace-description{
-    height: 150px;
+.dangerIco{
+    width:20px;
 }
-
 
 
 /*//////////////////NEW RESUME////////////*/

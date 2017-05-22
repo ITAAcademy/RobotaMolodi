@@ -80,18 +80,14 @@ class CompanyController extends Controller  {
 	 *
 	 * @return Response
 	 */
-	public function create(Company $company)
+	public function create()
 	{
         if(Auth::check())
         {
-            $company = ' ';
-            
-            if(Session::get('company') != '')
-            {
-                $company = Session::get('company');
-            }
-            return view('Company.regCompany',['company' => $company]);
-    
+            $company = new Company;
+            $cities = City::all();
+            $industries = Industry::all();
+            return view('Company.create',['company' => $company, 'cities' => $cities, 'industries' => $industries]);
         } else {
             return Redirect::to('auth/login');
         }
@@ -104,39 +100,30 @@ class CompanyController extends Controller  {
 	 */
 	public function store(Request $request)
 	{
-        $this->validate($request,[
-            'company_name' => 'required|min:3',
-            'company_link' => 'url'
-        ]);
+        $company = new Company;
+        $input = $request->all();
 
-        $companies = new Company();
-        $companies->users_id = Auth::User()->id;
-        $companies->company_name = $request['company_name'];
-        $companies->company_email = $request['company_link'];
+        if ($company->validateForm($input)) {
+            $company->users_id = Auth::User()->id;
 
-        if(Input::hasFile('loadCompany')) {
-            $cropcoord = explode(',', $request->fcoords);
-            $file = Input::file('loadCompany');
-            $filename = $file->getClientOriginalName();                 //take file name
-            $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
-            Storage::makeDirectory($directory);                         //create directory
-            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
-            $companies->image = $filename;
+            if(Input::hasFile('loadCompany')) {
+                $cropcoord = explode(',', $request->fcoords);
+                $file = Input::file('loadCompany');
+                $filename = $file->getClientOriginalName();                 //take file name
+                $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+                Storage::makeDirectory($directory);                         //create directory
+                Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+                $company->image = $filename;
+            }
+
+            $company->fill($input)->save();
+            Session::flash('flash_message', 'news successfully created!');
+            return redirect()->route('company.index');
         }
-        $companies->save();
-
-        session_start();
-
-        if(isset ($_SESSION['path'])) {
-            $path = $_SESSION['path'];
-            session_unset();
-        } else {
-            $path = 'company.index';
+        else {
+            return redirect()->route('company.create')->withInput()->withErrors($company->getErrorsMessages());
         }
-
-        return redirect()->route($path);
     }
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -155,10 +142,8 @@ class CompanyController extends Controller  {
 
         $vacancies = Vacancy::where('company_id','=',$id);
 
-
         $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
         $industryName = Industry::where('id','=',$industry)->lists('name')->first();
-
 
         return view($view)
             ->with('vacancy', $vacancies)
@@ -171,15 +156,19 @@ class CompanyController extends Controller  {
 
 	public function edit($id)
 	{
-//
         if (Auth::check()) {
-            $company = $this->getCompany($id);
+            $company = Company::find($id);
+            $cities = City::all();
+            $industries = Industry::all();
+
             if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
-                return view('Company.edit')->with('company', $company);
+                return view('Company.edit')
+                    ->with('company', $company)
+                    ->with('cities', $cities)
+                    ->with('industries', $industries);
             else
                 abort(403);
-        }
-        else
+        } else
             return Redirect::to('auth/login');
 	}
 
@@ -226,26 +215,30 @@ class CompanyController extends Controller  {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id,Request $request)
+	public function update($id, Request $request)
 	{
-
-        $this->validate($request,[
-            'company_name' => 'required|min:3',
-            'company_link' => 'url'
-        ]);
-
-        $company_name = $request['company_name'];
-        $company_email = $request['company_link'];
-
         $company = Company::find($id);
+        $input = $request->all();
 
-        $company->company_name = $company_name;
-        $company->company_email = $company_email;
+        if ($company->validateForm($input)) {
+            $company->users_id = Auth::User()->id;
 
-        $company->save();
-        $company->push();
-
-        return redirect('company');
+            if(Input::hasFile('loadCompany')) {
+                $cropcoord = explode(',', $request->fcoords);
+                $file = Input::file('loadCompany');
+                $filename = $file->getClientOriginalName();                 //take file name
+                $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
+                Storage::makeDirectory($directory);                         //create directory
+                Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+                $company->image = $filename;
+            }
+            $company->fill($input)->save();
+            $company->push();
+            Session::flash('flash_message', 'news successfully created!');
+            return redirect('company');
+        } else {
+            return redirect()->route('company.edit', ['company' => $company])->withInput()->withErrors($company->getErrorsMessages());
+        }
 
 	}
 
@@ -257,13 +250,14 @@ class CompanyController extends Controller  {
 	 */
 	public function destroy($id)
 	{
-        if (!is_numeric($id))
-        {
+        if (!is_numeric($id)) {
             abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
         }
         if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
             Company::destroy($id);
-
             return redirect('company');
         }
         else

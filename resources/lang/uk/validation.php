@@ -33,7 +33,7 @@ return [
 	"different"            => "The :attribute and :other must be different.",
 	"digits"               => "The :attribute must be :digits digits.",
 	"digits_between"       => "The :attribute must be between :min and :max digits.",
-	"email"                => "The :attribute must be a valid email address.",
+    'email'                => 'Введіть вірний формат поштової скриньки',
 	"filled"               => "The :attribute field is required.",
 	"exists"               => "The selected :attribute is invalid.",
 	"image"                => "The :attribute must be an image.",
@@ -56,7 +56,7 @@ return [
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "The :attribute must be a number.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "Поле обов'язове для заповнення",
+	"required"             => "Поле обов'язкове для заповнення",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -70,7 +70,7 @@ return [
 		"array"   => "The :attribute must contain :size items.",
 	],
 	"unique"               => "The :attribute has already been taken.",
-	"url"                  => "The :attribute format is invalid.",
+    'url'                  => 'Посилання у форматі http(s)://',
 	"timezone"             => "The :attribute must be a valid zone.",
 	/*
 	|--------------------------------------------------------------------------
@@ -89,24 +89,42 @@ return [
 			'rule-name' => 'custom-message',
 
 		],
-        'email' => [
-            'required' => 'Поле обов\'язкове для заповнення!',
-            'email' => 'Введіть корректний email!',
-        ],
 			'salary_max' => [
 					'required' => 'Поле обов\'язкове для заповнення!',
 			],
 		'name'=>[
-			'required' => 'Поле Title обов\'язкове для заповнення!',
+			'required' => 'Поле Ім\'я обов\'язкове для заповнення!',
 			'max'=> 'Поле Title повинно містити максимум 150 символів!',
 		],
 		'description'=>[
-			'required' => 'Поле Description обов\'язкове для заповнення!',
+            "min" => "Не меньше ніж 10 символи!",
+            "max" => "Не більше ніж 500 символів!",
 		],
 		'image'=>[
 			'image'=>'Необхiдний формат файлу: jpeg, jpg, png, bmp!',
 			'max'=>'Максимальний розмір файлу не повинен перевищувати 10 Мбайт'
-		]
+		],
+        'company_name'=>[
+            "min" => "Не меньше ніж 2 символи!",
+            "max" => "Не більше ніж 225 символів!",
+        ],
+        'short_name'=>[
+            "min" => "Не меньше ніж 2 символи!",
+            "max" => "Не більше ніж 225 символів!",
+        ],
+        'company_email'=>[
+            "min" => "Не меньше ніж 6 символи!",
+            "max" => "Не більше ніж 100 символів!",
+        ],
+        'phone'=>[
+            'numeric' => 'Допустимі лише цифри',
+            "min" => "Не меньше ніж 3 символи!",
+            "max" => "Не більше ніж 13 символів!",
+        ],
+        'link'=>[
+            "min" => "Не меньше ніж 12 символів!",
+            "max" => "Не більше ніж 225 символів!",
+        ],
 	],
 
 	/*

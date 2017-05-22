@@ -11,6 +11,7 @@
 {{--@stop--}}
 
 @section('content')
+	@include('newDesign.scrollup')
 	@include('newDesign/aboutUs/show')
 
 	@include('newDesign/navTab/navTab')
@@ -30,6 +31,7 @@
 	{{--<div class="posts">--}}
 	{{--@include('Resume._resume')--}}
 	{{--</div>--}}
+	{!!Html::script('js/scrollup.js')!!}
     <script>
         $(document).ready(function() {
 			$('#selectCity').select2({
@@ -46,7 +48,6 @@
 //			for (var i = 0; i < allCities.options.length; i++) {
 //				arrCities[i] = allCities.options[i].text;
 //			}
-
 			//------------------event-click-on-button-map-------------------------------
 			$('#collapseButton').one('click', function(){
 				longitudeMap = ymaps.geolocation.longitude;

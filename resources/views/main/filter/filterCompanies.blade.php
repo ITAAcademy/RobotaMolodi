@@ -12,6 +12,7 @@
 
 {{--@stop--}}
 @section('content')
+    @include('newDesign.scrollup')
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
     @include('newDesign/search/show')
@@ -28,5 +29,6 @@
     {{--<div class="posts">--}}
         {{--@include('Company._company')--}}
     {{--</div>--}}
+    {!!Html::script('js/scrollup.js')!!}
 @stop
 
