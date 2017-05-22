@@ -132,26 +132,17 @@ class CompanyController extends Controller  {
 	 */
 		public function show($id, Guard $auth)
 	{
-        Cookie::queue('url', 'company/'.$id);
-        $view = 'newDesign.company.show';
-        $search_boolean = 'false';
-        //$company = Company::find($id);
-        $company = $this->getCompany($id);
+       //Cookie::queue('url', 'company/'.$id);
+        $company = Company::find($id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->industry_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
 
-        $userCompany = $company->ReadUser($id);
-
-        $vacancies = Vacancy::where('company_id','=',$id);
-
-        $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
-        $industryName = Industry::where('id','=',$industry)->lists('name')->first();
-
-        return view($view)
-            ->with('vacancy', $vacancies)
-            ->with('user', $userCompany)
-            ->with('industryName', $industryName)
+        return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
-            ->with('search_boolean',$search_boolean);
+            ->with('city', $city)
+            ->with('vacancies', $vacancies);
     }
 
 	public function edit($id)
