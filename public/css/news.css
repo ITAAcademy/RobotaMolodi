@@ -40,22 +40,26 @@ a:hover{
 }
 .columnLeft{
     background:  #1C1C1C;
-    height: 1000px;
+    height: 1111px;
 
+}
+.menu>a>div{
+    margin-left: 7px;
 }
 .menu{
 
     color: #8c8c8c;
-    margin-top: 100px;
 }
 .menu>a>div{
+    padding-left: 10px;
     height: 30px;
     width: 100%;
     background: #f68c06;
 }
-.menu>a>div>li>p{
+
+.menu>a>div>div>li>p{
     color: black;
-    margin-left: 20%;
+    margin-left: 5px;
 }
 .menu>a>div{
     margin-top: 10px;

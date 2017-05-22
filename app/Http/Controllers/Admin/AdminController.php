@@ -16,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('newDesign.admin.welcome');
+        return view('newDesign.layouts.admin');
     }
 
     /**

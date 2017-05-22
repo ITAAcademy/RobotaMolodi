@@ -1,26 +1,35 @@
 <div class="col-md-2 col-sm-2 col-xs-2 columnLeft">
         <ol class="menu">
             <a href="{{route('admin.news.index')}}">
-                <div>
-                    <li><p>news</p></li>
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                         <li><p>Новости</p></li>
+                    </div>
                 </div>
             </a>
 
             <a href="{{route('admin.slider.index')}}">
-                <div>
-                    <li><p>пункт 2</p></li>
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-window-maximize" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                          <li><p>Слайдер</p></li>
+                    </div>
                 </div>
             </a>
 
-            <a href="#">
-                <div>
-                    <li><p>пункт 3</p></li>
-                </div>
-            </a>
-
-            <a href="#">
-                <div>
-                    <li><p>пункт 4</p></li>
+            <a href="{{route('admin.industry.index')}}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                         <li><p>Индустрии</p></li>
+                     </div>
                 </div>
             </a>
         </ol>
