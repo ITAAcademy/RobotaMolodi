@@ -12,12 +12,10 @@ class AddColumnsToCompany extends Migration
      */
     public function up()
     {
-        Schema::table('company', function($table){
+        Schema::table('company', function(Blueprint $table){
             $table->string('short_name');
             $table->string('link');
             $table->string('phone');
-            $table->integer('industry_id');
-            $table->integer('city_id');
         });
     }
 
@@ -28,7 +26,6 @@ class AddColumnsToCompany extends Migration
      */
     public function down()
     {
-        Schema::table('company', function ($table) {
             $table->dropColumn('short_name');
             $table->dropColumn('link');
             $table->dropColumn('phone');
