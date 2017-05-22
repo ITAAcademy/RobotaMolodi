@@ -14,13 +14,10 @@ class AddColumnsToCompany extends Migration
     {
         Schema::table('company', function($table){
             $table->string('short_name');
-            $table->string('description');
             $table->string('link');
             $table->string('phone');
             $table->integer('industry_id');
-            $table->foreign('industry_id')->references('id')->on('industries');
             $table->integer('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
@@ -32,7 +29,11 @@ class AddColumnsToCompany extends Migration
     public function down()
     {
         Schema::table('company', function ($table) {
-            $table->dropColumn(['short_name', 'description', 'link', 'phone', 'industry_id', 'city_id',]);
+            $table->dropColumn('short_name');
+            $table->dropColumn('link');
+            $table->dropColumn('phone');
+            $table->dropColumn('industry_id');
+            $table->dropColumn('city_id');
         });
     }
 }
