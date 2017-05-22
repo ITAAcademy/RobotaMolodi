@@ -167,7 +167,23 @@ input{
 ul.pager{
     display: none;
 }
-
+.configButton{
+    border: 1px solid #f68c06;
+    border-radius: 5px;
+    background-color: #f68c06;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    cursor: pointer;
+    font-family: SegoeUI;
+    display: inline-block;
+    float: right;
+    font-size: 18px;
+    color: white;
+    width: auto;
+    padding: 0px 5px;
+    margin: 0px 10px 10px 0px;
+}
 
 
 
