@@ -34,18 +34,7 @@
         </div>
     @endforeach
 
-    <div class="row paginatorr">
-        <hr>
-        @if($resumes->lastPage() > 1)
-            <div class="sort-by hidden"> {{--for open need delete class "hidden"--}}
-                <p class="pag-text">Показувати по:</p>
-                <div class="pag-block-by no-active-pag-block">5</div>
-                <div class="pag-block-by active-pag-block">10</div>
-                <div class="pag-block-by no-active-pag-block">15</div>
-            </div>
-            @include('newDesign.default', ['paginator' => $resumes])
-        @endif
-    </div>
+    @include('newDesign.paginator', ['paginator' => $resumes])
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.resumes'])
