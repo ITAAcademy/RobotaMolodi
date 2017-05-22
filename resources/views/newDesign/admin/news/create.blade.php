@@ -4,17 +4,13 @@
     @include('newDesign.layouts.includes.ckeditor')
 @stop
 @section('content')
-    <h1>Редагувати новину</h1>
+    <h1>Створити новину</h1>
 
-    {!! Form::model($newsOne, array(
-        'method' => 'PUT',
-        'route' => ['admin.news.update', $newsOne->id],
-        'files'=>true))
-    !!}
+    {!! Form::open(array('url' => '/admin/news','files'=>true)) !!}
         @include('newDesign.admin.news._form')
     {!! Form::close() !!}
 
     <script type="text/javascript">
-        CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
     </script>
-@stop
+@endsection

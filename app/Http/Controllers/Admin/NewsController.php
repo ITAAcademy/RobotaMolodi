@@ -21,7 +21,7 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('newDesign.admin.news.form');
+        return view('newDesign.admin.news.create');
     }
 
     public function store(Request $request)
