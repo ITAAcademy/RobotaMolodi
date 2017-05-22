@@ -13,7 +13,7 @@ class RenameColumnRoleNameInRoleTable extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
+        Schema::table('user_roles', function (Blueprint $table) {
             $table->renameColumn('role_name', 'name');
         });
     }
