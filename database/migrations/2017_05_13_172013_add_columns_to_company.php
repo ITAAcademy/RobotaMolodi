@@ -16,8 +16,6 @@ class AddColumnsToCompany extends Migration
             $table->string('short_name');
             $table->string('link');
             $table->string('phone');
-            $table->integer('industry_id')->unsigned();
-            $table->integer('city_id')->unsigned();
         });
     }
 
@@ -28,7 +26,6 @@ class AddColumnsToCompany extends Migration
      */
     public function down()
     {
-        Schema::table('company', function (Blueprint $table) {
             $table->dropColumn('short_name');
             $table->dropColumn('link');
             $table->dropColumn('phone');
