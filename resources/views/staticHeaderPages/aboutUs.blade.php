@@ -6,14 +6,8 @@
 
 @section('content')
     @include('newDesign/aboutUs/show')
-    <div>
-        <div class="routeBreadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li class="active">Про нас</li>
-            </ol>
-        </div>
-    </div>
+    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Про нас','thirdRoutName'=>'','showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
+
     <section class="content">
                 <div class="article">
                     <h1 class="title">Про нас</h1>

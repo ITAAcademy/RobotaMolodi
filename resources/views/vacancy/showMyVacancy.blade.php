@@ -10,15 +10,7 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$vacancy->company_id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-    <div>
-        <div class="routeBreadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li><a href="/resume">Особистий кабінет</a> </li>
-                <li class="active">Вакансія: {{$vacancy->position}} </li>
-            </ol>
-        </div>
-    </div>
+    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Вакансія: ','thirdRoutName'=>$vacancy->position,'showDisplay'=>'','secondRout'=>'resumes', 'nameSecondRout'=>'Особистий кабінет'])
 
     <div class="panel" id="vrBlock">
     <div class="row">

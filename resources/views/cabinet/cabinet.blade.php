@@ -3,14 +3,8 @@
 
 @stop
 @section('content')
-    <div>
-        <div class="routeBreadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li class="active">Особистий кабінет</li>
-            </ol>
-        </div>
-    </div>
+    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Особистий кабінет','thirdRoutName'=>'','showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
+
     <div class="row">
         <div class="col-xs-11 col-md-7 header-tabs">
             <ul class="nav nav-tabs">

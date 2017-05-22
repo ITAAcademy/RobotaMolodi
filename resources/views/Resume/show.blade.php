@@ -1,14 +1,7 @@
 @extends('app')
 <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
 @section('content')
-    <div>
-        <div class="routeBreadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li class="active">Резюме: {{$resume->position}} </li>
-            </ol>
-        </div>
-    </div>
+    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Резюме:','thirdRoutName'=>$resume->position,'showDisplay'=>'none','secondRout'=>'head', 'nameSecondRout'=>''])
     <div class="panel panel-orange" id="vrBlock">
         <div>
             <div class="col-md-3">
