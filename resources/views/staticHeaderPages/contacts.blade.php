@@ -1,7 +1,12 @@
 @extends('app')
 
 @section('content')
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+           ['url'=> 'head','name'=>'Головна'],
+           ['name' => 'Контакти ', 'url' => false]
+           ]
+       )
+       )
     <div class="row c_xs">
         <div class="col-sm-1"></div>
         <div class="col-sm-4 c_h3">

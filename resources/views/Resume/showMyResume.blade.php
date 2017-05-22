@@ -10,6 +10,26 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+{{--    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Резюме:','thirdRoutName'=>$resume->position,'showDisplay'=>'','secondRout'=>'resumes', 'nameSecondRout'=>'Особистий кабінет'])--}}
+
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
+        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ]
+    )
+
+    )
+
+    {{--@include('newDesign.breadcrumb',array('breadcrumbs' =>[--}}
+        {{--['url'=>'head','name'=>'Головна','showDisplay'=>'none'],--}}
+        {{--['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],--}}
+        {{--['name' => 'Резюме: ', 'url' => ]--}}
+        {{--]--}}
+    {{--)--}}
+
+    {{--)--}}
+
     <div class="panel" id="vrBlock">
         <div class="row">
             <div class="col-xs-12 col-md-3">

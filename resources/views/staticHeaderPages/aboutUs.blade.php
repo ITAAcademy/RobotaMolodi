@@ -6,12 +6,13 @@
 
 @section('content')
     @include('newDesign/aboutUs/show')
-
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+           ['url'=> 'head','name'=>'Головна'],
+           ['name' => 'Про нас ', 'url' => false]
+           ]
+       )
+       )
     <section class="content">
-                <ol class="breadcrumb">
-                    <li><a href="/">Головна</a></li>
-                    <li class="active">Про нас</li>
-                </ol>
                 <div class="article">
                     <h1 class="title">Про нас</h1>
                     <div class="row full-content">

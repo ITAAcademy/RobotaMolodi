@@ -5,17 +5,24 @@
 @section('content')
     @include('newDesign.scrollup')
 
-    <div class="row">
-        <div class="col-md-2">
-            <div class="logos">
-                <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)))
-                        {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
-                    @else
-                        <h3 class="nologo">логотип вiдсутнiй</h3>
-                    @endif
-                </div>
-                <div class="case">
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+       ['url'=> 'head','name'=>'Головна'],
+       ['name' => 'Компанія: '.$company->company_name, 'url' => false]
+       ]
+   )
+   )
+        <div class="row">
+            <div class="col-md-2">
+                <div class="logos">
+                    <div class="panel panel-orange" id="vimg">
+                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
+                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @else
+                            <h3 class="nologo">логотип вiдсутнiй</h3>
+                        @endif
+                    </div>
+                    <div class="case">
+
   						<span>
   							<i class="fa newFa">&#xf0b1;</i>
   						</span>
