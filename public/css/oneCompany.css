@@ -97,13 +97,11 @@ div.social {
     font-family: "SegoeUI";
     font-size: 16px;
     text-align:justify;
+    word-wrap: break-word;
+
 }
 .panelHeadings{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 0px;
-    padding-left: 0px;
-    border-bottom-width: 0px;
+margin-bottom:10px;
 }
 
 .textCompany{
@@ -113,7 +111,7 @@ div.social {
     font-size: 16px;
 }
 .verticalIndent{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 @media(max-width:768px){
@@ -183,6 +181,13 @@ ul.pager{
     width: auto;
     padding: 0px 5px;
     margin: 0px 10px 10px 0px;
+}
+
+.btn-commit{
+    background-color: #66AFE9;
+}
+.btn-commit:hover{
+    background-color: #BEE4FF;
 }
 
 

@@ -132,7 +132,7 @@ class CompanyController extends Controller  {
 	 */
 		public function show($id, Guard $auth)
 	{
-       //Cookie::queue('url', 'company/'.$id);
+      // Cookie::queue('url', 'company/'.$id);
         if (!is_numeric($id)) {
             abort(500);
         }
@@ -154,6 +154,13 @@ class CompanyController extends Controller  {
 
 	public function edit($id)
 	{
+        if (!is_numeric($id)) {
+            abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
+        }
+
         if (Auth::check()) {
             $company = Company::find($id);
             $cities = City::all();
@@ -254,7 +261,9 @@ class CompanyController extends Controller  {
         if(empty(Company::find($id))) {
             abort(404);
         }
+
         if (Company::find($id)->users_id == Auth::id()) {
+            Comment::where('company_id', $id)->delete();
             Company::destroy($id);
             return redirect('company');
         }

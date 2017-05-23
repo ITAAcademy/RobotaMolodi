@@ -44,7 +44,6 @@
         </div>
 
         <div class="col-md-10 contentConpany">
-            <div id="datAnnoyingSizes">
 
                 <div class="panelHeadings">
                     <div class="textCompany"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
@@ -64,6 +63,7 @@
                     <div class="col-xs-9">
                         <span>{{$industry->name}}</span>
                     </div>
+
                     @if(!empty($company->link))
                         <div class="col-xs-3">
                             <span>Посилання: </span>
@@ -72,6 +72,7 @@
                             <a class="orangeLinks" href="{{$company->link}}">{{$company->link}}</a>
                         </div>
                     @endif
+
                     <div class="col-xs-3">
                         <span>Мiсто: </span>
                     </div>
@@ -92,34 +93,37 @@
                     <div class="col-xs-9">
                         <span>{{$company->phone}}</span>
                     </div>
-                </div>
 
-                <div class="textCompany verticalIndent">
-                    <span class="anagraph verticalIndent">Подробиці </span>
-                    <br><div class="description">{!! $company->description !!}</div>
-                </div>
+                    <div class="col-xs-12 textCompany verticalIndent">
+                        <span class="anagraph verticalIndent">Подробиці </span>
+                    </div>
+                    <div class="col-xs-12 description">
+                       <span>{!! $company->description !!}</span>
+                    </div>
 
-                <div class="textCompany verticalIndent">
-                    <span class="anagraph verticalIndent">Вакансії </span>
-                    @if(!empty($vacancies[0]))
-                        @foreach($vacancies as $vacancy)
-                            <div class="description">
-                                <a class="links" href="/vacancy/{{$vacancy->company_id}}">
-                                    <p>{{ $vacancy->position}}</p>
-                                </a>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>Вакансії відсутні</p>
-                    @endif
+
+                    <div class="col-xs-12 textCompany verticalIndent">
+                        <span class="anagraph verticalIndent">Вакансії </span>
+                        @if(!empty($vacancies[0]))
+                            @foreach($vacancies as $vacancy)
+                                <div class="description">
+                                    <a class="links" href="/vacancy/{{$vacancy->id}}">
+                                        {{ $vacancy->position}}
+                                    </a>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>Вакансії відсутні</p>
+                        @endif
+                    </div>
+
                 </div>
-            </div>
 
             <hr/>
 
             <div class="col-xs-12 configButton">
-                <a href="{{$company->id}}/destroy" class="btn" onclick="return ConfirmDelete();">Видалити</a>
-                <a href="{{$company->id}}/edit" class="btn">Редагувати</a>
+                <a href="{{$company->id}}/destroy" class="btn-default btn" onclick="return ConfirmDelete();">Видалити</a>
+                <a href="{{$company->id}}/edit" class="btn-default btn">Редагувати</a>
                 <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
                 <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
                 <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
@@ -165,4 +169,13 @@
         })
 
     </script>
+
+    <script>
+        function ConfirmDelete() {
+            var conf = confirm("Ви дійсно хочете видалити компанію?");
+            if(conf) return true;
+            else return false;
+        }
+    </script>
+
 @stop

@@ -38,6 +38,8 @@
                 @foreach($industries as $industry)
                     @if($industry->id == $company->industry_id )
                         <option selected value="{{$industry->id}}">{{$industry->name}}</option>
+                    @elseif($industry->main)
+                        <option selected value="{{$industry->id}}">{{$industry->name}}</option>
                     @else
                         <option value="{{$industry->id}}">{{$industry->name}}</option>
                     @endif
