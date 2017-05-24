@@ -45,77 +45,24 @@
         </div>
     </div>
 
-<script>
-    function initMultiselect(container)
-    {
-        $(container).multiselect(
-            {
-                buttonWidth: '100%'
-                , maxHeight: 200
-                ,enableFiltering: true
-                ,width: '100%'
-                ,enableCaseInsensitiveFiltering: true
-                ,filterPlaceholder: 'Пошук...'
-                //,nSelectedText: '-Три і більше'
-                ,includeSelectAllOption: true
-                ,enableFullValueFiltering: true
-                ,selectAllText: 'Вибрати все'
+    {!!Html::script('js/script.js')!!}
 
-                ,buttonText: function(options, select)
-            {
-                if (options.length === 0)
-                {
-                    return 'Не вибрано...';
-                }
-                else if (options.length > 3)
-                {
-                    return 'Вибрано більше трьох';
-                }
-                else
-                {
-                    var labels = [];
-                    options.each(function() {
-                        if ($(this).attr('label') !== undefined) {
-                            labels.push($(this).attr('label'));
-                        }
-                        else {
-                            labels.push($(this).html());
-                        }
-                    });
-
-                    var maxCountCharacters = 0;
-                    if($(select).attr('name') == 'selected-region'){
-                        maxCountCharacters = 18;
-                    }else {
-                        maxCountCharacters = 55;
-                    }
-
-
-                    if(labels.length == 1){
-                        var strLabel = labels.join(', ') + '';
-                        return strLabel.length >= maxCountCharacters ? strLabel.slice(0, maxCountCharacters) + "."
-                            : strLabel;
-                    }else if(labels.length == 2){
-                        if((labels.join(', ') + '').length >= maxCountCharacters){
-                            return labels[0].slice(0,maxCountCharacters / 2 - 1) + '., ' + labels[1].slice(0,maxCountCharacters / 2 - 1) + '.' ;
-                        }else{
-                            return labels.join(', ') + '';
-                        }
-                    }else{
-                        if((labels.join(', ') + '').length >= 18){
-                            return labels[0].slice(0,maxCountCharacters / 3 - 2) + '., ' + labels[1].slice(0,maxCountCharacters / 3 - 2) + '., ' +
-                                labels[2].slice(0,maxCountCharacters / 3 - 2) + '.';
-                        }else{
-                            return labels.join(', ') + '';
-                        }
-                    }
-                }
-            }
-            });
-    };
-</script>
 <script>
     $(document).ready(function(){
         initMultiselect('.getting-list-selected-box');
+
+        $('input.multiselect-search').on('keyup', function(){
+            var staticOption = 2;
+            var list = $(this).parents('ul');
+            setTimeout(function(){
+                var hiddenOptions = list.find('li.filter-hidden').length;
+                var totalOptions = list.find('li').length;
+                if(!(totalOptions - hiddenOptions - staticOption)){
+                    list.find('li.multiselect-all').addClass('hidden');
+                }else{
+                    list.find('li.multiselect-all').removeClass('hidden');
+                }
+            },300);
+        })
     });
 </script>
