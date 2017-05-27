@@ -469,6 +469,12 @@ class VacancyController extends Controller
         $resume = $auth->user()->GetResumes()->get();
         return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
     }
+
+    public function updatePablishDate($id){
+        $vacancy = Vacancy::find($id);
+        $vacancy->touch();
+        return $vacancy->updated_at->format('j m Y');
+    }
     /**
      * @param City $cityModel
      * @param Vacancy $vacancy

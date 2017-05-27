@@ -1,6 +1,7 @@
 @extends('app')
 <link href="{{ asset('/css/myVacancyShow.css') }}" rel="stylesheet">
 @section('content')
+    <div class="notice"></div>
     {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
     <input type = "hidden" name = "filterName" id = "filterName"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
@@ -66,7 +67,7 @@
                     @foreach($cities->get() as $city)
                         <a class="city-myVacancy" href="javascript:submit('selectCity' {{$city->id}})">{{$city->name}} </a>
                     @endforeach
-                    <span id="yellowCircle-myVacancy">&#183;</span> {{ date('j m Y', strtotime($vacancy->updated_at))}}
+                    <span id="yellowCircle-myVacancy">&#183;</span> <span id="updateDate">{{ date('j m Y', strtotime($vacancy->updated_at))}}</span>
                 </p>
             </div>
         </div>
@@ -95,9 +96,9 @@
                 </a>
             </div>
             <div class="col-xs-12 col-md-3">
-                <a class="orangColor-myVacancy" href="#">
+                <a class="orangColor-myVacancy" id="updateDateVac" href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <span>оновити дату вакансіїї</span>
+                    <span>Оновити дату вакансіїї</span>
                 </a>
             </div>
         </div>
@@ -166,6 +167,19 @@
         {
             confirm("Ви дійсно хочете видалити вакансію?");
         }
+
+        $('#updateDateVac').click(function () {
+            var that = $('#updateDate');
+            $.ajax({
+                url: '{{ route('updateVacancyDate', $vacancy->id) }}',
+                method: 'post',
+                success: function (data) {
+                    that.text(data);
+                    that.css('backgroundColor','orange');
+                    that.animate({ backgroundColor: "white" }, "slow");
+                }
+            })
+        })
     </script>
 
 @stop
