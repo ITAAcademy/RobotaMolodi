@@ -79,20 +79,23 @@
                 <p class="cityTime-resume">
                     <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
                     <span id="yellowCircle-resume">&#183;</span>
-                    {{ date('j m Y', strtotime($resume->updated_at))}}
+                    <span id="updateDate">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
                 </p>
             </div>
             <div class="col-xs-12 button-change-resume">
-                <div class="col-xs-12 col-md-3"></div>
-                <div class="col-xs-4 col-md-3"></div>
-                <div class="col-xs-4 col-md-3">
-                    <a id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                <div class="col-xs-offset-4 col-md-offset-3 col-xs-4 col-md-3">
+                    <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <span class="writeOnPost"><span>Видалити</span></span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-md-3">
-                    <a id="writeOnPost" href="{{$resume->id}}/edit">
+                    <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/edit">
                         <div class="writeOnPost">Редагувати</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-md-3">
+                    <a class="whiteText" id="updateDateRes" href="#">
+                        <div class="writeOnPost">Оновити дату вакансіїї</div>
                     </a>
                 </div>
             </div>
@@ -167,5 +170,19 @@
                 return false;
             }
         }
+
+        $('#updateDateRes').click(function (e) {
+            var that = $('#updateDate');
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('updateResumeDate', $resume->id) }}',
+                method: 'post',
+                success: function (data) {
+                    that.text(data);
+                    that.css('backgroundColor','orange');
+                    that.animate({ backgroundColor: "white" }, "slow");
+                }
+            })
+        })
     </script>
 @stop

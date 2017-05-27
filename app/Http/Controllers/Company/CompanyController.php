@@ -142,7 +142,7 @@ class CompanyController extends Controller  {
 
         $company = Company::find($id);
         $industry = Industry::find($company->industry_id);
-        $city = City::find($company->industry_id);
+        $city = City::find($company->city_id);
         $vacancies = Vacancy::where('company_id', $company->id)->get();
 
         return view('newDesign.company.show')
