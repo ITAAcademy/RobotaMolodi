@@ -16,7 +16,7 @@
     {!!Form::label('comment', 'Добавити відгук:',['class' => 'url-text-vac'] )!!}
     {!!Form::textarea('comment', null, ['class' => 'form-control', 'placeholder'=>'Відгук про компанію'])!!}
     <div align="right">
-        {!!Form::submit('Відправити', ['class' => 'btn-commit btn-default btn-send', 'disabled'=>'disabled'])!!}
+        {!!Form::submit('Відправити', ['class' => 'btn-commit btn', 'disabled'=>'disabled'])!!}
     </div>
     {!!Form::close()!!}
 </div>

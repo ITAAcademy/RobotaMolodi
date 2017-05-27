@@ -2,6 +2,12 @@
 <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
 @section('content')
 
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+        ['url'=> 'head','name'=>'Головна'],
+        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ]
+    )
+    )
     <div class="panel panel-orange" id="vrBlock">
         <div>
             <div class="col-md-3">

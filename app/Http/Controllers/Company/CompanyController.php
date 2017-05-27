@@ -132,30 +132,35 @@ class CompanyController extends Controller  {
 	 */
 		public function show($id, Guard $auth)
 	{
-        Cookie::queue('url', 'company/'.$id);
-        $view = 'newDesign.company.show';
-        $search_boolean = 'false';
-        //$company = Company::find($id);
-        $company = $this->getCompany($id);
+      // Cookie::queue('url', 'company/'.$id);
+        if (!is_numeric($id)) {
+            abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
+        }
 
-        $userCompany = $company->ReadUser($id);
+        $company = Company::find($id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->industry_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
 
-        $vacancies = Vacancy::where('company_id','=',$id);
-
-        $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
-        $industryName = Industry::where('id','=',$industry)->lists('name')->first();
-
-        return view($view)
-            ->with('vacancy', $vacancies)
-            ->with('user', $userCompany)
-            ->with('industryName', $industryName)
+        return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
-            ->with('search_boolean',$search_boolean);
+            ->with('city', $city)
+            ->with('vacancies', $vacancies);
     }
 
 	public function edit($id)
 	{
+        if (!is_numeric($id)) {
+            abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
+        }
+
         if (Auth::check()) {
             $company = Company::find($id);
             $cities = City::all();
@@ -256,7 +261,9 @@ class CompanyController extends Controller  {
         if(empty(Company::find($id))) {
             abort(404);
         }
-        if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
+
+        if (Company::find($id)->users_id == Auth::id()) {
+            Comment::where('company_id', $id)->delete();
             Company::destroy($id);
             return redirect('company');
         }
