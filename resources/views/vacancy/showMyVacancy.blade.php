@@ -168,8 +168,9 @@
             confirm("Ви дійсно хочете видалити вакансію?");
         }
 
-        $('#updateDateVac').click(function () {
+        $('#updateDateVac').click(function (e) {
             var that = $('#updateDate');
+            e.preventDefault();
             $.ajax({
                 url: '{{ route('updateVacancyDate', $vacancy->id) }}',
                 method: 'post',

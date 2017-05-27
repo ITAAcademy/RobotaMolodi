@@ -74,6 +74,7 @@ Route::post('vacancy/{vacancy}/response/sendResume',['as'=>'vacancy.response.sen
 Route::post('company/{company}/response/sendFile',['as'=>'company.response.sendFile', 'uses' =>'Company\ResponseController@sendFile', 'middleware'=>'auth']);
 Route::post('company/{company}/response/sendResume',['as'=>'company.response.sendResume', 'uses' =>'Company\ResponseController@sendResume', 'middleware'=>'auth']);
 Route::post('vacancy/{id}/updateDate',['as' => 'updateVacancyDate', 'uses' => 'Vacancy\VacancyController@updatePablishDate']);
+Route::post('resume/{id}/updateDate',['as' => 'updateResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);

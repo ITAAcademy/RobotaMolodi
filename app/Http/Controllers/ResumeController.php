@@ -337,4 +337,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
             return Redirect::to('auth/login');
         }
     }
+
+    public function updatePablishDate($id){
+        $resume = Resume::find($id);
+        $resume->touch();
+        return $resume->updated_at->format('j m Y');
+    }
 }

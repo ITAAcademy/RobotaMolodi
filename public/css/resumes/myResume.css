@@ -101,6 +101,13 @@ p.description-footer-resume{
 #writeOnPost{
     color: white;
 }
+.whiteText{
+    color: white;
+}
+
+.whiteText:visited{
+    color: white;
+}
 
 .cityTime-resume{
     font-size: 20px;
