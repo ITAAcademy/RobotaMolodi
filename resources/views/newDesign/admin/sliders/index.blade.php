@@ -1,6 +1,6 @@
 @extends('newDesign.layouts.admin')
-
 @section('content')
+    <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
     @if(Session::has('flash_message'))
         <div class="alert alert-success">
             {{ Session::get('flash_message') }}
@@ -76,4 +76,5 @@
             });
         })
     </script>
+    <div>
 @stop

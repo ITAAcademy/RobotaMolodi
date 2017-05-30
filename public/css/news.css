@@ -22,6 +22,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-color:#3f3e3e;
+}
 li {
     list-style-type: none; /* Убираем маркеры */
 }
@@ -33,21 +36,21 @@ a:hover{
     margin: 20px 0 20px 20px;
 
 }
-.colorBlack, header{
-    background-color: #1C1C1C;
+.colorBlack,header{
+    background-color: #3f3e3e;
     width: 100%;
     color: #8c8c8c;
-}
-.columnLeft{
-    background:  #1C1C1C;
-    height: 1111px;
 
 }
+.columnLeft{
+    background:  #3f3e3e;
+    height: 100%;
+}
+
 .menu>a>div{
     margin-left: 7px;
 }
 .menu{
-
     color: #8c8c8c;
 }
 .menu>a>div{
@@ -90,9 +93,12 @@ footer{
     padding: 5px;
 }
 .anchor{
-    margin-left: 90%;
+    margin-left: 0;
 }
 .contentAndmin{
-    margin-top:30px;
-    padding: 0;
+    background: burlywood;
+}
+.wrapper{
+    min-height:100%
+
 }
