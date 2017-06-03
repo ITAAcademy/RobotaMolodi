@@ -42,13 +42,28 @@ class Company extends Eloquent {
     }
 
     public function validateForm($company)
+{
+    $validatorCompany = Validator::make($company, $this->rules);
+    if ($validatorCompany->fails()) {
+        $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
+        return false;
+    }
+    return true;
+}
+
+    public function validateLike($data)
     {
-        $validatorCompany = Validator::make($company, $this->rules);
-        if ($validatorCompany->fails()) {
-            $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
+        $valid= Validator::make($data, ['mark' => 'required|in:-1,1']);
+        if ($valid->fails()) {
+            $this->errorsMessages = $valid->getMessageBag()->setFormat('Ratings error');
             return false;
         }
         return true;
+    }
+
+    public function getNameTable()
+    {
+        return substr($this->table, 0, 3);
     }
 
     public function ReadUser()

@@ -1,5 +1,6 @@
 @extends('app')
 @section('head')
+
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
@@ -50,6 +51,78 @@
                 </div>
 
                 <div class="row textCompany verticalIndent">
+
+                    <div class="col-xs-3">
+                        <span>Рейтинг: </span>
+                    </div>
+
+                    <div class="col-xs-9 ratings">
+                        <span class="morph">
+                            {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'style'=>'padding:6px 0px 6px 6px']) !!}
+                            <span class="findLike" id="{{$company->id}}_1">{{$countLike}}</span>
+                        </span>
+                        <span class="morph">
+                            {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'style'=>'padding:6px 0px 6px 6px']) !!}
+                            <span class="findDislike" id="{{$company->id}}_-1">{{$countDisLike}}</span>
+                        </span>
+                        <span class="likeError"></span>
+                    </div>
+
+                    <?php  $ratingObjectId = isset($company)?$company->id:''?>
+
+                    <script>
+                        "use strict";
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+
+                        $('.likeDislike').click(function (e) {
+                            e.preventDefault();
+
+                            var log = new Boolean({!! Auth::check() !!});
+
+                            if (log != 1) {
+                                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+                                return false;
+                            }
+
+                            this.parentElement.parentElement.setAttribute('id', 'pointer');
+                            var current = this.nextElementSibling.id;
+                            var like = document.querySelector('#pointer .findLike');
+                            var dislike = document.querySelector('#pointer .findDislike');
+
+
+                            $.ajax({
+                                url: '{{ route('evaluation', $ratingObjectId) }}',
+                                method: 'POST',
+                                data: {'mark': current.split('_')[1]},
+                                success: function (data) {
+                                    if(data.error != undefined) {
+                                        console.log("Помилка передачі даних: " + data.error);
+                                    }else {
+                                        like.innerHTML = (data.countLike);
+                                        dislike.innerHTML = (data.countDisLike);
+                                    }
+                                }
+                            });
+                            document.getElementById("pointer").removeAttribute("id");
+                        });
+                    </script>
+
+                    <style>
+                        .morph {
+                            margin-right: 10px;
+                        }
+                        .likeDislike {
+                            -webkit-filter: brightness(100%);
+                        }
+                        .likeDislike:active {
+                            -webkit-filter: brightness(145%);
+                        }
+                    </style>
+
                     <div class="col-xs-3">
                         <span>Аббревиатура: </span>
                     </div>
@@ -162,7 +235,6 @@
                         }
                     })
                 }
-
                 return false;
             })
 //            $("a.resume-call").click(function(){
@@ -179,5 +251,7 @@
             else return false;
         }
     </script>
+
+
 
 @stop

@@ -76,6 +76,7 @@ Route::post('company/{company}/response/sendResume',['as'=>'company.response.sen
 Route::post('vacancy/{id}/updateDate',['as' => 'updateVacancyDate', 'uses' => 'Vacancy\VacancyController@updatePablishDate']);
 Route::post('resume/{id}/updateDate',['as' => 'updateResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
+Route::post('company/{id}/likeData',['as' => 'evaluation', 'uses' => 'Company\CompanyController@rateCompany', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
