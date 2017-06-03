@@ -1,0 +1,340 @@
+/*Right modal*/
+.navtab-registraion{
+    padding: 0px;
+    margin-top: 15px;
+    float: left;
+}
+.navtab-registraion .modal-enter{
+    margin-left: 74px;
+    width: 126px;
+}
+.navtab-registraion button{
+    background-color: white;
+    border-color: white;
+}
+.navtab-registraion button:hover{
+    background-color: white;
+    border-color: white;
+}
+.navtab-registraion button.btn.btn-default.modal-enter:focus{
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+.navtab-registraion button.btn.btn-default.modal-regestry:focus{
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+.navtab-registraion .modal-regestry{
+    width: 126px;
+}
+#rightModal .modal-content{
+    width: 290px;
+    margin-top: 16px;
+    margin-left: 881px;
+    border-radius: 15px;
+    border-color: #f68c06;
+    background-color: #C4C4C4;
+}
+#rightModal .modal-content #modalTab{
+    background-color: #C4C4C4;
+    border-radius: 15px 15px 0 0;
+    /*border-top-color: #f68c06;*/
+    /*border-right-color: #f68c06;*/
+    /*border-left-color: #f68c06;*/
+    /*border-top: 1px solid #f68c06;*/
+    /*border-left: 1px solid #f68c06;*/
+    /*border-right: 1px solid #f68c06;*/
+    /*opacity: 0.7;*/
+}
+#rightModal .modal-content ul#modalTab .btn-modal-enter{
+    width: 140px;
+    margin-right: 0px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    color: #f68c06;
+}
+
+#rightModal .modal-content ul#modalTab .css-btn-modal-enter{
+    border-top-color: #f68c06;
+    border-left-color: #f68c06;
+    border-right-color: #f68c06;
+    color: #f68c06;
+}
+#rightModal .modal-content ul#modalTab .css-btn-modal-enter-opacity{
+    background-color: #C4C4C4;
+    opacity: 0.7;
+}
+#rightModal .modal-content ul#modalTab .btn-modal-reg{
+    width: 148px;
+    margin-right: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: #f68c06;
+}
+
+#rightModal .modal-content ul#modalTab .css-btn-modal-reg{
+    border-top-color: #f68c06;
+    border-left-color: #f68c06;
+    border-right-color: #f68c06;
+    color: #f68c06;
+}
+#rightModal .modal-content ul#modalTab .css-btn-modal-reg-opacity{
+    background-color: #C4C4C4;
+    opacity: 0.7;
+}
+#rightModal .modal-content ul#modalTab .leftBtn-modal-tab{
+    margin-left: 50px;
+}
+#rightModal .modal-content .form-group{
+    margin-bottom: 5px;
+}
+#rightModal .modal-content .form-group .control-label{
+    display: none;
+}
+#rightModal .modal-content .form-group input.form-control{
+    border: 1px solid #333;
+    width: 258px;
+}
+#rightModal .modal-content .form-group div.col-md-6.col-md-offset-4{
+    margin-left: 0px;
+    width: 288px;
+    height: 20px;
+}
+#rightModal .modal-content .form-group .checkbox{
+    padding: 0;
+}
+#rightModal .modal-content .form-group button.btn.btn-primary.enter-button{
+    width: 258px;
+    height: 34px;
+}
+#rightModal .modal-content .form-group .member-btn{
+    display: none;
+}
+#rightModal .modal-content .form-group a{
+    color: #333;
+    /*float: right;*/
+    text-decoration: underline;
+    font-size: 12px;
+}
+#rightModal .modal-content .tab-content #panel1 p{
+    font-size: 12px;
+    color: #9d9d9d;
+    margin: 0px;
+}
+#rightModal .modal-content .tab-content #panel1 .modal-social-icon{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+#rightModal .modal-content .tab-content #panel1 .modal-social-icon .fa-soc{
+    margin: 0;
+}
+#rightModal .modal-content .tab-content #panel2 .form-group .register-button{
+    width: 258px;
+    height: 34px;
+}
+#rightModal .modal-content .tab-content #panel2 .form-group .checkbox{
+    font-size: 12px;
+}
+#rightModal .modal-content .tab-content #panel2 p{
+    font-size: 12px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    color: #9d9d9d;
+}
+#rightModal .modal-content .tab-content #panel2 .modal-social-icon{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+#rightModal .modal-content .tab-content #panel2 .modal-social-icon .fa-soc{
+    margin-left: 0px;
+}
+#rightModal .modal-content .tab-content{
+    border: 1px solid #f68c06;
+    border-radius: 0 0 15px 15px;
+    background-color: white;
+    /*border-top-color: transparent;*/
+}
+
+@media (max-width: 400px) {
+    .navtab-registraion .modal-enter{
+        margin-left: 1px;
+    }
+    /*nav.navbar.navbar-default {*/
+        /*height: 41px;*/
+    /*}*/
+    /*button.btn.btn-default.only-bars {*/
+        /*margin-left: 0px;*/
+        /*padding-left: 6px;*/
+        /*padding-right: 6px;*/
+    /*}*/
+    /*nav.navbar-default*/
+}
+/*End right modal*/
+
+
+nav.navbar.navbar-default{
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    background-color: white;
+    padding: 0px;
+}
+.navtab-exit{
+    padding: 0;
+    margin-top: 14px;
+}
+.navtab-exit a{
+    text-decoration: none;
+}
+.img-user{
+    width: 35px;
+    height: 35px;
+    float: left;
+    border: 1px solid #f68c06;
+}
+.img-user-name{
+    display: table-cell;
+    height: 35px;
+    vertical-align: middle;
+    padding-left: 3px;
+    padding-right: 1px;
+}
+.navtab-exit .modal-user-button{
+    float: right;
+    margin-right: 20px;
+    padding: 3px;
+    border: 0;
+    color: #f68c06;
+}
+.navtab-exit .modal-exit-button{
+    /*width: 131px;*/
+    padding: 3px;
+    border: 0;
+    color: #f68c06;
+}
+.navtab-exit button:hover{
+    background-color: white;
+    color: #f68c06;
+    text-decoration: underline;
+}
+.navtab-exit .modal-exit-button:focus{
+    color: #f68c06;
+    background-color: white;
+    outline-color: white;
+}
+.navtab-exit .modal-user-button:focus{
+    color: #f68c06;
+    background-color: white;
+    outline-color: white;
+}
+
+nav.navbar.navbar-default{
+    height: 60px;
+}
+.navtab-registraion ul.nav.nav-tabs{
+    float: right;
+    margin-top: 16px;
+}
+nav.navbar.navbar-default .center-block img{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/*Left modal*/
+button.btn.btn-default.only-bars{
+    margin-left: 5px;
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+button.btn.btn-default.only-bars:hover{
+    margin-left: 5px;
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+.text-left-modal a{
+    color: #333;
+    text-decoration: none;
+}
+.text-left-modal a:hover{
+    color: #f68c06;
+    text-decoration: none;
+}
+.text-left-modal a:focus{
+    color: #f68c06;
+    text-decoration: none;
+}
+#leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+#leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover{
+    background-color: white;
+    border-color: white;
+    outline-color: white;
+}
+#leftModal .modal-content{
+    margin-left: 180px;
+}
+#leftModal .modal-content .bars-left{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+}
+#leftModal .modal-content .bars-left span{
+    color: #f68c06;
+}
+#leftModal .modal-content .bars-left a{
+    color: #f68c06;
+}
+#leftModal .list-modal-left{
+    height: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#leftModal .list-modal-left-register{
+    height: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 5px;
+}
+#leftModal .minilogo img{
+    width: 18px;
+}
+#leftModal .minilogo{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+}
+#leftModal hr.modal-hr{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-color: #f68c06;
+}
+#leftModal .modal-content .bars-left a.local-ua{
+    color: #9d9d9d;
+    text-decoration: none;
+}
+.icon-left-modal{
+    color: #f68c06;
+    margin-right: 5px;
+}
+#share-txt{
+    color: #9d9d9d;
+}
+.modal-social-share{
+    padding: 0;
+}
+.modal-social-share a{
+    text-decoration: none;
+}
+.modal-social-share a i{
+    margin: 0;
+}
+/*End left modal*/
