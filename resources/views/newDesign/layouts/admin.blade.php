@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <title>Админка</title>
     <meta name="_token" content="{{ csrf_token() }}">
     @include('newDesign.layouts.includes.head')
     @yield('ckeditor')
@@ -18,11 +19,11 @@
             @yield('content')
         </div>
     </div>
+
+
 </div>
 
-{{--<footer>--}}
-    {{--@include('newDesign.layouts.includes.footer')--}}
-{{--</footer>--}}
+
 
 <script>
     $(document).ready(function () {
