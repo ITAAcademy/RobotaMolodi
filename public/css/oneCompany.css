@@ -4,7 +4,7 @@
     font-family: "SegoeUI";
     src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
 }
-* {
+.row {
     margin: 0;
     font-family: "SegoeUI";
 }
@@ -137,7 +137,7 @@ margin-bottom:10px;
     opacity: 0;
     cursor: pointer;
 }
-input{
+.contentConpany input{
     background-color: #F68C06;
     color: white;
     font-size: 16px;
