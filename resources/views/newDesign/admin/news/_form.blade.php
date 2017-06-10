@@ -17,10 +17,11 @@
     {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'editor2']) !!}
     <br>
     {!! Form::label('image', 'Add image:') !!}
-    {!!Form::file('image',['class' => 'btn'])!!}
+    {!! Form::file('image',['class' => 'btn'])!!}
 </div>
-<div>
+<div class="form-group">
     {!! Form::label('published', 'Опублікувати:') !!}
+    {!! Form::hidden('published', 0) !!}
     {!! Form::checkbox('published') !!}
     <br>
 </div>
