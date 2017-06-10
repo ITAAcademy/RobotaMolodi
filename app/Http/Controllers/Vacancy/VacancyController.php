@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Models\Currency;
 use App\Models\profOrientation\test1;
 use App\Models\profOrientation\UserSession;
+use App\Models\Rating;
 use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
@@ -225,11 +226,22 @@ class VacancyController extends Controller
             $view ="vacancy.noAccessVacancy";
         }
 
+        $countLike = Rating::where('object_type', $vacancy->getNameTable())
+            ->where('object_id', $id)
+            ->where('value', 1)
+            ->count();
+        $countDisLike = Rating::where('object_type', $vacancy->getNameTable())
+            ->where('object_id', $id)
+            ->where('value', -1)
+            ->count();
+
         return view($view)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
             ->with('cities', $cities)
-            ->with('industry', $industry);
+            ->with('industry', $industry)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
     /**
@@ -475,10 +487,43 @@ class VacancyController extends Controller
         $vacancy->touch();
         return $vacancy->updated_at->format('j m Y');
     }
-    /**
-     * @param City $cityModel
-     * @param Vacancy $vacancy
-     * @return mixed
-     */
+
+    public function rateVacancy($id, Request $request)
+    {
+        $vacancy = Vacancy::find($id);
+
+        if ($vacancy->validateLike($request->all())) {
+
+            $mark = $request->mark;
+
+            Rating::updateOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'object_type' => $vacancy->getNameTable(),
+                    'object_id' => $vacancy->id
+                ],
+                [
+                    'user_id' => Auth::id(),
+                    'object_type' => $vacancy->getNameTable(),
+                    'object_id' => $vacancy->id,
+                    'value' => $mark
+                ]
+            );
+
+            $countLike = Rating::where('object_type', $vacancy->getNameTable())
+                ->where('object_id', $id)
+                ->where('value', 1)
+                ->count();
+            $countDisLike = Rating::where('object_type', $vacancy->getNameTable())
+                ->where('object_id', $id)
+                ->where('value', -1)
+                ->count();
+
+        } else {
+            return ['error' => $vacancy->getErrorsMessages()->first('mark')];
+        }
+
+        return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+    }
 
 }

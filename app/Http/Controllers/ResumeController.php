@@ -3,6 +3,7 @@
 use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
+use App\Models\Rating;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Auth\Guard;
@@ -184,9 +185,20 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $view ="Resume.noAccessResume";
         }
 
+        $countLike = Rating::where('object_type', $resume->getNameTable())
+            ->where('object_id', $id)
+            ->where('value', 1)
+            ->count();
+        $countDisLike = Rating::where('object_type', $resume->getNameTable())
+            ->where('object_id', $id)
+            ->where('value', -1)
+            ->count();
+
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city);
+            ->with('city',$city)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
     /**
@@ -343,4 +355,43 @@ class ResumeController extends Controller {// Клас по роботі з ре
         $resume->touch();
         return $resume->updated_at->format('j m Y');
     }
+
+    public function rateResume($id, Request $request)
+    {
+        $resume = Resume::find($id);
+
+        if ($resume->validateLike($request->all())) {
+
+            $mark = $request->mark;
+
+            Rating::updateOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'object_type' => $resume->getNameTable(),
+                    'object_id' => $resume->id
+                ],
+                [
+                    'user_id' => Auth::id(),
+                    'object_type' => $resume->getNameTable(),
+                    'object_id' => $resume->id,
+                    'value' => $mark
+                ]
+            );
+
+            $countLike = Rating::where('object_type', $resume->getNameTable())
+                ->where('object_id', $id)
+                ->where('value', 1)
+                ->count();
+            $countDisLike = Rating::where('object_type', $resume->getNameTable())
+                ->where('object_id', $id)
+                ->where('value', -1)
+                ->count();
+
+        } else {
+            return ['error' => $resume->getErrorsMessages()->first('mark')];
+        }
+
+        return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+    }
+
 }

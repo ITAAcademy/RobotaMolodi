@@ -15,7 +15,6 @@ use DB;
 use Eloquent;
 use Illuminate\Support\Facades\Validator;
 
-
 class Company extends Eloquent {
 
     protected $perPage = 5;
@@ -64,6 +63,19 @@ class Company extends Eloquent {
     public function getNameTable()
     {
         return substr($this->table, 0, 3);
+    }
+
+    public function getLikes(){
+        return Rating::where('object_type', substr($this->table, 0, 3))
+            ->where('object_id', $this->id)
+            ->where('value', 1)
+            ->count();
+    }
+    public function getDisLikes(){
+        return Rating::where('object_type', substr($this->table, 0, 3))
+            ->where('object_id', $this->id)
+            ->where('value', -1)
+            ->count();
     }
 
     public function ReadUser()

@@ -19,6 +19,20 @@
                                 <a class="links-line-companies-list" href="/company/{{$company->id}}" >{{$company->company_name}}</a>
                             </h3>
                         </div>
+
+                        <div class="ratings">
+                            <span class = "ratingsTitle">Рейтинг:</span>
+                            <span class="morph">
+                                {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                                <span class="findLike" id="{{$company->id}}_1">{{$company->getLikes()}}</span>
+                            </span>
+                            <span class="morph">
+                                {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                                <span class="findDislike" id="{{$company->id}}_-1">{{$company->getDisLikes()}}</span>
+                            </span>
+                            <span class="likeError"></span>
+                        </div>
+
                         <div class="amount-companies-list">
     {{--                        <p>  <a href="{{route('main.showVacancies', $company->id)}}" class="link">Вакансій</a></p>--}}
                             <p>  <a href="/company/{{$company->id}}" class="showCompanyVacancies"><span class="vacancy-text">Вакансій</span> {{$company->Vacancies()->count()}}</a></p>
@@ -40,4 +54,21 @@
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.companies'])
+
+{!!Html::script('js/liker.js')!!}
+<script>
+    $('.likeDislike').click(function (e) {
+        e.preventDefault();
+
+        var elementId = (this.nextElementSibling.getAttribute('id')).split('_')[0];
+        var routeUri = "{{ route($company->getNameTable(), $company->id) }}".replace(String({!! $company->id !!}), elementId);
+        var log = Boolean({!! Auth::check() !!});
+
+        if (log != 1) {
+            $(this.parentNode.parentNode.lastElementChild).text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+            return false;
+        }
+        liker(e.target, routeUri);
+    });
+</script>
 
