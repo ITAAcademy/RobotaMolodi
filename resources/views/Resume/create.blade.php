@@ -17,9 +17,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-            $(window).bind('beforeunload', function () {
-                return 'Збережіть будь ласка всі внесені нові дані!';
-            });
+//            $(window).bind('beforeunload', function () {
+//                return 'Збережіть будь ласка всі внесені нові дані!';
+//            });
             $('#form_id').submit(function () {
                 $(window).unbind('beforeunload');
             });

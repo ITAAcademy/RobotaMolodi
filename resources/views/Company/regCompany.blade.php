@@ -196,9 +196,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".form-control").change(function () {
-            $(window).bind('beforeunload', function () {
-                return 'Збережіть будь ласка всі внесені нові дані!';
-            });
+//            $(window).bind('beforeunload', function () {
+//                return 'Збережіть будь ласка всі внесені нові дані!';
+//            });
             $('#form').submit(function () {
                 $(window).unbind('beforeunload');
             });
