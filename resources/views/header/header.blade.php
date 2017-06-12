@@ -2,6 +2,7 @@
 
 <header>
     <nav class="navbar navbar-default col-xs-12">
+        <div class="row">
         <div class="col-xs-1 col-md-4 bars-left-modal">
             <button type="button" class="btn btn-default only-bars">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
@@ -17,29 +18,30 @@
         </div>
         @if (Auth::guest())
         <div class="col-xs-6 col-md-4 navtab-registraion">
-            <button type="button" class="btn btn-default modal-enter">
+            <button type="button" class="btn btn-default modal-enter col-xs-6">
                 <span>{!! Html::image('image/entry.png','Вхід',['id'=>'entry']) !!}</span>
                 <span>Вхід</span>
             </button>
-            <button type="button" class="btn btn-default modal-regestry">
+            <button type="button" class="btn btn-default modal-regestry col-xs-6">
                 <span>{!! Html::image('image/registry.png','Реєстрація',['id'=>'registry']) !!}</span>
                 <span>Реєстрація</span>
             </button>
         </div>
         @else
-            <div class="col-xs-3 navtab-exit">
-                <a href="{{ url('/cabinet') }}">
+            <div class="col-xs-4 navtab-exit">
+                <a @if(Auth::user()->role_id==1) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
                     <button type="button" class="btn btn-default modal-user-button">
                         <div class="img-user">
                             {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                         </div>
                         <div class="img-user-name">
-                            <span style="color:red; font-size: 12px">@if(Auth::user()->role_id==1) @endif{{ Auth::user()->name }} @if(Auth::user()->role_id==1)(Адміністратор) @endif</span>
+                            <p>{{ Auth::user()->name }}</p>
+                            @if(Auth::user()->role_id==1)<p style="color: red">(Admin)</p>@endif
                         </div>
                     </button>
                 </a>
             </div>
-            <div class="col-xs-1 navtab-exit">
+            <div class="col-xs-2 navtab-exit">
                 <a href="{{ url('/auth/logout') }}">
                     <button type="button" class="btn btn-default modal-exit-button">
                         <i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>
@@ -48,6 +50,7 @@
                 </a>
             </div>
         @endif
+        </div>
     </nav>
 </header>
 
