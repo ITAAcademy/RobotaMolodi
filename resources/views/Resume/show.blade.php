@@ -31,7 +31,7 @@
                     <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
 
                     <p><span class="description-one-resume">Опис: </span></p>
-                    <p class="description-footer-resume"> {!!strip_tags($resume->description)!!}</p>
+                    <p class="description-footer-resume"> {!!strip_tags($resume->description,'<p>')!!}</p>
 
                     <div class="button-city-time">
                         <p class="cityTime_resume">
