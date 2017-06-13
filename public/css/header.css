@@ -4,6 +4,9 @@
 #rightModal input[type=checkbox]{
     height: auto;
 }
+nav.navbar.navbar-default{
+    margin-bottom: 12px;
+}
 @media (min-width: 1300px){
     /*Right modal*/
     .navtab-registraion{
