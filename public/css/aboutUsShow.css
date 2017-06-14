@@ -3,6 +3,12 @@
     /*height: 40px;*/
     font-family: "Roboto",Helvetica,Arial,sans-serif;
     text-align: center;
+    width: 101px;
+}
+.staticLinksMenu > .btn{
+    color: #333333;
+    line-height: 30px;
+    font-size: 14px
 }
 .staticLinksMenu > .btn:hover,
 .staticLinksMenu > .btn:focus
@@ -11,4 +17,23 @@
     border-radius: 10px;
     color: #f48952 !important;
     font-weight:bold;
+    align-self: center;
+}
+
+.container-link-menu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    align-items: center;
+}
+@media(max-width: 640px){
+    .container-link-menu{
+        justify-content: center;
+    }
+}
+.container-link-menu .btn{
+    /*width: 102px;*/
+    /*text-align: center;*/
 }
