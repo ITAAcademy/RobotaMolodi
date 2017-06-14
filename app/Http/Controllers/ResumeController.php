@@ -185,14 +185,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $view ="Resume.noAccessResume";
         }
 
-        $countLike = Rating::where('object_type', $resume->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', 1)
-            ->count();
-        $countDisLike = Rating::where('object_type', $resume->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', -1)
-            ->count();
+        $countLike = Rating::getLikes($resume);
+        $countDisLike = Rating::getDislikes($resume);
 
         return view($view)
             ->with('resume',$resume)
@@ -359,39 +353,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
     public function rateResume($id, Request $request)
     {
         $resume = Resume::find($id);
-
-        if ($resume->validateLike($request->all())) {
-
+        if(Rating::isValid($request->all())){
             $mark = $request->mark;
-
-            Rating::updateOrCreate(
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $resume->getNameTable(),
-                    'object_id' => $resume->id
-                ],
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $resume->getNameTable(),
-                    'object_id' => $resume->id,
-                    'value' => $mark
-                ]
-            );
-
-            $countLike = Rating::where('object_type', $resume->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', 1)
-                ->count();
-            $countDisLike = Rating::where('object_type', $resume->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', -1)
-                ->count();
-
+            Rating::addRate($mark, $resume);
+            $countLike = Rating::getLikes($resume);
+            $countDisLike = Rating::getDislikes($resume);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
         } else {
-            return ['error' => $resume->getErrorsMessages()->first('mark')];
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
-
-        return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
     }
 
 }

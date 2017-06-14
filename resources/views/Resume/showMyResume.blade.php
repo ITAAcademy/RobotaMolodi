@@ -204,8 +204,8 @@
     <script>
         $('.likeDislike').click(function (e) {
             e.preventDefault();
-            var routeUri = "{{ route($resume->getNameTable(), $resume->id) }}";
-            var log = new Boolean({!! Auth::check() !!});
+            var routeUri = "{{ route('res.rate', $resume->id) }}";
+            var log = Boolean({!! Auth::check() !!});
             if (log != 1) {
                 $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
                 return false;

@@ -141,14 +141,8 @@ class CompanyController extends Controller  {
         $city = City::find($company->city_id);
         $vacancies = Vacancy::where('company_id', $company->id)->get();
 
-        $countLike = Rating::where('object_type', $company->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', 1)
-            ->count();
-        $countDisLike = Rating::where('object_type', $company->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', -1)
-            ->count();
+        $countLike = Rating::getLikes($company);
+        $countDisLike = Rating::getDislikes($company);
 
         return view('newDesign.company.show')
             ->with('company', $company)
@@ -281,39 +275,15 @@ class CompanyController extends Controller  {
     public function rateCompany($id, Request $request)
     {
         $company = Company::find($id);
-
-        if ($company->validateLike($request->all())) {
-
+        if(Rating::isValid($request->all())){
             $mark = $request->mark;
-
-            Rating::updateOrCreate(
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $company->getNameTable(),
-                    'object_id' => $company->id
-                ],
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $company->getNameTable(),
-                    'object_id' => $company->id,
-                    'value' => $mark
-                ]
-            );
-
-            $countLike = Rating::where('object_type', $company->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', 1)
-                ->count();
-            $countDisLike = Rating::where('object_type', $company->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', -1)
-                ->count();
-
+            Rating::addRate($mark, $company);
+            $countLike = Rating::getLikes($company);
+            $countDisLike = Rating::getDislikes($company);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
         } else {
-            return ['error' => $company->getErrorsMessages()->first('mark')];
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
-
-	    return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
     }
 
 }

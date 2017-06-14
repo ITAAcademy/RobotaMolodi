@@ -77,9 +77,9 @@ Route::post('vacancy/{id}/updateDate',['as' => 'updateVacancyDate', 'uses' => 'V
 Route::post('resume/{id}/updateDate',['as' => 'updateResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
 //liker
-Route::get('company/{id}/likeData',['as' => 'com', 'uses' => 'Company\CompanyController@rateCompany', 'middleware'=>'auth']);
-Route::get('vacancy/{id}/likeData',['as' => 'vac', 'uses' => 'Vacancy\VacancyController@rateVacancy', 'middleware'=>'auth']);
-Route::get('resume/{id}/likeData',['as' => 'res', 'uses' => 'ResumeController@rateResume', 'middleware'=>'auth']);
+Route::get('company/{id}/likeData',['as' => 'com.rate', 'uses' => 'Company\CompanyController@rateCompany', 'middleware'=>'auth']);
+Route::get('vacancy/{id}/likeData',['as' => 'vac.rate', 'uses' => 'Vacancy\VacancyController@rateVacancy', 'middleware'=>'auth']);
+Route::get('resume/{id}/likeData',['as' => 'res.rate', 'uses' => 'ResumeController@rateResume', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 

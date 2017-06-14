@@ -9,36 +9,10 @@ class Resume extends Model {
     protected $perPage = 5;
     protected $table = "resumes";
     protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description','published'];
-    private $errorsMessages;
 
-    public function validateLike($data)
-    {
-        $valid= Validator::make($data, ['mark' => 'required|in:-1,1']);
-        if ($valid->fails()) {
-            $this->errorsMessages = $valid->getMessageBag()->setFormat('Ratings error');
-            return false;
-        }
-        return true;
+    public function rates(){
+       return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
-
-    public function getNameTable()
-    {
-        return substr($this->table, 0, 3);
-    }
-
-    public function getLikes(){
-        return Rating::where('object_type', substr($this->table, 0, 3))
-            ->where('object_id', $this->id)
-            ->where('value', 1)
-            ->count();
-    }
-    public function getDisLikes(){
-        return Rating::where('object_type', substr($this->table, 0, 3))
-            ->where('object_id', $this->id)
-            ->where('value', -1)
-            ->count();
-    }
-
 
     public function getResumes()
     {

@@ -226,14 +226,8 @@ class VacancyController extends Controller
             $view ="vacancy.noAccessVacancy";
         }
 
-        $countLike = Rating::where('object_type', $vacancy->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', 1)
-            ->count();
-        $countDisLike = Rating::where('object_type', $vacancy->getNameTable())
-            ->where('object_id', $id)
-            ->where('value', -1)
-            ->count();
+        $countLike = Rating::getLikes($vacancy);
+        $countDisLike = Rating::getDislikes($vacancy);
 
         return view($view)
             ->with('vacancy', $vacancy)
@@ -491,39 +485,15 @@ class VacancyController extends Controller
     public function rateVacancy($id, Request $request)
     {
         $vacancy = Vacancy::find($id);
-
-        if ($vacancy->validateLike($request->all())) {
-
+        if(Rating::isValid($request->all())){
             $mark = $request->mark;
-
-            Rating::updateOrCreate(
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $vacancy->getNameTable(),
-                    'object_id' => $vacancy->id
-                ],
-                [
-                    'user_id' => Auth::id(),
-                    'object_type' => $vacancy->getNameTable(),
-                    'object_id' => $vacancy->id,
-                    'value' => $mark
-                ]
-            );
-
-            $countLike = Rating::where('object_type', $vacancy->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', 1)
-                ->count();
-            $countDisLike = Rating::where('object_type', $vacancy->getNameTable())
-                ->where('object_id', $id)
-                ->where('value', -1)
-                ->count();
-
+            Rating::addRate($mark, $vacancy);
+            $countLike = Rating::getLikes($vacancy);
+            $countDisLike = Rating::getDislikes($vacancy);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
         } else {
-            return ['error' => $vacancy->getErrorsMessages()->first('mark')];
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
-
-        return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
     }
 
 }

@@ -25,11 +25,11 @@
                     <span class = "ratingsTitle">Рейтинг:</span>
                     <span class="morph">
                         {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
-                        <span class="findLike" id="{{$vacancy->id}}_1">{{$vacancy->getLikes()}}</span>
+                        <span class="findLike" id="{{$vacancy->id}}_1">{{$rating->getLikes($vacancy)}}</span>
                     </span>
                     <span class="morph">
                         {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                        <span class="findDislike" id="{{$vacancy->id}}_-1">{{$vacancy->getDisLikes()}}</span>
+                        <span class="findDislike" id="{{$vacancy->id}}_-1">{{$rating->getDisLikes($vacancy)}}</span>
                     </span>
                     <span class="likeError"></span>
                 </div>
@@ -56,7 +56,7 @@
         e.preventDefault();
 
         var elementId = (this.nextElementSibling.getAttribute('id')).split('_')[0];
-        var routeUri = "{{ route($vacancy->getNameTable(), $vacancy->id) }}".replace(String({!! $vacancy->id !!}), elementId);
+        var routeUri = "{{ route('vac.rate', $vacancy->id) }}".replace(String({!! $vacancy->id !!}), elementId);
         var log = Boolean({!! Auth::check() !!});
 
         if (log != 1) {

@@ -41,41 +41,17 @@ class Company extends Eloquent {
     }
 
     public function validateForm($company)
-{
+    {
     $validatorCompany = Validator::make($company, $this->rules);
     if ($validatorCompany->fails()) {
         $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
         return false;
     }
     return true;
-}
-
-    public function validateLike($data)
-    {
-        $valid= Validator::make($data, ['mark' => 'required|in:-1,1']);
-        if ($valid->fails()) {
-            $this->errorsMessages = $valid->getMessageBag()->setFormat('Ratings error');
-            return false;
-        }
-        return true;
     }
 
-    public function getNameTable()
-    {
-        return substr($this->table, 0, 3);
-    }
-
-    public function getLikes(){
-        return Rating::where('object_type', substr($this->table, 0, 3))
-            ->where('object_id', $this->id)
-            ->where('value', 1)
-            ->count();
-    }
-    public function getDisLikes(){
-        return Rating::where('object_type', substr($this->table, 0, 3))
-            ->where('object_id', $this->id)
-            ->where('value', -1)
-            ->count();
+    public function rates(){
+        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
 
     public function ReadUser()
