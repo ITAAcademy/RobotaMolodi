@@ -6,12 +6,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Company;
 
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class Vacancy extends Model {
 
     protected $perPage = 4;
     protected $table = 'vacancies';
     protected $fillable = ['id','position','company_id','branch', 'date_field', 'salary', 'salary_max', 'currency_id' ,'city', 'description','user_email', 'updated_at', 'published'];
+
+    public function rates(){
+        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
+    }
 
 //Read and return company
     public function ReadCompany()

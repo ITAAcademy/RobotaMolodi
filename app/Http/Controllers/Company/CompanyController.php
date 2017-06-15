@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\Resume;
 use App\Models\Comment;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -133,23 +134,23 @@ class CompanyController extends Controller  {
 		public function show($id, Guard $auth)
 	{
       // Cookie::queue('url', 'company/'.$id);
-        if (!is_numeric($id)) {
-            abort(500);
-        }
-        if(empty(Company::find($id))) {
-            abort(404);
-        }
+
 
         $company = Company::find($id);
         $industry = Industry::find($company->industry_id);
         $city = City::find($company->city_id);
         $vacancies = Vacancy::where('company_id', $company->id)->get();
 
+        $countLike = Rating::getLikes($company);
+        $countDisLike = Rating::getDislikes($company);
+
         return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
             ->with('city', $city)
-            ->with('vacancies', $vacancies);
+            ->with('vacancies', $vacancies)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
 	public function edit($id)
@@ -270,5 +271,19 @@ class CompanyController extends Controller  {
         else
             abort(403);
 	}
+
+    public function rateCompany($id, Request $request)
+    {
+        $company = Company::find($id);
+        if(Rating::isValid($request->all())){
+            $mark = $request->mark;
+            Rating::addRate($mark, $company);
+            $countLike = Rating::getLikes($company);
+            $countDisLike = Rating::getDislikes($company);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+        } else {
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
+        }
+    }
 
 }

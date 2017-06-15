@@ -50,6 +50,20 @@
                     <div>
                         <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
+
+                    <div class="ratings">
+                        <span class = "ratingsTitle">Рейтинг:</span>
+                        <span class="morph">
+                            {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                            <span class="findLike" id="{{$vacancy->id}}_1">{{$countLike}}</span>
+                        </span>
+                        <span class="morph">
+                            {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                            <span class="findDislike" id="{{$vacancy->id}}_-1">{{$countDisLike}}</span>
+                        </span>
+                        <span class="likeError"></span>
+                    </div>
+
                     <div>
                         <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
                     </div>
@@ -175,4 +189,12 @@
     <script>
         socialNetWork('.social > a');
     </script>
+
+    <script>
+        $('.likeDislike').click(function (e) {
+            e.preventDefault();
+                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+        });
+    </script>
+
 @stop

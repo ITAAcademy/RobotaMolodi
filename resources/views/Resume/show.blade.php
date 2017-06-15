@@ -31,6 +31,20 @@
                     <p class="name_resume">{!!$resume->name_u!!}</p>
                     </br>
                 </div>
+
+                <div class="ratings">
+                    <span class = "ratingsTitle">Рейтинг:</span>
+                    <span class="morph">
+                        {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                        <span class="findLike" id="{{$resume->id}}_1">{{$countLike}}</span>
+                    </span>
+                    <span class="morph">
+                        {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                        <span class="findDislike" id="{{$resume->id}}_-1">{{$countDisLike}}</span>
+                    </span>
+                    <span class="likeError"></span>
+                </div>
+
                 <div class="panel-description-resume">
                     <p class="position_resume"><a tabindex="1" class="orangColor-resume" href="javascript:submit('selectIndustry','{{$resume->Industry()->id}}')">{!!$resume->Industry()->name!!}</a></p>
 
@@ -54,21 +68,25 @@
         </div>
     </div>
 
-        @if(Auth::check()) @if(Auth::user()->role_id ==1)<div><button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">Заблокувати</button></div>@endif @endif
+    @if(Auth::check()) @if(Auth::user()->role_id ==1)<div><button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">Заблокувати</button></div>@endif @endif
 
     <script>
-        function blockResume()
-        {
+        function blockResume() {
             var dialogResult = confirm("Ви дійсно бажаєте заблокувати резюме?");
-            if(dialogResult)
-            {
+            if(dialogResult) {
                 $.post( '/resume/block',{_token: '{{ csrf_token() }}', id: '{{ $resume->id }}' },
-                        function( data ) {
-                            location="{{URL::to('resume')}}";
-
-                        });
+                    function( data ) {
+                    location="{{URL::to('resume')}}";
+                });
             }
-
         }
     </script>
+
+    <script>
+        $('.likeDislike').click(function (e) {
+            e.preventDefault();
+            $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+        });
+    </script>
+
 @stop

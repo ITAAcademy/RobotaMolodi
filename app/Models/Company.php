@@ -15,7 +15,6 @@ use DB;
 use Eloquent;
 use Illuminate\Support\Facades\Validator;
 
-
 class Company extends Eloquent {
 
     protected $perPage = 5;
@@ -43,12 +42,16 @@ class Company extends Eloquent {
 
     public function validateForm($company)
     {
-        $validatorCompany = Validator::make($company, $this->rules);
-        if ($validatorCompany->fails()) {
-            $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
-            return false;
-        }
-        return true;
+    $validatorCompany = Validator::make($company, $this->rules);
+    if ($validatorCompany->fails()) {
+        $this->errorsMessages = $validatorCompany->getMessageBag()->setFormat(':message');
+        return false;
+    }
+    return true;
+    }
+
+    public function rates(){
+        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
 
     public function ReadUser()

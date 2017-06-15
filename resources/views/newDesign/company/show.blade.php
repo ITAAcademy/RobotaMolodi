@@ -1,5 +1,6 @@
 @extends('app')
 @section('head')
+
 <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
@@ -50,6 +51,22 @@
                 </div>
 
                 <div class="row textCompany verticalIndent">
+
+                    <div class="col-xs-12">
+                        <div class="ratings">
+                            <span class = "ratingsTitle">Рейтинг:</span>
+                            <span class="morph">
+                                {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                                <span class="findLike" id="{{$company->id}}_1">{{$countLike}}</span>
+                            </span>
+                            <span class="morph">
+                                {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                                <span class="findDislike" id="{{$company->id}}_-1">{{$countDisLike}}</span>
+                            </span>
+                            <span class="likeError"></span>
+                        </div>
+                    </div>
+
                     <div class="col-xs-3">
                         <span>Аббревиатура: </span>
                     </div>
@@ -162,7 +179,6 @@
                         }
                     })
                 }
-
                 return false;
             })
 //            $("a.resume-call").click(function(){
@@ -178,6 +194,20 @@
             if(conf) return true;
             else return false;
         }
+    </script>
+
+    {!!Html::script('js/liker.js')!!}
+    <script>
+        $('.likeDislike').click(function (e) {
+            e.preventDefault();
+            var routeUri = "{{ route('com.rate', $company->id) }}";
+            var log = Boolean({!! Auth::check() !!});
+            if (log != 1) {
+                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+                return false;
+            }
+            liker(this, routeUri);
+        });
     </script>
 
 @stop

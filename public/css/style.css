@@ -493,3 +493,37 @@ button.btn.btn-primary.enter-button:focus{
 	/*width: 100%;*/
 	height: 100%;
 }
+
+/* -Ratings- */
+.ratings {
+	color: gray;
+	font-size: 18px;
+	font-family: SegoeUIRegular;
+}
+
+#like {
+	margin-bottom: 7px;
+	padding:6px 0px 6px 6px;
+}
+
+#dislike {
+	margin-bottom: 4px;
+	padding:6px 0px 6px 6px;
+}
+
+.likeDislike {
+	margin-bottom: 7px;
+}
+
+.findLike{
+	margin-right: 10px;
+	color: #CD0100;
+	font-size: 18px;
+	font-family: SegoeUIRegular;
+}
+
+.findDislike{
+	color: #818181;
+	font-size: 18px;
+	font-family: SegoeUIRegular;
+}
