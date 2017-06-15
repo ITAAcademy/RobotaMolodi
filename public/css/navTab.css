@@ -45,7 +45,7 @@
 }
 
 .list-unstyled_plus {
-	margin-right: 7px;
+	margin-right: 0px;
 }
 
 .add {
@@ -146,4 +146,53 @@
 
 .row.bottom-line4row-tab.few{
     margin-top: 10px;
+}
+@media(min-width: 535px) and (max-width: 575px) {
+	.bottom-line4row-tab .header-nav-tabs li{
+		font-size: 16px;
+	}
+}
+@media(min-width: 500px) and (max-width: 534px) {
+	.bottom-line4row-tab .header-nav-tabs li{
+		font-size: 14px;
+	}
+	.bottom-line4row-tab .header-nav-tabs li img{
+		margin: 0;
+		width: 19px;
+	}
+}
+@media(min-width: 466px) and (max-width: 499px) {
+	.bottom-line4row-tab .header-nav-tabs li{
+		font-size: 14px;
+	}
+	.bottom-line4row-tab .header-nav-tabs li a{
+		padding: 10px;
+	}
+	.bottom-line4row-tab .header-nav-tabs li img{
+		margin: 0;
+		width: 19px;
+	}
+}
+@media(min-width: 400px) and (max-width: 465px) {
+	.bottom-line4row-tab .header-nav-tabs li{
+		font-size: 14px;
+	}
+	.bottom-line4row-tab .header-nav-tabs li a{
+		padding: 5px;
+	}
+	.bottom-line4row-tab .header-nav-tabs li img{
+		margin: 0;
+	}
+}
+@media(min-width: 300px) and (max-width: 399px) {
+	.bottom-line4row-tab .header-nav-tabs li{
+		font-size: 18px;
+		width: 265px;
+	}
+	/*.bottom-line4row-tab .header-nav-tabs li a{*/
+		/*padding: 5px;*/
+	/*}*/
+	.bottom-line4row-tab .header-nav-tabs li img{
+		width: 21px;
+	}
 }

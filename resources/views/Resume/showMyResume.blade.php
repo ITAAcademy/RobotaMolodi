@@ -10,6 +10,26 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+{{--    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Резюме:','thirdRoutName'=>$resume->position,'showDisplay'=>'','secondRout'=>'resumes', 'nameSecondRout'=>'Особистий кабінет'])--}}
+
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
+        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ]
+    )
+
+    )
+
+    {{--@include('newDesign.breadcrumb',array('breadcrumbs' =>[--}}
+        {{--['url'=>'head','name'=>'Головна','showDisplay'=>'none'],--}}
+        {{--['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],--}}
+        {{--['name' => 'Резюме: ', 'url' => ]--}}
+        {{--]--}}
+    {{--)--}}
+
+    {{--)--}}
+
     <div class="panel" id="vrBlock">
         <div class="row">
             <div class="col-xs-12 col-md-3">
@@ -47,6 +67,20 @@
                         </p>
                         <p class="name-resume"> {!!$resume->name_u!!}</p>
                     </div>
+
+                    <div class="ratings">
+                        <span class = "ratingsTitle">Рейтинг:</span>
+                        <span class="morph">
+                            {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                            <span class="findLike" id="{{$resume->id}}_1">{{$countLike}}</span>
+                        </span>
+                        <span class="morph">
+                            {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                            <span class="findDislike" id="{{$resume->id}}_-1">{{$countDisLike}}</span>
+                        </span>
+                        <span class="likeError"></span>
+                    </div>
+
                     <div class="panel-description-resume">
                         <p class="position-resume"><a class="orangColor-resume" href="javascript:submit('selectIndustry', {{$resume->Industry()->id}})">{!!$resume->Industry()->name!!}</a></p>
                         <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
@@ -59,20 +93,23 @@
                 <p class="cityTime-resume">
                     <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
                     <span id="yellowCircle-resume">&#183;</span>
-                    {{ date('j m Y', strtotime($resume->updated_at))}}
+                    <span id="updateDate">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
                 </p>
             </div>
             <div class="col-xs-12 button-change-resume">
-                <div class="col-xs-12 col-md-3"></div>
-                <div class="col-xs-4 col-md-3"></div>
-                <div class="col-xs-4 col-md-3">
-                    <a id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                <div class="col-xs-offset-4 col-md-offset-3 col-xs-4 col-md-3">
+                    <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <span class="writeOnPost"><span>Видалити</span></span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-md-3">
-                    <a id="writeOnPost" href="{{$resume->id}}/edit">
+                    <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/edit">
                         <div class="writeOnPost">Редагувати</div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-md-3">
+                    <a class="whiteText" id="updateDateRes" href="#">
+                        <div class="writeOnPost">Оновити дату вакансіїї</div>
                     </a>
                 </div>
             </div>
@@ -147,5 +184,34 @@
                 return false;
             }
         }
+
+        $('#updateDateRes').click(function (e) {
+            var that = $('#updateDate');
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('updateResumeDate', $resume->id) }}',
+                method: 'post',
+                success: function (data) {
+                    that.text(data);
+                    that.css('backgroundColor','orange');
+                    that.animate({ backgroundColor: "white" }, "slow");
+                }
+            })
+        })
     </script>
+
+    {!!Html::script('js/liker.js')!!}
+    <script>
+        $('.likeDislike').click(function (e) {
+            e.preventDefault();
+            var routeUri = "{{ route('res.rate', $resume->id) }}";
+            var log = Boolean({!! Auth::check() !!});
+            if (log != 1) {
+                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+                return false;
+            }
+            liker(this, routeUri);
+        });
+    </script>
+
 @stop

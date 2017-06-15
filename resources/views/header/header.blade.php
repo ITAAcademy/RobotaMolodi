@@ -1,38 +1,104 @@
+<link href="{{ asset('/css/header.css') }}" rel="stylesheet">
+
 <header>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/auth/login') }}"><span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> Увійти</a></li>
-                        <li><a href="{{ url('/auth/register') }}"><span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> Зареєструватись</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-                               @if(Auth::user()->role_id==1)style="color:red" @endif>{{ Auth::user()->name }}
-                                @if(Auth::user()->role_id==1)(Адміністратор) @endif<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/cabinet') }}" class="afterChange">Особистий кабінет</a></li>
-                                @if(Auth::user()->role_id==1)<li> <a href="{{ url('/admin') }}">Админка</a></li>@endif
-                                <li><a href="{{ url('/auth/logout') }}" class="afterChange"><span>{!! Html::image('image/exit.png','Головна',['id'=>'exit']) !!}</span> Вийти</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
+    <nav class="navbar navbar-default col-xs-12">
+        <div class="row">
+        <div class="col-xs-1 col-md-4 bars-left-modal">
+            <button type="button" class="btn btn-default only-bars">
+                <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="col-xs-5 col-md-4 center-block">
+            <div class="header-logo text-center">
+                <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo-img.png','Головна',
+                    ['class'=>'img-responsive main-img col-xs-3'])!!}
+                    {!! Html::image('image/logo2.png','Головна',
+                        ['class'=>'img-responsive main-img col-xs-9'])!!}</a>
             </div>
         </div>
-        <div class="col-md-offset-4" id="logoImg">
-            <div class="header-logo" style="margin-top: 5px; margin-bottom: 5px"><a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo.png','Головна') !!}</a></div>
+        @if (Auth::guest())
+        <div class="col-xs-6 col-md-4 navtab-registraion">
+            <button type="button" class="btn btn-default modal-enter col-xs-6">
+                <span>{!! Html::image('image/entry.png','Вхід',['id'=>'entry']) !!}</span>
+                <span>Вхід</span>
+            </button>
+            <button type="button" class="btn btn-default modal-regestry col-xs-6">
+                <span>{!! Html::image('image/registry.png','Реєстрація',['id'=>'registry']) !!}</span>
+                <span>Реєстрація</span>
+            </button>
+        </div>
+        @else
+            <div class="col-xs-4 navtab-exit">
+                <a @if(Auth::user()->role_id==1) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                    <button type="button" class="btn btn-default modal-user-button">
+                        <div class="img-user">
+                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                        </div>
+                        <div class="img-user-name">
+                            <p>{{ Auth::user()->name }}</p>
+                            @if(Auth::user()->role_id==1)<p style="color: red">(Admin)</p>@endif
+                        </div>
+                    </button>
+                </a>
+            </div>
+            <div class="col-xs-2 navtab-exit">
+                <a href="{{ url('/auth/logout') }}">
+                    <button type="button" class="btn btn-default modal-exit-button">
+                        <i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>
+                        <span>Вихід</span>
+                    </button>
+                </a>
+            </div>
+        @endif
         </div>
     </nav>
 </header>
+
+@include('auth.rightModal')
+@include('auth.leftModal')
+
+{!!Html::script('js/socialNetWork.js')!!}
+<script>
+    $(document).ready(function () {
+        $('.only-bars').click(function () {
+            $('#leftModal').modal({
+                show: true,
+                keyboard: true
+            })
+        });
+        var btn_enter = document.getElementsByClassName('btn-modal-enter');
+        var btn_regesrty = document.getElementsByClassName('btn-modal-reg');
+        var tab_content = document.getElementsByClassName('tab-content');
+        $('.modal-regestry, .btn-modal-reg').click(function () {
+            $('#rightModal').modal({
+                show: true,
+                keyboard: true
+            });
+            $('#modalTab a[href="#panel2"]').tab('show');
+            btn_enter[0].classList.remove('css-btn-modal-enter');
+            btn_regesrty[0].classList.add('btn-modal-reg', 'css-btn-modal-reg');
+            btn_regesrty[0].classList.remove('css-btn-modal-reg-opacity');
+            btn_enter[0].classList.add('css-btn-modal-enter-opacity')
+            tab_content[0].style.borderRadius = "15px 0 15px 15px";
+        });
+
+        $('.modal-enter,.btn-modal-enter' ).click(function () {
+            $('#rightModal').modal({
+                show: true,
+                keyboard: true
+            });
+            $('#modalTab a[href="#panel1"]').tab('show');
+
+//            var style = btn_regesrty[0].style;
+            btn_enter[0].classList.add('btn-modal-enter', 'css-btn-modal-enter');
+            btn_regesrty[0].classList.remove('css-btn-modal-reg');
+            btn_regesrty[0].classList.add('css-btn-modal-reg-opacity');
+            btn_enter[0].classList.remove('css-btn-modal-enter-opacity');
+
+            tab_content[0].style.borderRadius = "0 15px 15px 15px";
+        });
+
+
+        socialNetWork('.modal-social-share > a');
+    })
+</script>

@@ -3,6 +3,7 @@
 use App\Http\Requests\CreateNewResume;
 use App\Http\Controllers\Controller;
 
+use App\Models\Rating;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Auth\Guard;
@@ -184,9 +185,14 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $view ="Resume.noAccessResume";
         }
 
+        $countLike = Rating::getLikes($resume);
+        $countDisLike = Rating::getDislikes($resume);
+
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city);
+            ->with('city',$city)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
     /**
@@ -337,4 +343,25 @@ class ResumeController extends Controller {// Клас по роботі з ре
             return Redirect::to('auth/login');
         }
     }
+
+    public function updatePablishDate($id){
+        $resume = Resume::find($id);
+        $resume->touch();
+        return $resume->updated_at->format('j m Y');
+    }
+
+    public function rateResume($id, Request $request)
+    {
+        $resume = Resume::find($id);
+        if(Rating::isValid($request->all())){
+            $mark = $request->mark;
+            Rating::addRate($mark, $resume);
+            $countLike = Rating::getLikes($resume);
+            $countDisLike = Rating::getDislikes($resume);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+        } else {
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
+        }
+    }
+
 }

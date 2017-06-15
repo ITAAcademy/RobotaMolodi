@@ -73,7 +73,13 @@ Route::post('vacancy/{vacancy}/response/sendFile',['as'=>'vacancy.response.sendF
 Route::post('vacancy/{vacancy}/response/sendResume',['as'=>'vacancy.response.sendResume', 'uses' => 'Vacancy\ResponseController@sendResume', 'middleware'=>'auth']);
 Route::post('company/{company}/response/sendFile',['as'=>'company.response.sendFile', 'uses' =>'Company\ResponseController@sendFile', 'middleware'=>'auth']);
 Route::post('company/{company}/response/sendResume',['as'=>'company.response.sendResume', 'uses' =>'Company\ResponseController@sendResume', 'middleware'=>'auth']);
+Route::post('vacancy/{id}/updateDate',['as' => 'updateVacancyDate', 'uses' => 'Vacancy\VacancyController@updatePablishDate']);
+Route::post('resume/{id}/updateDate',['as' => 'updateResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
+//liker
+Route::get('company/{id}/likeData',['as' => 'com.rate', 'uses' => 'Company\CompanyController@rateCompany', 'middleware'=>'auth']);
+Route::get('vacancy/{id}/likeData',['as' => 'vac.rate', 'uses' => 'Vacancy\VacancyController@rateVacancy', 'middleware'=>'auth']);
+Route::get('resume/{id}/likeData',['as' => 'res.rate', 'uses' => 'ResumeController@rateResume', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
@@ -153,11 +159,14 @@ Route::get('aboutus', function () {
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
-
+Route::get('policy', function () {
+    return view('staticHeaderPages.politics_uses');
+});
 Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
 Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
+
 
 //slider

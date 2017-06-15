@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\Vacancy;
 use App\Models\Resume;
 use App\Models\Comment;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -132,30 +133,35 @@ class CompanyController extends Controller  {
 	 */
 		public function show($id, Guard $auth)
 	{
-        Cookie::queue('url', 'company/'.$id);
-        $view = 'newDesign.company.show';
-        $search_boolean = 'false';
-        //$company = Company::find($id);
-        $company = $this->getCompany($id);
+      // Cookie::queue('url', 'company/'.$id);
 
-        $userCompany = $company->ReadUser($id);
 
-        $vacancies = Vacancy::where('company_id','=',$id);
+        $company = Company::find($id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
 
-        $industry = Vacancy::where('company_id','=',$id)->lists('branch')->first();
-        $industryName = Industry::where('id','=',$industry)->lists('name')->first();
+        $countLike = Rating::getLikes($company);
+        $countDisLike = Rating::getDislikes($company);
 
-        return view($view)
-            ->with('vacancy', $vacancies)
-            ->with('user', $userCompany)
-            ->with('industryName', $industryName)
+        return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
-            ->with('search_boolean',$search_boolean);
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
 	public function edit($id)
 	{
+        if (!is_numeric($id)) {
+            abort(500);
+        }
+        if(empty(Company::find($id))) {
+            abort(404);
+        }
+
         if (Auth::check()) {
             $company = Company::find($id);
             $cities = City::all();
@@ -256,12 +262,28 @@ class CompanyController extends Controller  {
         if(empty(Company::find($id))) {
             abort(404);
         }
-        if (User::find(Company::find($id)->users_id)->id == Auth::id()) {
+
+        if (Company::find($id)->users_id == Auth::id()) {
+            Comment::where('company_id', $id)->delete();
             Company::destroy($id);
             return redirect('company');
         }
         else
             abort(403);
 	}
+
+    public function rateCompany($id, Request $request)
+    {
+        $company = Company::find($id);
+        if(Rating::isValid($request->all())){
+            $mark = $request->mark;
+            Rating::addRate($mark, $company);
+            $countLike = Rating::getLikes($company);
+            $countDisLike = Rating::getDislikes($company);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+        } else {
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
+        }
+    }
 
 }

@@ -38,6 +38,8 @@
                 @foreach($industries as $industry)
                     @if($industry->id == $company->industry_id )
                         <option selected value="{{$industry->id}}">{{$industry->name}}</option>
+                    @elseif($industry->main)
+                        <option selected value="{{$industry->id}}">{{$industry->name}}</option>
                     @else
                         <option value="{{$industry->id}}">{{$industry->name}}</option>
                     @endif
@@ -194,9 +196,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(".form-control").change(function () {
-            $(window).bind('beforeunload', function () {
-                return 'Збережіть будь ласка всі внесені нові дані!';
-            });
+//            $(window).bind('beforeunload', function () {
+//                return 'Збережіть будь ласка всі внесені нові дані!';
+//            });
             $('#form').submit(function () {
                 $(window).unbind('beforeunload');
             });

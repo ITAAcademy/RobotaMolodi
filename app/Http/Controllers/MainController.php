@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\Models\City;
+use App\Models\Rating;
 use App\Models\Resume;
 use App\Models\News;
 use App\Models\Vacancy;
@@ -61,21 +62,24 @@ class MainController extends Controller
     {
         $vacancies = Vacancy::AllVacancies()->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
+        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
-                'vacancies' => $vacancies
+                'vacancies' => $vacancies,
+                'rating' => $rating,
             ));
         }
         //Show top vacancies:
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
-        
+
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
-            'topVacancy' => $topVacancy
+            'topVacancy' => $topVacancy,
+            'rating' => $rating,
         ));
     }
 
@@ -83,9 +87,11 @@ class MainController extends Controller
 
         $companies = Company::latest('id')->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
+        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.company.companiesList', array(
-                'companies' => $companies
+                'companies' => $companies,
+                'rating' => $rating,
             ));
         }
 
@@ -98,7 +104,7 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
-
+            'rating' => $rating,
         ));
     }
 
@@ -106,13 +112,14 @@ class MainController extends Controller
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
+        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.resume.resumesList', array(
-                'resumes' => $resumes
+                'resumes' => $resumes,
+                'rating' => $rating,
             ));
         }
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
-
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
@@ -121,6 +128,7 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
+            'rating' => $rating,
         ));
     }
     private function dataNews(){

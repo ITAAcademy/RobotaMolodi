@@ -2,12 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class Resume extends Model {
 
     protected $perPage = 5;
     protected $table = "resumes";
     protected $fillable = ['position','telephone','email', 'name_u', 'industry', 'salary', 'salary_max', 'currency_id', 'city', 'description','published'];
+
+    public function rates(){
+       return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
+    }
 
     public function getResumes()
     {

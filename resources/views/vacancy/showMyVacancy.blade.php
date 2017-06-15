@@ -1,6 +1,7 @@
 @extends('app')
 <link href="{{ asset('/css/myVacancyShow.css') }}" rel="stylesheet">
 @section('content')
+    <div class="notice"></div>
     {!!Form::open(['route' => 'head', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
     <input type = "hidden" name = "filterName" id = "filterName"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
@@ -10,6 +11,13 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$vacancy->company_id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+    @include('newDesign.breadcrumb',array('breadcrumbs' =>[
+        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
+        ['name' => 'Вакансія: '.$vacancy->position, 'url' => false]
+        ]
+    )
+    )
     <div class="panel" id="vrBlock">
     <div class="row">
         <div class="col-xs-12 col-md-2">
@@ -44,6 +52,20 @@
                     <span>{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span>
                 </p>
             </div>
+
+            <div class="ratings">
+                <span class = "ratingsTitle">Рейтинг:</span>
+                <span class="morph">
+                    {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                    <span class="findLike" id="{{$vacancy->id}}_1">{{$countLike}}</span>
+                </span>
+                <span class="morph">
+                    {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                    <span class="findDislike" id="{{$vacancy->id}}_-1">{{$countDisLike}}</span>
+                </span>
+                <span class="likeError"></span>
+            </div>
+
             <div>
                 <p class="position-myVacancy">  <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry', {{$vacancy->Industry()->id}})">{{$industry->name}}</a></p>
                 {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
@@ -59,7 +81,7 @@
                     @foreach($cities->get() as $city)
                         <a class="city-myVacancy" href="javascript:submit('selectCity' {{$city->id}})">{{$city->name}} </a>
                     @endforeach
-                    <span id="yellowCircle-myVacancy">&#183;</span> {{ date('j m Y', strtotime($vacancy->updated_at))}}
+                    <span id="yellowCircle-myVacancy">&#183;</span> <span id="updateDate">{{ date('j m Y', strtotime($vacancy->updated_at))}}</span>
                 </p>
             </div>
         </div>
@@ -88,9 +110,9 @@
                 </a>
             </div>
             <div class="col-xs-12 col-md-3">
-                <a class="orangColor-myVacancy" href="#">
+                <a class="orangColor-myVacancy" id="updateDateVac" href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <span>оновити дату вакансіїї</span>
+                    <span>Оновити дату вакансіїї</span>
                 </a>
             </div>
         </div>
@@ -159,6 +181,34 @@
         {
             confirm("Ви дійсно хочете видалити вакансію?");
         }
+
+        $('#updateDateVac').click(function (e) {
+            var that = $('#updateDate');
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route('updateVacancyDate', $vacancy->id) }}',
+                method: 'post',
+                success: function (data) {
+                    that.text(data);
+                    that.css('backgroundColor','orange');
+                    that.animate({ backgroundColor: "white" }, "slow");
+                }
+            })
+        })
+    </script>
+
+    {!!Html::script('js/liker.js')!!}
+    <script>
+        $('.likeDislike').click(function (e) {
+            e.preventDefault();
+            var routeUri = "{{ route('vac.rate', $vacancy->id) }}";
+            var log = Boolean({!! Auth::check() !!});
+            if (log != 1) {
+                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
+                return false;
+            }
+            liker(this, routeUri);
+        });
     </script>
 
 @stop

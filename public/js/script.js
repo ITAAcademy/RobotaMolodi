@@ -3,16 +3,15 @@ function initMultiselect(container)
 	$(container).multiselect(
 	{
 		buttonWidth: '100%'
-		, maxHeight: 200
-                ,enableFiltering: true
-                ,enableCaseInsensitiveFiltering: true
-                ,filterPlaceholder: 'Пошук...'
+		,maxHeight: 200
+		,enableFiltering: true
+		,enableCaseInsensitiveFiltering: true
+		,filterPlaceholder: 'Пошук...'
 		//,nSelectedText: '-Три і більше'
 		,includeSelectAllOption: true
-                ,enableFullValueFiltering: true
-                ,selectAllText: 'Вибрати все'
-		
-                ,buttonText: function(options, select) 
+		,enableFullValueFiltering: true
+		,selectAllText: 'Вибрати все'
+		,buttonText: function(options, select)
 		{
 			if (options.length === 0) 
 			{
@@ -63,7 +62,8 @@ function initMultiselect(container)
 			}
 		}
     });
-};
+
+}
 
 
 

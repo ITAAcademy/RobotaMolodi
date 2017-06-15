@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Models\Currency;
 use App\Models\profOrientation\test1;
 use App\Models\profOrientation\UserSession;
+use App\Models\Rating;
 use App\Models\Vacancy_City;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Input;
@@ -225,11 +226,16 @@ class VacancyController extends Controller
             $view ="vacancy.noAccessVacancy";
         }
 
+        $countLike = Rating::getLikes($vacancy);
+        $countDisLike = Rating::getDislikes($vacancy);
+
         return view($view)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
             ->with('cities', $cities)
-            ->with('industry', $industry);
+            ->with('industry', $industry)
+            ->with('countLike', $countLike)
+            ->with('countDisLike', $countDisLike);
     }
 
     /**
@@ -469,10 +475,25 @@ class VacancyController extends Controller
         $resume = $auth->user()->GetResumes()->get();
         return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
     }
-    /**
-     * @param City $cityModel
-     * @param Vacancy $vacancy
-     * @return mixed
-     */
+
+    public function updatePablishDate($id){
+        $vacancy = Vacancy::find($id);
+        $vacancy->touch();
+        return $vacancy->updated_at->format('j m Y');
+    }
+
+    public function rateVacancy($id, Request $request)
+    {
+        $vacancy = Vacancy::find($id);
+        if(Rating::isValid($request->all())){
+            $mark = $request->mark;
+            Rating::addRate($mark, $vacancy);
+            $countLike = Rating::getLikes($vacancy);
+            $countDisLike = Rating::getDislikes($vacancy);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+        } else {
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
+        }
+    }
 
 }
