@@ -1,24 +1,23 @@
 <link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
-
-<div class="row">
-    <div class="col-xs-12">
-        <div class="col-xs-2 staticLinksMenu about-us-btn">
-            <a class="btn" href="{{ url('aboutus') }}" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;" >Про нас</a>
+<div class="col-xs-12">
+    <div class="container-link-menu">
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('aboutus') }}">Про нас</a>
         </div>
-        <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('/news') }}" class="afterChangesBtn " style="color: #333333; line-height: 30px; font-size: 14px;">Новини</a>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('/news') }}">Новини</a>
         </div>
-        <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank" class="afterChangesBtn " style="color: #333333; line-height: 30px; font-size: 14px;"><span class="profitday-btn">Дні кар'єри</span></a>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('https://intita.com/courses')}}" target="_blank">Навчання</a>
         </div>
-        <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('https://intita.com/courses')}}" target="_blank" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;">Навчання</a>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank">Дні кар'єри</a>
         </div>
-        <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('https://profitday.info/allcompanies')}}" target="_blank" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;">Партнери</a>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('https://profitday.info/allcompanies')}}" target="_blank">Партнери</a>
         </div>
-        <div class="col-xs-2 staticLinksMenu">
-            <a class="btn" href="{{ url('/contacts') }}" class="afterChangesBtn" style="color: #333333; line-height: 30px; font-size: 14px;">Контакти</a>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('/contacts') }}">Контакти</a>
         </div>
     </div>
 </div>
