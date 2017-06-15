@@ -4,7 +4,8 @@
     @include('newDesign.layouts.includes.ckeditor')
 @stop
 @section('content')
-    <h1>Редагувати новину</h1>
+    <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
+    <h1 >Редагувати новину</h1>
 
     {!! Form::model($newsOne, array(
         'method' => 'PUT',
