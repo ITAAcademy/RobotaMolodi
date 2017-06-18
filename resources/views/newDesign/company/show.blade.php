@@ -83,7 +83,7 @@
                         </div>
                     @else()
                         <div class="col-xs-9">
-                            <span>Галузь не вказано</span>
+                            <span>Не вказано</span>
                         </div>
                     @endif
 
@@ -105,7 +105,7 @@
                         </div>
                     @else()
                         <div class="col-xs-9">
-                            <span>Місто не вказано</span>
+                            <span>Не вказано</span>
                         </div>
                     @endif
 
