@@ -77,9 +77,15 @@
                     <div class="col-xs-3">
                         <span>Галузь: </span>
                     </div>
-                    {{--<div class="col-xs-9">--}}
-                        {{--<span>{{$industry->name}}</span>--}}
-                    {{--</div>--}}
+                    @if(!empty($industry->name))
+                        <div class="col-xs-9">
+                            <span>{{$industry->name}}</span>
+                        </div>
+                    @else()
+                        <div class="col-xs-9">
+                            <span>Не вказано</span>
+                        </div>
+                    @endif
 
                     @if(!empty($company->link))
                         <div class="col-xs-3">
@@ -93,9 +99,15 @@
                     <div class="col-xs-3">
                         <span>Мiсто: </span>
                     </div>
-                    {{--<div class="col-xs-9">--}}
-                        {{--<span>{{$city->name}}</span>--}}
-                    {{--</div>--}}
+                    @if(!empty($city->name))
+                        <div class="col-xs-9">
+                            <span>{{$city->name}}</span>
+                        </div>
+                    @else()
+                        <div class="col-xs-9">
+                            <span>Не вказано</span>
+                        </div>
+                    @endif
 
                     <div class="col-xs-3">
                         <span>Електронна пошта: </span>
