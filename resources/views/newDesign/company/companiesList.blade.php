@@ -24,11 +24,11 @@
                             <span class = "ratingsTitle">Рейтинг:</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
-                                <span class="findLike" id="{{route('res.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
+                                <span class="findLike" id="{{route('com.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                                <span class="findDislike" id="{{route('res.rate', $company->id)}}_-1">{{$company->rated()->getLikes($company)}}</span>
+                                <span class="findDislike" id="{{route('com.rate', $company->id)}}_-1">{{$company->rated()->getLikes($company)}}</span>
                             </span>
                             <span class="likeError"></span>
                         </div>
