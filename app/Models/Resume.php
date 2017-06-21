@@ -14,6 +14,9 @@ class Resume extends Model {
        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
 
+    public function rated(){
+        return new Rating();
+    }
     public function getResumes()
     {
         $resumes = $this->latest('id')->get();//Беремо із бази всі дані і сортуємо за спаданням по id
