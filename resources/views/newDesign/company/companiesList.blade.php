@@ -24,11 +24,11 @@
                             <span class = "ratingsTitle">Рейтинг:</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
-                                <span class="findLike" id="{{$company->id}}_1">{{$rating->getLikes($company)}}</span>
+                                <span class="findLike" id="{{route('res.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                                <span class="findDislike" id="{{$company->id}}_-1">{{$rating->getDisLikes($company)}}</span>
+                                <span class="findDislike" id="{{route('res.rate', $company->id)}}_-1">{{$company->rated()->getLikes($company)}}</span>
                             </span>
                             <span class="likeError"></span>
                         </div>
@@ -61,14 +61,12 @@
         e.preventDefault();
 
         var elementId = (this.nextElementSibling.getAttribute('id')).split('_')[0];
-        var routeUri = "{{ route('com.rate', $company->id) }}".replace(String({!! $company->id !!}), elementId);
         var log = Boolean({!! Auth::check() !!});
-
         if (log != 1) {
             $(this.parentNode.parentNode.lastElementChild).text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
             return false;
         }
-        liker(e.target, routeUri);
+        liker(e.target, elementId);
     });
 </script>
 
