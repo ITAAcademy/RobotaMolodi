@@ -29,7 +29,7 @@
                     </span>
                     <span class="morph">
                         {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                        <span class="findDislike" id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getLikes($vacancy)}}</span>
+                        <span class="findDislike" id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getDisLikes($vacancy)}}</span>
                     </span>
                     <span class="likeError"></span>
                 </div>
