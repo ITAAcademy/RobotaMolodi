@@ -184,7 +184,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
         if(!Auth::check() && $resume->published != 1) {
             $view ="Resume.noAccessResume";
         }
-
         $countLike = Rating::getLikes($resume);
         $countDisLike = Rating::getDislikes($resume);
 
@@ -345,6 +344,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
     }
 
     public function updatePablishDate($id){
+//        dd($id);
         $resume = Resume::find($id);
         $resume->touch();
         return $resume->updated_at->format('j m Y');
@@ -363,5 +363,4 @@ class ResumeController extends Controller {// Клас по роботі з ре
             return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
     }
-
 }
