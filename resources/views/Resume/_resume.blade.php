@@ -1,30 +1,166 @@
-{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}
+{{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
+
+<link href="{{ asset('/css/cabinet/cabinetMyResume.css') }}" rel="stylesheet">
+{!!Form::open(['route' => 'cabinet.index', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
+<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
+<input type = "hidden" name = "filterValue" id = "filterValue"/>
+{!!Form::close()!!}
+
+{{--{!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}--}}
+{{--<input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">--}}
+{{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+
     @forelse ($resumes as $resume)
-        <article>
-            <div class="list">
-                <a href="{!!\Illuminate\Support\Facades\URL::to('resume',[$resume->id])!!}" class="link">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="list-group-item-heading panel-title">{{$resume->branch}}
-                                <span class="text-info" style="color: #555555;">{{$resume->position}}</span>  &#183; {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
-                                <span class="text-muted text-right pull-right">
-                                    <h5 id="{{$resume->id}}" title="{{ date('j.m.Y, H:i:s', strtotime($resume->updated_at))}}">
-                                        <script>
-                                            $('#'+'{{$resume->id}}').text(FormatDate({{strtotime($resume->updated_at)}}));
-                                        </script>
-                                    </h5>
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <h4 class="list-group-item-heading" style="color: #555555">{{ $resume->City()->name}}</h4>
-                            <h4 class="list-group-item-heading" style="color: #555555">{{ $resume->Industry()->name}}</h4>
-                        </div>
-                    </div>
-                </a>
+    <div class="one-resume-for-cabinet">
+        <div class="row">
+            <div class="col-xs-12 col-md-2">
+                <div class="panel panel-orange" id="vimg">
+                    <a href="{{route('resume.show', $resume->id)}}">
+                        @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
+                            {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @else
+                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                        @endif
+                    </a>
+                </div>
             </div>
-        </article>
+            <div class="col-xs-12 col-md-10">
+                <div class="panel-heading-cabinet-resume">
+                    <p class="position-cabinet-resume">
+                        <a class="orangColor-cabinet-resume-name" href="{{route('resume.show', $resume->id)}}">{!!$resume->position!!}</a>
+                        <br>
+                    </p>
+                    <p class="price-cabinet-resume">
+                        <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
+                    </p>
+                    <p class="description-cabinet-resume">{!! strip_tags($resume->description) !!}</p>
+                    <p class="name-cabinet-resume"> {!!$resume->name_u!!}</p>
+                </div>
+                <div>
+                    <p class="cityTime-cabinet-resume">
+                        <span class="description-cabinet-resume">{{$resume->City()->name}}</span>
+                        <span id="yellowCircle-cabinet-resume">&#183;</span>
+                        <span id="updateDate">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span>видалити</span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/edit">
+                        {!! Html::image('image/edit.png', 'del') !!}
+                        <span>редагувати</span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet-resume" href="#">
+                        {!! Html::image('image/podiumOrenge.png', 'del') !!}
+                        <span> розмістити в ТОПі</span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet-resume" id="updateDateRes" href="{{$resume->id}}">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span>Оновити дату вакансіїї</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="line-sort-box">
+        <div id="changeImageBox" class="modal fade">
+            @include('newDesign.cropModal')
+        </div>
     @empty
-        <span>Зараз у Вас немає резюме. <a href="{{ url('/resume/create') }}">Створiть</a></span>
+        <span>Зараз у Вас немає резюме. <a href="{{ url('/resume/create') }}"> Створiть</a></span>
+
     @endforelse
-{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}
+{{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
+
+{!!Html::script('js/crop.js')!!}
+<script>
+    $(document).ready(function () {
+        $('#changeImage').on('click', function () {
+            $('#fileImg').click();
+        });
+
+        $('#fileImg').on('change', function (e) {
+            $('#changeImageBox').modal({
+                show: true,
+                backdrop: 'static'
+            });
+            crop(e, 'img-src', '#crop', '#changeImageBox');
+        });
+
+        $('#changeImageBox').on('hidden.bs.modal', function () {
+            if($('#coords').val()){
+                var $input = $("#fileImg");
+                var fd = new FormData;
+                fd.append('fileImg', $input.prop('files')[0]);
+                fd.append('coords', $('.coords').val());
+                fd.append('id', $('.coords').attr('data-id'));
+                $.ajax({
+                    url: '{{ route('upimg') }}',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        $('#vimg img').attr('src', window.location.origin + '/' + data);
+                    }
+                });
+            }
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        });
+
+        $('#deleteImage').on('click', function () {
+            if(ConfirmDelete()){
+                $.ajax({
+                    url: '{{ route('deleteimg') }}',
+                    data: {'id' : $('.coords').attr('data-id')},
+                    type: 'POST',
+                    success: function (data) {
+                        $('#vimg img').attr('src', window.location.origin + '/' + data);
+                    }
+                })
+            }
+        })
+    });
+
+    function ConfirmDelete() {
+        var conf = confirm("Ви дійсно хочете видалити резюме?");
+
+        if(conf){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    $('#updateDateRes').click(function (e) {
+        var that = $('#updateDate').attr('href');
+        e.preventDefault();
+        $.ajax({
+            url: '{{ route('updateCabinetResumeDate', $resume->id) }}',
+            method: 'post',
+            success: function (data) {
+                that.text(data);
+                that.css('backgroundColor','orange');
+                that.animate({ backgroundColor: "white" }, "slow");
+            }
+        })
+    })
+</script>

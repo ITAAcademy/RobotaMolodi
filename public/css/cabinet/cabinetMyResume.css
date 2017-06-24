@@ -1,0 +1,60 @@
+.one-resume-for-cabinet{
+    margin-top: 15px;
+}
+hr.line-sort-box{
+    border-top: 1px solid #cccccc;
+    margin-top: 5px;
+}
+.orangColor-cabinet-resume-name{
+    color: #4F4F4F;
+    font-size: 24px;
+    font-family: SegoeUIRegular;
+}
+.orangColor-cabinet-resume-name:hover,
+.orangColor-cabinet-resume-name:focus{
+    color: #f68c06;
+}
+a.orangColor-cabinet-resume-name{
+    text-decoration: none;
+}
+.price-cabinet-resume{
+    color: #CD2626;
+    font-size: 18px;
+    font-weight: bold;
+}
+.description-cabinet-resume{
+    color: #696969;
+    font-size: 16px;
+    font-family: SegoeUIRegular;
+    margin: 0;
+    line-height: normal;
+}
+.name-cabinet-resume{
+    font-size: 18px;
+    color: #f26522;
+    font-family: SegoeUIRegular;
+}
+#yellowCircle-cabinet-resume{
+    color: orange;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    font-weight: 900;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.orangColor-cabinet-resume{
+    color: #f68c06;
+}
+.orangColor-cabinet-resume span{
+    text-decoration: underline;
+}
+a.orangColor-cabinet-resume:focus,
+a.orangColor-cabinet-resume:hover
+{
+    text-decoration: none;
+    color: #f68c06;
+}
+.orangColor-cabinet-resume img{
+    color: #f68c06;
+    width: 16px;
+}

@@ -1,5 +1,5 @@
-{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}
-    @foreach($vacancies as $vacancy)
+{{--{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}--}}
+@foreach($vacancies as $vacancy)
     <article>
         <a href="/vacancy/{{$vacancy->id}}" class="link">
             <div class="list">
@@ -29,4 +29,4 @@
         </a>
     </article>
     @endforeach
-{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}
+{{--{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}--}}

@@ -55,7 +55,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('nata', function(){return 'Get well, Nataly!';});
 
 //////Search Route//////////////
 Route::any('searchVacancies',['as' => 'searchVacancy' ,'uses' => 'SearchController@showVacancies']);
@@ -139,7 +138,14 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
-$router->resource('cabinet','cabinet\CabinetController');
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('myresumes/{id}',['as' => 'cabinet.my_resumes' ,'uses' => 'cabinet\CabinetController@showMyResumes']);
+    Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
+    Route::get('mycompanies/{id}',['as' => 'cabinet.my_companies' ,'uses' => 'cabinet\CabinetController@showMyCompanies']);
+    Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
+    Route::resource('cabinet','cabinet\CabinetController');
+});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //ProfOrientation
@@ -168,5 +174,8 @@ Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterControlle
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
+//Cabinet Ajax Route
+
+//Route::resource('cabinet.response','cabinet\CabinetController');
 
 //slider

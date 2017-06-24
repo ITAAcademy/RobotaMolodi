@@ -1,4 +1,4 @@
-{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}
+{{--{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}--}}
     <address>
         @foreach($companies as $company)
         <article>
@@ -9,7 +9,7 @@
                     <h3 class="nologo">логотип вiдсутнiй</h3>
                 @endif
             </div>
-            <a href="{{$url}}/{{$company->id}}"  class="link">
+            <a href="/company/{{$company->id}}" class="link">
                 <div class="list">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -24,4 +24,4 @@
         </article>
         @endforeach
     </address>
-{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}
+{{--{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}--}}
