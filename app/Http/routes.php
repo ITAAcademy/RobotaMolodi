@@ -122,7 +122,7 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route
 Route::get('resume/create','ResumeController@create');
-Route::get('resume/{resume}/destroy','ResumeController@destroy');
+Route::get('resume/{resume}/destroy',['as'=>'resumeDestroy','uses' => 'ResumeController@destroy']);
 Route::post('resume/deletephoto','ResumeController@deletePhoto');
 Route::post('resume/block','ResumeController@block');
 

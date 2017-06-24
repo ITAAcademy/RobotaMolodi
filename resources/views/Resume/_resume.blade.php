@@ -1,7 +1,7 @@
 {{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
 
 <link href="{{ asset('/css/cabinet/cabinetMyResume.css') }}" rel="stylesheet">
-{!!Form::open(['route' => 'cabinet.index', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
+{!!Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
 <input type = "hidden" name = "filterValue" id = "filterValue"/>
 {!!Form::close()!!}
@@ -40,7 +40,7 @@
                     <p class="cityTime-cabinet-resume">
                         <span class="description-cabinet-resume">{{$resume->City()->name}}</span>
                         <span id="yellowCircle-cabinet-resume">&#183;</span>
-                        <span id="updateDate">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
+                        <span class="updateDate-cabinet-resume">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
                     </p>
                 </div>
             </div>
@@ -49,13 +49,13 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                    <a class="orangColor-cabinet-resume" href="resume/{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span>видалити</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/edit">
+                    <a class="orangColor-cabinet-resume" href="resume/{{$resume->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
                         <span>редагувати</span>
                     </a>
@@ -67,7 +67,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" id="updateDateRes" href="{{$resume->id}}">
+                    <a class="orangColor-cabinet-resume update-date-cab-res" href="{{$resume->id}}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span>Оновити дату вакансіїї</span>
                     </a>
@@ -150,16 +150,17 @@
         }
     }
 
-    $('#updateDateRes').click(function (e) {
-        var that = $('#updateDate').attr('href');
+    $('.update-date-cab-res').click(function (e) {
+        var href = $(this).attr('href');
+        var dateElement = $('.updateDate-cabinet-resume');
         e.preventDefault();
         $.ajax({
             url: '{{ route('updateCabinetResumeDate', $resume->id) }}',
             method: 'post',
             success: function (data) {
-                that.text(data);
-                that.css('backgroundColor','orange');
-                that.animate({ backgroundColor: "white" }, "slow");
+                dateElement.text(data);
+                dateElement.css('backgroundColor','orange');
+                dateElement.animate({ backgroundColor: "white" }, "slow");
             }
         })
     })

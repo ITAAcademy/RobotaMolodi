@@ -14,7 +14,6 @@
         <div class="col-xs-7 col-md-12 header-tabs">
             <ul class="nav nav-tabs">
                 {{--@yield('titles')--}}
-                {{--Auth()->user()->id--}}
                 @if(Auth()->user())
                 <li role = "presentation" ><a class="link-resume" href={{route('cabinet.my_resumes', Auth()->user()->id)}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> Мої резюме</a></li>
                 <li role = "presentation" ><a class="link-vacancy" href={{route('cabinet.my_vacancies', Auth()->user()->id)}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span> Мої вакансії</a></li>
@@ -29,24 +28,6 @@
         @yield('contents')
     </div>
 <script>
-//    $(document).ready(function () {
-//        $('.contentAjax').html(this.attr('href')).show();
-//
-//    });
-//    $('li[role="presentation"] a').click(function(){
-//        var that = this;
-//        var link = $(that).attr('href');
-////        var link = history.pushState(null,null,$(that).attr('href'));
-//        $.ajax({
-//            url: link,
-//            success: function(data){
-//                $('.contentAjax').show().html(data);
-//            }
-//        });
-//
-//        return false;
-//    })
-
     $(document).ready(function() {
 
         $('li[role="presentation"] a').click(function(e) {

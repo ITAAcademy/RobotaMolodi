@@ -31,20 +31,6 @@ use App\Repositoriy\Crop;
 
 class cabinetController extends Controller {
 
-    private function getResume($id)
-    {
-        if (!is_numeric($id))
-        {
-            abort(404);
-        }
-
-        $resume = Resume::find($id);
-        if(!isset($resume))
-        {
-            abort(404);
-        }
-        return $resume;
-    }
     /**
 	 * Display a listing of the resource.
 	 *
@@ -53,20 +39,13 @@ class cabinetController extends Controller {
 	public function index()
 	{
 	    $resumes = Auth()->user()->GetResumes;
-//	    TODO go to midlware
-	    if(Auth::check())
-        {
-            if(Request::ajax()){
-                return view('Resume._resume', array('resumes' => $resumes));
-            }else{
-                return view('Resume.myResumes')
-                    ->with('resumes', $resumes);
-            }
+        if(Request::ajax()){
+            return view('Resume._resume', array('resumes' => $resumes));
+        }else{
+            return view('Resume.myResumes')
+                ->with('resumes', $resumes);
         }
-        else
-        {
-            return Redirect::to('auth/login');
-        }
+
 		}
 
 
@@ -90,7 +69,6 @@ class cabinetController extends Controller {
         public function showMyCompanies($id, Guard $auth){
             if(Request::ajax()){
                 $companies = auth()->user()->GetCompanies;
-//                dd($companies);
                 return view ('Company._company', array("companies"=>$companies));
             }else{
              return Redirect::to('cabinet');
