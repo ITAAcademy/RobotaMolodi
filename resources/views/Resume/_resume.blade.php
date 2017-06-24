@@ -67,7 +67,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume update-date-cab-res" href="{{$resume->id}}">
+                    <a class="orangColor-cabinet-resume update-date-cab-res" href="{{ route('updateCabinetResumeDate', $resume->id) }}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span>Оновити дату вакансіїї</span>
                     </a>
@@ -155,7 +155,7 @@
         var dateElement = $('.updateDate-cabinet-resume');
         e.preventDefault();
         $.ajax({
-            url: '{{ route('updateCabinetResumeDate', $resume->id) }}',
+            url: href,
             method: 'post',
             success: function (data) {
                 dateElement.text(data);
