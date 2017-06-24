@@ -18,6 +18,10 @@ class Vacancy extends Model {
         return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
 
+    public function rated(){
+        return new Rating();
+    }
+
 //Read and return company
     public function ReadCompany()
     {

@@ -53,6 +53,10 @@ class Company extends Eloquent {
     public function rates(){
         return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
+    //    TODO: need refactor
+    public function rated(){
+        return new Rating();
+    }
 
     public function ReadUser()
     {
