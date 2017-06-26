@@ -21,8 +21,8 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('cabinet') }}" class="afterChange">
-                    <span>ОСОБИСТИЙ КАБІНЕТ</span>
+                <a href="{{ url('news') }}" class="afterChange">
+                    <span>НОВИНИ</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
