@@ -19,8 +19,33 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('aboutus') }}" class="afterChange">
+                    <span>ПРО НАС</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('news') }}" class="afterChange">
                     <span>НОВИНИ</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('https://intita.com/courses') }}" class="afterChange" target="_blank">
+                    <span>НАВЧАННЯ</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('http://www.profitday.info') }}" class="afterChange" target="_blank">
+                    <span>ДНІ КАР'ЄРИ</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('https://profitday.info/allcompanies') }}" class="afterChange" target="_blank">
+                    <span>ПАРТНЕРИ</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('/contacts') }}" class="afterChange">
+                    <span>КОНТАКТИ</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
