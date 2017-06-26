@@ -45,9 +45,9 @@
             <div class="col-md-6 col-md-offset-4">
                 <div class="checkbox">
                     <label>
-                        <input required type="checkbox" name="remember"><span>C</span>
-                        <a href="{{ url('https://intita.com/courses')}}" target="_blank">Политикой использования</a>
-                        <span>я согласен</span>
+                        <input required type="checkbox" name="remember"><span>З</span>
+                        <a href="{{ url('https://intita.com/courses')}}" target="_blank">політикою використання</a>
+                        <span>я згоден</span>
                     </label>
                 </div>
                 <button type="submit" tabindex="1" class="btn btn-primary register-button">
