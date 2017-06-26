@@ -90,7 +90,7 @@ Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 
 Route::model('vacancy/{vacancy}/destroy','App\Models\Vacancy');
 
-Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
+Route::get('vacancy/{vacancy}/destroy',['as' =>'vacancyDestroy', 'uses' => 'Vacancy\VacancyController@destroy']);
 
 Route::any('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
 
@@ -144,6 +144,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
     Route::get('mycompanies/{id}',['as' => 'cabinet.my_companies' ,'uses' => 'cabinet\CabinetController@showMyCompanies']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
+
     Route::resource('cabinet','cabinet\CabinetController');
 });
 

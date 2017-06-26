@@ -60,9 +60,6 @@ class cabinetController extends Controller {
         public function showMyVacancies($id, Guard $auth){
         if(Request::ajax()){
             $vacancies = auth()->user()->ReadUserVacancies;
-//            $vacancy = Vacancy::find($id);
-//            $cities = $vacancies->Cities();
-//            dd($vacancy);
             return view ('vacancy._vacancy', array("vacancies"=>$vacancies));
         }else{
             return Redirect::to('cabinet');

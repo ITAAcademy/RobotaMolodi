@@ -2,7 +2,7 @@
 
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 
-{!!Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
+{!!Form::open(['route' => 'vacancyDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
 <input type = "hidden" name = "filterValue" id = "filterValue"/>
 {!!Form::close()!!}
@@ -47,13 +47,13 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="vacancy/{{$vacancy->id}}/destroy" onclick="return ConfirmDelete();">
+                    <a class="orangColor-cabinet" href="/vacancy/{{$vacancy->id}}/destroy" onclick="return ConfirmDelete();">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span>видалити</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="vacancy/{{$vacancy->id}}/edit">
+                    <a class="orangColor-cabinet" href="/vacancy/{{$vacancy->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
                         <span>редагувати</span>
                     </a>
@@ -65,7 +65,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet update-date-cab-vac" href="{{ route('updateCabinetVacancyDate', $vacancy->id) }}">
+                    <a class="orangColor-cabinet update-date-cab-vac" href="{{ route('updateVacancyDate', $vacancy->id) }}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span>Оновити дату вакансіїї</span>
                     </a>
@@ -78,9 +78,17 @@
 {{--{!! $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)) !!}--}}
 
 <script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        });
+
+    });
 
     function ConfirmDelete() {
-        var conf = confirm("Ви дійсно хочете видалити резюме?");
+        var conf = confirm("Ви дійсно хочете видалити вакансію?");
 
         if(conf){
             return true;
