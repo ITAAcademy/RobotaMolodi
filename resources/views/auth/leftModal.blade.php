@@ -10,8 +10,6 @@
                 <span> | </span>
                 <a class="local-en">en</a>
                 <span> | </span>
-                <a class="local-ru">ru</a>
-                <span> |</span>
             </div>
         </div>
         <div class="text-left-modal">
