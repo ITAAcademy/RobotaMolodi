@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-2">
                 <div class="panel panel-orange" id="vimg">
-                    <a href="{{route('newDesign.company.show', $company->id)}}">
+                    <a href="{{route('company.show', $company->id)}}">
                         @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
                             {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
@@ -23,15 +23,15 @@
             <div class="col-xs-12 col-md-10">
                 <div class="panel-heading-cabinet">
                     <p class="position-cabinet">
-                        <a class="orangColor-cabinet-name" href="{{route('newDesign/company.show', $company->id)}}">{{$company->company_name}}</a>
+                        <a class="orangColor-cabinet-name" href="{{route('company.show', $company->id)}}">{{$company->company_name}}</a>
                         <br>
                     </p>
                     <p class="description-cabinet">{!! strip_tags($company->description) !!}</p>
-                    <p class="name-cabinet"> {{ $company->Industry()->name}}</p>
+                    {{--<p class="name-cabinet"> {{ $company->Industry()->name}}</p>--}}
                 </div>
                 <div>
                     <p class="cityTime-cabinet">
-                        <span class="description-cabinet">@foreach($company->Cities()->get() as $city){{ $city->name}} @endforeach</span>
+{{--                        <span class="description-cabinet">@foreach($company->Cities() as $city){{ $city->name}} @endforeach</span>--}}
                         <span id="yellowCircle-cabinet">&#183;</span>
                         <span class="updateDate-cabinet-vac">{{ date('j m Y', strtotime($company->updated_at))}}</span>
                     </p>
