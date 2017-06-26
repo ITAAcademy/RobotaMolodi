@@ -10,8 +10,6 @@
                 <span> | </span>
                 <a class="local-en">en</a>
                 <span> | </span>
-                <a class="local-ru">ru</a>
-                <span> |</span>
             </div>
         </div>
         <div class="text-left-modal">
@@ -48,6 +46,8 @@
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
                     <span>КОНТАКТИ</span>
+                <a href="{{ url('news') }}" class="afterChange">
+                    <span>НОВИНИ</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
@@ -91,9 +91,9 @@
         <div>
             <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span> <span>robotamolodi@gmail.com</span>
         </div>
-        <div>
-            <i class="fa fa-skype icon-left-modal" aria-hidden="true"></i> <span> robotamolodi</span>
-        </div>
+        {{--<div>--}}
+            {{--<i class="fa fa-skype icon-left-modal" aria-hidden="true"></i> <span> robotamolodi</span>--}}
+        {{--</div>--}}
         <hr class="modal-hr col-xs-10">
         <div id="share-txt">
             <span>Поділитись в соцмережах:</span>
