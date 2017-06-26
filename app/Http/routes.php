@@ -90,7 +90,7 @@ Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 
 Route::model('vacancy/{vacancy}/destroy','App\Models\Vacancy');
 
-Route::get('vacancy/{vacancy}/destroy','Vacancy\VacancyController@destroy');
+Route::get('vacancy/{vacancy}/destroy',['as' =>'vacancyDestroy', 'uses' => 'Vacancy\VacancyController@destroy']);
 
 Route::any('vacancy/{vacancy}/update','Vacancy\VacancyController@update');
 
@@ -122,7 +122,7 @@ Route::get('company/{company}/destroy','Company\CompanyController@destroy');
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route
 Route::get('resume/create','ResumeController@create');
-Route::get('resume/{resume}/destroy','ResumeController@destroy');
+Route::get('resume/{resume}/destroy',['as'=>'resumeDestroy','uses' => 'ResumeController@destroy']);
 Route::post('resume/deletephoto','ResumeController@deletePhoto');
 Route::post('resume/block','ResumeController@block');
 
@@ -144,6 +144,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
     Route::get('mycompanies/{id}',['as' => 'cabinet.my_companies' ,'uses' => 'cabinet\CabinetController@showMyCompanies']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
+
     Route::resource('cabinet','cabinet\CabinetController');
 });
 

@@ -1,7 +1,8 @@
 {{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
 
-<link href="{{ asset('/css/cabinet/cabinetMyResume.css') }}" rel="stylesheet">
-{!!Form::open(['route' => 'cabinet.index', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
+<link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
+
+{!!Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
 <input type = "hidden" name = "filterValue" id = "filterValue"/>
 {!!Form::close()!!}
@@ -11,7 +12,7 @@
 {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
     @forelse ($resumes as $resume)
-    <div class="one-resume-for-cabinet">
+    <div class="one-for-cabinet">
         <div class="row">
             <div class="col-xs-12 col-md-2">
                 <div class="panel panel-orange" id="vimg">
@@ -25,22 +26,22 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-10">
-                <div class="panel-heading-cabinet-resume">
-                    <p class="position-cabinet-resume">
-                        <a class="orangColor-cabinet-resume-name" href="{{route('resume.show', $resume->id)}}">{!!$resume->position!!}</a>
+                <div class="panel-heading-cabinet">
+                    <p class="position-cabinet">
+                        <a class="orangColor-cabinet-name" href="{{route('resume.show', $resume->id)}}">{!!$resume->position!!}</a>
                         <br>
                     </p>
-                    <p class="price-cabinet-resume">
+                    <p class="price-cabinet">
                         <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
                     </p>
-                    <p class="description-cabinet-resume">{!! strip_tags($resume->description) !!}</p>
-                    <p class="name-cabinet-resume"> {!!$resume->name_u!!}</p>
+                    <p class="description-cabinet">{!! strip_tags($resume->description) !!}</p>
+                    <p class="name-cabinet"> {!!$resume->name_u!!}</p>
                 </div>
                 <div>
-                    <p class="cityTime-cabinet-resume">
-                        <span class="description-cabinet-resume">{{$resume->City()->name}}</span>
-                        <span id="yellowCircle-cabinet-resume">&#183;</span>
-                        <span id="updateDate">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
+                    <p class="cityTime-cabinet">
+                        <span class="description-cabinet">{{$resume->City()->name}}</span>
+                        <span id="yellowCircle-cabinet">&#183;</span>
+                        <span class="updateDate-cabinet">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
                     </p>
                 </div>
             </div>
@@ -49,25 +50,25 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                    <a class="orangColor-cabinet" href="resume/{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span>видалити</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" href="{{$resume->id}}/edit">
+                    <a class="orangColor-cabinet" href="resume/{{$resume->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
                         <span>редагувати</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" href="#">
+                    <a class="orangColor-cabinet" href="#">
                         {!! Html::image('image/podiumOrenge.png', 'del') !!}
                         <span> розмістити в ТОПі</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet-resume" id="updateDateRes" href="{{$resume->id}}">
+                    <a class="orangColor-cabinet update-date-cab-res" href="{{ route('updateCabinetResumeDate', $resume->id) }}">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         <span>Оновити дату вакансіїї</span>
                     </a>
@@ -150,16 +151,17 @@
         }
     }
 
-    $('#updateDateRes').click(function (e) {
-        var that = $('#updateDate').attr('href');
+    $('.update-date-cab-res').click(function (e) {
+        var href = $(this).attr('href');
+        var dateElement = $('.updateDate-cabinet');
         e.preventDefault();
         $.ajax({
-            url: '{{ route('updateCabinetResumeDate', $resume->id) }}',
+            url: href,
             method: 'post',
             success: function (data) {
-                that.text(data);
-                that.css('backgroundColor','orange');
-                that.animate({ backgroundColor: "white" }, "slow");
+                dateElement.text(data);
+                dateElement.css('backgroundColor','orange');
+                dateElement.animate({ backgroundColor: "white" }, "slow");
             }
         })
     })
