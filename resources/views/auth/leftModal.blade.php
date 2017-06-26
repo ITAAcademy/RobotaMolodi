@@ -46,8 +46,6 @@
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
                     <span>КОНТАКТИ</span>
-                <a href="{{ url('news') }}" class="afterChange">
-                    <span>НОВИНИ</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
