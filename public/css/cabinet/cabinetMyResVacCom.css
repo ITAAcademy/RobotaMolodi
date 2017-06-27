@@ -1,6 +1,9 @@
 .one-for-cabinet{
     margin-top: 15px;
 }
+.one-for-cabinet a{
+    text-decoration: none;
+}
 hr.line-sort-box{
     border-top: 1px solid #cccccc;
     margin-top: 5px;
@@ -57,4 +60,10 @@ a.orangColor-cabinet:hover
 .orangColor-cabinet img{
     color: #f68c06;
     width: 16px;
+}
+.nologo-cabinet{
+    text-align: center;
+    color: #f48952;
+    margin-top: 40px;
+    text-decoration: none;
 }

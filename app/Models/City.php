@@ -23,7 +23,10 @@ class City extends Model {
     {
         return $this->hasMany('App\Models\Resume');
     }
-
+    public function Companies()
+    {
+        return $this->belongsToMany('App\Models\Company','company_city');
+    }
     public function GetCollection($cityId,$industryId)
     {
         return DB::table('vacancies')->select()->join('vacancy_city', 'vacancy_city.vacancy_id', '=','vacancies.id')->
