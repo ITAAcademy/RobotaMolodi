@@ -1,6 +1,11 @@
 .nav-tabs{
     border-bottom: 0px solid;
 }
+.text-left-modal .list-modal-left-register,
+.text-left-modal .list-modal-left,
+.text-left-modal .minilogo {
+    text-transform: uppercase;
+}
 #rightModal input[type=checkbox]{
     height: auto;
 }
