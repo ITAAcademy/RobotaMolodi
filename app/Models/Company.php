@@ -34,7 +34,11 @@ class Company extends Eloquent {
         'industry_id' => 'required',
         'city_id' => 'required',
     );
+    public function Cities()
+    {
+        return $this->belongsToMany('App\Models\City','company_city');
 
+    }
     public function getErrorsMessages()
     {
         return $this->errorsMessages;

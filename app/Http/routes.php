@@ -117,7 +117,7 @@ Route::resource('company.response','Company\CommentsController');
 
 $router->resource('company','Company\CompanyController');
 
-Route::get('company/{company}/destroy','Company\CompanyController@destroy');
+Route::get('company/{company}/destroy',['as'=>'companyDestroy', 'uses' => 'Company\CompanyController@destroy']);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route

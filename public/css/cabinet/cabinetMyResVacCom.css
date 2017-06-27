@@ -1,6 +1,9 @@
 .one-for-cabinet{
     margin-top: 15px;
 }
+.one-for-cabinet a{
+    text-decoration: none;
+}
 hr.line-sort-box{
     border-top: 1px solid #cccccc;
     margin-top: 5px;
@@ -58,10 +61,17 @@ a.orangColor-cabinet:hover
     color: #f68c06;
     width: 16px;
 }
+.nologo-cabinet{
+    text-align: center;
+    color: #f48952;
+    margin-top: 40px;
+    text-decoration: none;
+}
 .cabinet-buttons .list-inline a:hover,
 .cabinet-buttons .list-inline a:focus{
     text-decoration: underline;
     color: #F68C06;
     font-size: 18px;
     /*font-family: "SegoeUIRegular";*/
+
 }

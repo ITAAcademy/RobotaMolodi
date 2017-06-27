@@ -50,13 +50,13 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="resume/{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
+                    <a class="orangColor-cabinet" href="/resume/{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         <span>видалити</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="resume/{{$resume->id}}/edit">
+                    <a class="orangColor-cabinet" href="/resume/{{$resume->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
                         <span>редагувати</span>
                     </a>
