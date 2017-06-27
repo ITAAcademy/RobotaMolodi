@@ -67,3 +67,11 @@ a.orangColor-cabinet:hover
     margin-top: 40px;
     text-decoration: none;
 }
+.cabinet-buttons .list-inline a:hover,
+.cabinet-buttons .list-inline a:focus{
+    text-decoration: underline;
+    color: #F68C06;
+    font-size: 18px;
+    /*font-family: "SegoeUIRegular";*/
+
+}
