@@ -10,51 +10,74 @@
                 <span> | </span>
                 <a class="local-en">en</a>
                 <span> | </span>
-                <a class="local-ru">ru</a>
-                <span> |</span>
             </div>
         </div>
         <div class="text-left-modal">
             <div class="col-xs-12 minilogo">
                 <a href="{{ url('/') }}" class="afterChange">
-                    {!! Html::image('image/minilogo.png','Головна') !!}<span>   ГОЛОВНА</span>
+                    {!! Html::image('image/minilogo.png','Головна') !!}<span>   головна</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('/') }}" class="afterChange">
-                    <span>ГОЛОВНА</span>
+                <a href="{{ url('aboutus') }}" class="afterChange">
+                    <span>про нас</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('news') }}" class="afterChange">
+                    <span>новини</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('https://intita.com/courses') }}" class="afterChange" target="_blank">
+                    <span>навчання</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('http://www.profitday.info') }}" class="afterChange" target="_blank">
+                    <span>дні кар'єри</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('https://profitday.info/allcompanies') }}" class="afterChange" target="_blank">
+                    <span>партнери</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('/contacts') }}" class="afterChange">
+                    <span>контакти</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('sresume') }}" class="afterChange">
-                    <span>ВСІ РЕЗЮМЕ</span>
+                    <span>всі резюме</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/') }}" class="afterChange">
-                    <span>ВСІ ВАКАНСІЇ</span>
+                    <span>всі вакансії</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('scompany') }}" class="afterChange">
-                    <span>ВСІ КОМПАНІЇ</span>
+                    <span>всі компанії</span>
                 </a>
             </div>
             @if (Auth::guest())
                 <div class="col-xs-12 list-modal-left-register">
                     <a href="{{ url('/auth/register') }}">
-                        <span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> РЕЄСТРАЦІЯ
+                        <span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> реєстрація
                     </a>
                 </div>
                 <div class="col-xs-12 list-modal-left">
                     <a href="{{ url('/auth/login') }}">
-                        <span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> ВХІД
+                        <span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> вхід
                     </a>
                 </div>
             @else
                 <div class="col-xs-12 list-modal-left">
                     <a href="{{ url('/cabinet') }}">
-                        <span>ОСОБИСТИЙ КАБІНЕТ</span>
+                        <span>особистий кабінет</span>
                     </a>
                 </div>
             @endif
@@ -66,9 +89,9 @@
         <div>
             <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span> <span>robotamolodi@gmail.com</span>
         </div>
-        <div>
-            <i class="fa fa-skype icon-left-modal" aria-hidden="true"></i> <span> robotamolodi</span>
-        </div>
+        {{--<div>--}}
+        {{--<i class="fa fa-skype icon-left-modal" aria-hidden="true"></i> <span> robotamolodi</span>--}}
+        {{--</div>--}}
         <hr class="modal-hr col-xs-10">
         <div id="share-txt">
             <span>Поділитись в соцмережах:</span>

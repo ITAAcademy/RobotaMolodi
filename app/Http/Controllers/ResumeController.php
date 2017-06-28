@@ -358,5 +358,4 @@ class ResumeController extends Controller {// Клас по роботі з ре
             return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
     }
-
 }
