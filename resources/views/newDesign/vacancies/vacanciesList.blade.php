@@ -24,11 +24,11 @@
                 <div class="ratings">
                     <span class = "ratingsTitle">Рейтинг:</span>
                     <span class="morph">
-                        {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                        {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                         <span class="findLike" id="{{route('vac.rate', $vacancy->id)}}_1">{{$vacancy->rated()->getLikes($vacancy)}}</span>
                     </span>
                     <span class="morph">
-                        {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                        {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
                         <span class="findDislike" id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getDisLikes($vacancy)}}</span>
                     </span>
                     <span class="likeError"></span>
@@ -49,19 +49,3 @@
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.vacancies'])
-
-{!!Html::script('js/liker.js')!!}
-<script>
-    $('.likeDislike').click(function (e) {
-        e.preventDefault();
-
-        var elementId = (this.nextElementSibling.getAttribute('id')).split('_')[0];
-        var log = Boolean({!! Auth::check() !!});
-
-        if (log != 1) {
-            $(this.parentNode.parentNode.lastElementChild).text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
-            return false;
-        }
-        liker(e.target, elementId);
-    });
-</script>

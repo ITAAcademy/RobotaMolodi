@@ -141,7 +141,7 @@ class Company extends Eloquent {
 
     public function getUserVacancies()
     {
-        $vacancies = $this->hasMany('App\Models\Vacancy','company_id')->get();
+        $vacancies = $this->hasMany('App\Models\Vacancy','company_id');
 
         return $vacancies;//$this->hasMany('App\Models\Vacancy','company_id')->get();
     }
@@ -149,25 +149,24 @@ class Company extends Eloquent {
     public function scopeByIndustries($query, $industries)
     {
         if (!empty($industries)) {
-            return $query->whereIn('branch', $industries);
+            return $query->whereIn('industry_id', $industries);
         }else{
             return $query;
         }
     }
 
     public function scopeByRegions($query, $regions){
-        if(!empty($regions)){
-            return $query->whereHas('Cities', function($q) use ($regions) {
-                $q->whereIn('vacancy_city.city_id',$regions);
-            });
+        if (!empty($regions)) {
+            return $query->whereIn('city_id', $regions);
         }else{
-            return $regions;
+            return $query;
         }
     }
 
     public function scopeBySpecialisations($query, $specialisations){
+        $specialisations = Vacancy::where('position', $specialisations)->get()->pluck('company_id')->toArray();
         if (!empty($specialisations)) {
-            return $query->whereIn('position', $specialisations);
+            return $query->whereIn('company.id', $specialisations);
         }else{
             return $query;
         }

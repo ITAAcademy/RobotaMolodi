@@ -185,14 +185,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $view ="Resume.noAccessResume";
         }
 
-        $countLike = Rating::getLikes($resume);
-        $countDisLike = Rating::getDislikes($resume);
-
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city)
-            ->with('countLike', $countLike)
-            ->with('countDisLike', $countDisLike);
+            ->with('city',$city);
     }
 
     /**

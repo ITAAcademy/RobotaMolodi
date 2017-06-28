@@ -21,11 +21,11 @@
             <div class="ratings">
                 <span class = "ratingsTitle">Рейтинг:</span>
                 <span class="morph">
-                    {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
+                    {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                     <span class="findLike" id="{{route('res.rate', $resume->id)}}_1">{{$resume->rated()->getLikes($resume)}}</span>
                 </span>
                 <span class="morph">
-                    {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
+                    {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
                     <span class="findDislike" id="{{route('res.rate', $resume->id)}}_-1">{{$resume->rated()->getDisLikes($resume)}}</span>
                 </span>
                 <span class="likeError"></span>
@@ -51,50 +51,3 @@
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.resumes'])
-
-{!!Html::script('js/liker.js')!!}
-<script>
-    $('.likeDislike').click(function (e) {
-        e.preventDefault();
-
-        var elementId = (this.nextElementSibling.getAttribute('id')).split('_')[0];
-        var log = Boolean({!! Auth::check() !!});
-        if (log != 1) {
-            $(this.parentNode.parentNode.lastElementChild).text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
-            return false;
-        }
-        liker(e.target, elementId);
-    });
-</script>
-
-{{--<script>--}}
-    {{--$(document).ready(function () {--}}
-        {{--$('.pag-block-by').click(function () {--}}
-            {{--$('.active-pag-block').removeClass('active-pag-block');--}}
-            {{--$(this).toggleClass('active-pag-block');--}}
-        {{--})--}}
-    {{--})--}}
-{{--</script>--}}
-{{--<script>--}}
-    {{--$(document).ready(function () {--}}
-        {{--function getFilters() {--}}
-            {{--return {--}}
-                {{--regions: $('select[name="selected-region"]').val(),--}}
-                {{--industries: $('select[name="selected-indastry"]').val(),--}}
-                {{--specialisations: $('select[name="selected-specialization"]').val()--}}
-            {{--}--}}
-        {{--}--}}
-
-        {{--$('.getting-list-selected-box').on('change',function () {--}}
-            {{--$.ajax({--}}
-                {{--url: '{{route('filter.resumes')}}',--}}
-                {{--data: getFilters(),--}}
-                {{--success: function(data){--}}
-                    {{--$('.test').html(data);--}}
-                {{--}--}}
-            {{--});--}}
-        {{--})--}}
-    {{--})--}}
-
-
-{{--</script>--}}

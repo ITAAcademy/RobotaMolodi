@@ -226,16 +226,11 @@ class VacancyController extends Controller
             $view ="vacancy.noAccessVacancy";
         }
 
-        $countLike = Rating::getLikes($vacancy);
-        $countDisLike = Rating::getDislikes($vacancy);
-
         return view($view)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
             ->with('cities', $cities)
-            ->with('industry', $industry)
-            ->with('countLike', $countLike)
-            ->with('countDisLike', $countDisLike);
+            ->with('industry', $industry);
     }
 
     /**

@@ -56,12 +56,12 @@
             <div class="ratings">
                 <span class = "ratingsTitle">Рейтинг:</span>
                 <span class="morph">
-                    {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
-                    <span class="findLike" id="{{$vacancy->id}}_1">{{$countLike}}</span>
+                    {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
+                    <span class="findLike" id="{{route('vac.rate', $vacancy->id)}}_1">{{$vacancy->rated()->getLikes($vacancy)}}</span>
                 </span>
                 <span class="morph">
-                    {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                    <span class="findDislike" id="{{$vacancy->id}}_-1">{{$countDisLike}}</span>
+                    {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
+                    <span class="findDislike" id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getDisLikes($vacancy)}}</span>
                 </span>
                 <span class="likeError"></span>
             </div>
@@ -195,20 +195,6 @@
                 }
             })
         })
-    </script>
-
-    {!!Html::script('js/liker.js')!!}
-    <script>
-        $('.likeDislike').click(function (e) {
-            e.preventDefault();
-            var routeUri = "{{ route('vac.rate', $vacancy->id) }}";
-            var log = Boolean({!! Auth::check() !!});
-            if (log != 1) {
-                $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
-                return false;
-            }
-            liker(this, routeUri);
-        });
     </script>
 
 @stop
