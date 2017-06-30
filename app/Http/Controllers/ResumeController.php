@@ -184,14 +184,10 @@ class ResumeController extends Controller {// Клас по роботі з ре
         if(!Auth::check() && $resume->published != 1) {
             $view ="Resume.noAccessResume";
         }
-        $countLike = Rating::getLikes($resume);
-        $countDisLike = Rating::getDislikes($resume);
 
         return view($view)
             ->with('resume',$resume)
-            ->with('city',$city)
-            ->with('countLike', $countLike)
-            ->with('countDisLike', $countDisLike);
+            ->with('city',$city);
     }
 
     /**
@@ -344,7 +340,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
     }
 
     public function updatePablishDate($id){
-//        dd($id);
         $resume = Resume::find($id);
         $resume->touch();
         return $resume->updated_at->format('j m Y');

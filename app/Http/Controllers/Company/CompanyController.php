@@ -141,16 +141,11 @@ class CompanyController extends Controller  {
         $city = City::find($company->city_id);
         $vacancies = Vacancy::where('company_id', $company->id)->get();
 
-        $countLike = Rating::getLikes($company);
-        $countDisLike = Rating::getDislikes($company);
-
         return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
             ->with('city', $city)
-            ->with('vacancies', $vacancies)
-            ->with('countLike', $countLike)
-            ->with('countDisLike', $countDisLike);
+            ->with('vacancies', $vacancies);
     }
 
 	public function edit($id)

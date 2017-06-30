@@ -35,12 +35,12 @@
                 <div class="ratings">
                     <span class = "ratingsTitle">Рейтинг:</span>
                     <span class="morph">
-                        {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike', 'id'=>'like']) !!}
-                        <span class="findLike" id="{{$resume->id}}_1">{{$countLike}}</span>
+                        {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
+                        <span class="findLike" id="{{route('res.rate', $resume->id)}}_1">{{$resume->rated()->getLikes($resume)}}</span>
                     </span>
                     <span class="morph">
-                        {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike', 'id'=>'dislike']) !!}
-                        <span class="findDislike" id="{{$resume->id}}_-1">{{$countDisLike}}</span>
+                        {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
+                        <span class="findDislike" id="{{route('res.rate', $resume->id)}}_-1">{{$resume->rated()->getDisLikes($resume)}}</span>
                     </span>
                     <span class="likeError"></span>
                 </div>
@@ -80,13 +80,6 @@
                 });
             }
         }
-    </script>
-
-    <script>
-        $('.likeDislike').click(function (e) {
-            e.preventDefault();
-            $('.likeError').text("Увійдіть або зареєструйтесь!").css('color', 'red').animate({color: "white"}, "slow");
-        });
     </script>
 
 @stop

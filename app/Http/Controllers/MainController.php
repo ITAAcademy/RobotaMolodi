@@ -62,11 +62,9 @@ class MainController extends Controller
     {
         $vacancies = Vacancy::AllVacancies()->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
-                'rating' => $rating,
             ));
         }
         //Show top vacancies:
@@ -79,7 +77,6 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
-            'rating' => $rating,
         ));
     }
 
@@ -87,11 +84,9 @@ class MainController extends Controller
 
         $companies = Company::latest('id')->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.company.companiesList', array(
                 'companies' => $companies,
-                'rating' => $rating,
             ));
         }
 
@@ -104,7 +99,6 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
-            'rating' => $rating,
         ));
     }
 
@@ -112,11 +106,9 @@ class MainController extends Controller
     {
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
-        $rating = new Rating();
         if(Request::ajax()){
             return view('newDesign.resume.resumesList', array(
                 'resumes' => $resumes,
-                'rating' => $rating,
             ));
         }
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
@@ -128,7 +120,6 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>$this->dataNews(),
             'topVacancy' => $topVacancy,
-            'rating' => $rating,
         ));
     }
     private function dataNews(){

@@ -39,21 +39,13 @@ class FilterController extends Controller
 
     public function companies(Request $request)
     {
-        $coms = Vacancy::byIndustries($request->get('industries', []))
+        $companies = Company::byIndustries($request->get('industries', []))
             ->bySpecialisations($request->get('specialisations', []))
             ->byRegions($request->get('regions', []))
-            ->get();
-
-            $comId = [];
-            foreach ($coms as $com) {
-                $comId[] = $com->company_id;
-            }
-
-            $companies = Company::getCompany($comId)
-                ->byStartDate($request->get('startDate',[]))
-                ->byEndDate($request->get('endDate',[]))
-                ->bySort($request->get('sortDate'))
-                ->paginate();
+            ->byStartDate($request->get('startDate',[]))
+            ->byEndDate($request->get('endDate',[]))
+            ->bySort($request->get('sortDate'))
+            ->paginate();
 
         return view('newDesign.company.companiesList', ['companies' => $companies]);
     }

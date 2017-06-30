@@ -83,6 +83,23 @@
 	{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
 
 	{!!Html::script('js/select2.full.js')!!}
+	{!!Html::script('js/liker.js')!!}
+
+	<script>
+        $(document).ready(function() {
+            $(document).on("click", ".likeDislike", function (e) {
+                e.preventDefault();
+                var authRez = String({!! !Auth::check() !!});
+                var errNode = this.parentElement.parentElement.lastElementChild;
+                if (authRez && !$(errNode).attr('disabled')) {
+                    $(errNode).attr('disabled', true);
+                    $(errNode).text("Авторизуйтесь!").css('color', 'red').animate({color: "white"}, 1000, function () {
+                        $(errNode).attr('disabled', false);
+                    });
+                }
+            });
+        });
+	</script>
 
 		<script type="text/javascript">
 			$(document).ready(function() {
