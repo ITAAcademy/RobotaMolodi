@@ -138,7 +138,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
-Route::group(['middleware' => 'auth'], function()
+Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
 {
     Route::get('myresumes/{id}',['as' => 'cabinet.my_resumes' ,'uses' => 'cabinet\CabinetController@showMyResumes']);
     Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
@@ -146,6 +146,11 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
     Route::resource('cabinet','cabinet\CabinetController');
+});
+
+Route::filter('no-cache',function($route, $request, $response){
+    $response -> headers -> set('Cache-Control', 'nocache, no-store, max-age=0, must-revalidate');
+    $response -> headers -> set('Pragma', 'no-cache');
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

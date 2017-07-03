@@ -50,28 +50,36 @@ class cabinetController extends Controller {
 
 
     public function showMyResumes($id,Guard $auth){
+        $resumes = Auth()->user()->GetResumes;
+//        dd($request);
+//        $request =
         if(Request::ajax()) {
-            $resumes = Auth()->user()->GetResumes;
             return view('Resume._resume', array('resumes' => $resumes));
         } else {
-            return Redirect::to('cabinet');
+            return view('Resume.myResumes')
+                ->with('resumes', $resumes);
+//            return Redirect::to('cabinet');
         }
     }
         public function showMyVacancies($id, Guard $auth){
-        if(Request::ajax()){
             $vacancies = auth()->user()->ReadUserVacancies;
+        if(Request::ajax()){
+
             return view ('vacancy._vacancy', array("vacancies"=>$vacancies));
         }else{
-            return Redirect::to('cabinet');
+            return view('vacancy.myVacancies', array("vacancies"=>$vacancies));
+//            return Redirect::to('cabinet');
         }
 
         }
         public function showMyCompanies($id, Guard $auth){
+            $companies = auth()->user()->GetCompanies;
             if(Request::ajax()){
-                $companies = auth()->user()->GetCompanies;
+
                 return view ('Company._company', array("companies"=>$companies));
             }else{
-             return Redirect::to('cabinet');
+                return view ('Company.myCompanies', array("companies"=>$companies));
+//             return Redirect::to('cabinet');
             }
         }
 
