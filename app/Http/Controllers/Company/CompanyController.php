@@ -55,23 +55,19 @@ class CompanyController extends Controller  {
 	{
         if(Auth::check())
         {
-            $companies = User::find($auth->user()->getAuthIdentifier())->getCompanies()->paginate(25);
-            $url=url('company/');
+            $user = User::find($auth->user()->getAuthIdentifier());
+            $companies = $user->getCompanies()->paginate(25);
 
-            if(count($companies)==0)
-            {
+            $url = url('company/');
+            $mes = null;
+
+            if(count($companies) == 0) {
                 $mes = "Зараз у Вас немає компаній.";
-                return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
             }
-            else
-            {
-                $mes=null;
-//                return view('Company._company', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
-                return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
-            }
-        }
-        else
-        {
+
+            return view('Company.myCompanies', ['companies' => $companies, 'mes'=>$mes, 'url' => $url,]);
+
+        } else {
             return Redirect::to('auth/login');
         }
 	}
