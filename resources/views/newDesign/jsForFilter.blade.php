@@ -14,7 +14,8 @@ $(document).ready(function () {
             regions: $('select[name="selected-region"]').val(),
             industries: $('select[name="selected-indastry"]').val(),
             specialisations: $('select[name="selected-specialization"]').val(),
-            sortDate: $('.sort-date').hasClass('active') ? 'asc' : 'desc',
+            sortRatings: $('.sort-rating').hasClass('toggleFilter') ? 'drop' : $('.sort-rating').hasClass('active') ? 'asc' : 'desc',
+            sortDate: $('.sort-date').hasClass('toggleFilter') ? 'drop' : $('.sort-date').hasClass('active') ? 'asc' : 'desc',
             startDate: $('#datepicker1').val(),
             endDate: $('#datepicker2').val()
         }
@@ -30,11 +31,28 @@ $(document).ready(function () {
         });
     })
 
-   //filter asc/desc
+    //filter ratings
+    $('.sort-by-rating').unbind('click').click(function (e) {
+        $('.sort-rating').toggleClass('active');
+        $('.sort-by-rating').removeClass('hidden');
+        $(this).addClass('hidden');
+        $('.sort-rating').removeClass('toggleFilter');
+        $('.sort-date').addClass('toggleFilter');
+        $.ajax({
+            url: '{{route($urlController)}}',
+            data: getFilters(e),
+            success: function(data){
+                $('.test').html(data);
+            }
+        });
+    });
+    //filter asc/desc
     $('.sort-by-date').unbind('click').click(function (e) {
         $('.sort-date').toggleClass('active');
-        $('.opsion-sort-box').removeClass('hidden');
+        $('.sort-by-date').removeClass('hidden');
         $(this).addClass('hidden');
+        $('.sort-date').removeClass('toggleFilter');
+        $('.sort-rating').addClass('toggleFilter');
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(e),

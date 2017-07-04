@@ -157,9 +157,22 @@ class Vacancy extends Model {
         }
     }
 
+    public function scopeByRating($query, $order){
+
+        if($order == 'drop'){
+            return $query;
+        }
+
+        return $query;
+    }
+
     public function scopeBySort($query, $order){
+        if($order == 'drop'){
+            return $query;
+        }
         return $query->orderBy('updated_at', $order);
     }
+
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
