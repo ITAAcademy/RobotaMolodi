@@ -35,7 +35,7 @@
                         <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
                     </p>
                     <p class="description-cabinet">{!! strip_tags($resume->description) !!}</p>
-                    <p class="name-cabinet"> {!!$resume->name_u!!}</p>
+                    <p class="name-cabinet"> {!!strip_tags($resume->name_u)!!}</p>
                 </div>
                 <div>
                     <p class="cityTime-cabinet">

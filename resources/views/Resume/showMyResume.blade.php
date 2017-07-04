@@ -65,7 +65,7 @@
                         <p class="price-resume">
                             <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
                         </p>
-                        <p class="name-resume"> {!!$resume->name_u!!}</p>
+                        <p class="name-resume"> {!! strip_tags($resume->name_u)!!}</p>
                     </div>
 
                     <div class="ratings">
