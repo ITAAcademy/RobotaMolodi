@@ -52,7 +52,7 @@
 
                 <div class="row textCompany verticalIndent">
 
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 text_com">
                         <div class="ratings">
                             <span class = "ratingsTitle">Рейтинг:</span>
                             <span class="morph">
@@ -67,59 +67,59 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-3 text_com">
                         <span>Аббревиатура: </span>
                     </div>
-                    <div class="col-xs-9">
+                    <div class="col-xs-9 text_com">
                         <span>{{$company->short_name}}</span>
                     </div>
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-3 text_com">
                         <span>Галузь: </span>
                     </div>
                     @if(!empty($industry->name))
-                        <div class="col-xs-9">
+                        <div class="col-xs-9 text_com">
                             <span>{{$industry->name}}</span>
                         </div>
                     @else()
-                        <div class="col-xs-9">
+                        <div class="col-xs-9 text_com">
                             <span>Не вказано</span>
                         </div>
                     @endif
 
                     @if(!empty($company->link))
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text_com">
                             <span>Посилання: </span>
                         </div>
-                        <div class="col-xs-9">
+                        <div class="col-xs-9 text_com">
                             <a class="orangeLinks" href="{{$company->link}}">{{$company->link}}</a>
                         </div>
                     @endif
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-3 text_com">
                         <span>Мiсто: </span>
                     </div>
                     @if(!empty($city->name))
-                        <div class="col-xs-9">
+                        <div class="col-xs-9 text_com">
                             <span>{{$city->name}}</span>
                         </div>
                     @else()
-                        <div class="col-xs-9">
+                        <div class="col-xs-9 text_com">
                             <span>Не вказано</span>
                         </div>
                     @endif
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-3 text_com">
                         <span>Електронна пошта: </span>
                     </div>
-                    <div class="col-xs-9">
+                    <div class="col-xs-9 text_com">
                         <span>{{$company->company_email}}</span>
                     </div>
 
-                    <div class="col-xs-3">
+                    <div class="col-xs-3 text_com">
                         <span>Телефон: </span>
                     </div>
-                    <div class="col-xs-9">
+                    <div class="col-xs-9 text_com">
                         <span>{{$company->phone}}</span>
                     </div>
 
@@ -127,7 +127,7 @@
                         <span class="anagraph verticalIndent">Подробиці </span>
                     </div>
                     <div class="col-xs-12 description">
-                       <span>{!! $company->description !!}</span>
+                       <span>{!! strip_tags($company->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</span>
                     </div>
 
 

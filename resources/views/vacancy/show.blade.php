@@ -48,10 +48,10 @@
                         <a class="greyLinks" tabindex="1" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                        <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                     </div>
 
-                    <div class="ratings">
+                    <div class="ratings text_vac">
                         <span class = "ratingsTitle">Рейтинг:</span>
                         <span class="morph">
                             {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
@@ -65,22 +65,22 @@
                     </div>
 
                     <div>
-                        <div class="text_vac otstup1"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="text_vac"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
+                        <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                     </div>
                     <div>
-                        <div class="text_vac otstup1"><span class="anagraph">Подробиці </span><br>{{strip_tags($vacancy->description)}}</div>
+                        <div class="descriptionStyle"><span class="anagraph">Подробиці </span><br>{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>
                     </div>
                     <div>
-                        <div class="text_data otstup1">
+                        <div class="text_data">
                             @foreach($cities->get() as $city)
                                 <a class="orangeLinks" href="javascript:submit('selectCity', '{{$city->id}}')">
                                     {!!$city->name!!}
                                 </a>
                             @endforeach
-                                <span id="yellowCircleVacancy">&#183;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}
+                                <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                         </div>
                     </div>
 
