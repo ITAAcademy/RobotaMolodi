@@ -1,14 +1,9 @@
-@font-face{
-    -ms-font-family: "SegoeUI";
-    -ms-src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
-    font-family: "SegoeUI";
-    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
+.nologo{
+    text-align: center;
+    color: #f48952;
+    margin-top: 40px
 }
-.row {
-    margin: 0;
-    font-family: "SegoeUI";
-}
-.nologo{  text-align: center; color: #f48952; margin-top: 40px  }
+
 div.case{
     display: block;
     width: 134px;
@@ -35,7 +30,6 @@ div.consult {
     text-align: justify;
 }
 .consult a {
-    font-family: 'Segoe UI';
     color:  #f68c06;
     font-size: 14px;
     font-weight: 500;
@@ -46,7 +40,6 @@ div.consult {
     margin-left: 17px;
 }
 .share {
-    font-family: 'Segoe UI';
     color:  #cc0000;
     font-size: 14.93px;
     font-weight: 600;
@@ -83,7 +76,7 @@ div.social {
 .anagraph {
     color: #f68c06;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
 }
 .greyLinks{
     padding: 0;
@@ -94,7 +87,6 @@ div.social {
     font-weight: 600;
 }
 .description p{
-    font-family: "SegoeUI";
     font-size: 16px;
     text-align:justify;
     word-wrap: break-word;
@@ -173,7 +165,6 @@ ul.pager{
     text-align: center;
     line-height: 44px;
     cursor: pointer;
-    font-family: SegoeUI;
     display: inline-block;
     float: right;
     font-size: 18px;
@@ -188,6 +179,19 @@ ul.pager{
 }
 .btn-commit:hover{
     background-color: #BEE4FF;
+}
+
+.text_com{
+    font-family: 'Segoe UI';
+    color: #6e6e6e;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.description{
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    color: #777777;
 }
 
 

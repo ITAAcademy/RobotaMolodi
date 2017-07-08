@@ -8,7 +8,7 @@
         ]
     )
     )
-    <div class="panel panel-orange" id="vrBlock">
+    <div class="panel" id="vrBlock">
         <div>
             <div class="col-md-3">
                 <div class="panel panel-orange" id="vimg">
@@ -28,7 +28,7 @@
                     <p class="price_resume">
                         {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
                     </p>
-                    <p class="name_resume">{!!$resume->name_u!!}</p>
+                    <p class="name_resume">{!! strip_tags($resume->name_u) !!}</p>
                     </br>
                 </div>
 
@@ -50,9 +50,8 @@
 
                     <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
 
-                    <p><span class="description-one-resume">Опис: </span></p>
-                    <p class="description-footer-resume"> {!!strip_tags($resume->description,'<p>')!!}</p>
-
+                    <p class="description-one-resume"><span>Опис:</span></p>
+                    <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                     <div class="button-city-time">
                         <p class="cityTime_resume">
                             <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
