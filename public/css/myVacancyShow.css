@@ -4,6 +4,7 @@
     src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.eot') format('truetype');
     src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.woff') format('truetype');
 }
+
 #vrBlock a{
     text-decoration: none;
 }
@@ -23,10 +24,11 @@
     color: #f26522;
 }
 .position-myVacancy{
-    font-size: 24px;
-    margin: 0;
-    color: #f26522;
     font-family: SegoeUIRegular;
+    font-size: 18px;
+    color: #f26522;
+    margin: 0;
+    margin-top: 5px;
 }
 .orangColor-myVacancy{
     color: #f68c06;
@@ -39,6 +41,7 @@
 }
 .orangColor-myVacancy-name{
     color: #797979;
+    font-size: 24px;
 }
 .orangColor-myVacancy-name:hover{
     color: #f68c06;
@@ -48,6 +51,7 @@
 }
 .nameCompany-myVacancy{
     color: #f26522;
+    font-size: 18px;
 }
 .nameCompany-myVacancy:hover{
     color: #f26522;
@@ -68,6 +72,7 @@
     color: #CD2626;
     font-size: 18px;
     font-weight: bold;
+    margin: 0px;
 }
 /*.company-name-myVacancy{*/
     /*font-size: 24px;*/

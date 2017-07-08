@@ -48,9 +48,17 @@
                     <a class="orangColor-myVacancy-name" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{!!$vacancy->position!!}</a>
                     <br>
                 </p>
+            </div>
+
+            <div>
                 <p class="price-myVacancy">
-                    <span>{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span>
+                   {{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}
                 </p>
+            </div>
+
+            <div class="position-myVacancy">
+              <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry' {{$vacancy->Industry()->id}})">{{$industry->name}}</a>
+                {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
             </div>
 
             <div class="ratings">
@@ -67,21 +75,19 @@
             </div>
 
             <div>
-                <p class="position-myVacancy">  <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry', {{$vacancy->Industry()->id}})">{{$industry->name}}</a></p>
-                {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
+                <a target="_blank" class="nameCompany-myVacancy" href="/company/{{$company->id}}">{{$company->company_name}}</a>
             </div>
+
             <div>
                 <p class="description-footer-myVacancy">{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
             </div>
-            <div>
-                <a target="_blank" class="nameCompany-myVacancy" href="/company/{{$company->id}}">{{$company->company_name}}</a>
-            </div>
+
             <div>
                 <p class="cityTime-myVacancy">
                     @foreach($cities->get() as $city)
                         <a class="city-myVacancy" href="javascript:submit('selectCity' {{$city->id}})">{{$city->name}} </a>
                     @endforeach
-                    <span id="yellowCircle-myVacancy">&#183;</span> <span id="updateDate">{{ date('j m Y', strtotime($vacancy->updated_at))}}</span>
+                    <span id="yellowCircle-myVacancy">&bull;</span> <span id="updateDate">{{ date('j m Y', strtotime($vacancy->updated_at))}}</span>
                 </p>
             </div>
         </div>

@@ -1,13 +1,3 @@
-@font-face{
-    -ms-font-family: "SegoeUI";
-    -ms-src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
-    font-family: "SegoeUI";
-    src: url('/public/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
-}
-* {
-    margin: 0;
-    font-family: "SegoeUI";
-}
 .nologo{  text-align: center; color: #f48952; margin-top: 40px  }
 
 .case-img{
@@ -110,7 +100,6 @@ i.fa-google-plus-square {
 }
 .panel-headings{
     padding-top: 5px;
-    padding-bottom: 5px;
     padding-right: 0px;
     padding-left: 0px;
     border-bottom-width: 0px;
@@ -119,24 +108,33 @@ i.fa-google-plus-square {
     color: #cc0000;
 }
 .text_vac{
+    font-family: 'Segoe UI';
     padding: 0;
     margin: 0;
-    color: #797979;
+    color: #6e6e6e;
     font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 400;
 }
-.otstup1{
-    margin-top: 5px;
+.descriptionStyle{
+    color: #777777;
 }
+
 .anagraph{
+    font-family: 'Segoe UI';
     color: #f68c06;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
 }
 .text_data{
     color: #777777;
 }
 #yellowCircleVacancy{
-    color: #f68c06;
+    color: #777777;
+    font-size: 16px;
+}
+
+#yellowCircleVacancy span{
     font-weight: 900;
 }
 
@@ -206,11 +204,6 @@ ul{
     padding:0;
     list-style: square;
     list-style-position: inside;
-}
-
-li{
-    color: #f68c06;
-    font-size:16px;
 }
 
 li span{
@@ -298,7 +291,6 @@ input.btn.btn-warning.btn-send:hover{
     border: 1px solid darkorange;
     border-radius: 7px;
     font-size: 20px;
-    font-family: "SegoeUI";
     float: right;
     height: 28px
 }
