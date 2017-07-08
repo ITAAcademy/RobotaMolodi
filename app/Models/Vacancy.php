@@ -163,6 +163,46 @@ class Vacancy extends Model {
             return $query;
         }
 
+       dd(
+           DB::table('vacancies')
+               ->select('*')
+
+               ->join(DB::raw('(SELECT object_id, sum(value) FROM ratings GROUP BY object_id) t'), function($join)
+               {
+                   $join->on('vacancies.id', '=', 'ratings.object_id');
+               })
+           //    ->orderBy('TotalCatches.CatchesPerDay', 'DESC')
+               ->get()
+       );
+
+       return $query->select('*')
+           ->leftJoin('ratings', 'ratings.object_id', '=', 'vacancies.id')
+           ->where('object_type', 'vac')
+       ;
+
+       dd($query->where('id', $query->select('id')->get())->get());
+
+        dd(
+            $query->select("SELECT vacancies.*, sum(ratings.value)
+FROM vacancies LEFT JOIN ratings ON vacancies.id = ratings.object_id
+GROUP BY ratings.object_id
+ORDER BY 2 DESC ")->toSql()
+        );
+/*
+SELECT t1.Id, SUM(t2.price)
+FROM t1 LEFT JOIN t2 ON t1.Id = t2.t1id
+GROUP BY t1.Id
+ORDER BY 2 DESC*/
+
+/*
+dd($query->get()->filter(function ($value) {
+    return $value->id == 70;
+}));
+*/
+return $query->select('select * from (select vacancies.*, sum(ratings.value) from vacancies
+join ratings on ratings.object_id = vacancies.id and ratings.object_type = "vac"
+group by object_id order by sum(ratings.value) DESC) t');
+
         return $query;
     }
 
