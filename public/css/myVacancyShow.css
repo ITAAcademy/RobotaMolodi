@@ -8,6 +8,53 @@
 #vrBlock a{
     text-decoration: none;
 }
+
+/*----------------------*/
+.share #share-vacancy{
+    margin: 0px;
+}
+i.fa vacancy{
+    color:  #f68c06;
+    width: 24px;
+    height: 21px;
+    padding-top: 5px;
+    float: left;
+    padding-left: 20px;
+    font-size: 25px;
+    display: block;
+}
+
+.share {
+    font-family: 'Segoe UI';
+    color:  #cc0000;
+    font-size: 14.93px;
+    font-weight: 600;
+    text-align: left;
+    display:block;
+    margin-top:10px;
+    margin-left: 17px;
+}
+div.social {
+    padding-top: 2px;
+    height:30px;
+    text-align: justify-all;
+    display:block;
+    margin-left: 17px;
+}
+.social i {
+    color: #cccccc;
+    font-size: 25px;
+    padding-top: 0px;
+    padding-left: 0px;
+}
+i.fa {
+    font-size: 23px;
+    display: inline-block;
+}
+.social i:hover {
+    color: orange;
+}
+/*-----------------------*/
 .change-img-myVacancy{
     font-size: 14px;
     margin-left: 15px;

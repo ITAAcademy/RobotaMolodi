@@ -50,7 +50,7 @@
                     <div class="textCompany"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
                 </div>
 
-                <div class="row textCompany verticalIndent">
+                <div class="row textCompany">
 
                     <div class="col-xs-12 text_com">
                         <div class="ratings">

@@ -28,6 +28,16 @@
                     <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
                 @endif
             </div>
+            <div class="share">
+                <p id="share-vacancy">Поділитись</p>
+            </div>
+            <div class="social">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Вакансія{{' '.$vacancy->position}}&url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank"><i class="fa">&#xf08c;</i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}" target="_blank"><i class="fa">&#xf082;</i></a>
+                <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&text=Вакансія{{' '.$vacancy->position}}" target="_blank"><i class="fa">&#xf081;</i></a>
+                <a href="http://vk.com/share.php?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
+                <a href="https://plus.google.com/share?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+            </div>
             {{--<div class="change-img-myVacancy">--}}
                 {{--<div class="orange-link-myVacancy"  id="changeImage">--}}
                     {{--<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>--}}
@@ -127,6 +137,12 @@
     <div id="changeImageBox" class="modal fade">
         @include('newDesign.cropModal')
     </div>
+
+    {!!Html::script('js/socialNetWork.js')!!}
+
+    <script>
+        socialNetWork('.social > a');
+    </script>
 
     {!!Html::script('js/crop.js')!!}
     <script>

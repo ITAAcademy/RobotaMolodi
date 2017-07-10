@@ -92,9 +92,6 @@ div.social {
     word-wrap: break-word;
 
 }
-.panelHeadings{
-margin-bottom:10px;
-}
 
 .textCompany{
     padding: 0;
@@ -104,6 +101,10 @@ margin-bottom:10px;
 }
 .verticalIndent{
     margin-top: 10px;
+}
+
+.panelHeadings{
+    margin-bottom: 5px;
 }
 
 @media(max-width:768px){
