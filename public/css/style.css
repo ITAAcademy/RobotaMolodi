@@ -514,6 +514,7 @@ button.btn.btn-primary.enter-button:focus{
 
 .likeDislike {
 	margin-bottom: 7px;
+	cursor: pointer;
 }
 
 .findLike{
