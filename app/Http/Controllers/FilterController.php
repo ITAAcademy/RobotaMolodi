@@ -19,6 +19,7 @@ class FilterController extends Controller
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
+            ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
         return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
@@ -31,6 +32,7 @@ class FilterController extends Controller
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
+            ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
 
@@ -44,6 +46,7 @@ class FilterController extends Controller
             ->byRegions($request->get('regions', []))
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
+            ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
 

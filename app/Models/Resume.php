@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class Resume extends Model {
@@ -145,14 +146,30 @@ class Resume extends Model {
         }
     }
 
+    public function scopeByRating($query, $order){
+        if($order == 'drop'){
+            return $query;
+        }
+        return $query->select('resumes.*')
+            ->leftjoin('ratings', function($join){
+                $join->on('ratings.object_id', '=', 'resumes.id')
+                    ->where('object_type', '=', substr($this->table, 0, 3));
+            })
+            ->groupBy('resumes.id')
+            ->orderBy(DB::raw('sum(ifnull(ratings.value, 0))'), $order);
+    }
+
     public function scopeBySort($query, $order){
-        return $query->orderBy('updated_at', $order);
+        if($order == 'drop'){
+            return $query;
+        }
+        return $query->orderBy('resumes.updated_at', $order);
     }
 
     public function scopeByStartDate($query, $date)
     {
         if (!empty($date)) {
-            return $query->where('updated_at','>=',$date);
+            return $query->where('resumes.updated_at','>=',$date);
         }else{
             return $query;
         }
@@ -162,7 +179,7 @@ class Resume extends Model {
     {
         if (!empty($date)) {
             $date = $date.' 23:59:59';
-            return $query->where('updated_at','<=',$date);
+            return $query->where('resumes.updated_at','<=',$date);
         }else{
             return $query;
         }

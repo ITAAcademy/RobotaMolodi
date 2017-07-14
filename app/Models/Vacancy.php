@@ -157,17 +157,35 @@ class Vacancy extends Model {
         }
     }
 
-    public function scopeBySort($query, $order){
-        return $query->orderBy('updated_at', $order);
+    public function scopeByRating($query, $order){
+
+        if($order == 'drop'){
+            return $query;
+        }
+        return  $query->select('vacancies.*')
+            ->leftjoin('ratings', function($join){
+                $join->on('ratings.object_id', '=', 'vacancies.id')
+                    ->where('object_type', '=', substr($this->table, 0, 3));
+            })
+            ->groupBy('vacancies.id')
+            ->orderBy(DB::raw('sum(ifnull(ratings.value, 0))'), $order);
     }
+
+    public function scopeBySort($query, $order){
+        if($order == 'drop'){
+            return $query;
+        }
+        return $query->orderBy('vacancies.updated_at', $order);
+    }
+
     public function scopeOrderByDate($query){
-        return $query->orderBy('updated_at', 'desc');
+        return $query->orderBy('vacancies.updated_at', 'desc');
     }
 
     public function scopeByStartDate($query, $date)
     {
         if (!empty($date)) {
-            return $query->where('updated_at','>=',$date);
+            return $query->where('vacancies.updated_at','>=',$date);
         }else{
             return $query;
         }
@@ -177,7 +195,7 @@ class Vacancy extends Model {
     {
         if (!empty($date)) {
             $date = $date.' 23:59:59';
-            return $query->where('updated_at','<=',$date);
+            return $query->where('vacancies.updated_at','<=',$date);
         }else{
             return $query;
         }
