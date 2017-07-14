@@ -14,7 +14,7 @@ $(document).ready(function () {
             regions: $('select[name="selected-region"]').val(),
             industries: $('select[name="selected-indastry"]').val(),
             specialisations: $('select[name="selected-specialization"]').val(),
-            sortRatings: $('.sort-rating').hasClass('toggleFilter') ? 'drop' : $('.sort-rating').hasClass('active') ? 'asc' : 'desc',
+            sortRatings: $('.sort-rating').hasClass('toggleFilter') ? 'drop' : $('.sort-rating').hasClass('active') ? 'desc' : 'asc',
             sortDate: $('.sort-date').hasClass('toggleFilter') ? 'drop' : $('.sort-date').hasClass('active') ? 'asc' : 'desc',
             startDate: $('#datepicker1').val(),
             endDate: $('#datepicker2').val()

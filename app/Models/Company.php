@@ -176,8 +176,25 @@ class Company extends Eloquent {
         }
     }
 
+    public function scopeByRating($query, $order){
+
+        if($order == 'drop'){
+            return $query;
+        }
+        return  $query->select('company.*')
+            ->leftjoin('ratings', function($join){
+                $join->on('ratings.object_id', '=', 'company.id')
+                    ->where('object_type', '=', substr($this->table, 0, 3));
+            })
+            ->groupBy('company.id')
+            ->orderBy(DB::raw('sum(ifnull(ratings.value, 0))'), $order);
+    }
+
     public function scopeBySort($query, $order){
-        return $query->orderBy('updated_at', $order);
+        if($order == 'drop'){
+            return $query;
+        }
+        return $query->orderBy('company.updated_at', $order);
     }
 
     public function scopeGetCompany($query, $vac){
@@ -187,7 +204,7 @@ class Company extends Eloquent {
     public function scopeByStartDate($query, $date)
     {
         if (!empty($date)) {
-            return $query->where('updated_at','>=',$date);
+            return $query->where('company.updated_at','>=',$date);
         }else{
             return $query;
         }
@@ -197,7 +214,7 @@ class Company extends Eloquent {
     {
         if (!empty($date)) {
             $date = $date.' 23:59:59';
-            return $query->where('updated_at','<=',$date);
+            return $query->where('company.updated_at','<=',$date);
         }else{
             return $query;
         }
