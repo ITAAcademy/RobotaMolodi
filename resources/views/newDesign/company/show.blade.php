@@ -9,19 +9,32 @@
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
        ['url'=> 'head','name'=>'Головна'],
        ['name' => 'Компанія: '.$company->company_name, 'url' => false]
-       ]
-   )
-   )
+       ])
+    )
+
+    {!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+    <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$company->id}}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
         <div class="row">
             <div class="col-md-2">
                 <div class="logos">
+
                     <div class="panel panel-orange" id="vimg">
                         @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
                             {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
-                            <h3 class="nologo">логотип вiдсутнiй</h3>
+                            {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                         @endif
                     </div>
+
+                    <div class="change-img-myresume">
+                        <span class="orange-link-myresume"  id="changeImage">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                            <span>Змiнити фото</span>
+                        </span>
+                    </div>
+
                     <div class="case">
 
   						<span>
@@ -197,33 +210,73 @@
         socialNetWork('.social > a');
     </script>
 
+    <div id="changeImageBox" class="modal fade">
+        @include('newDesign.cropModal')
+    </div>
+
+    {!!Html::script('js/crop.js')!!}
+
     <script>
-        $(document).ready(function () {
-            $('a.vac-call, a.file-call, a.resume-call, a.response-call').click(function () {
-                var that = this;
-                var link = $(this).attr('href');
-                if($(that).hasClass('active')){
-                    $(that).removeClass('active');
-                    $('.downlist').hide('slow');
-                }else{
-                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
-                    $.ajax({
-                        url: link,
-                        success: function(data){
-                            $('.active').removeClass('active');
+    $(document).ready(function () {
+        $('#changeImage').on('click', function () {
+            $('#fileImg').click();
+        });
 
-                            $('.downlist').show('slow').html(data);
-                            $(that).addClass('active');
-                        }
-                    })
-                }
-                return false;
-            })
-//            $("a.resume-call").click(function(){
-//                $(".send-resume-company").toggle();
-//            });
+        $('#fileImg').on('change', function (e) {
+            $('#changeImageBox').modal({
+                show: true,
+                backdrop: 'static'
+            });
+            crop(e, 'img-src', '#crop', '#changeImageBox');
+        });
+
+        $('#changeImageBox').on('hidden.bs.modal', function () {
+            if($('#coords').val()){
+                var $input = $("#fileImg");
+                var fd = new FormData;
+                fd.append('fileImg', $input.prop('files')[0]);
+                fd.append('coords', $('.coords').val());
+                fd.append('id', $('.coords').attr('data-id'));
+                $.ajax({
+                    url: '{{ route('upimgcom') }}',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        $('#vimg img').attr('src', window.location.origin + '/' + data);
+                    }
+                });
+            }
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        });
+
+
+        $('a.vac-call, a.file-call, a.resume-call, a.response-call').click(function () {
+            var that = this;
+            var link = $(this).attr('href');
+            if($(that).hasClass('active')){
+                $(that).removeClass('active');
+                $('.downlist').hide('slow');
+            }else{
+                $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
+                $.ajax({
+                    url: link,
+                    success: function(data){
+                        $('.active').removeClass('active');
+                        $('.downlist').show('slow').html(data);
+                        $(that).addClass('active');
+                    }
+                })
+            }
+            return false;
         })
-
+    })
     </script>
 
     <script>

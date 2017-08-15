@@ -97,52 +97,59 @@
     </div>
 
     <div class="row">
-        <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
-            <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-                <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
-                <div id="filename">Файл не вибрано</div>
-                {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
-            </div>
-            <input type="hidden" name="fcoords" class="coords" id="coords" value="">
-            <input type="hidden" name="fname" value="">
 
-            <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
-            </div>
-
-            <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-                <span class="required_field">*</span> – Обов'язкові для заповнення
-            </div>
-
-            <div class="row">
+        @if(empty($company->company_name))
+            <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
                 <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-                    {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
+                    <div id="filename">Файл не вибрано</div>
+                    {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
+                </div>
+
+                <input type="hidden" name="fcoords" class="coords" id="coords" value="">
+                <input type="hidden" name="fname" value="">
+
+                <div class="col-sm-offset-3 col-md-9 col-sm-9">
+                    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
                 </div>
             </div>
+
+            <div id="imageBox" class="modal fade">
+                @include('newDesign.cropModal')
+            </div>
+
+            {!!Html::script('js/crop.js')!!}
+
+            <script>
+                $(document).ready(function () {
+                    $('#loadCompany').on('change', function(e) {
+                        $('#imageBox').modal({
+                            show: true,
+                            backdrop: 'static'
+                        });
+                        crop(e, 'img-src', '#crop', '#imageBox');
+                    });
+                })
+            </script>
+        @endif
+
+        <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
+            <span class="required_field">*</span> – Обов'язкові для заповнення
         </div>
+
+        <div class="row">
+            <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
+                {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+            </div>
+        </div>
+
     </div>
 
     {!!Form::token()!!}
+
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-
-    <div id="imageBox" class="modal fade">
-        @include('newDesign.cropModal')
-    </div>
-
-    {!!Html::script('js/crop.js')!!}
-
-    <script>
-        $(document).ready(function () {
-            $('#loadCompany').on('change', function(e) {
-                $('#imageBox').modal({
-                    show: true,
-                    backdrop: 'static'
-                });
-                crop(e, 'img-src', '#crop', '#imageBox');
-            });
-        })
-    </script>
 
     <script type="text/javascript">
         //        $('loadResume').formValidation({

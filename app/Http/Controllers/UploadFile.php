@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -41,6 +42,20 @@ class UploadFile extends Controller
         $resume->image = '';
         $resume->save();
         return $directory = 'image/m.jpg';
+    }
+
+    public function editCompanyImg(Request $request){
+        $company = Company::find($request->id);
+        if($company->image != ''){
+            $file = 'image/company/'.Auth::user()->id.'/'.$company->image;
+            if (File::exists($file)) {
+                Storage::delete($file);
+            }
+        }
+        $directory = 'image/company/'. Auth::user()->id . '/';
+        $company->image = $this->savePhoto($request, $directory);
+        $company->save();
+        return $directory.$company->image;
     }
 }
 
