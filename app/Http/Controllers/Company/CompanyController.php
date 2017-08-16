@@ -129,9 +129,6 @@ class CompanyController extends Controller  {
 	 */
 		public function show($id, Guard $auth)
 	{
-      // Cookie::queue('url', 'company/'.$id);
-
-
         $company = Company::find($id);
         $industry = Industry::find($company->industry_id);
         $city = City::find($company->city_id);
@@ -144,29 +141,20 @@ class CompanyController extends Controller  {
             ->with('vacancies', $vacancies);
     }
 
-	public function edit($id)
-	{
-        if (!is_numeric($id)) {
-            abort(500);
-        }
-        if(empty(Company::find($id))) {
-            abort(404);
-        }
-
+	public function edit($id){
         if (Auth::check()) {
             $company = Company::find($id);
             $cities = City::all();
             $industries = Industry::all();
 
-            if (User::find(Company::find($company->id)->users_id)->id == Auth::id())
+            if (User::find(Company::find($company->id)->users_id)->id == Auth::id()){
                 return view('Company.edit')
                     ->with('company', $company)
                     ->with('cities', $cities)
                     ->with('industries', $industries);
-            else
-                abort(403);
-        } else
-            return Redirect::to('auth/login');
+            } else abort(403);
+        }
+        return Redirect::to('auth/login');
 	}
 
     public function showCompanyVacancies($id){
@@ -218,21 +206,12 @@ class CompanyController extends Controller  {
         $input = $request->all();
 
         if ($company->validateForm($input)) {
-            $company->users_id = Auth::User()->id;
 
-            if(Input::hasFile('loadCompany')) {
-                $cropcoord = explode(',', $request->fcoords);
-                $file = Input::file('loadCompany');
-                $filename = $file->getClientOriginalName();                 //take file name
-                $directory = 'image/company/'. Auth::user()->id . '/';      //create url to directory
-                Storage::makeDirectory($directory);                         //create directory
-                Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
-                $company->image = $filename;
-            }
+            $company->users_id = Auth::User()->id;
             $company->fill($input)->save();
             $company->push();
-            Session::flash('flash_message', 'news successfully created!');
-            return redirect('company');
+
+            return Redirect::to('company');
         } else {
             return redirect()->route('company.edit', ['company' => $company])->withInput()->withErrors($company->getErrorsMessages());
         }

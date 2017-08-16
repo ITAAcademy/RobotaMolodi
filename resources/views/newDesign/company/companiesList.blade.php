@@ -9,7 +9,7 @@
                     @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
                         {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
-                        <h3 class="nologo-companies-list">логотип вiдсутнiй</h3>
+                        {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
                 </div>
                 <div class="col-xs-9 content-companies-list">
