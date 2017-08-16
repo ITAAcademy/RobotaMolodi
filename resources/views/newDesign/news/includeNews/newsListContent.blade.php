@@ -39,7 +39,6 @@
     @endforeach
 
         <div class="row paginatorr">
-            <hr>
             @if($newsPagin->lastPage() > 1)
                 @include('newDesign.paginator', ['paginator' => $newsPagin])
             @endif

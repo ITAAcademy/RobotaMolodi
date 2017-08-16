@@ -24,4 +24,7 @@
         @include('newDesign/vacancies/topVacancies')
         @include('newDesign/topNews')
     </div>
+
+    {!!Html::script('js/news.js')!!}
+
 @stop

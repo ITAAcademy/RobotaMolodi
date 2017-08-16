@@ -15,7 +15,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::all();
+        $news = News::latest('created_at')->get();
         return view('newDesign.admin.news.index', ['news' => $news]);
     }
 

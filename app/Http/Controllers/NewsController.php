@@ -16,7 +16,7 @@ class NewsController extends Controller
 
     public function index()
     {
-        $news = News::latest('updated_at')->getPublished();
+        $news = News::getPublished()->latest('created_at');
 
         if(Request::ajax()){
             return view('newDesign.news.includeNews.newsListContent', array(

@@ -179,8 +179,7 @@ class VacancyController extends Controller
                 $vacancy_City = new Vacancy_City();
                 $vacancy_City->FillHole($cities, $vacancy->id);
 
-
-                return redirect()->route('vacancy.index');
+                return redirect()->route('cabinet.my_vacancies');
             } else {
                 return redirect()->route('company.create');
             }
