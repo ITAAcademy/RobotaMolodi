@@ -19,6 +19,7 @@ use App\Models\Vacancy;
 
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
+Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::any('baseInfo', 'oAuthApiController@tokenHandler');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
