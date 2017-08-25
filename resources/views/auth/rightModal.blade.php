@@ -32,7 +32,12 @@
                         </a>
                         <style>
                             .modal-social-icon .logoINTITA{
-                                width: 40px;
+                                border-radius: 7px;
+                                border-bottom-width: 33px;
+                                margin-top: 0px;
+                                margin-bottom: 23px;
+                                height: 37px;
+                                width: 37px;
                             }
                         </style>
                     </div>
