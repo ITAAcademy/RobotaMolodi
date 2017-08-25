@@ -27,7 +27,14 @@
                         <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
                         <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                         <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
-                        <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                        <a href="auth/intita">
+                            {!! Html::image('image/logoINTITA.jpg','Головна',['class'=>'logoINTITA']) !!}
+                        </a>
+                        <style>
+                            .modal-social-icon .logoINTITA{
+                                width: 40px;
+                            }
+                        </style>
                     </div>
                 </div>
             </div>
