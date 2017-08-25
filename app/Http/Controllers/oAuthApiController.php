@@ -14,7 +14,7 @@ class oAuthApiController extends Controller{
         $response = $http->request('GET', env("SSO_HOST").'/api/user', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => ''],
+                'Authorization' => 'Bearer '.'code'],
         ]);
         dd(json_decode((string) $response->getBody(), true));
     }

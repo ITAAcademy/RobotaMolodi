@@ -18,8 +18,8 @@ use App\Models\Vacancy;
 //use Symfony\Component\HttpFoundation\Response;
 
 //sso oAuth2.0 API
-Route::any('auth/intita', 'oAuthController@intitaLogin');
-Route::any('baseInfo', 'oAuthController@tokenHandler');
+Route::any('auth/intita', 'oAuthApiController@intitaLogin');
+Route::any('baseInfo', 'oAuthApiController@tokenHandler');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
