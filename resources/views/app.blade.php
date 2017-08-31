@@ -20,7 +20,7 @@
 	<link href="{{ asset('/css/aboutUs/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
-
+	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 	@yield('head')
 
 	<!-- Fonts -->
