@@ -63,7 +63,17 @@ class Vacancy_City extends Model {
 
     }
 
+    public static function getVacancyCity($vacancy_id)
+    {
+        $vacancy_city_list = Vacancy_City::where('vacancy_id', $vacancy_id)->get();
 
+        $cityList = [];
+        foreach($vacancy_city_list as $vacancy_city) {
+            $cityList[] = $vacancy_city->city_id;
+        }
+
+        return $cityList;
+    }
 
     public function ClearHole($vacancy_id)
     {
