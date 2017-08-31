@@ -107,9 +107,7 @@ class MainController extends Controller
         $resumes = Resume::latest('updated_at')->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
         if(Request::ajax()){
-            return view('newDesign.resume.resumesList', array(
-                'resumes' => $resumes,
-            ));
+            return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
         }
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
 
