@@ -529,3 +529,27 @@ button.btn.btn-primary.enter-button:focus{
 	font-size: 18px;
 	font-family: SegoeUIRegular;
 }
+
+#rightModal .modal-social-icon span.logoINTITA{
+	display: inline-block;
+	background-image: url('../image/logoINTITA.jpg');
+	background-size: contain;
+	border-radius: 7px;
+	height: 36px;
+	width: 36px;
+	top: 2px;
+	position: relative;
+}
+
+@media(min-width: 0px) and (max-width: 738px) {
+	#rightModal .modal-social-icon span.logoINTITA{
+		border-radius: 6px;
+		height: 26px;
+		width: 26px;
+		top: 3px;
+	}
+}
+
+#rightModal .modal-social-icon span.logoINTITA:hover{
+	background-image: url('../image/orangeLogoINTITA.jpg');
+}

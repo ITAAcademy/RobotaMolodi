@@ -24,22 +24,10 @@
                     <div class="modal-social-icon">
                         <p>або</p>
                         <div>Вхід через соціальні мережі</div>
-                        <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
-                        <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
-                        <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
-                        <a href="auth/intita">
-                            {!! Html::image('image/logoINTITA.jpg','Головна',['class'=>'logoINTITA']) !!}
-                        </a>
-                        <style>
-                            .modal-social-icon .logoINTITA{
-                                border-radius: 7px;
-                                border-bottom-width: 33px;
-                                margin-top: 0px;
-                                margin-bottom: 23px;
-                                height: 37px;
-                                width: 37px;
-                            }
-                        </style>
+                            <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+                            <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
+                            <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                            <a href="auth/intita"><span class="logoINTITA"></span></a>
                     </div>
                 </div>
             </div>
@@ -53,6 +41,7 @@
                         <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                         <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
                         <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                        <a href="auth/intita"><span class="logoINTITA"></span></a>
                     </div>
                 </div>
             </div>
