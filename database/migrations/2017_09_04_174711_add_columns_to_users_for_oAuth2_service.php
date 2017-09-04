@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToUsersForTokenAuth extends Migration
+class AddColumnsToUsersForOAuth2Service extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,9 @@ class AddColumnToUsersForTokenAuth extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('service');
-            $table->text('accessToken');
-            $table->text('refreshToken');
+            $table->text('access_token');
+            $table->text('refresh_token');
+            $table->string('uuid');
         });
     }
 
@@ -28,7 +29,7 @@ class AddColumnToUsersForTokenAuth extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['service', 'accessToken', 'refreshToken']);
+            $table->dropColumn(['service', 'access_token', 'refresh_token', 'uuid']);
         });
     }
 }
