@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
+define("SERVICE", "it");
+
 class oAuthApiController extends Controller{
 
     public function tokenHandler($userUID, $accessToken, $refreshToken){
@@ -20,13 +22,10 @@ class oAuthApiController extends Controller{
                 'Authorization' => 'Bearer ' . $accessToken,
             ],
         ]);
+        $userData = json_decode((string) $response->getBody());
+        $name = empty($userData->firstName) ? 'IntitaUser' : $userData->firstName;
 
-        $name = empty(json_decode((string)$response->getBody())->firstName) ? (
-                empty(json_decode((string)$response->getBody())->middleName) ? 'IntitaUser' :
-                    json_decode((string)$response->getBody())->middleName) :
-                    json_decode((string)$response->getBody())->firstName;
-
-        $user = User::where('uuid', $userUID)->first();
+        $user = User::where('uuid', $userUID)->where('service', SERVICE)->first();
 
         if($user){
             $user->access_token = $accessToken;
@@ -34,8 +33,8 @@ class oAuthApiController extends Controller{
         }else{
             $user = new User([
                 'name' => $name,
-                'email' => json_decode((string)$response->getBody())->email,
-                'service' => 'it',
+                'email' => $userData->email,
+                'service' => SERVICE,
                 'access_token' => $accessToken,
                 'refresh_token' => $refreshToken,
                 'uuid' => $userUID,
@@ -58,12 +57,12 @@ class oAuthApiController extends Controller{
                 'code' => $request->code,
             ],
         ]);
+        $userData = json_decode((string) $response->getBody());
+        $userUID = $userData->userUID;
+        $accessToken = $userData->access_token;
+        $refreshToken = $userData->refresh_token;
 
-        $userUID = json_decode((string) $response->getBody())->userUID;
-        $accessToken = json_decode((string) $response->getBody())->access_token;
-        $refreshToken = json_decode((string) $response->getBody())->refresh_token;
-
-        return $this->tokenHandler($userUID,$accessToken, $refreshToken);
+        return $this->tokenHandler($userUID, $accessToken, $refreshToken);
     }
 
     public function intitaLogin(Request $request){
