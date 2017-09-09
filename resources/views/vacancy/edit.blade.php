@@ -127,17 +127,11 @@
         <div class="col-sm-5">
             <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
                 @foreach($cities as $city)
-                    {
                     <option value="{{$city->id}}">{{$city->name}}</option>
-                    }
                 @endforeach
-                @if(Input::old('city')!= '')
-                    @foreach(Input::old('city') as $cityId)
-                        {
-                        <option selected value="{{$cityId}}">{{\App\Models\City::find($cityId)->name}}</option>
-                        }
-                    @endforeach
-                @endif
+                @foreach($vacancy_City as $city)
+                    <option selected value="{{$city->id}}">{{$city->name}}</option>
+                @endforeach
             </select>
         </div>
         <div > <span style="color: red"> * <?php echo $errors->first('city',':message'); ?></span> </div>
