@@ -58,6 +58,21 @@
 @include('auth.leftModal')
 
 {!!Html::script('js/socialNetWork.js')!!}
+
+<script>
+    //Hamburger position
+    $(document).ready(function () {
+        var scroller = $('button.btn.btn-default.only-bars');
+        $(window).scroll(function (){
+            $(this).scrollTop() > 15
+                ? scroller.css('position', 'fixed').css('left', '0px')
+                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '10px')
+                : scroller.css('position', 'relative')
+                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '145px');
+        });
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         $('.only-bars').click(function () {
