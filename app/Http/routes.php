@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
-
 //use Symfony\Component\HttpFoundation\Response;
 
+//sso oAuth2.0 API
+Route::any('auth/intita', 'oAuthApiController@intitaLogin');
+Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);

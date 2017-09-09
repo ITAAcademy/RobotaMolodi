@@ -1,24 +1,27 @@
-.paginatorr{
+
+.paginatorBlock{
+    margin: 0;
+}
+
+.pagination{
     height: 30px;
-    padding-left: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
+    display: inline-block;
+    float: right;
+    margin: 0;
 }
 
-.paginatorr hr{
-    color: #696969;
-    margin-top: 18px;
-    margin-bottom: 18px;
+ul.pagination li.disabled.hidden-xs span{
+    text-align: center;
+    letter-spacing: 1px;
+    border: none;
+    width: 20px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
-ul.pagination>li.color>a{
-    color: #696969;
-}
-
-/*----paginator---*/
 ul.pagination a{
     border: 1px solid #CBCBCB;
-    margin: 0 3px;
+    margin: 0 3px 0 3px;
     height: 30px;
     width: 30px;
     border-radius: 0;
@@ -27,8 +30,34 @@ ul.pagination a{
     line-height: 30px;
 }
 
-ul.pagination>li.activation a{
-    background-color: #CBCBCB;
+ul.pagination li.active{
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background-color: #CCCCCC;
+}
+
+ul.pagination li.active span{
+    background-color: #CCCCCC;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+ul.pagination li.active span:hover{
+    background-color: orange;
+}
+
+ul.pagination>li.disabled span, ul.pagination li.next span {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    height: 30px;
+    width: 30px;
 }
 
 ul.pagination>li>a:hover{
@@ -39,58 +68,22 @@ ul.pagination>li>a:hover{
 }
 
 ul.pagination a{
-    color:black;
+    color: black;
 }
 
-ul.pagination{
-    margin: 0;
+li.disabled span, li.next>a, li.prev>a{
+    font-weight: 700;
+    color: #777777;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 
-.paginer-block{
-    text-align: right;
-    /*padding: 0;*/
-    height: 30px;
-    display: inline-block;
-    float: right;
+ul.pagination>.hide-md{
+    display: none;
 }
 
-/*--count paginate*/
-.paginatorr>div.sort-by{
-    display: inline;
-    line-height: 30px;
-    text-align: center;
-    height: 30px;
-}
-
-.pag-block-by{
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    border: 1px solid #CBCBCB;
-}
-
-.pag-block-by:hover{
-    background-color: orange;
-    cursor: pointer;
-    color: white;
-    border: 1px solid #ff5200;
-}
-
-.pag-block:hover{
-    background-color: orange;
-    cursor: pointer;
-    color: white;
-    border: 1px solid #ff5200;
-}
-
-.pag-text{
-    color: #696969;
-    font-size: 16px;
-    font-family: SegoeUIRegular;
-    line-height: 30px;
-    display: inline-block;
-}
-
-.active-pag-block{
-    background-color: #CBCBCB;
+@media(min-width: 0px) and (max-width: 770px) {
+    ul.pagination>.hide-md{
+        display: inline;
+    }
 }
