@@ -207,6 +207,9 @@
     {!!Form::token()!!}
     {!!Form::close()!!}
 
+    <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+
 @endsection
 
 @section('footer')

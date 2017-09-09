@@ -48,6 +48,7 @@
     @endforeach
 
     @include('newDesign.paginator', ['paginator' => $resumes])
+
 </div>
 
 @include('newDesign.jsForFilter', ['urlController' => 'filter.resumes'])

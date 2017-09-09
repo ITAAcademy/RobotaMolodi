@@ -250,10 +250,11 @@ class VacancyController extends Controller
             $currencies = $currency->getCurrencies();
 
             $vacancy = $this->getVacancy($id);
-                $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
-                $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+            $vacancy_City = City::whereIn('id', (Vacancy_City::getVacancyCity($vacancy->id)))->get();
 
+            $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
 
+            $userEmail = $auth->user()->email;
 
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
                 return view('vacancy.edit')
@@ -263,9 +264,10 @@ class VacancyController extends Controller
                     ->with('cities', $cities)
                     ->with('userEmail', $userEmail)
                     ->with('currencies', $currencies)
-                    ->with('publishedOptions', $this->publishedOptions);
+                    ->with('publishedOptions', $this->publishedOptions)
+                    ->with('vacancy_City', $vacancy_City);
             else
-                abort(403);
+              return abort(403);
         } else
             return Redirect::to('auth/login');
     }
