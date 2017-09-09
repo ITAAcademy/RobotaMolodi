@@ -253,7 +253,8 @@ class VacancyController extends Controller
             $vacancy_City = City::whereIn('id', (Vacancy_City::getVacancyCity($vacancy->id)))->get();
 
             $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
-            $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
+
+            $userEmail = $auth->user()->email;
 
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
                 return view('vacancy.edit')
