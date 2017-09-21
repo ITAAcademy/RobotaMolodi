@@ -68,6 +68,7 @@ $(document).ready(function () {
         var url = $(this).attr('href');
         getVacancies(url);
         window.history.pushState("", "", url);
+        $('.scrollup').click();
     });
 
     function getVacancies(url) {
@@ -132,6 +133,3 @@ $(document).ready(function () {
 
 })
 </script>
-
-
-
