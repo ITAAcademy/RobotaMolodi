@@ -98,7 +98,11 @@ class AuthController extends Controller {
 				'password' => bcrypt($data['password']),
 			]);
 		}
-
+		
+		protected function getFailedLoginMessage()
+    	{
+    		return 'Check the correct of your email or password';
+    	}
 
 }
 
