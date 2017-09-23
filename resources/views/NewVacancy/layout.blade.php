@@ -8,7 +8,4 @@
     </div>
 
     @yield('contents')
-    @stop
-
-<?php 
-?>
+@stop

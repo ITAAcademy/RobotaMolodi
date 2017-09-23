@@ -2,6 +2,7 @@
 /node_modules
 Homestead.yaml
 Homestead.json
+composer.lock
 rmi.sql
 Vagrantfile
 .env
