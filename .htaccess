@@ -1,4 +1,5 @@
 RewriteEngine on
+AddHandler application/x-httpd-php56 .php
 
 # не позволять httpd отдавать файлы, начинающиеся с точки (.htaccess, .svn, .git и прочие)
 RedirectMatch 403 /\..*$
