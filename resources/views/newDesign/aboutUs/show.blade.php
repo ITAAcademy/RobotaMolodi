@@ -11,13 +11,13 @@
             <a class="btn" href="{{ url('https://intita.com/courses')}}" target="_blank">{{trans('aboutus.education')}}</a>
         </div>
         <div class="staticLinksMenu">
-            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank">{{trans('aboutus.about')}}</a>
+            <a class="btn" href="{{ url('http://www.profitday.info')}}" target="_blank">{{trans('aboutus.carrier')}}</a>
         </div>
         <div class="staticLinksMenu">
-            <a class="btn" href="{{ url('https://profitday.info/allcompanies')}}" target="_blank">{{trans('aboutus.about')}}</a>
+            <a class="btn" href="{{ url('https://profitday.info/allcompanies')}}" target="_blank">{{trans('aboutus.partners')}}</a>
         </div>
         <div class="staticLinksMenu">
-            <a class="btn" href="{{ url('/contacts') }}">{{trans('aboutus.about')}}</a>
+            <a class="btn" href="{{ url('/contacts') }}">{{trans('aboutus.contacts')}}</a>
         </div>
     </div>
 </div>

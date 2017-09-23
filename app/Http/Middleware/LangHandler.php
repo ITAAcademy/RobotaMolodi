@@ -19,7 +19,6 @@ class LangHandler
     public function handle($request, Closure $next)
     {
         $lan = (Cookie::get('locale'));
-
         if (in_array($lan, Config::get('app.locales'))) {
             $locale = $lan;
         } else {
