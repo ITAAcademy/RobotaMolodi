@@ -75,9 +75,6 @@ class AuthController extends Controller {
 		public function validator(array $data)
 		{
 			return Validator::make($data, [
-		//			'name' => 'required|max:255|alpha',
-		//			'email' => 'required|email|max:255|unique:users',
-		//			'password' => 'required|confirmed|min:6',
 				'name' => 'required|max:30|regex:/^[йцукенгшщзхъэждлорпавыфячсмитьбюєїіёЁЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮЇІЄa-zA-Z_\-\'\`]+$/',
 				'email' => 'required|email|max:30|unique:users',
 				'password' => 'required|confirmed|min:6',
@@ -98,6 +95,11 @@ class AuthController extends Controller {
 				'password' => bcrypt($data['password']),
 			]);
 		}
+
+		protected function getFailedLoginMessage()
+    	{
+        return 'Check the correct of your email or password';
+    	}
 
 
 }
