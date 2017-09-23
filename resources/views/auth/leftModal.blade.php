@@ -116,3 +116,20 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function() {
+
+        var localization = "{{config()->get('app.locale')}}";
+
+        if(localization == 'ua'){
+            $('#leftModal .modal-content .bars-left a.local-ua').css({'color' : 'orange'});
+        }
+        if(localization == 'en'){
+            $('#leftModal .modal-content .bars-left a.local-en').css({'color' : 'orange'});
+        }
+
+    });
+
+</script>
