@@ -28,7 +28,7 @@ class Company extends Eloquent {
         'company_name' => 'required|min:2|max:225',
         'short_name' => 'required|min:2|max:225',
         'company_email' => 'required|email|min:6|max:100',
-        'phone' => 'required|min:3|max:13|numeric',
+        'phone' => 'required|min:3|max:18',
         'link' => 'url|min:12|max:225',
         'description' => 'required|min:10',
         'industry_id' => 'required',

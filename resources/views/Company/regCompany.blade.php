@@ -213,4 +213,8 @@
 
     });
 </script>
+{!!Html::script('js/jquery.maskedinput.min.js')!!}
+<script>
+    $("#phone").mask("+38(099) 999-99-99");
+</script>
 

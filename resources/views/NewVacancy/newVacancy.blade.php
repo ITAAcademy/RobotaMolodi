@@ -243,11 +243,16 @@
 </script>
 
 <script>
-	$(document).ready(function() {
+    $(document).ready(function() {
         $(".js-example-basic-multiple").select2();
         $("#selectCurrency").select2();
         $("#selectGaluz").select2();
         $("#selectOrgan").select2();
+    });
+</script>
+<script>
+	$(document).ready(function() {
+        $('#phone').mask("+38(099) 999-99-99");
 	});
 </script>
 

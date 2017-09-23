@@ -96,9 +96,6 @@
     </div>
     {!!Form::token()!!}
     {!!Form::close()!!}
-
 @endsection
-
-
 
 @stop
