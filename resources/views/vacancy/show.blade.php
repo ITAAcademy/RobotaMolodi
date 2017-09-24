@@ -44,7 +44,7 @@
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        {!! HTML::linkRoute('main.showVacancies', $vacancy->position, [], ['class' => 'filterSubmit greyLinks', 'tabindex' => 1, 'data-filter-name' => 'specialisation', 'data-filter-value' => $vacancy->position ]) !!}
+                        {!! Html::linkRoute('main.showVacancies', $vacancy->position, [], ['class' => 'filterSubmit greyLinks', 'tabindex' => 1, 'data-filter-name' => 'specialisation', 'data-filter-value' => $vacancy->position ]) !!}
                     </div>
                     <div>
                         <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
@@ -66,7 +66,7 @@
                     <div>
                         <div class="text_vac">
                             <span>Галузь: </span>
-                            {!! HTML::linkRoute('main.showVacancies', $industry->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'industry', 'data-filter-value' => $industry->id ]) !!}
+                            {!! Html::linkRoute('main.showVacancies', $industry->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'industry', 'data-filter-value' => $industry->id ]) !!}
                         </div>
                     </div>
                     <div>
@@ -78,7 +78,7 @@
                     <div>
                         <div class="text_data">
                             @foreach($cities->get() as $city)
-                                {!! HTML::linkRoute('main.showVacancies', $city->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'region', 'data-filter-value' => $city->id ]) !!}
+                                {!! Html::linkRoute('main.showVacancies', $city->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'region', 'data-filter-value' => $city->id ]) !!}
                             @endforeach
                             <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                         </div>
