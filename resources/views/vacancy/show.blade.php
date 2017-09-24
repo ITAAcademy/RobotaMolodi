@@ -64,7 +64,10 @@
                     </div>
 
                     <div>
-                        <div class="text_vac"><span>Галузь: </span><a class="filterSubmit orangeLinks" tabindex="1" href="{{ route('main.showVacancies') }}" data-filter-name="industry" data-filter-value="{{ $industry->id }}">{{$industry->name}}</a></div>
+                        <div class="text_vac">
+                            <span>Галузь: </span>
+                            {!! HTML::linkRoute('main.showVacancies', $industry->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'industry', 'data-filter-value' => $industry->id ]) !!}
+                        </div>
                     </div>
                     <div>
                         <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
@@ -75,11 +78,9 @@
                     <div>
                         <div class="text_data">
                             @foreach($cities->get() as $city)
-                                <a class="orangeLinks" href="javascript:submit('selectCity', '{{$city->id}}')">
-                                    {!!$city->name!!}
-                                </a>
+                                {!! HTML::linkRoute('main.showVacancies', $city->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'region', 'data-filter-value' => $city->id ]) !!}
                             @endforeach
-                                <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
+                            <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                         </div>
                     </div>
 
@@ -191,7 +192,7 @@
                     value: el.data('filter-value')
                 },
                 success: function(data){
-                    location.href = '/showVacancies';
+                    location.href = el.attr('href');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);

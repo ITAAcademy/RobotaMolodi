@@ -15,9 +15,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box" >
                 <select class="getting-list-selected-box"  data-placeholder="Вся країна" multiple="multiple" name="selected-region">
-                    @foreach($cities as $city)
-                        <option value={{$city->id}}>{{$city->name}}</option>
-                    @endforeach
+                    @if(Session::has('region'))
+                        @foreach($cities as $city)
+                            <option value={{$city->id}} {{Session::get('region') == $city->id ? 'selected':''}}>{{$city->name}}</option>
+                        @endforeach
+                    @else
+                        @foreach($cities as $city)
+                            <option value={{$city->id}}>{{$city->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
