@@ -6,9 +6,9 @@
             </button>
             <div class="col-xs-offset-6">
                 <span>| </span>
-                <a class="local-ua">ua</a>
+                <a class="local-ua" href="language/ua">ua</a>
                 <span> | </span>
-                <a class="local-en">en</a>
+                <a class="local-en" href="language/en">en</a>
                 <span> | </span>
             </div>
         </div>
@@ -116,3 +116,20 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function() {
+
+        var localization = "{{config()->get('app.locale')}}";
+
+        if(localization == 'ua'){
+            $('#leftModal .modal-content .bars-left a.local-ua').css({'color' : 'orange'});
+        }
+        if(localization == 'en'){
+            $('#leftModal .modal-content .bars-left a.local-en').css({'color' : 'orange'});
+        }
+
+    });
+
+</script>

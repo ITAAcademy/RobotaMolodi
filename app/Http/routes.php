@@ -15,7 +15,17 @@ use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
-//use Symfony\Component\HttpFoundation\Response;
+
+Route::get('language/{lang}', function($lang){
+
+    if (in_array($lang, Config::get('app.locales'))) {
+        $cookie = cookie()->forever('locale', $lang);
+        return redirect()->back()->withCookie($cookie);
+    }else{
+        return redirect()->back();
+    }
+
+});
 
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');

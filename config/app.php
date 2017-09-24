@@ -52,8 +52,8 @@ return [
 	|
 	*/
 
-	'locale' => 'uk',
-
+	'locale' => 'ua',
+    'locales' => ['ua', 'en'],
 	/*
 	|--------------------------------------------------------------------------
 	| Application Fallback Locale
