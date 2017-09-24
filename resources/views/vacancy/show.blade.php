@@ -44,7 +44,7 @@
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        <a class="greyLinks" tabindex="1" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
+                        {!! HTML::linkRoute('main.showVacancies', $vacancy->position, [], ['class' => 'filterSubmit greyLinks', 'tabindex' => 1, 'data-filter-name' => 'specialisation', 'data-filter-value' => $vacancy->position ]) !!}
                     </div>
                     <div>
                         <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>

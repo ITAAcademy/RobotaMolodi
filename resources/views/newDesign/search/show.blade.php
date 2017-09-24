@@ -55,9 +55,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі спеціалізації" multiple="multiple" name="selected-specialization">
-                    @foreach($specialisations as $specialisation)
-                        <option>{{$specialisation}}</option>
-                    @endforeach
+                    @if(Session::has('specialisation'))
+                        @foreach($specialisations as $specialisation)
+                            <option  {{ Session::get('specialisation') == $specialisation ? 'selected':'' }}>{{$specialisation}}</option>
+                        @endforeach
+                    @else
+                        @foreach($specialisations as $specialisation)
+                            <option>{{$specialisation}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
