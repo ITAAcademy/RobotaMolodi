@@ -29,9 +29,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
-                    @foreach($industries as $industry)
-                        <option value={{$industry->id}}>{{$industry->name}}</option>
-                    @endforeach
+                    @if(Session::has('industry'))
+                        @foreach($industries as $industry)
+                            <option value={{$industry->id}} {{Session::get('industry') == $industry->id ? 'selected':''}}>{{$industry->name}}</option>
+                        @endforeach
+                    @else
+                        @foreach($industries as $industry)
+                            <option value={{$industry->id}}>{{$industry->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

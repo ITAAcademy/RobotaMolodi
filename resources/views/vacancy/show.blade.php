@@ -41,7 +41,6 @@
                     </div>
                 </div>
             </div>
-            {{--TODO refactor href--}}
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
@@ -65,7 +64,7 @@
                     </div>
 
                     <div>
-                        <div class="text_vac"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="text_vac"><span>Галузь: </span><a class="filterSubmit orangeLinks" tabindex="1" href="{{ route('main.showVacancies') }}" data-filter-name="industry" data-filter-value="{{ $industry->id }}">{{$industry->name}}</a></div>
                     </div>
                     <div>
                         <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
@@ -174,20 +173,32 @@
                     if(!closeAll)
                         document.getElementById(id).style.display = "block";
                 }
-
-//                function getFileName() {
-//                    var file = document.getElementById ('uploaded-file').value;
-//                    file = file.replace(/\\/g, "/").split('/').pop();
-//                    document.getElementById ('file-name').innerHTML = file;
-//                }
             </script>
         </div>
     </div>
 
     {!!Html::script('js/socialNetWork.js')!!}
-
     <script>
         socialNetWork('.social > a');
+
+        $('.filterSubmit').on('click',function(e){
+            e.preventDefault();
+            var el = $(this);
+            $.ajax({
+                url: '/setfilter',
+                data: {
+                    name:  el.data('filter-name'),
+                    value: el.data('filter-value')
+                },
+                success: function(data){
+                    location.href = '/showVacancies';
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        });
     </script>
 
 @stop
