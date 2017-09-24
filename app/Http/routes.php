@@ -183,6 +183,9 @@ Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterControlle
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
+//creating a new design
+route::get('test', 'ProjectController@test');
+
 //Cabinet Ajax Route
 
 //Route::resource('cabinet.response','cabinet\CabinetController');

@@ -1,0 +1,151 @@
+.project{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 55px;
+    font-family: "SegoeUIRegular";
+}
+
+.about-project, .team-project{
+    border-left: 7px solid #ebebeb;
+}
+
+.about-project__tittle{
+    padding-left: 50px;
+    padding-top: 30px;
+    font-size: 24px;
+    color: #355c89;
+}
+
+.about-project__text{
+    padding-left: 80px;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.about-project__info{
+    background-color: #f0f3fa;
+}
+
+.about-project__info-items{
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 24.7%;
+    vertical-align: top;
+}
+
+.about-project__info-list{
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+}
+
+.info-items-img-wrapper {
+    width: 100%;
+    height: 217px;
+    position: relative;
+}
+
+.project__info-items-img{
+    position: absolute;
+    bottom: 0;
+}
+
+.team-project__list{
+    padding-left: 50px;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.project__info-items-title{
+    color: #355c89;
+    font-size: 24px;
+}
+
+.team-project__tittle{
+    font-size: 28px;
+    color: #355c89;
+    padding-left: 50px;
+    padding-top: 30px;
+}
+
+.team-project__tittle-text{
+    color: #333;
+}
+
+.project__info-items-text{
+    font-size: 24px;
+}
+
+.team-project__persons{
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.team-project__persons-avatar{
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    width: 165px;
+    height: 165px;
+}
+
+.team-project__persons-name{
+    color: #355c89;
+    font-size: 20px;
+}
+
+.team-project__persons-specialty{
+    font-size: 16px;
+}
+
+.team-project__curtail-expand{
+    position: relative;
+}
+
+.team-project__curtail-expand a{
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    float: right;
+    width: 100px;
+    text-align: center;
+    margin-right: 160px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.team-project__curtail-expand a:hover{
+    color: #893588;
+}
+
+.team-project__curtail-expand:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ebebeb;
+    display: inline-block;
+    top: 11px;
+}
+
+.description__brief{
+    margin-bottom: 20px;
+}
+
+.description__brief-title, .description__full-title{
+    font-size: 28px;
+    color: #355c89;
+    padding-left: 50px;
+    padding-top: 30px;
+    display: inline-block;
+}
+
+.description__brief-text, .description__full-text{
+    font-size: 28px;
+    text-align: justify;
+    color: #333;
+}
