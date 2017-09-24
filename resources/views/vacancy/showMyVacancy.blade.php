@@ -55,7 +55,7 @@
         <div class="col-xs-12 col-md-10">
             <div>
                 <p class="position-myVacancy">
-                    <a class="orangColor-myVacancy-name" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{!!$vacancy->position!!}</a>
+                    {!! Html::linkRoute('main.showVacancies', $vacancy->position, [], ['class' => 'filterSubmit orangColor-myVacancy-name', 'tabindex' => 1, 'data-filter-name' => 'specialisation', 'data-filter-value' => $vacancy->position ]) !!}
                     <br>
                 </p>
             </div>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="position-myVacancy">
-              <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry' {{$vacancy->Industry()->id}})">{{$industry->name}}</a>
+                {!! Html::linkRoute('main.showVacancies', $industry->name, [], ['class' => 'filterSubmit orangColor-myVacancy', 'tabindex' => 1, 'data-filter-name' => 'industry', 'data-filter-value' => $industry->id ]) !!}
                 {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
             </div>
 
@@ -196,7 +196,26 @@
                         }
                     })
                 }
-            })
+            });
+
+            $('.filterSubmit').on('click',function(e){
+                e.preventDefault();
+                var el = $(this);
+                $.ajax({
+                    url: '/setfilter',
+                    data: {
+                        name:  el.data('filter-name'),
+                        value: el.data('filter-value')
+                    },
+                    success: function(data){
+                        location.href = el.attr('href');
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            });
         });
 
         function ConfirmDelete()

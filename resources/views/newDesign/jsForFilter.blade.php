@@ -30,6 +30,7 @@ $(document).ready(function () {
             }
         });
     })
+    $('.getting-list-selected-box').change();
 
     //filter ratings
     $('.sort-by-rating').unbind('click').click(function (e) {

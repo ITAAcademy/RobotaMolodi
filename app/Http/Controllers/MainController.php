@@ -71,7 +71,6 @@ class MainController extends Controller
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
 
         return View::make('main.filter.filterVacancies', array(
-            'vacancies' => $vacancies,
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
@@ -125,6 +124,6 @@ class MainController extends Controller
         return $news=$news->getNewsForMainPage();
     }
 
-    
+
 
 }

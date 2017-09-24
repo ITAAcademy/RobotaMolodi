@@ -41,11 +41,10 @@
                     </div>
                 </div>
             </div>
-            {{--TODO refactor href--}}
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        <a class="greyLinks" tabindex="1" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
+                        {!! Html::linkRoute('main.showVacancies', $vacancy->position, [], ['class' => 'filterSubmit greyLinks', 'tabindex' => 1, 'data-filter-name' => 'specialisation', 'data-filter-value' => $vacancy->position ]) !!}
                     </div>
                     <div>
                         <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
@@ -65,7 +64,10 @@
                     </div>
 
                     <div>
-                        <div class="text_vac"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="text_vac">
+                            <span>Галузь: </span>
+                            {!! Html::linkRoute('main.showVacancies', $industry->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'industry', 'data-filter-value' => $industry->id ]) !!}
+                        </div>
                     </div>
                     <div>
                         <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
@@ -76,11 +78,9 @@
                     <div>
                         <div class="text_data">
                             @foreach($cities->get() as $city)
-                                <a class="orangeLinks" href="javascript:submit('selectCity', '{{$city->id}}')">
-                                    {!!$city->name!!}
-                                </a>
+                                {!! Html::linkRoute('main.showVacancies', $city->name, [], ['class' => 'filterSubmit orangeLinks', 'tabindex' => 1, 'data-filter-name' => 'region', 'data-filter-value' => $city->id ]) !!}
                             @endforeach
-                                <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
+                            <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                         </div>
                     </div>
 
@@ -174,20 +174,32 @@
                     if(!closeAll)
                         document.getElementById(id).style.display = "block";
                 }
-
-//                function getFileName() {
-//                    var file = document.getElementById ('uploaded-file').value;
-//                    file = file.replace(/\\/g, "/").split('/').pop();
-//                    document.getElementById ('file-name').innerHTML = file;
-//                }
             </script>
         </div>
     </div>
 
     {!!Html::script('js/socialNetWork.js')!!}
-
     <script>
         socialNetWork('.social > a');
+
+        $('.filterSubmit').on('click',function(e){
+            e.preventDefault();
+            var el = $(this);
+            $.ajax({
+                url: '/setfilter',
+                data: {
+                    name:  el.data('filter-name'),
+                    value: el.data('filter-value')
+                },
+                success: function(data){
+                    location.href = el.attr('href');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        });
     </script>
 
 @stop
