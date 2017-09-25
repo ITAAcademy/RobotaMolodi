@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class News extends Model
 {
     const NOT_PICTURE = 'Not picture';
-    const NEWS_ON_MAIN_PAGE=10;
+    const NEWS_ON_MAIN_PAGE = 5;
     private $path = 'image/uploads/news/';
     private $errorsMessages;
 
@@ -91,9 +91,10 @@ class News extends Model
     {
         return $this->getPath() . $this->img;
     }
-    public function getNewsForMainPage()
+
+    public static function getNews()
     {
-        $news = $this->latest('id')->getPublished()->limit(self::NEWS_ON_MAIN_PAGE)->get();
+        $news = News::getPublished()->latest('created_at')->limit(self::NEWS_ON_MAIN_PAGE)->get();
         return $news;
     }
     

@@ -75,7 +75,7 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>$this->dataNews(),
+            'news'=>News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }
@@ -97,7 +97,7 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>$this->dataNews(),
+            'news'=>News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }
@@ -116,15 +116,9 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>$this->dataNews(),
+            'news'=>News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }
-    private function dataNews(){
-        $news=new News();
-        return $news=$news->getNewsForMainPage();
-    }
-
-    
 
 }
