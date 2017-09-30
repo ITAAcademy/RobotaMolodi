@@ -46,7 +46,7 @@
                 <div class="checkbox">
                     <label>
                         <input required type="checkbox" name="remember"><span>З</span>
-                        <a href="{{ url('https://intita.com/courses')}}" target="_blank">політикою використання</a>
+                        <a href="{{ url('http://robotamolodi.org/policy')}}" target="_blank">політикою використання</a>
                         <span>я згоден</span>
                     </label>
                 </div>
