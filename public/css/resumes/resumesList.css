@@ -30,6 +30,10 @@ a{
     text-decoration: none;
 }
 
+.ib-block {
+    display: inline-block;
+}
+
 .section-link{
     max-height: 140px;
     overflow: hidden;

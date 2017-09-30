@@ -35,7 +35,7 @@
                 <span>{{ $resume->Industry()->name}}</span>
             </div>
 
-            <a class="links-line" href="#">
+            <a class="links-line ib-block" href="#">
                 <div class="line">
                     <span class="town">{{ $resume->City()->name}}</span>
                     <span class="drop">&bull;</span>
