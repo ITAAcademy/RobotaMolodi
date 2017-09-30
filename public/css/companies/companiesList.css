@@ -54,6 +54,7 @@ a:hover{
     text-decoration: none;
 }
 .links-line :-webkit-any-link{
+    display: inline-block;
     text-decoration: none;
 }
 
