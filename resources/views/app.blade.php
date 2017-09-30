@@ -22,7 +22,7 @@
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 	@yield('head')
-
+	<link rel="shortcut icon" href="../../image/favicon.png" type="image/png">
 	<!-- Fonts -->
 	{{--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">--}}
 
