@@ -28,12 +28,14 @@
                         @endif
                     </div>
 
+                    @if(Auth::check() && Auth::id() == $company->users_id)
                     <div class="change-img-myresume">
                         <span class="orange-link-myresume"  id="changeImage">
                             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                             <span>Змiнити фото</span>
                         </span>
                     </div>
+                    @endif
 
                     <div class="case">
 
