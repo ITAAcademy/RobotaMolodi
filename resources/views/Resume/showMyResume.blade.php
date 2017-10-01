@@ -1,6 +1,6 @@
 @extends('app')
-<link href="{{ asset('/css/resumes/myResume.css') }}" rel="stylesheet">
 @section('content')
+    <link href="{{ asset('/css/resumes/myResume.css') }}" rel="stylesheet">
     {!!Form::open(['route' => 'main.resumes', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
     <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
     <input type = "hidden" name = "filterValue" id = "filterValue"/>
@@ -10,25 +10,12 @@
     <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-{{--    @include('newDesign.breadcrumb',['mainRout'=>'head','nameMainRout'=>'Головна', 'thirdRout'=>'Резюме:','thirdRoutName'=>$resume->position,'showDisplay'=>'','secondRout'=>'resumes', 'nameSecondRout'=>'Особистий кабінет'])--}}
-
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
         ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
         ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
         ['name' => 'Резюме: '.$resume->position, 'url' => false]
         ]
-    )
-
-    )
-
-    {{--@include('newDesign.breadcrumb',array('breadcrumbs' =>[--}}
-        {{--['url'=>'head','name'=>'Головна','showDisplay'=>'none'],--}}
-        {{--['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],--}}
-        {{--['name' => 'Резюме: ', 'url' => ]--}}
-        {{--]--}}
-    {{--)--}}
-
-    {{--)--}}
+    ))
 
     <div class="panel" id="vrBlock">
         <div class="row">

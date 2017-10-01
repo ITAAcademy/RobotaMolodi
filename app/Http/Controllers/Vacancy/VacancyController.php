@@ -146,7 +146,7 @@ class VacancyController extends Controller
      */
     public function store(Guard $auth, Company $company, Vacancy $vacancy, Vacancy_City $vacancy_City, Request $request)
     {
-        
+
         if (Auth::check()) {
             Input::flash();
             Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
@@ -214,7 +214,7 @@ class VacancyController extends Controller
 
         $industry = Industry::find($vacancy->branch);
         $company = Company::find($vacancy->company_id);
-        
+
         if (Auth::check()) {
             if ($vacancy->company->users_id == auth()->user()->id) {
                 $view = 'vacancy.showMyVacancy';
@@ -490,6 +490,16 @@ class VacancyController extends Controller
         } else {
             return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
+    }
+
+    public function showVacancies(Request $request)
+    {
+        $nameFilter  = $request->get('name');
+        $valueFilter = $request->get('value');
+        // Have to validate ?
+        if(isset($nameFilter, $valueFilter))
+            $request->session()->flash($nameFilter, $valueFilter);
+        return redirect()->route('main.showVacancies');
     }
 
 }
