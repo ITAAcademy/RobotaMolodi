@@ -137,7 +137,7 @@ Route::get('resume/create','ResumeController@create');
 Route::get('resume/{resume}/destroy',['as'=>'resumeDestroy','uses' => 'ResumeController@destroy']);
 Route::post('resume/deletephoto','ResumeController@deletePhoto');
 Route::post('resume/block','ResumeController@block');
-
+Route::get('resume/filter/showResumes', ['as' => 'resume.showResumes', 'uses' => 'ResumeController@showResumes']);
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index','middleware' => 'auth']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)

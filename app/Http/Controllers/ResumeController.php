@@ -299,9 +299,9 @@ class ResumeController extends Controller {// Клас по роботі з ре
     }
 
     public function change_image(Request $request){
-        
+
     }
-    
+
     public function deletePhoto(Request $request)
     {
         if ($request->isMethod('POST'))
@@ -358,4 +358,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
             return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
     }
+
+    public function showResumes(Request $request)
+    {
+        $nameFilter  = $request->get('name');
+        $valueFilter = $request->get('value');
+        // Have to validate ?
+        if(isset($nameFilter, $valueFilter))
+            $request->session()->flash($nameFilter, $valueFilter);
+        return redirect()->route('main.resumes');
+    }
+
 }
