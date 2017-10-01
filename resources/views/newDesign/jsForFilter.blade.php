@@ -133,3 +133,10 @@ $(document).ready(function () {
 
 })
 </script>
+@if(Session::has('regions') || Session::has('industries') || Session::has('specialisations'))
+    <script>
+        $(document).ready(function (){
+            $('.getting-list-selected-box').change();
+        });
+    </script>
+@endif

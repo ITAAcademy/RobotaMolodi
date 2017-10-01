@@ -15,9 +15,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box" >
                 <select class="getting-list-selected-box"  data-placeholder="Вся країна" multiple="multiple" name="selected-region">
-                    @foreach($cities as $city)
-                        <option value={{$city->id}}>{{$city->name}}</option>
-                    @endforeach
+                    @if(Session::has('regions'))
+                        @foreach($cities as $city)
+                            <option value={{$city->id}} {{ $city->id==Session::get('regions') ? 'selected':''}}>{{$city->name}}</option>
+                        @endforeach
+                    @else
+                        @foreach($cities as $city)
+                            <option value={{$city->id}}>{{$city->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -29,9 +35,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
-                    @foreach($industries as $industry)
-                        <option value={{$industry->id}}>{{$industry->name}}</option>
-                    @endforeach
+                    @if(Session::has('industries'))
+                        @foreach($industries as $industry)
+                            <option value={{$industry->id}} {{ $industry->id==Session::get('industries') ? 'selected':''}}>{{$industry->name}}</option>
+                        @endforeach
+                    @else
+                        @foreach($industries as $industry)
+                            <option value={{$industry->id}}>{{$industry->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -43,9 +55,15 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі спеціалізації" multiple="multiple" name="selected-specialization">
-                    @foreach($specialisations as $specialisation)
-                        <option>{{$specialisation}}</option>
-                    @endforeach
+                    @if(Session::has('specialisations'))
+                        @foreach($specialisations as $specialisation)
+                            <option {{ $specialisation==Session::get('specialisations') ? 'selected':''}}>{{$specialisation}}</option>
+                        @endforeach
+                    @else
+                        @foreach($specialisations as $specialisation)
+                            <option>{{$specialisation}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
