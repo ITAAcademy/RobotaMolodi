@@ -27,6 +27,7 @@
                             <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
                             <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                             <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                            <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
                             <a href="auth/intita"><span class="logoINTITA"></span></a>
                     </div>
                 </div>

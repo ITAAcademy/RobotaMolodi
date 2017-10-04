@@ -45,7 +45,7 @@
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        <a class="greyLinks" tabindex="1" href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{{$vacancy->position}}</a>
+                        {!! Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisations', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]) !!}
                     </div>
                     <div>
                         <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
@@ -65,7 +65,10 @@
                     </div>
 
                     <div>
-                        <div class="text_vac"><span>Галузь: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('selectIndustry'{{$industry->id}})">{{$industry->name}}</a> </div>
+                        <div class="text_vac">
+                            <span>Галузь: </span>
+                            {!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}
+                        </div>
                     </div>
                     <div>
                         <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
@@ -76,9 +79,7 @@
                     <div>
                         <div class="text_data">
                             @foreach($cities->get() as $city)
-                                <a class="orangeLinks" href="javascript:submit('selectCity', '{{$city->id}}')">
-                                    {!!$city->name!!}
-                                </a>
+                                {!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}
                             @endforeach
                                 <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                         </div>

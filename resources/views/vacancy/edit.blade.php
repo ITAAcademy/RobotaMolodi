@@ -172,8 +172,8 @@
     </div>
         </div>
     <div class="row">
-    <div class="form-group" style="margin-top: 20px;  text-align: center;">
-        <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
+    <div class="form-group" style="margin: 20px 0 0 185px;  text-align: left;">
+        <input type="submit" class="btn btn-default" style="background: #f68c06" value="Зареєструвати вакансію">
     </div>
         </div>
 

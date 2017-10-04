@@ -23,7 +23,7 @@
             <div id="datAnnoyingSizes">
                 <div class="panel-heading">
                     <p class="position_resume">
-                        <a tabindex="1" class="orangColor-resume-name" href="javascript:submit('selectSpecialisation', '{{$resume->position}}')">{!!$resume->position!!}</a>
+                        {!! Html::linkRoute('resume.showResumes', $resume->position, [ 'name' => 'specialisation', 'value' => $resume->position], ['class' => 'orangColor-resume-name', 'tabindex' => 1 ]) !!}
                     </p>
                     <p class="price_resume">
                         {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
@@ -46,7 +46,9 @@
                 </div>
 
                 <div class="panel-description-resume">
-                    <p class="position_resume"><a tabindex="1" class="orangColor-resume" href="javascript:submit('selectIndustry','{{$resume->Industry()->id}}')">{!!$resume->Industry()->name!!}</a></p>
+                    <p class="position_resume">
+                        {!! Html::linkRoute('resume.showResumes', $resume->Industry()->name, [ 'name' => 'industries', 'value' => $resume->Industry()->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
+                    </p>
 
                     <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
 
@@ -54,7 +56,7 @@
                     <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                     <div class="button-city-time">
                         <p class="cityTime_resume">
-                            <a class="orangColor-resume" href="javascript:submit('selectCity', '{{$city->id}}')">{!!$city->name!!}</a>
+                            {!! Html::linkRoute('resume.showResumes', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
                             <span id="yellowCircle-resume">&#183;</span>
                             {{ date('j m Y', strtotime($resume->updated_at))}}
                         </p>

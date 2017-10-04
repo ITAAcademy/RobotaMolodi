@@ -22,7 +22,7 @@
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 	@yield('head')
-
+	<link rel="shortcut icon" href="../../image/favicon.png" type="image/png">
 	<!-- Fonts -->
 	{{--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">--}}
 
@@ -61,7 +61,7 @@
 	{{--<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>--}}
 
 	{{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-	{!!Html::script('js/sortAds/datepicker-uk.js')!!}
+	{!!Html::script('ua')!!}
 	{!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}

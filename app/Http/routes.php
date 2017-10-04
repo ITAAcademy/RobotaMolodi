@@ -15,7 +15,17 @@ use Illuminate\Support\Facades\Redirect;
 use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
-//use Symfony\Component\HttpFoundation\Response;
+
+Route::get('language/{lang}', function($lang){
+
+    if (in_array($lang, Config::get('app.locales'))) {
+        $cookie = cookie()->forever('locale', $lang);
+        return redirect()->back()->withCookie($cookie);
+    }else{
+        return redirect()->back();
+    }
+
+});
 
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
@@ -35,7 +45,7 @@ Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => '
 
 Route::get('home', 'HomeController@index');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth','admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (){
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
 
     Route::resource('/news', 'Admin\NewsController');
@@ -103,7 +113,7 @@ Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\\VacancyController@showPasteL
 
 Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPasteResumeForm");
 Route::post('vacancy/block','Vacancy\\VacancyController@block');
-
+Route::get('vacancy/filter/showVacancies', ['as' => 'vacancy.showVacancies', 'uses' => 'Vacancy\VacancyController@showVacancies']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route
 Route::get('showCompany','Company\CompanyController@showCompany');
@@ -127,7 +137,7 @@ Route::get('resume/create','ResumeController@create');
 Route::get('resume/{resume}/destroy',['as'=>'resumeDestroy','uses' => 'ResumeController@destroy']);
 Route::post('resume/deletephoto','ResumeController@deletePhoto');
 Route::post('resume/block','ResumeController@block');
-
+Route::get('resume/filter/showResumes', ['as' => 'resume.showResumes', 'uses' => 'ResumeController@showResumes']);
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
 get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index','middleware' => 'auth']);
 $router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
@@ -174,9 +184,9 @@ Route::get('aboutus', function () {
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
 });
-Route::get('policy', function () {
+Route::get('policy', ['as' => 'policy', function () {
     return view('staticHeaderPages.politics_uses');
-});
+}]);
 Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
 Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
 Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);

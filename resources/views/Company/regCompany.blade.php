@@ -200,6 +200,7 @@
 
     </script>
 
+{!!Html::script('js/jquery.maskedinput.min.js')!!}
 <script type="text/javascript">
     $(document).ready(function () {
         $(".form-control").change(function () {
@@ -210,7 +211,7 @@
                 $(window).unbind('beforeunload');
             });
         });
-
+        $("#phone").mask("+38(099) 999-99-99");
     });
 </script>
 

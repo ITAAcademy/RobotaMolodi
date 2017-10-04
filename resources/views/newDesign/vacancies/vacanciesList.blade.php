@@ -34,7 +34,7 @@
                     <span class="likeError"></span>
                 </div>
 
-                <a class="links" href="#">
+                <a class="links ib-block" href="#">
                     <div class="line">
                         <span class="town">@foreach($vacancy->Cities()->get() as $city){{ $city->name}} @endforeach</span>
                         <span class="drop">&bull;</span>
