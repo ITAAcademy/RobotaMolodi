@@ -1,0 +1,23 @@
+.vacancies-contacts{
+    margin-bottom: 50px;
+    font-family: "SegoeUIRegular";
+}
+
+.vacancies-contacts__wrapper{
+    border-left: 7px solid #ebebeb;
+    margin-left: 180px;
+    padding: 20px;
+}
+
+.vacancies-contacts__title{
+    font-size: 24px;
+    color: #355c89;
+}
+
+.vacancies-contacts__title{
+    margin-bottom: 20px;
+}
+
+.vacancies-contacts__items{
+    font-size: 20px;
+}

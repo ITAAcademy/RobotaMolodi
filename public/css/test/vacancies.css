@@ -1,0 +1,93 @@
+.container-main{
+    max-width: 1300px;
+}
+
+.routeBreadcrumb, .slider-wrapper, nav.navbar-vacancy{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+nav.navbar.navbar-default.col-xs-12 {
+    height: 95px;
+}
+
+
+
+/*my*/
+.vacancies {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: "SegoeUIRegular";
+}
+
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vacancies__tittle{
+    font-size: 36px;
+    color: #355c89;
+}
+
+.vacancies__text{
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+.about-company{
+    border-left: 7px solid #ebebeb;
+    margin-left: 190px;
+    margin-bottom: 65px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.about-company__tittle {
+    font-size: 24px;
+    color: #355c89;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.about-company__text{
+    text-align: justify;
+    font-size: 18px;
+}
+
+.about-company__text-link{
+    text-decoration: underline;
+}
+
+.about-company__text-link:hover{
+    text-decoration: none;
+}
+
+.about-company__achievement{
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.achievement-items__years, .achievement-items__project, .achievement-items__cone{
+    font-size: 24px;
+    color: #355c89;
+}
+
+.about-company__list{
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-company__items{
+    list-style: square outside;
+    color: #355c89;
+}
+
+.about-company__items span{
+    color: #333;;
+}
