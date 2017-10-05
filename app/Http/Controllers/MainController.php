@@ -104,7 +104,9 @@ class MainController extends Controller
 
     public function showResumes()
     {
-        $resumes = Resume::latest('updated_at')->paginate();
+        $resumes = Resume::latest('updated_at')
+            ->isActive()
+            ->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
         if(Request::ajax()){
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
