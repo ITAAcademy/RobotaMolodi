@@ -95,19 +95,22 @@
             <span class="err-message">@if(isset($errors)){{$errors->first('description')}}@endif</span>
         </div>
     </div>
-
     <div class="row">
+            <input type="hidden" name="fcoords" class="coords" id="coords" value="" data-id="{{ $company->id or ""}}">
+            <input type="hidden" name="fname" value="{{ csrf_token() }}">
 
-        @if(empty($company->company_name))
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
-                <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Виберіть файл</button>
-                    <div id="filename">Файл не вибрано</div>
-                    {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadCompany\').value;')) !!}
+                <div class="row">
+                    <div class="col-sm-offset-3 col-md-9 col-sm-9">
+                        {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
+                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'companyLogo', 'class' => 'img-responsive']) !!}
+                        @else
+                            {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'companyLogo', 'class' => 'img-responsive')) !!}
+                        @endif
+                        <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Змінити фото</button>
+                    </div>
                 </div>
-
-                <input type="hidden" name="fcoords" class="coords" id="coords" value="">
-                <input type="hidden" name="fname" value="">
 
                 <div class="col-sm-offset-3 col-md-9 col-sm-9">
                     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
@@ -128,21 +131,51 @@
                             backdrop: 'static'
                         });
                         crop(e, 'img-src', '#crop', '#imageBox');
+                        // show choosen image before to save it on server
+                        var tmppath = URL.createObjectURL(event.target.files[0]);
+                        $("#companyLogo").attr('src',tmppath);
                     });
+
+                    if($('.coords').attr('data-id')) {
+                        $('#imageBox').on('hidden.bs.modal', function () {
+                            if($('#coords').val()){
+                                var $input = $("#loadCompany");
+                                var fd = new FormData();
+                                fd.append('fileImg', $input.prop('files')[0]);
+                                fd.append('coords', $('.coords').val());
+                                fd.append('id', $('.coords').attr('data-id'));
+                                $.ajax({
+                                    url: '{{ route('upimgcom') }}',
+                                    data: fd,
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST',
+                                    success: function (data){
+                                        $('#companyLogo').attr('src', window.location.origin + '/' + data);
+                                    },
+                                    error: function (e,b){
+                                        console.log(e + " " + b);
+                                    }
+                                });
+                            }
+                        });
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                            }
+                        });
+                    };
                 })
             </script>
-        @endif
 
         <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
             <span class="required_field">*</span> – Обов'язкові для заповнення
         </div>
-
         <div class="row">
             <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
                 {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
             </div>
         </div>
-
     </div>
 
     {!!Form::token()!!}
@@ -214,4 +247,3 @@
         $("#phone").mask("+38(099) 999-99-99");
     });
 </script>
-
