@@ -17,7 +17,7 @@
                 <hr>
                 <li><a href="#">Навчальні заклади</a></li>
                 <li><a href="#">Тренінги і семінари</a></li>
-                <li><a href="#">Курси</a></li>
+                <li><a href="https://intita.com/courses">Курси</a></li>
                 <li><a href="#">Навчання за кордоном</a></li>
             </ul>
         </div>
