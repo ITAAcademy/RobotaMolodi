@@ -26,3 +26,6 @@
     <br>
 </div>
 {!! Form::submit('Create news', ['class' => 'btn btn-primary']) !!}
+
+<script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>

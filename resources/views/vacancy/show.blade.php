@@ -48,7 +48,7 @@
                         {!! Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisations', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]) !!}
                     </div>
                     <div>
-                        <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                        <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="/company/{{$company->id}}">{{$company->company_name}}</a> </div>
                     </div>
 
                     <div class="ratings text_vac">

@@ -2,34 +2,6 @@ a{
     text-decoration: none;
 }
 
-.links-line:hover{
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links-line:hover h3 {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links-line:hover p {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.line:hover span {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links-line :-webkit-any-link{
-    text-decoration: none;
-}
-
 .ib-block {
     display: inline-block;
 }
@@ -76,6 +48,11 @@ a{
 
 .line {
     display: flex;
+}
+
+.links:hover{
+    text-decoration: none;
+    color: orange;
 }
 
 .town {

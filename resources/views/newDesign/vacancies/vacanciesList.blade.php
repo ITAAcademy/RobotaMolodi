@@ -34,13 +34,13 @@
                     <span class="likeError"></span>
                 </div>
 
-                <a class="links ib-block" href="#">
+                <p class="links ib-block">
                     <div class="line">
                         <span class="town">@foreach($vacancy->Cities()->get() as $city){{ $city->name}} @endforeach</span>
                         <span class="drop">&bull;</span>
                         <span class="data">{{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>
-                </a>
+                </p>
                 <hr>
             </div>
     @endforeach

@@ -61,7 +61,7 @@
 	{{--<script src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>--}}
 
 	{{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-	{!!Html::script('ua')!!}
+
 	{!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}

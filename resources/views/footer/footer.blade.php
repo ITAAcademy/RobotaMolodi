@@ -5,9 +5,7 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">IНФОРМАЦIЯ</li>
                 <hr>
                 <li><a href="aboutus">Про нас</a></li>
-                <li><a href="https://profitday.info/allcompanies">Партнери</a></li>
-                <li><a href="#">Підтримка</a></li>
-                <li><a href="#">Бізнес-ідеї</a></li>
+                <li><a href="https://profitday.info/allcompanies" target="_blank" >Партнери</a></li>
             </ul>
 
         </div>
@@ -15,19 +13,15 @@
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">НАВЧАННЯ</li>
                 <hr>
-                <li><a href="#">Навчальні заклади</a></li>
-                <li><a href="#">Тренінги і семінари</a></li>
-                <li><a href="https://intita.com/courses">Курси</a></li>
-                <li><a href="#">Навчання за кордоном</a></li>
+                <li><a href="https://profitday.info/upcomingevents" target="_blank" >Тренінги і семінари</a></li>
+                <li><a href="https://intita.com/courses" target="_blank" >Курси</a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">ПОСЛУГИ</li>
                 <hr>
-                <li><a href="#">Довідник</a></li>
-                <li><a href="https://intita.com/courses">Навчання</a></li>
-                <li><a href="#">Бізнес-ідеї</a></li>
+                <li><a href="https://intita.com" target="_blank" >Навчання</a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
@@ -35,16 +29,8 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">КОНТАКТИ</li>
                 <hr>
                 <li>
-                    <i class="fa fa-phone-square" aria-hidden="true"></i>
-                    <a href="#" class="no-click">+38-0432 52-82-67</a>
-                </li>
-                <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <a href="#" class="no-click">robotamolodi@gmail.com</a>
-                </li>
-                <li>
-                    <i class="fa fa-skype" aria-hidden="true"></i>
-                    <a href="#" class="no-click">robotamolodi</a>
+                    <span>robotamolodi@gmail.com</span>
                 </li>
             </ul>
         </div>
