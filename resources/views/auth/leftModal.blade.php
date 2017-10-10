@@ -6,9 +6,9 @@
             </button>
             <div class="col-xs-offset-6">
                 <span>| </span>
-                <a class="local-ua" href="language/ua">ua</a>
+                <a class="local-ua" href="{{url()}}/language/ua">ua</a>
                 <span> | </span>
-                <a class="local-en" href="language/en">en</a>
+                <a class="local-en" href="{{url()}}/language/en">en</a>
                 <span> | </span>
             </div>
         </div>
