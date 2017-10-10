@@ -190,7 +190,7 @@
         <div class="col-md-4 col-sm-4">
             <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть фото</button>
             <div id="filename">Файл не вибрано</div>
-            {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
+            {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
         </div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
     </div>
@@ -236,12 +236,19 @@
 
 <script>
     $(document).ready(function () {
+        var cloneInputFile = $('#loadResume').clone();
          $('#loadResume').on('change', function(e) {
-             $('#imageBox').modal({
-                 show: true,
-                 backdrop: 'static'
-             });
-             crop(e, 'img-src', '#crop', '#imageBox');
+             if(document.getElementById('loadResume').value) {
+                 cloneInputFile = $('#loadResume').clone();
+                 $('#imageBox').modal({
+                     show: true,
+                     backdrop: 'static'
+                 });
+                 crop(e, 'img-src', '#crop', '#imageBox');
+             } else {
+                 $('#loadResume').replaceWith(cloneInputFile);
+             }
+             document.getElementById('filename').innerHTML = document.getElementById('loadResume').value;
          });
 
         $('#description').text($('.change_description').html());
