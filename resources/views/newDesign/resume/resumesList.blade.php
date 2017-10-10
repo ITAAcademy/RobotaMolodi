@@ -35,13 +35,13 @@
                 <span>{{ $resume->Industry()->name}}</span>
             </div>
 
-            <a class="links-line ib-block" href="#">
+            <p class="ib-block">
                 <div class="line">
                     <span class="town">{{ $resume->City()->name}}</span>
                     <span class="drop">&bull;</span>
                     <span class="data">{{date('j m Y', strtotime($resume->updated_at))}}</span>
                 </div>
-            </a>
+            </p>
 
             <hr class="limit-line">
         </div>

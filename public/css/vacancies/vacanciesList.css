@@ -2,34 +2,6 @@ a{
     text-decoration: none;
 }
 
-.links:hover{
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links:hover h3 {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links:hover p {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.line:hover span {
-    display: block;
-    color: orange;
-    text-decoration: none;
-}
-
-.links :-webkit-any-link{
-    text-decoration: none;
-}
-
 .ib-block {
     display: inline-block;
 }
