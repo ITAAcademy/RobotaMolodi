@@ -164,7 +164,7 @@
                 @for($i=0; $i<count($publishedOptions); $i++)
                     @if ($i==1)
                         <option selected value="{{$i}}">{{$publishedOptions[$i]}}</option>
-                        &@else
+                        @else
                         <option value="{{$i}}">{{$publishedOptions[$i]}}</option>
                     @endif
                 @endfor
@@ -188,7 +188,7 @@
         <div class="col-md-2 col-sm-2">
         </div>
         <div class="col-md-4 col-sm-4">
-            <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть файл</button>
+            <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть фото</button>
             <div id="filename">Файл не вибрано</div>
             {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg', 'onchange'=>'javascript:document.getElementById(\'filename\').innerHTML = document.getElementById(\'loadResume\').value;')) !!}
         </div>
