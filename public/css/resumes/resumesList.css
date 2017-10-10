@@ -50,6 +50,11 @@ a{
     display: flex;
 }
 
+.links:hover{
+    text-decoration: none;
+    color: orange;
+}
+
 .town {
     color: gray;
     font-size: 18px;

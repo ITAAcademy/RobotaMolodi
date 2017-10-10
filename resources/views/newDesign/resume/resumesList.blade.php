@@ -14,7 +14,7 @@
                 <p class="text-left"> {{strip_tags($resume->description)}} </p>
             </div>
 
-            <a class="links-line" href="{{route('resume.show', $resume->id)}}">
+            <a class="links" href="{{route('resume.show', $resume->id)}}">
                 <p class="read-next-link">Читати далі...</p>
             </a>
 
