@@ -6,8 +6,8 @@ $(document).ready(function(){
         },
         openSpeed:    300,
         closeSpeed:   300,
-        previousIcon: '<img src="images/modal_gallery_prev_icon.png" alt="prev">',
-        nextIcon: '<img src="images/modal_gallery_next_icon.png" alt="next">'
+        previousIcon: '<img src="../image/aboutUsImages/modal_gallery_prev_icon.png" alt="prev">',
+        nextIcon: '<img src="../image/aboutUsImages/modal_gallery_next_icon.png" alt="next">'
     });
 
     $('.small-content .line').on('click', function(){
