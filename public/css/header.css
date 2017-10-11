@@ -12,6 +12,15 @@
 nav.navbar.navbar-default{
     margin-bottom: 12px;
 }
+.edit-user-name{
+    width: 100%;
+    text-align: center;
+    line-height: 32px;
+    color: #ff930b;
+}
+.edit-user-name:hover{
+    color: #c77308;
+}
 @media (min-width: 1300px){
     /*Right modal*/
     .navtab-registraion{
@@ -208,8 +217,6 @@ nav.navbar.navbar-default{
         padding-right: 1px;
     }
     .navtab-exit .modal-user-button{
-        float: right;
-        margin-right: 20px;
         padding: 3px;
         border: 0;
         color: #f68c06;
@@ -1431,4 +1438,3 @@ nav.navbar.navbar-default{
     /*End left modal*/
 
 }
-
