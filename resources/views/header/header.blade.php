@@ -1,4 +1,5 @@
 <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/parsley.css') }}" rel="stylesheet">
 
 <header>
     <nav class="navbar navbar-default col-xs-12">
@@ -29,17 +30,24 @@
         </div>
         @else
             <div class="col-xs-4 navtab-exit">
-                <a @if(Auth::user()->role_id==1) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
-                    <button type="button" class="btn btn-default modal-user-button">
-                        <div class="img-user">
-                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                        </div>
-                        <div class="img-user-name">
-                            <p>{{ Auth::user()->name }}</p>
-                            @if(Auth::user()->role_id==1)<p style="color: red">(Admin)</p>@endif
-                        </div>
-                    </button>
-                </a>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                            <button type="button" class="btn btn-default modal-user-button">
+                                <div class="img-user">
+                                    {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                </div>
+                                <div class="img-user-name">
+                                    <p>{{ Auth::user()->name }}</p>
+                                    @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a class="edit-user-name" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="col-xs-2 navtab-exit">
                 <a href="{{ url('/auth/logout') }}">
@@ -56,6 +64,7 @@
 
 @include('auth.rightModal')
 @include('auth.leftModal')
+@include('_modal')
 
 {!!Html::script('js/socialNetWork.js')!!}
 
@@ -113,7 +122,30 @@
             tab_content[0].style.borderRadius = "0 15px 15px 15px";
         });
 
-
         socialNetWork('.modal-social-share > a');
+
     })
 </script>
+@if (Auth::check())
+    <script>
+        $(document).ready(function (){
+            $('.edit-user-name').on('click',function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $('#modal-common').modal('show');
+                $.ajax({
+                   url: '{{ route('user.edit', ['id' => Auth::user()->id]) }}',
+                   type: 'GET',
+                   success: function(response) {
+                     $('#modal-common .modal-content').html(response);
+                   },
+                   error: function(xhr, error){
+                      console.log(xhr);
+                      console.log(error);
+                    }
+                });
+
+            });
+        });
+    </script>
+@endif

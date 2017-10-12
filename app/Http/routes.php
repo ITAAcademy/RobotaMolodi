@@ -158,6 +158,7 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
     Route::resource('cabinet','cabinet\CabinetController');
+    Route::resource('user','UserController', ['only' => ['edit','update']]);
 });
 
 Route::filter('no-cache',function($route, $request, $response){
