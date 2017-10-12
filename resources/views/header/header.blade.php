@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="img-user-name">
                                     <p>{{ Auth::user()->name }}</p>
-                                    @if(Auth::user()->role_id==1)<p style="color: red">(Admin)</p>@endif
+                                    @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
                                 </div>
                             </button>
                         </a>
