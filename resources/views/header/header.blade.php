@@ -32,7 +32,7 @@
             <div class="col-xs-4 navtab-exit">
                 <div class="row">
                     <div class="col-xs-8">
-                        <a @if(Auth::user()->role_id==1) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                        <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
                             <button type="button" class="btn btn-default modal-user-button">
                                 <div class="img-user">
                                     {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}

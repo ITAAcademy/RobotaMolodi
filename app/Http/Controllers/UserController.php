@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use View;
+use Auth;
 
 class UserController extends Controller
 {
@@ -73,11 +74,12 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'name' => 'required|max:30|regex:/^[йцукенгшщзхъэждлорпавыфячсмитьбюєїіёЁЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮЇІЄa-zA-Z_\-\'\`]+$/',
+          'name' => 'required|max:30|regex:/^[Є-Їa-zа-я_\-\'\`]+$/iu',
         ]);
 
         $user = User::find($id);
-        $user->update($request->all());
+        if($user->id === Auth::user()->id)
+            $user->update($request->all());
         return redirect()->back();
     }
 
