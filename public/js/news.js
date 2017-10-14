@@ -11,7 +11,8 @@ $(document).ready(function () {
 
     function getNews(url) {
         $.ajax({
-            url : url
+            url : url,
+            cache: false
         }).done(function (data) {
             $('.ajaxLoader	').html(data);
         }).fail(function () {
