@@ -5,7 +5,7 @@
     @foreach ($resumes as $resume)
         <div>
             <div class="section-link">
-                <a class="links-line" href="{{route('resume.show', $resume->id)}}">
+                <a class="links-line ib-block" href="{{route('resume.show', $resume->id)}}">
                     <h3>{{$resume->branch}}{{ $resume->position}}</h3>
                 </a>
                 <h4>
@@ -13,10 +13,13 @@
                 </h4>
                 <p class="text-left"> {{strip_tags($resume->description)}} </p>
             </div>
-
-            <a class="links" href="{{route('resume.show', $resume->id)}}">
-                <p class="read-next-link">Читати далі...</p>
-            </a>
+            
+            <div class="section-link__right">
+               <a class="links ib-block" href="{{route('resume.show', $resume->id)}}">
+                    <p class="read-next-link">Читати далі...</p>
+                </a> 
+            </div>
+            
 
             <div class="ratings">
                 <span class = "ratingsTitle">Рейтинг:</span>

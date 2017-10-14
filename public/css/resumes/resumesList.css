@@ -6,6 +6,10 @@ a{
     display: inline-block;
 }
 
+.section-link__right {
+    text-align: right;
+}
+
 .section-link{
     max-height: 140px;
     overflow: hidden;
