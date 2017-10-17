@@ -2,33 +2,34 @@
     <h3 class="formTitle header-text-resume"><b>додати резюме</b></h3>
 </div>
 <div class="row">
-    <div class="form-group {{$errors-> has('name_u') ? 'has-error' : ''}}">
+    <div class="form-group {{$errors->has('name_u') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label("name_u" ,"Прізвище та ім'я", ['class'=>'label-text-resume']) !!}</div>
         <div class=" col-md-6 col-sm-6">{!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('name_u', '<span class="help-block">:message</span>') !!}</div>
+        <div class=" col-md-3 col-sm-3">{!! $errors->first('name_u', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div><br>
 
 <div class="row">
-<div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}">
-    <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('telephone', 'Телефон', ['class'=>'label-text-resume']) !!}</div>
-    <div class="col-md-6 col-sm-6">{!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}</div>
-    <div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
-</div></div><br>
+    <div class="form-group {{$errors->has('telephone') ? 'has-error' : ''}}">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('telephone', 'Телефон', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-6 col-sm-6">{!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}</div>
+        <div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
+    </div>
+</div><br>
 
 <div class="row">
-    <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}">
+    <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('email', 'Електронна пошта', ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">{!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}</div>
         <span class="required_field">*</span>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('email', '<span class="help-block">:message</span>') !!}</div>
+        <div class=" col-md-3 col-sm-3">{!! $errors->first('email', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div>
 <br>
 
 <div class="row">
-    <div class="form-group">
+    <div class="form-group {{$errors->has('city') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('city','Місто', ['class'=>'label-text-resume']) !!}</div>
             <div class="col-md-6 col-sm-6">
                 <select name="city" style="width: 100%" class="form-control js-example-basic-multiple" multiple="multiple" id="selectCity">
@@ -43,6 +44,7 @@
                 </select>
             </div>
         <span class="required_field">*</span>
+        <div class=" col-md-3 col-sm-3">{!! $errors->first('city', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div>
 <br>
@@ -71,7 +73,7 @@
 <br>
 
 <div class="row">
-    <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
+    <div class="form-group">
         <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('position', 'Позиція', ['class'=>'label-text-resume'] ) !!}</div>
             <div class="col-md-6 col-sm-6">
                 <select name="position" id="position" class="form-control">
@@ -104,8 +106,8 @@
     <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary', "Зарплата (мiнiмальна)", ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary', Input::old('salary'), ['class'=>'form-control']) !!}</div>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
         <span class="required_field">*</span>
+        <div class=" col-md-3 col-sm-3">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div>
 <br>
@@ -114,8 +116,8 @@
     <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary_max', "Зарплата (максимальна)", ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']) !!}</div>
-        <div class=" col-md-4 col-sm-4">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
         <span class="required_field">*</span>
+        <div class=" col-md-3 col-sm-3">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div>
 <br>
@@ -144,14 +146,15 @@
                 @endif
             </select>
         </div>
-    </div></div><br>
+    </div>
+</div><br>
 
 <div class="row">
     <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('description', 'Опис', ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-8 col-sm-8 zxc">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}</div>
-        <div class=" col-md-2 col-sm-2">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
         <span class="required_field">*</span>
+        <div class=" col-md-2 col-sm-2">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>
     </div>
 </div>
 <br>
@@ -201,9 +204,12 @@
 <input type="hidden" name="fname" value="{{}}">
 
 <div class="row">
-<div class="form-group">
-    <div class="col-sm-offset-2 col-md-4  col-sm-2"><span class="required_field">*</span> – Обов'язкові для заповнення.</div>
-</div></div><br>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-md-4  col-sm-2">
+            <span class="required_field">* </span> – Обов'язкові для заповнення.
+        </div>
+    </div>
+</div><br>
 
 <div class="row">
     <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="width: 400px">
