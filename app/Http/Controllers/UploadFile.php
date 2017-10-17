@@ -32,7 +32,7 @@ class UploadFile extends Controller
         $resume->save();
         return $directory.$resume->image;
     }
-    
+
     public function deleteResumeImg(Request $request){
         $resume = Resume::find($request->id);
         $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;

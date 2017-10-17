@@ -161,12 +161,27 @@
     </div>
     </br>
     </br>
-
    <div class="row">
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-md-2  col-sm-2"> {!! Form::file('loadResume', null, array('class' => 'form-control')) !!}</div>
-    </div>
+       <div class="form-group {{$errors->has('loadResume') ? 'has-error' : ''}}">
+           <div class="col-md-2 col-sm-2">
+           </div>
+           <div class="col-md-4 col-sm-4">
+               <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть фото</button>
+               <div id="filename">Файл не вибрано</div>
+               {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+           </div>
+           <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
+       </div>
    </div><br>
+
+   <input type="hidden" name="fcoords" class="coords" id="coords" value="" data-id="{{ $resume->id }}" >
+   <input type="hidden" name="fname" value="">
+
+   <div id="imageBox" class="modal fade">
+       @include('newDesign.cropModal')
+   </div>
+
+   {!!Html::script('js/crop.js')!!}
 
      <div class="row">
     <div class="form-group">
@@ -178,16 +193,14 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-md-2  col-sm-2">{!! Form::submit('Зберегти', ['class'=>'btn btn-primary']) !!}</div>
     </div>
-    {!!Form::close()!!}
+
     </div><br>
+    {!!Form::close()!!}
 @stop
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-//            $(window).bind('beforeunload', function () {
-//                return 'Збережіть будь ласка всі внесені нові дані!';
-//            });
             $('#form_id').submit(function () {
                 $(window).unbind('beforeunload');
             });
@@ -200,4 +213,68 @@
 	$(document).ready(function() {
 		CKEDITOR.replace( 'desc' );
 	});
+</script>
+
+<script>
+    $(document).ready(function () {
+        var cloneInputFile = $('#loadResume').clone();
+         $('#loadResume').on('change', function(e) {
+             if(document.getElementById('loadResume').value) {
+                 cloneInputFile = $('#loadResume').clone();
+                 $('#imageBox').modal({
+                     show: true,
+                     backdrop: 'static'
+                 });
+                 crop(e, 'img-src', '#crop', '#imageBox');
+             } else {
+                 $('#loadResume').replaceWith(cloneInputFile);
+             }
+             document.getElementById('filename').innerHTML = document.getElementById('loadResume').value;
+         });
+
+         $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('input[name="_token"]').val()
+             }
+         });
+
+        $('#description').text($('.change_description').html());
+    })
+</script>
+
+<script type="text/javascript">
+
+ var wrapper = $( ".col-sm-offset-2" ),
+        inp = wrapper.find( "input" ),
+        btn = wrapper.find( "button" ),
+        lbl = wrapper.find( "div" );
+    btn.focus(function(){
+      inp.focus()
+    });
+    // Crutches for the :focus style:
+    inp.focus(function(){
+      wrapper.addClass( "focus" );
+    }).blur(function(){
+      wrapper.removeClass( "focus" );
+    });
+
+    var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
+
+    inp.change(function(){
+      var file_name;
+      if( file_api && inp[ 0 ].files[ 0 ] )
+        file_name = inp[ 0 ].files[ 0 ].name;
+      else
+        file_name = inp.val().replace( "C:\\fakepath\\", '' );
+
+      if( ! file_name.length )
+        return;
+
+      if( lbl.is( ":visible" ) ){
+        lbl.text( file_name );
+        btn.text( "Вибрати" );
+      }else
+        btn.text( file_name );
+    }).change();
+
 </script>
