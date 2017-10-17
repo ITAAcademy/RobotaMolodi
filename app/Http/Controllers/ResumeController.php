@@ -253,6 +253,16 @@ class ResumeController extends Controller {// Клас по роботі з ре
         ]);
 
         $updateResume = $resume->fillResume($id,$auth,$request);
+        if(Input::hasFile('loadResume'))
+        {
+            $cropcoord = explode(',', $request->fcoords);
+            $file = Input::file('loadResume');
+            $filename = $file->getClientOriginalName();                 //take file name
+            $directory = 'image/resume/'. Auth::user()->id . '/';       //create url to directory
+            Storage::makeDirectory($directory);                         //create directory
+            Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
+            $updateResume->image = $filename;
+        }
         $updateResume->push();
         $updateResume->save();
 
