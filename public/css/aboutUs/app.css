@@ -64,6 +64,7 @@ mark {
 }
 .required_field {
     color:red;
+    float: left;
 }
 small {
     font-size: 80%;
