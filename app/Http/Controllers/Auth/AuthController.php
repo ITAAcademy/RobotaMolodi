@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
-// namespace;
 
+use View;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -98,12 +98,35 @@ class AuthController extends Controller {
 				'password' => bcrypt($data['password']),
 			]);
 		}
-		
+
 		protected function getFailedLoginMessage()
     	{
     		return 'Check the correct of your email or password';
     	}
 
+        public function postRegister(Request $request)
+        {
+            $validator = $this->validator($request->all());
+
+            /*
+               after Auth::login $validator->fails() set TRUE. Why?
+               that why $isFail variable is existing.
+            */
+            $isFail = $validator->fails();
+            $errors = false;
+            if ($isFail)
+            {
+                $view = View::make('errors.validation',['errors' => $validator->errors()->all()]);
+                $errors = $view->render();
+            } else {
+                Auth::login($this->create($request->all()));
+            }
+
+            return response()->json(array(
+                'success' => !$isFail,
+                'route'   => url($this->redirectPath()),
+                'errors'  => $errors
+            ));
+        }
+
 }
-
-
