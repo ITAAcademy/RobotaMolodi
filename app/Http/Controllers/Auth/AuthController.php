@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Auth;
-// namespace;
 
+use View;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,16 +36,11 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
 	 */
-	// public function __construct(Guard $auth, Registrar $registrar)
-
-
-
 
 	public function __construct()
 	{
 
         $this->middleware('guest', ['except' => 'getLogout']);
-
 
 	}
 
@@ -53,57 +48,65 @@ class AuthController extends Controller {
 		return Redirect::intended();
 	}
 
-//
-//	public function redirectPath()
-//	{
-//		$test = Cookie::get('url');
-//		if (Cookie::get('url')!='')
-//			return redirect(Cookie::get('name'));
-//		else
-//			return redirect('/');
-//	}
-//	public function redirectPath()
-//	{
-//		return redirect()->back();
-//	}
-		/**
-		 * Get a validator for an incoming registration request.
-		 *
-		 * @param  array  $data
-		 * @return \Illuminate\Contracts\Validation\Validator
-		 */
-		public function validator(array $data)
-		{
-			return Validator::make($data, [
-		//			'name' => 'required|max:255|alpha',
-		//			'email' => 'required|email|max:255|unique:users',
-		//			'password' => 'required|confirmed|min:6',
-				'name' => 'required|max:30|regex:/^[йцукенгшщзхъэждлорпавыфячсмитьбюєїіёЁЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮЇІЄa-zA-Z_\-\'\`]+$/',
-				'email' => 'required|email|max:30|unique:users',
-				'password' => 'required|confirmed|min:6',
-			]);
-		}
+	/**
+	 * Get a validator for an incoming registration request.
+	 *
+	 * @param  array  $data
+	 * @return \Illuminate\Contracts\Validation\Validator
+	 */
+	public function validator(array $data)
+	{
+		return Validator::make($data, [
+			'name' => 'required|max:30|regex:/^[Є-Їa-zа-я_\-\'\`]+$/iu',
+			'email' => 'required|email|max:30|unique:users',
+			'password' => 'required|confirmed|min:6',
+		]);
+	}
 
-		/**
-		 * Create a new user instance after a valid registration.
-		 *
-		 * @param  array  $data
-		 * @return User
-		 */
-		public function create(array $data)
-		{
-			return User::create([
-				'name' => $data['name'],
-				'email' => $data['email'],
-				'password' => bcrypt($data['password']),
-			]);
-		}
-		
-		protected function getFailedLoginMessage()
-    	{
-    		return 'Check the correct of your email or password';
-    	}
+	/**
+	 * Create a new user instance after a valid registration.
+	 *
+	 * @param  array  $data
+	 * @return User
+	 */
+
+	public function create(array $data)
+	{
+		return User::create([
+			'name' => $data['name'],
+			'email' => $data['email'],
+			'password' => bcrypt($data['password']),
+		]);
+	}
+
+	protected function getFailedLoginMessage()
+	{
+		return 'Check the correct of your email or password';
+	}
+
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        /*
+           after Auth::login $validator->fails() set TRUE. Why?
+           that why $isFail variable is existing.
+        */
+        $isFail = $validator->fails();
+        $errors = false;
+        if ($isFail)
+        {
+            $view = View::make('errors.validation',['errors' => $validator->errors()->all()]);
+            $errors = $view->render();
+        } else {
+            Auth::login($this->create($request->all()));
+        }
+
+        return response()->json(array(
+            'success' => !$isFail,
+            'route'   => url($this->redirectPath()),
+            'errors'  => $errors
+        ));
+    }
 
 }
-
-

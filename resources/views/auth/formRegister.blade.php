@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+    <form id="form-register" class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
@@ -57,3 +57,28 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+    $('#form-register').submit(function(event) {
+        event.preventDefault();
+        var form = $(this);
+        $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function(data){
+              if(data['success']) {
+                 window.location.href = data['route']
+              } else {
+                  if(form.prev().hasClass('alert-danger'))
+                      form.prev().remove();
+
+                  form.before(data['errors']);
+              }
+          },
+          error: function(e){
+              console.log(e);
+          }
+        });
+    });
+</script>
