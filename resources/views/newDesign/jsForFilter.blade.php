@@ -1,14 +1,9 @@
 <script>
-    // when you ajax call, you need always call function getFilters
+
 $(document).ready(function () {
-    //paginate by N count
 
-     $('.pag-block-by').click(function () {
-         $('.active-pag-block').removeClass('active-pag-block');
-         $(this).toggleClass('active-pag-block');
-     })
+    applyFIlter();
 
-    //filter
     function getFilters() {
         return {
             regions: $('select[name="selected-region"]').val(),
@@ -21,7 +16,7 @@ $(document).ready(function () {
         }
     }
 
-    $('.getting-list-selected-box').on('change',function () {
+    function applyFIlter(){
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(),
@@ -29,9 +24,31 @@ $(document).ready(function () {
                 $('.test').html(data);
             }
         });
-    })
+    }
 
-    //filter ratings
+    function getVacancies(url) {
+        $.ajax({
+            url : url,
+            data : getFilters()
+        }).done(function (data) {
+            $('.test').html(data);
+        }).fail(function () {
+            alert('Could not be loaded.');
+        });
+    }
+
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        getVacancies(url);
+        window.history.pushState("", "", url);
+        $('.scrollup').click();
+    });
+
+    $('.getting-list-selected-box').on('change',function () {
+        applyFIlter();
+    });
+
     $('.sort-by-rating').unbind('click').click(function (e) {
         $('.sort-rating').toggleClass('active');
         $('.sort-by-rating').removeClass('hidden');
@@ -46,7 +63,7 @@ $(document).ready(function () {
             }
         });
     });
-    //filter asc/desc
+
     $('.sort-by-date').unbind('click').click(function (e) {
         $('.sort-date').toggleClass('active');
         $('.sort-by-date').removeClass('hidden');
@@ -62,27 +79,10 @@ $(document).ready(function () {
         });
     });
 
-    //pagination
-    $(document).on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        getVacancies(url);
-        window.history.pushState("", "", url);
-        $('.scrollup').click();
+    $('.pag-block-by').click(function () {
+        $('.active-pag-block').removeClass('active-pag-block');
+        $(this).toggleClass('active-pag-block');
     });
-
-    function getVacancies(url) {
-        $.ajax({
-            url : url,
-            data : getFilters()
-        }).done(function (data) {
-            $('.test').html(data);
-        }).fail(function () {
-            alert('Could not be loaded.');
-        });
-    }
-
-    //calendar
 
     $( function() {
         $( "#datepicker1" ).datepicker({
@@ -91,7 +91,7 @@ $(document).ready(function () {
         $( "#datepicker2" ).datepicker({
             dateFormat: "yy-mm-dd"
         });
-    } );
+    });
 
     $('.datePicker').on('change',function () {
         $.ajax({
@@ -101,9 +101,7 @@ $(document).ready(function () {
                 $('.test').html(data);
             }
         });
-    })
-
-    //script for close top vacancies
+    });
 
     $('#close-top-vac').on('click', function (e) {
         e.preventDefault();
@@ -115,9 +113,7 @@ $(document).ready(function () {
         }else{
             $('#topvac').addClass('hidden');
         }
-    })
-
-    //script for close news
+    });
 
     $('#close-news').on('click', function (e) {
         e.preventDefault();
@@ -129,7 +125,7 @@ $(document).ready(function () {
         }else{
             $('#news').addClass('hidden');
         }
-    })
+    });
 
 })
 </script>
