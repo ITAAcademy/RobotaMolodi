@@ -20,8 +20,7 @@ $(document).ready(function () {
             endDate: $('#datepicker2').val()
         }
     }
-
-    $('.getting-list-selected-box').on('change',function () {
+    function applyFIlter(){
         $.ajax({
             url: '{{route($urlController)}}',
             data: getFilters(),
@@ -29,6 +28,10 @@ $(document).ready(function () {
                 $('.test').html(data);
             }
         });
+    }
+    applyFIlter();
+    $('.getting-list-selected-box').on('change',function () {
+        applyFIlter();
     })
 
     //filter ratings
