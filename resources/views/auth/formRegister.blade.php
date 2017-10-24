@@ -1,7 +1,7 @@
 <div class="panel-body">
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Ой!</strong> Виникли деякі проблеми з вашим входом.<br><br>
+            <strong>Ой!</strong>{{ trans('auth.issue')}}<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -21,23 +21,23 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label">Електронна адреса</label>
+            <label class="col-md-4 control-label">{{ trans('auth.email') }}</label>
             <div class="col-md-6">
-                <input type="email" placeholder="Електронна адреса" class="form-control" name="email" value="{{ old('email') }}">
+                <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control" name="email" value="{{ old('email') }}">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label">Пароль</label>
+            <label class="col-md-4 control-label">{{ trans('auth.password') }}</label>
             <div class="col-md-6">
-                <input type="password" placeholder="Пароль" class="form-control" name="password">
+                <input type="password" placeholder="{{ trans('auth.password') }}" class="form-control" name="password">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label">Підтвердження паролю</label>
+            <label class="col-md-4 control-label">{{ trans('auth.confirmpassword') }}</label>
             <div class="col-md-6">
-                <input type="password" placeholder="Підтвердження паролю" class="form-control" name="password_confirmation">
+                <input type="password" placeholder="{{ trans('auth.confirmpassword') }}" class="form-control" name="password_confirmation">
             </div>
         </div>
 
@@ -46,12 +46,12 @@
                 <div class="checkbox">
                     <label>
                         <input required type="checkbox" name="remember"><span>З</span>
-                        <a href="{{ route('policy')}}" target="_blank">політикою використання</a>
-                        <span>я згоден</span>
+                        <a href="{{ route('policy')}}" target="_blank">{{ trans('auth.policy') }}</a>
+                        <span>{{ trans('auth.agree') }}</span>
                     </label>
                 </div>
                 <button type="submit" tabindex="1" class="btn btn-primary register-button">
-                    ЗАРЕЄСТРУВАТИСЬ
+                    {{ trans('auth.signup') }}
                 </button>
             </div>
         </div>

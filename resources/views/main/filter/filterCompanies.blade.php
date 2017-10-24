@@ -31,4 +31,3 @@
     {{--</div>--}}
     {!!Html::script('js/scrollup.js')!!}
 @stop
-

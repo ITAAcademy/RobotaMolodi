@@ -11,21 +11,21 @@
         </div>
         <div class="col-xs-5 col-md-4 center-block">
             <div class="header-logo text-center">
-                <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo-img.png','Головна',
+                <a href="{{ url('/') }}" class="afterChange">{!! Html::image('image/logo-img.png',trans('header.home'),
                     ['class'=>'img-responsive main-img col-xs-3'])!!}
-                    {!! Html::image('image/logo2.png','Головна',
+                    {!! Html::image('image/logo2.png',trans('header.home'),
                         ['class'=>'img-responsive main-img col-xs-9'])!!}</a>
             </div>
         </div>
         @if (Auth::guest())
         <div class="col-xs-6 col-md-4 navtab-registraion">
             <button type="button" class="btn btn-default modal-enter col-xs-6">
-                <span>{!! Html::image('image/entry.png','Вхід',['id'=>'entry']) !!}</span>
-                <span>Вхід</span>
+                <span>{!! Html::image('image/entry.png',trans('auth.signin'),['id'=>'entry']) !!}</span>
+                <span>{{ trans('auth.signin') }}</span>
             </button>
             <button type="button" class="btn btn-default modal-regestry col-xs-6">
-                <span>{!! Html::image('image/registry.png','Реєстрація',['id'=>'registry']) !!}</span>
-                <span>Реєстрація</span>
+                <span>{!! Html::image('image/registry.png',trans('auth.signup'),['id'=>'registry']) !!}</span>
+                <span>{{ trans('auth.signup') }}</span>
             </button>
         </div>
         @else
@@ -53,7 +53,7 @@
                 <a href="{{ url('/auth/logout') }}">
                     <button type="button" class="btn btn-default modal-exit-button">
                         <i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>
-                        <span>Вихід</span>
+                        <span>{{trans('auth.signout')}}</span>
                     </button>
                 </a>
             </div>

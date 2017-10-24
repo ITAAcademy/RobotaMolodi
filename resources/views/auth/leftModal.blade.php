@@ -15,69 +15,69 @@
         <div class="text-left-modal">
             <div class="col-xs-12 minilogo">
                 <a href="{{ url('/') }}" class="afterChange">
-                    {!! Html::image('image/minilogo.png','Головна') !!}<span>   головна</span>
+                    {!! Html::image('image/minilogo.png',trans('header.home')) !!}<span>{{trans('header.home')}}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('aboutus') }}" class="afterChange">
-                    <span>про нас</span>
+                    <span>{{ trans('header.home') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('news') }}" class="afterChange">
-                    <span>новини</span>
+                    <span>{{ trans('header.news') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('https://intita.com/courses') }}" class="afterChange" target="_blank">
-                    <span>навчання</span>
+                    <span>{{ trans('header.education') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('http://www.profitday.info') }}" class="afterChange" target="_blank">
-                    <span>дні кар'єри</span>
+                    <span>{{ trans('header.carrierdays') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('https://profitday.info/allcompanies') }}" class="afterChange" target="_blank">
-                    <span>партнери</span>
+                    <span>{{ trans('header.partners') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
-                    <span>контакти</span>
+                    <span>{{ trans('header.contacts') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('sresume') }}" class="afterChange">
-                    <span>всі резюме</span>
+                    <span>{{ trans('header.allresume') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/') }}" class="afterChange">
-                    <span>всі вакансії</span>
+                    <span>{{ trans('header.allvacancy') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('scompany') }}" class="afterChange">
-                    <span>всі компанії</span>
+                    <span>{{ trans('header.allcompany') }}</span>
                 </a>
             </div>
             @if (Auth::guest())
                 <div class="col-xs-12 list-modal-left-register">
                     <a href="{{ url('/auth/register') }}">
-                        <span>{!! Html::image('image/registry.png','Головна',['id'=>'registry']) !!}</span> реєстрація
+                        <span>{!! Html::image('image/registry.png',trans('header.home'),['id'=>'registry']) !!}</span> {{ trans('auth.signup') }}
                     </a>
                 </div>
                 <div class="col-xs-12 list-modal-left">
                     <a href="{{ url('/auth/login') }}">
-                        <span>{!! Html::image('image/entry.png','Головна',['id'=>'entry']) !!}</span> вхід
+                        <span>{!! Html::image('image/entry.png',trans('header.home'),['id'=>'entry']) !!}</span>{{ trans('auth.signin') }}
                     </a>
                 </div>
             @else
                 <div class="col-xs-12 list-modal-left">
                     <a href="{{ url('/cabinet') }}">
-                        <span>особистий кабінет</span>
+                        <span>{{ trans('header.cabinet') }}</span>
                     </a>
                 </div>
             @endif
@@ -89,12 +89,10 @@
         <div>
             <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span> <span>robotamolodi@gmail.com</span>
         </div>
-        {{--<div>--}}
-        {{--<i class="fa fa-skype icon-left-modal" aria-hidden="true"></i> <span> robotamolodi</span>--}}
-        {{--</div>--}}
+
         <hr class="modal-hr col-xs-10">
         <div id="share-txt">
-            <span>Поділитись в соцмережах:</span>
+            <span>{{ trans('auth.share')}}</span>
         </div>
         <div class="modal-social-share">
             <a href="https://twitter.com/intent/tweet?url=http://robotamolodi.org/&text=РОБОТАМОЛОДІ"
