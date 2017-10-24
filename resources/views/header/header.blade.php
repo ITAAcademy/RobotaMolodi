@@ -1,5 +1,4 @@
 <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
-<link href="{{ asset('/css/parsley.css') }}" rel="stylesheet">
 
 <header>
     <nav class="navbar navbar-default col-xs-12">
