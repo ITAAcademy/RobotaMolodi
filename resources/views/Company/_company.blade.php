@@ -56,7 +56,8 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="#">
+                {{--TODO TODO: fix "place in tops"--}}
+                    <a class="orangColor-cabinet" href="#" onclick="javascript:document.location.reload();">
                         {!! Html::image('image/podiumOrenge.png', 'del') !!}
                         <span> розмістити в ТОПі</span>
                     </a>
