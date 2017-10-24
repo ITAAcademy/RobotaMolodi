@@ -1,4 +1,4 @@
-{{--@extends('main/filter/ajax')--}}
+@extends('app')
 
 @section('content')
     @include('newDesign.scrollup')
