@@ -51,7 +51,7 @@ class SliderController extends Controller
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $directory = 'image/sliders/';
+            $directory = '/uploads/sliders/';
             Storage::makeDirectory($directory);
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
@@ -101,7 +101,7 @@ class SliderController extends Controller
         if(Input::file('image')){
             $file = Input::file('image');
             $filename = time().'-'.$file->getClientOriginalName();
-            $directory = 'image/sliders/';
+            $directory = '/uploads/sliders/';
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
         }
@@ -119,8 +119,11 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        Slider::destroy($id);
-
+        $slider = Slider::find($id);
+        if(file_exists($slider->image)){
+            unlink($slider->image);
+            $slider->destroy($id);
+        }
         return redirect()->route('admin.slider.index');
     }
     
