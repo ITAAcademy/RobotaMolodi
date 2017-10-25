@@ -109,19 +109,6 @@
         </div>
     </div>
 
-
-	 <!--<div class="row">
-        <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
-            <div class="col-md-6 col-sm-6">
-                {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
-            </div>
-			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
-        </div>
-    </div>-->
-
-
-
     <div class="row">
         <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2  col-sm-2 control-label label-text-vacancy">Email роботодавця</label>
@@ -159,7 +146,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">Опис</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('main.description') }}</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::textarea('description', Input::old('description'), array('class' => 'form-control','id'=>'description','onfocus' =>'validateDisc(this)')) !!}
             </div>
@@ -255,4 +242,3 @@
         $('#phone').mask("+38(099) 999-99-99");
 	});
 </script>
-

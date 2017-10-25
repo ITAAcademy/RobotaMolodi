@@ -26,7 +26,7 @@
             <div class="modal-footer">
                 <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
                     <span><input type="submit" class="btn btn-default" style="background: #f48952" value="Відправити файл">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('main.close') }}</button></span>
                 </div>
                 {!!Form::token()!!}
                 {!!Form::close()!!}

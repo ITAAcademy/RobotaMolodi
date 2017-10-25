@@ -148,7 +148,7 @@
                     @endif
 
                     <div class="col-xs-3 text_com">
-                        <span>Телефон: </span>
+                        <span>{{ trans('main.phone') }}</span>
                     </div>
                     @if(!empty($company->phone))
                         <div class="col-xs-9 text_com">
@@ -193,8 +193,8 @@
 
             <div class="col-xs-12 configButton">
                 @if(Auth::check() && Auth::id() == $company->users_id)
-                <a href="{{$company->id}}/destroy" class="btn-default btn" onclick="return ConfirmDelete();">Видалити</a>
-                <a href="{{$company->id}}/edit" class="btn-default btn">Редагувати</a>
+                <a href="{{$company->id}}/destroy" class="btn-default btn" onclick="return ConfirmDelete();">{{ trans('main.delete') }}</a>
+                <a href="{{$company->id}}/edit" class="btn-default btn">{{ trans('main.edit') }}</a>
                 @endif
                 <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
                 <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>

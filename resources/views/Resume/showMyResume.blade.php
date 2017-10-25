@@ -72,12 +72,12 @@
                         <p class="position-resume">
                             {!! Html::linkRoute('resume.showResumes', $resume->Industry()->name, [ 'name' => 'industries', 'value' => $resume->Industry()->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
                         </p>
-                        <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
+                        <p class="phone-nomber-resume"><span>{{ trans('main.phone') }} </span> {!!$resume->telephone!!}</p>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12">
-                <p class="description-one-resume"><span>Опис:</span></p>
+                <p class="description-one-resume"><span>{{ trans('main.description') }}</span></p>
                 <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                 <p class="cityTime-resume">
                     {!! Html::linkRoute('resume.showResumes', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
@@ -88,17 +88,17 @@
             <div class="col-xs-12 button-change-resume">
                 <div class="col-xs-offset-4 col-md-offset-3 col-xs-4 col-md-3">
                     <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">
-                        <span class="writeOnPost"><span>Видалити</span></span>
+                        <span class="writeOnPost"><span>{{ trans('main.delete') }}</span></span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-md-3">
                     <a class="whiteText" id="writeOnPost" href="{{$resume->id}}/edit">
-                        <div class="writeOnPost">Редагувати</div>
+                        <div class="writeOnPost">{{ trans('main.edit') }}</div>
                     </a>
                 </div>
                 <div class="col-xs-4 col-md-3">
                     <a class="whiteText" id="updateDateRes" href="#">
-                        <div class="writeOnPost">Оновити дату вакансіїї</div>
+                        <div class="writeOnPost">{{ trans('main.updatedate') }}</div>
                     </a>
                 </div>
             </div>

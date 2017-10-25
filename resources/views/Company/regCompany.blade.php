@@ -64,7 +64,7 @@
     </div>
 
     <div class="row">
-        <label for="phone" class="col-md-3 col-sm-3 label-text-company">Телефон</label>
+        <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
         </div>
@@ -86,7 +86,7 @@
     </div>
 
     <div class="row">
-        <label for="description" class="col-md-3 col-sm-3 label-text-company">Опис</label>
+        <label for="description" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.description') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
         </div>

@@ -13,4 +13,4 @@
     {!! Form::text('name', $industry->name, ['class' => 'form-control']) !!}
 </div>
 
-{!! Form::submit('Зберегти', ['class' => 'btn btn-primary']) !!}
+{!! Form::submit(trans('main.save'), ['class' => 'btn btn-primary']) !!}

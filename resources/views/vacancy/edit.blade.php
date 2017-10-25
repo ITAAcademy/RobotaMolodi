@@ -102,17 +102,6 @@
         </br>
     </div>
 
-
-        <!--<div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}" ">
-            <label for="sector" class="col-sm-2 control-label">{!! Form::label('Телефон') !!}</label>
-            <div class="col-sm-5">
-                {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
-            </div>
-			<div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
-        </div><br>-->
-
-
-
     <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
 
         <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
@@ -133,7 +122,7 @@
 
     <div class="row">
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Опис</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('main.description') }}</label>
         <div class="col-sm-5">
             {!! Form::textarea('description', $vacancy->description, array('class' => 'form-control', 'id'=>'description' )) !!}
         </div>

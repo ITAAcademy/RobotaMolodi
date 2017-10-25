@@ -38,19 +38,6 @@
                 <a href="http://vk.com/share.php?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
                 <a href="https://plus.google.com/share?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
             </div>
-            {{--<div class="change-img-myVacancy">--}}
-                {{--<div class="orange-link-myVacancy"  id="changeImage">--}}
-                    {{--<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>--}}
-                    {{--<span>Змiнити лого</span>--}}
-                {{--</div>--}}
-                {{--<br>--}}
-                {{--@if(File::exists(public_path('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image)) and $vacancy->Company->image != '')--}}
-                    {{--<span class="orange-link-myVacancy" id="deleteImage">--}}
-                            {{--<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>--}}
-                            {{--<span>Видалити лого</span>--}}
-                    {{--</span>--}}
-                {{--@endif--}}
-            {{--</div>--}}
         </div>
         <div class="col-xs-12 col-md-10">
             <div>
@@ -110,25 +97,25 @@
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" href="{{$vacancy->id}}/destroy" onclick="return ConfirmDelete();">
                     <i class="fa fa-trash" aria-hidden="true"></i>
-                    <span>видалити</span>
+                    <span>{{ trans('main.delete') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" href="{{$vacancy->id}}/edit">
                     {!! Html::image('image/edit.png', 'del') !!}
-                    <span>редагувати</span>
+                    <span>{{ trans('main.edit') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" href="#">
                     {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                    <span> розмістити в ТОПі</span>
+                    <span> {{ trans('main.placetop') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" id="updateDateVac" href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <span>Оновити дату вакансіїї</span>
+                    <span>{{ trans('main.updatedate') }}</span>
                 </a>
             </div>
         </div>

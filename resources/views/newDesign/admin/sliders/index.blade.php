@@ -12,7 +12,7 @@
     <div>
         {!! Form::label('Добавити категорію') !!}
         {!! Form::text('categoryName') !!}
-        {!! Form::submit('Зберегти', ['class' => 'saveCategory']) !!}
+        {!! Form::submit(trans('main.save'), ['class' => 'saveCategory']) !!}
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <span class="notice"></span>
     </div>

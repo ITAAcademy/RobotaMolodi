@@ -10,8 +10,8 @@
         </div>
 
         <div class="modal-footer">
-            <button type="button" id="closeModalBtn" class="btn btn-default" data-dismiss="modal">Закрити</button>
-            <button type="button" id="crop" class="btn btn-primary">Зберегти</button>
+            <button type="button" id="closeModalBtn" class="btn btn-default" data-dismiss="modal">{{ trans('main.close') }}</button>
+            <button type="button" id="crop" class="btn btn-primary">{{ trans('main.save') }}</button>
         </div>
     </div>
 </div>
