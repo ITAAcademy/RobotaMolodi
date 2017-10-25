@@ -2,31 +2,31 @@
     <div class="container-footer col-xs-12">
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">IНФОРМАЦIЯ</li>
+                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.information') }}</li>
                 <hr>
-                <li><a href="aboutus">Про нас</a></li>
-                <li><a href="https://profitday.info/allcompanies" target="_blank" >Партнери</a></li>
+                <li><a href="aboutus">{{ trans('footer.about') }}</a></li>
+                <li><a href="https://profitday.info/allcompanies" target="_blank" >{{ trans('footer.partners') }}</a></li>
             </ul>
 
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">НАВЧАННЯ</li>
+                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.education') }}</li>
                 <hr>
-                <li><a href="https://profitday.info/upcomingevents" target="_blank" >Тренінги і семінари</a></li>
-                <li><a href="https://intita.com/courses" target="_blank" >Курси</a></li>
+                <li><a href="https://profitday.info/upcomingevents" target="_blank" >{{ trans('footer.training') }}</a></li>
+                <li><a href="https://intita.com/courses" target="_blank" >{{ trans('footer.courses') }}</a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">ПОСЛУГИ</li>
+                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.service') }}</li>
                 <hr>
-                <li><a href="https://intita.com" target="_blank" >Навчання</a></li>
+                <li><a href="https://intita.com" target="_blank" >{{ trans('footer.education') }}</a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">КОНТАКТИ</li>
+                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.contacts') }}</li>
                 <hr>
                 <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -38,11 +38,11 @@
 
     <div class="down-footer col-xs-12">
         <div class="inner-footer col-md-7">
-            <span>© 2012 | Проект реалізовано за підтримки міжнародного фонду "Відродження"</span>
+            <span>{{ trans('footer.copy') }}</span>
             <img src="{{asset('image/vidrodjenja.png')}}">
         </div>
         <div class="inner-footer col-md-5" style="text-align: right;">
-            <span>Поділитись у соцмережах:</span>
+            <span>{{ trans('footer.share') }}</span>
             <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/"
                target="_blank" title="Share on facebook.com">
                 <i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i>
