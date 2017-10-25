@@ -33,11 +33,11 @@
                     <td>
                         <div>
                         <span style="display: inline-block">
-                            <a href="{{ route('admin.industry.edit', $industry->id) }}" class="btn btn-primary">Редагувати</a>
+                            <a href="{{ route('admin.industry.edit', $industry->id) }}" class="btn btn-primary">{{ trans('main.edit') }}</a>
                         </span>
                         <span style="display: inline-block">
                             {!! Form::open(['method' => 'DELETE','route' => ['admin.industry.destroy', $industry->id]]) !!}
-                                {!! Form::submit('Видалити', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </span>
                         </div>

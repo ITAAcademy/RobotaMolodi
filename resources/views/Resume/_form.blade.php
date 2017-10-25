@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="form-group {{$errors->has('telephone') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('telephone', 'Телефон', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('telephone', trans('main.phone'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">{!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}</div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
     </div>
@@ -30,7 +30,7 @@
 
 <div class="row">
     <div class="form-group {{$errors->has('city') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('city','Місто', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('city', trans('main.city'), ['class'=>'label-text-resume']) !!}</div>
             <div class="col-md-6 col-sm-6">
                 <select name="city" style="width: 100%" class="form-control js-example-basic-multiple" multiple="multiple" id="selectCity">
             @foreach($cities as $city)
@@ -151,7 +151,7 @@
 
 <div class="row">
     <div class="form-group {{$errors-> has('description') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('description', 'Опис', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('description',trans('main.description'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-8 col-sm-8 zxc">{!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-2 col-sm-2">{!! $errors->first('description', '<span class="help-block">:message</span>') !!}</div>

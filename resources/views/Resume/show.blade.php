@@ -50,9 +50,9 @@
                         {!! Html::linkRoute('resume.showResumes', $resume->Industry()->name, [ 'name' => 'industries', 'value' => $resume->Industry()->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
                     </p>
 
-                    <p class="phone-nomber-resume"><span>Телефон: </span> {!!$resume->telephone!!}</p>
+                    <p class="phone-nomber-resume"><span>{{ trans('main.phone') }}</span> {!!$resume->telephone!!}</p>
 
-                    <p class="description-one-resume"><span>Опис:</span></p>
+                    <p class="description-one-resume"><span>{{ trans('main.description') }}</span></p>
                     <p class="description-footer-resume">{!! strip_tags($resume->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</p>
                     <div class="button-city-time">
                         <p class="cityTime_resume">

@@ -18,7 +18,7 @@
         <li style="margin-top: 10px;">Інші дані за бажанням.</li>
     </ol>
     <p><span style="font-weight: bold;">Володілець:</span>&nbsp;«Роботамолоді», адреса: вул. Ващука, 20а м. Вінниця, Україна.</p>
-    <p>Телефон: +38 (097) 934-25-24</p>
+    <p>{{ trans('main.phone') }} +38 (097) 934-25-24</p>
     <p>E-mail: robotamolodi@gmail.com</p>
     <p><span style="font-weight: bold;">Сайт:</span></p>
     <p><a href="https://robotamolodi.org">www.robotamolodi.org</a></p>

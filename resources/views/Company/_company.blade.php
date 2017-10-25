@@ -46,19 +46,19 @@
                 <div class="col-xs-12 col-md-3">
                     <a class="orangColor-cabinet" href="/company/{{$company->id}}/destroy" onclick="return ConfirmDelete();">
                         <i class="fa fa-trash" aria-hidden="true"></i>
-                        <span>видалити</span>
+                        <span>{{ trans('main.delete') }}</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
                     <a class="orangColor-cabinet" href="/company/{{$company->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
-                        <span>редагувати</span>
+                        <span>{{ trans('main.edit') }}</span>
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
                     <a class="orangColor-cabinet" href="#">
                         {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                        <span> розмістити в ТОПі</span>
+                        <span> {{ trans('main.placetop') }}</span>
                     </a>
                 </div>
             </div>

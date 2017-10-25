@@ -5,7 +5,7 @@
         <!--<li> <a href="{{$resume->id}}/destroy" >Видалити</a></li>-->
         <li> <a id="myLink" href="{{$resume->id}}/destroy" onclick="return ConfirmDelete();">Видалити</a></li>
 
-        <li> <a href="{{$resume->id}}/edit">Редагувати</a></li>
+        <li> <a href="{{$resume->id}}/edit">{{ trans('main.edit') }}</a></li>
     </ul>
 
 

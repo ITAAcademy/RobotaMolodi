@@ -21,7 +21,7 @@
             </div>
             <div class="modal-footer">
                 <input type="submit" class="btn btn-default" name="btn" onclick="PasteLink()" style="background: #f48952" value="Відправити посилання">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('main.close') }}</button>
             </div>
         </div>
         {!!Form::token()!!}

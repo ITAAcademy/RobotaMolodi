@@ -8,6 +8,6 @@
             {!! Form::label('name', 'Ім\'я користувача') !!}
             {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
         </div>
-        {!! Form::submit('Зберегти', ['class' => 'btn btn-success']) !!}
+        {!! Form::submit(trans('main.save'), ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
 </div>

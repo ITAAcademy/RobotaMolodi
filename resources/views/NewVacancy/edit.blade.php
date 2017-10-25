@@ -81,7 +81,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Опис</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('main.description') }}</label>
         <div class="col-sm-5">
             {!! Form::textarea('Description', null, array('class' => 'form-control' )) !!}
         </div>

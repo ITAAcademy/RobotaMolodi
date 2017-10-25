@@ -29,7 +29,7 @@
                 @if (!empty($resume->all()))
                 <input type="submit" class="btn btn-default" name="btn" onclick="PasteLink()" style="background: #f48952" value="Відправити резюме">
                 @endif
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('main.close') }}</button>
             </div>
         </div>
         {!!Form::token()!!}
