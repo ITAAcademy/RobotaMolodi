@@ -66,7 +66,7 @@
 
                     <div>
                         <div class="text_vac">
-                            <span>Галузь: </span>
+                            <span>{{ trans('form.branch') }}: </span>
                             {!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}
                         </div>
                     </div>

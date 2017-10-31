@@ -13,7 +13,7 @@
     <ol style="margin-left: 30px; margin-top: 20px;">
         <li style="margin-top: 10px;">Прізвище, ім’я, по батькові.</li>
         <li style="margin-top: 10px;">Адреса місця проживання/ реєстрації.</li>
-        <li style="margin-top: 10px;">Контактний номер телефону.</li>
+        <li style="margin-top: 10px;">Контактний номер {{ trans('form.regcomapany') }}у.</li>
         <li style="margin-top: 10px;">Адреса електронної пошти.</li>
         <li style="margin-top: 10px;">Інші дані за бажанням.</li>
     </ol>

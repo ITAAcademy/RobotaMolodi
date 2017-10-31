@@ -11,7 +11,7 @@
                     <div class="col-sm-3">
                         <button id="but" type="button" onclick="document.getElementById('changeResumeImg').click()" onchange="">Виберіть файл</button>
                     </div>
-                    <div class="col-sm-4" id="newfilename">Файл не вибрано</div>
+                    <div class="col-sm-4" id="newfilename">{{ trans('form.unselected') }}</div>
                     {!! Form::file('changeResumeImg', array( 'id'=>'changeResumeImg', 'style'=>'display:none')) !!}
                 </div>
                 <div class=" col-md-4 col-sm-4">{!! $errors->first('changeResumeImg', '<span class="help-block">:message</span>') !!}</div>

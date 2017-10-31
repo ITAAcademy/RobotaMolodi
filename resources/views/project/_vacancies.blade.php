@@ -1,9 +1,9 @@
 <section class="vacancies">
     <h1 class="vacancies__tittle">Вакансії на проект: Testing Center of Excellence</h1>
-    <div class="vacancies__text">Галузь: Компьютерная инндустрия, сети, торговые центры а такще шишкосульная промышленность</div>
+    <div class="vacancies__text">{{ trans('form.branch') }}: Компьютерная инндустрия, сети, торговые центры а такще шишкосульная промышленность</div>
     <div class="about-company">
         <h2 class="about-company__tittle">Про компанію</h2>
-        <div class="about-company__text">Сайт шишкосушільної компаніі распространение информации (публикация рекламы). Телефонные переговоры. Деловые встречи (по желанию).
+        <div class="about-company__text">Сайт шишкосушільної компаніі распространение информации (публикация рекламы). {{ trans('form.regcomapany') }}ные переговоры. Деловые встречи (по желанию).
             Представительство в регионе (с дополнительной оплатой или %). Грамотное общение. Навыки работы на компьютере (e-mail, соц. сети, публикации).
             <a href="#" class="about-company__text-link">Позитивное мышление</a> Lorem ipsum dolor sit amet.
             <ul class="about-company__achievement">

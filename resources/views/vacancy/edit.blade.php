@@ -5,7 +5,7 @@
     <h3>Редагування вакансії</h3>
     <div > <span style="color: red"><h4><?php echo $errors->first('deleted',':message'); ?></h4></span> </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Позиція</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.position') }}</label>
         <div class="col-sm-5">
             {!! Form::text('position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
@@ -15,7 +15,7 @@
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
+        <label for="sector" class="col-sm-2 control-label">Виберіть {{ trans('form.branch') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
                 @if (Input::old('branch')==''))
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Зарплата (мiнiмальна)</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.salarymin') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Зарплата (максимальна)</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.salarymax') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
         </div>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Валюта</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.currency') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectCurrency" name="currency_id">
 
@@ -94,7 +94,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Email роботодавця</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.email') }}</label>
         <div class="col-sm-5">
             {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
@@ -104,7 +104,7 @@
 
     <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
 
-        <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.city') }}</label>
         <div class="col-sm-5">
             <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
                 @foreach($cities as $city)
@@ -132,7 +132,7 @@
     </div>
     <div class="row">
     <div class="form-group" style="margin-top: 30px">
-        <label class="col-sm-2 control-label">Статус публікації</label>
+        <label class="col-sm-2 control-label">{{ trans('form.status') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="published" name="published" >
                 @if (Input::old('published')=='')
@@ -154,7 +154,7 @@
         </div>
     <div class="row">
     <div class="form-group" style="margin: 20px 0 0 185px;  text-align: left;">
-        <input type="submit" class="btn btn-default" style="background: #f68c06" value="Зареєструвати вакансію">
+        <input type="submit" class="btn btn-default" style="background: #f68c06" value={{ trans('form.regvacancy') }}>
     </div>
         </div>
 
