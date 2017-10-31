@@ -4,7 +4,7 @@
     {!!Form::open(['route' => 'vacancy.store'])!!}
     <h3>Створення вакансії</h3>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Позиція</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.position') }}</label>
         <div class="col-sm-5">
             {!! Form::text('position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
@@ -16,7 +16,7 @@
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть галузь</label>
+        <label for="sector" class="col-sm-2 control-label">Виберіть {{ trans('form.branch') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" value = "{{$vacancy->branch}}">
                 @foreach($industries as $industry)
@@ -58,7 +58,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Email роботодавця</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.email') }}</label>
         <div class="col-sm-5">
             {!! Form::text('user_email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть місто</label>
+        <label for="sector" class="col-sm-2 control-label">{{ trans('form.city') }}</label>
         <div class="col-sm-5">
             <select class="form-control" name="City" >
                 @foreach($cities as $city)
@@ -92,7 +92,7 @@
 
 
     <div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px">
-        <input type="submit" class="btn btn-default" style="background: #a7eebe" value="Зареєструвати вакансію">
+        <input type="submit" class="btn btn-default" style="background: #a7eebe" value={{ trans('form.regvacancy') }}>
     </div>
     {!!Form::token()!!}
     {!!Form::close()!!}

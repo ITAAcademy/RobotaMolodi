@@ -96,7 +96,7 @@
                     @endif
 
                     <div class="col-xs-3 text_com">
-                        <span>Галузь: </span>
+                        <span>{{ trans('form.branch') }}: </span>
                     </div>
                     @if(!empty($industry->name))
                         <div class="col-xs-9 text_com">
@@ -135,7 +135,7 @@
                     @endif
 
                     <div class="col-xs-3 text_com">
-                        <span>Електронна пошта: </span>
+                        <span>{{ trans('form.email') }}: </span>
                     </div>
                     @if(!empty($company->company_email))
                         <div class="col-xs-9 text_com">

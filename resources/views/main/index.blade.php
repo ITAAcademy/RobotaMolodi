@@ -30,9 +30,9 @@
         @foreach($vacancies as $vacancy)
             <a href="vacancy/{{$vacancy->id}}" class="list-group-item">
                 <p>
-                    <h3 class="list-group-item-heading">{{$vacancy->id}} Позиція: <span class="text-info" >{{$vacancy->position}}</span>
+                    <h3 class="list-group-item-heading">{{$vacancy->id}} {{ trans('form.position') }}: <span class="text-info" >{{$vacancy->position}}</span>
                     <span class="text-muted text-right pull-right"><h5>{{$vacancy->created_at}}</h5></span></h3>
-                <h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">{{ substr($vacancy->description, 0, 100)}}</span>...</h4>
+                <h4 class="list-group-item-heading">{{ trans('form.description') }} вакансії: <span class="text-success">{{ substr($vacancy->description, 0, 100)}}</span>...</h4>
                 </p>
                 <p class="list-group-item-text"><b>Зарплата: </b> {{$vacancy->salary}} </p>
 
@@ -91,9 +91,9 @@
                             ////////////////////////////////////////////////////////////////////////////////////////////
                             var vacancy = '<a href="vacancy/'+vacancies.data[i].id +'" class="list-group-item">';
                                 vacancy += '<p>';
-                                vacancy += '<h3 class="list-group-item-heading">'+vacancies.data[i].branch +' Позиція: <span class="text-info" >'+vacancies.data[i].position +'</span>';
+                                vacancy += '<h3 class="list-group-item-heading">'+vacancies.data[i].branch + trans('form.position')+': <span class="text-info" >'+vacancies.data[i].position +'</span>';
                                 vacancy += '<span class="text-muted text-right pull-right"><h5>'+vacancies.data[i].created_at+'</h5></span></h3>';
-                                vacancy += '<h4 class="list-group-item-heading">Опис вакансії: <span class="text-success">'+ vacancies.data[i].description+'</span>...</h4>';
+                                vacancy += '<h4 class="list-group-item-heading">'+trans('form.description') + 'вакансії: <span class="text-success">'+ vacancies.data[i].description+'</span>...</h4>';
                                 vacancy += '</p>';
                                 vacancy += '<p class="list-group-item-text"><b>Зарплата: </b>'+ vacancies.data[i].salary+ '</p>';
                                 vacancy += '</a>';

@@ -1,6 +1,6 @@
 <br/>
     <div class="row">
-        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">Назва компанії</label>
+        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
         </div>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">Коротка назва організації</label>
+        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
         </div>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="row">
-        <label for="link" class="col-md-3 col-sm-3 label-text-company">Посилання на компанію</label>
+        <label for="link" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.linkcompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('link', $company->link, ['class' => 'form-control', 'id' => 'link']) !!}
         </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row">
-        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">Оберіть галузь</label>
+        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.branch') }}</label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="industry_id" name="industry_id">
                 @foreach($industries as $industry)
@@ -49,7 +49,7 @@
     </div>
 
     <div class="row">
-        <label for="city_id" class="col-md-3 col-sm-3 label-text-company">Виберіть місто</label>
+        <label for="city_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.city') }}</label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="city_id" name="city_id">
                 @foreach($cities as $city)
@@ -108,7 +108,7 @@
                         @else
                             {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'companyLogo', 'class' => 'img-responsive')) !!}
                         @endif
-                        <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">Змінити фото</button>
+                        <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-3 col-md-9 col-sm-9 after-form-item">
-                {!!Form::submit('Зареєструвати компанію',['class' => 'btn btn-primary'])!!}
+                {!!Form::submit(trans('form.regcomapany'),['class' => 'btn btn-primary'])!!}
             </div>
         </div>
     </div>

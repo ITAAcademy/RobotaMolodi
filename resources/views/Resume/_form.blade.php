@@ -3,7 +3,7 @@
 </div>
 <div class="row">
     <div class="form-group {{$errors->has('name_u') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label("name_u" ,"Прізвище та ім'я", ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label("name_u" ,trans('form.fullname'), ['class'=>'label-text-resume']) !!}</div>
         <div class=" col-md-6 col-sm-6">{!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('name_u', '<span class="help-block">:message</span>') !!}</div>
@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('email', 'Електронна пошта', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('email', trans('form.email'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">{!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('email', '<span class="help-block">:message</span>') !!}</div>
@@ -51,7 +51,7 @@
 
 <div class="row">
     <div class="form-group">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('industry', 'Галузь', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('industry', trans('form.branch'), ['class'=>'label-text-resume']) !!}</div>
             <div class="col-md-6 col-sm-6">
                 <select name="industry" style="width: 100%" class="form-control" id="selectIndustry">
                     @foreach($industries as $industry)
@@ -74,7 +74,7 @@
 
 <div class="row">
     <div class="form-group">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('position', 'Позиція', ['class'=>'label-text-resume'] ) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('position', trans('form.position'), ['class'=>'label-text-resume'] ) !!}</div>
             <div class="col-md-6 col-sm-6">
                 <select name="position" id="position" class="form-control">
                 @if(Input::old('position')== '')
@@ -104,7 +104,7 @@
 
 <div class="row">
     <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary', "Зарплата (мiнiмальна)", ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary', "trans('form.salarymin')", ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary', Input::old('salary'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
@@ -114,7 +114,7 @@
 
 <div class="row">
     <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary_max', "Зарплата (максимальна)", ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary_max', "trans('form.salarymax')", ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
@@ -124,7 +124,7 @@
 
 <div class="row">
     <div class="form-group">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('currency_id', 'Валюта', ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume"> {!! Form::label('currency_id', trans('form.currency'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">
             <select class="form-control" id="selectCurrency" name="currency_id" style="width: auto" >
                 @if (Input::old('currency_id') ==''))
@@ -160,7 +160,7 @@
 <br>
 <div class="row">
 <div class="form-group" style="margin-top: 30px">
-    <label class="col-sm-2 control-label label-text-resume">Статус публікації</label>
+    <label class="col-sm-2 control-label label-text-resume">{{ trans('form.status') }}</label>
     <div class="col-sm-5">
         <select class="form-control" id="published" name="published" >
             @if (Input::old('published')=='')
@@ -192,7 +192,7 @@
         </div>
         <div class="col-md-4 col-sm-4">
             <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть фото</button>
-            <div id="filename">Файл не вибрано</div>
+            <div id="filename">{{ trans('form.unselected') }}</div>
             {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
         </div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
@@ -213,7 +213,7 @@
 
 <div class="row">
     <div class="col-sm-offset-2 col-md-2  col-sm-2 form-group" style="width: 400px">
-        {!!Form::submit('Зареєструвати резюме',['class' => 'btn btn-primary registr'])!!}
+        {!!Form::submit(trans('form.regresume'),['class' => 'btn btn-primary registr'])!!}
     </div>
     {!!Form::token()!!}
 </div>

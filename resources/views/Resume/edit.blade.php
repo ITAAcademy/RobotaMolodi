@@ -11,7 +11,7 @@
     <div class="row">
     {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data', 'id'=>'form_id'))!!}
     <div class="form-group {{$errors-> has('name_u') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Прізвище та ім'я") !!} <span class="required_field">*</span></div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label(trans('form.fullname')) !!} <span class="required_field">*</span></div>
         <div class="col-md-6 col-sm-6"> {!! Form::text('name_u', $resume->name_u, ['class'=>'form-control']) !!}</div>
         <div class=" col-md-4 col-sm-4"> {!! $errors->first('name_u', '<span class="help-block">:message</span>') !!}</div>
     </div>
@@ -27,7 +27,7 @@
 
             <div class="row">
     <div class="form-group {{$errors-> has('email') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Електронна пошта') !!} <span class="required_field">*</span></div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label(trans('form.email')) !!} <span class="required_field">*</span></div>
         <div class="col-md-6 col-sm-6">{!! Form::text('email', $resume->email, ['class'=>'form-control']) !!}</div>
         <div class=" col-md-4 col-sm-4"> {!! $errors->first('email', '<span class="help-block">:message</span>') !!}</div>
     </div>
@@ -55,7 +55,7 @@
 
    <div class="row">
     <div class="form-group">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Галузь') !!}</div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label(trans('form.branch')) !!}</div>
         <div class=" col-md-6 col-sm-6"> <select name="industry" class="form-control" id="selectIndustry">
             @foreach($industries as $industry)
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
@@ -67,7 +67,7 @@
 
    <div class="row">
     <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('position', 'Позиція') !!} <span class="required_field">*</span></div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('position', trans('form.position')) !!} <span class="required_field">*</span></div>
         <div class=" col-md-6 col-sm-6">
             {{--{!! Form::text('position', $resume->position, ['class'=>'form-control']) !!}--}}
             <select name="position" id="position" class="form-control">
@@ -96,7 +96,7 @@
 
    <div class="row">
     <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (мiнiмальна)") !!} <span class="required_field">*</span></div>
+        <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("trans('form.salarymin')") !!} <span class="required_field">*</span></div>
         <div class=" col-md-6 col-sm-6"> {!! Form::text('salary', $resume->salary, ['class'=>'form-control']) !!}</div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
     </div>
@@ -104,7 +104,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
-            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("Зарплата (максимальна)") !!} <span class="required_field">*</span></div>
+            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label("trans('form.salarymax')") !!} <span class="required_field">*</span></div>
             <div class=" col-md-6 col-sm-6"> {!! Form::text('salary_max', $resume->salary_max, ['class'=>'form-control']) !!}</div>
             <div class=" col-md-4 col-sm-4">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>
         </div>
@@ -112,7 +112,7 @@
 
     <div class="row">
         <div class="form-group">
-            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label('Валюта') !!}</div>
+            <div class="col-md-2 col-sm-2 control-label">  {!! Form::label(trans('form.currency')) !!}</div>
             <div class=" col-md-6 col-sm-6">
                 <select class="form-control" id="selectCurrency" name="currency_id">
 
@@ -139,7 +139,7 @@
 
     <div class="row">
         <div class="form-group" style="margin-top: 30px">
-            <label class="col-md-2 col-sm-2 control-label">Статус публікації</label>
+            <label class="col-md-2 col-sm-2 control-label">{{ trans('form.status') }}</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="published" name="published" >
                     @if (Input::old('published')=='')
@@ -167,7 +167,7 @@
            </div>
            <div class="col-md-4 col-sm-4">
                <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">Виберіть фото</button>
-               <div id="filename">Файл не вибрано</div>
+               <div id="filename">{{ trans('form.unselected') }}</div>
                {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
            </div>
            <div class=" col-md-4 col-sm-4">{!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}</div>
