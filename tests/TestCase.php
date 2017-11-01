@@ -2,6 +2,13 @@
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
+    //protected $baseUrl = 'http://rm.app/';
+    protected $baseUrl;
+
+    public function __construct()
+    {
+        $this->baseUrl = env('DB_HOST');
+    }
 	/**
 	 * Creates the application.
 	 *
