@@ -6,7 +6,7 @@ use DB;
 class City extends Model {
 
     protected $table = 'cities';
-
+    public $incrementing = true;
     protected $fillable = ['name'];
 //Get all cities order by name
     public function getCities()

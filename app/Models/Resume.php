@@ -184,7 +184,7 @@ class Resume extends Model {
             return $query;
         }
     }
-    
+
     public function scopeCheckNoAccess($query){
         $res = $this->isActive();
         if(Auth::check()){
@@ -200,6 +200,14 @@ class Resume extends Model {
 
     public function scopeIsActive($query){
         return $query->where('published','!=',0);
+    }
+
+    public function hardDelete(){
+        $this->BelongsUser()->delete();
+        //$this->scopeIndustry()->delete();
+        //$this->Currency()->delete();
+        // $this->scopeCity()->delete();
+        $this->delete();
     }
 
 }
