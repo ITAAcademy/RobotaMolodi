@@ -24,16 +24,24 @@ class Resume extends Model {
         return $resumes;
     }
 
-    private function BelongsUser()
+    private function User()
     {
-        $user = $this->belongsTo('App\Models\User','id_u')->first();
-        return $user;
+        return $this->belongsTo('App\Models\User', 'id_u')->getResults();
     }
-    public function ReadUser()
-    {
-        $user = $this->BelongsUser();
 
-        return $user;
+    public function City()
+    {
+        return $this->belongsTo('App\Models\City', 'city')->getResults();
+    }
+
+    public function Currency()
+    {
+        return $this->belongsTo('App\Models\Currency', 'currency_id')->getResults();
+    }
+
+    public function Industry()
+    {
+        return $this->belongsTo('App\Models\Industry', 'industry')->getResults();
     }
 
     public function fillResume($id,$auth,$request)
@@ -69,7 +77,7 @@ class Resume extends Model {
         if($id!=0)
         {
             $resume = Resume::find($id);
-            $user = $resume->ReadUser();
+            $user = $resume->User();
             $resume->id_u = $user->id;
 
         }
@@ -93,32 +101,6 @@ class Resume extends Model {
         $resume->published = $published;
         return $resume;
 
-    }
-    public function Cities()
-    {
-        $this->belongsTo('App\Models\City')->get();
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Scopes
-    public function scopeCity()
-    {
-        $city = $this->hasOne('App\Models\City','id','city')->first();
-
-        return $city;
-    }
-
-    public function scopeIndustry()
-    {
-        $industry = $this->hasOne('App\Models\Industry','id','industry')->first();
-
-        return $industry;
-    }
-
-    public function Currency()
-    {
-        $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
-        return $currencies;
     }
 
     public function scopeByIndustries($query, $industries)
@@ -203,10 +185,10 @@ class Resume extends Model {
     }
 
     public function hardDelete(){
-        $this->BelongsUser()->delete();
+        //$this->user()->delete();
+        //$this->city()->delete();
         //$this->scopeIndustry()->delete();
-        //$this->Currency()->delete();
-        // $this->scopeCity()->delete();
+        //$this->Currency()->first()->delete();
         $this->delete();
     }
 

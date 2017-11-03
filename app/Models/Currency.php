@@ -15,4 +15,9 @@ class Currency extends Model
 
         return $currencies;
     }
+
+    public function Resumes()
+    {
+        return $this->hasMany('App\Models\Resumes', 'currency_id')->getResults();
+    }
 }

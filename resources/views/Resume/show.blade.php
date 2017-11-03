@@ -26,7 +26,7 @@
                         {!! Html::linkRoute('resume.showResumes', $resume->position, [ 'name' => 'specialisation', 'value' => $resume->position], ['class' => 'orangColor-resume-name', 'tabindex' => 1 ]) !!}
                     </p>
                     <p class="price_resume">
-                        {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
+                        {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()->currency}}
                     </p>
                     <p class="name_resume">{!! strip_tags($resume->name_u) !!}</p>
                     </br>

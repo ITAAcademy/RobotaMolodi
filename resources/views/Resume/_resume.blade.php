@@ -1,4 +1,3 @@
-{{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
 
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 
@@ -6,10 +5,6 @@
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
 <input type = "hidden" name = "filterValue" id = "filterValue"/>
 {!!Form::close()!!}
-
-{{--{!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}--}}
-{{--<input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">--}}
-{{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
     @forelse ($resumes as $resume)
     <div class="one-for-cabinet">
@@ -32,7 +27,7 @@
                         <br>
                     </p>
                     <p class="price-cabinet">
-                        <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
+                        <span>{{$resume->salary}} - {{$resume->salary_max}} {{ $resume->Currency()->currency }}</span>
                     </p>
                     <p class="description-cabinet">{!! strip_tags($resume->description) !!}</p>
                     <p class="name-cabinet"> {!!strip_tags($resume->name_u)!!}</p>

@@ -21,7 +21,7 @@ class City extends Model {
     }
     public function Resumes()
     {
-        return $this->hasMany('App\Models\Resume');
+        return $this->hasMany('App\Models\Resume', 'city');
     }
     public function Companies()
     {
