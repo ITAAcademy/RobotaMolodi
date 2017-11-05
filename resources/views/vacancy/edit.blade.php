@@ -15,7 +15,7 @@
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть {{ trans('form.branch') }}</label>
+        <label for="selectGaluz" class="col-sm-2 control-label">{{ trans('form.branch') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
                 @if (Input::old('branch')==''))
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть організацію</label>
+        <label for="selectOrgan" class="col-sm-2 control-label">{{ trans('form.organization') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.salarymin') }}</label>
+        <label for="salary" class="col-sm-2 control-label">{{ trans('form.salarymin') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.salarymax') }}</label>
+        <label for="salary_max" class="col-sm-2 control-label">{{ trans('form.salarymax') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
         </div>
