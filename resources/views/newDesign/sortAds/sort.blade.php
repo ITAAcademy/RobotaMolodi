@@ -5,15 +5,15 @@
 <div class='row sort-box'>
 
 		<div class='col-xs-12 sort-box'>
-			<div class='col-xs-3 sort-rating'>
+			<div class='col-xs-3 sort-rating toggleFilter'>
 				<span class='label-sort-box'>Сортувати по:</span>
 				<span class ='opsion-sort-box sort-by-rating hidden'>рейтинг -</span>
 				<span class ='opsion-sort-box sort-by-rating'>рейтинг +</span>
 			</div>
 			<div class='col-xs-3 sort-date'>
 				<span class='label-sort-box'>по даті:</span>
-				<span class='opsion-sort-box sort-by-date hidden'>спочатку нові</span>
-				<span class='opsion-sort-box sort-by-date'>спочатку старі</span>
+				<span class='opsion-sort-box sort-by-date'>спочатку нові</span>
+				<span class='opsion-sort-box sort-by-date hidden'>спочатку старі</span>
 			</div>
 			<div class='col-xs-6 input-sort-box'>
 				<span class='label-sort-box'>по проміжку дат:</span>
@@ -31,4 +31,3 @@
 </div>
 
 	<hr class='line-sort-box'>
-
