@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">Виберіть організацію</label>
+        <label for="selectOrgan" class="col-sm-2 control-label">{{ trans('form.organization') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)

@@ -104,7 +104,7 @@
 
 <div class="row">
     <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary', "trans('form.salarymin')", ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary', trans('form.salarymin'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary', Input::old('salary'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
@@ -114,7 +114,7 @@
 
 <div class="row">
     <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}">
-        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary_max', "trans('form.salarymax')", ['class'=>'label-text-resume']) !!}</div>
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">  {!! Form::label('salary_max', trans('form.salarymax'), ['class'=>'label-text-resume']) !!}</div>
         <div class="col-md-6 col-sm-6">  {!! Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']) !!}</div>
         <span class="required_field">*</span>
         <div class=" col-md-3 col-sm-3">{!! $errors->first('salary_max', '<span class="help-block">:message</span>') !!}</div>

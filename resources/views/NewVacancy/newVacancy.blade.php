@@ -46,7 +46,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('Organisation') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">trans('form.organization')</label>
+            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.organization') }}</label>
             <div class="col-md-6 col-sm-6">
                 <select class="form-control" id="selectOrgan" name="Organisation">
                     @foreach($companies as $comp)
@@ -64,7 +64,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymin') }}</label>
+            <label for="salary" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymin') }}</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('salary', Input::old('salary'), array('class' => 'form-control','id' => 'Salary' )) !!}
             </div>
@@ -74,7 +74,7 @@
 
     <div class="row">
         <div class="form-group {{$errors-> has('salary_max') ? 'has-error' : ''}}" style="margin-top: 30px">
-            <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymax') }}</label>
+            <label for="salary_max" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymax') }}</label>
             <div class="col-md-6 col-sm-6">
                 {!! Form::text('salary_max', Input::old('salary_max'), array('class' => 'form-control','id' => 'Salary_max' )) !!}
             </div>
