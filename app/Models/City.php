@@ -7,8 +7,22 @@ class City extends Model {
 
     protected $table = 'cities';
 
-    protected $fillable = ['name'];
-//Get all cities order by name
+    protected $fillable = ['id', 'name'];
+
+    static function factoryCity()
+    {
+        $cityId = 1;
+        $lastCityId = City::orderBy('id', 'desc')->first()->id;
+        if($lastCityId)
+            $cityId+=$lastCityId;
+
+        $city = factory(City::class)->create();
+        $city->id = $cityId;
+        $city->save();
+
+        return $city;
+    }
+
     public function getCities()
     {
         $cities = $this->orderBy('id')->get();
