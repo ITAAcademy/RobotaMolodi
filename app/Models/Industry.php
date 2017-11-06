@@ -18,8 +18,10 @@ class Industry extends Model {
         return $this->hasMany('App\Models\Vacancy','branch')->latest('updated_at');
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Scopes
+    public function Resumes()
+    {
+        return $this->hasMany('App\Models\Resumes', 'industry')->getResults();
+    }
 
     public function scopeName()
     {

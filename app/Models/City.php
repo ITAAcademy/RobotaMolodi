@@ -6,7 +6,7 @@ use DB;
 class City extends Model {
 
     protected $table = 'cities';
-
+    public $incrementing = true;
     protected $fillable = ['name'];
 //Get all cities order by name
     public function getCities()
@@ -21,7 +21,7 @@ class City extends Model {
     }
     public function Resumes()
     {
-        return $this->hasMany('App\Models\Resume');
+        return $this->hasMany('App\Models\Resume', 'city');
     }
     public function Companies()
     {

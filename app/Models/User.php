@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 
 	protected $hidden = ['password', 'remember_token'];
-    
+
     private function hasCompany()
     {
         return $this->hasMany('App\Models\Company','users_id');
@@ -43,9 +43,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public function role(){
-        return $this->belongsTo('App\Models\Role');    
+        return $this->belongsTo('App\Models\Role');
     }
-    
+
     public function hasAnyCompany()
     {
         $hasAnyCompany = User::hasCompany();
@@ -60,14 +60,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $vacancies;
     }
 
-    private function HasManyResumes()
+    private function Resumes()
     {
-        return $this->hasMany('App\Models\Resume','id_u');
+        return $this->hasMany('App\Models\Resume', 'id_u');
     }
 
     public function GetResumes()
     {
-        $userResumes = User::HasManyResumes()->orderBy('updated_at', 'desc');
+        $userResumes = User::Resumes()->orderBy('updated_at', 'desc');
 
         return $userResumes;
     }
@@ -83,7 +83,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
         return $userCompanies;
     }
-    
+
     public function isAdmin(){
 	if (isset($this->role_id))
 	{
