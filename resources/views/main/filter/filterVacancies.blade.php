@@ -1,5 +1,10 @@
 @extends('app')
 
+@section('head')
+    <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     @include('newDesign.scrollup')
     @include('newDesign/aboutUs/show')
@@ -7,7 +12,12 @@
     @include('newDesign/search/show')
     <div id="left-content-column" class="col-sm-9">
         @include('newDesign/sortAds/sort')
-        @include('newDesign/vacancies/vacanciesList')
+
+        <div class="test">
+            @include('newDesign/vacancies/vacanciesList')
+        </div>
+        @include('newDesign.jsForFilter', ['urlController' => 'filter.vacancies'])
+
         @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])
     </div>
     <div id="right-content-column" class="col-sm-3">
@@ -15,9 +25,6 @@
         @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2])
         @include('newDesign/topNews')
     </div>
-    {{--<div class="posts">--}}
-        {{--@include('vacancy._vacancy')--}}
-    {{--</div>--}}
     {!!Html::script('js/scrollup.js')!!}
     <script>
            $(document).ready(function() {
@@ -32,9 +39,6 @@
                 var arrCities = new Array;
                 var citiesRes = new Array;
                 var urlRoute = 'showVacancies';
-//                for (var i = 0; i < allCities.options.length; i++) {
-//                    arrCities[i] = allCities.options[i].text;
-//                }
 
     //------------------event-click-on-button-map-------------------------------
                 $('#collapseButton').one('click', function(){
@@ -78,9 +82,6 @@
                     ajaxSend($('[name=city]').select2().val(), urlRoute);
                 });
             });
-        {{--@if($search_boolean)--}}
-            {{--fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');--}}
-         {{--@endif--}}
     </script>
 
 @stop
