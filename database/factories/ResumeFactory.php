@@ -5,7 +5,7 @@ $factory->define(App\Models\Resume::class, function (Faker\Generator $faker) {
     $user = factory(App\Models\User::class)->create();
     $currency = factory(App\Models\Currency::class)->create();
     $industry = factory(App\Models\Industry::class)->create();
-    $city = App\Models\City::factoryCity();
+    $city = App\Models\City::find($faker->numberBetween(1,26));
 
     return [
         'id_u' => $user->id,
