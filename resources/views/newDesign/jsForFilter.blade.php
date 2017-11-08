@@ -1,5 +1,7 @@
 <script>
-
+$(window).on('popstate', function() {
+   location.reload(true);
+});
 $(document).ready(function () {
 
     var filter = new (function(){
@@ -18,6 +20,7 @@ $(document).ready(function () {
             $.ajax({
                 url: '{{route($urlController)}}',
                 data: getFilters(),
+                cache: false,
                 success: function(data){
                     $('.test').html(data);
                 }
@@ -65,7 +68,8 @@ $(document).ready(function () {
     function getVacancies(url) {
         $.ajax({
             url : url,
-            data : filter.getFilters()
+            data : filter.getFilters(),
+            cache: false,
         }).done(function (data) {
             $('.test').html(data);
         }).fail(function () {

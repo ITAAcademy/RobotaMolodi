@@ -9,6 +9,10 @@ use App\Models\Vacancy;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\City;
+use App\Models\Industry;
+use App\Models\News;
+use View;
 
 class FilterController extends Controller
 {
@@ -22,7 +26,22 @@ class FilterController extends Controller
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
-        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
+
+        if($request->ajax()){
+            return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
+        } else {
+            $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+            $specialisations = Vacancy::groupBy('position')->lists('position');
+
+            return View::make('main.filter.filterVacancies', array(
+                'vacancies' => $vacancies,
+                'cities' => City::all(),
+                'industries' => Industry::all(),
+                'specialisations' => $specialisations,
+                'news'=>News::getNews(),
+                'topVacancy' => $topVacancy,
+            ));
+        }
     }
 
     public function resumes(Request $request)
