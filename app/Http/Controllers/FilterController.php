@@ -22,7 +22,7 @@ class FilterController extends Controller
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
-        $vacancies->setPath('/');
+        $vacancies->setPath(route('head'));
         return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
     }
 
@@ -36,7 +36,7 @@ class FilterController extends Controller
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
-        $resumes->setPath('/');
+        $resumes->setPath(route('main.resumes'));
         return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
     }
 
@@ -50,7 +50,7 @@ class FilterController extends Controller
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
-        $companies->setPath('/');
+        $companies->setPath(route('main.companies'));
         return view('newDesign.company.companiesList', ['companies' => $companies]);
     }
 }
