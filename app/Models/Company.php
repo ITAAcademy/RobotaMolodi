@@ -75,7 +75,7 @@ class Company extends Eloquent {
     public function comments(){
         return $this->hasMany('App\Models\Comment');
     }
-    
+
     public function ReadCompany()
     {
 
@@ -168,8 +168,8 @@ class Company extends Eloquent {
     }
 
     public function scopeBySpecialisations($query, $specialisations){
-        $specialisations = Vacancy::where('position', $specialisations)->get()->pluck('company_id')->toArray();
         if (!empty($specialisations)) {
+            $specialisations = Vacancy::where('position', $specialisations)->get()->pluck('company_id')->toArray();
             return $query->whereIn('company.id', $specialisations);
         }else{
             return $query;
@@ -223,4 +223,3 @@ class Company extends Eloquent {
         return $query->orderBy('updated_at', 'desc');
     }
 }
-

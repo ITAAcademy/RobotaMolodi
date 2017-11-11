@@ -13,13 +13,13 @@
                 </h4>
                 <p class="text-left"> {{strip_tags($resume->description)}} </p>
             </div>
-            
+
             <div class="section-link__right">
                <a class="links ib-block" href="{{route('resume.show', $resume->id)}}">
                     <p class="read-next-link">Читати далі...</p>
-                </a> 
+                </a>
             </div>
-            
+
 
             <div class="ratings">
                 <span class = "ratingsTitle">Рейтинг:</span>
@@ -54,4 +54,4 @@
 
 </div>
 
-@include('newDesign.jsForFilter', ['urlController' => 'filter.resumes'])
+@include('newDesign.jsForFilter')

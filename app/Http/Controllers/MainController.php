@@ -83,7 +83,9 @@ class MainController extends Controller
 
     public function showCompanies(Request $request){
 
-        $companies = Company::latest('id')->orderByDate()->paginate();
+        $companies = \App\Filter::companies($request)->paginate();
+        \App\Filter::routeFilterPaginator($request, $companies);
+
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
             return view('newDesign.company.companiesList', array(
@@ -105,9 +107,9 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = Resume::latest('updated_at')
-            ->isActive()
-            ->paginate();
+        $resumes = \App\Filter::resumes($request)->paginate();
+        \App\Filter::routeFilterPaginator($request, $resumes);
+
         $specialisations = Resume::groupBy('position')->lists('position');
         if($request->ajax()){
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
