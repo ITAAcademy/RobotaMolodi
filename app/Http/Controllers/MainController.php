@@ -8,12 +8,13 @@ use App\Models\Industry;
 use Illuminate\Auth\Guard;
 use App\Http\Requests;
 use Input;
-use Request;
 use Session;
 use DB;
 use View;
 use Illuminate\Support\Facades\Response;
 use App\Models\Company;
+use App\Http\Controllers\FilterController;
+use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
@@ -58,18 +59,31 @@ class MainController extends Controller
         ));
     }
 
-    public function showVacancies()
+    public function showVacancies(Request $request)
     {
-        $vacancies = Vacancy::AllVacancies()->orderByDate()->paginate();
+        $vacancies = \App\Filter::vacancies($request)->paginate();
+        $indastry = $request->get('industries',[]);
+        $indastry ? $indastry:'';
+
+        $regions = $request->get('regions',[]);
+        $regions ? $regions:'';
+
+        $specialisations = $request->get('specialisations',[]);
+        $specialisations ? $specialisations:'';
+
+        $vacancies->appends([
+            'industries' => $indastry,
+            'regions' => $regions,
+            'specialisations' => $specialisations,
+        ]);
+
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        if(Request::ajax()){
+        if($request->ajax()){
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
             ));
         }
-        //Show top vacancies:
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
-
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
@@ -80,11 +94,11 @@ class MainController extends Controller
         ));
     }
 
-    public function showCompanies(){
+    public function showCompanies(Request $request){
 
         $companies = Company::latest('id')->orderByDate()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        if(Request::ajax()){
+        if($request->ajax()){
             return view('newDesign.company.companiesList', array(
                 'companies' => $companies,
             ));
@@ -102,13 +116,13 @@ class MainController extends Controller
         ));
     }
 
-    public function showResumes()
+    public function showResumes(Request $request)
     {
         $resumes = Resume::latest('updated_at')
             ->isActive()
             ->paginate();
         $specialisations = Resume::groupBy('position')->lists('position');
-        if(Request::ajax()){
+        if($request->ajax()){
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
         }
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
