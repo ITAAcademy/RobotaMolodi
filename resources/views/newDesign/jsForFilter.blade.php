@@ -16,8 +16,9 @@ $(document).ready(function () {
         }
         function applyFilter(){
             $.ajax({
-                url: '{{route($urlController)}}',
+                url: '{{ route(Route::currentRouteName()) }}',
                 data: getFilters(),
+                cache: false,
                 success: function(data){
                     $('.test').html(data);
                 }
@@ -42,7 +43,6 @@ $(document).ready(function () {
 
         this.applyFilter = applyFilter;
         this.getFilters  = getFilters;
-        applyFilter();
 
         $('.getting-list-selected-box').on('change',function () {
             applyFilter();
@@ -61,25 +61,6 @@ $(document).ready(function () {
         });
 
     })();
-
-    function getVacancies(url) {
-        $.ajax({
-            url : url,
-            data : filter.getFilters()
-        }).done(function (data) {
-            $('.test').html(data);
-        }).fail(function () {
-            alert('Could not be loaded.');
-        });
-    }
-
-    $(document).on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        getVacancies(url);
-        window.history.pushState("", "", url);
-        $('.scrollup').click();
-    });
 
     $('.pag-block-by').click(function () {
         $('.active-pag-block').removeClass('active-pag-block');

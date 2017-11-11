@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App;
 
+use App\Models\Vacancy;
 use App\Models\Company;
 use App\Models\Resume;
 use Illuminate\Http\Request;
-use App\Models\Vacancy;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class FilterController extends Controller
+class Filter
 {
-    public function vacancies(Request $request)
+    public static function vacancies(Request $request)
     {
-        $vacancies = Vacancy::byIndustries($request->get('industries',[]))
+        $vacancies = Vacancy::AllVacancies()
+            ->byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
             ->byRating($request->get('sortRatings'))
-            ->bySort($request->get('sortDate'))
-            ->paginate();
-        return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
-    }
+            ->bySort($request->get('sortDate'));
 
-    public function resumes(Request $request)
+        return $vacancies;
+    }
+    public static function resumes(Request $request)
     {
         $resumes = Resume::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
@@ -34,12 +33,10 @@ class FilterController extends Controller
             ->byEndDate($request->get('endDate',[]))
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
-            ->paginate();
-
-        return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
+            ->isActive();
+        return $resumes;
     }
-
-    public function companies(Request $request)
+    public static function companies(Request $request)
     {
         $companies = Company::byIndustries($request->get('industries', []))
             ->bySpecialisations($request->get('specialisations', []))
@@ -47,9 +44,21 @@ class FilterController extends Controller
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
             ->byRating($request->get('sortRatings'))
-            ->bySort($request->get('sortDate'))
-            ->paginate();
+            ->bySort($request->get('sortDate'));
 
-        return view('newDesign.company.companiesList', ['companies' => $companies]);
+        return $companies;
+    }
+    public static function routeFilterPaginator(Request $request, LengthAwarePaginator $collection)
+    {
+        $industries = $request->get('industries','');
+        $regions = $request->get('regions','');
+        $specialisations = $request->get('specialisations','');
+
+        $collection->appends([
+            'industries' => $industries,
+            'regions' => $regions,
+            'specialisations' => $specialisations,
+        ]);
     }
 }
+ ?>

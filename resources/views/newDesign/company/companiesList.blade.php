@@ -54,5 +54,4 @@
 
 </div>
 
-@include('newDesign.jsForFilter', ['urlController' => 'filter.companies'])
-
+@include('newDesign.jsForFilter')

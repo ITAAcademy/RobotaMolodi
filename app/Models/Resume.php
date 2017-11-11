@@ -184,7 +184,7 @@ class Resume extends Model {
             return $query;
         }
     }
-    
+
     public function scopeCheckNoAccess($query){
         $res = $this->isActive();
         if(Auth::check()){

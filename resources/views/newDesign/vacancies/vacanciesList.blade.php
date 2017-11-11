@@ -12,13 +12,13 @@
                     </h4>
                     <p class="text-left"> {{strip_tags($vacancy->description)}} </p>
                 </div>
-                
+
                 <div class="section-link__right">
                    <a class="links ib-block" href="/vacancy/{{$vacancy->id}}">
                         <p class="read-next">Читати далі...</p>
-                    </a> 
+                    </a>
                 </div>
-                
+
 
                 <div class="below-section">
                     <span>{{ $vacancy->company->company_name}}</span>
@@ -51,4 +51,4 @@
     @include('newDesign.paginator', ['paginator' => $vacancies])
 </div>
 
-@include('newDesign.jsForFilter', ['urlController' => 'filter.vacancies'])
+@include('newDesign.jsForFilter')
