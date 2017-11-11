@@ -62,20 +62,7 @@ class MainController extends Controller
     public function showVacancies(Request $request)
     {
         $vacancies = \App\Filter::vacancies($request)->paginate();
-        $indastry = $request->get('industries',[]);
-        $indastry ? $indastry:'';
-
-        $regions = $request->get('regions',[]);
-        $regions ? $regions:'';
-
-        $specialisations = $request->get('specialisations',[]);
-        $specialisations ? $specialisations:'';
-
-        $vacancies->appends([
-            'industries' => $indastry,
-            'regions' => $regions,
-            'specialisations' => $specialisations,
-        ]);
+        \App\Filter::routeFilterPaginator($request, $vacancies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
