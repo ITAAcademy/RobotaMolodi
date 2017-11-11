@@ -22,6 +22,7 @@ class FilterController extends Controller
             ->byRating($request->get('sortRatings'))
             ->bySort($request->get('sortDate'))
             ->paginate();
+        $vacancies->setPath('/');
         return view('newDesign.vacancies.vacanciesList', ['vacancies' => $vacancies]);
     }
 
