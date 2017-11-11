@@ -50,14 +50,9 @@ class Filter
     }
     public static function routeFilterPaginator(Request $request, LengthAwarePaginator $collection)
     {
-        $indastry = $request->get('industries',[]);
-        $indastry ? $indastry:'';
-
-        $regions = $request->get('regions',[]);
-        $regions ? $regions:'';
-
-        $specialisations = $request->get('specialisations',[]);
-        $specialisations ? $specialisations:'';
+        $indastry = $request->get('industries','');
+        $regions = $request->get('regions','');
+        $specialisations = $request->get('specialisations','');
 
         $collection->appends([
             'industries' => $indastry,

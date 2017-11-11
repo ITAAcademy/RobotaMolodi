@@ -33,7 +33,7 @@ class Vacancy extends Model {
     public function Company(){
         return $this->belongsTo('App\Models\Company');
     }
-    
+
 //Fill and return vacancy Model
     public function fillVacancy($id,$request)
     {
