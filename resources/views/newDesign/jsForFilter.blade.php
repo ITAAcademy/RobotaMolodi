@@ -15,7 +15,6 @@ $(document).ready(function () {
             }
         }
         function applyFilter(){
-            console.log( '{{ route(Route::currentRouteName()) }}' );
             $.ajax({
                 url: '{{ route(Route::currentRouteName()) }}',
                 data: getFilters(),
@@ -62,17 +61,6 @@ $(document).ready(function () {
         });
 
     })();
-
-    function getVacancies(url) {
-        $.ajax({
-            url : url,
-            data : filter.getFilters()
-        }).done(function (data) {
-            $('.test').html(data);
-        }).fail(function () {
-            alert('Could not be loaded.');
-        });
-    }
 
     $('.pag-block-by').click(function () {
         $('.active-pag-block').removeClass('active-pag-block');
