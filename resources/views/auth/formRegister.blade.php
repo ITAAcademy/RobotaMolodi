@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form id="form-register" class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+    <form class="form-register form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
@@ -59,22 +59,30 @@
 </div>
 
 <script type="text/javascript">
-    $('#form-register').submit(function(event) {
+    $('.form-register').submit(function(event) {
         event.preventDefault();
-        var form = $(this);
+        var form = $(this),
+            spiner = $(document.createElement('i')).addClass('fa fa-spinner fa-spin fa-2x');
         $.ajax({
-          type: form.attr('method'),
-          url: form.attr('action'),
+          type: 'POST',
+          url: '{{ route('auth.ajaxValidation') }}',
           data: form.serialize(),
+          beforeSend: function(){
+              form.find('[type="submit"]')
+                .append(spiner);
+          },
           success: function(data){
               if(data['success']) {
-                 window.location.href = data['route']
+                  form.unbind('submit').submit();
               } else {
                   if(form.prev().hasClass('alert-danger'))
                       form.prev().remove();
 
                   form.before(data['errors']);
               }
+          },
+          complete: function(){
+              spiner.remove();
           },
           error: function(e){
               console.log(e);
