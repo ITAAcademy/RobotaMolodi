@@ -896,17 +896,20 @@ header .tads_panel .nav-tabs > li > a {
 }
 
 .featherlight-next:hover, .featherlight-previous:hover {
-    background: none;
+    background: white;
+    opacity: 0.3;
 }
 
 .featherlight-previous {
     left: 0px;
     top: 0px;
+    right: 93%;
 }
 
 .featherlight-next {
     right: 0px;
     top: 0px;
+    left: 93%;
 }
 
 .featherlight-next span, .featherlight-previous span {
