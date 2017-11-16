@@ -6,10 +6,10 @@
         <div>
             <div class="section-link">
                 <a class="links-line ib-block" href="{{route('resume.show', $resume->id)}}">
-                    <h3>{{$resume->branch}}{{ $resume->position}}</h3>
+                    <h3>{{ $resume->branch }}{{ $resume->position}}</h3>
                 </a>
                 <h4>
-                    <strong>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</strong>
+                    <strong>{{$resume->salary}} - {{$resume->salary_max}} {{ $resume->currency->currency }}</strong>
                 </h4>
                 <p class="text-left"> {{strip_tags($resume->description)}} </p>
             </div>
@@ -35,12 +35,12 @@
             </div>
 
             <div class="below-section">
-                <span>{{ $resume->Industry()->name}}</span>
+                <span>{{ $resume->industry->name}}</span>
             </div>
 
             <p class="ib-block">
                 <div class="line">
-                    <span class="town">{{ $resume->City()->name}}</span>
+                    <span class="town">{{ $resume->city->name}}</span>
                     <span class="drop">&bull;</span>
                     <span class="data">{{date('j m Y', strtotime($resume->updated_at))}}</span>
                 </div>

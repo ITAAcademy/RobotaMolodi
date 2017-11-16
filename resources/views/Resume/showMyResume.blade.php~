@@ -13,8 +13,8 @@
         <div class="panel-heading"><h2>{!!$resume->position!!} , {!!$resume->salary!!} грн.</h2></div>
         <ul class="list-group">
             <li class="list-group-item"> {!!$resume->name_u!!}</li>
-            <li class="list-group-item">  {!!$resume->City()->name!!}</li>
-            <li class="list-group-item"> {!!$resume->Industry()->name!!}</li>
+            <li class="list-group-item">  {!!$resume->city->name!!}</li>
+            <li class="list-group-item"> {!!$resume->industry->name!!}</li>
             <li class="list-group-item"><span class="heading">  {{ trans('form.description') }}:</span> {!!$resume->description!!} <span class="text-muted text-right pull-right"><h5>{{ date('j.m.Y,H:i:s', strtotime($resume->created_at))}}</h5></span></li>
         </ul>
     </div>

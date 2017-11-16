@@ -184,7 +184,7 @@ class CompanyController extends Controller  {
             $view = 'newDesign.company.formSendResume';
             $vacancies = Vacancy::where('company_id','=',$id)->get();
             $user = auth()->user();
-            $resume = Resume::where('id_u','=',$user->id)->get();
+            $resume = Resume::where('user_id','=',$user->id)->get();
             return view($view)
                 ->with('company', $company)
                 ->with('vacancy', $vacancies)

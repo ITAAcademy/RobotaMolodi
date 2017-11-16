@@ -124,7 +124,7 @@ class ResumeSeeder extends Seeder  // Заповнення таблиці resume
             }
 
             Resume::create([
-                'id_u' => $user_id,
+                'user_id' => $user_id,
                 'name_u' => $name_u,
                 'telephone' => '0963363496',
                 'email' => $email,

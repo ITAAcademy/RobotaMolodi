@@ -24,16 +24,9 @@ class Resume extends Model {
         return $resumes;
     }
 
-    private function BelongsUser()
-    {
-        $user = $this->belongsTo('App\Models\User','id_u')->first();
-        return $user;
-    }
     public function ReadUser()
     {
-        $user = $this->BelongsUser();
-
-        return $user;
+        return $this->user;
     }
 
     public function fillResume($id,$auth,$request)
@@ -70,21 +63,21 @@ class Resume extends Model {
         {
             $resume = Resume::find($id);
             $user = $resume->ReadUser();
-            $resume->id_u = $user->id;
+            $resume->user_id = $user->id;
 
         }
         else
         {
             $user = $auth->user();
             $resume = new Resume();
-            $resume->id_u = $user->id;
+            $resume->user_id = $user->id;
         }
 
         $resume->name_u = $name_u;
         $resume->telephone = $telephone;
         $resume->email = $email;
-        $resume->city = $city;
-        $resume->industry = $industry;
+        $resume->city_id = $city;
+        $resume->industry_id = $industry;
         $resume->position = $position;
         $resume->salary = $salary;
         $resume->salary_max = $salary_max;
@@ -94,31 +87,25 @@ class Resume extends Model {
         return $resume;
 
     }
-    public function Cities()
+
+    public function user()
     {
-        $this->belongsTo('App\Models\City')->get();
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Scopes
-    public function scopeCity()
+    public function city()
     {
-        $city = $this->hasOne('App\Models\City','id','city')->first();
-
-        return $city;
+        return $this->belongsTo('App\Models\City', 'city_id');
     }
 
-    public function scopeIndustry()
+    public function industry()
     {
-        $industry = $this->hasOne('App\Models\Industry','id','industry')->first();
-
-        return $industry;
+        return $this->belongsTo('App\Models\Industry', 'industry_id');
     }
 
-    public function Currency()
+    public function currency()
     {
-        $currencies =  $this->belongsTo('App\Models\Currency', 'currency_id')->get();
-        return $currencies;
+        return  $this->belongsTo('App\Models\Currency', 'currency_id');
     }
 
     public function scopeByIndustries($query, $industries)
@@ -192,7 +179,7 @@ class Resume extends Model {
             if($user->isAdmin()){
                 $res = $query;
             }else{
-                $res = $res->orWhere('id_u','=',$user->id);
+                $res = $res->orWhere('user_id','=',$user->id);
             }
         }
         return $res;

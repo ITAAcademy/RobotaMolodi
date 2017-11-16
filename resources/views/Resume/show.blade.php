@@ -12,8 +12,8 @@
         <div>
             <div class="col-md-3">
                 <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)))
-                        {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)))
+                        {!! Html::image('image/resume/'.$resume->user_id.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
@@ -26,7 +26,7 @@
                         {!! Html::linkRoute('resume.showResumes', $resume->position, [ 'name' => 'specialisation', 'value' => $resume->position], ['class' => 'orangColor-resume-name', 'tabindex' => 1 ]) !!}
                     </p>
                     <p class="price_resume">
-                        {{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}
+                        {{$resume->salary}} - {{$resume->salary_max}} {{$resume->currency->currency}}
                     </p>
                     <p class="name_resume">{!! strip_tags($resume->name_u) !!}</p>
                     </br>
@@ -47,7 +47,7 @@
 
                 <div class="panel-description-resume">
                     <p class="position_resume">
-                        {!! Html::linkRoute('resume.showResumes', $resume->Industry()->name, [ 'name' => 'industries', 'value' => $resume->Industry()->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
+                        {!! Html::linkRoute('resume.showResumes', $resume->industry->name, [ 'name' => 'industries', 'value' => $resume->industry->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
                     </p>
 
                     <p class="phone-nomber-resume"><span>{{ trans('main.phone') }}</span> {!!$resume->telephone!!}</p>
