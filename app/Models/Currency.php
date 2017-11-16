@@ -15,4 +15,10 @@ class Currency extends Model
 
         return $currencies;
     }
+
+    public function resumes()
+    {
+        return $this->hasMany('App\Models\Resume', 'currency_id');
+    }
+
 }

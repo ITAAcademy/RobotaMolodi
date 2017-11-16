@@ -1,5 +1,3 @@
-{{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
-
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 
 {!!Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
@@ -7,18 +5,14 @@
 <input type = "hidden" name = "filterValue" id = "filterValue"/>
 {!!Form::close()!!}
 
-{{--{!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}--}}
-{{--<input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">--}}
-{{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-
     @forelse ($resumes as $resume)
     <div class="one-for-cabinet">
         <div class="row">
             <div class="col-xs-12 col-md-2">
                 <div class="panel panel-orange" id="vimg">
                     <a href="{{route('resume.show', $resume->id)}}">
-                        @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
-                            {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
+                            {!! Html::image('image/resume/'.$resume->user_id.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
                             {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                         @endif
@@ -32,14 +26,14 @@
                         <br>
                     </p>
                     <p class="price-cabinet">
-                        <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
+                        <span>{{$resume->salary}} - {{$resume->salary_max}} {{ $resume->currency->currency }}</span>
                     </p>
                     <p class="description-cabinet">{!! strip_tags($resume->description) !!}</p>
                     <p class="name-cabinet"> {!!strip_tags($resume->name_u)!!}</p>
                 </div>
                 <div>
                     <p class="cityTime-cabinet">
-                        <span class="description-cabinet">{{$resume->City()->name}}</span>
+                        <span class="description-cabinet">{{$resume->city->name}}</span>
                         <span id="yellowCircle-cabinet">&#183;</span>
                         <span class="updateDate-cabinet">{{ date('j m Y', strtotime($resume->updated_at))}}</span>
                     </p>

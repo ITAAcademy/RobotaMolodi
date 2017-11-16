@@ -21,8 +21,8 @@
         <div class="row">
             <div class="col-xs-12 col-md-3">
                 <div class="panel panel-orange" id="vimg">
-                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
-                        {!! Html::image('image/resume/'.$resume->id_u.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
+                        {!! Html::image('image/resume/'.$resume->user_id.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
                         {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
@@ -33,7 +33,7 @@
                         <span>Змiнити фото</span>
                     </span>
                     <br>
-                    @if(File::exists(public_path('image/resume/'.$resume->id_u.'/'.$resume->image)) and $resume->image != '')
+                    @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
                         <span class="orange-link-myresume" id="deleteImage">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             <span>Видалити фото</span>
@@ -50,7 +50,7 @@
                             <br>
                         </p>
                         <p class="price-resume">
-                            <span>{{$resume->salary}} - {{$resume->salary_max}} {{$resume->Currency()[0]['currency']}}</span>
+                            <span>{{$resume->salary}} - {{$resume->salary_max}} {{ $resume->currency->currency }}</span>
                         </p>
                         <p class="name-resume"> {!! strip_tags($resume->name_u)!!}</p>
                     </div>
@@ -70,7 +70,7 @@
 
                     <div class="panel-description-resume">
                         <p class="position-resume">
-                            {!! Html::linkRoute('resume.showResumes', $resume->Industry()->name, [ 'name' => 'industries', 'value' => $resume->Industry()->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
+                            {!! Html::linkRoute('resume.showResumes', $resume->industry->name, [ 'name' => 'industries', 'value' => $resume->industry->id], ['class' => 'orangColor-resume', 'tabindex' => 1 ]) !!}
                         </p>
                         <p class="phone-nomber-resume"><span>{{ trans('main.phone') }} </span> {!!$resume->telephone!!}</p>
                     </div>

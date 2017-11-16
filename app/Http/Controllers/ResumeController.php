@@ -72,9 +72,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
                 $resumes->sortBy('created_at');
                 $mes = null;
-//                if($request->ajax()){
-//                    return  view('Resume._resume', ['resumes'=> $resumes, 'mes'=>$mes]);
-//                }
+
                 return  view('Resume.myResumes', ['resumes'=> $resumes, 'mes'=>$mes]);
             }
         } else {
@@ -159,24 +157,18 @@ class ResumeController extends Controller {// Клас по роботі з ре
      * @param  int  $id
      * @return Response
      */
-    /////////////////////////////!!!!!!!!!!!!!!!DO DIS!!!!!!!!!!!!!!!!!!!!!!!!//////////////////////////////////
+
     public function show($id)
     {
         Cookie::queue('url', 'resume/'.$id);
         $view = 'Resume.show';
         $resume = $this->getResume($id);
-        $city = City::find($resume->city);
+        $city = $resume->city;
         $user = auth()->user();
-
-        /*--------for search.show------------*/
-//        $indusrties = Industry::all();
-//        $specialisations = Vacancy::groupBy('position')->lists('position');
-//        $cities = City::all();
-        /*-----------------------------------------*/
 
         if(Auth::check())
         {
-            if($user->id == $resume->id_u)
+            if($user->id == $resume->user->id)
             {
                 $view = "Resume.showMyResume";
             }
@@ -209,7 +201,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
             $positions = Resume::groupBy('position')->lists('position');
-            if (User::find(Resume::find($resume->id)->id_u)->id==Auth::id())
+            if ($resume->user->id == Auth::id())
             return view('Resume.edit')
                 ->with('resume',$resume)
                 ->with('cities',$cities)
@@ -277,8 +269,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $updateResume->published =0;
             $updateResume->save();
                 Mail::send('emails.notificationEdit', ['messageText' => 'Ваше резюме було заблоковано адміністратором'], function ($message) use ($updateResume) {
-                    $to = User::find($updateResume->id_u)->email;
-                    $message->to($to, User::find($updateResume->id_u)->name)->subject('Ваше резюме було відредаговане адміністратором');
+                    $to = $updateResume->user->email;
+                    $message->to($to, $updateResume->user->name)->subject('Ваше резюме було відредаговане адміністратором');
                 });
         }
         else
@@ -299,7 +291,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         {
             abort(500);
         }
-        if (User::find(Resume::find($id)->id_u)->id==Auth::id()) {
+        if (Resume::find($id)->user->id == Auth::id()) {
             Resume::destroy($id);
             return redirect()->route('cabinet.index');
         }
@@ -333,8 +325,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 ]);
 
                 Mail::send('emails.message', ['messageText' => Input::get('description'), ], function ($message) use ($resumeId) {
-                    $to = User::find(Resume::find($resumeId)->id_u)->email;
-                    $message->to($to, User::find(Resume::find($resumeId)->id_u)->name)->subject(Input::get('name_u'));
+                    $to = Resume::find($resumeId)->user->email;
+                    $message->to($to, Resume::find($resumeId)->user->name)->subject(Input::get('name_u'));
                 });
                 return view('Resume/resumeAnswer');
             }

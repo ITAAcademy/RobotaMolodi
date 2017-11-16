@@ -47,7 +47,7 @@
                     @endif
                 @endforeach
             @else
-                <option value="{{$resume->city}}" selected>{{$resume->City()->name}}</option>
+                <option value="{{$resume->city_id}}" selected>{{$resume->city->name}}</option>
             @endif
         </select></div>
     </div>
@@ -60,7 +60,7 @@
             @foreach($industries as $industry)
                 <option value="{{$industry->id}}"> {{$industry->name}} </option>
             @endforeach
-            <option value="{{$resume->industry}}" selected>{{$resume->Industry()->name}}</option>
+            <option value="{{$resume->industry_id}}" selected>{{$resume->industry->name}}</option>
         </select></div>
     </div>
    </div><br>

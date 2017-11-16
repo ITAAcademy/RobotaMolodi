@@ -8,7 +8,7 @@
     {!! Form::open(array('route' => 'upimg', 'files' => true, 'style' => 'display: none', 'name' => 'uploadImgForm')) !!}
     <input type="file" name="image" id="fileImg">
     <input type="hidden" name="rov" value="r">
-    <input type="hidden" name="fname" value="{{$resume->id_u}}">
+    <input type="hidden" name="fname" value="{{$resume->user_id}}">
     {!! Form::close() !!}
 
     <div style="margin-left: 20px; height: 200px;">
