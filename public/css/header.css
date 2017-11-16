@@ -131,6 +131,7 @@ nav.navbar.navbar-default{
         /*float: right;*/
         text-decoration: underline;
         font-size: 12px;
+        height: 25px;
     }
     #rightModal .modal-content .tab-content #panel1 p{
         font-size: 12px;
@@ -466,6 +467,7 @@ nav.navbar.navbar-default{
         /*float: right;*/
         text-decoration: underline;
         font-size: 12px;
+        height: 25px;
     }
     #rightModal .modal-content .tab-content #panel1 p{
         font-size: 12px;
@@ -821,6 +823,7 @@ nav.navbar.navbar-default{
         /*float: right;*/
         text-decoration: underline;
         font-size: 9px;
+        height: 20px;
     }
     #rightModal .modal-content .tab-content #panel1 p{
         font-size: 12px;
@@ -1185,6 +1188,7 @@ nav.navbar.navbar-default{
         /*float: right;*/
         text-decoration: underline;
         font-size: 9px;
+        height: 20px;
     }
     #rightModal .modal-content .tab-content #panel1 p{
         font-size: 12px;
