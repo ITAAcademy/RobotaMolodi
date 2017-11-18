@@ -60,7 +60,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $vacancies;
     }
 
-    private function resumes()
+    public function resumes()
     {
         return $this->hasMany('App\Models\Resume','user_id');
     }
