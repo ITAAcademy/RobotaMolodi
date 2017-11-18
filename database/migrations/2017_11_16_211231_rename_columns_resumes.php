@@ -13,7 +13,7 @@ class RenameColumnsResumes extends Migration
     public function up()
     {
         Schema::table('resumes', function ($table) {
-            $table->renameColumn('user_id', 'user_id');
+            $table->renameColumn('id_u', 'user_id');
             $table->renameColumn('city', 'city_id');
             $table->renameColumn('industry', 'industry_id');
         });
@@ -27,7 +27,7 @@ class RenameColumnsResumes extends Migration
     public function down()
     {
         Schema::table('resumes', function ($table) {
-            $table->renameColumn('user_id', 'user_id');
+            $table->renameColumn('user_id', 'id_u');
             $table->renameColumn('city_id', 'city');
             $table->renameColumn('industry_id', 'industry');
         });
