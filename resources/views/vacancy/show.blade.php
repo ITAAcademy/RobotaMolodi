@@ -26,7 +26,7 @@
                             <i class="fa vacancy">&#xf0b1;</i>
                         </div>
                         <div class="col-xs-10 consult">
-                            <a href="#">запланувати консультацію</a>
+                            <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
                         </div>
                     </div>
                     <div class="share">
@@ -41,7 +41,6 @@
                     </div>
                 </div>
             </div>
-            {{--TODO refactor href--}}
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
@@ -163,7 +162,6 @@
 
             </div>
         </div>
-        {{--<script src="/public/js/script_one_vacancy.js"></script>--}}
             <script>
                 function showDiv(id){
                     var closeAll = false;
@@ -175,12 +173,6 @@
                     if(!closeAll)
                         document.getElementById(id).style.display = "block";
                 }
-
-//                function getFileName() {
-//                    var file = document.getElementById ('uploaded-file').value;
-//                    file = file.replace(/\\/g, "/").split('/').pop();
-//                    document.getElementById ('file-name').innerHTML = file;
-//                }
             </script>
         </div>
     </div>
