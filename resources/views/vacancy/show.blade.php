@@ -135,22 +135,22 @@
                 </div>
                 <div>
                     {!!Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"])!!}
-                    <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
-                        @if(!empty($resume))
+                    @if(!empty($userResumes))
+                        <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
                             <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
-                                @foreach($resume as $res)
+                                @foreach($userResumes as $res)
                                     <option value="{{$res->id}}" selected>{{$res->position}}</option>
                                 @endforeach
                             </select>
-                    </div>
-                    {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
+                        </div>
+                        {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
                     @else
                         <p>У вас немає резюме.Перейти до створення резюме</p>
                         <p>{!!link_to_route('resume.create','Створення резюме','','style="color:#f68c06"')!!}</p>
                     @endif
                 </div>
                 <div>
-                    @if (!empty($resume))
+                    @if (!empty($userResumes))
                         <div align="right">
                             {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
                         </div>
