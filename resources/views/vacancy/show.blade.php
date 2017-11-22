@@ -136,22 +136,22 @@
                 </div>
                 <div>
                     {!!Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"])!!}
-                    @if(Auth::check() && !empty(Auth::user()->resumes()->get()))
+                    @if(!empty($userResumes))
                         <div class="form-group {{$errors-> has('Load') ? 'has-error' : ''}}" >
-                                <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
-                                    @foreach(Auth::user()->resumes()->get() as $res)
-                                        <option value="{{$res->id}}" selected>{{$res->position}}</option>
-                                    @endforeach
-                                </select>
+                            <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
+                                @foreach($userResumes as $res)
+                                    <option value="{{$res->id}}" selected>{{$res->position}}</option>
+                                @endforeach
+                            </select>
                         </div>
-                    {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
+                        {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
                     @else
                         <p>У вас немає резюме.Перейти до створення резюме</p>
                         <p>{!!link_to_route('resume.create','Створення резюме','','style="color:#f68c06"')!!}</p>
                     @endif
                 </div>
                 <div>
-                    @if (Auth::check() && !empty(Auth::user()->resumes()->get()))
+                    @if (!empty($userResumes))
                         <div align="right">
                             {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
                         </div>

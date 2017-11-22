@@ -225,11 +225,15 @@ class VacancyController extends Controller
             $view ="vacancy.noAccessVacancy";
         }
 
+        $userResumes = null;
+        if(Auth::check() && Auth::user()->resumes()->get()->count())
+            $userResumes = Auth::user()->resumes()->get();
         return view($view)
             ->with('vacancy', $vacancy)
             ->with('company', $company)
             ->with('cities', $cities)
-            ->with('industry', $industry);
+            ->with('industry', $industry)
+            ->with('userResumes', $userResumes);
     }
 
     /**
