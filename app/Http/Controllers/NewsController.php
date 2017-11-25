@@ -46,6 +46,7 @@ class NewsController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'topVacancy' => $topVacancy,
+            'newsCount' => News::max('id'),
         ]);
     }
 
