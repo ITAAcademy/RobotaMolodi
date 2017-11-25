@@ -189,9 +189,6 @@ Route::get('contacts', function () {
 Route::get('policy', ['as' => 'policy', function () {
     return view('staticHeaderPages.politics_uses');
 }]);
-Route::get('filter_vacancies',['as'=>'filter.vacancies','uses'=>'FilterController@vacancies']);
-Route::get('filter_resumes',['as'=>'filter.resumes','uses'=>'FilterController@resumes']);
-Route::get('filter_companies',['as'=>'filter.companies','uses'=>'FilterController@companies']);
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
