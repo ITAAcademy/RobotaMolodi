@@ -317,7 +317,7 @@ hr {
 
 .footer{
 	font-family: SegoeUIRegular;
-	overflow:hidden;
+	overflow:visible;
 }
 .down-footer img{
 	margin-left: 10px;
