@@ -59,9 +59,7 @@
 		@include('header/header')
 		@include('main/mainContent')
 	</div>
-	<footer>
 		@include('footer/footer')
-	</footer>
 
 	{!!Html::script('js/select2.full.js')!!}
 	{!!Html::script('js/liker.js')!!}
