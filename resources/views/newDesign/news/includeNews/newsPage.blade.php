@@ -25,12 +25,8 @@
                 <p>{!! $newsOne->description !!}</p>
                 <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
                 <p>
-                    @if($newsOne->id > 1)
-                        {!! Html::linkRoute('news.show', '&laquo; Previous',  ['id' => $newsOne->id - 1],[ 'class' => 'previous pull-left']) !!}
-                    @endif
-                    @if($newsOne->id != $newsCount )
-                        {!! Html::linkRoute('news.show', 'Next &raquo;',  ['id' => $newsOne->id + 1],[ 'class' => 'next pull-right']) !!}
-                    @endif
+                    {!! Html::linkRoute('news.show', '&laquo; Previous',  $previous['id'],[ 'class' => 'previous pull-left', 'style' => $previous['style']]) !!}
+                    {!! Html::linkRoute('news.show', 'Next &raquo;',  $next['id'],[ 'class' => 'next pull-right', 'style' => $next['style']]) !!}
                 </p>
             </div>
         </div>

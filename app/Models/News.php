@@ -101,6 +101,38 @@ class News extends Model
     public function scopeGetPublished(){
         return News::where('published','=',1);
     }
+    
+    public static function getBtnPrevious($id)
+    {
+        $news = News::all();
+        if($id == 1) {
+            return ['id' => $id,  'style' => 'display: none'];
+        } else {
+            for($i = $id - 1; $i > 0; $i--){
+                foreach ($news as $key => $item){
+                    if($item->id == $i){
+                        return ['id' => $item->id, 'style' => ''];
+                    }
+                }
+            }
+        }
+    }
+    
+    public static function getBtnNext($id)
+    {
+        $news = News::all();
+        if($id == News::max('id')) {
+            return ['id' => $id,  'style' => 'display: none'];
+        } else {
+            for($i = $id + 1; $i <= News::max('id'); $i++){
+                foreach ($news as $key => $item){
+                    if($item->id == $i){
+                        return ['id' => $item->id, 'style' => ''];
+                    }
+                }
+            }
+        }
+    }
 
 
 }
