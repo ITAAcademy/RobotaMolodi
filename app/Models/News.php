@@ -111,5 +111,10 @@ class News extends Model
     {
         return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
     }
+    
+    public function shortDescription()
+    {
+        return substr_replace($this->description, '...', 100, -1);
+    }
 
 }
