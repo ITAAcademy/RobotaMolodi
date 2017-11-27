@@ -101,6 +101,15 @@ class News extends Model
     public function scopeGetPublished(){
         return News::where('published','=',1);
     }
-
+    
+    public function previous()
+    {
+        return News::where('id', '<', $this->id)->orderBy('id','desc')->first();
+    }
+    
+    public function next()
+    {
+        return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
+    }
 
 }
