@@ -102,37 +102,14 @@ class News extends Model
         return News::where('published','=',1);
     }
     
-    public static function getBtnPrevious($id)
+    public function previous()
     {
-        $news = News::all();
-        if($id == 1) {
-            return ['id' => $id,  'style' => 'display: none'];
-        } else {
-            for($i = $id - 1; $i > 0; $i--){
-                foreach ($news as $key => $item){
-                    if($item->id == $i){
-                        return ['id' => $item->id, 'style' => ''];
-                    }
-                }
-            }
-        }
+        return News::where('id', '<', $this->id)->orderBy('id','desc')->first();
     }
     
-    public static function getBtnNext($id)
+    public function next()
     {
-        $news = News::all();
-        if($id == News::max('id')) {
-            return ['id' => $id,  'style' => 'display: none'];
-        } else {
-            for($i = $id + 1; $i <= News::max('id'); $i++){
-                foreach ($news as $key => $item){
-                    if($item->id == $i){
-                        return ['id' => $item->id, 'style' => ''];
-                    }
-                }
-            }
-        }
+        return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
     }
-
 
 }

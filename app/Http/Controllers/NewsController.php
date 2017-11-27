@@ -49,8 +49,8 @@ class NewsController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'topVacancy' => $topVacancy,
-            'previous' => News::getBtnPrevious($id),
-            'next' => News::getBtnNext($id),
+            'previous' => $newsOne->previous(),
+            'next' => $newsOne->next(),
         ]);
     }
 
