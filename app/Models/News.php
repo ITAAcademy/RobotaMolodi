@@ -114,7 +114,7 @@ class News extends Model
     
     public function shortDecription()
     {
-        return substr_replace(News::find($this->id)->description, '...', 100, -1);
+        return substr_replace($this->description, '...', 100, -1);
     }
 
 }
