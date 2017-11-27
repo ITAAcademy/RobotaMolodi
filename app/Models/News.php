@@ -101,6 +101,10 @@ class News extends Model
     public function scopeGetPublished(){
         return News::where('published','=',1);
     }
-
+    
+    public function shortDecription()
+    {
+        return substr_replace(News::find($this->id)->description, '...', 100, -1);
+    }
 
 }
