@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="ratings">
-                    <span class = "ratingsTitle">Рейтинг:</span>
+                    <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                     <span class="morph">
                         {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                         <span class="findLike" id="{{route('res.rate', $resume->id)}}_1">{{$resume->rated()->getLikes($resume)}}</span>

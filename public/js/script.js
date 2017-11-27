@@ -17,11 +17,11 @@ function initMultiselect(container)
 			{
 				return 'Не вибрано...';
 			}
-			else if (options.length > 3) 
+			else if (options.length > 3)
 			{
 				return 'Вибрано більше трьох';
 			}
-			else 
+			else
 			{
 				 var labels = [];
 				 options.each(function() {
@@ -32,15 +32,15 @@ function initMultiselect(container)
 						 labels.push($(this).html());
 					 }
 				 });
-				 
-				var maxCountCharacters = 0; 
+
+				var maxCountCharacters = 0;
 				if($(select).attr('name') == 'selected-region'){
 					maxCountCharacters = 18;
 				}else {
-					maxCountCharacters = 55; 
+					maxCountCharacters = 55;
 				}
-					
-				
+
+
 				 if(labels.length == 1){
 					 var strLabel = labels.join(', ') + '';
 					 return strLabel.length >= maxCountCharacters ? strLabel.slice(0, maxCountCharacters) + "."
@@ -50,30 +50,17 @@ function initMultiselect(container)
 						  return labels[0].slice(0,maxCountCharacters / 2 - 1) + '., ' + labels[1].slice(0,maxCountCharacters / 2 - 1) + '.' ;
 					 }else{
 						 return labels.join(', ') + '';
-					 } 
+					 }
 				 }else{
 					 if((labels.join(', ') + '').length >= 18){
 						  return labels[0].slice(0,maxCountCharacters / 3 - 2) + '., ' + labels[1].slice(0,maxCountCharacters / 3 - 2) + '., ' +
 								 labels[2].slice(0,maxCountCharacters / 3 - 2) + '.';
 					 }else{
 						 return labels.join(', ') + '';
-					 } 
+					 }
 				 }
 			}
 		}
     });
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

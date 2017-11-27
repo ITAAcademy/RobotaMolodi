@@ -11,11 +11,11 @@
             <img id="closetv" src="newDesign/image/topVacancies/modal_close_icon.png" alt="image_close">
         </a>
         <img id="topvac1" class="tv-news-header1" src="newDesign/image/topVacancies/topvacancies.png" alt="topvacancies">
-        <p id="topvac2" class="tv-news-header2">топ вакансій</p>
+        <p id="topvac2" class="tv-news-header2">{{ trans('content.vacancy') }}</p>
     </div>
 
     <div id="add-vac-2-top" class="add2top">
-        <a href="#"><p>+ <span>Розмістити вакансію в ТОПі</span></p></a>
+        <a href="#"><p>+ <span>{{ trans('content.top') }}</span></p></a>
     </div>
 
     <div id="tv-news-list" class="tv-news-list cool-scroll">
