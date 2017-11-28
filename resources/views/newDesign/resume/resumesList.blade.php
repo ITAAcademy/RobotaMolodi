@@ -16,13 +16,13 @@
 
             <div class="section-link__right">
                <a class="links ib-block" href="{{route('resume.show', $resume->id)}}">
-                    <p class="read-next-link">Читати далі...</p>
+                    <p class="read-next-link">{{ trans('content.read_next') }}</p>
                 </a>
             </div>
 
 
             <div class="ratings">
-                <span class = "ratingsTitle">Рейтинг:</span>
+                <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                 <span class="morph">
                     {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                     <span class="findLike" id="{{route('res.rate', $resume->id)}}_1">{{$resume->rated()->getLikes($resume)}}</span>

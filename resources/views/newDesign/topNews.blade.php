@@ -9,7 +9,7 @@
         </a>
         <img class="tv-news-header1" src="/image/topVacancies/news.png" alt="image logo news">
         <a class="tv-link"  href="/news">
-            <p id="topvac2" class="tv-news-header2">НОВИНИ</p>
+            <p id="topvac2" class="tv-news-header2">{{ trans('content.news') }}</p>
         </a>
     </div>
     <div class="tv-news-list cool-scroll">

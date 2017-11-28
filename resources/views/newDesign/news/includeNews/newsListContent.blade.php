@@ -30,7 +30,7 @@
 
                 <div class="col-xs-4">
                     <a class="links" href="/news/{{$oneNews->id}}">
-                        <p class="read-next">Читати далі...</p>
+                        <p class="read-next">{{ trans('content.read_next') }}</p>
                     </a>
                 </div>
             </div>

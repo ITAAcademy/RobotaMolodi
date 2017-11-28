@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="ratings">
-                            <span class = "ratingsTitle">Рейтинг:</span>
+                            <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                                 <span class="findLike" id="{{route('com.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div>
-                        <p class="read-next-link"><a class="next-com-list" href="/company/{{$company->id}}">Читати далі...</a></p>
+                        <p class="read-next-link"><a class="next-com-list" href="/company/{{$company->id}}">{{ trans('content.read_next') }}</a></p>
                     </div>
                 </div>
                 <hr class="col-xs-12 limit-line-w">

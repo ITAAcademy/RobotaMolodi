@@ -59,7 +59,7 @@
             </div>
 
             <div class="ratings">
-                <span class = "ratingsTitle">Рейтинг:</span>
+                <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                 <span class="morph">
                     {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                     <span class="findLike" id="{{route('vac.rate', $vacancy->id)}}_1">{{$vacancy->rated()->getLikes($vacancy)}}</span>
