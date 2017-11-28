@@ -3,8 +3,8 @@
 return [
 
     'allresume' => 'All Resume',
-    'allvacancy' => 'All Vacancy',
-    'allcompany' => 'All Company',
+    'allvacancy' => 'All Vacancies',
+    'allcompany' => 'All Companies',
     'add' => 'Add:',
     'vacancy' => 'Vacancy',
     'company' => 'Company',

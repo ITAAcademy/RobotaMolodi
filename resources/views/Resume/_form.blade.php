@@ -1,5 +1,5 @@
     <div class="row header-resume">
-        <h3 class="formTitle header-text-resume"><b>додати резюме</b></h3>
+        <h3 class="formTitle header-text-resume"><b>{{ trans('content.addresume') }}</b></h3>
     </div>
     <div class="row">
         <div class="form-group resume-row {{$errors->has('name_u') ? 'has-error' : ''}}">

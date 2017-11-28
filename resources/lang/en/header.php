@@ -10,7 +10,7 @@ return [
     'partners' => 'Partners',
     'contacts' => 'Contacts',
     'allresume' => 'All Resume',
-    'allvacancy' => 'All Vacancy',
-    'allcompany' => 'All Company',
+    'allvacancy' => 'All Vacancies',
+    'allcompany' => 'All Companies',
     'cabinet' => 'My Cabinet',
 ];

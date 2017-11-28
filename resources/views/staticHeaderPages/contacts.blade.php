@@ -10,7 +10,7 @@
     <div class="row c_xs">
         <div class="col-sm-1"></div>
         <div class="col-sm-4 c_h3">
-            <h3>Зв'язатися з нами:</h3>
+            <h3>{{ trans('content.contactus') }}</h3>
         </div>
     </div>
     <div class="row">

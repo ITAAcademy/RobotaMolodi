@@ -23,4 +23,7 @@ return [
     'rating' => 'Rating:',
     'read_next' => 'Read next...',
 
+    'addresume' => 'add resume',
+    'contactus' => 'Contact us:',
+
 ];

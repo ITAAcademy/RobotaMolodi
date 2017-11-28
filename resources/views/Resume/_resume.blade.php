@@ -75,7 +75,7 @@
             @include('newDesign.cropModal')
         </div>
     @empty
-        <span>Зараз у Вас немає резюме. <a href="{{ url('/resume/create') }}"> Створiть</a></span>
+        <span>{{ trans('resume.noresume') }}.<a href="{{ url('/resume/create') }}"> {{ trans('resume.create') }}</a></span>
 
     @endforelse
 {{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
