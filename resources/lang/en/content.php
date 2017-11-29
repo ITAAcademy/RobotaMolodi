@@ -9,6 +9,7 @@ return [
     'top' => 'Place a vacancy on the TOP',
     'news' => 'News',
     'main' => 'Main',
+    'personalcab' => 'Personal cabinet',
 
     'sort_by' => 'Sort by:',
     'rating_m' => 'rating -',
