@@ -48,13 +48,18 @@ class ProjectController extends Controller
     public function create()
     {
         $data = [];
+
+        $companies = Auth::user()->hasCompany;
+        if($companies->isEmpty())
+            return redirect()->route('company.create');
+
+        $data['companies'] = $this->prepareToSelect2($companies->toArray(), 'id', 'company_name');
+
         $project = new Project();
         $data['project'] = $project;
 
-        $industries = Industry::all(['id','name'])->toArray();
-        $data['industries'] = $this->prepareToSelect2($industries, 'id', 'name');
-
-        $data['companies'] = Auth::user()->hasCompany;
+        $industries = Industry::all(['id','name']);
+        $data['industries'] = $this->prepareToSelect2($industries->toArray(), 'id', 'name');
 
         return view('project.create', $data);
     }
