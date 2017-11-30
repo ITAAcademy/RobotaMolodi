@@ -111,7 +111,7 @@ class ProjectController extends Controller
             return abort(404);
 
         if(!$this->isOwner($project))
-           return redirect()->route('head');
+           return abort(403);
 
         $companies = Auth::user()->companies;
 

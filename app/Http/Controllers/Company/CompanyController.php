@@ -229,12 +229,16 @@ class CompanyController extends Controller  {
         if (!is_numeric($id)) {
             abort(500);
         }
-        if(empty(Company::find($id))) {
+        $comapny = Company::find($id);
+        if(empty($comapny)) {
             abort(404);
         }
 
-        if (Company::find($id)->users_id == Auth::id()) {
+        if ($comapny->users_id == Auth::id()) {
             Comment::where('company_id', $id)->delete();
+            $comapny->projects->each(function ($item, $key){
+                $item->delete();
+            });
             Company::destroy($id);
             return redirect('company');
         }

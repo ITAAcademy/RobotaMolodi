@@ -79,7 +79,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public function GetCompanies()
     {
-        $userCompanies = User::HasCompany()->latest('updated_at');
+        $userCompanies = User::companies()->latest('updated_at');
 
         return $userCompanies;
     }
