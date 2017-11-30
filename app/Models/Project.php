@@ -17,4 +17,20 @@ class Project extends Model
                             'project_about', 'project_term',
                             'breaf_desc', 'full_desc'
                         ];
+
+    static public function validationRules()
+    {
+        return [
+            'name'          => 'required|min:3',
+            'brand'         => 'required|min:3',
+            'location'      => 'required|min:3',
+            'bonuses'       => 'required|min:3',
+            'company_desc'  => 'required|min:3',
+            'company_about' => 'required|min:3',
+            'project_about' => 'required|min:3',
+            'project_term'  => 'required|min:3',
+            'breaf_desc'    => 'required|min:3',
+            'full_desc'     => 'required|min:3'
+        ];
+    }
 }
