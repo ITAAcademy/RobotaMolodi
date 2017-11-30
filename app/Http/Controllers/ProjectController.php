@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 
 class ProjectController extends Controller
 {
@@ -30,7 +31,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $project = new Project();
+
+        return view('project.create', ['project' => $project]);
     }
 
     /**
