@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
@@ -14,6 +15,13 @@ class ProjectController extends Controller
     {
        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
+
+    private function validateForm(Request $request)
+    {
+        $rules = Project::validationRules();
+        $this->validate($request, $rules);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,9 +49,12 @@ class ProjectController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $this->validateForm($request);
+        $project = new Project($request->all());
+        $project->user_id = Auth::id();
+        $project->save();
     }
 
     /**
