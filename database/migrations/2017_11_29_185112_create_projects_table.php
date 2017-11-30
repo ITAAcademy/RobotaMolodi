@@ -15,12 +15,16 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
            $table->increments('id');
            $table->integer('user_id')->nullable();
-           $table->integer('industry_id')->nullable();
-           $table->string('name')->default('project name');
-           $table->string('brand')->default('project nrand');
-           $table->string('bonus')->default('project bonuses');
-           $table->string('location')->default('somewhere');
-           $table->string('logo')->default('logo.png');
+           $table->string('name')->default('');
+           $table->string('brand')->default('');
+           $table->string('location')->default('');
+           $table->string('bonuses')->default('');
+           $table->string('company_desc')->default('');
+           $table->string('company_about')->default('');
+           $table->string('project_about')->default('');
+           $table->string('project_term')->default('');
+           $table->string('breaf_desc')->default('');
+           $table->string('full_desc')->default('');
            $table->nullableTimestamps();
         });
     }

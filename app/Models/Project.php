@@ -11,5 +11,10 @@ class Project extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'brand', 'bonus', 'location'];
+    protected $fillable = [ 'name', 'brand',
+                            'location', 'bonuses',
+                            'company_desc', 'company_about',
+                            'project_about', 'project_term',
+                            'breaf_desc', 'full_desc'
+                        ];
 }
