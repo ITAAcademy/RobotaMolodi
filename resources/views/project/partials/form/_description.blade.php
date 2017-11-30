@@ -7,21 +7,21 @@
     {!! Form::file('logo') !!}
     {!! $errors->first('logo','<span class="help-block">:message</span>') !!}
 
-    {!! Form::label('desc_company', trans('project.descCompany')) !!}
-    {!! Form::text('desc_company', $project->description['desc_company'], ['class' => 'form-control']) !!}
-    {!! $errors->first('desc_company','<span class="help-block">:message</span>') !!}
+    {!! Form::label('company_desc', trans('project.companyDesc')) !!}
+    {!! Form::text('company_desc', $project->description['company_desc'], ['class' => 'form-control']) !!}
+    {!! $errors->first('company_desc','<span class="help-block">:message</span>') !!}
 
-    {!! Form::label('about_company', trans('project.aboutCompany')) !!}
-    {!! Form::textarea('about_company', $project->description['about_company'], ['class' => 'form-control']) !!}
-    {!! $errors->first('about_company','<span class="help-block">:message</span>') !!}
+    {!! Form::label('company_about', trans('project.companyAbout')) !!}
+    {!! Form::textarea('company_about', $project->description['company_about'], ['class' => 'form-control']) !!}
+    {!! $errors->first('company_about','<span class="help-block">:message</span>') !!}
 
-    {!! Form::label('about_project', trans('project.aboutCompany')) !!}
-    {!! Form::textarea('about_project', $project->description['about_project'], ['class' => 'form-control']) !!}
-    {!! $errors->first('about_project','<span class="help-block">:message</span>') !!}
+    {!! Form::label('project_about', trans('project.projectAbout')) !!}
+    {!! Form::textarea('project_about', $project->description['project_about'], ['class' => 'form-control']) !!}
+    {!! $errors->first('project_about','<span class="help-block">:message</span>') !!}
 
-    {!! Form::label('term_project', trans('project.aboutCompany')) !!}
-    {!! Form::text('term_project', $project->description['term_project'], ['class' => 'form-control']) !!}
-    {!! $errors->first('term_project','<span class="help-block">:message</span>') !!}
+    {!! Form::label('project_term', trans('project.projectTerm')) !!}
+    {!! Form::text('project_term', $project->description['project_term'], ['class' => 'form-control']) !!}
+    {!! $errors->first('project_term','<span class="help-block">:message</span>') !!}
 
     {!! Form::label('brand', trans('project.brand')) !!}
     {!! Form::text('brand', $project->brand, ['class' => 'form-control']) !!}
