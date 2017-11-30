@@ -20,7 +20,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('project.test');
+        return view('project.index');
     }
 
     /**
