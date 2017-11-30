@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $hidden = ['password', 'remember_token'];
 
-    public function hasCompany()
+    public function companies()
     {
         return $this->hasMany('App\Models\Company','users_id');
     }
@@ -48,7 +48,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function hasAnyCompany()
     {
-        $hasAnyCompany = User::hasCompany();
+        $hasAnyCompany = User::companies();
 
         return $hasAnyCompany;
     }
