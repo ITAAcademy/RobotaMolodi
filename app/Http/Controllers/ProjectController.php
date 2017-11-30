@@ -8,6 +8,7 @@ use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Industry;
 
 class ProjectController extends Controller
 {
@@ -20,6 +21,13 @@ class ProjectController extends Controller
     {
         $rules = Project::validationRules();
         $this->validate($request, $rules);
+    }
+
+    private function prepareToSelect2($array, $option, $value)
+    {
+        $columnOption = array_column($array, $option);
+        $columnValue = array_column($array, $value);
+        return array_combine($columnOption, $columnValue);
     }
 
     /**
@@ -39,9 +47,16 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $data = [];
         $project = new Project();
+        $data['project'] = $project;
 
-        return view('project.create', ['project' => $project]);
+        $industries = Industry::all(['id','name'])->toArray();
+        $data['industries'] = $this->prepareToSelect2($industries, 'id', 'name');
+
+        $data['companies'] = Auth::user()->hasCompany;
+
+        return view('project.create', $data);
     }
 
     /**
@@ -53,7 +68,6 @@ class ProjectController extends Controller
     {
         $this->validateForm($request);
         $project = new Project($request->all());
-        $project->user_id = Auth::id();
         $project->save();
     }
 

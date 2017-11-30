@@ -11,7 +11,8 @@ class Project extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'brand',
+    protected $fillable = [ 'name', 'company_id',
+                            'industry_id', 'brand',
                             'location', 'bonuses',
                             'company_desc', 'company_about',
                             'project_about', 'project_term',
@@ -30,7 +31,9 @@ class Project extends Model
             'project_about' => 'required|min:3',
             'project_term'  => 'required|min:3',
             'breaf_desc'    => 'required|min:3',
-            'full_desc'     => 'required|min:3'
+            'full_desc'     => 'required|min:3',
+            'company_id'    => 'required|integer',
+            'industry_id'   => 'required|integer',
         ];
     }
 }

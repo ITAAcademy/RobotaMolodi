@@ -2,10 +2,11 @@
 
 return [
 
-    "projectAdd" => "Додати новий проект",
+    "addProject" => "Додати новий проект",
     "name" => "Назва проекту",
     "logo" => "Логотип",
-    "branch" => "Галузь",
+    "company" => "Компанія",
+    "industry" => "Галузь",
     "companyDesc" => "Опис компанії",
     "companyAbout" => "Про компанію",
     "projectAbout" => "Про проект",

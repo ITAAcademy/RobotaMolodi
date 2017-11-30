@@ -3,6 +3,12 @@
     {!! Form::text('name', $project['name'], ['class' => 'form-control']) !!}
     {!! $errors->first('name','<span class="help-block">:message</span>') !!}
 
+    {!! Form::label('industry_id', trans('project.industry')) !!}
+    {!! Form::select('industry_id', $industries, null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('company_id', trans('project.company')) !!}
+    {!! Form::select('company_id', $companies, null, ['class' => 'form-control']) !!}
+
     {!! Form::label('logo', trans('project.logo')) !!}
     {!! Form::file('logo') !!}
     {!! $errors->first('logo','<span class="help-block">:message</span>') !!}
