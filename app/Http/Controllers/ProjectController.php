@@ -30,6 +30,13 @@ class ProjectController extends Controller
         return array_combine($columnOption, $columnValue);
     }
 
+    private function isOwner($project){
+        if(Auth::id() ===  $project->company->user->id)
+            return true;
+        else
+            return false;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +56,7 @@ class ProjectController extends Controller
     {
         $data = [];
 
-        $companies = Auth::user()->hasCompany;
+        $companies = Auth::user()->companies;
         if($companies->isEmpty())
             return redirect()->route('company.create');
 
@@ -95,7 +102,25 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [];
+
+        $project = Project::find($id);
+        if($project)
+            $data['project'] = $project;
+        else
+            return abort(404);
+
+        if(!$this->isOwner($project))
+           return redirect()->route('head');
+
+        $companies = Auth::user()->companies;
+
+        $data['companies'] = $this->prepareToSelect2($companies->toArray(), 'id', 'company_name');
+
+        $industries = Industry::all(['id','name']);
+        $data['industries'] = $this->prepareToSelect2($industries->toArray(), 'id', 'name');
+
+        return view('project.edit', $data);
     }
 
     /**

@@ -36,4 +36,10 @@ class Project extends Model
             'industry_id'   => 'required|integer',
         ];
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company', 'company_id');
+    }
+
 }
