@@ -24,6 +24,7 @@ class Project extends Model
         return [
             'name'          => 'required|min:3',
             'brand'         => 'required|min:3',
+            'logo'          => 'required|image',
             'location'      => 'required|min:3',
             'bonuses'       => 'required|min:3',
             'company_desc'  => 'required|min:3',

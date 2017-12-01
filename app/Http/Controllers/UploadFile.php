@@ -11,6 +11,15 @@ use App\Models\Resume;
 
 class UploadFile extends Controller
 {
+    static public function saveImage($image, $path)
+    {
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path($path);
+        Storage::makeDirectory($destinationPath);
+        $image->move($destinationPath, $name);
+        return $name;
+    }
+
     public function savePhoto(Request $request, $directory){
         $file = $request->fileImg;
         $cropcoord = explode(',', $request->coords);

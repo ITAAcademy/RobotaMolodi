@@ -37,6 +37,11 @@ class ProjectController extends Controller
             return false;
     }
 
+    private function userPath()
+    {
+        return "/image/projects/".Auth::user()->id."/";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -79,7 +84,12 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $this->validateForm($request);
+
         $project = new Project($request->all());
+        if($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $project->logo = UploadFile::saveImage($image, $this->userPAth());
+        }
         $project->save();
     }
 
