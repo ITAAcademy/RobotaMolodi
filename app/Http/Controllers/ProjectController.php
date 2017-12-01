@@ -83,6 +83,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validateForm($request);
 
         $project = new Project($request->all());

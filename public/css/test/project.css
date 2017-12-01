@@ -149,3 +149,11 @@
     text-align: justify;
     color: #333;
 }
+#form_members{
+    margin: 15px 0;
+}
+#form_members .controlMember{
+    color: #f68c06;
+    display: block;
+    margin: 10px 0;
+}

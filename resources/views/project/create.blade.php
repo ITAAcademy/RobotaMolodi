@@ -1,5 +1,6 @@
 @extends('app')
 @section('headLinks')
+    <link href="{{ asset('/css/test/project.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/vue"></script>
 @endsection
 @section('content')
@@ -22,21 +23,20 @@
                     @include('project.partials.form._description')
 
 
-                    <p>Add Members</p>
-                    <div id="app">
+                    <p class="text-center">Команда проекту</p>
+                    <div id="form_members">
                         <div class="form-group" v-for="(member,index) in members">
+                            <label>Фото</label>
                              <input type="file" :name="'members[' + index + '][avatar]'" @change="onFileChange(index)">
+                             <label>Імя та прізвище</label>
                              <input type="text" :name="'members[' + index + '][name]'" class="form-control" v-model="member.name">
+                             <label>Посада</label>
                              <input type="text" :name="'members[' + index + '][position]'" class="form-control" v-model="member.position">
                             <hr>
                         </div>
 
-                        <div>
-                            <a href="#"  class="orangeLinks" @click="addRow"><i class="fa fa-plus fa-2x" aria-hidden="true"></i>Додати члена команди</a>
-                        </div>
-                        <div>
-                            <a href="#"  class="orangeLinks" @click="delRow">Видалити зі списку</a>
-                        </div>
+                        <a href="#"  class="controlMember" @click="addRow"><i class="fa fa-plus fa-2x" aria-hidden="true"></i>Додати члена команди</a>
+                        <a href="#"  class="controlMember" @click="delRow">Видалити зі списку</a>
 
                     </div>
 
@@ -49,7 +49,7 @@
 
 <script>
 var app4 = new Vue({
-    el: '#app',
+    el: '#form_members',
 
      data () {
      	return {
