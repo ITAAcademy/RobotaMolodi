@@ -30,7 +30,7 @@
                     <span class="required_field"></span>
                 </div>
                 <div class="resume-form-input">
-                    {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control']) !!}
+                    {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control input-medium bfh-phone', 'id' => 'telephone']) !!}
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -38,6 +38,12 @@
             </div>
         </div>
     </div>
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#telephone").mask("+38(099) 999-99-99");
+        });
+    </script>
     {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row{{$errors->has('email') ? 'has-error' : ''}}">
