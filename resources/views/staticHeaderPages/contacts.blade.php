@@ -2,8 +2,8 @@
 
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-           ['url'=> 'head','name'=>'Головна'],
-           ['name' => 'Контакти ', 'url' => false]
+           ['url'=> 'head','name'=>trans('content.main')],
+           ['name' => trans('content.contacts'), 'url' => false]
            ]
        )
        )

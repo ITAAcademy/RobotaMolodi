@@ -7,8 +7,8 @@
     <div class="col-xs-12">
         <div class="newsPageBreadcrumb">
             <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li><a href="/news">Новини</a></li>
+                <li><a href="/">{{ trans('content.main') }}</a></li>
+                <li><a href="/news">{{ trans('content.news') }}</a></li>
                 <li class="active">{{date('j.m.Y', strtotime($newsOne->updated_at))}} </li>
             </ol>
         </div>

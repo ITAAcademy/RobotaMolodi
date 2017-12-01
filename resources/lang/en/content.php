@@ -10,6 +10,8 @@ return [
     'news' => 'News',
     'main' => 'Main',
     'personalcab' => 'Personal cabinet',
+    'resume' => 'Resume',
+    'contacts' => 'Contacts',
 
     'sort_by' => 'Sort by:',
     'rating_m' => 'rating -',
@@ -26,5 +28,6 @@ return [
 
     'addresume' => 'add resume',
     'contactus' => 'Contact us:',
+    'aboutus' => 'About us',
 
 ];

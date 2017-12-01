@@ -11,9 +11,9 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
-        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
-        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => trans('content.personalcab')],
+        ['name' => trans('content.resume'): '.$resume->position, 'url' => false]
         ]
     ))
 

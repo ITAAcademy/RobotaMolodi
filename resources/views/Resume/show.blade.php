@@ -3,8 +3,8 @@
 @section('content')
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-        ['url'=> 'head','name'=>'Головна'],
-        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ['url'=> 'head','name'=>trans('content.main')],
+        ['name' => trans('content.resume'): '.$resume->position, 'url' => false]
         ]
     )
     )
