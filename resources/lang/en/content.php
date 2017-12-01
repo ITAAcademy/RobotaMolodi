@@ -12,6 +12,7 @@ return [
     'personalcab' => 'Personal cabinet',
     'resume' => 'Resume',
     'contacts' => 'Contacts',
+    'vac'=> 'Vacancies',
 
     'sort_by' => 'Sort by:',
     'rating_m' => 'rating -',
