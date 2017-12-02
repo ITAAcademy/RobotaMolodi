@@ -236,8 +236,11 @@ class CompanyController extends Controller  {
 
         if ($comapny->users_id == Auth::id()) {
             Comment::where('company_id', $id)->delete();
-            $comapny->projects->each(function ($item, $key){
-                $item->delete();
+            $comapny->projects->each(function ($project, $key){
+                $project->members->each(function($member, $key){
+                    $member->delete();
+                });
+                $project->delete();
             });
             Company::destroy($id);
             return redirect('company');
