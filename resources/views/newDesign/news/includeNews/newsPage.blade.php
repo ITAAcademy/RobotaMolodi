@@ -24,11 +24,11 @@
                 </div>
                 <div class="col-xs-12">
                     <h3 class="nameNews">{{ $newsOne->name}}</h3>
-                @if($newsOne->img!='Not picture')
-                    <div><img class="picture" src="{{ asset($newsOne->getPath().$newsOne->img) }}"></div>
-                @endif
-                <p>{!! $newsOne->description !!}</p>
-                <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
+                    @if($newsOne->img!='Not picture')
+                        <div><img class="picture" src="{{ asset($newsOne->getPath().$newsOne->img) }}"></div>
+                    @endif
+                    <p>{!! $newsOne->description !!}</p>
+                    <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
                 </div>
             </div>
         </div>
