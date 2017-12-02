@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-            {!! Form::model($project, array('route' => array('project.store'), 'enctype' => 'multipart/form-data')) !!}
+            {!! Form::model($project, array('route' => array('project.update', $project->id), 'method'  => 'PUT', 'enctype' => 'multipart/form-data')) !!}
 
                     @include('project.partials.form._description')
 
