@@ -20,7 +20,7 @@
             </div>
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('aboutus') }}" class="afterChange">
-                    <span>{{ trans('header.home') }}</span>
+                    <span>{{ trans('header.about') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
