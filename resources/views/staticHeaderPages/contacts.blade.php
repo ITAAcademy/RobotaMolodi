@@ -2,15 +2,15 @@
 
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-           ['url'=> 'head','name'=>'Головна'],
-           ['name' => 'Контакти ', 'url' => false]
+           ['url'=> 'head','name'=>trans('content.main')],
+           ['name' => trans('content.contacts'), 'url' => false]
            ]
        )
        )
     <div class="row c_xs">
         <div class="col-sm-1"></div>
         <div class="col-sm-4 c_h3">
-            <h3>Зв'язатися з нами:</h3>
+            <h3>{{ trans('content.contactus') }}</h3>
         </div>
     </div>
     <div class="row">

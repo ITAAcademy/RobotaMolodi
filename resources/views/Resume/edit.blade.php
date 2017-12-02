@@ -185,7 +185,7 @@
 
      <div class="row">
     <div class="form-group">
-        <div class=" col-sm-offset-2 col-md-6 col-sm-6">  <span class="required_field">*</span> – Обов'язкові для заповнення.</div>
+        <div class=" col-sm-offset-2 col-md-6 col-sm-6"><span class="required_field">*</span> – Обов'язкові для заповнення.</div>
     </div>
      </div><br>
 
