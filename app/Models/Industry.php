@@ -23,6 +23,11 @@ class Industry extends Model {
         return $this->hasMany('App\Models\Resume', 'industry_id');
     }
 
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project','industry_id');
+    }
+
     public function scopeName()
     {
         return $this;
