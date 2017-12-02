@@ -5,14 +5,14 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-
 		"laravel/framework": "5.1",
         "laravelcollective/html":"~5.0",
         "proengsoft/laravel-jsvalidation": "~1.1",
 		"swiftmailer/swiftmailer": "^5.4",
 		"unisharp/laravel-ckeditor": "^4.5",
 		"doctrine/dbal": "~2.3",
-		"guzzlehttp/guzzle": "~6.0"
+		"guzzlehttp/guzzle": "~6.0",
+		"laravel/socialite": "~2.0"
 
 	},
 	"require-dev": {
