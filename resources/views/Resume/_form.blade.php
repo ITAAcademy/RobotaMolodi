@@ -49,7 +49,7 @@
                     <span class="required_field">*</span>
                 </div>
                 <div class="resume-form-input">
-                    {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
+                    {!! Form::text('email', $resume->email, array( 'class' => 'form-control','id' => 'exampleInputEmail1'  )) !!}
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -72,11 +72,17 @@
                         @foreach($cities as $city)
                             <option value="{{$city->id}}"> {{$city->name}} </option>
                         @endforeach
-                        @foreach($cities as $city)
-                            @if($city->id == Input::old('city'))
-                                <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                        @if(Input::old('city')!= '')
+                            @foreach($cities as $city)
+                                @if($city->id == Input::old('city'))
+                                    <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                                @endif
+                            @endforeach
+                        @else
+                            @if($resume->city_id)
+                            <option value="{{$resume->city_id}}" selected>{{$resume->city->name}}</option>
                             @endif
-                        @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -235,7 +241,7 @@
                     <span class="required_field">*</span>
                 </div>
                 <div class="resume-form-input">
-                    {!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}
+                    {!! Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'desc']) !!}
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">

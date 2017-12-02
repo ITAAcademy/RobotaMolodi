@@ -85,21 +85,26 @@ class ResumeController extends Controller {// Клас по роботі з ре
      *
      * @return Response
      */
-    public function create(City $cityModel, Guard $auth, Industry $industryModel)// Create new resume
+    public function create(City $cityModel, Guard $auth, Industry $industryModel, Resume $resume)// Create new resume
     {
 	if (isset($_SERVER['HTTP_REFERER']))
 	        $this->http=$_SERVER['HTTP_REFERER'];
-
+        $resume = new Resume(['email' => $auth->user()->email ]);
         if(Auth::check()){
             $cities = $cityModel->getCities();
             $industries = $industryModel->getIndustries();
             $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
             $position = Input::get('position_',0);
             $positions = Resume::groupBy('position')->lists('position');
-            $currency = new Currency();
-            $currencies = $currency->getCurrencies();
-
-            return view('Resume.create', ['cities'=> $cities, 'industries'=> $industries, 'userEmail' => $userEmail, 'positions'=>$positions, 'currencies' => $currencies, 'publishedOptions'=> $this->publishedOptions]);
+            $currencies = Currency::all();
+            return view('Resume.create', [
+                'cities'=> $cities,
+                'industries'=> $industries,
+                'resume' => $resume,
+                'positions'=>$positions,
+                'currencies' => $currencies,
+                'publishedOptions'=> $this->publishedOptions
+            ]);
         }
         else
         {
@@ -132,7 +137,6 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'city' => 'required',
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
-
         $resume = $resumeModel->fillResume(0,$auth,$request);
 
         if(Input::hasFile('loadResume'))
