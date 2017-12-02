@@ -110,8 +110,8 @@ class ProjectController extends Controller
         }
 
         $project->save();
-
-        foreach($request['members'] as $member)
+        $members = $request['members'];
+        foreach($members as $member)
         {
             $projectMember = new projectMember($member);
             if($member['avatar'] && $member['avatar']->isValid()) {
@@ -137,6 +137,9 @@ class ProjectController extends Controller
             $data['project'] = $project;
         else
             return abort(404);
+
+        $data['userPath'] = $this->userPath();
+        $data['members']  = $project->members;
 
         return view('project.show', $data);
     }
