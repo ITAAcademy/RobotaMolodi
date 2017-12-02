@@ -18,4 +18,9 @@ class ProjectMember extends Model
         ];
     }
 
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project', 'project_id');
+    }
+
 }

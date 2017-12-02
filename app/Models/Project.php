@@ -43,4 +43,9 @@ class Project extends Model
         return $this->belongsTo('App\Models\Company', 'company_id');
     }
 
+    public function members()
+    {
+        return $this->hasMany('App\Models\ProjectMember','project_id');
+    }
+
 }
