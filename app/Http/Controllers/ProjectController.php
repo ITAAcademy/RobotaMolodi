@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
+use App\Models\ProjectMember;
 use App\Models\Industry;
 
 class ProjectController extends Controller
@@ -19,7 +21,10 @@ class ProjectController extends Controller
 
     private function validateForm(Request $request)
     {
-        $rules = Project::validationRules();
+        $rules = array_merge(
+            Project::validationRules(),
+            ProjectMember::validationRules()
+        );
         $this->validate($request, $rules);
     }
 
@@ -83,7 +88,19 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        Validator::extend('member', function($attribute, $value, $parameters, $validator) {
+            $isValid = true;
+            foreach($value as $v){
+                $validation = Validator::make($v, [
+                    'name' => 'required|min:3|max:255',
+                    'position' => 'required|min:3|max:255',
+                    'avatar' => 'image',
+                ]);
+                $isValid = $isValid && !$validation->fails();
+            }
+            return $isValid;
+        });
+
         $this->validateForm($request);
 
         $project = new Project($request->all());
@@ -91,7 +108,18 @@ class ProjectController extends Controller
             $image = $request->file('logo');
             $project->logo = UploadFile::saveImage($image, $this->userPAth());
         }
+
         $project->save();
+
+        foreach($request['members'] as $member)
+        {
+            $projectMember = new projectMember($member);
+            if($member['avatar'] && $member['avatar']->isValid()) {
+                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->userPAth());
+            }
+            $projectMember->project_id = $project->id;
+            $projectMember->save();
+        }
     }
 
     /**
