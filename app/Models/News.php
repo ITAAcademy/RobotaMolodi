@@ -114,7 +114,8 @@ class News extends Model
     
     public function shortDescription()
     {
-        return substr_replace($this->description, '...', 100, -1);
+        $newsText = strip_tags($this->description);
+        return substr_replace($newsText, '...', 100, -1);
     }
 
 }
