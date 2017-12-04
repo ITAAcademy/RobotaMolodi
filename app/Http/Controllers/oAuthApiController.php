@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use Socialite;
 
 define("SERVICE", "it");
 
@@ -93,14 +94,16 @@ class oAuthApiController extends Controller{
         public function redirectToProvider()
             {
                 // return Socialize::with('facebook')->redirect();
-                return Socialize::with('facebook')->scopes(['email'])->redirect();
+                // return Socialize::with('facebook')->scopes(['email'])->redirect();
+                return Socialite::driver('facebook')->scopes(['email'])->redirect();
             }
 
         public function handleProviderCallback()
             {
-                $user = Socialize::with('facebook')->user();
+                // $user = Socialize::with('facebook')->user();
+                $user = Socialite::driver('facebook')->user();
             // $user->token;
-            }
+        }
 
 
 }

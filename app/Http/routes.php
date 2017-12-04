@@ -32,6 +32,13 @@ Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
 
+// Route::get('auth/facebook', ['as'=>'auth.facebook','uses' => 'oAuthApiController@redirectToProvider']);
+// Route::get('auth/facebook/callback',[ 'oAuthApiController@handleProviderCallback']);
+
+Route::get('auth/facebook', ['oAuthApiController@redirectToProvider']);
+Route::get('auth/facebook/callback',[ 'as'=>'auth.facebook','uses' => 'oAuthApiController@handleProviderCallback']);
+
+
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
 Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
