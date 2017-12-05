@@ -241,7 +241,11 @@
                     <span class="required_field">*</span>
                 </div>
                 <div class="resume-form-input">
+                    @if($resume->description)
                     {!! Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'desc']) !!}
+                    @else
+                        {!! Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'description']) !!}
+                    @endif
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">

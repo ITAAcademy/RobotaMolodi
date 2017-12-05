@@ -1,4 +1,3 @@
-<br/>
     <div class="row">
         <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }} *</label>
         <div class="col-md-6 col-sm-6">
@@ -233,17 +232,17 @@
 
     </script>
 
-{!!Html::script('js/jquery.maskedinput.min.js')!!}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".form-control").change(function () {
-//            $(window).bind('beforeunload', function () {
-//                return 'Збережіть будь ласка всі внесені нові дані!';
-//            });
-            $('#form').submit(function () {
-                $(window).unbind('beforeunload');
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".form-control").change(function () {
+    //            $(window).bind('beforeunload', function () {
+    //                return 'Збережіть будь ласка всі внесені нові дані!';
+    //            });
+                $('#form').submit(function () {
+                    $(window).unbind('beforeunload');
+                });
             });
+            $("#phone").mask("+38(099) 999-99-99");
         });
-        $("#phone").mask("+38(099) 999-99-99");
-    });
-</script>
+    </script>
