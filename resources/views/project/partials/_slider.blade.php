@@ -1,6 +1,6 @@
 <div class="slider-wrapper">
   <div class="slider-capacity">
-    {!! Html::image(asset($userPath.$project->logo), $project->name, ['style' => 'width:230px; height:75px']) !!}
+    {!! Html::image(asset($project->logo), $project->name, ['style' => 'width:230px; height:75px']) !!}
     <p>{{ $project['company_desc'] }}</p>
   </div>
   <div class="slider">

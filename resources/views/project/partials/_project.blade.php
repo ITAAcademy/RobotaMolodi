@@ -53,7 +53,7 @@
             @foreach($members as $m)
                 <li class="team-project__persons col-md-2">
                     @if($m->avatar)
-                        {!! Html::image(asset($userPath.$m->avatar), $m->name, ['class' => 'team-project__persons-avatar']) !!}
+                        {!! Html::image(asset($m->avatar), $m->name, ['class' => 'team-project__persons-avatar']) !!}
                     @else
                         {!! Html::image(asset('/image/default100.jpg'), $m->name, ['class' => 'team-project__persons-avatar']) !!}
                     @endif

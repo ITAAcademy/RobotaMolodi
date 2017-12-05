@@ -13,12 +13,11 @@ class UploadFile extends Controller
 {
     static public function saveImage($image, $path)
     {
-        // public/uploads/projects/id_project/team/filename.png
-        $name = time().rand(1,1000).'.'.$image->getClientOriginalExtension();
+        $name = time().$image->getClientOriginalName();
         $destinationPath = public_path($path);
         Storage::makeDirectory($destinationPath);
         $image->move($destinationPath, $name);
-        return $name;
+        return $path.$name;
     }
 
     public function savePhoto(Request $request, $directory){

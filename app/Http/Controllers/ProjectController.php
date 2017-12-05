@@ -42,9 +42,9 @@ class ProjectController extends Controller
             return false;
     }
 
-    private function userPath()
+    private function projectsPath()
     {
-        return "/image/projects/".Auth::user()->id."/";
+        return "/uploads/projects/";
     }
 
     /**
@@ -105,18 +105,20 @@ class ProjectController extends Controller
         $this->validateForm($request);
 
         $project = new Project($request->all());
+        $project->save();
+
         if($request->hasFile('logo')) {
             $image = $request->file('logo');
-            $project->logo = UploadFile::saveImage($image, $this->userPAth());
+            $project->logo = UploadFile::saveImage($image, $this->projectsPath().$project->id."/");
+            $project->save();
         }
 
-        $project->save();
         $members = $request['members'];
         foreach($members as $member)
         {
             $projectMember = new projectMember($member);
             if($member['avatar'] && $member['avatar']->isValid()) {
-                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->userPAth());
+                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->projectsPath().$project->id."/team/");
             }
             $projectMember->project_id = $project->id;
             $projectMember->save();
@@ -139,7 +141,6 @@ class ProjectController extends Controller
         else
             return abort(404);
 
-        $data['userPath'] = $this->userPath();
         $data['members']  = $project->members;
 
         return view('project.show', $data);
