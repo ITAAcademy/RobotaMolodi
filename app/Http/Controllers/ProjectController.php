@@ -105,6 +105,7 @@ class ProjectController extends Controller
         $this->validateForm($request);
 
         $project = new Project($request->all());
+        $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];
         $project->save();
 
         if($request->hasFile('logo')) {
@@ -136,12 +137,14 @@ class ProjectController extends Controller
         $data = [];
 
         $project = Project::find($id);
+
         if($project)
             $data['project'] = $project;
         else
             return abort(404);
 
         $data['members']  = $project->members;
+        $data['slides']   = $project->slides;
 
         return view('project.show', $data);
     }

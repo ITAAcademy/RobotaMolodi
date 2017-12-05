@@ -18,6 +18,14 @@ class Project extends Model
                             'project_about', 'project_term',
                             'breaf_desc', 'full_desc'
                         ];
+    /**
+    * The attributes that should be casted to native types.
+    *
+    * @var array
+    */
+   protected $casts = [
+       'slides' => 'array',
+   ];
 
     static public function validationRules()
     {
