@@ -16,6 +16,6 @@ class ClosureController extends Controller
      */
     public function unavailableService()
     {
-        return view('errors.503');
+        return view('errors.partial._503');
     }
 }
