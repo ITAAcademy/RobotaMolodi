@@ -91,19 +91,28 @@ class oAuthApiController extends Controller{
         return json_decode((string)$response->getBody(), true);
     }
 
-        public function redirectToProvider()
-            {
-                // return Socialize::with('facebook')->redirect();
-                // return Socialize::with('facebook')->scopes(['email'])->redirect();
-                return Socialite::driver('facebook')->scopes(['email'])->redirect();
-            }
+            public function redirect()
+               {
+                   return Socialite::driver('facebook')->redirect();
+               }
 
-        public function handleProviderCallback()
-            {
-                // $user = Socialize::with('facebook')->user();
-                $user = Socialite::driver('facebook')->user();
-            // $user->token;
-        }
+               public function callback()
+                {
+                    // $user = Socialize::with('facebook')->user();
+                    $providerUser = \Socialite::driver('facebook')->user();
+
+                    // $user->token;
+                }
+
+        // public function redirectToProvider()
+        //     {
+        //         // return Socialize::with('facebook')->redirect();
+        //     }
+
+        // public function handleProviderCallback()
+        //     {
+        //         $user = Socialize::with('facebook')->user();
+        // }
 
 
 }
