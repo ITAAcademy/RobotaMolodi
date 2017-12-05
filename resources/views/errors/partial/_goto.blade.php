@@ -1,4 +1,4 @@
-<div class="btn-group">
+<div class="btn-group-vertical">
     @include('errors.partial._button',['type' =>'btn-primary','url' => '/','caption'=> 'Перейти на головну сторінкy'])
 
     @if (Auth::check())
