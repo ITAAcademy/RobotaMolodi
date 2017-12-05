@@ -84,28 +84,6 @@ Vue.component('input-text', {
   template: '<input class="form-control" type="text">'
 })
 
-var slides = new Vue({
-  el: '#slides',
-  data: {
-        slides: [
-          { text: 'Learn JavaScript' }
-        ]
-    },
-    methods: {
-       addSlide: function(e) {
-       e.preventDefault();
-       this.slides.push({
-          text: ''
-        });
-      },
-      delSlide: function(e) {
-          e.preventDefault();
-       this.slides.pop();
-      }
-    }
-})
-
-
 function loadImage(el){
     $(el).trigger('click');
 }

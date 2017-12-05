@@ -27,13 +27,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('logo', 'Фото на слайдер', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        @include('project.partials.form._slides')
-    </div>
-</div>
-
-<div class="form-group">
     {!! Form::label('company_desc', trans('project.companyDesc'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::text('company_desc', $project['company_desc'], ['class' => 'form-control']) !!}
