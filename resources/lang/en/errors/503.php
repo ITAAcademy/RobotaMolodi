@@ -7,5 +7,5 @@
  */
 
 return [
-    'caption' => 'Service is temporary unavailable',
+    'caption' => 'Service is temporarily unavailable',
     ];
