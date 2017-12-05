@@ -2,6 +2,6 @@
 
 @section('notification')
     <div>
-        <h1>Service is unavailable</h1>
+        <h2>{{trans('errors/503.caption')}}</h2>
     </div>
 @endsection
