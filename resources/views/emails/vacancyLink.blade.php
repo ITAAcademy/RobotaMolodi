@@ -1,4 +1,4 @@
 <br/>
-From : {{$user->name}}<br/>
-To : {{$user->email}}<br/>
-Link: {!! link_to_route($link, $link)!!} <br/>
+Name : {{$user->name}}<br/>
+Email: {{$user->email}}<br/>
+Link: {{ $link }} <br/>
