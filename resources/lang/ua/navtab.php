@@ -4,7 +4,7 @@ return [
 
     'allresume' => 'Всі резюме',
     'allvacancy' => 'Всі вакансії',
-    'allcompany' => 'Всі комнанії',
+    'allcompany' => 'Всі компанії',
     'add' => 'Додати:',
     'vacancy' => 'Вакансію',
     'company' => 'Компанію',

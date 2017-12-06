@@ -11,9 +11,9 @@
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-        ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
-        ['showDisplay'=>'none','url' =>'resumes','name' => 'Особистий кабінет'],
-        ['name' => 'Резюме: '.$resume->position, 'url' => false]
+        ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
+        ['showDisplay'=>'none','url' =>'resumes','name' => trans('content.personalcab')],
+        ['name' => trans('content.resume'): '.$resume->position, 'url' => false]
         ]
     ))
 
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="ratings">
-                        <span class = "ratingsTitle">Рейтинг:</span>
+                        <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                         <span class="morph">
                             {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                             <span class="findLike" id="{{route('res.rate', $resume->id)}}_1">{{$resume->rated()->getLikes($resume)}}</span>

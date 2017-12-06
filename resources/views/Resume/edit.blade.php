@@ -26,6 +26,13 @@
     {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data', 'id'=>'form_id'))!!}
         @include('Resume._form')
     {!!Form::close()!!}
+
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#telephone").mask("+38(099) 999-99-99");
+        });
+    </script>
 @stop
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
@@ -100,4 +107,6 @@
       }else
         btn.text( file_name );
     }).change();
+
+
 </script>

@@ -30,14 +30,17 @@ class NewsController extends Controller
             'topVacancy' => $topVacancy,
         ]);
     }
-
+    
+    /**
+     * @param $id
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
         $newsOne = News::find($id);
         if(!isset($newsOne)) {
             abort(404);
         }
-
         $topVacancy = Vacancy::bySort('desc')->take(5)->get();
 
         return view('newDesign.news.includeNews.newsPage', [
@@ -46,6 +49,8 @@ class NewsController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'topVacancy' => $topVacancy,
+            'previous' => $newsOne->previous(),
+            'next' => $newsOne->next(),
         ]);
     }
 

@@ -7,14 +7,14 @@
     <div class="col-xs-12">
         <div class="newsListBreadcrumb">
             <ol class="breadcrumb">
-                <li><a href="/">Головна</a></li>
-                <li class="active">Новини </li>
+                <li><a href="/">{{ trans('content.main') }}</a></li>
+                <li class="active">{{ trans('content.news') }} </li>
             </ol>
         </div>
     </div>
 
     <section class="contentNewsList">
-        <h1 class="title">Новини</h1>
+        <h1 class="title">{{ trans('content.top') }}</h1>
         <div id="left-content-column" class="col-xs-9">
             @include('newDesign/news/includeNews/newsListContent')
         </div>

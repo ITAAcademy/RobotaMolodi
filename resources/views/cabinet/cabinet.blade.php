@@ -5,8 +5,8 @@
 @section('content')
     <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-            ['url'=> 'head','name'=>'Головна','showDisplay'=>'none'],
-            ['name' => 'Особистий кабінет ', 'url' => false]
+            ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
+            ['name' => trans('content.personalcab'), 'url' => false]
             ]
         )
         )
@@ -15,9 +15,9 @@
             <ul class="nav nav-tabs">
                 {{--@yield('titles')--}}
                 @if(Auth()->user())
-                    <li role = "presentation" ><a class="link-resume" href={{route('cabinet.my_resumes', Auth()->user()->id)}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> Мої резюме</a></li>
-                    <li role = "presentation" ><a class="link-vacancy" href={{route('cabinet.my_vacancies', Auth()->user()->id)}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span> Мої вакансії</a></li>
-                    <li role = "presentation" ><a class="link-company" href={{route('cabinet.my_companies', Auth()->user()->id)}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Мої компанії</a></li>
+                    <li role = "presentation" ><a class="link-resume" href={{route('cabinet.my_resumes', Auth()->user()->id)}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> {{ trans('resume.myresume') }}</a></li>
+                    <li role = "presentation" ><a class="link-vacancy" href={{route('cabinet.my_vacancies', Auth()->user()->id)}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span>  {{ trans('resume.myvacancy') }}</a></li>
+                    <li role = "presentation" ><a class="link-company" href={{route('cabinet.my_companies', Auth()->user()->id)}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> {{ trans('resume.mycompanies') }}</a></li>
                 @endif
             </ul>
         </div>
@@ -26,16 +26,16 @@
             <ul class="list-inline">
                 <li class="list-unstyled_plus">
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="add">Додати:</span>
+                    <span class="add">{{ trans('navtab.add') }}</span>
                 </li>
                 <li class="list-unstyled_vacansy">
-                    <a href="{{route('vacancy.create')}}">Вакансію</a>
+                    <a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a>
                 </li>
                 <li class="list-unstyled_company">
-                    <a href="{{route('company.create')}}">Компанію</a>
+                    <a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a>
                 </li>
                 <li class="list-unstyled_resume">
-                    <a href="{{route('resume.create')}}">Резюме</a>
+                    <a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a>
                 </li>
             </ul>
         </div>
@@ -45,11 +45,11 @@
                 <span class="">+</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuPlus">
-                <li class="plus-dropdn-h">Додати:</li>
+                <li class="plus-dropdn-h">{{ trans('navtab.add') }}</li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{route('vacancy.create')}}">Вакансію</a></li>
-                <li><a href="{{route('company.create')}}">Компанію</a></li>
-                <li><a href="{{route('resume.create')}}">Резюме</a></li>
+                <li><a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a></li>
+                <li><a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a></li>
+                <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a></li>
             </ul>
         </div>
     </div>
@@ -93,4 +93,3 @@
     </script>
 
 @stop
-

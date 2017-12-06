@@ -9,8 +9,8 @@
     <div class="row list-section-filter" >
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
-                <img src="{{ asset('/image/region.png') }}" alt="Регіон" align="left">
-                <label>Регіон</label>
+                <img src="{{ asset('/image/region.png') }}" align="left">
+                <label>{{ trans('content.region') }}</label>
             </div>
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box" >
@@ -29,8 +29,8 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-indastry">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="{{ asset('/image/bell.png') }}" alt="Сфера діяльності" align="left">
-                <label>Сфера діяльності</label>
+                <img src="{{ asset('/image/bell.png') }}" align="left">
+                <label>{{ trans('content.activity') }}</label>
             </div>
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
@@ -49,8 +49,8 @@
         </div>
         <div class="col-md-5 wrapper-list" id="list-selected-specialization">
             <div class="col-xs-12 wrapper-list-label-box">
-                <img src="{{asset('/image/spetials.png')}}" alt="Сфера діяльності" align="left">
-                <label>Спеціальність</label>
+                <img src="{{asset('/image/spetials.png')}}" align="left">
+                <label>{{ trans('content.specialty') }}</label>
             </div>
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">

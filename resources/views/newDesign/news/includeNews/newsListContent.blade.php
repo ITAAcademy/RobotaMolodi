@@ -18,6 +18,7 @@
                     <a class="links" href="/news/{{$oneNews->id}}">
                         <h3>{{ $oneNews->name}}</h3>
                     </a>
+                    <h5>{{$oneNews->shortDescription()}}</h5>
                 </div>
             </div>
 
@@ -29,7 +30,7 @@
 
                 <div class="col-xs-4">
                     <a class="links" href="/news/{{$oneNews->id}}">
-                        <p class="read-next">Читати далі...</p>
+                        <p class="read-next">{{ trans('content.read_next') }}</p>
                     </a>
                 </div>
             </div>
