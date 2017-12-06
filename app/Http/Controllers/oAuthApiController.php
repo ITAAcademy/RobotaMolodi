@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use GuzzleHttp\Client as GuzzleHttpClient;
+use Socialite;
 
 define("SERVICE", "it");
 
@@ -89,5 +90,6 @@ class oAuthApiController extends Controller{
         ]);
         return json_decode((string)$response->getBody(), true);
     }
+
 
 }
