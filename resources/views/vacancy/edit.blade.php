@@ -2,10 +2,10 @@
 
 @section('content')
     {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put', 'id'=>'form_id'))!!}
-    <h3><b>{{trans('content.editVacancy')}}</b></h3>
-    <div > <span style="color: red"><h4><?php echo $errors->first('deleted',':message'); ?></h4></span> </div>
+    <h3 class="header-text-vacancy"><b>{{trans('content.editVacancy')}}</b></h3>
+    <div ><span style="color: red"><h4><?php echo $errors->first('deleted',':message'); ?></h4></span> </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.position') }}</label>
+        <label for="sector" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.position') }}</label>
         <div class="col-sm-5">
             {!! Form::text('position', $vacancy->position, array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}
         </div>
@@ -15,7 +15,7 @@
         </br>
     </div>
     <div class="form-group" style="margin-top: 30px">
-        <label for="selectGaluz" class="col-sm-2 control-label">{{ trans('form.branch') }}</label>
+        <label for="selectGaluz" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.branch') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectGaluz" name="branch" >
                 @if (Input::old('branch')==''))
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="selectOrgan" class="col-sm-2 control-label">{{ trans('form.organization') }}</label>
+        <label for="selectOrgan" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.organization') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectOrgan" name="Organisation">
                 @foreach($companies as $comp)
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="salary" class="col-sm-2 control-label">{{ trans('form.salarymin') }}</label>
+        <label for="salary" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymin') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary', $vacancy->salary, array('class' => 'form-control' )) !!}
         </div>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="salary_max" class="col-sm-2 control-label">{{ trans('form.salarymax') }}</label>
+        <label for="salary_max" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.salarymax') }}</label>
         <div class="col-sm-5">
             {!! Form::text('salary_max', $vacancy->salary_max, array('class' => 'form-control' )) !!}
         </div>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.currency') }}</label>
+        <label for="sector" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.currency') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="selectCurrency" name="currency_id">
 
@@ -94,7 +94,7 @@
     </div>
 
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.email') }}</label>
+        <label for="sector" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.email') }}</label>
         <div class="col-sm-5">
             {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
         </div>
@@ -104,7 +104,7 @@
 
     <div class="form-group {{$errors-> has('city') ? 'has-error' : ''}}" style="margin-top: 30px">
 
-        <label for="sector" class="col-sm-2 control-label">{{ trans('form.city') }}</label>
+        <label for="sector" class="col-sm-2 control-label label-text-vacancy">{{ trans('form.city') }}</label>
         <div class="col-sm-5">
             <select class="form-control js-example-basic-multiple"  multiple="multiple"  name="city[]" id="city">
                 @foreach($cities as $city)
@@ -122,7 +122,7 @@
 
     <div class="row">
     <div class="form-group" style="margin-top: 30px">
-        <label for="sector" class="col-sm-2 control-label">{{ trans('main.description') }}</label>
+        <label for="sector" class="col-sm-2 control-label label-text-vacancy">{{ trans('main.description') }}</label>
         <div class="col-sm-5">
             {!! Form::textarea('description', $vacancy->description, array('class' => 'form-control', 'id'=>'description' )) !!}
         </div>
@@ -132,7 +132,7 @@
     </div>
     <div class="row">
     <div class="form-group" style="margin-top: 30px">
-        <label class="col-sm-2 control-label">{{ trans('form.status') }}</label>
+        <label class="col-sm-2 control-label label-text-vacancy">{{ trans('form.status') }}</label>
         <div class="col-sm-5">
             <select class="form-control" id="published" name="published" >
                 @if (Input::old('published')=='')
