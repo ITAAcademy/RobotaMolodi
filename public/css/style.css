@@ -4,11 +4,6 @@ body
 	font-size: 14px;
 	line-height: 20px;
 }
-.container
-{
-	max-width: 760px;
-	margin-top: 20px;
-}
 .hidedPanel
 {
     display:none;
@@ -100,7 +95,7 @@ span.right
 	border: 1px solid #696969;
 }
 .button:active
-{ 
+{
 	border: 1px solid #696969;
 }
 .buttonTest
@@ -136,18 +131,18 @@ span.right
 {
 	color: #7A2200;
 	font-size: 11px;
-	
+
 }
 #down_footer
 {
 	color: black;
 	font-size: 12px;
-	margin-bottom:10px;	
+	margin-bottom:10px;
 }
 #header
 {
 	margin-left: 90px;
-	font-weight: bold;	
+	font-weight: bold;
 }
 #start_test
 {
@@ -170,10 +165,10 @@ span.right
 }
 #buttons_table
 {
-	margin: 20px 0 0 30px;	
+	margin: 20px 0 0 30px;
 }
 td
-{ 
+{
     width: 80px;
 }
 .error
@@ -214,7 +209,7 @@ input[type=radio]
 {
 	border: 2px double black;
 }
-fieldset 
+fieldset
 {
 	padding: 0 0 20px 0;
     border: 1px solid #808080;
@@ -226,7 +221,7 @@ fieldset
     border: 2px solid red;
     border-radius:5px;
 }
-legend 
+legend
 {
 	display: block;
 	font-size: 21px;
@@ -245,18 +240,18 @@ legend
 {
 	margin-bottom: 20px;
 }
-@font-face 
+@font-face
 {
     font-family: 'Roboto';
     src: url('fonts/Roboto-webfont.eot?') format('embedded-opentype');
 }
-@font-face 
+@font-face
 {
     font-family: 'Roboto';
-    src: url('fonts/Roboto-Medium-webfont.eot?') format('eot'), 
+    src: url('fonts/Roboto-Medium-webfont.eot?') format('eot'),
          url('fonts/Roboto-Medium-webfont.svg#svgFontName') format('svg');
 }
-p 
+p
 {
 	font-size: 14px;
     font-family: 'Roboto', sans-serif;
@@ -350,8 +345,8 @@ li[role='treeitem'].select2-results__option{
 #logoImg{
     min-width: 300px;
     padding: 15px 15px;
-    width: 100px;    
-    position: relative; 
+    width: 100px;
+    position: relative;
     z-index: 2;
     margin-top: -80px;
 	padding-bottom: 0px;
@@ -439,17 +434,17 @@ li[role='treeitem'].select2-results__option{
 
 }
 
-.staticLinks > .btn:hover, 
+.staticLinks > .btn:hover,
 .staticLinks > .btn:focus
 {
     border: 1px solid #f48952;
     border-radius: 10px;
-    color: #f48952 !important;     
-    font-weight:bold;    
+    color: #f48952 !important;
+    font-weight:bold;
 }
 .navbar-default
 {
-    position: relative; 
+    position: relative;
     z-index: 1;
 }
 .form-group .register-button{
@@ -552,4 +547,152 @@ button.btn.btn-primary.enter-button:focus{
 
 #rightModal .modal-social-icon span.logoINTITA:hover{
 	background-image: url('../image/orangeLogoINTITA.jpg');
+}
+
+
+.footer ul, .footer  li{
+	list-style-type:none;
+	padding-bottom: 10px;
+}
+
+.footer a{
+	color: #9d9d9d;
+}
+.container-footer {
+	background-color: #3f3e3e;
+	padding: 20px 0;
+	margin-top: 30px;
+	color: #9d9d9d;
+	font-size: 18px;
+}
+.container-footer i{
+	color: #d17c11;
+	margin-right: 15px;
+}
+
+.inner-footer{
+	float: left;
+}
+.inner-footer img{
+	margin-right: 10px;
+}
+
+.inner-footer hr{
+	margin:0px 0px 20px 0px;
+}
+
+.down-footer{
+
+	background-color: #8f8f8f;
+	font-size: 14px;
+	padding: 20px;
+}
+
+.li_header{
+	margin: 30px 0px 20px 0px;
+	padding: 0px;
+	font-family: ACLine;
+	font-size:24px;
+	color: white;
+	font-weight: bold;
+}
+
+.li_header img{
+	margin-right: 10px;
+}
+
+.footer a:hover{
+	color: #d17c11;
+	text-decoration: none;
+}
+
+.footer :link{
+	text-decoration: none;
+}
+html,body{
+  margin:0;
+  padding:0;
+  height: 100%;
+}
+.down-footer img{
+  margin-left: 10px;
+}
+.footer ul, .footer  li{
+  list-style-type:none;
+  padding-bottom: 10px;
+}
+
+.footer a{
+  color: #9d9d9d;
+}
+
+.container-footer {
+  background-color: #3f3e3e;
+  padding: 20px 0;
+  margin-top: 30px;
+  color: #9d9d9d;
+  font-size: 18px;
+}
+.container-footer i{
+  color: #d17c11;
+  margin-right: 15px;
+}
+
+.inner-footer{
+  float: left;
+}
+.inner-footer img{
+  margin-right: 10px;
+}
+
+.inner-footer hr{
+  margin:0px 0px 20px 0px;
+}
+
+.down-footer{
+  background-color: #8f8f8f;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.li_header{
+  margin: 30px 0px 20px 0px;
+  padding: 0px;
+  font-family: ACLine;
+  font-size:24px;
+  color: white;
+  font-weight: bold;
+}
+
+.li_header img{
+  margin-right: 10px;
+}
+
+.footer a:hover{
+  color: #d17c11;
+  text-decoration: none;
+}
+
+.footer :link{
+  text-decoration: none;
+}
+
+.fa-soc {
+  color: #3f3e3e;
+  margin-left: 10px;
+}
+.fa-soc:hover {
+  color:#d17c11;
+}
+
+.wrapper-page{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.container.container-main{
+  flex: 1 0 auto;
+}
+footer.footer{
+  flex: 0 0 auto;
 }

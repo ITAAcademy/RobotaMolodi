@@ -11,16 +11,15 @@
 
 	<link href="{{ asset('/css/aboutUs/featherlight.gallery.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUs/featherlight.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUs/aboutUs.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/aboutUs/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 	@yield('head')
 	<link rel="shortcut icon" href="{{ asset('/image/favicon.png') }}" type="image/png">
 
@@ -55,11 +54,15 @@
 	@yield('headLinks')
 </head>
 <body>
-	<div class="container-fluid container-main">
-		@include('header/header')
-		@include('main/mainContent')
-	</div>
-		@include('footer/footer')
+    <div class="wrapper-page">
+        <div class="container container-main">
+            <div class="row">
+                @include('header/header')
+                @include('main/mainContent')
+            </div>
+        </div>
+        @include('footer/footer')
+    </div>
 
 	{!!Html::script('js/select2.full.js')!!}
 	{!!Html::script('js/liker.js')!!}
