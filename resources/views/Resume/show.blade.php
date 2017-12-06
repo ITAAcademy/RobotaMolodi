@@ -1,10 +1,13 @@
 @extends('app')
-<link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
-@section('content')
 
+@section('headLinks')
+    <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
+@endsection
+
+@section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
         ['url'=> 'head','name'=>trans('content.main')],
-        ['name' => trans('content.resume'): '.$resume->position, 'url' => false]
+        ['name' => trans('content.resume').': '.$resume->position, 'url' => false]
         ]
     )
     )

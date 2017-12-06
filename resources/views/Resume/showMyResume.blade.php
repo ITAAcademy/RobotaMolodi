@@ -13,7 +13,7 @@
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
         ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
         ['showDisplay'=>'none','url' =>'resumes','name' => trans('content.personalcab')],
-        ['name' => trans('content.resume'): '.$resume->position, 'url' => false]
+        ['name' => trans('content.resume').': '.$resume->position, 'url' => false]
         ]
     ))
 
