@@ -21,6 +21,7 @@
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/errors/base.css') }}" rel="stylesheet">
 	@yield('head')
 	<link rel="shortcut icon" href="{{ asset('/image/favicon.png') }}" type="image/png">
 

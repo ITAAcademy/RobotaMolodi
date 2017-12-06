@@ -192,4 +192,8 @@ Route::get('policy', ['as' => 'policy', function () {
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
+<<<<<<< HEAD
 Route::resource('project', 'ProjectController');
+
+Route::get('unavailable', 'ClosureController@unavailableService');
+>>>>>>> master
