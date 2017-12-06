@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#add-vac-2-top>a').on('click',function(event){
+    $('a[href="#"]').on('click',function(event){
         event.preventDefault();
 
         $.ajax({
