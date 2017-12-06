@@ -9,6 +9,10 @@ return [
     'top' => 'Place a vacancy on the TOP',
     'news' => 'News',
     'main' => 'Main',
+    'personalcab' => 'Personal cabinet',
+    'resume' => 'Resume',
+    'contacts' => 'Contacts',
+    'vac'=> 'Vacancies',
 
     'sort_by' => 'Sort by:',
     'rating_m' => 'rating -',
@@ -22,5 +26,9 @@ return [
 
     'rating' => 'Rating:',
     'read_next' => 'Read next...',
+
+    'addresume' => 'add resume',
+    'contactus' => 'Contact us:',
+    'aboutus' => 'About us',
 
 ];

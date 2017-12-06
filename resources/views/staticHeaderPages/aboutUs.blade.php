@@ -1,14 +1,14 @@
 @extends('app')
 
 @section('title')
-    <h2>Про нас</h2>
+    <h2>{{ trans('content.about us') }}</h2>
 @stop
 
 @section('content')
     @include('newDesign/aboutUs/show')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-           ['url'=> 'head','name'=>'Головна'],
-           ['name' => 'Про нас ', 'url' => false]
+           ['url'=> 'head','name'=>trans('content.main')],
+           ['name' => trans('content.aboutus'), 'url' => false]
            ]
        )
        )
@@ -449,4 +449,3 @@
 
     </script>
 @stop
-

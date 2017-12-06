@@ -20,7 +20,7 @@
    <div class="row">
     <div class="form-group {{$errors-> has('telephone') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label">  {!! Form::label(trans('main.phone')) !!}</div>
-        <div class="col-md-6 col-sm-6">{!! Form::text('telephone', $resume->telephone, ['class'=>'form-control']) !!}</div>
+        <div class="col-md-6 col-sm-6">{!! Form::text('telephone', $resume->telephone, ['class'=>'form-control input-medium bfh-phone', 'id' => 'telephone']) !!}</div>
         <div class=" col-md-4 col-sm-4">{!! $errors->first('telephone', '<span class="help-block">:message</span>') !!}</div>
     </div>
    </div><br>
@@ -185,7 +185,7 @@
 
      <div class="row">
     <div class="form-group">
-        <div class=" col-sm-offset-2 col-md-6 col-sm-6">  <span class="required_field">*</span> – Обов'язкові для заповнення.</div>
+        <div class=" col-sm-offset-2 col-md-6 col-sm-6"><span class="required_field">*</span> – Обов'язкові для заповнення.</div>
     </div>
      </div><br>
 
@@ -196,6 +196,13 @@
 
     </div><br>
     {!!Form::close()!!}
+
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#telephone").mask("+38(099) 999-99-99");
+        });
+    </script>
 @stop
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
