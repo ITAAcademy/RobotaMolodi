@@ -23,8 +23,11 @@
             $("#selectCurrency").select2();
         });
     </script>
+    <div class="row header-resume">
+        <h3 class="formTitle header-text-resume"><b>{{ trans('content.editResume') }}</b></h3>
+    </div>
     {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data', 'id'=>'form_id'))!!}
-        @include('Resume._form')
+    @include('Resume._form')
     {!!Form::close()!!}
 
     {!!Html::script('js/jquery.maskedinput.min.js')!!}

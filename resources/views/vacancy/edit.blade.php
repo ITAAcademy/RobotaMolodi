@@ -2,7 +2,7 @@
 
 @section('content')
     {!!Form::model($vacancy,array('route' =>array('vacancy.update',$vacancy->id),'method' => 'put', 'id'=>'form_id'))!!}
-    <h3>Редагування вакансії</h3>
+    <h3><b>{{trans('content.editVacancy')}}</b></h3>
     <div > <span style="color: red"><h4><?php echo $errors->first('deleted',':message'); ?></h4></span> </div>
     <div class="form-group" style="margin-top: 30px">
         <label for="sector" class="col-sm-2 control-label">{{ trans('form.position') }}</label>

@@ -5,7 +5,7 @@
     {!!Form::open(['route' => 'vacancy.store','onsubmit' => 'return CheckForm()', 'id'=>'form_id'])!!}
 
     <div class="row">
-        <h3 class="formTitle header-text-vacancy"><b>додати вакансiю</b></h3>
+        <h3 class="formTitle header-text-vacancy"><b>{{trans('content.addVacancy')}}</b></h3>
         <div class="form-group {{$errors-> has('position') ? 'has-error' : ''}}" style="margin-top: 30px">
             <label for="sector" class="col-md-2 col-sm-2 control-label label-text-vacancy">{{ trans('form.position') }}</label>
             <div class="col-md-6 col-sm-6">
