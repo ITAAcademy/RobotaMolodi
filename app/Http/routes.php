@@ -35,9 +35,8 @@ Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Au
 
 // Route::get('auth/facebook', ['oAuthApiController@redirectToProvider']);
 // Route::get('auth/facebook/callback',[ 'as'=>'auth.facebook','uses' => 'oAuthApiController@handleProviderCallback']);
-Route::get('/redirect', 'oAuthApiController@redirect');
-Route::get('/callback', 'oAuthApiController@callback');
-
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
