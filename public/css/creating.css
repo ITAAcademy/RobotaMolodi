@@ -10,7 +10,15 @@
     font-family: "ACLine";
     src: url(../fonts/ACLine.ttf);
 }
+.l-form-vacancy{
+    display: flex;
+    flex-direction: column;
 
+}
+.l-form-vacancy-item{
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+}
 .header-text-vacancy {
     color: #F68C06;
     /*margin-left: 15px;*/
