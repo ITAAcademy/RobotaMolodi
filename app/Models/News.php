@@ -104,12 +104,12 @@ class News extends Model
     
     public function previous()
     {
-        return News::where('id', '<', $this->id)->orderBy('id','desc')->first();
+        return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
     }
     
     public function next()
     {
-        return News::where('id', '>', $this->id)->orderBy('id','asc')->first();
+        return News::where('id', '<', $this->id)->orderBy('id','desc')->first();
     }
     
     public function shortDescription()
