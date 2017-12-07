@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group" >
+                <div class="form-group" style="margin-top: 15px;" >
                     <label class="col-sm-3 control-label label-text-vacancy">
                         {{ trans('form.status') }}
                     </label>
@@ -182,8 +182,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group" style="margin: 20px 0 0 185px;  text-align: left;">
-                    <input type="submit" class="btn btn-default" style="background: #f68c06" value={{ trans('form.regvacancy') }}>
+                <div class="form-group"">
+                    <div class="col-sm-3"> </div>
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-default" style="background: #f68c06" value={{ trans('form.regvacancy') }}>
+                    </div>
                 </div>
             </div>
         </div>
