@@ -19,16 +19,16 @@
         <div class="sectionNews">
             <div id="left-content-column" class="col-xs-9">
                 <div class="col-xs-12">
-                    {!! Html::linkRoute('news.show',  trans('pagination.previous') ,  $previous['id'], [ 'class' => 'previous pull-left' ]) !!}
-                    {!! Html::linkRoute('news.show', trans('pagination.next'),  $next['id'], [ 'class' => 'next pull-right ' ]) !!}
-                </div>
-                <div class="col-xs-12">
                     <h3 class="nameNews">{{ $newsOne->name}}</h3>
                     @if($newsOne->img!='Not picture')
                         <div><img class="picture" src="{{ asset($newsOne->getPath().$newsOne->img) }}"></div>
                     @endif
                     <p>{!! $newsOne->description !!}</p>
                     <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
+                </div>
+                <div class="col-xs-12" style="padding-top: 15px">
+                    {!! Html::linkRoute('news.show',  '&laquo; '.$previous['name'] ,  $previous['id'], [ 'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]) !!}
+                    {!! Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]) !!}
                 </div>
             </div>
         </div>
