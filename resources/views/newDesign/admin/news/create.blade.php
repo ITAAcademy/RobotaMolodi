@@ -9,6 +9,11 @@
 
         {!! Form::open(array('url' => '/admin/news','files'=>true)) !!}
             @include('newDesign.admin.news._form')
+            <div class="form-group">
+                {!! Form::label('image', 'Add image:') !!}
+                {!! Form::file('image',['class' => 'btn'])!!}
+            </div>
+            {!! Form::submit('Create news', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
 
         <script type="text/javascript">

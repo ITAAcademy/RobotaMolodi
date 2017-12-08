@@ -32,7 +32,7 @@
 
                     <td>
                         @if($new->img!='Not picture')
-                            <img class="picture" src="{{ asset($new->getPath().$new->img) }}">
+                            <img class="picture" src="{{ asset($new->getPath().$new->img) }}" style="width: 100%">
                         @else
                             Not picture
                         @endif
