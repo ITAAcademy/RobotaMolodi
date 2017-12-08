@@ -43,6 +43,9 @@ class Project extends Model
             'full_desc'     => 'required|min:3',
             'company_id'    => 'required|integer',
             'industry_id'   => 'required|integer',
+            'vacancies'     => 'required|array',
+            'slides_url'     => 'array',
+            'slides_disk'     => 'array',
         ];
     }
 

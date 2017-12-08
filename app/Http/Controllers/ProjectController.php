@@ -21,10 +21,66 @@ class ProjectController extends Controller
 
     private function validateForm(Request $request)
     {
+        $forValidationUrl  = [];
+        $forValidationDisk = [];
+        $forVacancy        = [];
+        $url  = $request['slides_url'];
+        $disk = $request['slides_disk'];
+        $vacancies = $request['vacancies'];
+
+        if(!empty($url))
+            foreach ($url as $key => $value) {
+                $forValidationUrl['slides_url.'.$key] = 'required|url';
+            }
+        if(!empty($disk))
+            foreach ($disk as $key => $value) {
+                $forValidationDisk['slides_disk.'.$key] = 'required|image';
+            }
+        if(!empty($vacancies))
+            foreach ($vacancies as $key => $value) {
+                $forVacancy['vacancies.'.$key.'.name']        = 'required|string';
+                $forVacancy['vacancies.'.$key.'.description'] = 'required|string';
+                $forVacancy['vacancies.'.$key.'.total']       = 'required|integer';
+                $forVacancy['vacancies.'.$key.'.free']        = 'required|integer';
+                $essentilaSkills  = $value['essential_skills'];
+                $personalSkills   = $value['personal_skills'];
+                $bePlus           = $value['be_plus'];
+                $forYou           = $value['for_you'];
+                $responsibilities = $value['responsibilities'];
+                if(!empty($essentilaSkills))
+                    foreach ($essentilaSkills as $k => $v) {
+                        $validationKey = 'vacancies.'.$key.'.essential_skills.'.$k;
+                        $forVacancy[$validationKey] = 'required|string';
+                    }
+                if(!empty($personalSkills))
+                    foreach ($personalSkills as $k => $v) {
+                        $validationKey = 'vacancies.'.$key.'.personal_skills.'.$k;
+                        $forVacancy[$validationKey] = 'required|string';
+                    }
+                if(!empty($bePlus))
+                    foreach ($bePlus as $k => $v) {
+                        $validationKey = 'vacancies.'.$key.'.be_plus.'.$k;
+                        $forVacancy[$validationKey] = 'required|string';
+                    }
+                if(!empty($forYou))
+                    foreach ($forYou as $k => $v) {
+                        $validationKey = 'vacancies.'.$key.'.for_you.'.$k;
+                        $forVacancy[$validationKey] = 'required|string';
+                    }
+                if(!empty($responsibilities))
+                    foreach ($responsibilities as $k => $v) {
+                        $validationKey = 'vacancies.'.$key.'.responsibilities.'.$k;
+                        $forVacancy[$validationKey] = 'required|string';
+                    }
+            }
         $rules = array_merge(
+            $forValidationUrl,
+            $forValidationDisk,
+            $forVacancy,
             Project::validationRules(),
             ProjectMember::validationRules()
         );
+
         $this->validate($request, $rules);
     }
 
