@@ -27,6 +27,21 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('', 'Фото на слайдер', ['class' => 'col-sm-4 control-label']) !!}
+    <div class="col-sm-8">
+        <input type="text" name="slides_url[]" class="form-control">
+        <br>
+        <input type="text" name="slides_url[]" class="form-control">
+        <br>
+        <input type="text" name="slides_url[]" class="form-control">
+        <br>
+        <input type="file" name="slides_disk[]">
+        <br>
+        <input type="file" name="slides_disk[]">
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('company_desc', trans('project.companyDesc'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::text('company_desc', $project['company_desc'], ['class' => 'form-control']) !!}

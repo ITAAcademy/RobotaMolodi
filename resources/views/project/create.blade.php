@@ -22,6 +22,7 @@
 
                     @include('project.partials.form._description')
                     @include('project.partials.form._team')
+                    @include('project.partials.form._vacancy')
 
                 {!! Form::submit(trans('project.send'), ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
