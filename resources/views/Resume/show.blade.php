@@ -4,7 +4,7 @@
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
         ['url'=> 'head','name'=>trans('content.main')],
-        ['name' => trans('content.resume').':'.$resume->position, 'url' => false]
+        ['name' => trans('content.resume').': '.$resume->position, 'url' => false]
         ]
     )
     )
