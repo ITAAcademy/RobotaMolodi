@@ -18,7 +18,11 @@
 
                     @include('project.partials.form._description')
 
-                {!! Form::submit(trans('project.send'), ['class' => 'btn btn-primary']) !!}
+                <div class="form-group">
+                    <div class="col-sm-offset-6 col-sm-6">
+                      {!! Form::submit(trans('project.send'), ['class' => 'btn btn-primary']) !!}
+                    </div>
+                </div>
             {!! Form::close() !!}
         </div>
     </div>

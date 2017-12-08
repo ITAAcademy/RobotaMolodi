@@ -11,12 +11,6 @@ class ProjectMember extends Model
         'name',
         'position'
     ];
-    static public function validationRules()
-    {
-        return [
-            'members' => 'required|array|member',
-        ];
-    }
 
     public function project()
     {

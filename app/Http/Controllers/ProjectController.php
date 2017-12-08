@@ -24,9 +24,11 @@ class ProjectController extends Controller
         $forValidationUrl  = [];
         $forValidationDisk = [];
         $forVacancy        = [];
+        $forMembers        = [];
         $url  = $request['slides_url'];
         $disk = $request['slides_disk'];
         $vacancies = $request['vacancies'];
+        $members = $request['members'];
 
         if(!empty($url))
             foreach ($url as $key => $value) {
@@ -36,6 +38,19 @@ class ProjectController extends Controller
             foreach ($disk as $key => $value) {
                 $forValidationDisk['slides_disk.'.$key] = 'required|image';
             }
+        if(!empty($members))
+        {
+            foreach ($members as $key => $value) {
+                $forMembers['members.'.$key.'.name']     = 'required|min:3|max:255';
+                $forMembers['members.'.$key.'.position'] = 'required|min:3|max:255';
+                $forMembers['members.'.$key.'.avatar']   = 'image';
+            }
+        } else {
+            $forMembers['members.0.name']     = 'required|min:3|max:255';
+            $forMembers['members.0.position'] = 'required|min:3|max:255';
+            $forMembers['members.0.avatar']   = 'image';
+        }
+
         if(!empty($vacancies))
             foreach ($vacancies as $key => $value) {
                 $forVacancy['vacancies.'.$key.'.name']        = 'required|string';
@@ -77,8 +92,8 @@ class ProjectController extends Controller
             $forValidationUrl,
             $forValidationDisk,
             $forVacancy,
-            Project::validationRules(),
-            ProjectMember::validationRules()
+            $forMembers,
+            Project::validationRules()
         );
 
         $this->validate($request, $rules);
@@ -146,20 +161,9 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-        Validator::extend('member', function($attribute, $value, $parameters, $validator) {
-            $isValid = true;
-            foreach($value as $v){
-                $validation = Validator::make($v, [
-                    'name' => 'required|min:3|max:255',
-                    'position' => 'required|min:3|max:255',
-                    'avatar' => 'image',
-                ]);
-                $isValid = $isValid && !$validation->fails();
-            }
-            return $isValid;
-        });
-
         $this->validateForm($request);
+
+        dd($request->all());
 
         $project = new Project($request->all());
         $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];
