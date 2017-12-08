@@ -15,5 +15,8 @@ return [
 
 	'previous' => '&laquo; Попередня',
 	'next'     => 'Наступна &raquo;',
+    'allNews'  => 'Всі новини',
+    'previousNews' => 'Попередня новина',
+	'nextNews'     => 'Наступна новина',
 
 ];

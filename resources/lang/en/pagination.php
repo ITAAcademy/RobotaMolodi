@@ -15,5 +15,8 @@ return [
 
 	'previous' => '&laquo; Previous',
 	'next'     => 'Next &raquo;',
+    'allNews'  => 'All news',
+    'previousNews' => 'Previous News',
+    'nextNews'     => 'Next news',
 
 ];
