@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use App\Http\Controllers\oAuthController;
