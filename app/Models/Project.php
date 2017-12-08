@@ -64,4 +64,9 @@ class Project extends Model
         return $this->hasMany('App\Models\ProjectMember','project_id');
     }
 
+    public function vacancies()
+    {
+        return $this->hasMany('App\Models\ProjectVacancy','project_id');
+    }
+
 }

@@ -186,6 +186,7 @@ class ProjectController extends Controller
 
         foreach ($vacancies as $key => $vacancy) {
             $projectVacancy = new ProjectVacancy($vacancy);
+            $projectVacancy->project_id = $project->id;
             $projectVacancy->save();
 
             $essentilaSkills  = $vacancy['essential_skills'];

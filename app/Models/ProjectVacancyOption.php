@@ -18,4 +18,9 @@ class ProjectVacancyOption extends Model
         'group_id',
         'value'
     ];
+
+    public function vacancy()
+    {
+        return $this->belongsTo('App\Models\ProjectVacancy', 'vacancy_id');
+    }
 }

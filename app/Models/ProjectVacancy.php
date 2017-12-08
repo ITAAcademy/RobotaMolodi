@@ -13,4 +13,15 @@ class ProjectVacancy extends Model
         'total',
         'free'
     ];
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project', 'project_id');
+    }
+
+    public function options()
+    {
+        return $this->hasMany('App\Models\ProjectVacancyOption','vacancy_id');
+    }
+
 }
