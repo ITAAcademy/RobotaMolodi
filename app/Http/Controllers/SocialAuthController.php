@@ -9,11 +9,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\SocialAccountService;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use App\Http\Controllers\oAuthController;
 
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
+
     public function redirect()
        {
            return Socialite::driver('facebook')->redirect();
@@ -21,23 +24,10 @@ class SocialAuthController extends Controller
 
        public function callback(SocialAccountService $service)
         {
-            // $user = Socialize::with('facebook')->user();
-            // $providerUser = \Socialite::driver('facebook')->user();
             $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
                 auth()->login($user);
-                return redirect()->to('/home');
-            // $user->token;
+                return redirect()->to('/');
+
         }
-
-// public function redirectToProvider()
-//     {
-//         // return Socialize::with('facebook')->redirect();
-//     }
-
-// public function handleProviderCallback()
-//     {
-//         $user = Socialize::with('facebook')->user();
-// }
-
 
 }

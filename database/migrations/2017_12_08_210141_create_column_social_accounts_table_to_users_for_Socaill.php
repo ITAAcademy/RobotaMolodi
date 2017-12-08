@@ -2,19 +2,14 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 
-class ChangeValueOfEmailToNullableTableUsersTable extends Migration
+class CreateColumnSocialAccountsTableToUsersForSocaill extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            	$table->string('email')->nullable()->change();
+            $table->string('provider_user_id')->nullable();
+            $table->string('provider')->nullable();
         });
     }
 
@@ -26,7 +21,7 @@ class ChangeValueOfEmailToNullableTableUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['email']);
+            $table->dropColumn(['provider_user_id', 'provider']);
         });
     }
 }

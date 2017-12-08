@@ -32,9 +32,6 @@ Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
 
-
-// Route::get('auth/facebook', ['oAuthApiController@redirectToProvider']);
-// Route::get('auth/facebook/callback',[ 'as'=>'auth.facebook','uses' => 'oAuthApiController@handleProviderCallback']);
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
