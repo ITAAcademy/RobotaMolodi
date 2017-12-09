@@ -1,22 +1,21 @@
-<br/>
     <div class="row">
-        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }}</label>
+        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }} *</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
         </div>
         <div class="err-info">
-            <span class="red-star"> * </span>
+            {{--<span class="red-star"> * </span>--}}
             <span class="err-message">@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
         </div>
     </div>
 
     <div class="row">
-        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }}</label>
+        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }} *</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
         </div>
         <div class="err-info">
-            <span class="red-star"> * </span>
+            {{--<span class="red-star"> * </span>--}}
             <span class="err-message">@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
         </div>
     </div>
@@ -64,34 +63,34 @@
     </div>
 
     <div class="row">
-        <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }}</label>
+        <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }} *</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
         </div>
         <div class="err-info">
-            <span class="red-star"> * </span>
+            {{--<span class="red-star"> * </span>--}}
             <span class="err-message">@if(isset($errors)){{$errors->first('phone')}}@endif</span>
         </div>
     </div>
 
     <div class="row">
-        <label for="company_email" class="col-md-3 col-sm-3 label-text-company">E-mail</label>
+        <label for="company_email" class="col-md-3 col-sm-3 label-text-company">E-mail *</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_email', $company->company_email, ['class' => 'form-control', 'id' => 'company_email']) !!}
         </div>
         <div class="err-info">
-            <span class="red-star"> * </span>
+            {{--<span class="red-star"> * </span>--}}
             <span class="err-message">@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
         </div>
     </div>
 
     <div class="row">
-        <label for="description" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.description') }}</label>
+        <label for="description" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.description') }} *</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
         </div>
         <div class="err-info">
-            <span class="red-star"> * </span>
+            {{--<span class="red-star"> * </span>--}}
             <span class="err-message">@if(isset($errors)){{$errors->first('description')}}@endif</span>
         </div>
     </div>
@@ -233,17 +232,17 @@
 
     </script>
 
-{!!Html::script('js/jquery.maskedinput.min.js')!!}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".form-control").change(function () {
-//            $(window).bind('beforeunload', function () {
-//                return 'Збережіть будь ласка всі внесені нові дані!';
-//            });
-            $('#form').submit(function () {
-                $(window).unbind('beforeunload');
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".form-control").change(function () {
+    //            $(window).bind('beforeunload', function () {
+    //                return 'Збережіть будь ласка всі внесені нові дані!';
+    //            });
+                $('#form').submit(function () {
+                    $(window).unbind('beforeunload');
+                });
             });
+            $("#phone").mask("+38(099) 999-99-99");
         });
-        $("#phone").mask("+38(099) 999-99-99");
-    });
-</script>
+    </script>

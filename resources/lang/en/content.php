@@ -28,7 +28,15 @@ return [
     'read_next' => 'Read next...',
 
     'addresume' => 'add resume',
+    'editResume' => 'edit resume',
     'contactus' => 'Contact us:',
     'aboutus' => 'About us',
+
+    'addCompany' => 'Add Company',
+    'editCompany' => 'Edit Company',
+
+    'addVacancy' => 'Add Vacancy',
+    'editVacancy' => 'Edit Vacancy',
+
 
 ];

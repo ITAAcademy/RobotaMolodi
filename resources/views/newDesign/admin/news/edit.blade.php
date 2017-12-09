@@ -13,6 +13,16 @@
         'files'=>true))
     !!}
         @include('newDesign.admin.news._form')
+        <div class="form-group">
+            @if($newsOne->img!='Not picture')
+                <img class="picture col-xs-6" src="{{ asset($newsOne->getPath().$newsOne->img) }}" >
+            @else
+                Not picture
+            @endif
+            {!! Form::label('image', 'Add another image:') !!}
+            {!! Form::file('image', ['class' => 'btn'])!!}
+        </div>
+        {!! Form::submit('Edit news', ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
 
     <script type="text/javascript">

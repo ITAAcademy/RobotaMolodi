@@ -15,6 +15,7 @@ use App\Models\Resume;
 use App\Http\Controllers\UploadFile;
 use Mail;
 use View;
+use Auth;
 use Illuminate\Support\Facades\File;
 
 
@@ -26,14 +27,14 @@ class ResponseController extends Controller
         ]);
 
         $link = $request->link;
-        $user = User::find($auth->user()->getAuthIdentifier());
-        //$company = Company::find(Vacancy::find(($id))->company_id);
+        $user = Auth::user();
+
         Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $link], function ($message) use($id){
             $vacancy = Vacancy::find($id);
-            $company = Company::find($vacancy->company_id);
-            $user = User::find($company->users_id);
-            $to = $user->email;
-            $message->to($to, $user->name)->subject('Резюме по вакансії '.$vacancy->position);
+            $user = Auth::user();
+            $to = $vacancy->user_email;
+            $message->from($user->email, $user->name);
+            $message->to($to, $vacancy->position)->subject('Резюме по вакансії '.$vacancy->position);
         });
         return view('vacancy/vacancyAnswer');
     }

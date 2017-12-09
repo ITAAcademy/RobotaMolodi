@@ -5,3 +5,4 @@
     </div>
   </div>
 </div>
+{!!Html::script('js/closure.js')!!}

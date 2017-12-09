@@ -200,3 +200,4 @@ route::get('test', 'ProjectController@test');
 //Route::resource('cabinet.response','cabinet\CabinetController');
 
 //slider
+Route::get('unavailable', 'ClosureController@unavailableService');
