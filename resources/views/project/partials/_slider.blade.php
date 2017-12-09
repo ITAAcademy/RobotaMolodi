@@ -4,8 +4,8 @@
     <p>{{ $project['company_desc'] }}</p>
   </div>
   <div class="slider">
-        @if($slides)
-          @foreach($slides as $slide)
+        @if($project->slides)
+          @foreach($project->slides as $slide)
               <div>
                   {!! Html::image($slide, $project->name, ['class' => 'slider-item']) !!}
               </div>

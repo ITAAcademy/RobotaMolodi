@@ -47,10 +47,10 @@
     </div>
     <div class="team-project">
         <div class="team-project__tittle">
-            Team:<span class="team-project__tittle-text">{{ $members->count() }} persons</span>
+            Team:<span class="team-project__tittle-text">{{ $project->members->count() }} persons</span>
         </div>
         <ul class="team-project__list clearfix">
-            @foreach($members as $m)
+            @foreach($project->members as $m)
                 <li class="team-project__persons col-md-2">
                     @if($m->avatar)
                         {!! Html::image(asset($m->avatar), $m->name, ['class' => 'team-project__persons-avatar']) !!}

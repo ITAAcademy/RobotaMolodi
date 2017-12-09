@@ -3,7 +3,7 @@
         <div class="our-vacancies__title-text">Наші вакансії на проект</div>
     </div>
     <ul class="our-vacancies__list">
-        @foreach($vacancies as $vacancy)
+        @foreach($project->vacancies as $vacancy)
         <li class="our-vacancies__items">
             <div class="our-vacancies__items-title">
                 <h2 class="our-vacancies__items-title-main">{{ $vacancy->name }}</h2>

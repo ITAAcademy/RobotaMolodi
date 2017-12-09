@@ -41,7 +41,9 @@ class ProjectController extends Controller
             }
         if(!empty($members))
         {
-            foreach ($members as $key => $value) {
+            foreach ($members as $memberHash) {
+                // $member = Member.new($memberHash);
+                // $member->validate();
                 $forMembers['members.'.$key.'.name']     = 'required|min:3|max:255';
                 $forMembers['members.'.$key.'.position'] = 'required|min:3|max:255';
                 $forMembers['members.'.$key.'.avatar']   = 'image';
@@ -139,7 +141,7 @@ class ProjectController extends Controller
     {
         $data = [];
 
-        $companies = Auth::user()->companies;
+        $companies = Auth::user()->companies()->list('id', 'co');
         if($companies->isEmpty())
             return redirect()->route('company.create');
 
@@ -254,20 +256,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $data = [];
-
         $project = Project::find($id);
-
-        if($project)
-            $data['project'] = $project;
-        else
-            return abort(404);
-
-        $data['members']   = $project->members;
-        $data['slides']    = $project->slides;
-        $data['vacancies'] = $project->vacancies;
-
-        return view('project.show', $data);
+        return view('project.show', ['project' => $project]);
     }
 
     /**
