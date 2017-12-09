@@ -16,7 +16,15 @@
     {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
     {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'editor2']) !!}
 </div>
-    <br>
+<br>
+@if(!isset($newsOne->pablished))
+    <div class="form-group">
+        {!! Form::label('published', 'Опублікувати:') !!}
+        {!! Form::hidden('published', 0) !!}
+        {!! Form::checkbox('published') !!}
+        <br>
+    </div>
+@endif
 
 
 <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
