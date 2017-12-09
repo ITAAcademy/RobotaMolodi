@@ -138,6 +138,8 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		 Laravel\Socialite\SocialiteServiceProvider::class,
+
 
 		/*
 		 * Application Service Providers...
@@ -198,6 +200,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
 

@@ -32,6 +32,9 @@ Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
 
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
 Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
