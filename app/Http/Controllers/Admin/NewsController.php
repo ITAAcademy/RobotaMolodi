@@ -82,5 +82,12 @@ class NewsController extends Controller
         $input = $request->all();
         $news->fill($input)->save();
     }
+    
+    public function updatePublished($news_id){
+        $chosenNews = News::find($news_id);
+        $chosenNews->published = $chosenNews->published == 0 ? 1 : 0;
+        $chosenNews->save();
+        return $chosenNews->published;
+    }
 
 }
