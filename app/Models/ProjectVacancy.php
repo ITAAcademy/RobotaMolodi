@@ -24,4 +24,29 @@ class ProjectVacancy extends Model
         return $this->hasMany('App\Models\ProjectVacancyOption','vacancy_id');
     }
 
+    public function getEssentialSkills()
+    {
+        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::ESSENTIALSKILLS)->get();
+    }
+
+    public function getPersonalSkills()
+    {
+        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::PERSONALSKILLS)->get();
+    }
+
+    public function getBePlus()
+    {
+        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::BEPLUS)->get();
+    }
+
+    public function getForYou()
+    {
+        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::FORYOU)->get();
+    }
+
+    public function getResponsibilities()
+    {
+        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::RESPONSIBILITIES)->get();
+    }
+
 }
