@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\ProjectMember;
+use App\Models\ProjectVacancy;
 use App\Models\Industry;
 
 class ProjectController extends Controller
@@ -163,8 +164,6 @@ class ProjectController extends Controller
 
         $this->validateForm($request);
 
-        dd($request->all());
-
         $project = new Project($request->all());
         $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];
         $project->save();
@@ -240,8 +239,9 @@ class ProjectController extends Controller
                     $tmp['value']      = $v;
                     $data[] = $tmp;
                 }
-
-             \App\Models\ProjectVacancyOption::create($data);
+            foreach ($data as $key => $value) {
+                \App\Models\ProjectVacancyOption::create($value);
+            }
         }
 
     }
@@ -263,8 +263,9 @@ class ProjectController extends Controller
         else
             return abort(404);
 
-        $data['members']  = $project->members;
-        $data['slides']   = $project->slides;
+        $data['members']   = $project->members;
+        $data['slides']    = $project->slides;
+        $data['vacancies'] = $project->vacancies;
 
         return view('project.show', $data);
     }
