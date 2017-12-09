@@ -9,18 +9,21 @@ use App\Http\Controllers\oAuthController;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SocialAccount;
+use Laravel\Socialite\SocialiteServiceProvider;
 
 class SocialAccountService
 {
     public function createOrGetUser(ProviderUser $providerUser)
     {
-        $account = User::whereProvider('facebook')
+
+        $account = SocialAccount::whereProvider('facebook')
             ->whereProviderUserId($providerUser->getId())
             ->first();
         if ($account) {
             return $account->user;
         } else {
-            $account = new User([
+            $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => 'facebook'
             ]);
@@ -31,8 +34,6 @@ class SocialAccountService
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                     'password' => 'rstuvwxyzABCDEFGH',
-                    'provider_user_id' => $providerUser->getId(),
-                    'provider' => 'facebook',
                 ]);
             }
             $account->user()->associate($user);

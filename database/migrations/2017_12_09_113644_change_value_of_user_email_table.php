@@ -2,9 +2,8 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 
-class ChangeValueOfEmailToNullableTableUsersTable extends Migration
+class ChangeValueOfUserEmailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +12,9 @@ class ChangeValueOfEmailToNullableTableUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            	$table->string('email')->nullable()->change();
+        Schema::table('users', function(Blueprint $table)
+        {
+            // $table->string('email')->nullable()->change();
         });
     }
 
@@ -25,8 +25,9 @@ class ChangeValueOfEmailToNullableTableUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['email']);
+        Schema::table('users', function(Blueprint $table)
+        {
+            // $table->string('email')->change();
         });
     }
 }

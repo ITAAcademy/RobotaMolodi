@@ -27,6 +27,20 @@ Route::get('language/{lang}', function($lang){
 
 });
 
+Route::get( ‘/socialite/{provider}’, [
+‘as’ => ‘socialite.auth’,
+function ( $provider ) {
+return \Socialite::driver( $provider )->redirect();
+}
+] );
+
+Route::get( ‘/socialite/{provider}/callback’, [
+function ( $provider ) {
+$user = \Socialite::driver( $provider )->user();
+dd( $user );
+}
+] );
+
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
