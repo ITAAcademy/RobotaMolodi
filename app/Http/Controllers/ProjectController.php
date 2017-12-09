@@ -102,13 +102,6 @@ class ProjectController extends Controller
         $this->validate($request, $rules);
     }
 
-    private function prepareToSelect2($array, $option, $value)
-    {
-        $columnOption = array_column($array, $option);
-        $columnValue = array_column($array, $value);
-        return array_combine($columnOption, $columnValue);
-    }
-
     private function isOwner($project){
         if(Auth::id() ===  $project->company->user->id)
             return true;
@@ -141,17 +134,17 @@ class ProjectController extends Controller
     {
         $data = [];
 
-        $companies = Auth::user()->companies()->list('id', 'co');
+        $companies = Auth::user()->companies->pluck('company_name', 'id');
         if($companies->isEmpty())
             return redirect()->route('company.create');
 
-        $data['companies'] = $this->prepareToSelect2($companies->toArray(), 'id', 'company_name');
+        $data['companies'] = $companies;
 
         $project = new Project();
         $data['project'] = $project;
 
-        $industries = Industry::all(['id','name']);
-        $data['industries'] = $this->prepareToSelect2($industries->toArray(), 'id', 'name');
+        $industries = Industry::all()->pluck('name', 'id');
+        $data['industries'] = $industries;
 
         return view('project.create', $data);
     }
