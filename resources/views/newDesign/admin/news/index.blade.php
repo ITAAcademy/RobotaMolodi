@@ -2,11 +2,13 @@
 
 @section('content')
     <div class=" col-md-10 col-sm-10 col-xs-10 contentAndmin">
-        @if(Session::has('flash_message'))
-            <div class="alert alert-success">
-                {{ Session::get('flash_message') }}
-            </div>
-        @endif
+        <div style="padding-top: 15px">
+            @if(Session::has('flash_message'))
+                <div class="alert alert-success">
+                    {{ Session::get('flash_message') }}
+                </div>
+            @endif
+        </div>
         <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg"> Create news</a>
         </div>
 
