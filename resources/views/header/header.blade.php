@@ -1,5 +1,3 @@
-<link href="{{ asset('/css/header.css') }}" rel="stylesheet">
-
 <header>
     <nav class="navbar navbar-default col-xs-12">
         <div class="row">
