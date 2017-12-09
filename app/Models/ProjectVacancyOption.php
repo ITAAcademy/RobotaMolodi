@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectVacancyOption extends Model
 {
@@ -19,8 +20,19 @@ class ProjectVacancyOption extends Model
         'value'
     ];
 
+    private $rules = [
+        'value'        => 'required|min:3|max:50',
+    ];
+
     public function vacancy()
     {
         return $this->belongsTo('App\Models\ProjectVacancy', 'vacancy_id');
     }
+
+    public function isValid()
+    {
+        $validator = Validator::make($this->toArray(), $this->rules);
+        return !$validator->fails();
+    }
+
 }
