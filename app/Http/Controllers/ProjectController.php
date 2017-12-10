@@ -17,7 +17,8 @@ class ProjectController extends Controller
 {
     public function __construct()
     {
-       $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
     }
 
     private function validateForm(Request $request)
@@ -100,13 +101,6 @@ class ProjectController extends Controller
         );
 
         $this->validate($request, $rules);
-    }
-
-    private function isOwner($project){
-        if(Auth::id() ===  $project->company->user->id)
-            return true;
-        else
-            return false;
     }
 
     private function projectsPath()
@@ -261,19 +255,15 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $data = [];
+        $companies = Auth::user()->companies->pluck('company_name', 'id');
+        if($companies->isEmpty())
+            return redirect()->route('company.create');
+        $data['companies'] = $companies;
+        $project = new Project();
         $data['project'] = $project;
-
-        if(!$this->isOwner($project))
-           return abort(403);
-
-        $companies = Auth::user()->companies;
-
-        $data['companies'] = $this->prepareToSelect2($companies->toArray(), 'id', 'company_name');
-
-        $industries = Industry::all(['id','name']);
-        $data['industries'] = $this->prepareToSelect2($industries->toArray(), 'id', 'name');
-
-        return view('project.edit', $data);
+        $industries = Industry::all()->pluck('name', 'id');
+        $data['industries'] = $industries;
+        return view('project.create', $data);
     }
 
     /**

@@ -48,6 +48,12 @@ class Project extends Model
             'slides_disk'     => 'array',
         ];
     }
+    public function isOwner($userId){
+        if($userId ===  $this->company->user->id)
+            return true;
+        else
+            return false;
+    }
 
     public function company()
     {
