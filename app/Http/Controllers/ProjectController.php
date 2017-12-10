@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\ProjectMember;
 use App\Models\ProjectVacancy;
+use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
 
 class ProjectController extends Controller
@@ -42,17 +43,11 @@ class ProjectController extends Controller
             }
         if(!empty($members))
         {
-            foreach ($members as $memberHash) {
-                // $member = Member.new($memberHash);
-                // $member->validate();
+            foreach ($members as $key => $value) {
                 $forMembers['members.'.$key.'.name']     = 'required|min:3|max:255';
                 $forMembers['members.'.$key.'.position'] = 'required|min:3|max:255';
                 $forMembers['members.'.$key.'.avatar']   = 'image';
             }
-        } else {
-            $forMembers['members.0.name']     = 'required|min:3|max:255';
-            $forMembers['members.0.position'] = 'required|min:3|max:255';
-            $forMembers['members.0.avatar']   = 'image';
         }
 
         if(!empty($vacancies))
@@ -106,6 +101,80 @@ class ProjectController extends Controller
     private function projectsPath()
     {
         return "/uploads/projects/";
+    }
+
+    private function saveMembers($projectId, $members)
+    {
+        foreach($members as $member)
+        {
+            $projectMember = new ProjectMember($member);
+            if($member['avatar'] && $member['avatar']->isValid()) {
+                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->projectsPath().$project->id."/team/");
+            }
+            $projectMember->project_id = $projectId;
+            $projectMember->save();
+        }
+    }
+
+    private function saveVacancies($projectId, $vacancies)
+    {
+
+        foreach ($vacancies as $key => $vacancy) {
+            $projectVacancy = new ProjectVacancy($vacancy);
+            $projectVacancy->project_id = $projectId;
+            $projectVacancy->save();
+
+            $essentilaSkills  = $vacancy['essential_skills'];
+            $personalSkills   = $vacancy['personal_skills'];
+            $bePlus           = $vacancy['be_plus'];
+            $forYou           = $vacancy['for_you'];
+            $responsibilities = $vacancy['responsibilities'];
+
+            $data = null;
+            if(!empty($essentilaSkills))
+                foreach ($essentilaSkills as $v) {
+                    $tmp = null;
+                    $tmp['vacancy_id'] = $projectVacancy->id;
+                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::ESSENTIALSKILLS;
+                    $tmp['value']      = $v;
+                    $data[] = $tmp;
+                }
+            if(!empty($personalSkills))
+                foreach ($personalSkills as $v) {
+                    $tmp = null;
+                    $tmp['vacancy_id'] = $projectVacancy->id;
+                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::PERSONALSKILLS;
+                    $tmp['value']      = $v;
+                    $data[] = $tmp;
+                }
+            if(!empty($bePlus))
+                foreach ($bePlus as $v) {
+                    $tmp = null;
+                    $tmp['vacancy_id'] = $projectVacancy->id;
+                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::BEPLUS;
+                    $tmp['value']      = $v;
+                    $data[] = $tmp;
+                }
+            if(!empty($forYou))
+                foreach ($forYou as $v) {
+                    $tmp = null;
+                    $tmp['vacancy_id'] = $projectVacancy->id;
+                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::FORYOU;
+                    $tmp['value']      = $v;
+                    $data[] = $tmp;
+                }
+            if(!empty($responsibilities))
+                foreach ($responsibilities as $v) {
+                    $tmp = null;
+                    $tmp['vacancy_id'] = $projectVacancy->id;
+                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::RESPONSIBILITIES;
+                    $tmp['value']      = $v;
+                    $data[] = $tmp;
+                }
+            foreach ($data as $key => $value) {
+                \App\Models\ProjectVacancyOption::create($value);
+            }
+        }
     }
 
     /**
@@ -163,75 +232,8 @@ class ProjectController extends Controller
             $project->save();
         }
 
-        $members = $request['members'];
-        foreach($members as $member)
-        {
-            $projectMember = new projectMember($member);
-            if($member['avatar'] && $member['avatar']->isValid()) {
-                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->projectsPath().$project->id."/team/");
-            }
-            $projectMember->project_id = $project->id;
-            $projectMember->save();
-        }
-
-        $vacancies = $request['vacancies'];
-
-        foreach ($vacancies as $key => $vacancy) {
-            $projectVacancy = new ProjectVacancy($vacancy);
-            $projectVacancy->project_id = $project->id;
-            $projectVacancy->save();
-
-            $essentilaSkills  = $vacancy['essential_skills'];
-            $personalSkills   = $vacancy['personal_skills'];
-            $bePlus           = $vacancy['be_plus'];
-            $forYou           = $vacancy['for_you'];
-            $responsibilities = $vacancy['responsibilities'];
-
-            $data = null;
-            if(!empty($essentilaSkills))
-                foreach ($essentilaSkills as $v) {
-                    $tmp = null;
-                    $tmp['vacancy_id'] = $projectVacancy->id;
-                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::ESSENTIALSKILLS;
-                    $tmp['value']      = $v;
-                    $data[] = $tmp;
-                }
-            if(!empty($personalSkills))
-                foreach ($personalSkills as $v) {
-                    $tmp = null;
-                    $tmp['vacancy_id'] = $projectVacancy->id;
-                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::PERSONALSKILLS;
-                    $tmp['value']      = $v;
-                    $data[] = $tmp;
-                }
-            if(!empty($bePlus))
-                foreach ($bePlus as $v) {
-                    $tmp = null;
-                    $tmp['vacancy_id'] = $projectVacancy->id;
-                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::BEPLUS;
-                    $tmp['value']      = $v;
-                    $data[] = $tmp;
-                }
-            if(!empty($forYou))
-                foreach ($forYou as $v) {
-                    $tmp = null;
-                    $tmp['vacancy_id'] = $projectVacancy->id;
-                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::FORYOU;
-                    $tmp['value']      = $v;
-                    $data[] = $tmp;
-                }
-            if(!empty($responsibilities))
-                foreach ($responsibilities as $v) {
-                    $tmp = null;
-                    $tmp['vacancy_id'] = $projectVacancy->id;
-                    $tmp['group_id']   = \App\Models\ProjectVacancyOption::RESPONSIBILITIES;
-                    $tmp['value']      = $v;
-                    $data[] = $tmp;
-                }
-            foreach ($data as $key => $value) {
-                \App\Models\ProjectVacancyOption::create($value);
-            }
-        }
+        $this->saveMembers($project->id, $request['members']);
+        $this->saveVacancies($project->id, $request['vacancies']);
 
     }
 
