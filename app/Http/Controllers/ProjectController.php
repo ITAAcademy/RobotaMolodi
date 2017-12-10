@@ -255,14 +255,11 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $data = [];
-        $companies = Auth::user()->companies->pluck('company_name', 'id');
-        if($companies->isEmpty())
-            return redirect()->route('company.create');
-        $data['companies'] = $companies;
-        $project = new Project();
-        $data['project'] = $project;
-        $industries = Industry::all()->pluck('name', 'id');
-        $data['industries'] = $industries;
+        $data['companies']  = Auth::user()
+            ->companies
+            ->pluck('company_name', 'id');
+        $data['project']    = $project;
+        $data['industries'] = Industry::all()->pluck('name', 'id');
         return view('project.create', $data);
     }
 
