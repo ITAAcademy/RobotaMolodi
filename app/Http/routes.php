@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('/industry', 'Admin\IndustryController');
     Route::post('/industry/set_main', ['as'=>'setMainIndustry', 'uses'=>'Admin\IndustryController@setMainIndustry']);
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
+    Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
@@ -201,3 +202,4 @@ route::get('test', 'ProjectController@test');
 
 //slider
 Route::get('unavailable', 'ClosureController@unavailableService');
+
