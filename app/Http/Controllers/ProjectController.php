@@ -247,9 +247,8 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::find($id);
         return view('project.show', ['project' => $project]);
     }
 
@@ -259,15 +258,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
         $data = [];
-
-        $project = Project::find($id);
-        if($project)
-            $data['project'] = $project;
-        else
-            return abort(404);
+        $data['project'] = $project;
 
         if(!$this->isOwner($project))
            return abort(403);
@@ -288,7 +282,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Project $project)
     {
         //
     }
@@ -299,7 +293,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
         //
     }
