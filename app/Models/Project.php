@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use ModelValidator;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'company_id',
-                            'industry_id', 'brand',
-                            'location', 'bonuses',
-                            'company_desc', 'company_about',
-                            'project_about', 'project_term',
-                            'breaf_desc', 'full_desc'
-                        ];
+    protected $fillable = [
+        'name',       'company_desc',
+        'location',   'project_about',
+        'brand',      'company_about',
+        'bonuses',    'project_term',
+        'full_desc',  'breaf_desc',
+        'company_id', 'industry_id'
+    ];
     /**
     * The attributes that should be casted to native types.
     *
@@ -26,6 +28,26 @@ class Project extends Model
    protected $casts = [
        'slides' => 'array',
    ];
+
+    /**
+    * The value is containes validation's rules.
+    *
+    * @var array
+    */
+    private $rules = [
+       'name'          => 'required|min:3|max:32',
+       'brand'         => 'required|min:3|max:32',
+       'location'      => 'required|min:3|max:32',
+       'bonuses'       => 'required|min:3|max:32',
+       'company_desc'  => 'required|min:3|max:255',
+       'company_about' => 'required|min:3|max:255',
+       'project_about' => 'required|min:3|max:255',
+       'project_term'  => 'required|min:3|max:32',
+       'breaf_desc'    => 'required|min:3|max:32',
+       'full_desc'     => 'required|min:3|max:255',
+       'company_id'    => 'required|integer',
+       'industry_id'   => 'required|integer'
+    ];
 
     static public function validationRules()
     {

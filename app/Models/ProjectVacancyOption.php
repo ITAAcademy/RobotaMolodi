@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Validator;
 
 class ProjectVacancyOption extends Model
 {
+    use ModelValidator;
+
     protected $table = 'projects_vacancies_options';
     const ESSENTIALSKILLS   = 1;
     const PERSONALSKILLS    = 2;
@@ -21,7 +22,7 @@ class ProjectVacancyOption extends Model
     ];
 
     private $rules = [
-        'value'        => 'required|min:3|max:50',
+        'value' => 'required|min:3|max:50',
     ];
 
     public function vacancy()
