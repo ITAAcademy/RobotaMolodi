@@ -21,6 +21,7 @@
             {!! Form::model($project, array('route' => array('project.store'), 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data')) !!}
 
                     @include('project.partials.form._description')
+                    @include('project.partials.form._slider')
                     @include('project.partials.form._team')
                     @include('project.partials.form._vacancy')
 
@@ -34,10 +35,6 @@
     </div>
 </div>
 
+@include('project.partials._scripts')
 
-<script>
-    function loadImage(el){
-        $(el).trigger('click');
-    }
-</script>
 @endsection

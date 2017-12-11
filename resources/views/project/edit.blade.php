@@ -1,4 +1,8 @@
 @extends('app')
+@section('headLinks')
+    <link href="{{ asset('/css/test/project.css') }}" rel="stylesheet">
+    <script src="https://unpkg.com/vue"></script>
+@endsection
 @section('content')
 <h1 class="text-center">{{ trans('project.editProject')}} </h1>
 <div class="container">
@@ -27,4 +31,7 @@
         </div>
     </div>
 </div>
+
+@include('project.partials._scripts')
+
 @endsection
