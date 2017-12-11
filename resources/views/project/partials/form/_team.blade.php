@@ -1,65 +1,48 @@
-<p class="text-center">Команда проекту</p>
-<div class="form-group">
-    {!! Form::label('', 'Фото', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="file"
-            name="members[0][avatar]"
-            value="{{old('members.0.avatar')}}">
+<h2 class="text-center">Команда проекту</h2>
+<template v-for="(member,index) in members">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Фото</label>
+        <div class="col-sm-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <input
+                            type="file"
+                            :name="'member[' + index + '][avatar]'"
+                            value="">
+                    </div>
+                    <div class="col-sm-8">
+                        <img :src="member.avatarSrc" class="img-fluid" alt="Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="help-block">@{{ member.error.avatarSrc }}</span>
     </div>
-</div>
-<div class="form-group">
-    {!! Form::label('', 'Імя та прізвище', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="text"
-            name="members[0][name]"
-            class="form-control"
-            value="{{old('members.0.name')}}">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Ім'я та прізвище</label>
+        <div class="col-sm-8">
+            <input
+                type="text"
+                :name="'member[' + index + '][name]'"
+                v-model="member.name"
+                class="form-control">
+        </div>
+        <span class="help-block">@{{ member.error.name }}</span>
     </div>
-</div>
-<div class="form-group">
-    {!! Form::label('name', 'Позиція', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="text"
-            name="members[0][position]"
-            class="form-control"
-            value="{{old('members.0.position')}}">
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Позиція</label>
+        <div class="col-sm-8">
+            <input
+                type="text"
+                :name="'member[' + index + '][position]'"
+                v-model="member.position"
+                class="form-control">
+        </div>
+        <span class="help-block">@{{ member.error.position }}</span>
     </div>
-</div>
-
+</template>
 <br>
-<hr>
+<div @click="addMember" class="btn btn-default btn-xs">Додати члена команди +</div>
 <br>
-<div class="form-group">
-    {!! Form::label('', 'Фото', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="file"
-            name="members[1][avatar]"
-            value="{{old('members.1.avatar')}}">
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('', 'Імя та прізвище', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="text"
-            name="members[1][name]"
-            class="form-control"
-            value="{{old('members.1.name')}}">
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('name', 'Позиція', ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        <input
-            type="text"
-            name="members[1][position]"
-            class="form-control"
-            value="{{old('members.1.position')}}">
-    </div>
-</div>
-
-<br><br>
+<br>

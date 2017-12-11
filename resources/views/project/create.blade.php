@@ -17,20 +17,21 @@
                     </ul>
                 </div>
             @endif
+            <div id="app">
+                {!! Form::model($project, array('route' => array('project.store'), 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data')) !!}
 
-            {!! Form::model($project, array('route' => array('project.store'), 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data')) !!}
+                        @include('project.partials.form._description')
+                        @include('project.partials.form._slider')
+                        @include('project.partials.form._team')
+                        @include('project.partials.form._vacancy')
 
-                    @include('project.partials.form._description')
-                    @include('project.partials.form._slider')
-                    @include('project.partials.form._team')
-                    @include('project.partials.form._vacancy')
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-6 col-sm-6">
-                          {!! Form::submit(trans('project.send'), ['class' => 'btn btn-primary']) !!}
+                        <div class="form-group">
+                            <div class="col-sm-offset-6 col-sm-6">
+                              {!! Form::submit(trans('project.send'), ['class' => 'btn btn-primary']) !!}
+                            </div>
                         </div>
-                    </div>
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 </div>
