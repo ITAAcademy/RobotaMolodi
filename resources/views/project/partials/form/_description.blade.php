@@ -26,7 +26,7 @@
         <a class="btn btn-default btn-load-img" href="javascript:$('#logoProject').click()">З диску</a>
     </div>
     <div class="col-sm-5">
-        <img id="prevLogo" src="#" alt="Project Logo" />
+        <img id="prevLogo" src="{{ $project['logo'] or '#' }}" alt="Project Logo" />
     </div>
     {!! $errors->first('logoProject','<span class="help-block">:message</span>') !!}
 </div>
