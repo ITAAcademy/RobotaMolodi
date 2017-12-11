@@ -38,7 +38,7 @@ return [
 	'facebook' => [
     'client_id' => '145565309427952',
     'client_secret' => '7e42a3881812e734a291d847507fee6c',
-    'redirect' => 'http://192.168.10.10:8888/callback',
+    'redirect' => 'http://192.168.10.10:8888/handleProviderCallback',
 	],
 
 	'github' => [
@@ -47,6 +47,11 @@ return [
         'redirect'      => 'http://192.168.10.10:8888/handleProviderCallback',
 	],
 
+	'twitter' => [
+    'client_id' => 'umd9TJKlI3FMJLXlOw3GtmoGQ',
+    'client_secret' => 'a6qhwN3ur8NjGbSqP3rbxtY0FNxl5CefO9Bk72oFqxOEOKF3yL',
+    'redirect' => 'http://192.168.10.10:8888/handleProviderCallback',
+	],
 
 
 ];

@@ -24,7 +24,9 @@
                     <div class="modal-social-icon">
                         <p>{{ trans('auth.or') }}</p>
                         <div>{{ trans('auth.osignin') }}</div>
+                        <a href="/login/twitter">
                             <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+                        </a>
                             <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                             <a href="/login/github">
                                 <i class="fa-soc fa fa-github-square fa-3x" aria-hidden="true"></i>

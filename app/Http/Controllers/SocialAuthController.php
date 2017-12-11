@@ -16,47 +16,33 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
+    public function redirect()
+       {
+           return Socialite::driver('facebook')->fields([
+            'first_name', 'last_name', 'email', 'gender', 'birthday'
+            ])->scopes([
+                'public_profile', 'user_birthday'
+            ])->redirect();
+    }
 
     public function redirectToProvider($provider)
         {
-             return Socialite::driver($provider)->scopes(['users:email'])->redirect();
-        }
-
-        public function handleProviderCallback(\App\SocialAccountsService $accountService, $provider)
-        {
-        try {
-            $user = \Socialite::with($provider)->user();
-        } catch (\Exception $e) {
-            return redirect('/login');
-        }
-        $authUser = $accountService->findOrCreate(
-            $user,
-            $provider
-        );
-        auth()->login($authUser, true);
-        return redirect()->to('/home');
+             return Socialite::driver($provider)->redirect();
     }
 
-    public function redirect()
-       {
-           return Socialite::driver('facebook')->scopes([
-            'users:first_name', 'users:last_name', 'users:email', 'users:gender', 'users:birthday'
-            ])->redirect();
-       }
-
-       public function callback(\App\SocialAccountsService $accountService, $provider)
+    public function handleProviderCallback(\App\SocialAccountsService $accountService, $provider)
         {
             try {
                 $user = \Socialite::with($provider)->user();
             } catch (\Exception $e) {
                 return redirect('/login');
-            }
+        }
             $authUser = $accountService->findOrCreate(
                 $user,
                 $provider
             );
             auth()->login($authUser, true);
             return redirect()->to('/home');
-            }
+    }
 
 }
