@@ -10,7 +10,7 @@
             'style' => 'height: 80px; width: 300px; display:none',
             'placeholder' => $comment->comment])
             !!}
-            <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">edit</button>
+            <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">{{trans('content.editComment')}}</button>
         </div>
         <hr>
         @endforeach
@@ -35,7 +35,12 @@
     $(document).ready(function () {
         $('button.btn-edit').on('click', function(){
             var comment_id = $(this).val();
-
+            var clickedButton = $("button.btn-edit[value="+comment_id+"]");
+            if(clickedButton.hasClass('btn-primary')){
+                clickedButton.addClass('btn-success').removeClass('btn-primary');
+            } else {
+                clickedButton.addClass('btn-primary').removeClass('btn-success');
+            }
             $('textarea#comment-edit-'+comment_id).toggle();
             var new_comment = $('textarea#comment-edit-'+comment_id).val();
             if (new_comment.length > 2){

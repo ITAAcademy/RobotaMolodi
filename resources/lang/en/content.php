@@ -37,6 +37,8 @@ return [
 
     'addVacancy' => 'Add Vacancy',
     'editVacancy' => 'Edit Vacancy',
+    
+    'editComment' => 'Edit Comment',
 
 
 ];
