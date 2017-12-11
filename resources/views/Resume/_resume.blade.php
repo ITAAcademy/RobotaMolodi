@@ -82,10 +82,6 @@
 
 {!!Html::script('js/crop.js')!!}
 
-<!-- <a href="auth.facebook">SIGN</a> -->
-<a href="redirect">FB Login</a>
-
-
 <script>
     $(document).ready(function () {
         $('#changeImage').on('click', function () {

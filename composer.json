@@ -10,7 +10,7 @@
         "proengsoft/laravel-jsvalidation": "~1.1",
 		"swiftmailer/swiftmailer": "^5.4",
 		"unisharp/laravel-ckeditor": "^4.5",
-		"doctrine/dbal": "~2.3",
+		"doctrine/dbal": "^2.5",
 		"guzzlehttp/guzzle": "~6.0",
 		"laravel/socialite": "~2.0"
 
