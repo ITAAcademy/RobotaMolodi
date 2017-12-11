@@ -3,7 +3,14 @@
         @foreach($comments as $comment)
         <div>
             <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:i:s', strtotime($comment->updated_at))}}</span>
-            <p>{{$comment->comment}}</p>
+            <p id="comment-{{$comment->id}}">{{$comment->comment}}</p>
+            {!!Form::textarea('comment-edit', null, [
+            'id' => 'comment-edit-'.$comment->id,
+            'class' => 'form-control',
+            'style' => 'height: 80px; width: 300px; display:none',
+            'placeholder' => $comment->comment])
+            !!}
+            <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">edit</button>
         </div>
         <hr>
         @endforeach
@@ -26,6 +33,20 @@
 
 <script>
     $(document).ready(function () {
+        $('button.btn-edit').on('click', function(){
+            var comment_id = $(this).val();
+
+            $('textarea#comment-edit-'+comment_id).toggle();
+            var new_comment = $('textarea#comment-edit-'+comment_id).val();
+            if (new_comment.length > 2){
+                $.ajax({
+                url: '/comments/'+comment_id+'/ajaxUpdate/'+new_comment,
+                method: 'GET',
+                success: function(result){
+                    $("#comment-"+result.id).html( result.comment );
+                }
+            })}
+        });
         function checkComment() {
             var commit = $('.form-control').val();
 
