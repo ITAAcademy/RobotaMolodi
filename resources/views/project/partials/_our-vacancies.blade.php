@@ -15,47 +15,16 @@
                 {{  $vacancy->description }}
             </div>
             <ul class="our-vacancies__skills">
-                <li class="our-vacancies__skills-items">
-                    <div class="skills__items-title">Essential skills:</div>
-                    <ul class="skills__items-list">
-                        @foreach($vacancy->getEssentialSkills() as $s)
-                            <li class="skills__items-skill">{{ $s->value }}</li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="our-vacancies__skills-items">
-                    <div class="skills__items-title">Personal skills:</div>
-                    <ul class="skills__items-list">
-                        @foreach($vacancy->getPersonalSkills() as $s)
-                            <li class="skills__items-skill">{{ $s->value }}</li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="our-vacancies__skills-items">
-                    <div class="skills__items-title">Would be a good plus:</div>
-                    <ul class="skills__items-list">
-                        @foreach($vacancy->getBePlus() as $s)
-                            <li class="skills__items-skill">{{ $s->value }}</li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="our-vacancies__skills-items">
-                    <div class="skills__items-title">What’s in it for you?</div>
-                    <ul class="skills__items-list">
-                        @foreach($vacancy->getForYou() as $s)
-                            <li class="skills__items-skill">{{ $s->value }}</li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="our-vacancies__skills-items">
-                    <div class="skills__items-title">Responsibilities:</div>
-                    <ul class="skills__items-list">
-                        <li class="skills__items-skill">Requirements analysis and processing</li>
-                        @foreach($vacancy->getResponsibilities() as $s)
-                            <li class="skills__items-skill">{{ $s->value }}</li>
-                        @endforeach
-                    </ul>
-                </li>
+                @foreach($vacancy->getGroup() as $k => $group)
+                    <li class="our-vacancies__skills-items">
+                        <div class="skills__items-title">Essential skills:</div>
+                        <ul class="skills__items-list">
+                            @foreach($vacancy->getOptions($k) as $s)
+                                <li class="skills__items-skill">{{ $s->value }}</li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endforeach
             </ul>
             <ul class="our-vacancies__links">
                 <li class="our-vacancies__links-wrapper">

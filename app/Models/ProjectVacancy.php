@@ -39,29 +39,20 @@ class ProjectVacancy extends Model
         return !$validator->fails();
     }
 
-    public function getEssentialSkills()
+    public function getGroup()
     {
-        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::ESSENTIALSKILLS)->get();
+        return [
+            ProjectVacancyOption::ESSENTIALSKILLS => 'Essential skills',
+            ProjectVacancyOption::PERSONALSKILLS => 'Personal skills',
+            ProjectVacancyOption::BEPLUS => 'Would be a good plus',
+            ProjectVacancyOption::FORYOU => 'What’s in it for you',
+            ProjectVacancyOption::RESPONSIBILITIES => 'Responsibilities',
+        ];
     }
 
-    public function getPersonalSkills()
+    public function getOptions($type)
     {
-        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::PERSONALSKILLS)->get();
-    }
-
-    public function getBePlus()
-    {
-        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::BEPLUS)->get();
-    }
-
-    public function getForYou()
-    {
-        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::FORYOU)->get();
-    }
-
-    public function getResponsibilities()
-    {
-        return $this->options()->where('group_id',\App\Models\ProjectVacancyOption::RESPONSIBILITIES)->get();
+        return $this->options()->where('group_id',$type)->get();
     }
 
 }
