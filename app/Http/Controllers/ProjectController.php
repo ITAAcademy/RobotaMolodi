@@ -22,80 +22,16 @@ class ProjectController extends Controller
         $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
     }
 
+    private $validationErrors = null;
+
     private function validateForm(Request $request)
     {
-        $forValidationUrl  = [];
-        $forValidationDisk = [];
-        $forVacancy        = [];
-        $forMembers        = [];
-        $url  = $request['slides_url'];
-        $disk = $request['slides_disk'];
-        $vacancies = $request['vacancies'];
-        $members = $request['members'];
-
-        if(!empty($url))
-            foreach ($url as $key => $value) {
-                $forValidationUrl['slides_url.'.$key] = 'required|url';
-            }
-        if(!empty($disk))
-            foreach ($disk as $key => $value) {
-                $forValidationDisk['slides_disk.'.$key] = 'required|image';
-            }
-        if(!empty($members))
-        {
-            foreach ($members as $key => $value) {
-                $forMembers['members.'.$key.'.name']     = 'required|min:3|max:255';
-                $forMembers['members.'.$key.'.position'] = 'required|min:3|max:255';
-                $forMembers['members.'.$key.'.avatar']   = 'image';
-            }
-        }
-
-        if(!empty($vacancies))
-            foreach ($vacancies as $key => $value) {
-                $forVacancy['vacancies.'.$key.'.name']        = 'required|string';
-                $forVacancy['vacancies.'.$key.'.description'] = 'required|string';
-                $forVacancy['vacancies.'.$key.'.total']       = 'required|integer';
-                $forVacancy['vacancies.'.$key.'.free']        = 'required|integer';
-                $essentilaSkills  = $value['essential_skills'];
-                $personalSkills   = $value['personal_skills'];
-                $bePlus           = $value['be_plus'];
-                $forYou           = $value['for_you'];
-                $responsibilities = $value['responsibilities'];
-                if(!empty($essentilaSkills))
-                    foreach ($essentilaSkills as $k => $v) {
-                        $validationKey = 'vacancies.'.$key.'.essential_skills.'.$k;
-                        $forVacancy[$validationKey] = 'required|string';
-                    }
-                if(!empty($personalSkills))
-                    foreach ($personalSkills as $k => $v) {
-                        $validationKey = 'vacancies.'.$key.'.personal_skills.'.$k;
-                        $forVacancy[$validationKey] = 'required|string';
-                    }
-                if(!empty($bePlus))
-                    foreach ($bePlus as $k => $v) {
-                        $validationKey = 'vacancies.'.$key.'.be_plus.'.$k;
-                        $forVacancy[$validationKey] = 'required|string';
-                    }
-                if(!empty($forYou))
-                    foreach ($forYou as $k => $v) {
-                        $validationKey = 'vacancies.'.$key.'.for_you.'.$k;
-                        $forVacancy[$validationKey] = 'required|string';
-                    }
-                if(!empty($responsibilities))
-                    foreach ($responsibilities as $k => $v) {
-                        $validationKey = 'vacancies.'.$key.'.responsibilities.'.$k;
-                        $forVacancy[$validationKey] = 'required|string';
-                    }
-            }
-        $rules = array_merge(
-            $forValidationUrl,
-            $forValidationDisk,
-            $forVacancy,
-            $forMembers,
-            Project::validationRules()
-        );
-
-        $this->validate($request, $rules);
+        $isValid = true;
+        $project = new Project($request->all());
+        $isValid = $project->validate();
+        if(!$isValid)
+            $this->validationErrors = $project->errors();
+        return $isValid;
     }
 
     private function projectsPath()
@@ -220,7 +156,12 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-        $this->validateForm($request);
+        if(!$this->validateForm($request)){
+            return redirect()
+                       ->route('project.create')
+                       ->withErrors($this->validationErrors)
+                       ->withInput();
+        }
 
         $project = new Project($request->all());
         $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];

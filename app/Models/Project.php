@@ -49,27 +49,6 @@ class Project extends Model
        'industry_id'   => 'required|integer'
     ];
 
-    static public function validationRules()
-    {
-        return [
-            'name'          => 'required|min:3',
-            'brand'         => 'required|min:3',
-            'logo'          => 'required|image',
-            'location'      => 'required|min:3',
-            'bonuses'       => 'required|min:3',
-            'company_desc'  => 'required|min:3',
-            'company_about' => 'required|min:3',
-            'project_about' => 'required|min:3',
-            'project_term'  => 'required|min:3',
-            'breaf_desc'    => 'required|min:3',
-            'full_desc'     => 'required|min:3',
-            'company_id'    => 'required|integer',
-            'industry_id'   => 'required|integer',
-            'vacancies'     => 'required|array',
-            'slides_url'     => 'array',
-            'slides_disk'     => 'array',
-        ];
-    }
     public function isOwner($userId){
         if($userId ===  $this->company->user->id)
             return true;
