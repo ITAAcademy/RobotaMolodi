@@ -118,10 +118,10 @@ class CommentsController extends Controller
         //
     }
     
-    public function updateChanges($id, $txt)
+    public function updateChanges($comment_id, $newCommentText)
     {
-        $newComment = Comment::find($id);
-        $newComment->comment = $txt;
+        $newComment = Comment::find($comment_id);
+        $newComment->comment = $newCommentText;
         $newComment->save();
         return $newComment;
     }
