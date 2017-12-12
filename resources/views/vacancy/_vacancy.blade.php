@@ -98,14 +98,14 @@
     }
 
     $('.update-date-cab-vac').click(function (e) {
-        console.log($(this).parents('.one-for-cabinet').find(get));
         var href = $(this).attr('href');
-        var dateElement = $(this).parents('.one-for-cabinet').find(".updateDate-cabinet-vac");
+        var dateElement = $('.updateDate-cabinet-vac');
         e.preventDefault();
         $.ajax({
             url: href,
             method: 'post',
             success: function (data) {
+                console.log(data);
                 dateElement.text(data);
                 dateElement.css('backgroundColor','orange');
                 dateElement.animate({ backgroundColor: "white" }, "slow");
