@@ -41,6 +41,9 @@
         </div>
         <span class="help-block">@{{ member.error.position }}</span>
     </div>
+    <br>
+    <hr>
+    <br>
 </template>
 <br>
 <div @click="addMember" class="btn btn-default btn-xs">Додати члена команди +</div>
