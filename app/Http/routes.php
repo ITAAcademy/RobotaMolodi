@@ -193,5 +193,6 @@ Route::get('policy', ['as' => 'policy', function () {
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
 Route::resource('project', 'ProjectController');
+Route::get('project/fetch/members', ['as'=>'project.fetchMembers', 'uses' => 'ProjectController@fetchMembers']);
 
 Route::get('unavailable', 'ClosureController@unavailableService');

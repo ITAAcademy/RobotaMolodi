@@ -43,28 +43,7 @@ window.onload = function(){
       el: '#app',
 
       data: {
-        members: [
-            {
-                name: 'Jack',
-                position: 'CEO',
-                avatarSrc: 'image.png',
-                error: {
-                    name: null,
-                    position: 'Need a graduation',
-                    avatarSrc: null,
-                }
-            },
-            {
-                name: 'Gregor',
-                position: 'Layer',
-                avatarSrc: 'face.png',
-                error: {
-                    name: null,
-                    position: null,
-                    avatarSrc: 'be cooler',
-                }
-            },
-        ],
+        members: [],
         vacancies: [
             {
                 name:  { value: 'Vacancy Name', error: null},
@@ -120,6 +99,9 @@ window.onload = function(){
       watch: {
         // currentBranch: 'fetchData'
       },
+      created: function () {
+        this.fetchDataMembers()
+      },
 
       methods: {
         addMember: function () {
@@ -135,7 +117,21 @@ window.onload = function(){
                   }
               });
           },
-          addVacancy: function(){
+        removeMember: function () {
+            if(this.members.length > 1)
+                this.members.pop();
+         },
+        fetchDataMembers: function () {
+            var xhr = new XMLHttpRequest()
+            var self = this
+            xhr.open('GET', '{{ route('project.fetchMembers', ['id' => $project->id ]) }}' )
+            xhr.onload = function () {
+              console.log(xhr.responseText);
+              self.members= JSON.parse(xhr.responseText);
+            }
+            xhr.send()
+         },
+         addVacancy: function(){
               this.vacancies.push(
                   {
                       name:  { value: '', error: null},

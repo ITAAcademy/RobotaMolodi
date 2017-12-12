@@ -26,6 +26,7 @@ class ProjectController extends Controller
 
     private function validateForm(Request $request)
     {
+        dd($request['members']);
         $isValid = true;
         $project = new Project($request->all());
         $isValid = $project->validate();
@@ -197,6 +198,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        // $m = $project->members->toArray();
+
         $data = [];
         $data['companies']  = Auth::user()
             ->companies
@@ -226,5 +229,38 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+    }
+
+    public function fetchMembers(Request $request)
+    {
+        $id = $request['id'];
+        $error = [
+            'name' =>  '',
+            'position' =>  '',
+            'avatarSrc' => '',
+        ];
+        $empty = [[
+            'name'      => '',
+            'position'  => '',
+            'avatarSrc' => 'default.png'
+        ]];
+        $empty[0]['error'] = $error;
+
+        if($id)
+        {
+            $project = Project::find($id);
+            if($project)
+            {
+                $members = $project->members->toArray();
+                foreach($members as $k => $v)
+                    $members[$k]['error'] = $error;
+                return \Response::json($members);
+            }
+            else {
+                return \Response::json($empty);
+            }
+        } else {
+            return \Response::json($empty);
+        }
     }
 }

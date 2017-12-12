@@ -8,7 +8,7 @@
                     <div class="col-sm-4">
                         <input
                             type="file"
-                            :name="'member[' + index + '][avatar]'"
+                            :name="'members[' + index + '][avatar]'"
                             value="">
                     </div>
                     <div class="col-sm-8">
@@ -16,36 +16,44 @@
                     </div>
                 </div>
             </div>
+            <div v-if="member.error">
+                <span class="help-block">@{{ member.error.avatarSrc }}</span>
+            </div>
         </div>
-        <span class="help-block">@{{ member.error.avatarSrc }}</span>
     </div>
     <div class="form-group">
         <label class="col-sm-4 control-label">Ім'я та прізвище</label>
         <div class="col-sm-8">
             <input
                 type="text"
-                :name="'member[' + index + '][name]'"
+                :name="'members[' + index + '][name]'"
                 v-model="member.name"
                 class="form-control">
+                <div v-if="member.name">
+                    <span class="help-block">@{{ member.error.name }}</span>
+                </div>
         </div>
-        <span class="help-block">@{{ member.error.name }}</span>
     </div>
     <div class="form-group">
         <label class="col-sm-4 control-label">Позиція</label>
         <div class="col-sm-8">
             <input
                 type="text"
-                :name="'member[' + index + '][position]'"
+                :name="'members[' + index + '][position]'"
                 v-model="member.position"
                 class="form-control">
+                <div v-if="member.position">
+                    <span class="help-block">@{{ member.error.position }}</span>
+                </div>
         </div>
-        <span class="help-block">@{{ member.error.position }}</span>
     </div>
     <br>
+    <div v-if="index == members.length - 1">
+        <br>
+        <div @click="addMember" style="color: #f76533; text-decoration:underline; cursor:pointer">Додати члена команди +</div>
+        <br>
+        <div @click="removeMember" style="color: #f00; text-decoration:underline; cursor:pointer">Видалити члена команди -</div>
+    </div>
     <hr>
     <br>
 </template>
-<br>
-<div @click="addMember" class="btn btn-default btn-xs">Додати члена команди +</div>
-<br>
-<br>
