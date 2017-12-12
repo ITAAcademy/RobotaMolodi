@@ -125,4 +125,10 @@ class CommentsController extends Controller
         $newComment->save();
         return $newComment;
     }
+    
+    public function deleteComment($id)
+    {
+        $comment =  Comment::where('id', $id)->delete();
+        return trans('content.deleteSuccess');
+    }
 }

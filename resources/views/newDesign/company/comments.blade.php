@@ -1,7 +1,7 @@
 <div class="test">
     <div class="scroll">
         @foreach($comments as $comment)
-        <div>
+        <div id="block-{{$comment->id}}">
             <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:i:s', strtotime($comment->updated_at))}}</span>
             <p id="comment-{{$comment->id}}">{{$comment->comment}}</p>
             {!!Form::textarea('comment-edit', null, [
@@ -11,8 +11,9 @@
             'placeholder' => $comment->comment])
             !!}
             <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">{{trans('content.editComment')}}</button>
+            <button type='button' value="{{$comment->id}}" id="btn-delete-{{$comment->id}}" class="btn-delete btn btn-danger">{{trans('content.deleteComment')}}</button>
+            <hr>
         </div>
-        <hr>
         @endforeach
     </div>
     <div id="load" style="position: relative;"></div>
@@ -45,12 +46,27 @@
             var new_comment = $('textarea#comment-edit-'+comment_id).val();
             if (new_comment.length > 2){
                 $.ajax({
-                url: '/comments/'+comment_id+'/ajaxUpdate/'+new_comment,
-                method: 'GET',
-                success: function(result){
-                    $("#comment-"+result.id).html( result.comment );
-                }
+                    url: '/comments/'+comment_id+'/ajaxUpdate/'+new_comment,
+                    method: 'GET',
+                    success: function(result){
+                        $("#comment-"+result.id).html( result.comment );
+                    }
             })}
+        });
+        function ConfirmDelete() {
+            return confirm("{{trans('content.confirmDelete')}}");
+        }
+        $('button.btn-delete').on('click', function(){
+            var comment_id = $(this).val();
+            if(ConfirmDelete()){
+                $.ajax({
+                    url: '/comments/'+comment_id+'/ajaxDelete',
+                    method: 'GET',
+                    success: function(result){
+                        $("#block-"+comment_id).text(result).attr('style', 'color:red');
+                    }
+                })
+            }
         });
         function checkComment() {
             var commit = $('.form-control').val();

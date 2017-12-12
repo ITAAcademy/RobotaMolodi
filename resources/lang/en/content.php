@@ -39,6 +39,9 @@ return [
     'editVacancy' => 'Edit Vacancy',
     
     'editComment' => 'Edit Comment',
+    'deleteComment' => 'Delete Comment',
+    'deleteSuccess' => 'Comment was deleted successfully',
+    'confirmDelete' => 'Are you really want to delete this comment?',
 
 
 ];
