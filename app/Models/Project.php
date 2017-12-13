@@ -35,16 +35,16 @@ class Project extends Model
     * @var array
     */
     private $rules = [
-       'name'          => 'required|min:3|max:32',
-       'brand'         => 'required|min:3|max:32',
-       'location'      => 'required|min:3|max:32',
-       'bonuses'       => 'required|min:3|max:32',
-       'company_desc'  => 'required|min:3|max:255',
-       'company_about' => 'required|min:3|max:255',
-       'project_about' => 'required|min:3|max:255',
-       'project_term'  => 'required|min:3|max:32',
-       'breaf_desc'    => 'required|min:3|max:32',
-       'full_desc'     => 'required|min:3|max:255',
+       'name'          => 'required|string|min:3|max:32|regex:/^[\d Є-Їa-zа-я_\-\'\`]+$/iu',
+       'brand'         => 'required|string|min:3|max:32',
+       'location'      => 'required|string|min:3|max:32',
+       'bonuses'       => 'required|string|min:3|max:32',
+       'company_desc'  => 'required|string|min:3|max:255',
+       'company_about' => 'required|string|min:3|max:255',
+       'project_about' => 'required|string|min:3|max:255',
+       'project_term'  => 'required|string|min:3|max:32',
+       'breaf_desc'    => 'required|string|min:3|max:32',
+       'full_desc'     => 'required|string|min:3|max:255',
        'company_id'    => 'required|integer',
        'industry_id'   => 'required|integer'
     ];

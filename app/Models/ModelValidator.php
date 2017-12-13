@@ -24,9 +24,17 @@ trait ModelValidator{
         return true;
     }
 
-    public function errors()
+    public function getError($item = '')
     {
-        return $this->errors;
+        if($this->errors === null)
+            return null;
+
+        if($item === '')
+        {
+            return $this->errors;
+        } else {
+            return $this->errors->get($item);
+        }
     }
 
 }

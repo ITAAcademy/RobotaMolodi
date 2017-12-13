@@ -43,7 +43,7 @@ window.onload = function(){
       el: '#app',
 
       data: {
-        members: [],
+        members: JSON.parse('{!! $members->toJson() !!}'),
         vacancies: [
             {
                 name:  { value: 'Vacancy Name', error: null},
@@ -100,7 +100,7 @@ window.onload = function(){
         // currentBranch: 'fetchData'
       },
       created: function () {
-        this.fetchDataMembers()
+        // this.fetchDataMembers()
       },
 
       methods: {

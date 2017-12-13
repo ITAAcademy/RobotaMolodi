@@ -25,4 +25,22 @@ class ProjectMember extends Model
         return $this->belongsTo('App\Models\Project', 'project_id');
     }
 
+    public function toArray()
+    {
+        if($this->getError() === null)
+            $error = [];
+        else
+            $error = $this->getError();
+
+        $instace = [
+            'id'         =>  $this->id,
+            'name'       =>  $this->name,
+            'position'   =>  $this->position,
+            'avatarSrc'  =>  $this->avatarSrc
+        ];
+        $instace['error'] = $error;
+
+        return $instace;
+    }
+
 }

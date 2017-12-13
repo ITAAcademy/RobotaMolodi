@@ -22,17 +22,24 @@ class ProjectController extends Controller
         $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    private $validationErrors = null;
-
     private function validateForm(Request $request)
     {
-        dd($request['members']);
+        $data = [];
         $isValid = true;
         $project = new Project($request->all());
         $isValid = $project->validate();
-        if(!$isValid)
-            $this->validationErrors = $project->errors();
-        return $isValid;
+        $data['project'] = $project;
+
+        // if(is_array($request['members'])) // at Controller?
+        // $this->validationErrors->merge(['members' => 'Введіть хоча б одного члена команди']);
+        $memberController = new ProjectMemberController();
+        $members = $memberController->makeMembers($request['members']);
+        $isValid = $isValid && $memberController->isValid();
+
+        $data['members'] = $members;
+        $data['isValid'] = $isValid;
+
+        return $data;
     }
 
     private function projectsPath()
@@ -146,6 +153,9 @@ class ProjectController extends Controller
         $industries = Industry::all()->pluck('name', 'id');
         $data['industries'] = $industries;
 
+        $member = new ProjectMember();
+        $data['members'] = collect([$member]);
+
         return view('project.create', $data);
     }
 
@@ -157,13 +167,23 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-        if(!$this->validateForm($request)){
-            return redirect()
-                       ->route('project.create')
-                       ->withErrors($this->validationErrors)
-                       ->withInput();
-        }
+        $result = $this->validateForm($request);
+        if(!$result['isValid']){
+            $data = [];
 
+            $companies = Auth::user()->companies->pluck('company_name', 'id');
+            if($companies->isEmpty())
+                return redirect()->route('company.create');
+
+            $industries = Industry::all()->pluck('name', 'id');
+            $data['industries'] = $industries;
+            $data['companies']  = $companies;
+            $data['project']    = $result['project'];
+            $data['members']    = $result['members'];
+
+            return view('project.create', $data);
+        }
+        dd('Validation was successfull',$request->all());
         $project = new Project($request->all());
         $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];
         $project->save();
@@ -198,14 +218,13 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        // $m = $project->members->toArray();
-
         $data = [];
         $data['companies']  = Auth::user()
             ->companies
             ->pluck('company_name', 'id');
         $data['project']    = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
+        $data['members'] = collect($project->members);
         return view('project.create', $data);
     }
 
