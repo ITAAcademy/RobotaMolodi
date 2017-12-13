@@ -4,12 +4,28 @@
         <div id="block-{{$comment->id}}">
             <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:i:s', strtotime($comment->updated_at))}}</span>
             <p id="comment-{{$comment->id}}">{{$comment->comment}}</p>
-            {!!Form::textarea('comment-edit', null, [
-            'id' => 'comment-edit-'.$comment->id,
-            'class' => 'form-control',
-            'style' => 'height: 80px; width: 300px; display:none',
-            'placeholder' => $comment->comment])
-            !!}
+            {!!Form::model($comment, array(
+                    'route' => [
+                        'company.response.update',
+                        $company->id,
+                        $comment->id
+                        ],
+                    'method'=>'PUT'))
+                     !!}
+
+                {!!Form::textarea('editComment', $comment->comment, ['class' => 'form-control'])!!}
+
+                {!!Form::submit('Edit', ['class' => 'btn-edit btn btn-primary pull-left'])!!}
+
+            {!!Form::close()!!}
+
+            {!!Form::model($comment, ['route' => ['company.response.destroy',$company->id, $comment->id, 'method'=>'DELETE']]) !!}
+
+                {!!Form::submit('Delete', ['class' => 'btn-delete btn btn-danger pull-left'])!!}
+
+            {!!Form::close()!!}
+
+
             <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">{{trans('content.editComment')}}</button>
             <button type='button' value="{{$comment->id}}" id="btn-delete-{{$comment->id}}" class="btn-delete btn btn-danger">{{trans('content.deleteComment')}}</button>
             <hr>
@@ -19,8 +35,8 @@
     <div id="load" style="position: relative;"></div>
     {!!   $comments->render() !!}
 </div>
-<div>
-    {!!Form::open(['route' => ['company.response.store',$company->id]], ['id' => 'test']) !!}
+<div id="make-comment">
+    {!!Form::model($comments, ['route' => ['company.response.store',$company->id], 'method' => 'POST']) !!}
     {!!Form::label('comment', 'Добавити відгук:',['class' => 'url-text-vac'] )!!}
     {!!Form::textarea('comment', null, ['class' => 'form-control', 'placeholder'=>'Відгук про компанію'])!!}
     <div align="right">
@@ -92,7 +108,7 @@
             checkComment();
         });
 
-        $(document).on('submit', 'form', function (event) {
+        $('form[method="POST"]').submit( function (event) {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
             //window.history.pushState("", "", url);
             var $form = $(this);
