@@ -49,12 +49,8 @@ class ProjectController extends Controller
 
     private function saveMembers($projectId, $members)
     {
-        foreach($members as $member)
+        foreach($members as $projectMember)
         {
-            $projectMember = new ProjectMember($member);
-            if($member['avatar'] && $member['avatar']->isValid()) {
-                $projectMember->avatar = UploadFile::saveImage($member['avatar'], $this->projectsPath().$project->id."/team/");
-            }
             $projectMember->project_id = $projectId;
             $projectMember->save();
         }
@@ -166,7 +162,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
         $result = $this->validateForm($request);
         if(!$result['isValid']){
             $data = [];
@@ -183,19 +178,18 @@ class ProjectController extends Controller
 
             return view('project.create', $data);
         }
-        dd('Validation was successfull',$request->all());
-        $project = new Project($request->all());
-        $project->slides =  ["/image/layer21.jpg", "/image/layer20.jpg", "/image/layer22.jpg", "/image/layer22.jpg"];
+        // dd('Validation was successfull',$request->all());
+        $project = $result['project'];
         $project->save();
 
-        if($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $project->logo = UploadFile::saveImage($image, $this->projectsPath().$project->id."/");
-            $project->save();
-        }
+        // if($request->hasFile('logo')) {
+        //     $image = $request->file('logo');
+        //     $project->logo = UploadFile::saveImage($image, $this->projectsPath().$project->id."/");
+        //     $project->save();
+        // }
 
-        $this->saveMembers($project->id, $request['members']);
-        $this->saveVacancies($project->id, $request['vacancies']);
+        $this->saveMembers($project->id, $result['members']);
+        // $this->saveVacancies($project->id, $request['vacancies']);
 
     }
 

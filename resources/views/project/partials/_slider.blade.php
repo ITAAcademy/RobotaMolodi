@@ -4,13 +4,9 @@
     <p>{{ $project['company_desc'] }}</p>
   </div>
   <div class="slider">
-        @if($project->slides)
-          @foreach($project->slides as $slide)
-              <div>
-                  {!! Html::image($slide, $project->name, ['class' => 'slider-item']) !!}
-              </div>
-          @endforeach
-        @endif
+        <img src="/image/layer21.jpg" class="slider-item" alt="slider">
+        <img src="/image/layer20.jpg" class="slider-item" alt="slider">
+        <img src="/image/layer22.jpg" class="slider-item" alt="slider">
   </div>
 </div>
 {!!Html::script('js/slick/slick.min.js')!!}
