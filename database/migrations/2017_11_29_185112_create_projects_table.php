@@ -25,7 +25,7 @@ class CreateProjectsTable extends Migration
            $table->text('company_desc')->nullable();
            $table->text('company_about')->nullable();
            $table->text('project_about')->nullable();
-           $table->text('breaf_desc')->nullable();
+           $table->text('brief_desc')->nullable();
            $table->text('full_desc')->nullable();
            $table->nullableTimestamps();
         });

@@ -17,7 +17,7 @@ class Project extends Model
         'location',   'project_about',
         'brand',      'company_about',
         'bonuses',    'project_term',
-        'full_desc',  'breaf_desc',
+        'full_desc',  'brief_desc',
         'company_id', 'industry_id'
     ];
     /**
@@ -43,7 +43,7 @@ class Project extends Model
        'company_about' => 'required|string|min:3|max:255',
        'project_about' => 'required|string|min:3|max:255',
        'project_term'  => 'required|string|min:3|max:32',
-       'breaf_desc'    => 'required|string|min:3|max:32',
+       'brief_desc'    => 'required|string|min:3|max:32',
        'full_desc'     => 'required|string|min:3|max:255',
        'company_id'    => 'required|integer',
        'industry_id'   => 'required|integer'

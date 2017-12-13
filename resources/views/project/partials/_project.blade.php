@@ -72,7 +72,7 @@
         <div class="description__brief">
             <div class="description__brief-title">Breaf description:
                 <span class="description__brief-text">
-                    {{ $project['breaf_desc'] }}
+                    {{ $project['brief_desc'] }}
                 </span>
             </div>
         </div>

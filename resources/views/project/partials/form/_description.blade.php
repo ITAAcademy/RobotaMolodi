@@ -100,11 +100,11 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('breaf_desc', trans('project.breafDesc'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('brief_desc', trans('project.briefDesc'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::textarea('breaf_desc', $project['breaf_desc'], ['class' => 'form-control', 'required' => '']) !!}
-        @if($project->getError('breaf_desc'))
-          @each('errors.partial._validation', $project->getError('breaf_desc'), 'error' )
+        {!! Form::textarea('brief_desc', $project['brief_desc'], ['class' => 'form-control', 'required' => '']) !!}
+        @if($project->getError('brief_desc'))
+          @each('errors.partial._validation', $project->getError('brief_desc'), 'error' )
         @endif
     </div>
 </div>
