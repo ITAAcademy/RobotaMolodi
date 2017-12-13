@@ -32,12 +32,7 @@ class ProjectMember extends Model
         else
             $error = $this->getError();
 
-        $instace = [
-            'id'         =>  $this->id,
-            'name'       =>  $this->name,
-            'position'   =>  $this->position,
-            'avatarSrc'  =>  $this->avatarSrc
-        ];
+        $instace = parent::toArray();
         $instace['error'] = $error;
 
         return $instace;

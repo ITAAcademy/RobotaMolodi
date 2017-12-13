@@ -96,20 +96,13 @@ window.onload = function(){
         ]
       },
 
-      watch: {
-        // currentBranch: 'fetchData'
-      },
-      created: function () {
-        // this.fetchDataMembers()
-      },
-
       methods: {
         addMember: function () {
           this.members.push(
               {
                   name: '',
                   position: '',
-                  avatarSrc: 'default.png',
+                  avatarSrc: '',
                   error: {
                       name: null,
                       position: null,
@@ -120,16 +113,6 @@ window.onload = function(){
         removeMember: function () {
             if(this.members.length > 1)
                 this.members.pop();
-         },
-        fetchDataMembers: function () {
-            var xhr = new XMLHttpRequest()
-            var self = this
-            xhr.open('GET', '{{ route('project.fetchMembers', ['id' => $project->id ]) }}' )
-            xhr.onload = function () {
-              console.log(xhr.responseText);
-              self.members= JSON.parse(xhr.responseText);
-            }
-            xhr.send()
          },
          addVacancy: function(){
               this.vacancies.push(

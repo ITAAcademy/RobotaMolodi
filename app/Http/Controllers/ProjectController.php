@@ -29,9 +29,6 @@ class ProjectController extends Controller
         $project = new Project($request->all());
         $isValid = $project->validate();
         $data['project'] = $project;
-
-        // if(is_array($request['members'])) // at Controller?
-        // $this->validationErrors->merge(['members' => 'Введіть хоча б одного члена команди']);
         $memberController = new ProjectMemberController();
         $members = $memberController->makeMembers($request['members']);
         $isValid = $isValid && $memberController->isValid();
@@ -219,7 +216,7 @@ class ProjectController extends Controller
         $data['project']    = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
         $data['members'] = collect($project->members);
-        return view('project.create', $data);
+        return view('project.edit', $data);
     }
 
     /**
@@ -228,9 +225,25 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Project $project)
+    public function update(Request $request, Project $project)
     {
-        //
+        $isValid = true;
+        $project->fill($request->all());
+        $isValid = $isValid && $project->validate();
+
+        $memberController = new ProjectMemberController();
+        $members = $memberController->fillMembers($request['members'], $project->id);
+        $isValid = $isValid && $memberController->isValid();
+
+        if($isValid)
+        {
+            $project->save();
+            foreach($members as $m)
+            {
+                $m->save();
+            }
+        }
+        dd('End', $isValid);
     }
 
     /**
@@ -242,38 +255,5 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
-    }
-
-    public function fetchMembers(Request $request)
-    {
-        $id = $request['id'];
-        $error = [
-            'name' =>  '',
-            'position' =>  '',
-            'avatarSrc' => '',
-        ];
-        $empty = [[
-            'name'      => '',
-            'position'  => '',
-            'avatarSrc' => 'default.png'
-        ]];
-        $empty[0]['error'] = $error;
-
-        if($id)
-        {
-            $project = Project::find($id);
-            if($project)
-            {
-                $members = $project->members->toArray();
-                foreach($members as $k => $v)
-                    $members[$k]['error'] = $error;
-                return \Response::json($members);
-            }
-            else {
-                return \Response::json($empty);
-            }
-        } else {
-            return \Response::json($empty);
-        }
     }
 }

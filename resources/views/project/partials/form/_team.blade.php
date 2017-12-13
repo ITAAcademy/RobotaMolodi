@@ -1,6 +1,11 @@
 <h2 class="text-center">Команда проекту</h2>
 <template v-for="(member,index) in members">
     <div class="form-group">
+        <input
+            type="text"
+            :name="'members[' + index + '][id]'"
+            v-model="member.id"
+            class="hidden">
         <label class="col-sm-4 control-label">Фото</label>
         <div class="col-sm-8">
             <div class="container">
