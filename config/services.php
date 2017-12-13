@@ -53,5 +53,16 @@ return [
     'redirect' => 'http://192.168.10.10:8888/handleProviderCallback',
 	],
 
+	'google' => [
+    'client_id' => '563469702801-fa07iglc40k5nrrgqso9p51ffeemhgfd.apps.googleusercontent.com',
+    'client_secret' => 'DZ3Hu8T8HcgBlPPB3lUO7sQv',
+    'redirect' => 'http://192.168.10.10:8888/handleProviderCallback'
+	],
+
+	'linkedin' => [
+	'client_id' => '86931003xvdbqv',
+	'client_secret' => 'hA17S1poiODYMQ0J',
+	'redirect' => 'http://192.168.10.10:8888/handleProviderCallback'
+	],
 
 ];
