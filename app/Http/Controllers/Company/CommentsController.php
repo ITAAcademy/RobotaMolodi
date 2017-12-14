@@ -102,15 +102,17 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $company_id, $comment_id)
+    public function update($company_id, $comment_id, Request $request)
     {
         $this->validate($request, [
             'comment' => 'required|min:3|max:2000',
         ]);
         $company = Company::find($company_id);
         $editedComment = Comment::find($comment_id);
+        
         $editedComment->update($request->all());
-        return redirect(route('company.response.index',['company' => $company]));
+        Session::flash('success', 'Comment was edited');
+        return redirect(route('company.response.index',['company' => $company] ));
     }
 
     /**
@@ -124,12 +126,9 @@ class CommentsController extends Controller
         //
     }
     
-    public function updateChanges($comment_id, $newCommentText)
+    public function getChanges($comment_id)
     {
-        $newComment = Comment::find($comment_id);
-        $newComment->comment = $newCommentText;
-        $newComment->save();
-        return $newComment;
+        return Comment::find($comment_id);
     }
     
     public function deleteComment($id)

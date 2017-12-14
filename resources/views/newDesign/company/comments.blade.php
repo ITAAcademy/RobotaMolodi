@@ -4,31 +4,35 @@
         <div id="block-{{$comment->id}}">
             <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:i:s', strtotime($comment->updated_at))}}</span>
             <p id="comment-{{$comment->id}}">{{$comment->comment}}</p>
-            {!!Form::model($comment, array(
+            {!!Form::model($comment,
+                    [
                     'route' => [
                         'company.response.update',
                         $company->id,
                         $comment->id
                         ],
-                    'method'=>'PUT'))
-                     !!}
+                    'method'=>'PUT'
+                    ])!!}
 
-                {!!Form::textarea('editComment', $comment->comment, ['class' => 'form-control'])!!}
-
-                {!!Form::submit('Edit', ['class' => 'btn-edit btn btn-primary pull-left'])!!}
-
-            {!!Form::close()!!}
-
-            {!!Form::model($comment, ['route' => ['company.response.destroy',$company->id, $comment->id, 'method'=>'DELETE']]) !!}
-
-                {!!Form::submit('Delete', ['class' => 'btn-delete btn btn-danger pull-left'])!!}
+                {!!Form::textarea('comment', $comment->comment, ['id' => 'comment'.$comment->id, 'value' => $comment->id, 'class' => 'textarea-edit form-control', 'style' => 'height: 100px'])!!}
+                {!!Form::button('Edit', ['value' => $comment->id, 'class' => 'btn-edit btn btn-primary pull-left'])!!}
+                {!!Form::submit('Edit', ['id' => 'btn-edit-submit'.$comment->id, 'class' => 'btn-edit-submit btn btn-info pull-left'])!!}
 
             {!!Form::close()!!}
 
+            {!!Form::model($comment, [
+                    'route' => [
+                        'company.response.destroy',
+                        $company->id,
+                        $comment->id,
+                        ],
+                        'method'=>'DELETE']) !!}
 
-            <button type='button' value="{{$comment->id}}" id="btn-edit-{{$comment->id}}" class="btn-edit btn btn-primary">{{trans('content.editComment')}}</button>
-            <button type='button' value="{{$comment->id}}" id="btn-delete-{{$comment->id}}" class="btn-delete btn btn-danger">{{trans('content.deleteComment')}}</button>
-            <hr>
+                {!!Form::submit('Delete', ['id' => 'btn-edit-'.$comment->id,'class' => 'btn-delete btn btn-danger pull-left'])!!}
+
+            {!!Form::close()!!}
+
+        <hr>
         </div>
         @endforeach
     </div>
@@ -50,24 +54,13 @@
 
 <script>
     $(document).ready(function () {
-        $('button.btn-edit').on('click', function(){
-            var comment_id = $(this).val();
-            var clickedButton = $("button.btn-edit[value="+comment_id+"]");
-            if(clickedButton.hasClass('btn-primary')){
-                clickedButton.addClass('btn-success').removeClass('btn-primary');
-            } else {
-                clickedButton.addClass('btn-primary').removeClass('btn-success');
-            }
-            $('textarea#comment-edit-'+comment_id).toggle();
-            var new_comment = $('textarea#comment-edit-'+comment_id).val();
-            if (new_comment.length > 2){
-                $.ajax({
-                    url: '/comments/'+comment_id+'/ajaxUpdate/'+new_comment,
-                    method: 'GET',
-                    success: function(result){
-                        $("#comment-"+result.id).html( result.comment );
-                    }
-            })}
+        $('textarea.textarea-edit').hide();
+        $('.btn-edit-submit').hide();
+        $('.btn-edit').on('click', function(){
+            var id = $(this).attr("value");
+            $('textarea#comment'+id).show();
+            $('#btn-edit-submit'+id).show();
+            $('.btn-edit[value='+id+']').hide();
         });
         function ConfirmDelete() {
             return confirm("{{trans('content.confirmDelete')}}");
@@ -98,7 +91,7 @@
             loadingHtml: '<img src="/image/loading.gif" alt="Loading" /> Loading...',
             debug: true,
             autoTrigger: true,
-            nextSelector: 'li a[rel="next"]',
+            nextSelector: 'a[rel="next"]',
             contentSelector: 'div.test',
             callback: function() {
                 $('ul.pager:visible:first').hide();
@@ -108,31 +101,67 @@
             checkComment();
         });
 
-        $('form[method="POST"]').submit( function (event) {
+        $('form').submit( function (event) {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
             //window.history.pushState("", "", url);
             var $form = $(this);
-
             var post_url = $(this).attr("action");
-            $.ajax({
-                url: post_url,
-                method: 'POST',
-                data: {comment: $('#comment').val()},
-                success: function(data){
-                    $form.remove();
-                    $('.test').html(data);
-                    $('div.test').jscroll({
-                        loadingHtml: '<img src="/image/loading.gif" alt="Loading" /> Loading...',
-                        debug: true,
-                        autoTrigger: true,
-                        nextSelector: 'li a[rel="next"]',
-                        contentSelector: 'div.test',
-                        callback: function() {
-                            $('ul.pager:visible:first').hide();
-                        }
-                    });
+            var method =  $(this).find('input');
+            console.log(post_url);console.log($form);
+            if(method.attr('name') === "_token"){
+                $.ajax({
+                    url: post_url,
+                    method: 'POST',
+                    data: {comment: $('#comment').val()},
+                    success: function(data){
+                        $form.remove();
+                        $('.test').html(data);
+                        $('div.test').jscroll({
+                            loadingHtml: '<img src="/image/loading.gif" alt="Loading" /> Loading...',
+                            debug: true,
+                            autoTrigger: true,
+                            nextSelector: 'a[rel="next"]',
+                            contentSelector: 'div.test',
+                            callback: function() {
+                                $('ul.pager:visible:first').hide();
+                            }
+                        });
+                    }
+                });
+            } else {
+                switch(method.attr('value')){
+                    case "PUT":
+                        var id = $(this).find('textarea').attr("value");
+                        var newComment = $(this).find('textarea').val();
+                        $('textarea#comment'+id).hide();
+                        $('#btn-edit-submit'+id).hide();
+                        $('.btn-edit[value='+id+']').show();
+                        $.ajax({
+                            url: post_url,
+                            data: {
+                                comment: newComment
+                            },
+                            method: 'PUT',
+                            success: function(result){
+                                console.log(result);
+                            }
+                        });
+                        $.ajax({
+                            url: '/comments/'+id,
+                            method: 'GET',
+                            success: function(comment){
+                            $('p#comment-'+id).text(comment.comment);
+                            }
+                        });
+                        break;
+                    case "DELETE":
+                        console.log("DELETE");;
+                        break;
                 }
-            });
+            } {
+
+
+            }
             return false;
         })
     });
