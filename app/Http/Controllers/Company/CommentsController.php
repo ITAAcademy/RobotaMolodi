@@ -121,9 +121,12 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($company_id, $comment_id)
     {
-        //
+        Comment::destroy($comment_id);
+        $company = Company::find($company_id);
+        Session::flash('success', 'Comment was deleted');
+        return redirect(route('company.response.index',['company' => $company] ));
     }
     
     public function getChanges($comment_id)
