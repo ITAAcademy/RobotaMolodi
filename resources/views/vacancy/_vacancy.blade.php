@@ -105,7 +105,6 @@
             url: href,
             method: 'post',
             success: function (data) {
-                console.log(data);
                 dateElement.text(data);
                 dateElement.css('backgroundColor','orange');
                 dateElement.animate({ backgroundColor: "white" }, "slow");
