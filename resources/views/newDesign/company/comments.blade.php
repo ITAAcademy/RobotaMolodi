@@ -109,8 +109,6 @@
             var $form = $(this);
             var post_url = $(this).attr("action");
             var method = $(this).find('input');
-            console.log(post_url);
-            console.log($form);
             if (method.attr('name') === "_token") {
                 $.ajax({
                     url: post_url,
@@ -135,7 +133,7 @@
                 switch (method.attr('value')) {
                     case "PUT": {
                         id = $(this).find('textarea').attr("value");
-                        var newComment =  $(this).find('textarea').attr("value");
+                        var newComment =  $(this).find('textarea').val();
                         $('textarea#comment' + id).hide();
                         $('#btn-edit-submit' + id).hide();
                         $('.btn-edit[value=' + id + ']').show();
@@ -144,10 +142,7 @@
                             data: {
                                 comment: newComment
                             },
-                            method: 'PUT',
-                            success: function (result) {
-                                console.log(result);
-                            }
+                            method: 'PUT'
                         });
                         $.ajax({
                             url: '/comments/' + id,
@@ -159,7 +154,6 @@
                         break;
                     }
                     case "DELETE":
-                        console.log("DELETE");
                         id = $(this).find('input[type="submit"]').attr('id');
                         $('div#block-'+id).hide();
                         $.ajax({
@@ -167,10 +161,7 @@
                             data: {
                                 id: id
                             },
-                            method: 'DELETE',
-                            success: function () {
-                                console.log('DELETE');
-                            }
+                            method: 'DELETE'
                         });
                         break;
                 }
