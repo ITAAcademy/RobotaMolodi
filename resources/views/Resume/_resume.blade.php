@@ -81,6 +81,7 @@
 {{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
 
 {!!Html::script('js/crop.js')!!}
+
 <script>
     $(document).ready(function () {
         $('#changeImage').on('click', function () {

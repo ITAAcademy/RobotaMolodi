@@ -26,11 +26,14 @@ Route::get('language/{lang}', function($lang){
     }
 
 });
-
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('login/{provider}','SocialAuthController@redirectToProvider');
+Route::get('login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
