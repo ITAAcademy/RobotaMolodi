@@ -130,10 +130,4 @@ class CommentsController extends Controller
     {
         return Comment::find($comment_id);
     }
-    
-    public function deleteComment($id)
-    {
-        $comment =  Comment::where('id', $id)->delete();
-        return trans('content.deleteSuccess');
-    }
 }
