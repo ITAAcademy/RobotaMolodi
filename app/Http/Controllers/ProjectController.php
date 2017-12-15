@@ -176,6 +176,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $result = $this->validateForm($request);
+        dd($request->all());
         if(!$result['isValid']){
             $data = [];
 
@@ -232,6 +233,21 @@ class ProjectController extends Controller
         $data['project']    = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
         $data['members'] = collect($project->members);
+
+        $vacancy = new ProjectVacancy();
+        $d = [];
+        foreach ($vacancy->getGroup() as $key => $value) {
+            $g = collect([['value' => '']]);
+            if(!$vacancy->getOptions($key)->isEmpty())
+                $g = $vacancy->getOptions($key);
+            $d[] = [
+                'name' => $value,
+                'values' => $g
+            ];
+        }
+        $vacancy['options'] = $d;
+        $data['vacancies'] = collect([$vacancy]);
+
         return view('project.edit', $data);
     }
 
@@ -253,6 +269,9 @@ class ProjectController extends Controller
 
         if($isValid)
         {
+            foreach ($memberController->remoteMember as $remoteMember) {
+                $remoteMember->delete();
+            }
             $project->save();
             foreach($members as $m)
             {

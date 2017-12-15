@@ -67,6 +67,7 @@ window.onload = function(){
         addMember: function () {
           this.members.push(
               {
+                  id: '',
                   name: '',
                   position: '',
                   avatarSrc: '',
@@ -74,12 +75,19 @@ window.onload = function(){
                       name: null,
                       position: null,
                       avatarSrc: null,
-                  }
+                  },
               });
           },
-        removeMember: function () {
-            if(this.members.length > 1)
-                this.members.pop();
+        removeMember: function (member) {
+            if(member.id == false)
+            {
+                    this.members.splice(this.members.indexOf(member), 1)
+            } else {
+                if(member.hasOwnProperty('destroy'))
+                    member.destroy = true;
+                else
+                    Vue.set(member, 'destroy', true);
+            }
          },
          addVacancy: function(){
               this.vacancies.push(

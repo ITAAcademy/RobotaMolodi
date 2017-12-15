@@ -7,7 +7,7 @@ use App\Models\ProjectMember;
 class ProjectMemberController
 {
     private $valid = false;
-
+    public  $remoteMember = [];
     public function makeMembers($membersHash)
     {
         $isValid = true;
@@ -34,8 +34,15 @@ class ProjectMemberController
                 $m->project_id = $projectId;
             } else {
                 $m = ProjectMember::find($memeberHash['id']);
-                if($m->project_id === $projectId){
-                    $m->fill($memeberHash);
+                if($m->project_id === $projectId)
+                {
+                    if($memeberHash['destroy'] == true)
+                    {
+                        $this->remoteMember[] = $m;
+                        continue;
+                    } else {
+                        $m->fill($memeberHash);
+                    }
                 }
             }
             $isValid = $isValid && $m->validate();
