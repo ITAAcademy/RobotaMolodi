@@ -75,10 +75,19 @@ class NewsController extends Controller
         Session::flash('flash_message', 'news successfully deleted!');
         return redirect()->route('admin.news.index');
     }
-    private function helperSave($news,$request){
-        $news->saveImage($request);
+    private function helperSave($news, $request){
+        if($request->image) {
+            $news->saveImage($request);
+        }
         $input = $request->all();
         $news->fill($input)->save();
+    }
+    
+    public function updatePublished($news_id){
+        $chosenNews = News::find($news_id);
+        $chosenNews->published = $chosenNews->published == 0 ? 1 : 0;
+        $chosenNews->save();
+        return $chosenNews->published;
     }
 
 }

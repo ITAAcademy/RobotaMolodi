@@ -10,7 +10,15 @@
     font-family: "ACLine";
     src: url(../fonts/ACLine.ttf);
 }
+.l-form-vacancy{
+    display: flex;
+    flex-direction: column;
 
+}
+.l-form-vacancy-item{
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+}
 .header-text-vacancy {
     color: #F68C06;
     /*margin-left: 15px;*/
@@ -25,7 +33,7 @@
     /*margin-right: -15px;*/
     line-height: 44px;
     display: inline-block;
-    text-align: right;
+    /*text-align: right;*/
     /*margin-bottom: -3px;*/
     min-width: 167px;
     font-family: "Segoe UI", sans-serif;
@@ -44,7 +52,6 @@
 
 
 /*///////////////NEW COMPANY////////////*/
-
 .left{padding-left:17px;}
 .red-star{color:red;}
 .err-info{color:white;}
@@ -60,7 +67,9 @@
     75%  {color: red; left:0px; top:0px;}
     100% {color: white; left:200px; top:0px;}
 }
-
+.l-header-text-company{
+    margin-bottom: 15px;
+}
 .header-text-company {
     color: #F68C06;
     margin-bottom: 0;
@@ -69,7 +78,10 @@
     font-size: 36px;
     font-weight: bold;
 }
-
+.form-company-row{
+    display: flex;
+    align-items: center;
+}
 .label-text-company{
     line-height: 45px;
     display: inline-block;

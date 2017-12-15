@@ -59,7 +59,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="#">
+                    <a class="orangColor-cabinet unavailable" href="#">
                         {!! Html::image('image/podiumOrenge.png', 'del') !!}
                         <span> {{ trans('main.placetop') }}</span>
                     </a>
@@ -98,9 +98,8 @@
     }
 
     $('.update-date-cab-vac').click(function (e) {
-        console.log($(this).parents('.one-for-cabinet').find(get));
         var href = $(this).attr('href');
-        var dateElement = $(this).parents('.one-for-cabinet').find(".updateDate-cabinet-vac");
+        var dateElement = $('.updateDate-cabinet-vac');
         e.preventDefault();
         $.ajax({
             url: href,

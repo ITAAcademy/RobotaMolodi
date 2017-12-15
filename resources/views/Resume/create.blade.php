@@ -8,9 +8,11 @@
 @stop
 
 @section('content')
+    <div class="row header-resume">
+        <h3 class="formTitle header-text-resume"><b>{{ trans('content.addresume') }}</b></h3>
+    </div>
     {!! Form::open(['route' => 'resume.store','enctype' => 'multipart/form-data', 'id'=>'form_id']) !!}
-
-        @include('Resume._form') <!-- Підключення коду Штмл(Форма вводу) -->
+    @include('Resume._form') <!-- Підключення коду Штмл(Форма вводу) -->
     {!!Form::close()!!}
 @stop
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>

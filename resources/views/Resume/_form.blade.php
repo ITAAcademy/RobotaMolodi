@@ -1,17 +1,14 @@
-    <div class="row header-resume">
-        <h3 class="formTitle header-text-resume"><b>{{ trans('content.addresume') }}</b></h3>
-    </div>
     <div class="row">
         <div class="form-group resume-row {{$errors->has('name_u') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label("name_u" ,trans('form.fullname'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     {!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control']) !!}
+                </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -19,18 +16,17 @@
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row {{$errors->has('telephone') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('telephone', trans('main.phone'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field"></span>
-                </div>
                 <div class="resume-form-input">
                     {!! Form::text('telephone', Input::old('telephone'), ['class'=>'form-control input-medium bfh-phone', 'id' => 'telephone']) !!}
+                </div>
+                <div class="resume-form-star">
+                    <span class="required_field"></span>
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -44,18 +40,17 @@
             $("#telephone").mask("+38(099) 999-99-99");
         });
     </script>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row{{$errors->has('email') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('email', trans('form.email'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
+                <div class="resume-form-input">
+                    {!! Form::text('email', $resume->email, array( 'class' => 'form-control','id' => 'exampleInputEmail1'  )) !!}
+                </div>
                 <div class="resume-form-star">
                     <span class="required_field">*</span>
-                </div>
-                <div class="resume-form-input">
-                    {!! Form::text('email', $userEmail, array( 'class' => 'form-control','id' => 'exampleInputEmail1','placeholder' => $userEmail )) !!}
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -63,27 +58,32 @@
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row {{$errors->has('city') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('city', trans('main.city'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     <select name="city" style="width: 100%" class="form-control js-example-basic-multiple" multiple="multiple" id="selectCity">
                         @foreach($cities as $city)
                             <option value="{{$city->id}}"> {{$city->name}} </option>
                         @endforeach
-                        @foreach($cities as $city)
-                            @if($city->id == Input::old('city'))
-                                <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                        @if(Input::old('city')!= '')
+                            @foreach($cities as $city)
+                                @if($city->id == Input::old('city'))
+                                    <option value="{{$city->id}}" selected>{{$city->name}}</option>
+                                @endif
+                            @endforeach
+                        @else
+                            @if($resume->city_id)
+                            <option value="{{$resume->city_id}}" selected>{{$resume->city->name}}</option>
                             @endif
-                        @endforeach
+                        @endif
                     </select>
+                </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -91,16 +91,12 @@
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('industry', trans('form.branch'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     <select name="industry" style="width: 100%" class="form-control" id="selectIndustry">
                         @foreach($industries as $industry)
@@ -116,21 +112,20 @@
                             </option>
                     </select>
                 </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
+                </div>
             </div>
             <div class=" col-md-3 col-sm-3">
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('position', trans('form.position'), ['class'=>'label-text-resume'] ) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     <select name="position" id="position" class="form-control">
                         @if(Input::old('position')== '')
@@ -152,41 +147,45 @@
                         @endif
                     </select>
                 </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
+                </div>
             </div>
             <div class=" col-md-3 col-sm-3">
                 {!! $errors->first('position', '<span class="help-block">:message</span>') !!}
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row {{$errors-> has('salary') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('salary', trans('form.salarymin'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     {!! Form::text('salary', Input::old('salary'), ['class'=>'form-control']) !!}
                 </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
+                </div>
             </div>
-            <div class=" col-md-3 col-sm-3">{!! $errors->first('salary', '<span class="help-block">:message</span>') !!}</div>
+
+            <div class=" col-md-3 col-sm-3">
+                {!! $errors->first('salary', '<span class="help-block">:message</span>') !!}
+            </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row {{$errors-> has('salary_max') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('salary_max', trans('form.salarymax'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field">*</span>
-                </div>
                 <div class="resume-form-input">
                     {!! Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']) !!}
+                </div>
+                <div class="resume-form-star">
+                    <span class="required_field">*</span>
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -194,16 +193,12 @@
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('currency_id', trans('form.currency'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field"></span>
-                </div>
                 <div class="resume-form-input">
                     <select class="form-control" id="selectCurrency" name="currency_id" style="" >
                         @if (Input::old('currency_id') ==''))
@@ -225,23 +220,29 @@
                         @endif
                     </select>
                 </div>
+                <div class="resume-form-star">
+                    <span class="required_field"></span>
+                </div>
             </div>
             <div class=" col-md-3 col-sm-3">
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row {{$errors-> has('description') ? 'has-error' : ''}}">
             <div class="col-md-2 col-sm-2 control-label label-text-resume">
                 {!! Form::label('description',trans('main.description'), ['class'=>'label-text-resume']) !!}
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
+                <div class="resume-form-input">
+                    @if($resume->description)
+                    {!! Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'desc']) !!}
+                    @else
+                        {!! Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'description']) !!}
+                    @endif
+                </div>
                 <div class="resume-form-star">
                     <span class="required_field">*</span>
-                </div>
-                <div class="resume-form-input">
-                    {!! Form::textarea('description',Input::old('description'), ['class'=>'form-control', 'id'=>'description']) !!}
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">
@@ -249,16 +250,12 @@
             </div>
         </div>
     </div>
-    {{--<br>--}}
     <div class="row">
         <div class="form-group resume-row" style="margin-top: 30px">
             <label class="col-sm-2 control-label label-text-resume">
                 {{ trans('form.status') }}
             </label>
             <div class=" col-md-6 col-sm-6 resume-form">
-                <div class="resume-form-star">
-                    <span class="required_field"></span>
-                </div>
                 <div class="resume-form-input">
                     <select class="form-control" id="published" name="published" >
                         @if (Input::old('published')=='')
@@ -279,6 +276,9 @@
                             @endfor
                         @endif
                     </select>
+                </div>
+                <div class="resume-form-star">
+                    <span class="required_field"></span>
                 </div>
             </div>
             <div class=" col-md-3 col-sm-3">

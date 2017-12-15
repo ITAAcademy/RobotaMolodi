@@ -26,11 +26,14 @@ Route::get('language/{lang}', function($lang){
     }
 
 });
-
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('login/{provider}','SocialAuthController@redirectToProvider');
+Route::get('login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
@@ -54,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('/industry', 'Admin\IndustryController');
     Route::post('/industry/set_main', ['as'=>'setMainIndustry', 'uses'=>'Admin\IndustryController@setMainIndustry']);
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
+    Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
@@ -195,3 +199,4 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
+

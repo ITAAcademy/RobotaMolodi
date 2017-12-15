@@ -102,9 +102,12 @@ footer{
 
 }
 .createNews{
-    margin-left: 85%;
     margin-top: 30px;
 }
-.btn-success{
-    margin: 10px;/*потом переделать */
+.set-main:focus,
+.set-main:active,
+.set-main:hover{
+    text-decoration: none;
+    border: 0;
+    outline:none !important;
 }

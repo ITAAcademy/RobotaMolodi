@@ -56,7 +56,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-3">
-                    <a class="orangColor-cabinet" href="#">
+                    <a class="orangColor-cabinet unavailable" href="#">
                         {!! Html::image('image/podiumOrenge.png', 'del') !!}
                         <span> {{ trans('main.placetop') }}</span>
                     </a>
@@ -81,6 +81,7 @@
 {{--{!! $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)) !!}--}}
 
 {!!Html::script('js/crop.js')!!}
+
 <script>
     $(document).ready(function () {
         $('#changeImage').on('click', function () {

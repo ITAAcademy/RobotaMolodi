@@ -80,7 +80,7 @@ return [
 
 	'key' => env('APP_KEY', 'SomeRandomString'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'cipher' =>  MCRYPT_RIJNDAEL_128,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -138,6 +138,9 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Laravel\Socialite\SocialiteServiceProvider',
+		 Laravel\Socialite\SocialiteServiceProvider::class,
+
 
 		/*
 		 * Application Service Providers...
@@ -198,6 +201,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
 

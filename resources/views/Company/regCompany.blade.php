@@ -1,5 +1,4 @@
-<br/>
-    <div class="row">
+    <div class="row form-company-row">
         <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
@@ -10,7 +9,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
@@ -21,7 +20,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="link" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.linkcompany') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('link', $company->link, ['class' => 'form-control', 'id' => 'link']) !!}
@@ -31,7 +30,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.branch') }}</label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="industry_id" name="industry_id">
@@ -48,7 +47,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="city_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.city') }}</label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="city_id" name="city_id">
@@ -63,7 +62,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }}</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
@@ -74,7 +73,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row form-company-row">
         <label for="company_email" class="col-md-3 col-sm-3 label-text-company">E-mail</label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_email', $company->company_email, ['class' => 'form-control', 'id' => 'company_email']) !!}
@@ -98,7 +97,6 @@
     <div class="row">
             <input type="hidden" name="fcoords" class="coords" id="coords" value="" data-id="{{ $company->id or ""}}">
             <input type="hidden" name="fname" value="{{ csrf_token() }}">
-
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
                 <div class="row">
                     <div class="col-sm-offset-3 col-md-9 col-sm-9">
@@ -233,17 +231,17 @@
 
     </script>
 
-{!!Html::script('js/jquery.maskedinput.min.js')!!}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".form-control").change(function () {
-//            $(window).bind('beforeunload', function () {
-//                return 'Збережіть будь ласка всі внесені нові дані!';
-//            });
-            $('#form').submit(function () {
-                $(window).unbind('beforeunload');
+    {!!Html::script('js/jquery.maskedinput.min.js')!!}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".form-control").change(function () {
+    //            $(window).bind('beforeunload', function () {
+    //                return 'Збережіть будь ласка всі внесені нові дані!';
+    //            });
+                $('#form').submit(function () {
+                    $(window).unbind('beforeunload');
+                });
             });
+            $("#phone").mask("+38(099) 999-99-99");
         });
-        $("#phone").mask("+38(099) 999-99-99");
-    });
-</script>
+    </script>
