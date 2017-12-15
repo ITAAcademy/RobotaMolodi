@@ -1,16 +1,20 @@
 <script type="text/x-template" id="option-template">
     <div>
-        <div class="form-group" v-for="opt in op">
+        <div class="form-group" v-for="(opt,j) in op">
             <label class="col-sm-4 control-label">@{{ opt.name }}</label>
-            <div class="col-sm-8">
-              <template v-for="vv in opt.values">
+            <div class="col-sm-6">
+              <template v-for="(vv,i) in opt.values">
                   <input
                     type="text"
-                    name=""
+                    :name="'vacancies[' + index + '][' + i + '][]'"
                     class="form-control"
                     v-model="vv.value">
-                    <span class="help-block">error message</span>
+                    <br>
               </template>
+            </div>
+            <div class="col-sm-2">
+                <div @click="addField(j)" style="color: #f76533; text-decoration:underline; cursor:pointer">Plus</div>
+                <div @click="removeField(j)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
             </div>
             <hr>
         </div>
@@ -34,8 +38,20 @@ window.onload = function(){
     });
 
     Vue.component('listoption', {
-      props: ['op'],
-      template: '#option-template'
+      props: ['op', 'index'],
+      template: '#option-template',
+      methods: {
+          addField: function(index){
+              this.op[index].values.push({
+                  value: '',
+                  error: null
+              });
+          },
+          removeField: function(index){
+              if(this.op[index].values.length > 1)
+                  this.op[index].values.pop();
+          }
+      }
     })
 
     var app = new Vue({
@@ -44,56 +60,7 @@ window.onload = function(){
 
       data: {
         members: JSON.parse('{!! $members->toJson() !!}'),
-        vacancies: [
-            {
-                name:  { value: 'Vacancy Name', error: null},
-                info:  { value: 'Description', error: null},
-                total: { value: 7, error: null},
-                free:  { value: 4, error: null},
-                options: [
-                    {
-                        name: 'Essential Skills',
-                        values: [
-                            {value: 'essential skills 1', error: null},
-                            {value: 'essential skills 2', error: null},
-                            {value: 'essential skills 3', error: null},
-                        ]
-                    },
-                    {
-                        name: 'Personal Skills',
-                        values: [
-                            {value: 'personal skills skills 1', error: null},
-                            {value: 'personal skills skills 2', error: null},
-                            {value: 'personal skills skills 3', error: null},
-                        ]
-                    },
-                    {
-                        name: 'Would be good plus',
-                        values: [
-                            {value: 'would be good plus 1', error: null},
-                            {value: 'would be good plus 2', error: null},
-                            {value: 'would be good plus 3', error: null},
-                        ]
-                    },
-                    {
-                        name: 'What\'s in it for you',
-                        values: [
-                            {value: 'for yous skills 1', error: null},
-                            {value: 'for yous skills 2', error: null},
-                            {value: 'pfor youls skills 3', error: null},
-                        ]
-                    },
-                    {
-                        name: 'Responsibilities',
-                        values: [
-                            {value: 'responsibilitiesls 1', error: null},
-                            {value: 'responsibilitiess 2', error: null},
-                            {value: 'responsibilitiess 3', error: null},
-                        ]
-                    },
-                ]
-            }
-        ]
+        vacancies: JSON.parse('{!! $vacancies->toJson() !!}'),
       },
 
       methods: {
@@ -117,10 +84,11 @@ window.onload = function(){
          addVacancy: function(){
               this.vacancies.push(
                   {
-                      name:  { value: '', error: null},
-                      info:  { value: '', error: null},
-                      total: { value: '', error: null},
-                      free:  { value: '', error: null},
+                      name: '',
+                      info: '',
+                      total: '',
+                      free: '',
+                      error: [],
                       options: [
                           {
                               name: 'Essential Skills',

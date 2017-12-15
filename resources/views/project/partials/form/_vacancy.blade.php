@@ -5,24 +5,24 @@
         <div class="col-sm-8">
             <input
                 type="text"
-                name=""
+                :name="'vacancies[' + index + '][name]'"
                 class="form-control"
-                v-model="vacancy.name.value">
+                v-model="vacancy.name">
         </div>
-        <span class="help-block">@{{ vacancy.name.error }}</span>
+        <span class="help-block">@{{ vacancy.error.name }}</span>
     </div>
 
-    <listoption v-bind:op="vacancy.options"></listoption>
+    <listoption v-bind:op="vacancy.options" v-bind:index="index"></listoption>
 
     <div class="form-group">
         <label class="col-sm-4 control-label">Опис вакансії</label>
         <div class="col-sm-8">
           <input
             type="text"
-            name=""
+            :name="'vacancies[' + index + '][description]'"
             class="form-control"
-            v-model="vacancy.info.value">
-            <span class="help-block">@{{ vacancy.info.error }}</span>
+            v-model="vacancy.description">
+            <span class="help-block">@{{ vacancy.error.description }}</span>
         </div>
     </div>
 
@@ -31,18 +31,18 @@
         <div class="col-sm-4">
           <input
             type="text"
-            name=""
+            :name="'vacancies[' + index + '][total]'"
             class="form-control"
-            v-model="vacancy.total.value">
-            <span class="help-block">@{{ vacancy.total.error }}</span>
+            v-model="vacancy.total">
+            <span class="help-block">@{{ vacancy.error.total }}</span>
         </div>
         <div class="col-sm-4">
           <input
             type="text"
-            name=""
+            :name="'vacancies[' + index + '][free]'"
             class="form-control"
-            v-model="vacancy.free.value">
-            <span class="help-block">@{{ vacancy.free.error }}</span>
+            v-model="vacancy.free">
+            <span class="help-block">@{{ vacancy.error.free }}</span>
         </div>
     </div>
     <br>

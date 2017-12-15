@@ -13,6 +13,8 @@ use App\Models\ProjectMember;
 use App\Models\ProjectVacancy;
 use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
+use App\Lib\Composite;
+use App\Lib\Leaf;
 
 class ProjectController extends Controller
 {
@@ -149,6 +151,20 @@ class ProjectController extends Controller
         $member = new ProjectMember();
         $data['members'] = collect([$member]);
 
+        $vacancy = new ProjectVacancy();
+        $d = [];
+        foreach ($vacancy->getGroup() as $key => $value) {
+            $g = collect([['value' => '']]);
+            if(!$vacancy->getOptions($key)->isEmpty())
+                $g = $vacancy->getOptions($key);
+            $d[] = [
+                'name' => $value,
+                'values' => $g
+            ];
+        }
+        $vacancy['options'] = $d;
+        $data['vacancies'] = collect([$vacancy]);
+        // dd($data['vacancies']->toJson());
         return view('project.create', $data);
     }
 

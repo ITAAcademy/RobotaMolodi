@@ -55,4 +55,18 @@ class ProjectVacancy extends Model
         return $this->options()->where('group_id',$type)->get();
     }
 
+
+    public function toArray()
+    {
+        if($this->getError() === null)
+            $error = [];
+        else
+            $error = $this->getError();
+
+        $instace = parent::toArray();
+        $instace['error'] = $error;
+
+        return $instace;
+    }
+
 }

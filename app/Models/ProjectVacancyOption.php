@@ -36,4 +36,19 @@ class ProjectVacancyOption extends Model
         return !$validator->fails();
     }
 
+
+    public function toArray()
+    {
+        if($this->getError() === null)
+            $error = [];
+        else
+            $error = $this->getError();
+
+        // $instace = parent::toArray();
+        $instance['value'] = $this->value;
+        $instace['error'] = $error;
+
+        return $instace;
+    }
+
 }

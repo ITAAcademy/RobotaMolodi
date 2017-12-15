@@ -23,7 +23,7 @@
                         @include('project.partials.form._description')
                         {{-- @include('project.partials.form._slider') --}}
                         @include('project.partials.form._team')
-                        {{-- @include('project.partials.form._vacancy') --}}
+                        @include('project.partials.form._vacancy')
 
                         <div class="form-group">
                             <div class="col-sm-offset-6 col-sm-6">
