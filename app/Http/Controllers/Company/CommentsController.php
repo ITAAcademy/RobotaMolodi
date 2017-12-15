@@ -102,9 +102,17 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($company_id, $comment_id, Request $request)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|min:3|max:2000',
+        ]);
+        $company = Company::find($company_id);
+        $editedComment = Comment::find($comment_id);
+        
+        $editedComment->update($request->all());
+        Session::flash('success', 'Comment was edited');
+        return redirect(route('company.response.index',['company' => $company] ));
     }
 
     /**
@@ -113,8 +121,16 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($company_id, $comment_id)
     {
-        //
+        Comment::destroy($comment_id);
+        $company = Company::find($company_id);
+        Session::flash('success', 'Comment was deleted');
+        return redirect(route('company.response.index',['company' => $company] ));
+    }
+    
+    public function getChanges($comment_id)
+    {
+        return Comment::find($comment_id);
     }
 }
