@@ -242,8 +242,21 @@ class ProjectController extends Controller
             {
                 $m->save();
             }
+        } else {
+            $data = [];
+
+            $companies = Auth::user()->companies->pluck('company_name', 'id');
+            if($companies->isEmpty())
+                return redirect()->route('company.create');
+
+            $industries = Industry::all()->pluck('name', 'id');
+            $data['industries'] = $industries;
+            $data['companies']  = $companies;
+            $data['project']    = $project;
+            $data['members']    = $members;
+
+            return view('project.create', $data);
         }
-        dd('End', $isValid);
     }
 
     /**
