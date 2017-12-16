@@ -9,17 +9,17 @@
                             <div class="col-sm-10" v-bind:class="{ hidden: vv.destroy  }">
                               <input
                                   type="text"
-                                  :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][id]'"
+                                  :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][id]'"
                                   class="hidden"
                                   v-model="vv.id">
                               <input
                                 type="text"
-                                :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][destroy]'"
+                                :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][destroy]'"
                                 class="hidden"
                                 v-model="vv.destroy">
                                 <input
                                   type="text"
-                                  :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][value]'"
+                                  :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][value]'"
                                   class="form-control"
                                   v-model="vv.value">
                                   <br>
