@@ -92,6 +92,7 @@ window.onload = function(){
          addVacancy: function(){
               this.vacancies.push(
                   {
+                      id: '',
                       name: '',
                       info: '',
                       total: '',
@@ -131,7 +132,18 @@ window.onload = function(){
                       ]
                   }
               );
-          }
+          },
+          removeVacancy: function (vacancy) {
+              if(vacancy.id == false)
+              {
+                      this.vacancies.splice(this.vacancies.indexOf(vacancy), 1)
+              } else {
+                  if(vacancy.hasOwnProperty('destroy'))
+                      vacancy.destroy = true;
+                  else
+                      Vue.set(vacancy, 'destroy', true);
+              }
+           },
       }
     })
 }

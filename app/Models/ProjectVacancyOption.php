@@ -43,12 +43,12 @@ class ProjectVacancyOption extends Model
             $error = [];
         else
             $error = $this->getError();
+        $instance = [];
 
-        // $instace = parent::toArray();
         $instance['value'] = $this->value;
-        $instace['error'] = $error;
+        $instance['error'] = $error;
 
-        return $instace;
+        return $instance;
     }
 
 }

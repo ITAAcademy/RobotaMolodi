@@ -60,13 +60,10 @@
                             </div>
                     </div>
                 </div>
+                <br>
             </div>
             <div class="col-sm-2" v-bind:class="{ hidden: member.destroy  }">
                 <div @click="removeMember(member)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
-            </div>
-            <br>
-            <div v-if="index !== members.length - 1">
-                <hr>
             </div>
         </template>
     </div>

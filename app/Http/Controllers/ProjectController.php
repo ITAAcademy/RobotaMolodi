@@ -164,7 +164,6 @@ class ProjectController extends Controller
         }
         $vacancy['options'] = $d;
         $data['vacancies'] = collect([$vacancy]);
-        // dd($data['vacancies']->toJson());
         return view('project.create', $data);
     }
 
@@ -234,19 +233,22 @@ class ProjectController extends Controller
         $data['industries'] = Industry::all()->pluck('name', 'id');
         $data['members'] = collect($project->members);
 
-        $vacancy = new ProjectVacancy();
-        $d = [];
-        foreach ($vacancy->getGroup() as $key => $value) {
-            $g = collect([['value' => '']]);
-            if(!$vacancy->getOptions($key)->isEmpty())
-                $g = $vacancy->getOptions($key);
-            $d[] = [
-                'name' => $value,
-                'values' => $g
-            ];
+        $vacancies = $project->vacancies;
+        foreach($vacancies as $vacancy)
+        {
+            $d = [];
+            foreach ($vacancy->getGroup() as $key => $value) {
+                $g = collect([['value' => '']]);
+                if(!$vacancy->getOptions($key)->isEmpty())
+                    $g = $vacancy->getOptions($key);
+                $d[] = [
+                    'name' => $value,
+                    'values' => $g
+                ];
+            }
+            $vacancy['options'] = $d;
         }
-        $vacancy['options'] = $d;
-        $data['vacancies'] = collect([$vacancy]);
+        $data['vacancies'] = $vacancies;
 
         return view('project.edit', $data);
     }
