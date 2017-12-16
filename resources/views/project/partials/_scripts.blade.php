@@ -3,18 +3,36 @@
         <div class="form-group" v-for="(opt,j) in op">
             <label class="col-sm-4 control-label">@{{ opt.name }}</label>
             <div class="col-sm-6">
-              <template v-for="(vv,i) in opt.values">
-                  <input
-                    type="text"
-                    :name="'vacancies[' + index + '][' + i + '][]'"
-                    class="form-control"
-                    v-model="vv.value">
-                    <br>
-              </template>
+                <div class="container-fluid">
+                    <div class="row">
+                        <template v-for="(vv,i) in opt.values">
+                            <div class="col-sm-10" v-bind:class="{ hidden: vv.destroy  }">
+                              <input
+                                  type="text"
+                                  :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][id]'"
+                                  class="hidden"
+                                  v-model="vv.id">
+                              <input
+                                type="text"
+                                :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][destroy]'"
+                                class="hidden"
+                                v-model="vv.destroy">
+                                <input
+                                  type="text"
+                                  :name="'vacancies[' + index + '][' + opt.groupId + '][' + i + '][value]'"
+                                  class="form-control"
+                                  v-model="vv.value">
+                                  <br>
+                            </div>
+                            <div class="col-sm-2" v-bind:class="{ hidden: vv.destroy  }">
+                                <div @click="removeField(vv, j)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
+                            </div>
+                      </template>
+                  </div>
+              </div>
             </div>
             <div class="col-sm-2">
                 <div @click="addField(j)" style="color: #f76533; text-decoration:underline; cursor:pointer">Plus</div>
-                <div @click="removeField(j)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
             </div>
             <hr>
         </div>
@@ -47,9 +65,17 @@ window.onload = function(){
                   error: null
               });
           },
-          removeField: function(index){
-              if(this.op[index].values.length > 1)
-                  this.op[index].values.pop();
+          removeField: function(option, index){
+              if(isNaN(option.id))
+              {
+                  var v = this.op[index].values;
+                  v.splice(v.indexOf(option), 1)
+              } else {
+                  if(option.hasOwnProperty('destroy'))
+                      option.destroy = true;
+                  else
+                      Vue.set(option, 'destroy', true);
+              }
           }
       }
     })
@@ -67,7 +93,6 @@ window.onload = function(){
         addMember: function () {
           this.members.push(
               {
-                  id: '',
                   name: '',
                   position: '',
                   avatarSrc: '',
@@ -79,7 +104,7 @@ window.onload = function(){
               });
           },
         removeMember: function (member) {
-            if(member.id == false)
+            if(isNaN(member.id))
             {
                     this.members.splice(this.members.indexOf(member), 1)
             } else {
@@ -92,7 +117,6 @@ window.onload = function(){
          addVacancy: function(){
               this.vacancies.push(
                   {
-                      id: '',
                       name: '',
                       info: '',
                       total: '',
@@ -101,32 +125,52 @@ window.onload = function(){
                       options: [
                           {
                               name: 'Essential Skills',
+                              groupId: 1,
                               values: [
-                                  {value: '', error: null}
+                                  {
+                                      value: 'fd',
+                                      error: null
+                                  }
                               ]
                           },
                           {
                               name: 'Personal Skills',
+                              groupId: 2,
                               values: [
-                                  {value: '', error: null}
+                                  {
+                                      value: '',
+                                      error: null
+                                  }
                               ]
                           },
                           {
                               name: 'Would be good plus',
+                              groupId: 3,
                               values: [
-                                  {value: '', error: null}
+                                  {
+                                      value: '',
+                                      error: null
+                                  }
                               ]
                           },
                           {
                               name: 'What\'s in it for you',
+                              groupId: 4,
                               values: [
-                                  {value: '', error: null}
+                                  {
+                                      value: '',
+                                      error: null
+                                  }
                               ]
                           },
                           {
                               name: 'Responsibilities',
+                              groupId: 5,
                               values: [
-                                  {value: '', error: null}
+                                  {
+                                      value: '',
+                                      error: null
+                                  }
                               ]
                           },
                       ]
@@ -134,9 +178,9 @@ window.onload = function(){
               );
           },
           removeVacancy: function (vacancy) {
-              if(vacancy.id == false)
+              if(isNaN(vacancy.id))
               {
-                      this.vacancies.splice(this.vacancies.indexOf(vacancy), 1)
+                  this.vacancies.splice(this.vacancies.indexOf(vacancy), 1)
               } else {
                   if(vacancy.hasOwnProperty('destroy'))
                       vacancy.destroy = true;

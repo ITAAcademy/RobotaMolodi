@@ -11,9 +11,9 @@ class ProjectVacancyOption extends Model
     protected $table = 'projects_vacancies_options';
     const ESSENTIALSKILLS   = 1;
     const PERSONALSKILLS    = 2;
-    const BEPLUS            = 4;
-    const FORYOU            = 5;
-    const RESPONSIBILITIES  = 6;
+    const BEPLUS            = 3;
+    const FORYOU            = 4;
+    const RESPONSIBILITIES  = 5;
 
     protected $fillable = [
         'vacancy_id',
@@ -45,6 +45,7 @@ class ProjectVacancyOption extends Model
             $error = $this->getError();
         $instance = [];
 
+        $instance['id']    = $this->id;
         $instance['value'] = $this->value;
         $instance['error'] = $error;
 

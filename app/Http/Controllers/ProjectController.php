@@ -154,12 +154,14 @@ class ProjectController extends Controller
         $vacancy = new ProjectVacancy();
         $d = [];
         foreach ($vacancy->getGroup() as $key => $value) {
-            $g = collect([['value' => '']]);
+            $opt = new ProjectVacancyOption();
+            $g = collect([$opt]);
             if(!$vacancy->getOptions($key)->isEmpty())
                 $g = $vacancy->getOptions($key);
             $d[] = [
-                'name' => $value,
-                'values' => $g
+                'groupId' => $key,
+                'name'     => $value,
+                'values'   => $g
             ];
         }
         $vacancy['options'] = $d;
@@ -174,8 +176,8 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $result = $this->validateForm($request);
         dd($request->all());
+        $result = $this->validateForm($request);
         if(!$result['isValid']){
             $data = [];
 
@@ -238,10 +240,12 @@ class ProjectController extends Controller
         {
             $d = [];
             foreach ($vacancy->getGroup() as $key => $value) {
-                $g = collect([['value' => '']]);
+                $opt = new ProjectVacancyOption();
+                $g = collect([$opt]);
                 if(!$vacancy->getOptions($key)->isEmpty())
                     $g = $vacancy->getOptions($key);
                 $d[] = [
+                    'groupId' => $key,
                     'name' => $value,
                     'values' => $g
                 ];
