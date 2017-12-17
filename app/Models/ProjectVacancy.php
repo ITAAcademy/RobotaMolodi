@@ -52,7 +52,12 @@ class ProjectVacancy extends Model
 
     public function getOptions($type)
     {
-        return $this->options()->where('group_id',$type)->get();
+        $c = $this->options()->where('group_id',$type)->get();
+        if($c->isEmpty())
+        {
+            $c = collect([new ProjectVacancyOption(['value' => ''])]);
+        }
+        return $c;
     }
 
 
