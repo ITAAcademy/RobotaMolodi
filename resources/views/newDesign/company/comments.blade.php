@@ -2,7 +2,7 @@
     <div class="scroll">
         @foreach($comments as $comment)
         <div>
-            <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:i:s', strtotime($comment->updated_at))}}</span>
+            <span>Автор: {{$comment->user->name}}</span><span class="data">, дата: {{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             <p>{{$comment->comment}}</p>
         </div>
         <hr>
