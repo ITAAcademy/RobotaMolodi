@@ -5,7 +5,7 @@
             <div class="col-sm-6">
                 <div class="container-fluid">
                     <div class="row">
-                        <template v-for="(vv,i) in opt.values">
+                        <template v-for="(vv,i) in opt.subList.values">
                             <div class="col-sm-10" v-bind:class="{ hidden: vv.destroy  }">
                               <input
                                   type="text"
@@ -60,7 +60,7 @@ window.onload = function(){
       template: '#option-template',
       methods: {
           addField: function(index){
-              this.op[index].values.push({
+              this.op[index].subList.values.push({
                   value: '',
                   error: null
               });
@@ -68,7 +68,7 @@ window.onload = function(){
           removeField: function(option, index){
               if(isNaN(option.id))
               {
-                  var v = this.op[index].values;
+                  var v = this.op[index].subList.values;
                   v.splice(v.indexOf(option), 1)
               } else {
                   if(option.hasOwnProperty('destroy'))
@@ -85,8 +85,8 @@ window.onload = function(){
       el: '#app',
 
       data: {
-        members: JSON.parse('{!! $members->toJson() !!}'),
-        vacancies: JSON.parse('{!! $vacancies->toJson() !!}'),
+        members: JSON.parse('{!! json_encode($root["subList"]["members"]) !!}'),
+        vacancies: JSON.parse('{!! json_encode($root["subList"]["vacancies"]) !!}'),
       },
 
       methods: {
@@ -122,58 +122,55 @@ window.onload = function(){
                       total: '',
                       free: '',
                       error: [],
-                      options: [
-                          {
-                              name: 'Essential Skills',
-                              groupId: 1,
-                              values: [
-                                  {
-                                      value: 'fd',
-                                      error: null
-                                  }
-                              ]
-                          },
-                          {
-                              name: 'Personal Skills',
-                              groupId: 2,
-                              values: [
-                                  {
-                                      value: '',
-                                      error: null
-                                  }
-                              ]
-                          },
-                          {
-                              name: 'Would be good plus',
-                              groupId: 3,
-                              values: [
-                                  {
-                                      value: '',
-                                      error: null
-                                  }
-                              ]
-                          },
-                          {
-                              name: 'What\'s in it for you',
-                              groupId: 4,
-                              values: [
-                                  {
-                                      value: '',
-                                      error: null
-                                  }
-                              ]
-                          },
-                          {
-                              name: 'Responsibilities',
-                              groupId: 5,
-                              values: [
-                                  {
-                                      value: '',
-                                      error: null
-                                  }
-                              ]
-                          },
-                      ]
+                      subList: {
+                          options: [
+                              {
+                                  name: 'Essential Skills',
+                                  groupId: 1,
+                                  subList: {
+                                      values: [
+                                              { value: '', error: null }
+                                          ]
+                                    }
+                              },
+                              {
+                                  name: 'Personal Skills',
+                                  groupId: 2,
+                                  subList: {
+                                      values: [
+                                              { value: '', error: null }
+                                          ]
+                                    }
+                              },
+                              {
+                                  name: 'Would be good plus',
+                                  groupId: 3,
+                                  subList: {
+                                      values: [
+                                              { value: '', error: null }
+                                          ]
+                                    }
+                              },
+                              {
+                                  name: 'What\'s in it for you',
+                                  groupId: 4,
+                                  subList: {
+                                      values: [
+                                              { value: '', error: null }
+                                          ]
+                                    }
+                              },
+                              {
+                                  name: 'Responsibilities',
+                                  groupId: 5,
+                                  subList: {
+                                      values: [
+                                              { value: '', error: null }
+                                          ]
+                                    }
+                              },
+                          ]
+                      }
                   }
               );
           },

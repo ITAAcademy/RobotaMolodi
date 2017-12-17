@@ -13,7 +13,7 @@ use App\Models\ProjectMember;
 use App\Models\ProjectVacancy;
 use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
-use App\Lib\Composite;
+use App\Lib\CompositeProject;
 use App\Lib\Leaf;
 
 class ProjectController extends Controller
@@ -24,21 +24,69 @@ class ProjectController extends Controller
         $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
     }
 
-    private function validateForm(Request $request)
+    private function buildEmptyComposite()
     {
-        $data = [];
-        $isValid = true;
-        $project = new Project($request->all());
-        $isValid = $project->validate();
-        $data['project'] = $project;
-        $memberController = new ProjectMemberController();
-        $members = $memberController->makeMembers($request['members']);
-        $isValid = $isValid && $memberController->isValid();
+        $project = new Project();
 
-        $data['members'] = $members;
-        $data['isValid'] = $isValid;
+        $root    = new CompositeProject($project);
+        $members = collect();
+        $member = new ProjectMember();
+        $leaf   = new Leaf($member);
+        $members->push($leaf);
 
-        return $data;
+        $vacancies = collect();
+        $vacancy = new ProjectVacancy();
+        $vacancyRoot = new CompositeProject($vacancy);
+        $colectOptions = collect();
+            foreach($vacancy->getGroup() as $key => $value){
+                $c = new CompositeProject([
+                    'groupId' => $key,
+                    'name'    => $value
+                ]);
+                $option = new ProjectVacancyOption(['value' => '']);
+                $c->add('values', collect([new Leaf($option)]));
+                $colectOptions->push($c);
+            }
+        $vacancyRoot->add('options', $colectOptions);
+        $vacancies->push($vacancyRoot);
+
+        $root->add('members', $members);
+        $root->add('vacancies', $vacancies);
+        return $root;
+    }
+    private function buildEmptyCompositeID($project)
+    {
+        $root    = new CompositeProject($project);
+        $membersRaw = $project->members;
+        $members = collect();
+        foreach($membersRaw as $m)
+            $members->push(new Leaf($m));
+
+        $vacanciesRaw = $project->vacancies;
+        $vacancies = collect();
+        foreach($vacanciesRaw as $vacancy){
+            $vacancyRoot = new CompositeProject($vacancy);
+            $colectOptions = collect();
+            foreach($vacancy->getGroup() as $key => $value){
+                $c = new CompositeProject([
+                    'groupId' => $key,
+                    'name'    => $value
+                ]);
+                $o = collect();
+                $optionsRaw = $vacancy->getOptions($key);
+                foreach($optionsRaw as $opt){
+                    $o->push(new Leaf($opt));
+                }
+                $c->add('values', $o);
+                $colectOptions->push($c);
+            }
+            $vacancyRoot->add('options', $colectOptions);
+            $vacancies->push($vacancyRoot);
+        }
+
+        $root->add('members', $members);
+        $root->add('vacancies', $vacancies);
+        return $root;
     }
 
     private function projectsPath()
@@ -148,24 +196,8 @@ class ProjectController extends Controller
         $industries = Industry::all()->pluck('name', 'id');
         $data['industries'] = $industries;
 
-        $member = new ProjectMember();
-        $data['members'] = collect([$member]);
+        $data['root'] = $this->buildEmptyComposite()->toArray();
 
-        $vacancy = new ProjectVacancy();
-        $d = [];
-        foreach ($vacancy->getGroup() as $key => $value) {
-            $opt = new ProjectVacancyOption();
-            $g = collect([$opt]);
-            if(!$vacancy->getOptions($key)->isEmpty())
-                $g = $vacancy->getOptions($key);
-            $d[] = [
-                'groupId' => $key,
-                'name'     => $value,
-                'values'   => $g
-            ];
-        }
-        $vacancy['options'] = $d;
-        $data['vacancies'] = collect([$vacancy]);
         return view('project.create', $data);
     }
 
@@ -177,7 +209,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         dd($request->all());
-        $result = $this->validateForm($request);
         if(!$result['isValid']){
             $data = [];
 
@@ -233,26 +264,8 @@ class ProjectController extends Controller
             ->pluck('company_name', 'id');
         $data['project']    = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
-        $data['members'] = collect($project->members);
-
-        $vacancies = $project->vacancies;
-        foreach($vacancies as $vacancy)
-        {
-            $d = [];
-            foreach ($vacancy->getGroup() as $key => $value) {
-                $opt = new ProjectVacancyOption();
-                $g = collect([$opt]);
-                if(!$vacancy->getOptions($key)->isEmpty())
-                    $g = $vacancy->getOptions($key);
-                $d[] = [
-                    'groupId' => $key,
-                    'name' => $value,
-                    'values' => $g
-                ];
-            }
-            $vacancy['options'] = $d;
-        }
-        $data['vacancies'] = $vacancies;
+        $root = $this->buildEmptyCompositeID($project);
+        $data['root'] = $root->toArray();
 
         return view('project.edit', $data);
     }

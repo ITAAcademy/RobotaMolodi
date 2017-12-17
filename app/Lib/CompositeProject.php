@@ -46,7 +46,6 @@ class CompositeProject implements IComposite
             $t = [];
             foreach($values as $k=>$v)
             {
-                dump($v);
                 $t[$k] = $v->toArray();
             }
             $a['subList'][$key] = $t;

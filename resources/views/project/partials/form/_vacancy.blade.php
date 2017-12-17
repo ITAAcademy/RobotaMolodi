@@ -25,7 +25,7 @@
                     <span class="help-block">@{{ vacancy.error.name }}</span>
                 </div>
 
-                <listoption v-bind:op="vacancy.options" v-bind:index="index"></listoption>
+                <listoption v-bind:op="vacancy.subList.options" v-bind:index="index"></listoption>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Опис вакансії</label>
