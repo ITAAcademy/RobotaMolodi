@@ -130,6 +130,7 @@ Route::get('company/{company}/formSendResumeCompany', ['as'=>'scompany.company_f
 //Route::post('company/{company}/showComment',['as'=>'scompany.company', 'uses'=>'Company\CommentsController@showComments']);
 //Route::post('company/{company}/comments',['as'=>'scompany.company_allComments', 'uses'=>'Company\CommentsController@store']);
 Route::resource('company.response','Company\CommentsController');
+Route::get('comment/{id}', 'Company\CommentsController@getEditedComment');
 //Route::get('scompany/company_vac/vacancy/{id}',['as'=>'vacancy.show', 'uses' => 'Vacancy\VacancyController@show']);
 
 $router->resource('company','Company\CompanyController');
