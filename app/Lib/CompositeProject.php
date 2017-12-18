@@ -22,11 +22,15 @@ class CompositeProject implements IComposite
     }
     public function isValid()
     {
-
-    }
-    public function getJson()
-    {
-
+        $isValid = true;
+        $isValid = $this->el->validate() && $isValid;
+        foreach($this->subList as $key => $values){
+            foreach($values as $k=>$v)
+            {
+                $isValid = $v->isValid() && $isValid;
+            }
+        }
+        return $isValid;
     }
 
     public function toArray()

@@ -20,12 +20,9 @@ class Leaf implements IComposite
     }
     public function isValid()
     {
-
+        return $this->el->validate();
     }
-    public function getJson()
-    {
 
-    }
     public function toArray()
     {
         $a = null;

@@ -7,5 +7,5 @@ interface IComposite
     public function add($key, $el);
     public function save();
     public function isValid();
-    public function getJson();
+
 }
