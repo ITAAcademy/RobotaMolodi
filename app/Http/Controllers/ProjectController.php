@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\ProjectMember;
 use App\Models\ProjectVacancy;
+use App\Models\ProjectVacancyGroup;
 use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
 use App\Lib\CompositeProject;
@@ -39,10 +40,10 @@ class ProjectController extends Controller
         $vacancyRoot = new CompositeProject($vacancy);
         $colectOptions = collect();
             foreach($vacancy->getGroup() as $key => $value){
-                $c = new CompositeProject([
+                $c = new CompositeProject(new ProjectVacancyGroup([
                     'groupId' => $key,
                     'name'    => $value
-                ]);
+                ]));
                 $option = new ProjectVacancyOption(['value' => '']);
                 $c->add('values', collect([new Leaf($option)]));
                 $colectOptions->push($c);
@@ -68,10 +69,10 @@ class ProjectController extends Controller
             $vacancyRoot = new CompositeProject($vacancy);
             $colectOptions = collect();
             foreach($vacancy->getGroup() as $key => $value){
-                $c = new CompositeProject([
+                $c = new CompositeProject(new ProjectVacancyGroup([
                     'groupId' => $key,
                     'name'    => $value
-                ]);
+                ]));
                 $o = collect();
                 $optionsRaw = $vacancy->getOptions($key);
                 foreach($optionsRaw as $opt){
@@ -227,10 +228,10 @@ class ProjectController extends Controller
 
             foreach($vacancyHash['options'] as $key => $optionsHash)
             {
-                $c = new CompositeProject([
+                $c = new CompositeProject(new ProjectVacancyGroup([
                     'groupId' => $key,
                     'name'    => $vacancy->getGroup($key)
-                ]);
+                ]));
                 $o = collect();
                 foreach($optionsHash as $optHash){
                     $o->push(new Leaf(new ProjectVacancyOption($optHash)));
@@ -245,7 +246,10 @@ class ProjectController extends Controller
         $root->add('members', $members);
         $root->add('vacancies', $vacancies);
 
+        $root->isValid();
+        dd($root->toArray());
         if(!$root->isValid()) {
+            dd($root);
             $data = [];
             $data['companies']  = Auth::user()
                 ->companies

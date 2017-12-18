@@ -20,14 +20,6 @@ class Project extends Model
         'full_desc',  'brief_desc',
         'company_id', 'industry_id'
     ];
-    /**
-    * The attributes that should be casted to native types.
-    *
-    * @var array
-    */
-   protected $casts = [
-       'slides' => 'array',
-   ];
 
     /**
     * The value is containes validation's rules.
@@ -74,6 +66,19 @@ class Project extends Model
     public function vacancies()
     {
         return $this->hasMany('App\Models\ProjectVacancy','project_id');
+    }
+
+    public function toArray()
+    {
+        if($this->getError() === null)
+            $error = [];
+        else
+            $error = $this->getError()->toArray();
+
+        $instace = parent::toArray();
+        $instace['error'] = $error;
+
+        return $instace;
     }
 
 }
