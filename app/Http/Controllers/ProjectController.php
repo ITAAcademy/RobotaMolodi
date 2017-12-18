@@ -208,35 +208,54 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        if(!$result['isValid']){
+        $project = new Project($request->all());
+        $root    = new CompositeProject($project);
+
+        $members = collect();
+        $membersHash = $request['members'];
+        foreach($membersHash as $memberHash){
+            $m = new ProjectMember($memberHash);
+            $members->push(new Leaf($m));
+        }
+
+        $vacancies = collect();
+        $vacanciesHash = $request['vacancies'];
+        foreach($vacanciesHash as $vacancyHash){
+            $vacancy = new ProjectVacancy($vacancyHash);
+            $vacancyRoot = new CompositeProject($vacancy);
+            $colectOptions = collect();
+
+            foreach($vacancyHash['options'] as $key => $optionsHash)
+            {
+                $c = new CompositeProject([
+                    'groupId' => $key,
+                    'name'    => $vacancy->getGroup($key)
+                ]);
+                $o = collect();
+                foreach($optionsHash as $optHash){
+                    $o->push(new Leaf(new ProjectVacancyOption($optHash)));
+                }
+                $c->add('values', $o);
+                $colectOptions->push($c);
+            }
+            $vacancyRoot->add('options', $colectOptions);
+            $vacancies->push($vacancyRoot);
+        }
+
+        $root->add('members', $members);
+        $root->add('vacancies', $vacancies);
+
+        if(!$root->isValid()) {
             $data = [];
-
-            $companies = Auth::user()->companies->pluck('company_name', 'id');
-            if($companies->isEmpty())
-                return redirect()->route('company.create');
-
-            $industries = Industry::all()->pluck('name', 'id');
-            $data['industries'] = $industries;
-            $data['companies']  = $companies;
-            $data['project']    = $result['project'];
-            $data['members']    = $result['members'];
-
+            $data['companies']  = Auth::user()
+                ->companies
+                ->pluck('company_name', 'id');
+            $data['project']    = $project;
+            $data['industries'] = Industry::all()->pluck('name', 'id');
+            $data['root'] = $root->toArray();
             return view('project.create', $data);
         }
-        // dd('Validation was successfull',$request->all());
-        $project = $result['project'];
-        $project->save();
-
-        // if($request->hasFile('logo')) {
-        //     $image = $request->file('logo');
-        //     $project->logo = UploadFile::saveImage($image, $this->projectsPath().$project->id."/");
-        //     $project->save();
-        // }
-
-        $this->saveMembers($project->id, $result['members']);
-        // $this->saveVacancies($project->id, $request['vacancies']);
-
+        dd('Your input is valid');
     }
 
     /**
@@ -278,6 +297,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        dd($request->all());
         $isValid = true;
         $project->fill($request->all());
         $isValid = $isValid && $project->validate();

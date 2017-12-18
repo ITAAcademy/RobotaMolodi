@@ -85,8 +85,8 @@ window.onload = function(){
       el: '#app',
 
       data: {
-        members: JSON.parse('{!! json_encode($root["subList"]["members"]) !!}'),
-        vacancies: JSON.parse('{!! json_encode($root["subList"]["vacancies"]) !!}'),
+        members: JSON.parse('{!! json_encode($root["subList"]["members"], JSON_HEX_APOS | JSON_HEX_QUOT) !!}'),
+        vacancies: JSON.parse('{!! json_encode($root["subList"]["vacancies"], JSON_HEX_APOS | JSON_HEX_QUOT) !!}'),
       },
 
       methods: {

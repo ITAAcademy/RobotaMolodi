@@ -39,15 +39,19 @@ class ProjectVacancy extends Model
         return !$validator->fails();
     }
 
-    public function getGroup()
+    public function getGroup($key = null)
     {
-        return [
+        $data = [
             ProjectVacancyOption::ESSENTIALSKILLS => 'Essential skills',
             ProjectVacancyOption::PERSONALSKILLS => 'Personal skills',
             ProjectVacancyOption::BEPLUS => 'Would be a good plus',
             ProjectVacancyOption::FORYOU => 'What’s in it for you',
             ProjectVacancyOption::RESPONSIBILITIES => 'Responsibilities',
         ];
+        if(is_null($key))
+            return $data;
+        else
+            return $data[$key];
     }
 
     public function getOptions($type)
