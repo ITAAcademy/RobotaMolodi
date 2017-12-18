@@ -33,12 +33,6 @@ class ProjectVacancy extends Model
         return $this->hasMany('App\Models\ProjectVacancyOption','vacancy_id');
     }
 
-    public function isValid()
-    {
-        $validator = Validator::make($this->toArray(), $this->rules);
-        return !$validator->fails();
-    }
-
     public function getGroup($key = null)
     {
         $data = [
@@ -64,13 +58,12 @@ class ProjectVacancy extends Model
         return $c;
     }
 
-
     public function toArray()
     {
         if($this->getError() === null)
             $error = [];
         else
-            $error = $this->getError();
+            $error = $this->getError()->toArray();
 
         $instace = parent::toArray();
         $instace['error'] = $error;

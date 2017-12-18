@@ -10,7 +10,7 @@ class ProjectVacancyGroup
     {
         $this->data = $data;
     }
-    public function isValid()
+    public function validate()
     {
         return true;
     }

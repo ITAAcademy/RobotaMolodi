@@ -246,10 +246,7 @@ class ProjectController extends Controller
         $root->add('members', $members);
         $root->add('vacancies', $vacancies);
 
-        $root->isValid();
-        dd($root->toArray());
         if(!$root->isValid()) {
-            dd($root);
             $data = [];
             $data['companies']  = Auth::user()
                 ->companies

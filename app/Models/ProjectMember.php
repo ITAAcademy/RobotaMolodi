@@ -30,7 +30,7 @@ class ProjectMember extends Model
         if($this->getError() === null)
             $error = [];
         else
-            $error = $this->getError();
+            $error = $this->getError()->toArray();
 
         $instace = parent::toArray();
         $instace['error'] = $error;

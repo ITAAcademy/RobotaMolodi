@@ -42,7 +42,7 @@ class ProjectVacancyOption extends Model
         if($this->getError() === null)
             $error = [];
         else
-            $error = $this->getError();
+            $error = $this->getError()->toArray();
         $instance = [];
 
         $instance['id']    = $this->id;
