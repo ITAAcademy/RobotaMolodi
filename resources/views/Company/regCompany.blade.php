@@ -98,31 +98,28 @@
             <input type="hidden" name="fcoords" class="coords" id="coords" value="" data-id="{{ $company->id or ""}}">
             <input type="hidden" name="fname" value="{{ csrf_token() }}">
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
-                <div class="row">
-                    <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                        {!! Form::file('loadCompany', array(
-                        'id'=>'loadCompany',
-                        'class' => 'imgInp',
-                        'style'=>'display:none',
-                        'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
-                        )!!}
-                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
-                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', array(
-                                    'id' => 'companyLogo',
-                                    'class' => 'blah img-responsive',
-                                    'style' => 'padding-bottom: 15px')
-                             ) !!}
-                        @else
-                            {!! Html::image('image/company_tmp.png', 'logo', array(
+                <div class="col-sm-offset-3 col-md-6 col-sm-6" style="padding: 15px; max-width: 100vh">
+                    {!! Form::file('loadCompany', array(
+                    'id'=>'loadCompany',
+                    'class' => 'imgInp',
+                    'style'=>'display:none',
+                    'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
+                    )!!}
+                    @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
+                        {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', array(
                                 'id' => 'companyLogo',
                                 'class' => 'blah img-responsive',
                                 'style' => 'padding-bottom: 15px')
-                              ) !!}
-                        @endif
-                        <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
-                    </div>
+                         ) !!}
+                    @else
+                        {!! Html::image('image/company_tmp.png', 'logo', array(
+                            'id' => 'companyLogo',
+                            'class' => 'blah img-responsive',
+                            'style' => 'padding-bottom: 15px')
+                          ) !!}
+                    @endif
+                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
                 </div>
-
                 <div class="col-sm-offset-3 col-md-9 col-sm-9">
                     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
                 </div>
