@@ -38,4 +38,12 @@ class ProjectMember extends Model
         return $instace;
     }
 
+    public function setCompositeKey($rooId)
+    {
+        if(!is_null($rooId))
+        {
+            $this->project_id = $rooId;
+        }
+    }
+
 }

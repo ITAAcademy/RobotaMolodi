@@ -14,9 +14,10 @@ class Leaf implements IComposite
     {
         return null;
     }
-    public function save()
+    public function save($rootId = null)
     {
-
+        $this->el->setCompositeKey($rootId);
+        $this->el->save();
     }
     public function isValid()
     {

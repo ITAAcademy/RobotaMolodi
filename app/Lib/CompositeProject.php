@@ -16,9 +16,20 @@ class CompositeProject implements IComposite
     {
         $this->subList[$key] = $el;
     }
-    public function save()
+    public function save($rootId = null)
     {
+        $this->el->setCompositeKey($rootId);
+        $this->el->save();
 
+        foreach($this->subList as $key => $values){
+            foreach($values as $k=>$v)
+            {
+                if(isset($this->el->id))
+                    $v->save($this->el->id);
+                else
+                    $v->save($rootId);
+            }
+        }
     }
     public function isValid()
     {

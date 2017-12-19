@@ -10,6 +10,11 @@ class ProjectVacancyGroup
     {
         $this->data = $data;
     }
+
+    public function save()
+    {
+        
+    }
     public function validate()
     {
         return true;
@@ -17,5 +22,10 @@ class ProjectVacancyGroup
     public function toArray()
     {
         return $this->data;
+    }
+
+    public function setCompositeKey($rootId)
+    {
+        return true;
     }
 }

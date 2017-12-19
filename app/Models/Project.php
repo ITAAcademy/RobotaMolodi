@@ -81,4 +81,9 @@ class Project extends Model
         return $instace;
     }
 
+    public function setCompositeKey($rootId)
+    {
+        return true;
+    }
+
 }

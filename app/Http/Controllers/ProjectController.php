@@ -234,7 +234,9 @@ class ProjectController extends Controller
                 ]));
                 $o = collect();
                 foreach($optionsHash as $optHash){
-                    $o->push(new Leaf(new ProjectVacancyOption($optHash)));
+                    $pvo = new ProjectVacancyOption($optHash);
+                    $pvo->group_id = $key;
+                    $o->push(new Leaf($pvo));
                 }
                 $c->add('values', $o);
                 $colectOptions->push($c);
@@ -256,7 +258,8 @@ class ProjectController extends Controller
             $data['root'] = $root->toArray();
             return view('project.create', $data);
         }
-        dd('Your input is valid');
+        $root->save();
+        dd($root);
     }
 
     /**

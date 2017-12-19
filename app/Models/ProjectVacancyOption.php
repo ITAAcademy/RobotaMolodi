@@ -52,4 +52,12 @@ class ProjectVacancyOption extends Model
         return $instance;
     }
 
+    public function setCompositeKey($rooId)
+    {
+        if(!is_null($rooId))
+        {
+            $this->vacancy_id = $rooId;
+        }
+    }
+
 }
