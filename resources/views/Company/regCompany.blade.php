@@ -100,7 +100,12 @@
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
                 <div class="row">
                     <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                        {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+                        {!! Form::file('loadCompany', array(
+                        'id'=>'loadCompany',
+                        'class' => 'imgInp',
+                        'style'=>'display:none',
+                        'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
+                        )!!}
                         @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
                             {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', array(
                                     'id' => 'companyLogo',
