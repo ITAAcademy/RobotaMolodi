@@ -17,7 +17,7 @@
             <ul class="our-vacancies__skills">
                 @foreach($vacancy->getGroup() as $k => $group)
                     <li class="our-vacancies__skills-items">
-                        <div class="skills__items-title">Essential skills:</div>
+                        <div class="skills__items-title">{{ $group }}:</div>
                         <ul class="skills__items-list">
                             @foreach($vacancy->getOptions($k) as $s)
                                 <li class="skills__items-skill">{{ $s->value }}</li>

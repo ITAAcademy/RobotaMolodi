@@ -16,7 +16,7 @@
   @include('project.partials._navbar')
   @include('project.partials._vacancies')
   @include('project.partials._project')
-  {{--  @include('project.partials._our-vacancies') --}}
+  @include('project.partials._our-vacancies')
   @include('project.partials._vacancies-contacts')
 
   {!!Html::script('js/vacancies.js')!!}

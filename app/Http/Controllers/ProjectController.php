@@ -231,40 +231,114 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        dd($request->all());
-        $isValid = true;
+        $queryDelete = collect();
         $project->fill($request->all());
-        $isValid = $isValid && $project->validate();
+        $root    = new CompositeProject($project);
+        $members = collect();
+        $membersHash = $request['members'];
 
-        $memberController = new ProjectMemberController();
-        $members = $memberController->fillMembers($request['members'], $project->id);
-        $isValid = $isValid && $memberController->isValid();
-
-        if($isValid)
-        {
-            foreach ($memberController->remoteMember as $remoteMember) {
-                $remoteMember->delete();
-            }
-            $project->save();
-            foreach($members as $m)
+        foreach($membersHash as $memberHash){
+            $m = null;
+            if(is_numeric($memberHash['id']))
             {
-                $m->save();
+                $m = ProjectMember::find($memberHash['id']);
+                if($m)
+                {
+                    if($m->project_id == $project->id)
+                    {
+                        if($memberHash['destroy'] == true)
+                        {
+                            $queryDelete->push($m);
+                            continue;
+                        }
+                        $m->fill($memberHash);
+                    }
+                }
+            } else {
+                $m = new ProjectMember($memberHash);
             }
-        } else {
+            $members->push(new Leaf($m));
+        }
+
+        $vacancies = collect();
+        $vacanciesHash = $request['vacancies'];
+        foreach($vacanciesHash as $vacancyHash){
+            $vacancy = null;
+            if(is_numeric($vacancyHash['id']))
+            {
+                $vacancy = ProjectVacancy::find($vacancyHash['id']);
+                if($vacancy)
+                {
+                    if($vacancy->project_id == $project->id)
+                    {
+                        if($vacancyHash['destroy'] == true)
+                        {
+                            $queryDelete->push($vacancy);
+                            continue;
+                        }
+                        $vacancy->fill($vacancyHash);
+                    }
+                }
+            } else {
+                $vacancy = new ProjectVacancy($vacancyHash);
+            }
+
+            $vacancyRoot = new CompositeProject($vacancy);
+            $colectOptions = collect();
+
+            foreach($vacancyHash['options'] as $key => $optionsHash)
+            {
+                $c = new CompositeProject(new ProjectVacancyGroup([
+                    'groupId' => $key,
+                    'name'    => $vacancy->getGroup($key)
+                ]));
+                $o = collect();
+                foreach($optionsHash as $optHash){
+                    $pvo = null;
+                    if(is_numeric($optHash['id']))
+                    {
+                        $pvo = ProjectVacancyOption::find($optHash['id']);
+                        if($pvo)
+                        {
+                            if($pvo->vacancy_id == $vacancy->id)
+                            {
+                                if($optHash['destroy'] == true)
+                                {
+                                    $queryDelete->push($pvo);
+                                    continue;
+                                }
+                                $pvo->fill($optHash);
+                            }
+                        }
+                    } else {
+                        $pvo = new ProjectVacancyOption($optHash);
+                    }
+                    $pvo->group_id = $key;
+                    $o->push(new Leaf($pvo));
+                }
+                $c->add('values', $o);
+                $colectOptions->push($c);
+            }
+            $vacancyRoot->add('options', $colectOptions);
+            $vacancies->push($vacancyRoot);
+        }
+
+        $root->add('members', $members);
+        $root->add('vacancies', $vacancies);
+        if(!$root->isValid()) {
             $data = [];
-
-            $companies = Auth::user()->companies->pluck('company_name', 'id');
-            if($companies->isEmpty())
-                return redirect()->route('company.create');
-
-            $industries = Industry::all()->pluck('name', 'id');
-            $data['industries'] = $industries;
-            $data['companies']  = $companies;
+            $data['companies']  = Auth::user()
+                ->companies
+                ->pluck('company_name', 'id');
             $data['project']    = $project;
-            $data['members']    = $members;
-
+            $data['industries'] = Industry::all()->pluck('name', 'id');
+            $data['root'] = $root->toArray();
             return view('project.create', $data);
         }
+        $root->save();
+        $queryDelete->each(function($item, $key){
+            $item->delete();
+        });
     }
 
     /**
