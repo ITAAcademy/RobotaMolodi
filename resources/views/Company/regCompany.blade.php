@@ -102,9 +102,17 @@
                     <div class="col-sm-offset-3 col-md-9 col-sm-9">
                         {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
                         @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
-                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'companyLogo', 'class' => 'img-responsive']) !!}
+                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', array(
+                                    'id' => 'companyLogo',
+                                    'class' => 'blah img-responsive',
+                                    'style' => 'padding-bottom: 15px')
+                             ) !!}
                         @else
-                            {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'companyLogo', 'class' => 'img-responsive')) !!}
+                            {!! Html::image('image/company_tmp.png', 'logo', array(
+                                'id' => 'companyLogo',
+                                'class' => 'blah img-responsive',
+                                'style' => 'padding-bottom: 15px')
+                              ) !!}
                         @endif
                         <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
                     </div>
