@@ -121,6 +121,8 @@
 
             {!!Html::script('js/crop.js')!!}
 
+            <script src="https://ajax.gvoogleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
             <script>
                 $(document).ready(function () {
                     function readURL(input) {
