@@ -1,2 +1,2 @@
 <link href="{{ asset('/css/scrollup.css') }}" rel="stylesheet">
-<a class="scrollup"></a>
+<button class="scrollup btn btn-link"></button>
