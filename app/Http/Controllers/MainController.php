@@ -61,7 +61,7 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $vacancies = \App\Filter::vacancies($request)->paginate();
+        $vacancies = \App\Filter::vacancies($request)->where('published', 1)->paginate();
         \App\Filter::routeFilterPaginator($request, $vacancies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
