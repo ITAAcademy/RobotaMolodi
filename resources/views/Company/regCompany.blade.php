@@ -1,37 +1,56 @@
     <div class="row form-company-row">
-        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }}</label>
+        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.namecompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('company_name')}}
+                @endif
+            </span>
         </div>
     </div>
-
     <div class="row form-company-row">
-        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }}</label>
+        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.shortnamecompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('short_name')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row form-company-row">
-        <label for="link" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.linkcompany') }}</label>
+        <label for="link" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.linkcompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('link', $company->link, ['class' => 'form-control', 'id' => 'link']) !!}
         </div>
         <div class="err-info">
-            <span class="err-message left">@if(isset($errors) && !empty($errors->first('link'))){{$errors->first('link')}}@endif</span>
+            <span class="err-message left">
+                @if(isset($errors) && !empty($errors->first('link')))
+                    {{$errors->first('link')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row form-company-row">
-        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.branch') }}</label>
+        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.branch') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="industry_id" name="industry_id">
                 @foreach($industries as $industry)
@@ -63,13 +82,19 @@
     </div>
 
     <div class="row form-company-row">
-        <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }}</label>
+        <label for="phone" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('main.phone') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('phone')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('phone')}}
+                @endif
+            </span>
         </div>
     </div>
 
@@ -80,18 +105,28 @@
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('company_email')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row">
-        <label for="description" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.description') }}</label>
+        <label for="description" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('main.description') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('description')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('description')}}
+                @endif
+            </span>
         </div>
     </div>
     <div class="row">
@@ -111,7 +146,9 @@
                 </div>
 
                 <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
+                    <div class=" col-md-4 col-sm-4">
+                        {!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}
+                    </div>
                 </div>
             </div>
 
