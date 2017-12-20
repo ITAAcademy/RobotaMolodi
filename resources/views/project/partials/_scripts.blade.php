@@ -22,6 +22,7 @@
                                   :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][value]'"
                                   class="form-control"
                                   v-model="vv.value">
+                                  <div class="alert alert-danger" role="alert" v-for="k in vv.error"> @{{ k }} </div>
                                   <br>
                             </div>
                             <div class="col-sm-2" v-bind:class="{ hidden: vv.destroy  }">

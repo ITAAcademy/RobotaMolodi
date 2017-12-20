@@ -333,7 +333,7 @@ class ProjectController extends Controller
             $data['project']    = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
-            return view('project.create', $data);
+            return view('project.edit', $data);
         }
         $root->save();
         $queryDelete->each(function($item, $key){
