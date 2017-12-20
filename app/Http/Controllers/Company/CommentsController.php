@@ -19,7 +19,7 @@ class CommentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Response | string
      */
     public function index($company, Request $request)
     {
@@ -102,9 +102,16 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $company_id, $comment_id)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|min:3|max:2000',
+        ]);
+        $company = Company::find($company_id);
+        $comments = Comment::where('company_id', $company_id);
+        $updatedComment = Comment::find($comment_id);
+        $updatedComment->update($request->all());
+        return redirect(route('company.response.index',['comments' => $comments, 'company' => $company]));
     }
 
     /**
@@ -113,8 +120,19 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($company_id, $comment_id)
     {
-        //
+        $company = Company::find($company_id);
+        Comment::destroy($comment_id);
+        $comments = Comment::where('company_id', $company_id);
+        return redirect(route('company.response.index',['comments' => $comments, 'company' => $company]));
+    }
+    
+    /**
+     * @param int $comment_id
+     * @return mixed
+     */
+    public function getEditedComment($comment_id) {
+        return Comment::find($comment_id);
     }
 }
