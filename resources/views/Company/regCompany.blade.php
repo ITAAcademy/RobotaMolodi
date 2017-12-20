@@ -100,25 +100,24 @@
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
                 <div class="col-sm-offset-3 col-md-6 col-sm-6" style="padding: 15px; max-width: 100vh">
                     {!! Form::file('loadCompany', array(
-                    'id'=>'loadCompany',
-                    'class' => 'imgInp',
-                    'style'=>'display:none',
-                    'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
+                        'id'=>'loadCompany',
+                        'class' => 'input-image',
+                        'style'=>'display:none',
+                        'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
                     )!!}
-                    @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
-                        {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', array(
-                                'id' => 'companyLogo',
-                                'class' => 'blah img-responsive',
-                                'style' => 'padding-bottom: 15px')
-                         ) !!}
-                    @else
-                        {!! Html::image('image/company_tmp.png', 'logo', array(
+                    {!! Html::image((File::exists(public_path($company->getImagePath())) and $company->image != '') ?
+                            'image/company/' . $company->users_id .'/'. $company->image
+                            :
+                            'image/company_tmp.png',
+                        'logo',
+                        array(
                             'id' => 'companyLogo',
-                            'class' => 'blah img-responsive',
-                            'style' => 'padding-bottom: 15px')
-                          ) !!}
-                    @endif
-                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
+                            'class' => 'upload-image img-responsive'
+                        )
+                     ) !!}
+                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">
+                        {{ trans('form.changefoto') }}
+                    </button>
                 </div>
                 <div class="col-sm-offset-3 col-md-9 col-sm-9">
                     <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
@@ -131,8 +130,6 @@
 
             {!!Html::script('js/crop.js')!!}
 
-            <script src="https://ajax.gvoogleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
             <script>
                 $(document).ready(function () {
                     function readURL(input) {
@@ -140,13 +137,13 @@
                             var reader = new FileReader();
 
                             reader.onload = function(e) {
-                                $('.blah').attr('src', e.target.result);
+                                $('.upload-image').attr('src', e.target.result);
                             };
 
                             reader.readAsDataURL(input.files[0]);
                         }
                     }
-                    $(".imgInp").change(function() {
+                    $(".input-image").change(function() {
                         readURL(this);
                     });
                     $('#loadCompany').on('change', function(e) {
