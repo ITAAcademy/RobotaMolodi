@@ -153,7 +153,7 @@
             .find('.updateDate-cabinet');
 
         e.preventDefault();
-        console.log(dateElement);
+
         $.ajax({
             url: href,
             method: 'post',
