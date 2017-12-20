@@ -6,6 +6,7 @@ use App\Models\News;
 use App\Models\Vacancy;
 use App\Models\Industry;
 use Illuminate\Auth\Guard;
+use App\Filter;
 use App\Http\Requests;
 use Input;
 use Session;
@@ -61,8 +62,8 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $vacancies = \App\Filter::vacancies($request)->where('published', 1)->paginate();
-        \App\Filter::routeFilterPaginator($request, $vacancies);
+        $vacancies = Filter::vacancies($request)->where('published', 1)->paginate();
+        Filter::routeFilterPaginator($request, $vacancies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
