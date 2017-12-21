@@ -314,10 +314,11 @@
     </script>
 
     <script>
+        /**
+         * @return {boolean}
+         */
         function ConfirmDelete() {
-            var conf = confirm("Ви дійсно хочете видалити компанію?");
-            if(conf) return true;
-            else return false;
+            return confirm("Ви дійсно хочете видалити компанію?");
         }
     </script>
 

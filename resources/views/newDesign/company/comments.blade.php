@@ -115,13 +115,6 @@
         })
     });
 
-    /**
-     * @return {boolean}
-     */
-    function ConfirmDelete() {
-        return confirm("Ви дійсно хочете видалити компанію?");
-    }
-
     function checkComment() {
         var commit = $('.form-control').val();
 
