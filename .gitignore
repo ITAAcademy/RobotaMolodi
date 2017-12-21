@@ -13,3 +13,5 @@ Vagrantfile
 /public/image/vacancy/aaa.jpeg
 /.idea/*
 /public/image/uploads/*
+/public/image/company/*
+/package-lock.json
