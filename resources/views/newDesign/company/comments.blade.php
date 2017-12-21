@@ -5,9 +5,9 @@
     <div id="load" style="position: relative;"></div>
     {!!   $comments->render() !!}
 </div>
-<div class="col-xs-12">
+<div>
     {!!Form::open(['route' => ['company.response.store',$company->id]], ['id' => 'make']) !!}
-    {!!Form::label('comment', 'Добавити відгук:',['class' => 'url-text-vac'] )!!}
+    {!!Form::label('comment', 'Добавити відгук:',['class' => 'url-text-vac add-comment-lable'] )!!}
     {!!Form::textarea('comment', null, ['class' => 'form-control', 'placeholder'=>'Відгук про компанію'])!!}
     <div align="right">
         {!!Form::submit('Відправити', ['class' => 'btn-commit btn', 'disabled'=>'disabled'])!!}

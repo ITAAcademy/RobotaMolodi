@@ -186,9 +186,7 @@
                             <p>На даний момент немає активних вакансій</p>
                         @endif
                     </div>
-
                 </div>
-
             <hr/>
 
             <div class="col-xs-12 configButton">
@@ -204,10 +202,10 @@
         </div>
     </div>
 
-    <div class="downlist"></div>
+    <div class="downlist col-xs-10 col-xs-offset-2"></div>
 
     @foreach($comments as $comment)
-        <div id="comment-block-{{$comment->id}}" class="col-xs-12 col-xs-offset-2" style="padding: 10px;">
+        <div id="comment-block-{{$comment->id}}" class="col-xs-10 col-xs-offset-2">
             <span>Автор: {{$comment->user->name}}</span>
             <span>, дата:
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
@@ -259,7 +257,6 @@
             </div>
         </div>
     @endforeach
-
 
     {!!Html::script('js/socialNetWork.js')!!}
 
