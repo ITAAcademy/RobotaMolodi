@@ -85,28 +85,17 @@
                     <div class="col-xs-3 text_com">
                         <span>Аббревиатура: </span>
                     </div>
-                    @if(!empty($company->short_name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->short_name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{ !empty($company->short_name) ? $company->short_name : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('form.branch') }}: </span>
                     </div>
-                    @if(!empty($industry->name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$industry->name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($industry->name) ? $industry->name : "Не вказано"}}</span>
+                    </div>
+
 
                     <div class="col-xs-3 text_com">
                         <span>Посилання: </span>
@@ -124,54 +113,38 @@
                     <div class="col-xs-3 text_com">
                         <span>Мiсто: </span>
                     </div>
-                    @if(!empty($city->name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$city->name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($city->name) ? $city->name : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('form.email') }}: </span>
                     </div>
-                    @if(!empty($company->company_email))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->company_email}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($company->company_email) ? $company->company_email : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('main.phone') }}</span>
                     </div>
-                    @if(!empty($company->phone))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->phone}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($company->phone) ? $company->phone : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-12 textCompany verticalIndent">
                         <span class="anagraph verticalIndent">Подробиці </span>
                     </div>
-                    @if(!empty($company->description))
-                        <div class="col-xs-12 description">
-                           <span>{!! strip_tags($company->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-12 text_com">
-                            <span>Детальна інформація про компанію відсутня.</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-12 description">
+                       <span>
+                           {!! !empty($company->description) ?
+                            strip_tags(
+                                $company->description,
+                                '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>'
+                            ) :
+                           "Детальна інформація про компанію відсутня." !!}
+                       </span>
+                    </div>
+                    
                     <div class="col-xs-12 textCompany verticalIndent">
                         <span class="anagraph verticalIndent">Вакансії </span>
                         @if(!empty($vacancies[0]))
