@@ -4,11 +4,20 @@
     opacity:0.5;
     position:fixed;
     bottom:70%;
-    right:7%;
+    right:1%;
     display:none;
     z-index:99999999;
     /*text-indent:-9999px;*/
     background: url('/image/arrow-up64.png') no-repeat;
+    border: 0;
+}
+
+.scrollup:hover,
+.scrollup:focus,
+.scrollup:active{
+    opacity:0.8;
+    text-decoration: none;
+    outline: none !important;
 }
 
 @media (min-width: 360px) and (max-width: 720px){
