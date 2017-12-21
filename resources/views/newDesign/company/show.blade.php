@@ -144,7 +144,7 @@
                            "Детальна інформація про компанію відсутня." !!}
                        </span>
                     </div>
-                    
+
                     <div class="col-xs-12 textCompany verticalIndent">
                         <span class="anagraph verticalIndent">Вакансії </span>
                         @if(!empty($vacancies[0]))
@@ -183,8 +183,8 @@
             <span>, дата:
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
-            <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-            <div id="edit-comment">
+            <p id="comment-{{$commeid}}-description">{{$comment->comment}}</p>
+            <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
                         'company.response.update',
@@ -205,13 +205,11 @@
                 {!!Form::submit('Edit',
                     [
                         'id' => 'btn-edit-submit'.$comment->id,
-                        'class' => 'btn-edit-submit btn btn-xs btn-info pull-left',
+                        'class' => 'btn-edit-submit btn btn-xs btn-success pull-left',
                         'style' => 'display:none'
                     ])
                 !!}
                 {!!Form::close()!!}
-            </div>
-            <div id="delete-comment">
                 {!!Form::model($comment,
                     ['route' => [
                         'company.response.destroy',
