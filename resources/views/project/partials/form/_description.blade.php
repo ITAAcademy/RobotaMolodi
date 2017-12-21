@@ -28,8 +28,7 @@
 <div class="form-group">
     {!! Form::label('', trans('project.logo'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-3">
-        {!! Form::file('logo', ['id' => 'logoProject', 'class' => 'hidden', 'accept' => 'image/*']) !!}
-        <a class="btn btn-default btn-load-img" href="javascript:$('#logoProject').click()">З диску</a>
+        {!! Form::file('logo', ['id' => 'logoProject', 'class' => '', 'accept' => 'image/*']) !!}
     </div>
     <div class="col-sm-5">
         <img id="prevLogo" src="{{ $project['logo'] or '#' }}" alt="Project Logo" />

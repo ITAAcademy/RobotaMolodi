@@ -139,13 +139,28 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $querySavingPhoto = collect();
         $project = new Project($request->all());
+        if($request['logo'])
+        $querySavingPhoto->push([
+            'model' => $project,
+            'photo' => $request['logo'],
+            'field' => 'logo',
+            'subPath' => ''
+        ]);
         $root    = new CompositeProject($project);
 
         $members = collect();
         $membersHash = $request['members'];
         foreach($membersHash as $memberHash){
             $m = new ProjectMember($memberHash);
+            if($memberHash['avatar'])
+                $querySavingPhoto->push([
+                    'model' => $m,
+                    'photo' => $memberHash['avatar'],
+                    'field' => 'avatar',
+                    'subPath' => 'team'
+                ]);
             $members->push(new Leaf($m));
         }
 
@@ -177,7 +192,6 @@ class ProjectController extends Controller
 
         $root->add('members', $members);
         $root->add('vacancies', $vacancies);
-
         if(!$root->isValid()) {
             $data = [];
             $data['companies']  = Auth::user()
@@ -189,7 +203,21 @@ class ProjectController extends Controller
             return view('project.create', $data);
         }
         $root->save();
-        dd($root);
+        foreach($querySavingPhoto as $item){
+            $model   = $item['model'];
+            $photo   = $item['photo'];
+            $field   = $item['field'];
+            $subPath = $item['subPath'];
+            $validator = Validator::make($item, [
+                'photo' => 'required|image',
+            ]);
+            if(!$validator->fails()){
+                $path = $this->projectsPath().$project->id."/".$subPath."/";
+                $model[$field] = UploadFile::saveImage($photo, $path);
+                $model->save();
+            }
+        }
+        return redirect()->route('project.show', $project->id);
     }
 
     /**
@@ -339,6 +367,7 @@ class ProjectController extends Controller
         $queryDelete->each(function($item, $key){
             $item->delete();
         });
+        return redirect()->route('project.show', $project->id);
     }
 
     /**
