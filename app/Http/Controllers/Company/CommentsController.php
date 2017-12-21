@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Company;
 
 use App\Models\Company;
 use App\Models\Comment;
+use App\Models\Industry;
+use App\Models\City;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -100,18 +103,28 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
      */
     public function update(Request $request, $company_id, $comment_id)
     {
         $this->validate($request, [
             'comment' => 'required|min:3|max:2000',
         ]);
-        $company = Company::find($company_id);
-        $comments = Comment::where('company_id', $company_id);
+        
         $updatedComment = Comment::find($comment_id);
         $updatedComment->update($request->all());
-        return redirect(route('company.response.index',['comments' => $comments, 'company' => $company]));
+        
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+        
+        return view('newDesign.company.show')
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
 
     /**
