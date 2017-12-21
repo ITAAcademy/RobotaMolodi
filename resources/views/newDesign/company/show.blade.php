@@ -183,7 +183,7 @@
             <span>, дата:
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
-            <p id="comment-{{$commeid}}-description">{{$comment->comment}}</p>
+            <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
             <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
@@ -201,12 +201,11 @@
                         'style' => 'height: 100px; display:none'
                     ])
                 !!}
-                {!!Form::button('Edit', ['value' => $comment->id, 'class' => 'btn-edit btn-xs btn btn-primary pull-left'])!!}
-                {!!Form::submit('Edit',
+                {!!Form::button('Edit',
                     [
+                        'value' => $comment->id,
                         'id' => 'btn-edit-submit'.$comment->id,
-                        'class' => 'btn-edit-submit btn btn-xs btn-success pull-left',
-                        'style' => 'display:none'
+                        'class' => 'btn-edit-submit btn btn-xs btn-primary pull-left'
                     ])
                 !!}
                 {!!Form::close()!!}
@@ -243,6 +242,16 @@
 
     <script>
     $(document).ready(function () {
+        $("button.btn-edit-submit").on('click', function () {
+            id = $(this).val();
+            $("#comment-" + id + "-description").hide();
+            $(this).removeClass('btn-primary').addClass('btn-success');
+            attributes = $(this).attr("class");
+            buttonName = $(this).text();
+            $("#comment" + id).show();
+            $(this).replaceWith("<input class='" + attributes + "' type='submit' value='" + buttonName +"'></input>");
+        });
+
         $('#changeImage').on('click', function () {
             $('#fileImg').click();
         });

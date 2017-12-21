@@ -36,13 +36,6 @@
             checkComment();
         });
 
-        $("button.btn-edit").on('click', function () {
-            $(this).hide();
-            id = $(this).val();
-            $("#btn-edit-submit" + id).show();
-            $("#comment" + id).show();
-        });
-
         $(document).on('submit', 'form', function (event) {
             $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
             //window.history.pushState("", "", url);
