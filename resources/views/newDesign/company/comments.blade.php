@@ -1,58 +1,6 @@
 <div class="test">
     <div class="scroll">
-        @foreach($comments as $comment)
-            <div id="comment-block-{{$comment->id}}" class="col-xs-12" style="padding: 10px;">
-                <span>Автор: {{$comment->user->name}}</span>
-                <span>, дата:
-                <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
-            </span>
-                <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-                <div id="edit-comment">
-                    {!!Form::model($comment,
-                        ['route' => [
-                            'company.response.update',
-                            $company->id,
-                            $comment->id
-                            ],
-                        'method'=>'PUT'])
-                    !!}
-                    {!!Form::textarea( 'comment', $comment->comment,
-                        [
-                            'id' => 'comment'.$comment->id,
-                            'value' => $comment->id,
-                            'class' => 'textarea-edit form-control',
-                            'style' => 'height: 100px; display:none'
-                        ])
-                    !!}
-                    {!!Form::button('Edit', ['value' => $comment->id, 'class' => 'btn-edit btn btn-primary pull-left'])!!}
-                    {!!Form::submit('Edit',
-                        [
-                            'id' => 'btn-edit-submit'.$comment->id,
-                            'class' => 'btn-edit-submit btn btn-info pull-left',
-                            'style' => 'display:none'
-                        ])
-                    !!}
-                    {!!Form::close()!!}
-                </div>
-                <div id="delete-comment">
-                    {!!Form::model($comment,
-                        ['route' => [
-                            'company.response.destroy',
-                            $company->id,
-                            $comment->id,
-                            ],
-                        'method'=>'DELETE'])
-                    !!}
-                    {!!Form::submit('Delete',
-                        [
-                            'id' => $comment->id,
-                            'class' => 'btn-delete btn btn-danger pull-left '.$comment->id
-                        ])
-                    !!}
-                    {!!Form::close()!!}
-                </div>
-            </div>
-        @endforeach
+
     </div>
     <div id="load" style="position: relative;"></div>
     {!!   $comments->render() !!}

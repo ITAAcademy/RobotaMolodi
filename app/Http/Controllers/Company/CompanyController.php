@@ -133,12 +133,15 @@ class CompanyController extends Controller  {
         $industry = Industry::find($company->industry_id);
         $city = City::find($company->city_id);
         $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+        
 
         return view('newDesign.company.show')
             ->with('company', $company)
             ->with('industry', $industry)
             ->with('city', $city)
-            ->with('vacancies', $vacancies);
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
 
 	public function edit($id){
