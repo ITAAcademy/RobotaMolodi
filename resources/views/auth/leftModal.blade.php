@@ -87,7 +87,8 @@
             <span class="glyphicon glyphicon-phone-alt icon-left-modal" aria-hidden="true"></span> +38-0432<strong> 52-82-67</strong>
         </div>
         <div>
-            <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span> <span>robotamolodi@gmail.com</span>
+            <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span>
+            <span><a href="mailto: robotamolodi@gmail.com">robotamolodi@gmail.com</a></span>
         </div>
 
         <hr class="modal-hr col-xs-10">
