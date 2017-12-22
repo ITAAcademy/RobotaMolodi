@@ -15,6 +15,7 @@ use App\Models\ProjectVacancyGroup;
 use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
 use App\Lib\CompositeProject;
+use App\Lib\BuilderCompositeProject;
 use App\Lib\Leaf;
 
 class ProjectController extends Controller
@@ -23,71 +24,6 @@ class ProjectController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
-    }
-
-    private function buildEmptyComposite()
-    {
-        $project = new Project();
-
-        $root    = new CompositeProject($project);
-        $members = collect();
-        $member = new ProjectMember();
-        $leaf   = new Leaf($member);
-        $members->push($leaf);
-
-        $vacancies = collect();
-        $vacancy = new ProjectVacancy();
-        $vacancyRoot = new CompositeProject($vacancy);
-        $colectOptions = collect();
-            foreach($vacancy->getGroup() as $key => $value){
-                $c = new CompositeProject(new ProjectVacancyGroup([
-                    'groupId' => $key,
-                    'name'    => $value
-                ]));
-                $option = new ProjectVacancyOption(['value' => '']);
-                $c->add('values', collect([new Leaf($option)]));
-                $colectOptions->push($c);
-            }
-        $vacancyRoot->add('options', $colectOptions);
-        $vacancies->push($vacancyRoot);
-
-        $root->add('members', $members);
-        $root->add('vacancies', $vacancies);
-        return $root;
-    }
-    private function buildCompositeID($project)
-    {
-        $root    = new CompositeProject($project);
-        $membersRaw = $project->members;
-        $members = collect();
-        foreach($membersRaw as $m)
-            $members->push(new Leaf($m));
-
-        $vacanciesRaw = $project->vacancies;
-        $vacancies = collect();
-        foreach($vacanciesRaw as $vacancy){
-            $vacancyRoot = new CompositeProject($vacancy);
-            $colectOptions = collect();
-            foreach($vacancy->getGroup() as $key => $value){
-                $c = new CompositeProject(new ProjectVacancyGroup([
-                    'groupId' => $key,
-                    'name'    => $value
-                ]));
-                $o = collect();
-                $optionsRaw = $vacancy->getOptions($key);
-                foreach($optionsRaw as $opt){
-                    $o->push(new Leaf($opt));
-                }
-                $c->add('values', $o);
-                $colectOptions->push($c);
-            }
-            $vacancyRoot->add('options', $colectOptions);
-            $vacancies->push($vacancyRoot);
-        }
-
-        $root->add('members', $members);
-        $root->add('vacancies', $vacancies);
-        return $root;
     }
 
     private function projectsPath()
@@ -126,8 +62,9 @@ class ProjectController extends Controller
 
         $industries = Industry::all()->pluck('name', 'id');
         $data['industries'] = $industries;
-
-        $data['root'] = $this->buildEmptyComposite()->toArray();
+        $builder = new BuilderCompositeProject();
+        $root = $builder->buildEmpty();
+        $data['root'] = $root->toArray();
 
         return view('project.create', $data);
     }
@@ -139,59 +76,9 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $querySavingPhoto = collect();
-        $project = new Project($request->all());
-        if($request['logo'])
-        $querySavingPhoto->push([
-            'model' => $project,
-            'photo' => $request['logo'],
-            'field' => 'logo',
-            'subPath' => ''
-        ]);
-        $root    = new CompositeProject($project);
-
-        $members = collect();
-        $membersHash = $request['members'];
-        foreach($membersHash as $memberHash){
-            $m = new ProjectMember($memberHash);
-            if($memberHash['avatar'])
-                $querySavingPhoto->push([
-                    'model' => $m,
-                    'photo' => $memberHash['avatar'],
-                    'field' => 'avatar',
-                    'subPath' => 'team'
-                ]);
-            $members->push(new Leaf($m));
-        }
-
-        $vacancies = collect();
-        $vacanciesHash = $request['vacancies'];
-        foreach($vacanciesHash as $vacancyHash){
-            $vacancy = new ProjectVacancy($vacancyHash);
-            $vacancyRoot = new CompositeProject($vacancy);
-            $colectOptions = collect();
-
-            foreach($vacancyHash['options'] as $key => $optionsHash)
-            {
-                $c = new CompositeProject(new ProjectVacancyGroup([
-                    'groupId' => $key,
-                    'name'    => $vacancy->getGroup($key)
-                ]));
-                $o = collect();
-                foreach($optionsHash as $optHash){
-                    $pvo = new ProjectVacancyOption($optHash);
-                    $pvo->group_id = $key;
-                    $o->push(new Leaf($pvo));
-                }
-                $c->add('values', $o);
-                $colectOptions->push($c);
-            }
-            $vacancyRoot->add('options', $colectOptions);
-            $vacancies->push($vacancyRoot);
-        }
-
-        $root->add('members', $members);
-        $root->add('vacancies', $vacancies);
+        $builder = new BuilderCompositeProject();
+        $root = $builder->buildStore($request);
+        $project = $root->getRoot();
         if(!$root->isValid()) {
             $data = [];
             $data['companies']  = Auth::user()
@@ -203,20 +90,7 @@ class ProjectController extends Controller
             return view('project.create', $data);
         }
         $root->save();
-        foreach($querySavingPhoto as $item){
-            $model   = $item['model'];
-            $photo   = $item['photo'];
-            $field   = $item['field'];
-            $subPath = $item['subPath'];
-            $validator = Validator::make($item, [
-                'photo' => 'required|image',
-            ]);
-            if(!$validator->fails()){
-                $path = $this->projectsPath().$project->id."/".$subPath."/";
-                $model[$field] = UploadFile::saveImage($photo, $path);
-                $model->save();
-            }
-        }
+
         return redirect()->route('project.show', $project->id);
     }
 
@@ -245,7 +119,8 @@ class ProjectController extends Controller
             ->pluck('company_name', 'id');
         $data['project']    = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
-        $root = $this->buildCompositeID($project);
+        $builder = new BuilderCompositeProject();
+        $root = $builder->buildSpecific($project);
         $data['root'] = $root->toArray();
 
         return view('project.edit', $data);
@@ -259,100 +134,9 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $queryDelete = collect();
-        $project->fill($request->all());
-        $root    = new CompositeProject($project);
-        $members = collect();
-        $membersHash = $request['members'];
+        $builder = new BuilderCompositeProject();
+        $root = $builder->buildUpdate($request, $project);
 
-        foreach($membersHash as $memberHash){
-            $m = null;
-            if(is_numeric($memberHash['id']))
-            {
-                $m = ProjectMember::find($memberHash['id']);
-                if($m)
-                {
-                    if($m->project_id == $project->id)
-                    {
-                        if($memberHash['destroy'] == true)
-                        {
-                            $queryDelete->push($m);
-                            continue;
-                        }
-                        $m->fill($memberHash);
-                    }
-                }
-            } else {
-                $m = new ProjectMember($memberHash);
-            }
-            $members->push(new Leaf($m));
-        }
-
-        $vacancies = collect();
-        $vacanciesHash = $request['vacancies'];
-        foreach($vacanciesHash as $vacancyHash){
-            $vacancy = null;
-            if(is_numeric($vacancyHash['id']))
-            {
-                $vacancy = ProjectVacancy::find($vacancyHash['id']);
-                if($vacancy)
-                {
-                    if($vacancy->project_id == $project->id)
-                    {
-                        if($vacancyHash['destroy'] == true)
-                        {
-                            $queryDelete->push($vacancy);
-                            continue;
-                        }
-                        $vacancy->fill($vacancyHash);
-                    }
-                }
-            } else {
-                $vacancy = new ProjectVacancy($vacancyHash);
-            }
-
-            $vacancyRoot = new CompositeProject($vacancy);
-            $colectOptions = collect();
-
-            foreach($vacancyHash['options'] as $key => $optionsHash)
-            {
-                $c = new CompositeProject(new ProjectVacancyGroup([
-                    'groupId' => $key,
-                    'name'    => $vacancy->getGroup($key)
-                ]));
-                $o = collect();
-                foreach($optionsHash as $optHash){
-                    $pvo = null;
-                    if(is_numeric($optHash['id']))
-                    {
-                        $pvo = ProjectVacancyOption::find($optHash['id']);
-                        if($pvo)
-                        {
-                            if($pvo->vacancy_id == $vacancy->id)
-                            {
-                                if($optHash['destroy'] == true)
-                                {
-                                    $queryDelete->push($pvo);
-                                    continue;
-                                }
-                                $pvo->fill($optHash);
-                            }
-                        }
-                    } else {
-                        $pvo = new ProjectVacancyOption($optHash);
-                    }
-                    $pvo->group_id = $key;
-                    $o->push(new Leaf($pvo));
-                }
-                $c->add('values', $o);
-                $colectOptions->push($c);
-            }
-            $vacancyRoot->add('options', $colectOptions);
-            $vacancies->push($vacancyRoot);
-        }
-
-        $root->add('members', $members);
-        $root->add('vacancies', $vacancies);
         if(!$root->isValid()) {
             $data = [];
             $data['companies']  = Auth::user()
@@ -364,9 +148,7 @@ class ProjectController extends Controller
             return view('project.edit', $data);
         }
         $root->save();
-        $queryDelete->each(function($item, $key){
-            $item->delete();
-        });
+
         return redirect()->route('project.show', $project->id);
     }
 
