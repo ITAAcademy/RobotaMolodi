@@ -82,6 +82,7 @@ class VacancyController extends Controller
                 $city = new City();
                 $cities = $city->getCities();
 
+
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
                 $position = Input::get('position_',0);
                 $positions = Vacancy::groupBy('position')->lists('position');
@@ -260,6 +261,8 @@ class VacancyController extends Controller
 
             $userEmail = $vacancy->user_email;
 
+            $positions = Vacancy::groupBy('position')->lists('position');
+
             if (User::find(Company::find(Vacancy::find($vacancy->id)->company_id)->users_id)->id == Auth::id())
                 return view('vacancy.edit')
                     ->with('vacancy', $vacancy)
@@ -269,6 +272,7 @@ class VacancyController extends Controller
                     ->with('userEmail', $userEmail)
                     ->with('currencies', $currencies)
                     ->with('publishedOptions', $this->publishedOptions)
+                    ->with('positions', $positions)
                     ->with('vacancy_City', $vacancy_City);
             else
               return abort(403);

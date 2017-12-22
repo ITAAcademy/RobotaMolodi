@@ -99,8 +99,12 @@
 
     $('.update-date-cab-vac').click(function (e) {
         var href = $(this).attr('href');
-        var dateElement = $('.updateDate-cabinet-vac');
+        var dateElement = $(this)
+            .parents('.one-for-cabinet')
+            .find('.updateDate-cabinet-vac');
+
         e.preventDefault();
+
         $.ajax({
             url: href,
             method: 'post',
