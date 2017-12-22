@@ -45,10 +45,10 @@ class ResponseController extends Controller
         $this->validate($request,[
             'resumeId' => 'required'
         ]);
-
         $user = User::find($auth->user()->getAuthIdentifier());
         $resume = Resume::find($id);
-        Mail::send('emails.companyResume', ['user' => $user, 'resume' => $resume], function ($message) use($id){
+        $company = Company::find($id);
+        Mail::send('emails.companyResume', ['user' => $user, 'resume' => $resume, 'company'=>$company], function ($message) use($id){
             $company = Company::find($id);
             $user = User::find($company->users_id);
             $to = $user->email;
