@@ -148,8 +148,12 @@
 
     $('.update-date-cab-res').click(function (e) {
         var href = $(this).attr('href');
-        var dateElement = $('.updateDate-cabinet');
+        var dateElement = $(this)
+            .parents('.one-for-cabinet')
+            .find('.updateDate-cabinet');
+
         e.preventDefault();
+
         $.ajax({
             url: href,
             method: 'post',

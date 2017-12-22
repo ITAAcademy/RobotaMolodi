@@ -1,37 +1,56 @@
     <div class="row form-company-row">
-        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.namecompany') }}</label>
+        <label for="company_name" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.namecompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('company_name', $company->company_name, ['class' => 'form-control', 'id' => 'company_name']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('company_name')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('company_name')}}
+                @endif
+            </span>
         </div>
     </div>
-
     <div class="row form-company-row">
-        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.shortnamecompany') }}</label>
+        <label for="short_name" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.shortnamecompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('short_name', $company->short_name, ['class' => 'form-control', 'id' => 'short_name']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('short_name')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('short_name')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row form-company-row">
-        <label for="link" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.linkcompany') }}</label>
+        <label for="link" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.linkcompany') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('link', $company->link, ['class' => 'form-control', 'id' => 'link']) !!}
         </div>
         <div class="err-info">
-            <span class="err-message left">@if(isset($errors) && !empty($errors->first('link'))){{$errors->first('link')}}@endif</span>
+            <span class="err-message left">
+                @if(isset($errors) && !empty($errors->first('link')))
+                    {{$errors->first('link')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row form-company-row">
-        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">{{ trans('form.branch') }}</label>
+        <label for="industry_id" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('form.branch') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             <select class="inputPlace2" id="industry_id" name="industry_id">
                 @foreach($industries as $industry)
@@ -63,13 +82,19 @@
     </div>
 
     <div class="row form-company-row">
-        <label for="phone" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.phone') }}</label>
+        <label for="phone" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('main.phone') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::text('phone', $company->phone, ['class' => 'form-control', 'id' => 'phone']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('phone')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('phone')}}
+                @endif
+            </span>
         </div>
     </div>
 
@@ -80,38 +105,59 @@
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('company_email')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('company_email')}}
+                @endif
+            </span>
         </div>
     </div>
 
     <div class="row">
-        <label for="description" class="col-md-3 col-sm-3 label-text-company">{{ trans('main.description') }}</label>
+        <label for="description" class="col-md-3 col-sm-3 label-text-company">
+            {{ trans('main.description') }}
+        </label>
         <div class="col-md-6 col-sm-6">
             {!! Form::textarea('description', $company->description, ['class' => 'form-control','id' => 'description']) !!}
         </div>
         <div class="err-info">
             <span class="red-star"> * </span>
-            <span class="err-message">@if(isset($errors)){{$errors->first('description')}}@endif</span>
+            <span class="err-message">
+                @if(isset($errors))
+                    {{$errors->first('description')}}
+                @endif
+            </span>
         </div>
     </div>
     <div class="row">
             <input type="hidden" name="fcoords" class="coords" id="coords" value="" data-id="{{ $company->id or ""}}">
             <input type="hidden" name="fname" value="{{ csrf_token() }}">
             <div class="form-group {{$errors-> has('loadCompany') ? 'has-error' : ''}}">
-                <div class="row">
-                    <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                        {!! Form::file('loadCompany', array( 'id'=>'loadCompany', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
-                        @if(File::exists(public_path('image/company/' . $company->users_id .'/'. $company->image)) and $company->image != '')
-                            {!! Html::image('image/company/' . $company->users_id .'/'. $company->image, 'logo', ['id' => 'companyLogo', 'class' => 'img-responsive']) !!}
-                        @else
-                            {!! Html::image('image/company_tmp.png', 'logo', array('id' => 'companyLogo', 'class' => 'img-responsive')) !!}
-                        @endif
-                        <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">{{ trans('form.changefoto') }}</button>
-                    </div>
+                <div class="col-sm-offset-3 col-md-6 col-sm-6" style="padding: 15px; max-width: 100vh">
+                    {!! Form::file('loadCompany', array(
+                        'id'=>'loadCompany',
+                        'class' => 'input-image',
+                        'style'=>'display:none',
+                        'accept'=>'.jpg, .jpeg, .gif, .png, .svg')
+                    )!!}
+                    {!! Html::image((File::exists(public_path($company->getImagePath())) and $company->image != '') ?
+                            'image/company/' . $company->users_id .'/'. $company->image
+                            :
+                            'image/company_tmp.png',
+                        'logo',
+                        array(
+                            'id' => 'companyLogo',
+                            'class' => 'upload-image img-responsive'
+                        )
+                     ) !!}
+                    <button type="button" onclick="document.getElementById('loadCompany').click()" onchange="">
+                        {{ trans('form.changefoto') }}
+                    </button>
                 </div>
-
                 <div class="col-sm-offset-3 col-md-9 col-sm-9">
-                    <div class=" col-md-4 col-sm-4">{!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}</div>
+                    <div class=" col-md-4 col-sm-4">
+                        {!! $errors->first('loadCompany', '<span class="help-block">:message</span>') !!}
+                    </div>
                 </div>
             </div>
 
@@ -123,6 +169,20 @@
 
             <script>
                 $(document).ready(function () {
+                    function readURL(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                $('.upload-image').attr('src', e.target.result);
+                            };
+
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+                    $(".input-image").change(function() {
+                        readURL(this);
+                    });
                     $('#loadCompany').on('change', function(e) {
                         $('#imageBox').modal({
                             show: true,

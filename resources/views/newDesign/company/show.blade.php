@@ -74,7 +74,7 @@
                 <div class="row textCompany">
 
                     <div class="col-xs-12 text_com">
-                        <div class="ratings">
+                        <div class="ratings"> 
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}

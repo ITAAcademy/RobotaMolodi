@@ -49,10 +49,21 @@
                     <div class="modal-social-icon">
                         <p>{{ trans('auth.or') }}</p>
                         <div>{{ trans('auth.osignup') }}</div>
+                        <a href="/login/twitter">
                         <i class="fa-soc fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+                        </a>
+                        <a href="/login/google">
                         <i class="fa-soc fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
+                        </a>
+                        <a href="/login/github">
+                            <i class="fa-soc fa fa-github-square fa-3x" aria-hidden="true"></i>
+                        </a>
+                        <a href="redirect">
                         <i class="fa-soc fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                        </a>
+                        <a href="/login/linkedin">
                         <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                        </a>
                         <a href="auth/intita"><span class="logoINTITA"></span></a>
                     </div>
                 </div>

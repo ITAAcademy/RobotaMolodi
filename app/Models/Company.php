@@ -84,9 +84,14 @@ class Company extends Eloquent {
 
     }
 
-    public function Many()
+    public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'users_id');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project','company_id');
     }
 
     public function createCompany($array)                                                                               //создание компании
@@ -221,5 +226,9 @@ class Company extends Eloquent {
     }
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
+    }
+    
+    public function getImagePath(){
+        return 'image/company/' . $this->users_id . '/' . $this->image;
     }
 }

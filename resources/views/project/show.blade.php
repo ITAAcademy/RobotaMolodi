@@ -11,13 +11,13 @@
   <link href="{{ asset('/css/test/vacancies-contacts.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-  @include('project._breadcrumb')
-  @include('project._slider')
-  @include('project._navbar')
-  @include('project._vacancies')
-  @include('project._project')
-  @include('project._our-vacancies')
-  @include('project._vacancies-contacts')
+  @include('project.partials._breadcrumb')
+  @include('project.partials._slider')
+  @include('project.partials._navbar')
+  @include('project.partials._vacancies')
+  @include('project.partials._project')
+  @include('project.partials._our-vacancies')
+  @include('project.partials._vacancies-contacts')
 
   {!!Html::script('js/vacancies.js')!!}
 @endsection

@@ -34,7 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $hidden = ['password', 'remember_token'];
 
-    private function hasCompany()
+    public function companies()
     {
         return $this->hasMany('App\Models\Company','users_id');
     }
@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function hasAnyCompany()
     {
-        $hasAnyCompany = User::hasCompany();
+        $hasAnyCompany = User::companies();
 
         return $hasAnyCompany;
     }
@@ -80,7 +80,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     public function GetCompanies()
     {
-        $userCompanies = User::HasCompany()->latest('updated_at');
+        $userCompanies = User::companies()->latest('updated_at');
 
         return $userCompanies;
     }
