@@ -54,7 +54,9 @@
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf082;</i></a>
                     <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/company/{{$company->id}}&text=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf081;</i></a>
                     <a href="http://vk.com/share.php?url=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
-                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank">
+                        <i class="fa fa-google-plus-square"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,7 +64,11 @@
         <div class="col-md-10 contentConpany">
 
                 <div class="panelHeadings">
-                    <div class="textCompany"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                    <div class="textCompany">
+                        <a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">
+                            {{$company->company_name}}
+                        </a>
+                    </div>
                 </div>
 
                 <div class="row textCompany">
@@ -72,11 +78,15 @@
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
-                                <span class="findLike" id="{{route('com.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
+                                <span class="findLike" id="{{route('com.rate', $company->id)}}_1">
+                                    {{$company->rated()->getLikes($company)}}
+                                </span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
-                                <span class="findDislike" id="{{route('com.rate', $company->id)}}_-1">{{$company->rated()->getDisLikes($company)}}</span>
+                                <span class="findDislike" id="{{route('com.rate', $company->id)}}_-1">
+                                    {{$company->rated()->getDisLikes($company)}}
+                                </span>
                             </span>
                             <span class="likeError"></span>
                         </div>
@@ -85,28 +95,17 @@
                     <div class="col-xs-3 text_com">
                         <span>Аббревиатура: </span>
                     </div>
-                    @if(!empty($company->short_name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->short_name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{ !empty($company->short_name) ? $company->short_name : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('form.branch') }}: </span>
                     </div>
-                    @if(!empty($industry->name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$industry->name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($industry->name) ? $industry->name : "Не вказано"}}</span>
+                    </div>
+
 
                     <div class="col-xs-3 text_com">
                         <span>Посилання: </span>
@@ -124,54 +123,38 @@
                     <div class="col-xs-3 text_com">
                         <span>Мiсто: </span>
                     </div>
-                    @if(!empty($city->name))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$city->name}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($city->name) ? $city->name : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('form.email') }}: </span>
                     </div>
-                    @if(!empty($company->company_email))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->company_email}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($company->company_email) ? $company->company_email : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-3 text_com">
                         <span>{{ trans('main.phone') }}</span>
                     </div>
-                    @if(!empty($company->phone))
-                        <div class="col-xs-9 text_com">
-                            <span>{{$company->phone}}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-9 text_com">
-                            <span>Не вказано</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-9 text_com">
+                        <span>{{!empty($company->phone) ? $company->phone : "Не вказано"}}</span>
+                    </div>
 
                     <div class="col-xs-12 textCompany verticalIndent">
                         <span class="anagraph verticalIndent">Подробиці </span>
                     </div>
-                    @if(!empty($company->description))
-                        <div class="col-xs-12 description">
-                           <span>{!! strip_tags($company->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</span>
-                        </div>
-                    @else
-                        <div class="col-xs-12 text_com">
-                            <span>Детальна інформація про компанію відсутня.</span>
-                        </div>
-                    @endif
+                    <div class="col-xs-12 description">
+                       <span>
+                           {!! !empty($company->description) ?
+                            strip_tags(
+                                $company->description,
+                                '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>'
+                            ) :
+                           "Детальна інформація про компанію відсутня." !!}
+                       </span>
+                    </div>
+
                     <div class="col-xs-12 textCompany verticalIndent">
                         <span class="anagraph verticalIndent">Вакансії </span>
                         @if(!empty($vacancies[0]))
@@ -186,9 +169,7 @@
                             <p>На даний момент немає активних вакансій</p>
                         @endif
                     </div>
-
                 </div>
-
             <hr/>
 
             <div class="col-xs-12 configButton">
@@ -204,7 +185,59 @@
         </div>
     </div>
 
-    <div class="downlist"></div>
+    <div class="downlist col-xs-10 col-xs-offset-2"></div>
+
+    @foreach($comments as $comment)
+        <div id="comment-block-{{$comment->id}}" class="col-xs-10 col-xs-offset-2">
+            <span>Автор: {{$comment->user->name}}</span>
+            <span>, дата:
+                <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
+            </span>
+            <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
+            <div class="btn-block">
+                {!!Form::model($comment,
+                    ['route' => [
+                        'company.response.update',
+                        $company->id,
+                        $comment->id
+                        ],
+                    'method'=>'PUT'])
+                !!}
+                {!!Form::textarea( 'comment', $comment->comment,
+                    [
+                        'id' => 'comment'.$comment->id,
+                        'value' => $comment->id,
+                        'class' => 'textarea-edit form-control',
+                        'style' => 'height: 100px; display:none'
+                    ])
+                !!}
+                {!!Form::button('Edit',
+                    [
+                        'value' => $comment->id,
+                        'id' => 'btn-edit-submit'.$comment->id,
+                        'class' => 'btn-edit-submit btn btn-xs btn-primary pull-left'
+                    ])
+                !!}
+                {!!Form::close()!!}
+                {!!Form::model($comment,
+                    ['route' => [
+                        'company.response.destroy',
+                        $company->id,
+                        $comment->id,
+                        ],
+                    'method'=>'DELETE'])
+                !!}
+                {!!Form::submit('Delete',
+                    [
+                        'id' => $comment->id,
+                        'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
+                        'onclick' => 'ConfirmDelete()'
+                    ])
+                !!}
+                {!!Form::close()!!}
+            </div>
+        </div>
+    @endforeach
 
     {!!Html::script('js/socialNetWork.js')!!}
 
@@ -220,6 +253,16 @@
 
     <script>
     $(document).ready(function () {
+        $("button.btn-edit-submit").on('click', function () {
+            id = $(this).val();
+            $("#comment-" + id + "-description").hide();
+            $(this).removeClass('btn-primary').addClass('btn-success');
+            attributes = $(this).attr("class");
+            buttonName = $(this).text();
+            $("#comment" + id).show();
+            $(this).replaceWith("<input class='" + attributes + "' type='submit' value='" + buttonName +"'></input>");
+        });
+
         $('#changeImage').on('click', function () {
             $('#fileImg').click();
         });
@@ -282,10 +325,11 @@
     </script>
 
     <script>
+        /**
+         * @return {boolean}
+         */
         function ConfirmDelete() {
-            var conf = confirm("Ви дійсно хочете видалити компанію?");
-            if(conf) return true;
-            else return false;
+            return confirm("Ви дійсно хочете видалити компанію?");
         }
     </script>
 

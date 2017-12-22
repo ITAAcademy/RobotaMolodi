@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Company;
 
 use App\Models\Company;
 use App\Models\Comment;
+use App\Models\Industry;
+use App\Models\City;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +22,7 @@ class CommentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Response | string
      */
     public function index($company, Request $request)
     {
@@ -55,13 +58,13 @@ class CommentsController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $company_id)
     {
         $this->validate($request, [
             'comment' => 'required|min:3|max:2000',
         ]);
 
-        $company = Company::find($id);
+        $company = Company::find($company_id);
         $comment = $company->comments()->create([
             'comment' => $request->comment,
             'user_id' => Auth::User()->id
@@ -69,9 +72,19 @@ class CommentsController extends Controller
 
         $comment->save();
         Session::flash('success', 'Comment was added');
-
-        return redirect(route('company.response.index',['company' => $company]));
-//        return view('newDesign.company.comments',['company' => $company]);
+    
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+    
+        return redirect('/company/' . $company_id)
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
 
     /**
@@ -100,11 +113,28 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $company_id, $comment_id)
     {
-        //
+        $this->validate($request, [
+            'comment' => 'required|min:3|max:2000',
+        ]);
+        
+        $updatedComment = Comment::find($comment_id);
+        $updatedComment->update($request->all());
+        
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+        
+        return redirect('/company/' . $company_id)
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
 
     /**
@@ -113,8 +143,29 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($company_id, $comment_id)
     {
-        //
+        Comment::destroy($comment_id);
+        
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+    
+        return redirect('/company/' . $company_id)
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
+    }
+    
+    /**
+     * @param int $comment_id
+     * @return mixed
+     */
+    public function getEditedComment($comment_id) {
+        return Comment::find($comment_id);
     }
 }

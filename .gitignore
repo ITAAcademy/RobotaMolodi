@@ -16,4 +16,3 @@ Vagrantfile
 /public/uploads/*
 /public/image/company/*
 /package-lock.json
-

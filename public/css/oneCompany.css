@@ -146,7 +146,7 @@ div.social {
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 15px;
-    border-top: 1px solid darkgrey;
+    padding: 10px;
 }
 .downFormSendFile{
     display: none;
@@ -193,6 +193,10 @@ ul.pager{
     font-family: 'Segoe UI';
     font-size: 16px;
     color: #777777;
+}
+
+.add-comment-lable{
+    padding-top: 5px;
 }
 
 
