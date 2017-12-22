@@ -196,13 +196,7 @@ Route::get('policy', ['as' => 'policy', function () {
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
-//creating a new design
-route::get('test', 'ProjectController@test');
+Route::resource('project', 'ProjectController');
 
-//Cabinet Ajax Route
-
-//Route::resource('cabinet.response','cabinet\CabinetController');
-
-//slider
 Route::get('unavailable', 'ClosureController@unavailableService');
 
