@@ -28,10 +28,10 @@
 <div class="form-group">
     {!! Form::label('', trans('project.logo'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-3">
-        {!! Form::file('logo', ['id' => 'logoProject', 'class' => '', 'accept' => 'image/*']) !!}
+        {!! Form::file('logo', ['id' => 'logoProject', 'class' => 'inputImg', 'accept' => 'image/*']) !!}
     </div>
     <div class="col-sm-5">
-        <img id="prevLogo" src="{{ $project['logo'] or '#' }}" alt="Project Logo" />
+        <img class="prevImg img-responsive img-rounded" src="{{ $project['logo'] or '#' }}" alt="Project Logo" />
     </div>
 </div>
 
