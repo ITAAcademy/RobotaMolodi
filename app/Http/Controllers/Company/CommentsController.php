@@ -58,13 +58,13 @@ class CommentsController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request, $company_id)
     {
         $this->validate($request, [
             'comment' => 'required|min:3|max:2000',
         ]);
 
-        $company = Company::find($id);
+        $company = Company::find($company_id);
         $comment = $company->comments()->create([
             'comment' => $request->comment,
             'user_id' => Auth::User()->id
@@ -72,9 +72,19 @@ class CommentsController extends Controller
 
         $comment->save();
         Session::flash('success', 'Comment was added');
-
-        return redirect(route('company.response.index',['company' => $company]));
-//        return view('newDesign.company.comments',['company' => $company]);
+    
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+    
+        return redirect('/company/' . $company_id)
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
 
     /**
@@ -119,7 +129,7 @@ class CommentsController extends Controller
         $vacancies = Vacancy::where('company_id', $company->id)->get();
         $comments = Comment::where('company_id', $company->id)->get();
         
-        return view('newDesign.company.show')
+        return redirect('/company/' . $company_id)
             ->with('company', $company)
             ->with('industry', $industry)
             ->with('city', $city)
@@ -135,10 +145,20 @@ class CommentsController extends Controller
      */
     public function destroy($company_id, $comment_id)
     {
-        $company = Company::find($company_id);
         Comment::destroy($comment_id);
-        $comments = Comment::where('company_id', $company_id);
-        return redirect(route('company.response.index',['comments' => $comments, 'company' => $company]));
+        
+        $company = Company::find($company_id);
+        $industry = Industry::find($company->industry_id);
+        $city = City::find($company->city_id);
+        $vacancies = Vacancy::where('company_id', $company->id)->get();
+        $comments = Comment::where('company_id', $company->id)->get();
+    
+        return redirect('/company/' . $company_id)
+            ->with('company', $company)
+            ->with('industry', $industry)
+            ->with('city', $city)
+            ->with('vacancies', $vacancies)
+            ->with('comments', $comments);
     }
     
     /**

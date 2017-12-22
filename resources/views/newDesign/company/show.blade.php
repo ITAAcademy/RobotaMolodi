@@ -54,7 +54,9 @@
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf082;</i></a>
                     <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/company/{{$company->id}}&text=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf081;</i></a>
                     <a href="http://vk.com/share.php?url=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
-                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank">
+                        <i class="fa fa-google-plus-square"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,7 +64,11 @@
         <div class="col-md-10 contentConpany">
 
                 <div class="panelHeadings">
-                    <div class="textCompany"><a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">{{$company->company_name}}</a> </div>
+                    <div class="textCompany">
+                        <a class="greyLinks" href="javascript:submit('companies' {{$company->id}})">
+                            {{$company->company_name}}
+                        </a>
+                    </div>
                 </div>
 
                 <div class="row textCompany">
@@ -72,11 +78,15 @@
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
-                                <span class="findLike" id="{{route('com.rate', $company->id)}}_1">{{$company->rated()->getLikes($company)}}</span>
+                                <span class="findLike" id="{{route('com.rate', $company->id)}}_1">
+                                    {{$company->rated()->getLikes($company)}}
+                                </span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
-                                <span class="findDislike" id="{{route('com.rate', $company->id)}}_-1">{{$company->rated()->getDisLikes($company)}}</span>
+                                <span class="findDislike" id="{{route('com.rate', $company->id)}}_-1">
+                                    {{$company->rated()->getDisLikes($company)}}
+                                </span>
                             </span>
                             <span class="likeError"></span>
                         </div>
@@ -220,7 +230,8 @@
                 {!!Form::submit('Delete',
                     [
                         'id' => $comment->id,
-                        'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id
+                        'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
+                        'onclick' => 'ConfirmDelete()'
                     ])
                 !!}
                 {!!Form::close()!!}
