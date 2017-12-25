@@ -20,6 +20,11 @@ class UploadFile extends Controller
         return $path.$name;
     }
 
+    static public function deleteImage($path){
+        if ($path != false && File::exists(public_path($path))) {
+            Storage::delete($path);
+        }
+    }
     public function savePhoto(Request $request, $directory){
         $file = $request->fileImg;
         $cropcoord = explode(',', $request->coords);
@@ -67,38 +72,5 @@ class UploadFile extends Controller
         return $directory.$company->image;
     }
 }
-
-
-//class Uploader{
-//
-//    private $model;
-//    protected $storePath = 'image/';
-//
-//    public function __construct($model)
-//    {
-//        $this->model = $model;
-//        $this->storePath = $this->storePath->concat(class_basename($model));
-//    }
-//
-//    public function save($img, $coords){
-//
-//    }
-//}
-//$resume = Resume::find(1);
-//$resume->img = new Uploader($resume);
-//$resume->img->save(file, [0,0]);
-//$resume->img->destroy();
-//
-//class CompanyUploader extends Uploader{
-//    public function save($img, $coords){
-//        return '';
-//    }
-//
-//}
-
-//          return Uploader->updateImage($request->fileImg, Resume::find($request->id), explode(',', $request->coords));
-//          Uploader->save(img, resume);
-//          Uploader->destroy(resume);
-//          resume->img->destroy();
 
 ?>

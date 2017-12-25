@@ -144,6 +144,13 @@ class BuilderCompositeProject
         $queryDelete = collect();
         $project->fill($request->all());
         $root    = new CompositeProject($project);
+        if($request['logo'])
+            $root->addQuerySavingPhoto([
+                'model' => $project,
+                'photo' => $request['logo'],
+                'field' => 'logo',
+                'subPath' => ''
+            ]);
         $members = collect();
         $membersHash = $request['members'];
 
@@ -160,12 +167,27 @@ class BuilderCompositeProject
                         {
                             $root->addQueryDelete($m);
                             continue;
+                        } else {
+                            $m->fill($memberHash);
+                            if($memberHash['avatar'])
+                                $root->addQuerySavingPhoto([
+                                    'model' => $m,
+                                    'photo' => $memberHash['avatar'],
+                                    'field' => 'avatar',
+                                    'subPath' => 'team'
+                                ]);
                         }
-                        $m->fill($memberHash);
                     }
                 }
             } else {
                 $m = new ProjectMember($memberHash);
+                if($memberHash['avatar'])
+                    $root->addQuerySavingPhoto([
+                        'model'   => $m,
+                        'photo'   => $memberHash['avatar'],
+                        'field'   => 'avatar',
+                        'subPath' => 'team'
+                    ]);
             }
             $members->push(new Leaf($m));
         }
@@ -183,7 +205,7 @@ class BuilderCompositeProject
                     {
                         if($vacancyHash['destroy'] == true)
                         {
-                            $queryDelete->push($vacancy);
+                            $root->addQueryDelete($vacancy);
                             continue;
                         }
                         $vacancy->fill($vacancyHash);
@@ -214,7 +236,7 @@ class BuilderCompositeProject
                             {
                                 if($optHash['destroy'] == true)
                                 {
-                                    $queryDelete->push($pvo);
+                                    $vacancyRoot->addQueryDelete($pvo);
                                     continue;
                                 }
                                 $pvo->fill($optHash);

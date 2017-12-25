@@ -62,7 +62,11 @@ class CompositeProject implements IComposite
                 'photo' => 'required|image',
             ]);
             if(!$validator->fails()){
-                $path = "/uploads/projects/".$subPath."/";
+                $path = "/uploads/projects/";
+                if($subPath != '')
+                    $path = $path.$subPath."/";
+
+                UploadFile::deleteImage($model[$field]);
                 $model[$field] = UploadFile::saveImage($photo, $path);
                 $model->save();
             }
