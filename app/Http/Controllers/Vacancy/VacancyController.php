@@ -413,13 +413,20 @@ class VacancyController extends Controller
             $updateVacancy = Vacancy::find($request['id']);
             $updateVacancy->published = 0;
             $updateVacancy->save();
-            Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була заблокована адміністратором'], function ($message) use ($updateVacancy) {
-                $to = User::find(Company::find($updateVacancy->company_id)->users_id)->email;
-                $message->to($to, User::find(Company::find($updateVacancy->company_id)->users_id)->name)->subject('Ваша вакансія була заблокована адміністратором');
+            Mail::send(
+                'emails.notificationEdit',
+                ['messageText' => 'Ваша вакансія була заблокована адміністратором'],
+                function ($message) use ($updateVacancy) {
+                    $to = User::find(Company::find($updateVacancy->company_id)->users_id)->email;
+                    $message->to(
+                        $to,
+                        User::find(Company::find($updateVacancy->company_id)
+                            ->users_id)
+                            ->name)
+                        ->subject('Ваша вакансія була заблокована адміністратором');
             });
         }
-            return redirect()->back();
-
+        return redirect()->back();
     }
 
     public function link(Guard $auth, Request $request)
