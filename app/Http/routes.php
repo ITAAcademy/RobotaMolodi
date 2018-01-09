@@ -117,7 +117,7 @@ Route::get('vacancy/{vacancy}/pasteFile', "Vacancy\\VacancyController@showPasteF
 Route::get('vacancy/{vacancy}/pasteLink', "Vacancy\\VacancyController@showPasteLinkForm");
 
 Route::get('vacancy/{vacancy}/pasteResume', "Vacancy\\VacancyController@showPasteResumeForm");
-Route::post('vacancy/block','Vacancy\\VacancyController@block');
+Route::post('vacancy/block','Vacancy\VacancyController@block');
 Route::get('vacancy/filter/showVacancies', ['as' => 'vacancy.showVacancies', 'uses' => 'Vacancy\VacancyController@showVacancies']);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Company Route

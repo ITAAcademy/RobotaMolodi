@@ -409,16 +409,15 @@ class VacancyController extends Controller
 
     public function block(Request $request, Guard $auth)
     {
-        if (Auth::user()->role == 1 && $request->isMethod('post')) {
+        if (Auth::user()->role_id === 1 && $request->isMethod('post')) {
             $updateVacancy = Vacancy::find($request['id']);
-            $updateVacancy->published =0;
+            $updateVacancy->published = 0;
             $updateVacancy->save();
             Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була заблокована адміністратором'], function ($message) use ($updateVacancy) {
                 $to = User::find(Company::find($updateVacancy->company_id)->users_id)->email;
                 $message->to($to, User::find(Company::find($updateVacancy->company_id)->users_id)->name)->subject('Ваша вакансія була заблокована адміністратором');
             });
         }
-        else
             return redirect()->back();
 
     }
