@@ -185,7 +185,9 @@
 
     @if(Auth::check() && Auth::user()->role_id ==1)
         <div>
-            <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">Заблокувати</button>
+            <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">
+                Заблокувати
+            </button>
         </div>
     @endif
 
