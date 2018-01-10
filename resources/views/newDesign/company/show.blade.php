@@ -168,6 +168,15 @@
                         @else
                             <p>На даний момент немає активних вакансій</p>
                         @endif
+
+                        @if(Auth::check() && Auth::user()->isAdmin())
+                            <div>
+                                <button class="btn btn-default" style="background: #f48952" onclick="blockCompany()">
+                                    Заблокувати
+                                </button>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             <hr/>
@@ -252,6 +261,15 @@
     {!!Html::script('js/crop.js')!!}
 
     <script>
+    function blockCompany() {
+        var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
+        if(dialogResult) {
+            $.post( '/company/{{ $company->id }}/block', {_token: '{{ csrf_token() }}', id: '{{ $company->id }}'},
+                function( data ) {
+                    location="{{URL::to('company')}}";
+                });
+        }
+    }
     $(document).ready(function () {
         $("button.btn-edit-submit").on('click', function () {
             id = $(this).val();

@@ -265,5 +265,27 @@ class CompanyController extends Controller  {
             return ['error' => Rating::getErrorsMessages()->first('mark')];
         }
     }
+    
+    public function block(Request $request, Guard $auth)
+    {
+        if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
+            $updateCompany = Company::find($request['id']);
+            $updateCompany->published = 0;
+            $updateCompany->save();
+            Mail::send(
+                'emails.notificationEdit',
+                ['messageText' => 'Ваша компанія була заблокована адміністратором'],
+                function ($message) use ($updateCompany) {
+                    $to = User::find(Company::find($updateCompany->company_id)->users_id)->email;
+                    $message->to(
+                        $to,
+                        User::find(Company::find($updateCompany->company_id)
+                            ->users_id)
+                            ->name)
+                        ->subject('Ваша компанія була заблокована адміністратором');
+                });
+        }
+        return redirect()->back();
+    }
 
 }
