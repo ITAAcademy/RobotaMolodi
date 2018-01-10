@@ -183,4 +183,23 @@
         socialNetWork('.social > a');
     </script>
 
+    @if(Auth::user()->isAdmin())
+        <div>
+            <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">
+                Заблокувати
+            </button>
+        </div>
+    @endif
+
+    <script>
+        function blockVacancy() {
+            var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
+            if(dialogResult) {
+                $.post( '/vacancy/block', {_token: '{{ csrf_token() }}', id: '{{ $vacancy->id }}'},
+                    function( data ) {
+                        location="{{URL::to('vacancy')}}";
+                    });
+            }
+        }
+    </script>
 @stop

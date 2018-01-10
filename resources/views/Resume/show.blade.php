@@ -72,7 +72,13 @@
         </div>
     </div>
 
-    @if(Auth::check()) @if(Auth::user()->role_id ==1)<div><button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">Заблокувати</button></div>@endif @endif
+    @if(Auth::user()->isAdmin())
+        <div>
+            <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">
+                Заблокувати
+            </button>
+        </div>
+    @endif
 
     <script>
         function blockResume() {
