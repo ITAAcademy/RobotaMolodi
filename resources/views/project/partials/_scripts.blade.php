@@ -40,20 +40,20 @@
     </div>
 </script>
 
-<script>
+<script type="text/javascript">
 
 window.onload = function(){
-    $(function () {
-        $("#logoProject").change(function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function imageIsLoaded(e) {
-                    $('#prevLogo').attr('src', e.target.result)
-                        .css('maxWidth', '100%');
-                    };
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+    $('body').on('change', '.inputImg',function (e) {
+        e.stopPropagation();
+        var t = this;
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function imageIsLoaded(e) {
+                    var prevContainer = t.closest('.form-group');
+                    $(prevContainer).find('.prevImg').attr('src', e.target.result);
+                };
+            reader.readAsDataURL(this.files[0]);
+        }
     });
 
     Vue.component('listoption', {

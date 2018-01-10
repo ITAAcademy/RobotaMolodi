@@ -2,16 +2,36 @@
 
 namespace App\Lib;
 
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\UploadFile;
+
 class CompositeProject implements IComposite
 {
     private $el = null;
     private $subList = null;
+    private $querySavingPhoto = null;
+    private $queryDelete = null;
 
     public function __construct($el)
     {
         $this->el = $el;
         $this->subList = collect();
+        $this->querySavingPhoto = collect();
+        $this->queryDelete = collect();
     }
+    public function addQueryDelete($m)
+    {
+        $this->queryDelete->push($m);
+    }
+    public function addQuerySavingPhoto($m)
+    {
+        $this->querySavingPhoto->push($m);
+    }
+    public function getRoot()
+    {
+        return $this->el;
+    }
+
     public function add($key, $el)
     {
         $this->subList[$key] = $el;
@@ -30,7 +50,29 @@ class CompositeProject implements IComposite
                     $v->save($rootId);
             }
         }
+        $this->queryDelete->each(function($item, $key){
+            $item->delete();
+        });
+        $this->querySavingPhoto->each(function($item, $key){
+            $model   = $item['model'];
+            $photo   = $item['photo'];
+            $field   = $item['field'];
+            $subPath = $item['subPath'];
+            $validator = Validator::make($item, [
+                'photo' => 'required|image',
+            ]);
+            if(!$validator->fails()){
+                $path = "/uploads/projects/";
+                if($subPath != '')
+                    $path = $path.$subPath."/";
+
+                UploadFile::deleteImage($model[$field]);
+                $model[$field] = UploadFile::saveImage($photo, $path);
+                $model->save();
+            }
+        });
     }
+
     public function isValid()
     {
         $isValid = true;

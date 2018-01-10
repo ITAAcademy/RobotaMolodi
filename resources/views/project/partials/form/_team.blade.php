@@ -1,7 +1,7 @@
 <h2 class="text-center">Команда проекту</h2>
 <div class="container">
-    <div class="row">
-        <template v-for="(member,index) in members">
+    <template v-for="(member,index) in members">
+        <div class="row">
             <div class="col-sm-10" v-bind:class="{ hidden: member.destroy  }">
                 <div class="form-group">
                     <input
@@ -16,21 +16,24 @@
                         class="hidden">
                     <label class="col-sm-4 control-label">Фото</label>
                     <div class="col-sm-8">
-                        <div class="container">
+                        <div class="container-fluid">
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <input
-                                        type="file"
-                                        :name="'members[' + index + '][avatar]'"
-                                        value="">
-                                </div>
-                                <div class="col-sm-8">
-                                    <img :src="member.avatarSrc" class="img-fluid" alt="Avatar">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input
+                                            type="file"
+                                            class="inputImg" 
+                                            :name="'members[' + index + '][avatar]'"
+                                            value="">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <img :src="member.avatar" class="prevImg img-responsive img-rounded" alt="Avatar">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div v-if="member.error">
-                            <span class="help-block">@{{ member.error.avatarSrc }}</span>
+                            <span class="help-block">@{{ member.error.avatar }}</span>
                         </div>
                     </div>
                 </div>
@@ -65,8 +68,8 @@
             <div class="col-sm-2" v-bind:class="{ hidden: member.destroy  }">
                 <div @click="removeMember(member)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
             </div>
-        </template>
-    </div>
+            </div>
+    </template>
 </div>
 
 <div @click="addMember" style="color: #f76533; text-decoration:underline; cursor:pointer">Додати члена команди +</div>
