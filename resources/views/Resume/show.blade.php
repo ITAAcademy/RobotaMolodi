@@ -72,7 +72,7 @@
         </div>
     </div>
 
-    @if(Auth::user()->isAdmin())
+    @if(Auth::check() &&  Auth::user()->isAdmin())
         <div>
             <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockResume()">
                 Заблокувати

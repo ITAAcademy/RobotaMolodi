@@ -409,7 +409,7 @@ class VacancyController extends Controller
 
     public function block(Request $request, Guard $auth)
     {
-        if (Auth::user()->isAdmin() && $request->isMethod('post')) {
+        if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateVacancy = Vacancy::find($request['id']);
             $updateVacancy->published = 0;
             $updateVacancy->save();
