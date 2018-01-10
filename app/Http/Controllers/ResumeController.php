@@ -268,7 +268,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
     public function block(Request $request, Guard $auth)
     {
-        if (Auth::user()->isAdmin() && $request->isMethod('post')) {
+        if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateResume = Resume::find($request['id']);
             $updateResume->published =0;
             $updateResume->save();
