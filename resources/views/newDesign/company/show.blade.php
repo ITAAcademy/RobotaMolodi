@@ -262,7 +262,7 @@
 
     <script>
     function blockCompany() {
-        var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
+        var dialogResult = confirm("Ви дійсно бажаєте заблокувати компанію?");
         if(dialogResult) {
             $.post( '/company/{{ $company->id }}/block', {_token: '{{ csrf_token() }}', id: '{{ $company->id }}'},
                 function( data ) {
