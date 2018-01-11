@@ -136,6 +136,7 @@ Route::get('comment/{id}', 'Company\CommentsController@getEditedComment');
 $router->resource('company','Company\CompanyController');
 
 Route::get('company/{company}/destroy',['as'=>'companyDestroy', 'uses' => 'Company\CompanyController@destroy']);
+Route::post('company/{company}/block', 'Company\CompanyController@block');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Resume Route

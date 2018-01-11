@@ -270,18 +270,22 @@ class ResumeController extends Controller {// Клас по роботі з ре
     {
         if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateResume = Resume::find($request['id']);
-            $updateResume->published =0;
+            $updateResume->published = 0;
             $updateResume->save();
-                Mail::send('emails.notificationEdit', ['messageText' => 'Ваше резюме було заблоковано адміністратором'], function ($message) use ($updateResume) {
+            Mail::send(
+                'emails.notificationEdit',
+                ['messageText' => 'Ваше резюме було заблоковано адміністратором'],
+                function ($message) use ($updateResume) {
                     $to = $updateResume->user->email;
-                    $message->to($to, $updateResume->user->name)->subject('Ваше резюме було відредаговане адміністратором');
-                });
+                    $message->to(
+                        $to,
+                        $updateResume->user->name
+                    )->subject('Ваше резюме було відредаговане адміністратором');
+                }
+            );
         }
-        else
         return redirect()->back();
-
     }
-
 
     /**
      * Remove the specified resource from storage.
