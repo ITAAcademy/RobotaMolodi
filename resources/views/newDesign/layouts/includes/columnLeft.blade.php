@@ -31,13 +31,15 @@
                          <li><p>Индустрии</p></li>
                      </div>
                 </div>
-            </a><a>
+            </a>
+
+            <h5>
                 <div class="row">
                     <div class="col-md-12">
                         <li><p align="center">Заблокований контент</p></li>
                     </div>
                 </div>
-            </a>
+            </h5>
             <a href="{{route('admin.companies.index')}}">
                 <div class="row">
                     <div class="col-md-3">
