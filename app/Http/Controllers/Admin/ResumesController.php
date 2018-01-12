@@ -17,7 +17,9 @@ class ResumesController extends Controller
      */
     public function index()
     {
-        return view('newDesign.admin.resumes.index', Resume::where('blocked', true)->get());
+        return view('newDesign.admin.resumes.index', [
+            'blockedResumes' => Resume::where('blocked', true)->get()
+        ]);
     }
 
     /**
@@ -82,5 +84,12 @@ class ResumesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function setUnBlock(Request $request) {
+        $company = Resume::find($request->id);
+        $company->blocked = false;
+        $company->save();
+        return redirect()->route('admin.resumes.index');
     }
 }

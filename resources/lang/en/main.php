@@ -11,5 +11,6 @@ return [
     'description' => 'Description:',
     'city' => 'City',
     'phone' => 'Phone:',
-    'dosent' => '"Sorry for the inconvenience, this feature is currently not working"',
+    'dosent' => '"Sorry for the inconvenience, this feature is currently not working"',,
+    'unblock' => 'Unblock'
 ];

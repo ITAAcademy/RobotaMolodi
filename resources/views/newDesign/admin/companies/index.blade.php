@@ -12,7 +12,6 @@
             <tr>
                 <th>№ п/п</th>
                 <th>Company page</th>
-                <th>Main</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -25,20 +24,20 @@
                             {{ $blockedCompany->short_name }}
                         </a>
                     </td>
-                    <td data-id="{{ $blockedCompany->id }}">
-                        {!! Form::open([
-                                    'method' => 'POST',
-                                    'route' => ['setUnBlock', $blockedCompany->id]
-                                ]) !!}
-                            {!! Form::submit("Unblock", ['class' => 'btn btn-success']) !!}
-                        {!! Form::close() !!}
-                    </td>
                     <td>
                         <div>
                             <span style="display: inline-block">
                                 {!! Form::open([
+                                    'method' => 'POST',
+                                    'route' => ['setCompanyUnBlock', $blockedCompany->id],
+                                    'style' => 'display:inline-block'
+                                ]) !!}
+                                {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-success']) !!}
+                                {!! Form::close() !!}
+                                {!! Form::open([
                                     'method' => 'DELETE',
-                                    'route' => ['admin.industry.destroy', $blockedCompany->id]
+                                    'route' => ['company.destroy', $blockedCompany->id],
+                                    'style' => 'display:inline-block'
                                 ]) !!}
                                 {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!}
@@ -50,19 +49,4 @@
             </tbody>
         </table>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            $('.set-main').click(function () {
-                var that = $(this);
-                var url = that.attr('href');
-                var id = that.parent().data('id');
-                console.log(id);
-                $.ajax({
-                    url: url,
-                    method: 'POST'
-                })
-            });
-        })
-    </script>
 @endsection
