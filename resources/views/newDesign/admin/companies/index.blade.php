@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($blockedCompaneis as $count => $blockedCompany)
+            @foreach($blockedCompanies as $count => $blockedCompany)
                 <tr>
                     <td>{{ $count + 1 }}</td>
                     <td>
@@ -33,13 +33,6 @@
                                     'style' => 'display:inline-block'
                                 ]) !!}
                                 {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-success']) !!}
-                                {!! Form::close() !!}
-                                {!! Form::open([
-                                    'method' => 'DELETE',
-                                    'route' => ['company.destroy', $blockedCompany->id],
-                                    'style' => 'display:inline-block'
-                                ]) !!}
-                                {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!}
                             </span>
                         </div>

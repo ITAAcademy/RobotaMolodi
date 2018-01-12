@@ -26,22 +26,13 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                                {!! Form::open([
-                                    'method' => 'POST',
-                                    'route' => ['setResumeUnBlock', $blockedResume->id],
-                                    'style' => 'display:inline-block'
-                                ]) !!}
-                                {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-success']) !!}
-                                {!! Form::close() !!}
-
-                                {!! Form::open([
-                                    'method' => 'DELETE',
-                                    'route' => ['resume.destroy', $blockedResume->id],
-                                    'style' => 'display:inline-block'
-                                ]) !!}
-                                {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
-                                {!! Form::close() !!}
-
+                            {!! Form::open([
+                                'method' => 'POST',
+                                'route' => ['setResumeUnBlock', $blockedResume->id],
+                                'style' => 'display:inline-block'
+                            ]) !!}
+                            {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-success']) !!}
+                            {!! Form::close() !!}
                         </div>
                     </td>
                 </tr>

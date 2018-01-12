@@ -18,7 +18,7 @@ class CompaniesController extends Controller
     public function index()
     {
         return view('newDesign.admin.companies.index', [
-            'blockedCompaneis' => Company::where('blocked', true)->get()
+            'blockedCompanies' => Company::where('blocked', true)->get()
         ]);
     }
 
