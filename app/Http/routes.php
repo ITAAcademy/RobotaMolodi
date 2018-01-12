@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('/companies', 'Admin\CompaniesController');
     Route::post('/companies/{id}/set_un_block', ['as' => 'setCompanyUnBlock', 'uses' => 'Admin\CompaniesController@setUnBlock']);
     Route::resource('/vacancies', 'Admin\VacanciesController');
+    Route::post('/vacancies/{id}/set_un_block', ['as' => 'setVacancyUnBlock', 'uses' => 'Admin\VacanciesController@setUnBlock']);
     Route::resource('/resumes', 'Admin\ResumesController');
     Route::post('/resumes/{id}/set_un_block', ['as' => 'setResumeUnBlock', 'uses' => 'Admin\ResumesController@setUnBlock']);
     Route::post('/industry/set_main', ['as'=>'setMainIndustry', 'uses'=>'Admin\IndustryController@setMainIndustry']);
