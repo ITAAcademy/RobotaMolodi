@@ -200,7 +200,8 @@
 
             <div class="col-xs-12 configButton">
                 @if(Auth::check() && Auth::id() == $company->users_id)
-                <a href="{{$company->id}}/destroy" class="btn-default btn" onclick="return ConfirmDelete();">{{ trans('main.delete') }}</a>
+                <a href="{{$company->id}}/destroy" class="btn-default btn"
+                   onclick="return confirm('Ви дійсно бажаєте видалити коментарій?');">{{ trans('main.delete') }}</a>
                 <a href="{{$company->id}}/edit" class="btn-default btn">{{ trans('main.edit') }}</a>
                 @endif
                 <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
@@ -220,7 +221,8 @@
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
             <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-            <div class="btn-block">
+            @if(Auth::check() && Auth::id() == $comment->user_id)
+                <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
                         'company.response.update',
@@ -257,11 +259,12 @@
                     [
                         'id' => $comment->id,
                         'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
-                        'onclick' => 'ConfirmDelete()'
+                        'onclick' => "return confirm('Ви дійсно бажаєте видалити коментарій?');"
                     ])
                 !!}
                 {!!Form::close()!!}
             </div>
+            @endif
         </div>
     @endforeach
 
@@ -359,13 +362,5 @@
     })
     </script>
 
-    <script>
-        /**
-         * @return {boolean}
-         */
-        function ConfirmDelete() {
-            return confirm("Ви дійсно хочете видалити коментарій?");
-        }
-    </script>
 
 @stop
