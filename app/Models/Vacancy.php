@@ -224,4 +224,8 @@ class Vacancy extends Model {
         $query = Company::where('users_id','=',$user->id);
         return $query;
     }
+    
+    public function getCompanyName() {
+        return $this-scopeCompany()->company_name;
+    }
 }

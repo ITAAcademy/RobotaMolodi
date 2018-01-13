@@ -17,7 +17,9 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        return view('newDesign.admin.companies.index', Company::where('blocked', true)->get());
+        return view('newDesign.admin.companies.index', [
+            'blockedCompanies' => Company::where('blocked', true)->get()
+        ]);
     }
 
     /**
@@ -82,5 +84,12 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function setUnBlock(Request $request) {
+        $company = Company::find($request->id);
+        $company->blocked = false;
+        $company->save();
+        return redirect()->route('admin.companies.index');
     }
 }

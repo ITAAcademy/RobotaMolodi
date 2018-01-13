@@ -17,7 +17,9 @@ class VacanciesController extends Controller
      */
     public function index()
     {
-        return view('newDesign.admin.vacancies.index', Vacancy::where('blocked', true)->get());
+        return view('newDesign.admin.vacancies.index', [
+            'blockedVacancies' => Vacancy::where('blocked', true)->get()
+        ]);
     }
 
     /**
@@ -82,5 +84,12 @@ class VacanciesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function setUnBlock(Request $request) {
+        $vacancy = Vacancy::find($request->id);
+        $vacancy->blocked = false;
+        $vacancy->save();
+        return redirect()->route('admin.vacancies.index');
     }
 }
