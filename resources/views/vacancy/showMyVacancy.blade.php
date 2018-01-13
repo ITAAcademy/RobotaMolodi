@@ -54,7 +54,7 @@
             </div>
 
             <div class="position-myVacancy">
-              <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry' {{$vacancy->Industry()->id}})">{{$industry->name}}</a>
+              <a class="orangColor-myVacancy" href="javascript:submit('selectIndustry', '{{$vacancy->Industry()->id}}')">{{$industry->name}}</a>
                 {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
             </div>
 
@@ -82,7 +82,7 @@
             <div>
                 <p class="cityTime-myVacancy">
                     @foreach($cities->get() as $city)
-                        <a class="city-myVacancy" href="javascript:submit('selectCity' {{$city->id}})">{{$city->name}} </a>
+                        <a class="city-myVacancy" href="javascript:submit('selectCity', '{{$city->id}}')">{{$city->name}} </a>
                     @endforeach
                     <span id="yellowCircle-myVacancy">&bull;</span> <span id="updateDate">{{ date('j m Y', strtotime($vacancy->updated_at))}}</span>
                 </p>
