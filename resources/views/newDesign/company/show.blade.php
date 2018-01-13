@@ -347,7 +347,7 @@
          * @return {boolean}
          */
         function ConfirmDelete() {
-            return confirm("Ви дійсно хочете видалити компанію?");
+            return confirm("Ви дійсно хочете видалити коментарій?");
         }
     </script>
 
