@@ -228,4 +228,8 @@ class Vacancy extends Model {
     public function getCompanyName() {
         return $this-scopeCompany()->company_name;
     }
+    
+    public function getImagePath(){
+        return 'image/company/' . $this->Company->users_id . '/' . $this->Company->image;
+    }
 }
