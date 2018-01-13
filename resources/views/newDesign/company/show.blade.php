@@ -1,7 +1,7 @@
 @extends('app')
 @section('head')
-
-<link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
+    @include("newDesign.company._metaTag")
+    <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
     @include('newDesign.scrollup')
@@ -50,11 +50,28 @@
                     <p>Поділитись</p>
                 </div>
                 <div class="social">
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Компанія{{' '.$company->company_name}}&url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa">&#xf08c;</i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf082;</i></a>
-                    <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/company/{{$company->id}}&text=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf081;</i></a>
-                    <a href="http://vk.com/share.php?url=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
-                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank">
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
+                        itle=Компанія{{' '.$company->company_name}}&
+                        url={!! env("APP_URL")."/company/".$company->id !!}"
+                        target="_blank">
+                        <i class="fa">&#xf08c;</i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?
+                        u={!! env("APP_URL")."/company/".$company->id !!}
+                        &title=Компанія{{$company->company_name}}" target="_blank">
+                        <i class="fa">&#xf082;</i>
+                    </a>
+                    <a href="https://www.twitter.com/intent/tweet?url={!! env("APP_URL")."/company/".$company->id !!}
+                        &text=Компанія{{' '.$company->company_name}}" target="_blank">
+                        <i class="fa">&#xf081;</i>
+                    </a>
+                    <a href="http://vk.com/share.php?url={!! env("APP_URL")."/company/".$company->id !!}
+                        &title=Компанія{{' '.$company->company_name}}
+                        &image=http://robotamolodi.org/image/logo.png" target="_blank">
+                        <i class="fa" >&#xf189;</i>
+                    </a>
+                    <a href="https://plus.google.com/share?
+                        url={!! env("APP_URL")."/company/".$company->id !!}" target="_blank">
                         <i class="fa fa-google-plus-square"></i>
                     </a>
                 </div>
@@ -74,7 +91,7 @@
                 <div class="row textCompany">
 
                     <div class="col-xs-12 text_com">
-                        <div class="ratings"> 
+                        <div class="ratings">
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
