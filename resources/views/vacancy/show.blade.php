@@ -1,5 +1,6 @@
 @extends('app')
 @section('head')
+    @include("newDesign.company._metaTag")
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
 
@@ -33,11 +34,31 @@
                         <p id="share-vacancy">Поділитись</p>
                     </div>
                     <div class="social">
-                        <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Вакансія{{' '.$vacancy->position}}&url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank"><i class="fa">&#xf08c;</i></a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}" target="_blank"><i class="fa">&#xf082;</i></a>
-                        <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&text=Вакансія{{' '.$vacancy->position}}" target="_blank"><i class="fa">&#xf081;</i></a>
-                        <a href="http://vk.com/share.php?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
-                        <a href="https://plus.google.com/share?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank"><i class="fa fa-google-plus-square"></i></a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
+                        title=Вакансія{{' '.$vacancy->position}}&
+                        url={!! env("APP_URL") !!}/vacancy/{{$vacancy->id}}" target="_blank">
+                            <i class="fa">&#xf08c;</i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?
+                        u={!! env("APP_URL") !!}/vacancy/{{$vacancy->id}}&
+                        title=Вакансія{{' '.$vacancy->position}}" target="_blank">
+                            <i class="fa">&#xf082;</i>
+                        </a>
+                        <a href="https://www.twitter.com/intent/tweet?
+                        url={!! env("APP_URL") !!}/vacancy/{{$vacancy->id}}&
+                        text=Вакансія{{' '.$vacancy->position}}" target="_blank">
+                            <i class="fa">&#xf081;</i>
+                        </a>
+                        <a href="http://vk.com/share.php?
+                        url={!! env("APP_URL") !!}/vacancy/{{$vacancy->id}}&
+                        title=Вакансія{{' '.$vacancy->position}}&
+                        image=http://robotamolodi.org/image/logo.png" target="_blank">
+                            <i class="fa" >&#xf189;</i>
+                        </a>
+                        <a href="https://plus.google.com/share?
+                        url={!! env("APP_URL") !!}/vacancy/{{$vacancy->id}}" target="_blank">
+                            <i class="fa fa-google-plus-square"></i>
+                        </a>
                     </div>
                 </div>
             </div>
