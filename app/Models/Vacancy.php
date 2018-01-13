@@ -226,6 +226,6 @@ class Vacancy extends Model {
     }
     
     public function getCompanyName() {
-        return Vacancy::find($this->id)->scopeCompany()->company_name;
+        return $this-scopeCompany()->company_name;
     }
 }
