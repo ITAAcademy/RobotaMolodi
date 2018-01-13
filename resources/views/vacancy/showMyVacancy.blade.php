@@ -27,7 +27,14 @@
             <div class="col-xs-12 col-md-2">
                 <div class="panel panel-orange" id="vimg">
                     @if(File::exists($vacancy->getImagePath()) and $vacancy->Company->image != '')
-                        {!! Html::image($vacancy->getImagePath(), 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                        {!! Html::image(
+                        $vacancy->getImagePath(),
+                        'logo', [
+                            'id' => 'vacImg',
+                            'width' => '100%',
+                            'height' => '100%'
+                            ]
+                        ) !!}
                     @else
                         <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
                     @endif
@@ -36,14 +43,26 @@
                     <p id="share-vacancy">Поділитись</p>
                 </div>
                 <div class="social">
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Вакансія{{' '.$vacancy->position}}&url=http://robotamolodi.org/vacancy/{{$vacancy->id}}"
-                       target="_blank"><i class="fa">&#xf08c;</i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}"
-                       target="_blank"><i class="fa">&#xf082;</i></a>
-                    <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&text=Вакансія{{' '.$vacancy->position}}"
-                       target="_blank"><i class="fa">&#xf081;</i></a>
-                    <a href="http://vk.com/share.php?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&title=Вакансія{{' '.$vacancy->position}}&image=http://robotamolodi.org/image/logo.png"
-                       target="_blank"><i class="fa">&#xf189;</i></a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
+                    title=Вакансія{{' '.$vacancy->position}}&
+                    url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank">
+                        <i class="fa">&#xf08c;</i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?
+                    u=http://robotamolodi.org/vacancy/{{$vacancy->id}}&
+                    title=Вакансія{{' '.$vacancy->position}}" target="_blank">
+                        <i class="fa">&#xf082;</i>
+                    </a>
+                    <a href="https://www.twitter.com/intent/tweet?
+                    url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&
+                    text=Вакансія{{' '.$vacancy->position}}" target="_blank">
+                        <i class="fa">&#xf081;</i>
+                    </a>
+                    <a href="http://vk.com/share.php?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&
+                    title=Вакансія{{' '.$vacancy->position}}&
+                    image=http://robotamolodi.org/image/logo.png" target="_blank">
+                        <i class="fa">&#xf189;</i>
+                    </a>
                     <a href="https://plus.google.com/share?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}"
                        target="_blank"><i class="fa fa-google-plus-square"></i></a>
                 </div>
@@ -52,7 +71,9 @@
                 <div>
                     <p class="position-myVacancy">
                         <a class="orangColor-myVacancy-name"
-                           href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">{!!$vacancy->position!!}</a>
+                           href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">
+                            {!!$vacancy->position!!}
+                        </a>
                         <br>
                     </p>
                 </div>
@@ -65,7 +86,8 @@
 
                 <div class="position-myVacancy">
                     <a class="orangColor-myVacancy"
-                       href="javascript:submit('selectIndustry', '{{$vacancy->Industry()->id}}')">{{$industry->name}}</a>
+                       href="javascript:submit('selectIndustry', '{{$vacancy->Industry()->id}}')">{{$industry->name}}
+                    </a>
                     {{--<p class="company-name-myVacancy">{{auth()->user()->name}}</p>--}}
                 </div>
 
@@ -74,12 +96,14 @@
                     <span class="morph">
                     {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                         <span class="findLike"
-                              id="{{route('vac.rate', $vacancy->id)}}_1">{{$vacancy->rated()->getLikes($vacancy)}}</span>
+                              id="{{route('vac.rate', $vacancy->id)}}_1">{{$vacancy->rated()->getLikes($vacancy)}}
+                        </span>
                 </span>
                     <span class="morph">
                     {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
                         <span class="findDislike"
-                              id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getDisLikes($vacancy)}}</span>
+                              id="{{route('vac.rate', $vacancy->id)}}_-1">{{$vacancy->rated()->getDisLikes($vacancy)}}
+                        </span>
                 </span>
                     <span class="likeError"></span>
                 </div>
