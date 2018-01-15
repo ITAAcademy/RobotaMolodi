@@ -221,7 +221,7 @@
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
             <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-            @if(Auth::check() && Auth::id() == $comment->user_id)
+            @if(Auth::check() && Auth::id() == $comment->user_id && Auth::user()->isAdmin())
                 <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
