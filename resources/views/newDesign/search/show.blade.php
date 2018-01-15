@@ -17,7 +17,9 @@
                 <select class="getting-list-selected-box"  data-placeholder="Вся країна" multiple="multiple" name="selected-region">
                     @if(Session::has('regions'))
                         @foreach($cities as $city)
-                            <option value={{$city->id}} {{ $city->id==Session::get('regions') ? 'selected':''}}>{{$city->name}}</option>
+                            <option value={{$city->id}} {{$city->id == Session::get('regions') ? 'selected' : ''}}>
+                                {{$city->name}}
+                            </option>
                         @endforeach
                     @else
                         @foreach($cities as $city)
@@ -37,7 +39,9 @@
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
                     @if(Session::has('industries'))
                         @foreach($industries as $industry)
-                            <option value={{$industry->id}} {{ $industry->id==Session::get('industries') ? 'selected':''}}>{{$industry->name}}</option>
+                            <option value={{$industry->id}} {{ $industry->id == Session::get('industries') ? 'selected' : ''}}>
+                                {{$industry->name}}
+                            </option>
                         @endforeach
                     @else
                         @foreach($industries as $industry)
@@ -57,7 +61,9 @@
                 <select class="getting-list-selected-box" data-placeholder="Усі спеціалізації" multiple="multiple" name="selected-specialization">
                     @if(Session::has('specialisation'))
                         @foreach($specialisations as $specialisation)
-                            <option {{ $specialisation==Session::get('specialisation') ? 'selected':''}}>{{$specialisation}}</option>
+                            <option {{ $specialisation == Session::get('specialisation') ? 'selected' : ''}}>
+                                {{$specialisation}}
+                            </option>
                         @endforeach
                     @else
                         @foreach($specialisations as $specialisation)
