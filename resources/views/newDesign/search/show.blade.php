@@ -55,9 +55,9 @@
             <!-- Build select: -->
             <div class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі спеціалізації" multiple="multiple" name="selected-specialization">
-                    @if(Session::has('specialisations'))
+                    @if(Session::has('specialisation'))
                         @foreach($specialisations as $specialisation)
-                            <option {{ $specialisation==Session::get('specialisations') ? 'selected':''}}>{{$specialisation}}</option>
+                            <option {{ $specialisation==Session::get('specialisation') ? 'selected':''}}>{{$specialisation}}</option>
                         @endforeach
                     @else
                         @foreach($specialisations as $specialisation)
