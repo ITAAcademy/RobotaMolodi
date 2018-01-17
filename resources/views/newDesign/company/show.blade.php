@@ -1,7 +1,7 @@
 @extends('app')
 @section('head')
-
-<link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
+    @include("newDesign.company._metaTag")
+    <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('content')
     @include('newDesign.scrollup')
@@ -50,11 +50,28 @@
                     <p>Поділитись</p>
                 </div>
                 <div class="social">
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&title=Компанія{{' '.$company->company_name}}&url=http://robotamolodi.org/company/{{$company->id}}" target="_blank"><i class="fa">&#xf08c;</i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf082;</i></a>
-                    <a href="https://www.twitter.com/intent/tweet?url=http://robotamolodi.org/company/{{$company->id}}&text=Компанія{{' '.$company->company_name}}" target="_blank"><i class="fa">&#xf081;</i></a>
-                    <a href="http://vk.com/share.php?url=http://robotamolodi.org/company/{{$company->id}}&title=Компанія{{' '.$company->company_name}}&image=http://robotamolodi.org/image/logo.png" target="_blank"><i class="fa" >&#xf189;</i></a>
-                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/company/{{$company->id}}" target="_blank">
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
+                        itle=Компанія{{' '.$company->company_name}}&
+                        url={!! env("APP_URL")."/company/".$company->id !!}"
+                        target="_blank">
+                        <i class="fa">&#xf08c;</i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?
+                        u={!! env("APP_URL")."/company/".$company->id !!}
+                        &title=Компанія{{$company->company_name}}" target="_blank">
+                        <i class="fa">&#xf082;</i>
+                    </a>
+                    <a href="https://www.twitter.com/intent/tweet?url={!! env("APP_URL")."/company/".$company->id !!}
+                        &text=Компанія{{' '.$company->company_name}}" target="_blank">
+                        <i class="fa">&#xf081;</i>
+                    </a>
+                    <a href="http://vk.com/share.php?url={!! env("APP_URL")."/company/".$company->id !!}
+                        &title=Компанія{{' '.$company->company_name}}
+                        &image=http://robotamolodi.org/image/logo.png" target="_blank">
+                        <i class="fa" >&#xf189;</i>
+                    </a>
+                    <a href="https://plus.google.com/share?
+                        url={!! env("APP_URL")."/company/".$company->id !!}" target="_blank">
                         <i class="fa fa-google-plus-square"></i>
                     </a>
                 </div>
@@ -74,7 +91,7 @@
                 <div class="row textCompany">
 
                     <div class="col-xs-12 text_com">
-                        <div class="ratings"> 
+                        <div class="ratings">
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
@@ -168,13 +185,23 @@
                         @else
                             <p>На даний момент немає активних вакансій</p>
                         @endif
+
+                        @if(Auth::check() && Auth::user()->isAdmin())
+                            <div>
+                                <button class="btn btn-default" style="background: #f48952" onclick="blockCompany()">
+                                    Заблокувати
+                                </button>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             <hr/>
 
             <div class="col-xs-12 configButton">
                 @if(Auth::check() && Auth::id() == $company->users_id)
-                <a href="{{$company->id}}/destroy" class="btn-default btn" onclick="return ConfirmDelete();">{{ trans('main.delete') }}</a>
+                <a href="{{$company->id}}/destroy" class="btn-default btn"
+                   onclick="return confirm('Ви дійсно бажаєте видалити коментарій?');">{{ trans('main.delete') }}</a>
                 <a href="{{$company->id}}/edit" class="btn-default btn">{{ trans('main.edit') }}</a>
                 @endif
                 <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
@@ -194,7 +221,8 @@
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
             <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-            <div class="btn-block">
+            @if(Auth::check() && Auth::id() == $comment->user_id || Auth::user()->isAdmin())
+                <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
                         'company.response.update',
@@ -231,11 +259,12 @@
                     [
                         'id' => $comment->id,
                         'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
-                        'onclick' => 'ConfirmDelete()'
+                        'onclick' => "return confirm('Ви дійсно бажаєте видалити коментарій?');"
                     ])
                 !!}
                 {!!Form::close()!!}
             </div>
+            @endif
         </div>
     @endforeach
 
@@ -252,6 +281,15 @@
     {!!Html::script('js/crop.js')!!}
 
     <script>
+    function blockCompany() {
+        var dialogResult = confirm("Ви дійсно бажаєте заблокувати компанію?");
+        if(dialogResult) {
+            $.post( '/company/{{ $company->id }}/block', {_token: '{{ csrf_token() }}', id: '{{ $company->id }}'},
+                function( data ) {
+                    location="{{URL::to('company')}}";
+                });
+        }
+    }
     $(document).ready(function () {
         $("button.btn-edit-submit").on('click', function () {
             id = $(this).val();
@@ -324,13 +362,5 @@
     })
     </script>
 
-    <script>
-        /**
-         * @return {boolean}
-         */
-        function ConfirmDelete() {
-            return confirm("Ви дійсно хочете видалити компанію?");
-        }
-    </script>
 
 @stop

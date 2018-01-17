@@ -62,7 +62,7 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $vacancies = Filter::vacancies($request)->where('published', 1)->paginate();
+        $vacancies = Filter::vacancies($request)->where('blocked', false)->where('published', 1)->paginate();
         Filter::routeFilterPaginator($request, $vacancies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
@@ -84,8 +84,8 @@ class MainController extends Controller
 
     public function showCompanies(Request $request){
 
-        $companies = \App\Filter::companies($request)->paginate();
-        \App\Filter::routeFilterPaginator($request, $companies);
+        $companies = Filter::companies($request)->where('blocked', false)->paginate();
+       Filter::routeFilterPaginator($request, $companies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
@@ -108,8 +108,8 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = \App\Filter::resumes($request)->paginate();
-        \App\Filter::routeFilterPaginator($request, $resumes);
+        $resumes = Filter::resumes($request)->where('blocked', false)->paginate();
+        Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');
         if($request->ajax()){
@@ -122,7 +122,7 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>News::getNews(),
+            'news' => News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }

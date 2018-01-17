@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:style="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:style="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +25,7 @@
     <link href="{{ asset('/css/errors/base.css') }}" rel="stylesheet">
 
 	@yield('head')
+
 	<link rel="shortcut icon" href="{{ asset('/image/favicon.png') }}" type="image/png">
 
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -40,7 +41,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/2.0.4/js/Jcrop.min.js"></script>
@@ -50,6 +51,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+	<link href="{{ asset('/css/slick/slick.css') }}" rel="stylesheet">
+	<link href="{{ asset('/css/slick/slick-theme.css') }}" rel="stylesheet">
 
 	{!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
@@ -87,30 +90,30 @@
         });
 	</script>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$(".js_drop_menu").select2()
-				$("#position").select2({
-					tags: []
-				});
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".js_drop_menu").select2()
+			$("#position").select2({
+				tags: []
 			});
-		</script>
+		});
+	</script>
 
-		<script>
-			(function (i, s, o, g, r, a, m) {
-				i['GoogleAnalyticsObject'] = r;
-				i[r] = i[r] || function () {
-							(i[r].q = i[r].q || []).push(arguments)
-						}, i[r].l = 1 * new Date();
-				a = s.createElement(o),
-						m = s.getElementsByTagName(o)[0];
-				a.async = 1;
-				a.src = g;
-				m.parentNode.insertBefore(a, m)
-			})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function () {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-			ga('create', 'UA-83807118-1', 'auto');
-			ga('send', 'pageview');
-		</script>
+		ga('create', 'UA-83807118-1', 'auto');
+		ga('send', 'pageview');
+	</script>
 </body>
 </html>
