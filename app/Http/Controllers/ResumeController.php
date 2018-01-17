@@ -270,7 +270,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
     {
         if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateResume = Resume::find($request['id']);
-            $updateResume->published = 0;
+            $updateResume->blocked = true;
             $updateResume->save();
             Mail::send(
                 'emails.notificationEdit',

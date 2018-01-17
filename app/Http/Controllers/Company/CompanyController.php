@@ -270,7 +270,7 @@ class CompanyController extends Controller  {
     {
         if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateCompany = Company::find($request['id']);
-            $updateCompany->published = 0;
+            $updateCompany->blocked = true;
             $updateCompany->save();
             Mail::send(
                 'emails.notificationEdit',
