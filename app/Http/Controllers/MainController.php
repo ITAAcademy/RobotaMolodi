@@ -71,7 +71,7 @@ class MainController extends Controller
                 'vacancies' => $vacancies,
             ));
         }
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        $topVacancy = Vacancy::getTopVacancies();
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
@@ -94,7 +94,7 @@ class MainController extends Controller
             ));
         }
 
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        $topVacancy = Vacancy::getTopVacancies();
 
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
@@ -115,7 +115,7 @@ class MainController extends Controller
         if($request->ajax()){
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
         }
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        $topVacancy = Vacancy::getTopVacancies();
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
