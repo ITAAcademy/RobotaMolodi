@@ -11,24 +11,22 @@
         </div>
         <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg pull-right" style="margin: 10px"> Create news</a></div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover ">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Picture</th>
-                <th>Published</th>
-                <th>Edit news</th>
-                <th>Show news</th>
-                <th>Delete news</th>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col" class="col-md-5">Description</th>
+                <th scope="col" class="col-md-3 col-lg-6">Picture</th>
+                <th scope="col">Published</th>
+                <th scope="col">Options</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach ($news as $new)
                 <tr>
-                    <td>{{ $new->id }}</td>
+                    <td scope="row">{{ $new->id }}</td>
                     <td><h4>{{ $new->name }}</h4></td>
                     <td>{!!  $new->description !!}</td>
 
@@ -46,18 +44,15 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success">Edit news</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary">Show news</a>
-                        {{--<button type="button" class="btn btn-primary">Update</button>--}}
-                    </td>
-                    <td>
+                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group" style="width: 100%; margin-bottom: 8px;">Edit news</a>
+
+                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary  btn-group" style="width: 100%; margin-bottom: 8px;">Show news</a>
+
                         {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
                         ]) !!}
-                        {!! Form::submit('Delete news', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::submit('Delete news', ['class' => 'btn btn-danger  btn-group']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
