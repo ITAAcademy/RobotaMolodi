@@ -9,7 +9,11 @@
                 </div>
             @endif
         </div>
-        <div class="createNews"><a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg pull-right" style="margin: 10px"> Create news</a></div>
+        <div class="createNews">
+            <a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg pull-right">
+                Create news
+            </a>
+        </div>
 
         <table class="table table-bordered table-hover ">
             <thead>
@@ -44,9 +48,13 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group" style="width: 100%; margin-bottom: 8px;">Edit news</a>
+                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn">
+                            Edit news
+                        </a>
 
-                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary  btn-group" style="width: 100%; margin-bottom: 8px;">Show news</a>
+                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary btn-group optionBtn">
+                            Show news
+                        </a>
 
                         {!! Form::open([
                         'method' => 'DELETE',
