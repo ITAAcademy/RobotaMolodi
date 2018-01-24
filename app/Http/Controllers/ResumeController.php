@@ -87,10 +87,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
      */
     public function create(City $cityModel, Guard $auth, Industry $industryModel, Resume $resume)// Create new resume
     {
-	if (isset($_SERVER['HTTP_REFERER']))
-	        $this->http=$_SERVER['HTTP_REFERER'];
-        $resume = new Resume(['email' => $auth->user()->email ]);
         if(Auth::check()){
+            if (isset($_SERVER['HTTP_REFERER']))
+                $this->http=$_SERVER['HTTP_REFERER'];
+            $resume = new Resume(['email' => $auth->user()->email ]);
+
             $cities = $cityModel->getCities();
             $industries = $industryModel->getIndustries();
             $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
