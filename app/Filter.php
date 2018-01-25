@@ -13,8 +13,7 @@ class Filter
 {
     public static function vacancies(Request $request)
     {
-        $vacancies = Vacancy::AllVacancies()
-            ->byIndustries($request->get('industries',[]))
+        $vacancies = Vacancy::byIndustries($request->get('industries',[]))
             ->bySpecialisations($request->get('specialisations',[]))
             ->byRegions($request->get('regions',[]))
             ->byStartDate($request->get('startDate',[]))
