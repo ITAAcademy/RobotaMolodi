@@ -62,15 +62,16 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $vacancies = Filter::vacancies($request)->where('blocked', false)->where('published', 1)->paginate();
-        Filter::routeFilterPaginator($request, $vacancies);
-
-        $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
+            $vacancies = Filter::vacancies($request)->where('published', 1)->paginate();
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
             ));
         }
+
+        $vacancies = Vacancy::allVacancies()->where('published', 1)->paginate();
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
