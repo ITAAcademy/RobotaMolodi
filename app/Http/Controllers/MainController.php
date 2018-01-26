@@ -62,16 +62,17 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $vacancies = Filter::vacancies($request)->where('blocked', false)->where('published', 1)->paginate();
-        Filter::routeFilterPaginator($request, $vacancies);
-
-        $specialisations = Vacancy::groupBy('position')->lists('position');
         if($request->ajax()){
+            $vacancies = Filter::vacancies($request)->where('published', 1)->paginate();
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
             ));
         }
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+
+        $vacancies = Vacancy::allVacancies()->where('published', 1)->paginate();
+        $specialisations = Vacancy::groupBy('position')->lists('position');
+        Filter::routeFilterPaginator($request, $vacancies);
+        $topVacancy = Vacancy::getTopVacancies();
         return View::make('main.filter.filterVacancies', array(
             'vacancies' => $vacancies,
             'cities' => City::all(),
@@ -94,7 +95,7 @@ class MainController extends Controller
             ));
         }
 
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        $topVacancy = Vacancy::getTopVacancies();
 
         return view('main.filter.filterCompanies', array(
             'companies' => $companies,
@@ -115,7 +116,7 @@ class MainController extends Controller
         if($request->ajax()){
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
         }
-        $topVacancy = Vacancy::bySort('desc')->take(5)->get();
+        $topVacancy = Vacancy::getTopVacancies();
 
         return View::make('main.filter.filterResumes', array(
             'resumes' => $resumes,
