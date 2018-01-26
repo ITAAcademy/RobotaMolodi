@@ -20,35 +20,38 @@
         <span class="notice"></span>
     </div>
 
-    <table class="table  table-bordered">
+    <table class="table table-bordered">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Url</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Url</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
 
         @foreach ($sliders as $slider)
             <tr>
                 <td>{{ $slider->id }}</td>
-                <td>{{ $slider->image }}</td>
-                <td>{!! $slider->url !!}</td>
-                <td>{!! $slider->category->name !!}</td>
-
                 <td>
-                    <div class="btn-block">
+                    <img class="picture" src="{{ asset($slider->image) }}" style="width: 100%">
+                </td>
+                <td>
+                    <a href="{!! $slider->url !!}">{!! $slider->url !!}</a>
+                </td>
+                <td>{!! $slider->category->name !!}</td>
+                <td>
+                    <div class="btn-group">
                         {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
-                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary">
-                                Show slider
+                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary btn-block">
+                                Show
                             </a>
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-success">
-                                Edit slider
+                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-success btn-block">
+                                Edit
                             </a>
-                            {!! Form::submit('Delete slider', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Delete ', ['class' => 'btn btn-danger btn-block']) !!}
                         {!! Form::close() !!}
                     </div>
                 </td>
