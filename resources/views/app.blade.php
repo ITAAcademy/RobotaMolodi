@@ -23,6 +23,7 @@
     <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
     <link href="{{ asset('/css/errors/base.css') }}" rel="stylesheet">
+	<script src="/js/lang.js"></script>
 
 	@yield('head')
 
