@@ -19,6 +19,7 @@
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+	<script src="/js/lang.js"></script>
 
     <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
