@@ -40,22 +40,16 @@
                 <td>{!! $slider->category->name !!}</td>
 
                 <td>
-                    <div>
-                        <span style="display: inline-block">
+                    <div class="btn-block">
+                        {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
                             <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary">
                                 Show slider
                             </a>
-                        </span>
-                        <span style="display: inline-block">
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-primary">
+                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-success">
                                 Edit slider
                             </a>
-                        </span>
-                        <span style="display: inline-block">
-                            {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
-                                {!! Form::submit('Delete slider', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </span>
+                            {!! Form::submit('Delete slider', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
                     </div>
                 </td>
             </tr>
