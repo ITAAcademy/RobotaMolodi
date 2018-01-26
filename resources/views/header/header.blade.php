@@ -32,7 +32,12 @@
                         <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
                             <button type="button" class="btn btn-default modal-user-button">
                                 <div class="img-user">
-                                    {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                    @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
+                                        {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
+                                        array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                    @else
+                                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                    @endif
                                 </div>
                                 <div class="img-user-name">
                                     <p>{{ Auth::user()->name }}</p>
@@ -42,7 +47,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4">
-                        <a class="edit-user-name" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -123,26 +128,3 @@
 
     })
 </script>
-@if (Auth::check())
-    <script>
-        $(document).ready(function (){
-            $('.edit-user-name').on('click',function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                $('#modal-common').modal('show');
-                $.ajax({
-                   url: '{{ route('user.edit', ['id' => Auth::user()->id]) }}',
-                   type: 'GET',
-                   success: function(response) {
-                     $('#modal-common .modal-content').html(response);
-                   },
-                   error: function(xhr, error){
-                      console.log(xhr);
-                      console.log(error);
-                    }
-                });
-
-            });
-        });
-    </script>
-@endif

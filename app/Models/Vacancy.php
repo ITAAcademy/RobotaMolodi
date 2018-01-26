@@ -232,4 +232,12 @@ class Vacancy extends Model {
     public function getImagePath(){
         return 'image/company/' . $this->Company->users_id . '/' . $this->Company->image;
     }
+    
+    public static function getUnblockVacancies() {
+        return Vacancy::where('blocked', false);
+    }
+    
+    public static function getTopVacancies() {
+        return Vacancy::getUnblockVacancies()->bySort('desc')->take(5)->get();
+    }
 }
