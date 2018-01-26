@@ -6,7 +6,10 @@
             {{ Session::get('flash_message') }}
         </div>
     @endif
-    <div class="createNews"><a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg"> Create slider</a>
+    <div class="createNews">
+        <a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">
+            Create slider
+        </a>
     </div>
 
     <div>
@@ -39,10 +42,14 @@
                 <td>
                     <div>
                         <span style="display: inline-block">
-                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary">Show slider</a>
+                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary">
+                                Show slider
+                            </a>
                         </span>
                         <span style="display: inline-block">
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-primary">Edit slider</a>
+                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-primary">
+                                Edit slider
+                            </a>
                         </span>
                         <span style="display: inline-block">
                             {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
