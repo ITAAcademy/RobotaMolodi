@@ -12,6 +12,8 @@
             <tr>
                 <th>№ п/п</th>
                 <th>Company page</th>
+                <th>Blocked since</th>
+                <th>Blocked by</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -27,6 +29,8 @@
                             - {{ $blockedVacancy->position }}
                         </a>
                     </td>
+                    <td>{{ $blockedVacancy->blocked_time }}</td>
+                    <td>{{ $blockedVacancy->blocked_by }}</td>
                     <td>
                         <div>
                             <span style="display: inline-block">
