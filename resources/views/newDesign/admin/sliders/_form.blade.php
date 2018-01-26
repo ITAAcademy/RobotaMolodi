@@ -10,7 +10,8 @@
 <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
     <div class="form-group">
         {!! Form::label('image', 'Add image:') !!}
-        {!! Form::file('image',['class' => 'btn'])!!}
+        {!! Form::file('image',['class' => 'btn inputImg'])!!}
+        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:250px"/>
     </div>
     <div class="form-group">
         {!! Form::label('url', 'Url:', ['class' => 'control-label']) !!}
@@ -27,3 +28,17 @@
 
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 </div>
+<script>
+    $('body').on('change', '.inputImg', function (e) {
+        e.stopPropagation();
+        var t = this;
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function imageIsLoaded(e) {
+                var prevContainer = t.closest('.form-group');
+                $(prevContainer).find('.prevImg').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+</script>
