@@ -70,7 +70,9 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        //
+        $slider = Slider::find($id);
+        
+        return view('newDesign.admin.sliders.show', ['slider' => $slider]);
     }
 
     /**
