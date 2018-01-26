@@ -82,8 +82,14 @@ class SliderController extends Controller
     public function edit($id)
     {
         $slider = Slider::find($id);
+        $categories = Category::all();
         
-        return view('newDesign.admin.sliders.edit', ['slider' => $slider]);
+        return view(
+            'newDesign.admin.sliders.edit',
+            [
+                'slider' => $slider,
+                'categories' => $categories
+            ]);
     }
 
     /**
