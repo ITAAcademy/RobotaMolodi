@@ -271,7 +271,10 @@ class CompanyController extends Controller  {
         if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateCompany = Company::find($request['id']);
             $updateCompany->blocked = true;
+            $updateCompany->blocked_by = Auth::user()->name;
+            $updateCompany->blocked_time = date('Y-m-d');
             $updateCompany->save();
+            
             Mail::send(
                 'emails.notificationEdit',
                 ['messageText' => 'Ваша компанія була заблокована адміністратором'],
