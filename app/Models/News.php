@@ -104,13 +104,17 @@ class News extends Model
     
     public function previous()
     {
-        $previousNews = News::where('id', '>', $this->id)->orderBy('id','asc')->first();
+        $previousNews = News::where('id', '>', $this->id)
+                            ->where('published', 1)
+                            ->orderBy('id','asc')->first();
         return $previousNews ? ['id' => $previousNews->id, 'name' =>  mb_substr($previousNews->name, 0, 32).'...']: ['id' => '', 'name' => trans('pagination.allNews')];
     }
     
     public function next()
     {
-        $nextNews = News::where('id', '<', $this->id)->orderBy('id','desc')->first();
+        $nextNews = News::where('id', '<', $this->id)
+                        ->where('published', 1)
+                        ->orderBy('id','desc')->first();
         return $nextNews ? ['id' => $nextNews->id, 'name' => mb_substr($nextNews->name, 0, 32).'...'] : ['id' => '', 'name' => trans('pagination.allNews')] ;
     }
     
