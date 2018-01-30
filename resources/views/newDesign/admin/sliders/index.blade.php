@@ -99,7 +99,7 @@
             });
 
             $('.select-cat').change(function () {
-                var allCategories = {!! json_encode($categories) !!};
+                var allCategories = {!! $categories !!};
                 var selectedCategoryId = $("select option:selected").attr('id');
 
                 for(var index = 0; index < allCategories.length; index++) {
