@@ -97,13 +97,20 @@
                     }
                 })
             });
-            
-            $('.select-cat').change(function () {
-                $('#selected-1').hide();
-                $('#selected-2').hide();
-                var categoryId = $("select option:selected").attr('id');
-                $('#selected-' + categoryId).show();
 
+            $('.select-cat').change(function () {
+                var allCategories = {!! json_encode($categories) !!};
+                var selectedCategoryId = $("select option:selected").attr('id');
+
+                for(var index = 0; index < allCategories.length; index++) {
+                    var currentId = allCategories[index].id;
+
+                    if (currentId != selectedCategoryId) {
+                        $('#selected-' + currentId).hide();
+                    } else {
+                        $('#selected-' + currentId).show();
+                    }
+                }
             })
         })
     </script>
