@@ -6,10 +6,32 @@
             {{ Session::get('flash_message') }}
         </div>
     @endif
-    <div class="createNews"><a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg"> Create slider</a>
+    <div class="createNews">
+        <a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">
+            Create slider
+        </a>
     </div>
+    <div class="col-md-3">
+        <label>Show slider</label>
+        <select class="select-cat">
+            <option></option>
+            @foreach($categories as $category)
+                <option id={!! $category->id !!}>
+                    {!! $category->name !!}
+                </option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-6">
+        <div id="selected-2" style="display: none">
+            @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 2])
+        </div>
 
-    <div>
+        <div id="selected-1" style="display: none">
+            @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 1])
+        </div>
+    </div>
+    <div class="col-xs-12">
         {!! Form::label('Добавити категорію') !!}
         {!! Form::text('categoryName') !!}
         {!! Form::submit(trans('main.save'), ['class' => 'saveCategory']) !!}
@@ -17,38 +39,39 @@
         <span class="notice"></span>
     </div>
 
-    <table class="table  table-bordered">
+    <table class="table table-bordered">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Url</th>
-            <th>Category</th>
-            <th>Actions</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Url</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
 
         @foreach ($sliders as $slider)
             <tr>
                 <td>{{ $slider->id }}</td>
-                <td>{{ $slider->image }}</td>
-                <td>{!! $slider->url !!}</td>
-                <td>{!! $slider->category->name !!}</td>
-
                 <td>
-                    <div>
-                        <span style="display: inline-block">
-                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary">Show slider</a>
-                        </span>
-                        <span style="display: inline-block">
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-primary">Edit slider</a>
-                        </span>
-                        <span style="display: inline-block">
-                            {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
-                                {!! Form::submit('Delete slider', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </span>
+                    <img class="picture" src="{{ asset($slider->image) }}" style="width: 100%">
+                </td>
+                <td>
+                    <a href="{!! $slider->url !!}">{!! $slider->url !!}</a>
+                </td>
+                <td>{!! $slider->category->name !!}</td>
+                <td>
+                    <div class="btn-group">
+                        {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
+                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary btn-block">
+                                Show
+                            </a>
+                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-success btn-block">
+                                Edit
+                            </a>
+                            {!! Form::submit('Delete ', ['class' => 'btn btn-danger btn-block']) !!}
+                        {!! Form::close() !!}
                     </div>
                 </td>
             </tr>
@@ -74,6 +97,14 @@
                     }
                 })
             });
+            
+            $('.select-cat').change(function () {
+                $('#selected-1').hide();
+                $('#selected-2').hide();
+                var categoryId = $("select option:selected").attr('id');
+                $('#selected-' + categoryId).show();
+
+            })
         })
     </script>
     <div>

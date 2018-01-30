@@ -226,10 +226,18 @@ class Vacancy extends Model {
     }
     
     public function getCompanyName() {
-        return $this-scopeCompany()->company_name;
+        return $this->scopeCompany()->company_name;
     }
     
     public function getImagePath(){
         return 'image/company/' . $this->Company->users_id . '/' . $this->Company->image;
+    }
+    
+    public static function getUnblockVacancies() {
+        return Vacancy::where('blocked', false);
+    }
+    
+    public static function getTopVacancies() {
+        return Vacancy::getUnblockVacancies()->bySort('desc')->take(5)->get();
     }
 }

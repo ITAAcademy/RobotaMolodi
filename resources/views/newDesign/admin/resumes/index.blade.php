@@ -12,6 +12,8 @@
             <tr>
                 <th>№ п/п</th>
                 <th>Company page</th>
+                <th>Blocked since</th>
+                <th>Blocked by</th>
                 <th>Options</th>
             </tr>
             </thead>
@@ -24,6 +26,8 @@
                             <strong>{{$blockedResume->name_u}}</strong> - {{ $blockedResume->position }}
                         </a>
                     </td>
+                    <td>{{ $blockedResume->blocked_time }}</td>
+                    <td>{{ $blockedResume->blocked_by }}</td>
                     <td>
                         <div class="btn-group">
                             {!! Form::open([

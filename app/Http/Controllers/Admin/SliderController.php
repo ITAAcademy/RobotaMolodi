@@ -22,9 +22,10 @@ class SliderController extends Controller
     {
         $sliders = Slider::all();
 //        
-        
+        $categories = Category::all();
         return view('newDesign.admin.sliders.index', [
-            'sliders' => $sliders
+            'sliders' => $sliders,
+            'categories' => $categories
         ]);
     }
 
@@ -70,7 +71,9 @@ class SliderController extends Controller
      */
     public function show($id)
     {
-        //
+        $slider = Slider::find($id);
+        
+        return view('newDesign.admin.sliders.show', ['slider' => $slider]);
     }
 
     /**
@@ -82,8 +85,14 @@ class SliderController extends Controller
     public function edit($id)
     {
         $slider = Slider::find($id);
+        $categories = Category::all();
         
-        return view('newDesign.admin.sliders.edit', ['slider' => $slider]);
+        return view(
+            'newDesign.admin.sliders.edit',
+            [
+                'slider' => $slider,
+                'categories' => $categories
+            ]);
     }
 
     /**

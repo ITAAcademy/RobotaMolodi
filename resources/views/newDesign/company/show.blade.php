@@ -221,7 +221,7 @@
                 <span id="date-{{$comment->id}}">{{date('j.m.Y h:ia', strtotime($comment->updated_at))}}</span>
             </span>
             <p id="comment-{{$comment->id}}-description">{{$comment->comment}}</p>
-            @if(Auth::check() && Auth::id() == $comment->user_id || Auth::user()->isAdmin())
+            @if(Auth::check() && (Auth::id() == $comment->user_id || Auth::user()->isAdmin()) )
                 <div class="btn-block">
                 {!!Form::model($comment,
                     ['route' => [
@@ -239,7 +239,7 @@
                         'style' => 'height: 100px; display:none'
                     ])
                 !!}
-                {!!Form::button('Edit',
+                {!!Form::button('<i class="fa fa-pencil fa-lg"></i>',
                     [
                         'value' => $comment->id,
                         'id' => 'btn-edit-submit'.$comment->id,
@@ -255,8 +255,9 @@
                         ],
                     'method'=>'DELETE'])
                 !!}
-                {!!Form::submit('Delete',
+                {!!Form::button('<i class="fa fa-times fa-lg"></i>',
                     [
+                        'type' => 'submit',
                         'id' => $comment->id,
                         'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
                         'onclick' => "return confirm('Ви дійсно бажаєте видалити коментарій?');"
@@ -296,9 +297,9 @@
             $("#comment-" + id + "-description").hide();
             $(this).removeClass('btn-primary').addClass('btn-success');
             attributes = $(this).attr("class");
-            buttonName = $(this).text();
+            buttonName = $(this).html();
             $("#comment" + id).show();
-            $(this).replaceWith("<input class='" + attributes + "' type='submit' value='" + buttonName +"'></input>");
+            $(this).replaceWith('<button class=\'' + attributes + '\' type=\'submit\' >' + buttonName + '</button>');
         });
 
         $('#changeImage').on('click', function () {

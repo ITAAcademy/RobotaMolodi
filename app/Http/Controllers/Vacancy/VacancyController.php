@@ -411,7 +411,9 @@ class VacancyController extends Controller
     {
         if (Auth::check() && Auth::user()->isAdmin() && $request->isMethod('post')) {
             $updateVacancy = Vacancy::find($request['id']);
-            $updateVacancy->published = 0;
+            $updateVacancy->blocked = true;
+            $updateVacancy->blocked_by = Auth::user()->name;
+            $updateVacancy->blocked_time = date('Y-m-d');
             $updateVacancy->save();
             Mail::send(
                 'emails.notificationEdit',
