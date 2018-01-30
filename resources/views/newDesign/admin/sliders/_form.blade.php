@@ -11,7 +11,7 @@
     <div class="form-group">
         {!! Form::label('image', 'Add image:') !!}
         {!! Form::file('image',['class' => 'btn inputImg'])!!}
-        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:250px"/>
+        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:100px"/>
     </div>
     <div class="form-group">
         {!! Form::label('url', 'Url:', ['class' => 'control-label']) !!}
@@ -36,7 +36,7 @@
             var reader = new FileReader();
             reader.onload = function imageIsLoaded(e) {
                 var prevContainer = t.closest('.form-group');
-                $(prevContainer).find('.prevImg').attr('src', e.target.result);
+                $('body').find('.prevImg').show().attr('src', e.target.result);
             };
             reader.readAsDataURL(this.files[0]);
         }
