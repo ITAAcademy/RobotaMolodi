@@ -16,7 +16,7 @@ function initMultiselect(container)
 		{
 			if (options.length === 0)
 			{
-				return 'Не вибрано...';
+				return '...';
 			}
 
 			else if (options.length > 3)
