@@ -65,7 +65,8 @@
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
-                        {!! Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisation', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]) !!}
+                        {{--{!! Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisation', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]) !!}--}}
+                        <a class = 'greyLinks'>{{ $vacancy->position }}</a>
                     </div>
                     <div>
                         <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="/company/{{$company->id}}">{{$company->company_name}}</a> </div>

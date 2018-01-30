@@ -1,3 +1,4 @@
+
 function initMultiselect(container)
 {
 	$(container).multiselect(
@@ -13,10 +14,11 @@ function initMultiselect(container)
 		,selectAllText: 'Вибрати все'
 		,buttonText: function(options, select)
 		{
-			if (options.length === 0) 
+			if (options.length === 0)
 			{
-				return 'Не вибрано...';
+				return '...';
 			}
+
 			else if (options.length > 3)
 			{
 				return 'Вибрано більше трьох';

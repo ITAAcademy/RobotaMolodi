@@ -27,8 +27,8 @@
                     <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
                 </div>
                 <div class="col-xs-12" style="padding-top: 15px">
-                    {!! Html::linkRoute('news.show',  '&laquo; '.$previous['name'] ,  $previous['id'], [ 'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]) !!}
-                    {!! Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]) !!}
+                    {!! Html::linkRoute('news.show',  '&laquo; '.$previous['name'] ,  $previous['id'], [ 'style' => 'color:orange' ,'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]) !!}
+                    {!! Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'style' => 'color:orange' ,'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]) !!}
                 </div>
             </div>
         </div>

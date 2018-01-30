@@ -55,6 +55,20 @@
 	<link href="{{ asset('/css/slick/slick.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/slick/slick-theme.css') }}" rel="stylesheet">
 
+
+	<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+
+	 <script src="js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.language.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
+	 <script src="js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+
+	 <!-- <script src="js/global.js"></script> -->
+
 	{!!Html::script('js/robotaMolodiUtils.js')!!}
 	{!!Html::script('js/formatDate.js')!!}
 	{!!Html::script('js/initMap.js')!!}
