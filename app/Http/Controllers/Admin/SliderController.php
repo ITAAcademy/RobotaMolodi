@@ -36,8 +36,7 @@ class SliderController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $sliders = Slider::all();
-        return view('newDesign.admin.sliders.create', ['categories' => $categories, 'sliders' => $sliders]);
+        return view('newDesign.admin.sliders.create', ['categories' => $categories]);
     }
 
     /**
