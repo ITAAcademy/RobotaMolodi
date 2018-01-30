@@ -8,13 +8,10 @@
     </div>
 @endif
 <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
-    <div class="col-md-offset-3 col-md-9">
-        @include('newDesign.sliders.underFooter')
-    </div>
     <div class="form-group">
         {!! Form::label('image', 'Add image:') !!}
         {!! Form::file('image',['class' => 'btn inputImg'])!!}
-        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:250px"/>
+        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:100px"/>
     </div>
     <div class="form-group">
         {!! Form::label('url', 'Url:', ['class' => 'control-label']) !!}
