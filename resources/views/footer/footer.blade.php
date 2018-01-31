@@ -47,10 +47,6 @@
                target="_blank" title="Share on facebook.com">
                 <i class="fa-soc fa fa-facebook-square fa-2x" aria-hidden="true"></i>
             </a>
-            <a href="http://vk.com/share.php?url=http://robotamolodi.org/&title=РОБОТАМОЛОДІ&image=http://robotamolodi.org/image/logo.png"
-               target="_blank" title="Share on vk.com">
-                <i class="fa-soc fa fa-vk fa-2x" aria-hidden="true"></i>
-            </a>
             <a href="http://www.linkedin.com/shareArticle?mini=true&amp&title=РОБОТАМОЛОДІ&url=http://robotamolodi.org/"
                target="_blank">
                 <i class="fa-soc fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
