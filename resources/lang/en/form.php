@@ -2,14 +2,14 @@
 
 return [
 
-    'position' => 'Position',
-    'branch' => 'Branch',
-    'organization' => 'Organization',
+    'position' => 'Position:',
+    'branch' => 'Branch:',
+    'organization' => 'Organization:',
     'salarymin' => 'Salary (min)',
     'salarymax' => 'Salary (max)',
-    'currency' => 'Currency',
-    'email' => 'Email',
-    'city' => 'City',
+    'currency' => 'Currency:',
+    'email' => 'Email:',
+    'city' => 'City:',
     'description' => 'Description',
     'status' => 'Status publication',
     'regvacancy' => 'Register a vacancy',
@@ -21,7 +21,7 @@ return [
     'linkcompany' => 'Link to the company',
     'changefoto' => 'Change photo',
     'required' => 'Required to fill',
-    'fullname' => 'Name and surname',
+    'fullname' => 'Name and surname:',
     'unselected' => 'File not selected',
 
 ];
