@@ -243,7 +243,7 @@
                     [
                         'value' => $comment->id,
                         'id' => 'btn-edit-submit'.$comment->id,
-                        'class' => 'btn-edit-submit btn btn-xs btn-primary pull-left'
+                        'class' => 'btn-edit-submit btn btn-xs btn-warning pull-right'
                     ])
                 !!}
                 {!!Form::close()!!}
@@ -259,7 +259,7 @@
                     [
                         'type' => 'submit',
                         'id' => $comment->id,
-                        'class' => 'btn-delete btn btn-xs btn-danger pull-left '.$comment->id,
+                        'class' => 'btn-delete btn btn-xs btn-warning pull-right',
                         'onclick' => "return confirm('Ви дійсно бажаєте видалити коментарій?');"
                     ])
                 !!}
