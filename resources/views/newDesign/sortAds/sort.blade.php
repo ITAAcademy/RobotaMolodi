@@ -5,12 +5,12 @@
 <div class='row sort-box'>
 
 		<div class='col-xs-12 sort-box'>
-			<div class='col-xs-3 sort-rating toggleFilter'>
+			<div class='col-xs-2 sort-rating toggleFilter' style="padding:0">
 				<span class='label-sort-box'>{{ trans('content.sort_by') }}</span>
 				<span class ='opsion-sort-box sort-by-rating hidden'>{{ trans('content.rating_m') }}</span>
 				<span class ='opsion-sort-box sort-by-rating'>{{ trans('content.rating_p') }}</span>
 			</div>
-			<div class='col-xs-3 sort-date'>
+			<div class='col-xs-3 sort-date' >
 				<span class='label-sort-box'>{{ trans('content.date') }}:</span>
 				<span class='opsion-sort-box sort-by-date'>{{ trans('content.new_first') }}</span>
 				<span class='opsion-sort-box sort-by-date hidden'>{{ trans('content.old_first') }}</span>
@@ -26,8 +26,17 @@
 					<input class="datePicker" type="text" id="datepicker2" name="endDate" />
 				</div>
 			</div>
+			<div class="col-xs-1 sort-filter">
+				<a id="close-all-filters" class="close-bt" href="#" title="Стерти всі фільтри">
+					<img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
+				</a>
+			</div>
 		</div>
-
 </div>
-
 	<hr class='line-sort-box'>
+	<script>
+	//close filters:
+	$('#close-all-filters').on('click', function (e) {
+		location.reload(true);
+	});
+	</script>
