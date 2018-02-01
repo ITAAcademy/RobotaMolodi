@@ -136,12 +136,15 @@
     display: inline-block;
     /*text-align: right;*/
     /*margin-bottom: 3px;*/
-    min-width: 175px;
+    /*min-width: 175px;*/
     font-family: "Segoe UI", sans-serif;
     -ms-font-family: "Segoe UI", sans-serif;
     font-size: 15px;
     font-weight: 500;
     color:#666666;
+}
+.select-width{
+    width: 100%;
 }
 .resume-row{
     display: flex;
