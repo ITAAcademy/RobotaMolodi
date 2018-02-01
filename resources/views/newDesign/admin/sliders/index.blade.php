@@ -22,13 +22,13 @@
             @endforeach
         </select>
     </div>
-    <div class="col-md-6 slider" >
+    <div class="col-md-5">
         <div class="slider-block">
             <div class="slick-slider slider-show">
                 @foreach($sliders as $slider)
                     <div data-id="{{ $slider->category_id }}">
                         <a  href="{{ $slider->url }}"  target="_blank" class="add-link">
-                            <img src="{{ $slider->image }}" alt="" class="img-responsive">
+                            <img src="{{ $slider->image }}" alt="" style="width:100%; height: auto">
                         </a>
                     </div>
                 @endforeach
