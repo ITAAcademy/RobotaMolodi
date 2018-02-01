@@ -11,8 +11,27 @@
             Create slider
         </a>
     </div>
+    <div class="col-md-3">
+        <label>Show slider</label>
+        <select class="select-cat">
+            <option></option>
+            @foreach($categories as $category)
+                <option id={!! $category->id !!}>
+                    {!! $category->name !!}
+                </option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-6">
+        <div id="selected-2" style="display: none">
+            @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 2])
+        </div>
 
-    <div>
+        <div id="selected-1" style="display: none">
+            @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 1])
+        </div>
+    </div>
+    <div class="col-xs-12">
         {!! Form::label('Добавити категорію') !!}
         {!! Form::text('categoryName') !!}
         {!! Form::submit(trans('main.save'), ['class' => 'saveCategory']) !!}
@@ -78,6 +97,14 @@
                     }
                 })
             });
+            
+            $('.select-cat').change(function () {
+                $('#selected-1').hide();
+                $('#selected-2').hide();
+                var categoryId = $("select option:selected").attr('id');
+                $('#selected-' + categoryId).show();
+
+            })
         })
     </script>
     <div>
