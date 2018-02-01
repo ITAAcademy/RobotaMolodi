@@ -65,10 +65,11 @@
             <div class="col-xs-12 col-md-10">
                 <div>
                     <p class="position-myVacancy">
-                        <a class="orangColor-myVacancy-name"
-                           href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">
-                            {!!$vacancy->position!!}
-                        </a>
+                        {{--<a class="orangColor-myVacancy-name"--}}
+                           {{--href="javascript:submit('selectSpecialisation', '{{$vacancy->position}}')">--}}
+                           {{----}}
+                        {{--</a>--}}
+                        <strong>{{ $vacancy->position }}</strong>
                         <br>
                     </p>
                 </div>
