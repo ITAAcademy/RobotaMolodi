@@ -25,7 +25,7 @@ class SliderController extends Controller
         $categories = Category::all();
         return view('newDesign.admin.sliders.index', [
             'sliders' => $sliders,
-            'categories' => $categories,
+            'categories' => $categories
         ]);
     }
 
