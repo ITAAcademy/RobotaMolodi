@@ -104,9 +104,9 @@
 
             $('.slider-show').slick({
                 autoplay: true,
-                autoplaySpeed: 3000,
-                infinite: false,
-                speed: 1000
+                autoplaySpeed: 6000,
+                infinite: true,
+                speed: 2000
             });
 
             $('.slider-block').hide();
