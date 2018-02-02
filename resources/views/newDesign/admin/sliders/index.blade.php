@@ -11,16 +11,17 @@
             Create slider
         </a>
     </div>
-    <div class="col-md-3">
-        <label>Show slider</label>
-        <select class="select-cat">
-            <option></option>
-            @foreach($categories as $category)
-                <option value={!! $category->id !!}>
-                    {!! $category->name !!}
-                </option>
-            @endforeach
-        </select>
+    <div class="col-md-4">
+        <label>Choose category to show the sliders info
+            <select class="select-cat">
+                <option></option>
+                @foreach($categories as $category)
+                    <option value={!! $category->id !!}>
+                        {!! $category->name !!}
+                    </option>
+                @endforeach
+            </select>
+        </label>
     </div>
     <div class="col-md-5">
         <div class="slider-block">
