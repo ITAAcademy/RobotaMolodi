@@ -56,7 +56,7 @@
         <tbody>
 
         @foreach ($sliders as $slider)
-            <tr>
+            <tr data-value="{!! $slider->category_id !!}" class="sliders">
                 <td>{{ $slider->id }}</td>
                 <td>
                     <img class="picture img-responsive" src="{{ asset($slider->image) }}" >
@@ -110,11 +110,15 @@
             });
 
             $('.slider-block').hide();
+            $('tr.sliders').hide();
 
             $('.select-cat').change(function () {
+                $('tr.sliders').hide();
+
                 $('.slider-block').hide();
                 $('.slider-show').slick('slickUnfilter');
                 var selectedCategoryId = $("select option:selected").val();
+                $("tr[data-value='" + selectedCategoryId + "']").show();
                 $('.slider-show').slick('slickFilter', "div[data-id='" + selectedCategoryId + "']");
                 $('.slider-block').show();
             });
