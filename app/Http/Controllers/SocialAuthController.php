@@ -33,8 +33,8 @@ class SocialAuthController extends Controller
     public function handleProviderCallback(\App\SocialAccountsService $accountService, $provider)
         {
             try {
-                $user = \Socialite::with($provider)->user();
-            } catch (\Exception $e) {
+                $user = Socialite::with($provider)->user();
+            } catch (Exception $e) {
                 return redirect('/login');
         }
             $authUser = $accountService->findOrCreate(
