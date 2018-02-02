@@ -16,19 +16,23 @@
         <select class="select-cat">
             <option></option>
             @foreach($categories as $category)
-                <option id={!! $category->id !!}>
+                <option value={!! $category->id !!}>
                     {!! $category->name !!}
                 </option>
             @endforeach
         </select>
     </div>
-    <div class="col-md-6">
-        <div id="selected-2" style="display: none">
-            @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 2])
-        </div>
-
-        <div id="selected-1" style="display: none">
-            @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 1])
+    <div class="col-md-5">
+        <div class="slider-block">
+            <div class="slick-slider slider-show">
+                @foreach($sliders as $slider)
+                    <div data-id="{{ $slider->category_id }}">
+                        <a  href="{{ $slider->url }}"  target="_blank" class="add-link">
+                            <img src="{{ $slider->image }}" alt="" style="width:100%; height: auto">
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
     <div class="col-xs-12">
@@ -55,7 +59,7 @@
             <tr>
                 <td>{{ $slider->id }}</td>
                 <td>
-                    <img class="picture" src="{{ asset($slider->image) }}" style="width: 100%">
+                    <img class="picture img-responsive" src="{{ asset($slider->image) }}" >
                 </td>
                 <td>
                     <a href="{!! $slider->url !!}">{!! $slider->url !!}</a>
@@ -83,29 +87,39 @@
     <script>
         $(document).ready(function () {
             $('.saveCategory').on('click', function () {
-                $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
+                $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
                 $.ajax({
                     url: '{{ route('saveCategory') }}',
-                    data: { name: $('input[name="categoryName"]').val() } ,
+                    data: {name: $('input[name="categoryName"]').val()},
                     type: 'POST',
                     success: function (data) {
                         $('.notice').text(data);
                         $('input[name="categoryName"]').val('');
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $('.notice').empty();
                         }, 2000);
                     }
                 })
             });
-            
-            $('.select-cat').change(function () {
-                $('#selected-1').hide();
-                $('#selected-2').hide();
-                var categoryId = $("select option:selected").attr('id');
-                $('#selected-' + categoryId).show();
 
-            })
+            $('.slider-show').slick({
+                autoplay: true,
+                autoplaySpeed: 3000,
+                infinite: false,
+                speed: 1000
+            });
+
+            $('.slider-block').hide();
+
+            $('.select-cat').change(function () {
+                $('.slider-block').hide();
+                $('.slider-show').slick('slickUnfilter');
+                var selectedCategoryId = $("select option:selected").val();
+                $('.slider-show').slick('slickFilter', "div[data-id='" + selectedCategoryId + "']");
+                $('.slider-block').show();
+            });
         })
+
     </script>
-    <div>
+    </div>
 @stop
