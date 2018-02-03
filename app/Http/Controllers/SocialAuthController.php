@@ -30,7 +30,7 @@ class SocialAuthController extends Controller
              return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback(\App\SocialAccountsService $accountService, $provider)
+    public function handleProviderCallback(\App\SocialAccountService $accountService, $provider)
         {
             try {
                 $user = Socialite::with($provider)->user();

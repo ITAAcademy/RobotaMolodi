@@ -44,7 +44,7 @@ Route::get('/js/lang.js', function () {
     header('Content-Type: text/javascript');
     echo('window.i18n = ' . json_encode($strings) . ';');
     exit();
-})->name('assets.lang');
+});
 
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
@@ -53,7 +53,7 @@ Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Au
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('login/{provider}','SocialAuthController@redirectToProvider');
-Route::get('login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
+Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallback');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
