@@ -11,16 +11,17 @@
             Create slider
         </a>
     </div>
-    <div class="col-md-3">
-        <label>Show slider</label>
-        <select class="select-cat">
-            <option></option>
-            @foreach($categories as $category)
-                <option value={!! $category->id !!}>
-                    {!! $category->name !!}
-                </option>
-            @endforeach
-        </select>
+    <div class="col-md-4">
+        <label>Choose category to show the sliders info
+            <select class="select-cat">
+                <option></option>
+                @foreach($categories as $category)
+                    <option value={!! $category->id !!}>
+                        {!! $category->name !!}
+                    </option>
+                @endforeach
+            </select>
+        </label>
     </div>
     <div class="col-md-5">
         <div class="slider-block">
@@ -56,7 +57,7 @@
         <tbody>
 
         @foreach ($sliders as $slider)
-            <tr>
+            <tr data-value="{!! $slider->category_id !!}" class="sliders">
                 <td>{{ $slider->id }}</td>
                 <td>
                     <img class="picture img-responsive" src="{{ asset($slider->image) }}" >
@@ -104,17 +105,21 @@
 
             $('.slider-show').slick({
                 autoplay: true,
-                autoplaySpeed: 3000,
-                infinite: false,
-                speed: 1000
+                autoplaySpeed: 6000,
+                infinite: true,
+                speed: 2000
             });
 
             $('.slider-block').hide();
+            $('tr.sliders').hide();
 
             $('.select-cat').change(function () {
+                $('tr.sliders').hide();
+
                 $('.slider-block').hide();
                 $('.slider-show').slick('slickUnfilter');
                 var selectedCategoryId = $("select option:selected").val();
+                $("tr[data-value='" + selectedCategoryId + "']").show();
                 $('.slider-show').slick('slickFilter', "div[data-id='" + selectedCategoryId + "']");
                 $('.slider-block').show();
             });
