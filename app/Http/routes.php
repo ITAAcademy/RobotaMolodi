@@ -26,6 +26,26 @@ Route::get('language/{lang}', function($lang){
     }
 
 });
+Route::get('/js/lang.js', function () {
+    $strings = Cache::rememberForever('lang.js', function () {
+        $lang = config('app.locale');
+
+        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $strings = [];
+
+        foreach ($files as $file) {
+            $name           = basename($file, '.php');
+            $strings[$name] = require $file;
+        }
+
+        return $strings;
+    });
+
+    header('Content-Type: text/javascript');
+    echo('window.i18n = ' . json_encode($strings) . ';');
+    exit();
+});
+
 //sso oAuth2.0 API
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
@@ -33,7 +53,7 @@ Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Au
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('login/{provider}','SocialAuthController@redirectToProvider');
-Route::get('login/{provider}/callback', 'SocialAuthController@handleProviderCallback');
+Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallback');
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);

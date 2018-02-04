@@ -74,9 +74,7 @@
             </div>
         </div>
     </div>
-
     {!!Html::script('js/script.js')!!}
-
 <script>
     $(document).ready(function(){
         initMultiselect('.getting-list-selected-box');
