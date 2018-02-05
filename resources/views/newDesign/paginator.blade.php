@@ -68,3 +68,25 @@
         </ul>
     @endif
 </div>
+
+<script>
+    $(document).ready(
+        function(){
+            $(document).on('click', '.pagination a' , function(event){
+                event.preventDefault();
+                var url = $(this).attr('href');
+                var dest = $('.test');
+                console.log(url);
+
+                $.ajax({
+                    url: url,
+                    success: function(resp){
+                        var result = $(resp).filter('.test').html();
+                        console.log(result);
+                        $(dest).html(result)
+                    }
+                });
+            });
+        }
+    );
+</script>
