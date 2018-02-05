@@ -62,14 +62,13 @@ $(document).ready(function () {
 
         $(document).on('click', '.pagination a' , function(event){
             event.preventDefault();
-            var props = filter.getFilters();
-            console.log(props);
+            var props = getFilters();
             var url = $(this).attr('href');
             var dest = $('.test');
 
             $.ajax({
                 url: url,
-                data: getFilters(),
+                data: props,
                 success: function(resp){
                     var result = $(resp).filter('.test').html();
 
