@@ -60,6 +60,28 @@ $(document).ready(function () {
             applyFilter();
         });
 
+        $(document).on('click', '.pagination a' , function(event){
+            event.preventDefault();
+            var props = filter.getFilters();
+            console.log(props);
+            var url = $(this).attr('href');
+            var dest = $('.test');
+
+            $.ajax({
+                url: url,
+                data: getFilters(),
+                success: function(resp){
+                    var result = $(resp).filter('.test').html();
+
+                    $(dest).html(result).animate();
+                    $("html, body").animate({ scrollTop: 0 }, 500);
+                    $(dest).css('backgroundColor','hsla(40, 100%, 70%, 0.1)');
+                    $(dest).animate({ backgroundColor: "white" }, "slow");
+
+                }
+            });
+        });
+
     })();
 
     $('.pag-block-by').click(function () {
