@@ -142,4 +142,11 @@ class SliderController extends Controller
         $category->save();
         return 'Категорія була успішно створена';
     }
+    
+    public function updatePublished($slider_id){
+        $chosenSlider = Slider::find($slider_id);
+        $chosenSlider->published = $chosenSlider->published == 0 ? 1 : 0;
+        $chosenSlider->save();
+        return $chosenSlider->published;
+    }
 }

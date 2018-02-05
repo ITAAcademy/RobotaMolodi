@@ -69,7 +69,7 @@
                 <td>{!! $slider->category->name !!}</td>
                 <td style="text-align: center">
                     <div class="form-group">
-                        <button data-value="{{$slider->id}}" class="btn btn-link fa set-main"></button>
+                        <button data-value="{{$slider->published}}" data-id="{{$slider->id}}" class="btn btn-link fa set-main"></button>
                     </div>
                 </td>
                 <td>
@@ -134,16 +134,16 @@
             $("button[data-value='0']").addClass("fa-square-o");
             $("button[data-value='1']").addClass("fa-check-square-o");
             $("button.fa").click( function() {
-                var id = $(this).attr('data-value');
-                console.dir(id);
+                var id = $(this).attr('data-id');
+                console.log(id);
                 $.ajax({
-                    url: '/admin/sliders/updatePublished/'+id,
+                    url: '/admin/sliders/updatePublished/' + id,
                     methof: 'GET',
                     success: function(published) {
                         if (published > 0) {
-                            $("button[data-value='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
+                            $("button[data-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
                         } else {
-                            $("button[data-value='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
+                            $("button[data-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
                         }
                     }
                 });
