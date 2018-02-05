@@ -135,7 +135,6 @@
             $("button[data-value='1']").addClass("fa-check-square-o");
             $("button.fa").click( function() {
                 var id = $(this).attr('data-id');
-                console.log(id);
                 $.ajax({
                     url: '/admin/sliders/updatePublished/' + id,
                     methof: 'GET',

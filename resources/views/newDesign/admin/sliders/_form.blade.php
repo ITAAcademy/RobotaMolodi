@@ -21,7 +21,11 @@
         {!! Form::label('category', 'Category:', ['class' => 'control-label']) !!}
         <select name="category_id" id="categorySelect" class="form-control">
             @foreach($categories as $category)
-                <option value="{{ $category->id}}">{{ $category->name}}</option>
+                @if($category->id != $slider->category_id)
+                    <option value="{{ $category->id}}">{{ $category->name}}</option>
+                @else
+                    <option value="{{ $category->id}}" selected>{{ $category->name}}</option>
+                @endif
             @endforeach
         </select>
     </div>
@@ -33,8 +37,6 @@
             <br>
         </div>
     @endif
-
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 </div>
 <script>
     $('body').on('change', '.inputImg', function (e) {
