@@ -25,6 +25,14 @@
             @endforeach
         </select>
     </div>
+    @if(!isset($slider->pablished))
+        <div class="form-group">
+            {!! Form::label('published', 'Опублікувати:') !!}
+            {!! Form::hidden('published', 0) !!}
+            {!! Form::checkbox('published') !!}
+            <br>
+        </div>
+    @endif
 
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 </div>
