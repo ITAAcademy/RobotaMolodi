@@ -44,13 +44,14 @@
         <span class="notice"></span>
     </div>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover ">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Image</th>
                 <th>Url</th>
                 <th>Category</th>
+                <th scope="col">Published</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -66,6 +67,12 @@
                     <a href="{!! $slider->url !!}">{!! $slider->url !!}</a>
                 </td>
                 <td>{!! $slider->category->name !!}</td>
+                <td style="text-align: center">
+                    <div class="form-group">
+                        <button id="{{$slider->id}}" value="{{$slider->published}}" class="btn btn-link fa set-main"></button>
+                        <br>
+                    </div>
+                </td>
                 <td>
                     <div class="btn-group">
                         {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
