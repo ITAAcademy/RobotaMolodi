@@ -69,8 +69,7 @@
                 <td>{!! $slider->category->name !!}</td>
                 <td style="text-align: center">
                     <div class="form-group">
-                        <button id="{{$slider->id}}" value="{{$slider->published}}" class="btn btn-link fa set-main"></button>
-                        <br>
+                        <button data-value="{{$slider->id}}" class="btn btn-link fa set-main"></button>
                     </div>
                 </td>
                 <td>
@@ -129,6 +128,25 @@
                 $("tr[data-value='" + selectedCategoryId + "']").show();
                 $('.slider-show').slick('slickFilter', "div[data-id='" + selectedCategoryId + "']");
                 $('.slider-block').show();
+            });
+
+
+            $("button[data-value='0']").addClass("fa-square-o");
+            $("button[data-value='1']").addClass("fa-check-square-o");
+            $("button.fa").click( function() {
+                var id = $(this).attr('data-value');
+                console.dir(id);
+                $.ajax({
+                    url: '/admin/sliders/updatePublished/'+id,
+                    methof: 'GET',
+                    success: function(published) {
+                        if (published > 0) {
+                            $("button[data-value='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
+                        } else {
+                            $("button[data-value='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
+                        }
+                    }
+                });
             });
         })
 
