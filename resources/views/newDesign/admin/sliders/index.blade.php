@@ -54,7 +54,7 @@
         <table class="table table-hover sliders table-bordered">
             <thead>
             <tr class="sliders sliders-title">
-                <th scope="col">Id</th>
+                <th scope="col">Position</th>
                 <th scope="col">Image</th>
                 <th scope="col">Url</th>
                 <th scope="col">Category</th>
@@ -66,7 +66,7 @@
 
             @foreach ($sliders as $slider)
                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
-                    <th scope="row">{{ $slider->id }}</th>
+                    <th scope="row">{{ $slider->position }}</th>
                     <td>
                         <img class="picture img-responsive" src="{{ asset($slider->image) }}">
                     </td>
