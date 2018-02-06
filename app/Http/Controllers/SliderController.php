@@ -11,7 +11,7 @@ use App\Models\Slider;
 class SliderController extends Controller
 {
     public function byCategory(Request $request){
-        $sliders = Slider::where('category_id', '=', $request->category)->get();
+        $sliders = Slider::isPublished()->where('category_id', '=', $request->category)->get();
         return view('newDesign.sliders.'.$request->slider, [ 'sliders' => $sliders ]);
     }
 }

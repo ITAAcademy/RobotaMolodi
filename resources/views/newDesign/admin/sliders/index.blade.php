@@ -41,7 +41,7 @@
             <div class="slider-block">
                 <div class="slick-slider slider-show">
                     @foreach($sliders as $slider)
-                        <div data-id="{{ $slider->category_id }}">
+                        <div data-id="{{ $slider->category_id }}" data-published="{{ $slider->published }}">
                             <a href="{{ $slider->url }}" target="_blank" class="add-link">
                                 <img src="{{ $slider->image }}" alt="" style="width:100%; height: auto">
                             </a>
@@ -156,6 +156,8 @@
                         }
                     });
                 });
+
+                $("[data-published='0']").fadeTo( 'fast', 0.25);
             })
 
         </script>

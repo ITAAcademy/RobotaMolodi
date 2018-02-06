@@ -16,4 +16,8 @@ class Slider extends Model
     public function category(){
         return $this->belongsTo('App\Models\Category');
     }
+    
+    public static function isPublished(){
+        return Slider::where('published', true);
+    }
 }
