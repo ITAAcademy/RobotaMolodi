@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <table class="table table-hover sliders  table-sm table-responsive">
+        <table class="table table-hover sliders table-bordered">
             <thead>
             <tr class="sliders sliders-title">
                 <th scope="col">Id</th>
