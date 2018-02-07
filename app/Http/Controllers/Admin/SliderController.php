@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::orderBy('position')->get();
 //        
         $categories = Category::all();
         return view('newDesign.admin.sliders.index', [
@@ -141,5 +141,12 @@ class SliderController extends Controller
         $category->name = $request->name;
         $category->save();
         return 'Категорія була успішно створена';
+    }
+    
+    public function updatePublished($slider_id){
+        $chosenSlider = Slider::find($slider_id);
+        $chosenSlider->published = $chosenSlider->published == 0 ? 1 : 0;
+        $chosenSlider->save();
+        return $chosenSlider;
     }
 }
