@@ -177,9 +177,12 @@
                     
                     $(this).hide();
                     $(this).next().show();
-                    var sliderId = $(this).attr('data-id');
+                });
 
-                })
+                $("select.positions").change(function(){
+                    $(this).hide();
+                    $(this).prev().show();
+                });
             })
 
         </script>
