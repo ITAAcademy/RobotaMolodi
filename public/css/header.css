@@ -924,10 +924,11 @@ nav.navbar.navbar-default{
         bottom: 11px;
         left: 45px;
     }
-    .fa-pencil{
+    .fa-pencil-mod{
         position: relative;
         left: 52px;
-        top: 15px;position: relative;
+        top: 15px;
+        position: relative;
         left: 52px;
         top: 15px;
     }
@@ -1249,7 +1250,7 @@ nav.navbar.navbar-default{
     }
     /*End right modal*/
 
-    .fa-pencil{
+    .fa-pencil-mod{
         position: relative;
         left: 25px;
         bottom: 46px;
