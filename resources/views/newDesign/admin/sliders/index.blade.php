@@ -164,7 +164,7 @@
                 });
 
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
-                                
+
                 $(".change-position").click(function(){
                     $(".change-position").show();
                     $("select.positions").hide();

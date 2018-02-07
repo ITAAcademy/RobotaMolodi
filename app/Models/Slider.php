@@ -17,7 +17,15 @@ class Slider extends Model
         return $this->belongsTo('App\Models\Category');
     }
     
-    public static function isPublished(){
-        return Slider::where('published', true);
+    public function scopeIsPublished($query){
+        return $query->where('published', true);
+    }
+    
+    public function scopeByCategory($query, $category){
+        return $query->where('category_id', $category);
+    }
+    
+    public function scopeIsRelevant($query, $category){
+        return $query->isPublished()->byCategory($category);
     }
 }
