@@ -87,8 +87,9 @@
                     <td>{!! $slider->category->name !!}</td>
                     <td style="text-align: center">
                         <div class="form-group">
-                            <button data-value="{{$slider->published}}" data-id="{{$slider->id}}"
-                                    class="btn btn-link fa set-main"></button>
+                            <button data-value="{{$slider->published}}" data-slider-id="{{$slider->id}}"
+                                    class="btn btn-link fa set-main {{$slider->published == 0  ? 'fa-square-o' : 'fa-check-square-o' }}">
+                            </button>
                         </div>
                     </td>
                     <td>
@@ -150,19 +151,16 @@
                     $('.sliders-title').show();
                 });
 
-
-                $("button[data-value='0']").addClass("fa-square-o");
-                $("button[data-value='1']").addClass("fa-check-square-o");
                 $("button.fa").click(function () {
-                    var id = $(this).attr('data-id');
+                    var id = $(this).attr('data-slider-id');
                     $.ajax({
                         url: '/admin/sliders/updatePublished/' + id,
                         methof: 'GET',
-                        success: function (published) {
-                            if (published > 0) {
-                                $("button[data-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
+                        success: function (slider) {
+                            if (slider.published) {
+                                $("button[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
                             } else {
-                                $("button[data-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
+                                $("button[data-slider-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
                             }
                         }
                     });
