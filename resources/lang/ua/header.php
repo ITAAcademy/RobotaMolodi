@@ -6,7 +6,7 @@ return [
     'news' => 'Новини',
     'about' => 'Про нас',
     'education' => 'Освіта',
-    'carrierdays' => 'Дні карєри',
+    'carrierdays' => 'Дні кар\'єри',
     'partners' => 'Партнери',
     'contacts' => 'Контакти',
     'allresume' => 'Всі резюме',
