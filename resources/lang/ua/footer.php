@@ -2,7 +2,7 @@
 
 return [
 
-    'information' => 'Інформація',
+    'information' => 'інформація',
     'about' => 'Про нас',
     'education' => 'Навчання',
     'partners' => 'Партнери',
