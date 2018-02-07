@@ -548,7 +548,6 @@ nav.navbar.navbar-default{
     }
     .img-user-name{
         display: table-cell;
-        /*height: 35px;*/
         vertical-align: middle;
         padding-left: 3px;
         padding-right: 1px;
@@ -559,10 +558,10 @@ nav.navbar.navbar-default{
     .navtab-exit .modal-user-button{
         float: right;
         margin-right: 20px;
-        padding: 3px;
+        margin-top: -11px;
         border: 0;
         color: #f68c06;
-        height: 45px;git
+        height: 39px;
     }
     .navtab-exit .modal-exit-button{
         /*width: 131px;*/
@@ -925,23 +924,14 @@ nav.navbar.navbar-default{
         bottom: 11px;
         left: 45px;
     }
-    .fa-pencil-mod{
-        position: relative;
-        left: 52px;
-        top: 15px;
-        position: relative;
-        left: 52px;
-        top: 15px;
-    }
+
     .navtab-exit .modal-user-button{
         float: right;
-        /*margin-right: 20px;*/
-        padding: 3px;
+        padding: 0px;
         border: 0;
         color: #f68c06;
-        width: 75px;
-        height: 44px;
-        padding-left: 15px;
+        height: 39px;
+
     }
     .navtab-exit .modal-exit-button{
         /*width: 131px;*/
@@ -1251,11 +1241,7 @@ nav.navbar.navbar-default{
     }
     /*End right modal*/
 
-    .fa-pencil-mod{
-        position: relative;
-        left: 25px;
-        bottom: 46px;
-    }
+
     nav.navbar.navbar-default{
         border-top-width: 0px;
         border-right-width: 0px;
@@ -1287,7 +1273,7 @@ nav.navbar.navbar-default{
         font-size: 9px;
         margin: 0;
         padding-top: 10px;
-        width: 100px;
+        width: 40px;
     }
     .col-xs-4.navtab-exit{
         width: 75px;
@@ -1314,13 +1300,11 @@ nav.navbar.navbar-default{
         padding-right: 1px;
     }
     .navtab-exit .modal-user-button{
-        /*float: right;*/
-        margin-right: 0px;
+        margin-right: -7px;
         padding-bottom: 1px;
         padding-left: 1px;
         padding-top: 1px;
         padding-right: 1px;
-        margin-top: -14px;
         font-size: 9px;
         height: 27px;
         border: 0;
