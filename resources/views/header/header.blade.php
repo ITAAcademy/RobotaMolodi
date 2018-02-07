@@ -47,7 +47,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4">
-                        <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil fa-pencil-mod" aria-hidden="true"></i></a>
+                        <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
