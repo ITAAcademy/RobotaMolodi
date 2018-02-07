@@ -27,7 +27,7 @@
                 </select>
             </div>
 
-            <div >
+            <div>
                 <div class="add-cat">
                     {!! Form::text('categoryName', null, ['placeholder' => 'Додати категорію']) !!}
                     {!! Form::submit(trans('main.save'), ['class' => 'saveCategory']) !!}
@@ -54,19 +54,30 @@
         <table class="table table-hover sliders table-bordered">
             <thead>
             <tr class="sliders sliders-title">
-                <th scope="col">Position</th>
-                <th scope="col">Image</th>
-                <th scope="col">Url</th>
-                <th scope="col">Category</th>
-                <th scope="col">Published</th>
-                <th scope="col">Actions</th>
+                <th>Pos.</th>
+                <th>Image</th>
+                <th>Url</th>
+                <th>Category</th>
+                <th>Published</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach ($sliders as $slider)
                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
-                    <th scope="row">{{ $slider->position }}</th>
+                    <th scope="row">
+                        <button class="btn btn-link change-position"
+                                title="change position in slider loop" data-id="{{ $slider->id }}">
+                            {{ $slider->position }}
+                        </button>
+
+                        <select class="positions">
+                            <option>2</option>
+                            <option selected>3</option>
+                            <option>4</option>
+                        </select>
+                    </th>
                     <td>
                         <img class="picture img-responsive" src="{{ asset($slider->image) }}">
                     </td>
@@ -157,7 +168,18 @@
                     });
                 });
 
-                $("[data-published='0']").fadeTo( 'fast', 0.25);
+                $("div[data-published='0']").fadeTo( 'fast', 0.25);
+
+                $("select.positions").hide();
+                $(".change-position").click(function(){
+                    $(".change-position").show();
+                    $("select.positions").hide();
+                    
+                    $(this).hide();
+                    $(this).next().show();
+                    var sliderId = $(this).attr('data-id');
+
+                })
             })
 
         </script>

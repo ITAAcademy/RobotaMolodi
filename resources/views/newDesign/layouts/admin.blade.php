@@ -28,6 +28,9 @@
 <script>
     $(document).ready(function () {
         $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
+
+        $("th").attr('scope', 'col');
+        $("th[scope='col']").addClass('text-center');
     })
 </script>
 </body>
