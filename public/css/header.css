@@ -1372,7 +1372,8 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        /*margin-left: 5px;*/
+        margin-left:  5px;
+        margin-top:   15px;
         padding-left: 6px;
         padding-right: 6px;
         background-color: white;
