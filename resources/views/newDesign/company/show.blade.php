@@ -175,6 +175,8 @@
                                     <a class="links" href="/vacancy/{{$vacancy->id}}">
                                         {{ $vacancy->position}}
                                     </a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    {{ date('j m Y', strtotime($vacancy->created_at))}}
                                 </div>
                             @endforeach
                         @else
@@ -335,7 +337,6 @@
             }
         });
 
-
         $('a.vac-call, a.file-call, a.resume-call, a.response-call').click(function () {
             var that = this;
             var link = $(this).attr('href');
@@ -357,6 +358,4 @@
         })
     })
     </script>
-
-
 @stop
