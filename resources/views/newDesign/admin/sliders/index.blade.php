@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-lg-5">
-            <div class="slider-block">
+            <div class="slider-block" style="display: none">
                 <div class="slick-slider slider-show">
                     @foreach($sliders as $slider)
                         <div data-id="{{ $slider->category_id }}" data-published="{{ $slider->published }}">
@@ -53,7 +53,7 @@
 
         <table class="table table-hover sliders table-bordered">
             <thead>
-            <tr class="sliders sliders-title">
+            <tr class="sliders sliders-title" style="display: none">
                 <th>Pos.</th>
                 <th>Image</th>
                 <th>Url</th>
@@ -65,14 +65,14 @@
             <tbody>
 
             @foreach ($sliders as $slider)
-                <tr data-value="{!! $slider->category_id !!}" class="sliders">
+                <tr data-value="{!! $slider->category_id !!}" class="sliders" style="display: none">
                     <th scope="row">
                         <button class="btn btn-link change-position"
                                 title="change position in slider loop" data-id="{{ $slider->id }}">
                             {{ $slider->position }}
                         </button>
 
-                        <select class="positions">
+                        <select class="positions" style="display: none">
                             <option>2</option>
                             <option selected>3</option>
                             <option>4</option>
@@ -136,9 +136,6 @@
                     speed: 2000
                 });
 
-                $('.slider-block').hide();
-                $('tr.sliders').hide();
-
                 $('.select-cat').change(function () {
                     $('tr.sliders').hide();
 
@@ -167,8 +164,7 @@
                 });
 
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
-
-                $("select.positions").hide();
+                                
                 $(".change-position").click(function(){
                     $(".change-position").show();
                     $("select.positions").hide();
