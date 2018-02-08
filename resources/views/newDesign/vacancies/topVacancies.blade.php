@@ -10,8 +10,8 @@
         <p id="topvac2" class="tv-news-header2">{{ trans('content.vacancy') }}</p>
     </div>
 
-    <div id="add-vac-2-top" class="add2top unavailable">
-        <a href="#"><p>+ <span>{{ trans('content.top') }}</span></p></a>
+    <div id="add-vac-2-top" class="add2top">
+        <a href="/unavailable"><p>+ <span>{{ trans('content.top') }}</span></p></a>
     </div>
 
     <div id="tv-news-list" class="tv-news-list cool-scroll">
