@@ -21,7 +21,7 @@
         {!! Form::label('category', 'Category:', ['class' => 'control-label']) !!}
         <select name="category_id" id="categorySelect" class="form-control">
             @foreach($categories as $category)
-                @if($category->id != $slider->category_id)
+                @if(isset($slider) && $category->id != $slider->category_id)
                     <option value="{{ $category->id}}">{{ $category->name}}</option>
                 @else
                     <option value="{{ $category->id}}" selected>{{ $category->name}}</option>
