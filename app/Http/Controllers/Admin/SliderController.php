@@ -21,8 +21,8 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::orderBy('position')->get();
-//        
         $categories = Category::all();
+        
         return view('newDesign.admin.sliders.index', [
             'sliders' => $sliders,
             'categories' => $categories
@@ -48,10 +48,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $slider = new Slider($request->all());
-        
-        
-        $slider->category->number_of_positions++;
-        $slider->position = $slider->category->number_of_positions;
+        $category = Category::find($slider->category_id);
         
         if(Input::file('image')) {
             $file = Input::file('image');
@@ -62,6 +59,10 @@ class SliderController extends Controller
             $slider->image = $directory.$filename;
         }
         
+        $category->number_of_positions++;
+        $category->save();
+    
+        $slider->position = $slider->category->number_of_positions;
         $slider->save();
         
         return redirect()->route('admin.slider.index');
