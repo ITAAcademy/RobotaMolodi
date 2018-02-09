@@ -56,7 +56,7 @@ class SliderController extends Controller
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $directory = '/uploads/sliders/';
+            $directory = 'uploads/sliders/';
             Storage::makeDirectory($directory);
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
