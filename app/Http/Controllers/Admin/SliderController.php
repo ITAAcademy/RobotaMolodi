@@ -134,10 +134,21 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::find($id);
+        $category = Category::find($slider->category_id);
+        $sliders = Slider::where('position', '>', $slider->position)->get();
+        
+        foreach($sliders as $one){
+            $one->position--;
+            $one->save();
+        }
+        
         if(file_exists($slider->image)){
             unlink($slider->image);
             $slider->destroy($id);
         }
+        
+        $category->number_of_positions--;
+        $category->save();
         return redirect()->route('admin.slider.index');
     }
     

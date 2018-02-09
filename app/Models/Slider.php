@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'url', 'category_id', 'published'];
+    protected $fillable = ['image', 'url', 'category_id', 'published', 'position'];
 
     public $timestamps = false;
 
