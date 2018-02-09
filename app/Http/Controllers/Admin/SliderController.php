@@ -49,6 +49,10 @@ class SliderController extends Controller
     {
         $slider = new Slider($request->all());
         
+        
+        $slider->category->number_of_positions++;
+        $slider->position = $slider->category->number_of_positions;
+        
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
