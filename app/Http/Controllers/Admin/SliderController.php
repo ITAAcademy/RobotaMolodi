@@ -21,8 +21,8 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::orderBy('position')->get();
-//        
         $categories = Category::all();
+        
         return view('newDesign.admin.sliders.index', [
             'sliders' => $sliders,
             'categories' => $categories
@@ -48,16 +48,21 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $slider = new Slider($request->all());
+        $category = Category::find($slider->category_id);
         
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $directory = '/uploads/sliders/';
+            $directory = 'uploads/sliders/';
             Storage::makeDirectory($directory);
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
         }
         
+        $category->number_of_positions++;
+        $category->save();
+    
+        $slider->position = $slider->category->number_of_positions;
         $slider->save();
         
         return redirect()->route('admin.slider.index');
@@ -129,10 +134,17 @@ class SliderController extends Controller
     public function destroy($id)
     {
         $slider = Slider::find($id);
+        $category = Category::find($slider->category_id);
+    
+        $slider->updatePositions();
+        
         if(file_exists($slider->image)){
             unlink($slider->image);
             $slider->destroy($id);
         }
+        
+        $category->number_of_positions--;
+        $category->save();
         return redirect()->route('admin.slider.index');
     }
     
@@ -149,4 +161,6 @@ class SliderController extends Controller
         $chosenSlider->save();
         return $chosenSlider;
     }
+    
+    
 }

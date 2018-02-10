@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'url', 'category_id', 'published'];
+    protected $fillable = ['image', 'url', 'category_id', 'published', 'position'];
 
     public $timestamps = false;
 
@@ -27,5 +27,15 @@ class Slider extends Model
     
     public function scopeIsRelevant($query, $category){
         return $query->isPublished()->byCategory($category);
+    }
+    
+    public function updatePositions(){
+        $sliders = Slider::where('position', '>', $this->position)->get();
+        
+        foreach($sliders as $one){
+            $one->position--;
+            $one->save();
+        }
+        return 'Позиції були успішно змінені';
     }
 }
