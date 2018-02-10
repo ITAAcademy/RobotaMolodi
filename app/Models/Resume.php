@@ -108,6 +108,13 @@ class Resume extends Model {
         return  $this->belongsTo('App\Models\Currency', 'currency_id');
     }
 
+    public function scopeAllResumes()
+    {
+        $vacancies = $this->latest('updated_at');
+
+        return $vacancies;
+    }
+
     public function scopeByIndustries($query, $industries)
     {
         if (!empty($industries)) {
