@@ -74,7 +74,7 @@
 
                         <select class="positions" style="display: none">
                             @for($index = 1; $index <= $slider->category->number_of_positions; $index++)
-                                <option {{$index == $slider->position ? 'selected' : ''}}>{{$index}}</option>
+                                <option></option>
                             @endfor
                         </select>
                     </th>
