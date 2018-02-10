@@ -19,6 +19,7 @@
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+	<script src="/js/lang.js"></script>
 
     <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
@@ -37,6 +38,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -55,16 +57,14 @@
 	<link href="{{ asset('/css/slick/slick-theme.css') }}" rel="stylesheet">
 
 
-	<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
-
 	 <script src="js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.messagestore.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.fallbacks.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.language.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.parser.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.emitter.js"></script>
-	 <script src="js/lib/jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.messagestore.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.language.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.parser.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.emitter.js"></script>
+	 <script src="js/lib/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
 
 	 <!-- <script src="js/global.js"></script> -->
 

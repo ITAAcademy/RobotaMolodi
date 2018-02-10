@@ -87,7 +87,7 @@
 }
 .slick-prev:before
 {
-    color: #ec8706;
+    color: rgba(246, 140, 6, 0.3);
     content: '\2190';
 }
 [dir='rtl'] .slick-prev:before
@@ -106,7 +106,7 @@
 }
 .slick-next:before
 {
-    color: #f68c06;
+    color: rgba(246, 140, 6, 0.3);
     content: '\2192';
 }
 [dir='rtl'] .slick-next:before

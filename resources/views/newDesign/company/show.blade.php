@@ -65,11 +65,6 @@
                         &text=Компанія{{' '.$company->company_name}}" target="_blank">
                         <i class="fa">&#xf081;</i>
                     </a>
-                    <a href="http://vk.com/share.php?url={!! env("APP_URL")."/company/".$company->id !!}
-                        &title=Компанія{{' '.$company->company_name}}
-                        &image=http://robotamolodi.org/image/logo.png" target="_blank">
-                        <i class="fa" >&#xf189;</i>
-                    </a>
                     <a href="https://plus.google.com/share?
                         url={!! env("APP_URL")."/company/".$company->id !!}" target="_blank">
                         <i class="fa fa-google-plus-square"></i>

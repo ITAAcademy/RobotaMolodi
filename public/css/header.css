@@ -282,7 +282,8 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        margin-left: 145px;
+        margin-left: 157px;
+        margin-top:-1px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
         background-color: white;
@@ -547,17 +548,20 @@ nav.navbar.navbar-default{
     }
     .img-user-name{
         display: table-cell;
-        height: 35px;
         vertical-align: middle;
         padding-left: 3px;
         padding-right: 1px;
+        position: relative;
+        bottom: 11px;
+        left: 45px;
     }
     .navtab-exit .modal-user-button{
         float: right;
         margin-right: 20px;
-        padding: 3px;
+        margin-top: -11px;
         border: 0;
         color: #f68c06;
+        height: 39px;
     }
     .navtab-exit .modal-exit-button{
         /*width: 131px;*/
@@ -882,7 +886,7 @@ nav.navbar.navbar-default{
         margin-left: 3%;
         padding-left: 5px;
         padding-right: 5px;
-        /*margin-top: 2%;*/
+        margin-top: 1%;
     }
     .navtab-exit p{
         font-size: 10px;
@@ -912,17 +916,22 @@ nav.navbar.navbar-default{
     }
     .img-user-name{
         display: table-cell;
-        height: 35px;
+        /*height: 35px;*/
         vertical-align: middle;
         padding-left: 3px;
         padding-right: 1px;
+        position: relative;
+        bottom: 11px;
+        left: 45px;
     }
+
     .navtab-exit .modal-user-button{
         float: right;
-        /*margin-right: 20px;*/
-        padding: 3px;
+        padding: 0px;
         border: 0;
         color: #f68c06;
+        height: 39px;
+
     }
     .navtab-exit .modal-exit-button{
         /*width: 131px;*/
@@ -1232,6 +1241,7 @@ nav.navbar.navbar-default{
     }
     /*End right modal*/
 
+
     nav.navbar.navbar-default{
         border-top-width: 0px;
         border-right-width: 0px;
@@ -1251,7 +1261,7 @@ nav.navbar.navbar-default{
         border-right-width: 10px;
         margin-right: 0px;
         margin-left: 0px;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     .navtab-exit{
         padding: 0;
@@ -1262,6 +1272,8 @@ nav.navbar.navbar-default{
     .navtab-exit p{
         font-size: 9px;
         margin: 0;
+        padding-top: 10px;
+        width: 40px;
     }
     .col-xs-4.navtab-exit{
         width: 75px;
@@ -1288,8 +1300,7 @@ nav.navbar.navbar-default{
         padding-right: 1px;
     }
     .navtab-exit .modal-user-button{
-        /*float: right;*/
-        margin-right: 0px;
+        margin-right: -7px;
         padding-bottom: 1px;
         padding-left: 1px;
         padding-top: 1px;
@@ -1298,10 +1309,11 @@ nav.navbar.navbar-default{
         height: 27px;
         border: 0;
         color: #f68c06;
+        width: 25px;
     }
     .navtab-exit .modal-exit-button{
         height: 27px;
-        padding-bottom: 1px;
+        padding-bottom: 10px;
         padding-left: 1px;
         padding-top: 1px;
         padding-right: 1px;
@@ -1360,7 +1372,8 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        /*margin-left: 5px;*/
+        margin-left:  5px;
+        margin-top:   15px;
         padding-left: 6px;
         padding-right: 6px;
         background-color: white;

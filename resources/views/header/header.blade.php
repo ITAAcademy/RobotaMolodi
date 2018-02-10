@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-default col-xs-12">
         <div class="row">
-        <div class="col-xs-1 col-md-4 bars-left-modal">
+        <div class="col-xs-1 col-md-4 bars-left-modal" style="margin:0; padding:0">
             <button type="button" class="btn btn-default only-bars">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
             </button>
@@ -26,32 +26,35 @@
             </button>
         </div>
         @else
+        <div class="" >
             <div class="col-xs-4 navtab-exit">
                 <div class="row">
-                    <div class="col-xs-8">
-                        <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
-                            <button type="button" class="btn btn-default modal-user-button">
-                                <div class="img-user">
-                                    @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
-                                        {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
-                                        array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                    @else
-                                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                    @endif
-                                </div>
-                                <div class="img-user-name">
-                                    <p>{{ Auth::user()->name }}</p>
-                                    @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
-                                </div>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="col-xs-4">
-                        <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <div class="">
+                        <div class="col-xs-7" style="margin:0; padding-top:4px">
+                            <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                                <button type="button" class="btn btn-default modal-user-button">
+                                    <div class="img-user">
+                                        @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
+                                            {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
+                                            array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                        @else
+                                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                        @endif
+                                    </div>
+                                    <div class="img-user-name">
+                                        <p>{{ Auth::user()->name }}</p>
+                                        @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
+                                    </div>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-xs-4" style="margin:0; padding-top:3%">
+                                <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-2 navtab-exit">
+            <div class="col-xs-2 navtab-exit" style="padding-top:10px">
                 <a href="{{ url('/auth/logout') }}">
                     <button type="button" class="btn btn-default modal-exit-button">
                         <i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>
@@ -59,6 +62,7 @@
                     </button>
                 </a>
             </div>
+        </div>
         @endif
         </div>
     </nav>
