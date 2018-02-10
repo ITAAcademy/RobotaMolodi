@@ -65,7 +65,7 @@
             <tbody>
 
             @foreach ($sliders as $slider)
-                <tr data-value="{!! $slider->category_id !!}" class="sliders" style="display: none">
+                <tr data-value="{!! $slider->category_id !!}" class="sliders">
                     <th scope="row">
                         <button class="btn btn-link change-position"
                                 title="change position in slider loop" data-id="{{ $slider->id }}">
@@ -88,7 +88,7 @@
                     <td style="text-align: center">
                         <div class="form-group">
                             <button data-value="{{$slider->published}}" data-slider-id="{{$slider->id}}"
-                                    class="btn btn-link fa set-main {{$slider->published == 0  ? 'fa-square-o' : 'fa-check-square-o' }}">
+                                    class="btn btn-link fa set-main fa-{{!$slider->published ? '' : 'check-'}}square-o">
                             </button>
                         </div>
                     </td>
@@ -164,7 +164,7 @@
                 });
 
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
-                                
+
                 $(".change-position").click(function(){
                     $(".change-position").show();
                     $("select.positions").hide();

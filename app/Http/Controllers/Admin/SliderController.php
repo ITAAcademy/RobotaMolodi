@@ -145,7 +145,7 @@ class SliderController extends Controller
     
     public function updatePublished($slider_id){
         $chosenSlider = Slider::find($slider_id);
-        $chosenSlider->published = $chosenSlider->published == 0 ? 1 : 0;
+        $chosenSlider->published = !$chosenSlider->published;
         $chosenSlider->save();
         return $chosenSlider;
     }
