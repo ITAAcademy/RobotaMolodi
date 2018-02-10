@@ -28,4 +28,14 @@ class Slider extends Model
     public function scopeIsRelevant($query, $category){
         return $query->isPublished()->byCategory($category);
     }
+    
+    public function updatePositions(){
+        $sliders = Slider::where('position', '>', $this->position)->get();
+        
+        foreach($sliders as $one){
+            $one->position--;
+            $one->save();
+        }
+        return 'Позиції були успішно змінені';
+    }
 }

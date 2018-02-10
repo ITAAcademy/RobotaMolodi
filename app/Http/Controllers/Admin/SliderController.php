@@ -135,12 +135,8 @@ class SliderController extends Controller
     {
         $slider = Slider::find($id);
         $category = Category::find($slider->category_id);
-        $sliders = Slider::where('position', '>', $slider->position)->get();
-        
-        foreach($sliders as $one){
-            $one->position--;
-            $one->save();
-        }
+    
+        $slider->updatePositions();
         
         if(file_exists($slider->image)){
             unlink($slider->image);
@@ -165,4 +161,6 @@ class SliderController extends Controller
         $chosenSlider->save();
         return $chosenSlider;
     }
+    
+    
 }
