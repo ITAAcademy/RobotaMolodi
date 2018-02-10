@@ -69,7 +69,7 @@ class MainController extends Controller
             ));
         }
 
-        $vacancies = Vacancy::getUnblockVacancies()->where('published', 1)->paginate();
+        $vacancies = Vacancy::getUnblockVacancies()->allVacancies()->where('published', 1)->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
