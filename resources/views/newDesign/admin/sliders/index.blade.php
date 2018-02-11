@@ -178,12 +178,12 @@
 
                     $.ajax({
                         url: "slider/" + slider_id + "/changePositions/" + next,
-                        method: 'GET',
+                        method: 'POST',
                         success: function(){
-                            console.log(1);
+
                         },
                         error: function(){
-                            console.log(2);
+                            
                         }
                     });
                 });
