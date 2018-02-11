@@ -40,7 +40,9 @@ class Slider extends Model
     }
     
     public function changePositions($next){
-        $nextSlider = Slider::where('category_id', $this->category_id)->where('position', $next)->first();
+        $nextSlider = Slider::byCategory($this->category_id)
+            ->where('position', $next)
+            ->first();
         
         $next = $nextSlider->position;
         $nextSlider->position = $this->position;
