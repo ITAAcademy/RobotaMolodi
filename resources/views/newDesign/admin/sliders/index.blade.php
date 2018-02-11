@@ -67,16 +67,18 @@
             @foreach ($sliders as $slider)
                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
                     <th scope="row">
-                        <button class="btn btn-link change-position"
-                                title="change position in slider loop" data-id="{{ $slider->id }}">
-                            {{ $slider->position }}
-                        </button>
-
-                        <select class="positions" style="display: none">
-                            @for($index = 1; $index <= $slider->category->number_of_positions; $index++)
-                                <option></option>
+                        <div class="btn-group-vertical">
+                            <button  value="{{$slider->position}}" class="btn btn-link change-position"
+                                    title="change position in slider loop" data-id="{{ $slider->id }}">
+                                {{ $slider->position }}
+                            </button>
+                            @for($index = 1; $index <= $slider->category->number_of_positions; )
+                                <button value="{{$index}}" class="positions btn btn-link another-position
+                                {{$slider->position == $index ? 'hidden' : ''}}" style="display: none">
+                                    {{$index++}}
+                                </button>
                             @endfor
-                        </select>
+                        </div>
                     </th>
                     <td>
                         <img class="picture img-responsive" src="{{ asset($slider->image) }}">
@@ -166,16 +168,11 @@
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
 
                 $(".change-position").click(function(){
-                    $(".change-position").show();
-                    $("select.positions").hide();
-                    
-                    $(this).hide();
-                    $(this).next().show();
+                    $(this).siblings().toggle();
                 });
 
-                $("select.positions").change(function(){
-                    $(this).hide();
-                    $(this).prev().show();
+                $(".positions").click(function(){
+                    $(".positions").hide();
                 });
             })
 
