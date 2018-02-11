@@ -68,14 +68,18 @@
                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
                     <th scope="row">
                         <div class="btn-group-vertical">
-                            <button  value="{{$slider->position}}" class="btn btn-link change-position"
-                                    title="change position in slider loop" data-id="{{ $slider->id }}">
+                            <button  value="{{$slider->position}}"
+                                     class="btn btn-link change-position"
+                                     title="change position in slider loop"
+                                     data-id="{{ $slider->id }}">
                                 {{ $slider->position }}
                             </button>
-                            @for($index = 1; $index <= $slider->category->number_of_positions; )
-                                <button value="{{$index}}" class="positions btn btn-link another-position
-                                {{$slider->position == $index ? 'hidden' : ''}}" style="display: none">
-                                    {{$index++}}
+                            @for($i = 1; $i <= $slider->category->number_of_positions; )
+                                <button value="{{$i}}"
+                                        class="positions btn btn-link another-position
+                                        {{$slider->position == $i? 'hidden' : ''}}"
+                                        style="display: none">
+                                    {{$i++}}
                                 </button>
                             @endfor
                         </div>
@@ -174,10 +178,10 @@
                 $(".positions").click(function(){
                     $(".positions").hide();
                     var next = $(this).val();
-                    var slider_id = $(this).siblings('.change-position').attr('data-id');
+                    var id = $(this).siblings('.change-position').attr('data-id');
 
                     $.ajax({
-                        url: "slider/" + slider_id + "/changePositions/" + next,
+                        url: "slider/" + id + "/changePositions/" + next,
                         method: 'POST',
                         success: function(){
 
