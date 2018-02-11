@@ -162,5 +162,13 @@ class SliderController extends Controller
         return $chosenSlider;
     }
     
+    public function changePositions($id, $next){
+        $slider = Slider::find($id);
+        
+        $slider->changePositions($next);
+        
+        return 'Позиції були успішно змінені';
+    }
+    
     
 }

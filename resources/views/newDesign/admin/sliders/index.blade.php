@@ -153,8 +153,8 @@
                 $("button.fa").click(function () {
                     var id = $(this).attr('data-slider-id');
                     $.ajax({
-                        url: '/admin/sliders/updatePublished/' + id,
-                        methof: 'GET',
+                        url: '/admin/sliders/shiftPublished/' + id,
+                        method: 'GET',
                         success: function (slider) {
                             if (slider.published) {
                                 $("button[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
@@ -173,6 +173,19 @@
 
                 $(".positions").click(function(){
                     $(".positions").hide();
+                    var next = $(this).val();
+                    var slider_id = $(this).siblings('.change-position').attr('data-id');
+
+                    $.ajax({
+                        url: "slider/" + slider_id + "/changePositions/" + next,
+                        method: 'GET',
+                        success: function(){
+                            console.log(1);
+                        },
+                        error: function(){
+                            console.log(2);
+                        }
+                    });
                 });
             })
 
