@@ -172,6 +172,7 @@
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
 
                 $(".change-position").click(function(){
+                    $(".positions").hide();
                     $(this).siblings().toggle();
                 });
 
@@ -183,7 +184,7 @@
                     var id = $(this).siblings('.change-position').attr('data-id');
 
                     $.ajax({
-                        url: "slider/" + id + "/changePositions/" + next,
+                        url: "slider/" + id + "/changePosition/" + next,
                         method: 'POST',
                         success: function(){
                             location.reload();
