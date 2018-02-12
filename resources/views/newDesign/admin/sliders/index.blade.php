@@ -53,7 +53,7 @@
 
         <table class="table table-hover sliders table-bordered">
             <thead>
-            <tr class="sliders sliders-title" style="display: none">
+            <tr class="sliders sliders-title">
                 <th>Pos.</th>
                 <th>Image</th>
                 <th>Url</th>

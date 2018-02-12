@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::orderBy('position')->get();
+        $sliders = Slider::orderBy('category_id')->orderBy('position')->get();
         $categories = Category::all();
         
         return view('newDesign.admin.sliders.index', [
