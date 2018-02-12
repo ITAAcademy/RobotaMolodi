@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::orderBy('position')->get();
+        $sliders = Slider::orderBy('category_id')->orderBy('position')->get();
         $categories = Category::all();
         
         return view('newDesign.admin.sliders.index', [
@@ -136,7 +136,7 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $category = Category::find($slider->category_id);
     
-        $slider->updatePositions();
+        $slider->shiftPositions();
         
         if(file_exists($slider->image)){
             unlink($slider->image);
@@ -160,6 +160,14 @@ class SliderController extends Controller
         $chosenSlider->published = !$chosenSlider->published;
         $chosenSlider->save();
         return $chosenSlider;
+    }
+    
+    public function changePositions($id, $next){
+        $slider = Slider::find($id);
+        
+        $slider->changePositions($next);
+        
+        return 'Позиції були успішно змінені';
     }
     
     

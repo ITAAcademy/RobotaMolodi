@@ -29,7 +29,7 @@ class Slider extends Model
         return $query->isPublished()->byCategory($category);
     }
     
-    public function updatePositions(){
+    public function shiftPositions(){
         $sliders = Slider::where('position', '>', $this->position)->get();
         
         foreach($sliders as $one){
@@ -37,5 +37,18 @@ class Slider extends Model
             $one->save();
         }
         return 'Позиції були успішно змінені';
+    }
+    
+    public function changePositions($next){
+        $nextSlider = Slider::byCategory($this->category_id)
+            ->where('position', $next)
+            ->first();
+        
+        $next = $nextSlider->position;
+        $nextSlider->position = $this->position;
+        $this->position = $next;
+    
+        $nextSlider->save();
+        $this->save();
     }
 }
