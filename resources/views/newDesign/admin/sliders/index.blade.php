@@ -177,6 +177,8 @@
 
                 $(".positions").click(function(){
                     $(".positions").hide();
+
+                    var self = $(this);
                     var next = $(this).val();
                     var id = $(this).siblings('.change-position').attr('data-id');
 
@@ -184,10 +186,7 @@
                         url: "slider/" + id + "/changePositions/" + next,
                         method: 'POST',
                         success: function(){
-
-                        },
-                        error: function(){
-
+                            location.reload();
                         }
                     });
                 });

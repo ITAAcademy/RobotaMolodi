@@ -136,7 +136,7 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $category = Category::find($slider->category_id);
     
-        $slider->updatePositions();
+        $slider->shiftPositions();
         
         if(file_exists($slider->image)){
             unlink($slider->image);
