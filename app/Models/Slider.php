@@ -39,7 +39,7 @@ class Slider extends Model
         return 'Позиції були успішно змінені';
     }
     
-    public function changePositions($next){
+    public function changePosition($next){
         $nextSlider = Slider::byCategory($this->category_id)
             ->where('position', $next)
             ->first();
