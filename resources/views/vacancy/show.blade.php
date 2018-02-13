@@ -3,6 +3,9 @@
     @include("newDesign.company._metaTag")
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
+@section('seo-module')
+    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $vacancy->description ])
+@endsection
 
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
