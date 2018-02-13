@@ -73,6 +73,7 @@
 	{!!Html::script('js/initMap.js')!!}
 
 	@yield('headLinks')
+	@yield('seo-module')
 </head>
 <body>
     <div class="wrapper-page">

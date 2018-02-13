@@ -3,6 +3,9 @@
     @include("newDesign.company._metaTag")
     <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
+@section('seo-module')
+    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $company->description ])
+@endsection
 @section('content')
     @include('newDesign.scrollup')
 
