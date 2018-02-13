@@ -282,7 +282,7 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        margin-left: 157px;
+        margin-left: 104px;
         margin-top:-1px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
@@ -602,13 +602,14 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     button.btn.btn-default.only-bars{
-        margin-left: 5px;
+        margin-left: 8px;
+        margin-top: 1px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        margin-left: 5px;
+        margin-left: 8px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -626,7 +627,7 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        margin-left: 15px;
+        margin-left: 0px;
         width: 232px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
@@ -697,7 +698,19 @@ nav.navbar.navbar-default{
     }
     /*End left modal*/
 }
+@media (min-width: 572px) and (max-width: 768px){
+    button.btn.btn-default.only-bars {
+        margin-left: 26px;
+        margin-top: 1px;
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+    }
+    button.btn.btn-default.only-bars:hover{
+        margin-left: 26px;
 
+    }
+}
 @media (min-width: 412px) and (max-width: 738px) {
     /*Right modal*/
     .navtab-registraion{
@@ -970,7 +983,7 @@ nav.navbar.navbar-default{
     /*Left modal*/
     #leftModal .modal-content{
         width: 232px;
-        margin-left: 10px;
+        margin-left: 0px;
         font-size: 10px;
     }
     #leftModal .modal-content .bars-left {
@@ -989,13 +1002,13 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left: 5px;
+        margin-left: 33px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        margin-left: 5px;
+        margin-left: 33px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -1352,8 +1365,8 @@ nav.navbar.navbar-default{
     /*Left modal*/
     #leftModal .modal-content{
         width: 232px;
-        margin-top: 5px;
-        margin-left: 5px;
+        margin-top: 0px;
+        margin-left: 0px;
         font-size: 10px;
     }
     #leftModal .modal-content .bars-left {
@@ -1372,8 +1385,7 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left:  5px;
-        margin-top:   15px;
+        margin-left:  16px;
         padding-left: 6px;
         padding-right: 6px;
         background-color: white;
@@ -1405,7 +1417,7 @@ nav.navbar.navbar-default{
         padding: 0;
         width: 32px;
         height: 32px;
-        margin-right: 0px;
+        margin-left: -15px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover{
         background-color: white;
