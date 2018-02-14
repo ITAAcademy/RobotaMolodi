@@ -109,7 +109,7 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = Filter::resumes($request)->allResumes()->where('blocked', false)->paginate();
+        $resumes = Filter::resumes($request)->allResumes()->isActive()->paginate();
         Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');
