@@ -258,13 +258,13 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     button.btn.btn-default.only-bars{
-        margin-left: 5px;
+        margin-left: 46px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        margin-left: 5px;
+        margin-left: 46px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -520,6 +520,7 @@ nav.navbar.navbar-default{
         background-color: white;
         padding: 0px;
     }
+
     @media (min-width: 992px)and (max-width: 1299px) {
         .col-xs-4.navtab-exit {
             width: 220px;
@@ -688,7 +689,7 @@ nav.navbar.navbar-default{
         color: #9d9d9d;
     }
     .modal-social-share{
-        padding: 0;
+     git   padding: 0;
     }
     .modal-social-share a{
         text-decoration: none;
@@ -708,7 +709,6 @@ nav.navbar.navbar-default{
     }
     button.btn.btn-default.only-bars:hover{
         margin-left: 26px;
-
     }
 }
 @media (min-width: 412px) and (max-width: 738px) {
@@ -1029,6 +1029,7 @@ nav.navbar.navbar-default{
         background-color: white;
         border-color: white;
         outline-color: white;
+        margin-left: -14px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover{
         background-color: white;
@@ -1365,7 +1366,6 @@ nav.navbar.navbar-default{
     /*Left modal*/
     #leftModal .modal-content{
         width: 232px;
-        margin-top: 0px;
         margin-left: 0px;
         font-size: 10px;
     }
@@ -1385,7 +1385,6 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left:  16px;
         padding-left: 6px;
         padding-right: 6px;
         background-color: white;
