@@ -50,7 +50,7 @@ class MainController extends Controller
     {
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
-        $vacancies = Vacancy::latest('id')->getUnblockVacancies()->paginate(25);
+        $vacancies = Vacancy::latest('id')->unblockVacancies()->paginate(25);
         Session::forget('city');
         Session::forget('industry');
         return view('main.index', array(
@@ -69,7 +69,7 @@ class MainController extends Controller
             ));
         }
 
-        $vacancies = Vacancy::getUnblockVacancies()->allVacancies()->where('published', 1)->paginate();
+        $vacancies = Vacancy::unblockVacancies()->where('published', 1)->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();

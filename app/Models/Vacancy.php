@@ -233,11 +233,11 @@ class Vacancy extends Model {
         return 'image/company/' . $this->Company->users_id . '/' . $this->Company->image;
     }
     
-    public static function getUnblockVacancies() {
-        return Vacancy::where('blocked', false);
+    public function scopeUnblockVacancies($query) {
+        return $query->where('blocked', false);
     }
     
     public static function getTopVacancies() {
-        return Vacancy::getUnblockVacancies()->bySort('desc')->take(5)->get();
+        return Vacancy::unblockVacancies()->bySort('desc')->take(5)->get();
     }
 }
