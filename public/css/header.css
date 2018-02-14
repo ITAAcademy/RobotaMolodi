@@ -282,7 +282,7 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        margin-left: 104px;
+        margin-left: 145px;
         margin-top:-1px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
@@ -1002,13 +1002,14 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left: 33px;
+        margin-left: 21px;
+        margin-top: 1px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        margin-left: 33px;
+        margin-left: 21px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -1385,14 +1386,13 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        padding-left: 6px;
+        padding-left: 23px;
         padding-right: 6px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        /*margin-left: 5px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
