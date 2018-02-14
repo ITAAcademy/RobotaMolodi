@@ -282,7 +282,7 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        margin-left: 145px;
+        margin-left: 104px;
         margin-top:-1px;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
@@ -699,9 +699,8 @@ nav.navbar.navbar-default{
     }
     /*End left modal*/
 }
-@media (min-width: 512px) and (max-width: 768px) {
-    /*Left modal*/
-    button.btn.btn-default.only-bars{
+@media (min-width: 572px) and (max-width: 768px){
+    button.btn.btn-default.only-bars {
         margin-left: 26px;
         margin-top: 1px;
         background-color: white;
@@ -710,9 +709,6 @@ nav.navbar.navbar-default{
     }
     button.btn.btn-default.only-bars:hover{
         margin-left: 26px;
-        background-color: white;
-        border-color: white;
-        outline-color: white;
     }
 }
 @media (min-width: 412px) and (max-width: 738px) {
@@ -1006,14 +1002,13 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left: 21px;
-        margin-top: 1px;
+        margin-left: 33px;
         background-color: white;
         border-color: white;
         outline-color: white;
     }
     button.btn.btn-default.only-bars:hover{
-        margin-left: 21px;
+        margin-left: 33px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -1390,7 +1385,6 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     button.btn.btn-default.only-bars{
-        margin-left:  17px;
         padding-left: 6px;
         padding-right: 6px;
         background-color: white;

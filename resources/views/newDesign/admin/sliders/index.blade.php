@@ -53,7 +53,7 @@
 
         <table class="table table-hover sliders table-bordered">
             <thead>
-            <tr class="sliders sliders-title" style="display: none">
+            <tr class="sliders sliders-title">
                 <th>Pos.</th>
                 <th>Image</th>
                 <th>Url</th>
@@ -67,16 +67,22 @@
             @foreach ($sliders as $slider)
                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
                     <th scope="row">
-                        <button class="btn btn-link change-position"
-                                title="change position in slider loop" data-id="{{ $slider->id }}">
-                            {{ $slider->position }}
-                        </button>
-
-                        <select class="positions" style="display: none">
-                            <option>2</option>
-                            <option selected>3</option>
-                            <option>4</option>
-                        </select>
+                        <div class="btn-group-vertical">
+                            <button  value="{{$slider->position}}"
+                                     class="btn btn-link change-position"
+                                     title="change position in slider loop"
+                                     data-id="{{ $slider->id }}">
+                                {{ $slider->position }}
+                            </button>
+                            @for($i = 1; $i <= $slider->category->number_of_positions; )
+                                <button value="{{$i}}"
+                                        class="positions btn btn-link another-position
+                                        {{$slider->position == $i? 'hidden' : ''}}"
+                                        style="display: none">
+                                    {{$i++}}
+                                </button>
+                            @endfor
+                        </div>
                     </th>
                     <td>
                         <img class="picture img-responsive" src="{{ asset($slider->image) }}">
@@ -151,8 +157,8 @@
                 $("button.fa").click(function () {
                     var id = $(this).attr('data-slider-id');
                     $.ajax({
-                        url: '/admin/sliders/updatePublished/' + id,
-                        methof: 'GET',
+                        url: '/admin/sliders/shiftPublished/' + id,
+                        method: 'GET',
                         success: function (slider) {
                             if (slider.published) {
                                 $("button[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
@@ -166,16 +172,24 @@
                 $("div[data-published='0']").fadeTo( 'fast', 0.25);
 
                 $(".change-position").click(function(){
-                    $(".change-position").show();
-                    $("select.positions").hide();
-                    
-                    $(this).hide();
-                    $(this).next().show();
+                    $(".positions").hide();
+                    $(this).siblings().toggle();
                 });
 
-                $("select.positions").change(function(){
-                    $(this).hide();
-                    $(this).prev().show();
+                $(".positions").click(function(){
+                    $(".positions").hide();
+
+                    var self = $(this);
+                    var next = $(this).val();
+                    var id = $(this).siblings('.change-position').attr('data-id');
+
+                    $.ajax({
+                        url: "slider/" + id + "/changePosition/" + next,
+                        method: 'POST',
+                        success: function(){
+                            location.reload();
+                        }
+                    });
                 });
             })
 

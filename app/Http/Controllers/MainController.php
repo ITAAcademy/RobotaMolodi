@@ -69,7 +69,7 @@ class MainController extends Controller
             ));
         }
 
-        $vacancies = Vacancy::getUnblockVacancies()->where('published', 1)->paginate();
+        $vacancies = Vacancy::getUnblockVacancies()->allVacancies()->where('published', 1)->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
@@ -85,7 +85,7 @@ class MainController extends Controller
 
     public function showCompanies(Request $request){
 
-        $companies = Filter::companies($request)->where('blocked', false)->paginate();
+        $companies = Filter::companies($request)->allCompanies()->where('blocked', false)->paginate();
        Filter::routeFilterPaginator($request, $companies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
@@ -109,7 +109,7 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = Filter::resumes($request)->where('blocked', false)->paginate();
+        $resumes = Filter::resumes($request)->allResumes()->where('blocked', false)->paginate();
         Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');
