@@ -50,7 +50,7 @@ class MainController extends Controller
     {
         $industries = Industry::orderBy('name')->get();
         $cities = $cityModel->getCities();
-        $vacancies = Vacancy::latest('id')->getUnblockVacancies()->paginate(25);
+        $vacancies = Vacancy::latest('id')->unblockVacancies()->paginate(25);
         Session::forget('city');
         Session::forget('industry');
         return view('main.index', array(
@@ -69,7 +69,7 @@ class MainController extends Controller
             ));
         }
 
-        $vacancies = Vacancy::getUnblockVacancies()->allVacancies()->where('published', 1)->paginate();
+        $vacancies = Vacancy::unblockVacancies()->isActive()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
@@ -109,7 +109,7 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = Filter::resumes($request)->allResumes()->where('blocked', false)->paginate();
+        $resumes = Filter::resumes($request)->allResumes()->isActive()->paginate();
         Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');
