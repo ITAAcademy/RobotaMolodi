@@ -14,7 +14,7 @@
         <a href="/unavailable"><p>+ <span>{{ trans('content.top') }}</span></p></a>
     </div>
 
-    <div id="tv-news-list" class="tv-news-list cool-scroll">
+    <div id="tv-news-list" class="tv-vac-list cool-scroll">
         <ul>
             @foreach($topVacancy as $vacancy)
             <li id="top-vac-li-{{$vacancy->id}}">
