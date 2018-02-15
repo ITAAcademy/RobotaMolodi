@@ -10,11 +10,11 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>№ п/п</th>
-                <th>Company page</th>
+                <th>№</th>
+                <th>Blocked Vacancy</th>
                 <th>Blocked since</th>
                 <th>Blocked by</th>
-                <th>Options</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
