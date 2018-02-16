@@ -35,6 +35,7 @@
 
         <div class="form-group">
             {!! Form::submit(trans('main.save'), ['class' => 'btn btn-success']) !!}
+             {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
         </div>
         {!! Form::close() !!}
 
