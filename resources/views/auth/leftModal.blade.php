@@ -122,13 +122,7 @@
 
         var localization = "{{config()->get('app.locale')}}";
 
-        if(localization == 'ua'){
-            $('#leftModal .modal-content .bars-left a.local-ua').css({'color' : 'orange'});
-        }
-        if(localization == 'en'){
-            $('#leftModal .modal-content .bars-left a.local-en').css({'color' : 'orange'});
-        }
-
+        $('.local-' + localization).css({'color': '#9d9d9d', 'pointer-events': 'none'});
     });
 
 </script>
