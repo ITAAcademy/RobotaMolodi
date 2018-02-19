@@ -1,5 +1,6 @@
 .sort-box{
     margin-top:15px;
+    width: 106%;
 }
 
 span.label-sort-box{
@@ -29,8 +30,13 @@ hr.line-sort-box {
     margin-top: 0;
 }
 
-.sort-rating, .sort-date{
-    margin-top: 4px;
+.sort-rating {
+    /*margin-top: 4px;*/
+    width: 22.6667%;
+}
+
+.sort-date{
+    width: 28%;
 }
 
 #startDate{
@@ -43,4 +49,5 @@ hr.line-sort-box {
 
 .input-sort-box{
     padding: 0;
+    width: 39%;
 }
