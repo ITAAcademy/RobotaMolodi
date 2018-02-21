@@ -71,19 +71,23 @@
 .add2top a:hover,.add2top  p:visited {text-decoration:none;}
 .add2top :-webkit-any-link {text-decoration: none;}
 
-.tv-news-list{
-	height: 400px;
-	font-family: SegoeUIRegular;
-	color: #cc3300;
-	overflow-y: auto;
-}
+.tv-news-list, .tv-vac-list{
+	 height: 500px;
+	 font-family: SegoeUIRegular;
+	 color: #cc3300;
+	 overflow-y: auto;
+ }
 
-.tv-news-list ul {
+.tv-news-list ul, .tv-vac-list ul {
 	list-style-position:inside;
 	padding:5px;
 	color:#f68c06;
 	font-size: 18px;
 	line-height:16px;
+}
+
+.tv-vac-list{
+	height: 310px;
 }
 
 .tv-news-date{
@@ -427,6 +431,7 @@ div.wrapper-list-label-box{
 }
 .sort-filter{
 	margin-top:3px;
+	margin-left: -2%;
 }
 
 span.opsion-sort-box{

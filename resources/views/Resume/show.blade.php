@@ -3,6 +3,9 @@
 @section('headLinks')
     <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
 @endsection
+@section('seo-module')
+    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $resume->description ])
+@endsection
 
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[

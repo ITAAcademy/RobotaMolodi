@@ -155,6 +155,13 @@ class Company extends Eloquent {
         return $vacancies;//$this->hasMany('App\Models\Vacancy','company_id')->get();
     }
 
+    public function scopeAllCompanies()
+    {
+        $vacancies = $this->latest('updated_at');
+
+        return $vacancies;
+    }
+
     public function scopeByIndustries($query, $industries)
     {
         if (!empty($industries)) {

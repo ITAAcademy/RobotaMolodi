@@ -72,11 +72,11 @@ $(document).ready(function () {
                 success: function(resp){
                     var result = $(resp).filter('.test').html();
 
-                    $(dest).html(result).animate();
+                    $(dest).html(result);
                     $("html, body").animate({ scrollTop: 0 }, 500);
-                    $(dest).css('backgroundColor','hsla(40, 100%, 70%, 0.1)');
-                    $(dest).animate({ backgroundColor: "white" }, "slow");
-
+                    $(dest)
+                        .css('backgroundColor','hsla(40, 100%, 70%, 0.1)')
+                        .animate({ backgroundColor: "white" }, "slow");
                 }
             });
         });
