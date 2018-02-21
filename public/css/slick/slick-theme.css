@@ -1,15 +1,15 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 /* Slider */
 .slick-loading .slick-list
 {
-    background: #fff url('./ajax-loader.gif') center center no-repeat;
+    background: #fff url("/image/loading.gif") center center no-repeat;
 }
 @font-face {
 			font-family: "SegoeUIRegular";
-			src: url("../fonts/SegoeUIRegular/SegoeUIRegular.eot");
-			src: url("../fonts/SegoeUIRegular/SegoeUIRegular.eot?#iefix")format("embedded-opentype"),
-			url("../fonts/SegoeUIRegular/SegoeUIRegular.woff") format("woff"),
-			url("../fonts/SegoeUIRegular/SegoeUIRegular.ttf") format("truetype");
+			src: url("/fonts/SegoeUIRegular/SegoeUIRegular.eot");
+			src: url("/fonts/SegoeUIRegular/SegoeUIRegular.eot?#iefix")format("embedded-opentype"),
+			url("/fonts/SegoeUIRegular/SegoeUIRegular.woff") format("woff"),
+			url("/fonts/SegoeUIRegular/SegoeUIRegular.ttf") format("truetype");
 			font-style: normal;
 			font-weight: normal;
 	}
@@ -211,7 +211,7 @@
 }
 .slider-capacity>p{
   font-size: 18px;
-  font-family: "SegoeUIRegular";
+  font-family: 'SegoeUIRegular';
   line-height: 24px;
   color: #355c89;
 }
