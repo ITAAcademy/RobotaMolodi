@@ -1,6 +1,5 @@
 @extends('app')
 @section('head')
-    @include("newDesign.company._metaTag")
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
 @section('seo-module')
