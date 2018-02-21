@@ -4,7 +4,12 @@
 @endsection
 @section('seo-module')
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $vacancy->description ])
-    @include('newDesign.socialModule.meta')
+    @include('newDesign.socialModule.meta',
+        [
+            'title'         =>  $vacancy->position,
+            'description'   =>  $vacancy->description,
+            'image'         =>  $vacancy->image
+            ])
 @endsection
 
 @section('content')
