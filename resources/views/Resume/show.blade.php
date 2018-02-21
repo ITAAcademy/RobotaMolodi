@@ -5,6 +5,12 @@
 @endsection
 @section('seo-module')
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $resume->description ])
+    @include('newDesign.socialModule.meta',
+        [
+            'title'         =>  $resume->position,
+            'description'   =>  $resume->description,
+            'image'         =>  $resume->image
+            ])
 @endsection
 
 @section('content')
