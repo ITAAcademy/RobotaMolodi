@@ -19,7 +19,6 @@
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
-	<script src="/js/lang.js"></script>
 
     <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
@@ -57,14 +56,14 @@
 	<link href="{{ asset('/css/slick/slick-theme.css') }}" rel="stylesheet">
 
 
-	 <script src="js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.messagestore.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.fallbacks.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.language.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.parser.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.emitter.js"></script>
-	 <script src="js/lib/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+	 <script src="/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.messagestore.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.language.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.parser.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.emitter.js"></script>
+	 <script src="/js/lib/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
 
 	 <!-- <script src="js/global.js"></script> -->
 
