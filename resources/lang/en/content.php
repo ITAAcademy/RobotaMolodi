@@ -13,6 +13,7 @@ return [
     'resume' => 'Resume',
     'contacts' => 'Contacts',
     'vac'=> 'Vacancies',
+    'project' => 'Project',
 
     'sort_by' => 'Sort by:',
     'rating_m' => 'rating -',
