@@ -74,7 +74,7 @@
 <div class="form-group">
     {!! Form::label('brand', trans('project/description.brand'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::text('brand', $project['brand'], ['class' => 'form-control', 'required' => '']) !!}
+        {!! Form::text('brand', $project['brand'], ['class' => 'form-control']) !!}
         @if($project->getError('brand'))
           @each('errors.partial._validation', $project->getError('brand'), 'error' )
         @endif
@@ -92,7 +92,7 @@
 <div class="form-group">
     {!! Form::label('bonuses', trans('project/description.bonuses'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::text('bonuses', $project['bonuses'], ['class' => 'form-control', 'required' => '']) !!}
+        {!! Form::text('bonuses', $project['bonuses'], ['class' => 'form-control']) !!}
         @if($project->getError('bonuses'))
           @each('errors.partial._validation', $project->getError('bonuses'), 'error' )
         @endif
