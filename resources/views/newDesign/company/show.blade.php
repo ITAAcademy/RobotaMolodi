@@ -6,7 +6,7 @@
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $company->description ])
     @include('newDesign.socialModule.meta',
         [
-            'title'         =>  $company->company_name,
+            'title'         =>  trans('social.company') . ' : ' . $company->company_name,
             'description'   =>  $company->description,
             'image'         =>  $company->image
             ])
