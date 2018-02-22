@@ -2,12 +2,13 @@
 
 @section('headLinks')
     <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
 @section('seo-module')
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $resume->description ])
     @include('newDesign.socialModule.meta',
         [
-            'title'         =>  $resume->position,
+            'title'         =>  trans('social.resume') . ' : ' . $resume->position,
             'description'   =>  $resume->description,
             'image'         =>  $resume->image
             ])
@@ -56,6 +57,7 @@
                     </span>
                     <span class="likeError"></span>
                 </div>
+                @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
 
                 <div class="panel-description-resume">
                     <p class="position_resume">

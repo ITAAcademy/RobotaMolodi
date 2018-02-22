@@ -1,13 +1,12 @@
 @extends('app')
 @section('head')
-    @include("newDesign.company._metaTag")
     <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
 @section('seo-module')
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $company->description ])
     @include('newDesign.socialModule.meta',
         [
-            'title'         =>  $company->company_name,
+            'title'         =>  trans('social.company') . ' : ' . $company->company_name,
             'description'   =>  $company->description,
             'image'         =>  $company->image
             ])
@@ -45,39 +44,15 @@
                         </span>
                     </div>
                     @endif
-
                     <div class="case">
-
   						<span>
   							<i class="fa newFa">&#xf0b1;</i>
   						</span>
-                    <div class="consult">
-                        <a href="#">запланувати консультацію</a>
+                        <div class="consult">
+                            <a href="#">запланувати консультацію</a>
+                        </div>
                     </div>
-                </div>
-                <div class="share">
-                    <p>Поділитись</p>
-                </div>
-                <div class="social">
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
-                        itle=Компанія{{' '.$company->company_name}}&
-                        url={!! env("APP_URL")."/company/".$company->id !!}"
-                        target="_blank">
-                        <i class="fa">&#xf08c;</i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?
-                        u={!! env("APP_URL")."/company/".$company->id !!}
-                        &title=Компанія{{$company->company_name}}" target="_blank">
-                        <i class="fa">&#xf082;</i>
-                    </a>
-                    <a href="https://www.twitter.com/intent/tweet?url={!! env("APP_URL")."/company/".$company->id !!}
-                        &text=Компанія{{' '.$company->company_name}}" target="_blank">
-                        <i class="fa">&#xf081;</i>
-                    </a>
-                    <a href="https://plus.google.com/share?
-                        url={!! env("APP_URL")."/company/".$company->id !!}" target="_blank">
-                        <i class="fa fa-google-plus-square"></i>
-                    </a>
+                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
                 </div>
             </div>
         </div>
