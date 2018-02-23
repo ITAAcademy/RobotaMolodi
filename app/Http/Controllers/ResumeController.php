@@ -125,20 +125,19 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 return true;
             else return false;
         });
-
-        $rules = 'required|min:3';
+        
         $this->validate($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
-            'position' => $rules,
+            'position' => 'required|min:3',
             'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
             'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
-            'description' => $rules,
+            'description' => 'required|string|min:130',
             'city' => 'required',
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);
-        $resume = $resumeModel->fillResume(0,$auth,$request);
+        $resume = $resumeModel->fillResume(0, $auth, $request);
 
         if(Input::hasFile('loadResume'))
         {
@@ -234,17 +233,15 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 return true;
             else return false;
         });
-
-
-        $rules = 'required|min:3';
-        $this->validate($request,[
+        
+        Validator::make($request,[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
-            'position' => $rules,
+            'position' => 'required|min:3',
             'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
             'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
-            'description' => $rules,
+            'description' => 'required|string|min:130',
             'city' => 'required',
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
         ]);

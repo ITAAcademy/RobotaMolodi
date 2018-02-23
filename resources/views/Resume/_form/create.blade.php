@@ -352,7 +352,9 @@
                  }
                  document.getElementById('filename').innerHTML = document.getElementById('loadResume').value;
              });
-            $('#description').text($('.change_description').html());
+            if(!$('#description').val()){
+                $('#description').text($('.change_description').html());
+            }
         })
     </script>
     @section('footer')
