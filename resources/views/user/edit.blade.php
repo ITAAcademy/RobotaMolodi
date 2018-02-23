@@ -35,9 +35,15 @@
 
         <div class="form-group">
             {!! Form::submit(trans('main.save'), ['class' => 'btn btn-success']) !!}
-             {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
         </div>
+
         {!! Form::close() !!}
+
+         {!! Form::open(array('route' => ['deleteAvatar', $user->id])) !!}
+
+         {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger']) !!}
+
+         {!! Form::close() !!}
 
         <div id="imageBox" class="modal fade">
             @include('newDesign.cropModal')

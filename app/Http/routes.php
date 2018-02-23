@@ -194,6 +194,7 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
 
     Route::resource('cabinet','cabinet\CabinetController');
     Route::resource('user','UserController', ['only' => ['edit','update']]);
+    Route::post('user/{id}/deleteAvatar',['as' => 'deleteAvatar', 'uses' => 'UserController@deleteAvatar']);
 });
 
 Route::filter('no-cache',function($route, $request, $response){
