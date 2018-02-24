@@ -228,3 +228,4 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
+Route::resource('seo-module', 'SeoModuleController');
