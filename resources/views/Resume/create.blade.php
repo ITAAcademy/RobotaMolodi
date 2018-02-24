@@ -11,17 +11,18 @@
     <div class="row header-resume">
         <h3 class="formTitle header-text-resume"><b>{{ trans('content.addresume') }}</b></h3>
     </div>
-    {!! Form::open(['route' => 'resume.store','enctype' => 'multipart/form-data', 'id'=>'form_id']) !!}
-    @include('Resume._form.create') <!-- Підключення коду Штмл(Форма вводу) -->
+    {!! Form::open([
+        'route' => 'resume.store',
+        'enctype' => 'multipart/form-data',
+        'id'=>'form_id'
+    ])!!}
+        @include('Resume._form.create')
     {!!Form::close()!!}
 @stop
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
-//            $(window).bind('beforeunload', function () {
-//                return 'Збережіть будь ласка всі внесені нові дані!';
-//            });
             $('#form_id').submit(function () {
                 $(window).unbind('beforeunload');
             });

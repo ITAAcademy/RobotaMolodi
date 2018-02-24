@@ -1,4 +1,4 @@
-<section class="our-vacancies">
+<section class="our-vacancies" id="vacancies_project__id">
     <div class="our-vacancies__title">
         <div class="our-vacancies__title-text">Наші вакансії на проект</div>
     </div>

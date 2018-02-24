@@ -6,7 +6,7 @@
     @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $vacancy->description ])
     @include('newDesign.socialModule.meta',
         [
-            'title'         =>  $vacancy->position,
+            'title'         =>  trans('social.vacancy') . ' : ' . $vacancy->position,
             'description'   =>  $vacancy->description,
             'image'         =>  $vacancy->image
             ])
@@ -38,23 +38,7 @@
                             <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
                         </div>
                     </div>
-                    <div class="share">
-                        <p id="share-vacancy">Поділитись</p>
-                    </div>
-                    <div class="social">
-                        <a href="https://www.linkedin.com/shareArticle?mini=true&title=Вакансія{{' '.$vacancy->position}}&url={{URL::current()}}" target="_blank">
-                            <i class="fa">&#xf08c;</i>
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{URL::current()}}&title=Вакансія{{' '.$vacancy->position}}" target="_blank">
-                            <i class="fa">&#xf082;</i>
-                        </a>
-                        <a href="https://www.twitter.com/intent/tweet?url={{URL::current()}}&text=Вакансія{{' '.$vacancy->position}}" target="_blank">
-                            <i class="fa">&#xf081;</i>
-                        </a>
-                        <a href="https://plus.google.com/share?url={{URL::current()}}" target="_blank">
-                            <i class="fa fa-google-plus-square"></i>
-                        </a>
-                    </div>
+                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
                 </div>
             </div>
             <div class="col-md-10">
