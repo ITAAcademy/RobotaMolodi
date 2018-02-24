@@ -1,4 +1,4 @@
-<section class="project">
+<section class="project" id="about_project__id">
     <div class="about-project">
         <h2 class="about-project__tittle">Про проект</h2>
         <div class="about-project__text">

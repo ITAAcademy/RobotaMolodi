@@ -1,4 +1,4 @@
-<section class="vacancies-contacts">
+<section class="vacancies-contacts" id="contacts__id">
     <div class="vacancies-contacts__wrapper">
         <div class="vacancies-contacts__title">Контакти</div>
         <ul class="vacancies-contacts__list">
