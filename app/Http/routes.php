@@ -85,6 +85,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
     Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
     Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
+    Route::resource('/seo-module', 'Admin\SeoModuleController');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
@@ -228,4 +229,3 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
-Route::resource('seo-module', 'SeoModuleController');

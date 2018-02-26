@@ -12,12 +12,12 @@ class CreateSeoInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('seo_info', function (Blueprint $table) {
+        Schema::create('seo_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
+            $table->string('url')->unique();
             $table->string('title');
             $table->string('description');
-            $table->string('keywords');
+            $table->json('keywords')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSeoInfosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('seo_info');
+        Schema::dropIfExists('seo_infos');
     }
 }
