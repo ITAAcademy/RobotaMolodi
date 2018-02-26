@@ -16,7 +16,7 @@ class SeoModuleController extends Controller
      */
     public function index()
     {
-        return ;
+        //
     }
 
     /**
