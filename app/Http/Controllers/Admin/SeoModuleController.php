@@ -41,6 +41,12 @@ class SeoModuleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'url' => 'required|unique:seo_infos',
+            'title' => 'required|max:60|',
+            'description' => 'required|min:70|max:300'
+        ]);
+
         SeoInfo::create($request->all());
         return redirect('/admin/seo-module')
             ->with('flash_message','Seo info createded successfully');
@@ -82,9 +88,16 @@ class SeoModuleController extends Controller
     public function update(Request $request, $id)
     {
         $info = SeoInfo::findOrFail($id);
+
+        $this->validate($request, [
+            'url' => 'required|unique:seo_infos,url,'.$id,
+            'title' => 'required|max:60|',
+            'description' => 'required|min:70|max:300'
+        ]);
+
         $info->update($request->all());
 
-        return redirect()->route('admin.seo-module.index')
+        return redirect('/admin/seo-module')
             ->with('flash_message','Seo info updated successfully');
     }
 
