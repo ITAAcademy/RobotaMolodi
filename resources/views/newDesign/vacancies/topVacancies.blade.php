@@ -10,11 +10,11 @@
         <p id="topvac2" class="tv-news-header2">{{ trans('content.vacancy') }}</p>
     </div>
 
-    <div id="add-vac-2-top" class="add2top unavailable">
-        <a href="#"><p>+ <span>{{ trans('content.top') }}</span></p></a>
+    <div id="add-vac-2-top" class="add2top">
+        <a href="/unavailable"><p>+ <span>{{ trans('content.top') }}</span></p></a>
     </div>
 
-    <div id="tv-news-list" class="tv-news-list cool-scroll">
+    <div id="tv-news-list" class="tv-vac-list cool-scroll">
         <ul>
             @foreach($topVacancy as $vacancy)
             <li id="top-vac-li-{{$vacancy->id}}">

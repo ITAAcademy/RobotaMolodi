@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!! Form::label('name', trans('project.name'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('name', trans('project/description.name'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
       {!! Form::text('name', $project['name'], ['class' => 'form-control', 'required' => '']) !!}
       @if($project->getError('name'))
@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('industry_id', trans('project.industry'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('industry_id', trans('project/description.industry'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::select('industry_id', $industries, null, ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('industry_id'))
@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('company_id', trans('project.company'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('company_id', trans('project/description.company'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::select('company_id', $companies, null, ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('company_id'))
@@ -26,7 +26,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('', trans('project.logo'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('', trans('project/description.logo'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-3">
         {!! Form::file('logo', ['id' => 'logoProject', 'class' => 'inputImg', 'accept' => 'image/*']) !!}
     </div>
@@ -36,7 +36,7 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('company_desc', trans('project.companyDesc'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('company_desc', trans('project/description.companyDesc'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::text('company_desc', $project['company_desc'], ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('company_desc'))
@@ -45,7 +45,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('company_about', trans('project.companyAbout'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('company_about', trans('project/description.companyAbout'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::textarea('company_about', $project['company_about'], ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('company_about'))
@@ -54,7 +54,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('project_about', trans('project.projectAbout'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('project_about', trans('project/description.projectAbout'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::textarea('project_about', $project['project_about'], ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('project_about'))
@@ -63,7 +63,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('project_term', trans('project.projectTerm'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('project_term', trans('project/description.projectTerm'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::text('project_term', $project['project_term'], ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('project_term'))
@@ -72,16 +72,16 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('brand', trans('project.brand'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('brand', trans('project/description.brand'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::text('brand', $project['brand'], ['class' => 'form-control', 'required' => '']) !!}
+        {!! Form::text('brand', $project['brand'], ['class' => 'form-control']) !!}
         @if($project->getError('brand'))
           @each('errors.partial._validation', $project->getError('brand'), 'error' )
         @endif
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('location', trans('project.location'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('location', trans('project/description.location'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
         {!! Form::text('location', $project['location'], ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('location'))
@@ -90,29 +90,12 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('bonuses', trans('project.bonuses'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('bonuses', trans('project/description.bonuses'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::text('bonuses', $project['bonuses'], ['class' => 'form-control', 'required' => '']) !!}
+        {!! Form::text('bonuses', $project['bonuses'], ['class' => 'form-control']) !!}
         @if($project->getError('bonuses'))
           @each('errors.partial._validation', $project->getError('bonuses'), 'error' )
         @endif
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('brief_desc', trans('project.briefDesc'), ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        {!! Form::textarea('brief_desc', $project['brief_desc'], ['class' => 'form-control', 'required' => '']) !!}
-        @if($project->getError('brief_desc'))
-          @each('errors.partial._validation', $project->getError('brief_desc'), 'error' )
-        @endif
-    </div>
-</div>
-<div class="form-group">
-    {!! Form::label('full_desc', trans('project.fullDesc'), ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        {!! Form::textarea('full_desc', $project['full_desc'], ['class' => 'form-control', 'required' => '']) !!}
-        @if($project->getError('full_desc'))
-          @each('errors.partial._validation', $project->getError('full_desc'), 'error' )
-        @endif
-    </div>
-</div>
+

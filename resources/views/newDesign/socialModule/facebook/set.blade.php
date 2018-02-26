@@ -1,0 +1,7 @@
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:type',          'content' => 'website'])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:locate',        'content' => App::getLocale()])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:site_name',     'content' => $app_name])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:title',         'content' => $title])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:description',   'content' => $description])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:url',           'content' => $url])
+@include('newDesign.socialModule.facebook._meta',['property' => 'og:image',         'content' => $image])
