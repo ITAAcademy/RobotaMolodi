@@ -298,7 +298,7 @@ class VacancyController extends Controller
                     return true;
                 else return false;
             });
-            
+
             $this->validate($request, [
                 'position' => 'required|min:3',
                 //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
@@ -349,7 +349,7 @@ class VacancyController extends Controller
         if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
             Vacancy::destroy($id);
 
-            return redirect('cabinet');
+            return redirect('cabinet.my_vacancies');
         }
         else abort(403);
 
