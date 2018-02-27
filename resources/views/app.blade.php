@@ -54,6 +54,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 	<link href="{{ asset('/css/slick/slick.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/slick/slick-theme.css') }}" rel="stylesheet">
+	{!!Html::script('js/slick/slick.min.js')!!}
 
 
 	 <script src="/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js"></script>

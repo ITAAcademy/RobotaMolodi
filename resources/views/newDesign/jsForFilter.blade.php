@@ -75,7 +75,7 @@ $(document).ready(function () {
                     $(dest).html(result);
                     $("html, body").animate({ scrollTop: 0 }, 500);
                     $(dest)
-                        .css('backgroundColor','hsla(40, 100%, 70%, 0.1)')
+                        .css('backgroundColor','hsla(30, 10%, 90%, 0.1)')
                         .animate({ backgroundColor: "white" }, "slow");
                 }
             });

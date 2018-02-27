@@ -131,14 +131,14 @@ return [
 		],
         'description' => [
             'required' => 'Field is required to fill!',
-            'min' => 'The field must contain a minimum of 3 characters!',
+            'min' => 'The field must contain a minimum of 130 characters!',
         ],
         'city' => [
             'required' => 'Field is required to fill!',
         ],
         'loadResume' => [
             'mimes' => 'Incoming file format: jpeg, jpg, png, bmp!',
-            'max' => 'Size should not exceed 2 мб.!',
+            'max' => 'Size should not exceed 2 MB!',
         ],
 		'Link'=>[
 			"url" => "Enter the correct link!",

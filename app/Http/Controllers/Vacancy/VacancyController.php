@@ -159,14 +159,13 @@ class VacancyController extends Controller
             $hasCompany = User::find($auth->user()->getAuthIdentifier())->hasAnyCompany();
             //
             if ($hasCompany) {
-                $rules = 'required|min:3';
                 $this->validate($request, [
-                    'position' => $rules,
+                    'position' => 'required|min:3',
                     //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
                     'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
                     'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
                     'email' => 'required|email',
-                    'description' => $rules,
+                    'description' => 'required|string|min:130',
                     'city' => 'required',
                     'Organisation' => 'exists:company,id'
                 ]);
@@ -300,14 +299,13 @@ class VacancyController extends Controller
                 else return false;
             });
 
-            $rules = 'required|min:3';
             $this->validate($request, [
-                'position' => $rules,
+                'position' => 'required|min:3',
                 //'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
                 'salary' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric|min_salary',
                 'salary_max' => 'required|regex:/[^0]+/|min:1|max:1000000000|numeric',
                 'email' => 'required|email',
-                'description' => $rules,
+                'description' => 'required|string|min:130',
                 'city' => 'required',
                 'Organisation' => 'exists:company,id'
             ]);
@@ -351,7 +349,7 @@ class VacancyController extends Controller
         if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
             Vacancy::destroy($id);
 
-            return redirect('cabinet');
+            return redirect('cabinet.my_vacancies');
         }
         else abort(403);
 

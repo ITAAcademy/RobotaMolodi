@@ -26,8 +26,15 @@
     <div class="row header-resume">
         <h3 class="formTitle header-text-resume"><b>{{ trans('content.editResume') }}</b></h3>
     </div>
-    {!!Form::model($resume,array('route' =>array('resume.update',$resume->id),'method' => 'put','enctype' => 'multipart/form-data', 'id'=>'form_id'))!!}
-    @include('Resume._form.edit')
+    {!!Form::model($resume, array(
+        'route' => array(
+            'resume.update',
+            $resume->id),
+        'method' => 'put',
+        'enctype' => 'multipart/form-data',
+        'id'=>'form_id')
+    )!!}
+        @include('Resume._form.edit')
     {!!Form::close()!!}
 
     {!!Html::script('js/jquery.maskedinput.min.js')!!}
@@ -37,7 +44,7 @@
         });
     </script>
 @stop
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $( ".form-control" ).change(function() {
@@ -76,7 +83,9 @@
              }
          });
 
-        $('#description').text($('.change_description').html());
+        if(!$('#description').val()){
+            $('#description').text($('.change_description').html());
+        }
     })
 </script>
 <script type="text/javascript">
@@ -93,7 +102,7 @@
     }).blur(function(){
       wrapper.removeClass( "focus" );
     });
-    var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
+    var file_api = !!(window.File && window.FileReader && window.FileList && window.Blob);
     inp.change(function(){
       var file_name;
       if( file_api && inp[ 0 ].files[ 0 ] )

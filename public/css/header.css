@@ -329,11 +329,11 @@ nav.navbar.navbar-default{
         border-color: #f68c06;
     }
     #leftModal .modal-content .bars-left a.local-ua{
-        color: #9d9d9d;
+        color: orange;
         text-decoration: none;
     }
     #leftModal .modal-content .bars-left a.local-en{
-        color: #9d9d9d;
+        color: orange;
         text-decoration: none;
     }
     .icon-left-modal{
@@ -678,7 +678,7 @@ nav.navbar.navbar-default{
         border-color: #f68c06;
     }
     #leftModal .modal-content .bars-left a.local-ua{
-        color: #9d9d9d;
+        color: orange;
         text-decoration: none;
     }
     .icon-left-modal{
@@ -689,7 +689,7 @@ nav.navbar.navbar-default{
         color: #9d9d9d;
     }
     .modal-social-share{
-     git   padding: 0;
+        padding: 0;
     }
     .modal-social-share a{
         text-decoration: none;
@@ -1058,7 +1058,7 @@ nav.navbar.navbar-default{
         border-color: #f68c06;
     }
     #leftModal .modal-content .bars-left a.local-ua{
-        color: #9d9d9d;
+        color: orange;
         text-decoration: none;
     }
     .icon-left-modal{
@@ -1444,7 +1444,7 @@ nav.navbar.navbar-default{
         border-color: #f68c06;
     }
     #leftModal .modal-content .bars-left a.local-ua{
-        color: #9d9d9d;
+        color: orange;
         text-decoration: none;
     }
     .icon-left-modal{
