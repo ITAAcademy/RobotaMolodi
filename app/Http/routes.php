@@ -86,6 +86,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
     Route::get('/sliders/shiftPublished/{slider_id}', 'Admin\SliderController@shiftPublished');
     Route::post('/slider/{slider_id}/changePosition/{next}', 'Admin\SliderController@changePosition');
+    Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
+    Route::resource('/seo-module', 'Admin\SeoModuleController');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);

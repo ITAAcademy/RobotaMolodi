@@ -33,6 +33,17 @@
                 </div>
             </a>
 
+            <a href="{{route('admin.seo-module.index')}}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                        <li><p>СЕО модуль</p></li>
+                    </div>
+                </div>
+            </a>
+
             <h5>
                 <div class="row">
                     <div class="col-md-12">
