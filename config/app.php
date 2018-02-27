@@ -150,7 +150,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-		'Unisharp\Ckeditor\ServiceProvider'
+		'Unisharp\Ckeditor\ServiceProvider',
+        'App\Providers\ViewComposerServiceProvider',
 	],
 
 	/*
