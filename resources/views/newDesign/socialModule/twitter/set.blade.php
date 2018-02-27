@@ -1,5 +1,5 @@
 @include('newDesign.socialModule.facebook._meta',['property' => 'twitter:card',           'content' => 'summary' ])
-@include('newDesign.socialModule.facebook._meta',['property' => 'twitter:domain',         'content' => env("APP_URL") ])
+@include('newDesign.socialModule.facebook._meta',['property' => 'twitter:domain',         'content' => asset('/') ])
 @include('newDesign.socialModule.facebook._meta',['property' => 'twitter:site',           'content' => $app_name ])
 @include('newDesign.socialModule.facebook._meta',['property' => 'twitter:title',          'content' => $title ])
 @include('newDesign.socialModule.facebook._meta',['property' => 'twitter:description',    'content' => $description ])
