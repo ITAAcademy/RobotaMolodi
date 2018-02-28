@@ -14,6 +14,12 @@ function initMultiselect(container)
 		,selectAllText: 'Вибрати все'
 		,buttonText: function(options, select)
 		{
+            $(".multiselect-clear-filter").click(function() {
+                $('li.multiselect-item.multiselect-all > a > label > input').trigger('click');
+                $('.multiselect-selected-text').text('...');
+                $('.active').removeClass();
+                $(':checkbox').attr('checked',false);
+            });
 			if (options.length === 0)
 			{
 				return '...';
