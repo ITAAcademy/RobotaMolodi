@@ -224,19 +224,19 @@ class Vacancy extends Model {
         $query = Company::where('users_id','=',$user->id);
         return $query;
     }
-    
+
     public function getCompanyName() {
         return $this->scopeCompany()->company_name;
     }
-    
+
     public function getImagePath(){
         return 'image/company/' . $this->Company->users_id . '/' . $this->Company->image;
     }
-    
+
     public function scopeUnblockVacancies($query) {
         return $query->where('blocked', false);
     }
-    
+
     public static function getTopVacancies() {
         return Vacancy::unblockVacancies()->bySort('desc')->take(5)->get();
     }

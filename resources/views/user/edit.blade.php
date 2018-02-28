@@ -33,9 +33,18 @@
         <input type="hidden" name="fcoords" class="coords" id="coords" value="">
         <input type="hidden" name="fname" value="{{}}">
 
-        <div class="form-group">
-            {!! Form::submit(trans('main.save'), ['class' => 'btn btn-success']) !!}
+        <div class="col-xs-1" style="padding:1px">
+            {!! Form::submit(trans('main.save'), ['class' => 'btn btn-success','style'=>"width:100%"]) !!}
         </div>
+
+        {!! Form::close() !!}
+
+        {!! Form::open(array('route' => ['deleteAvatar', $user->id])) !!}
+
+                <div class="col-xs-1" style="padding:1px">
+                  {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger','style'=>"width:100%", 'id'=>'delete']) !!}
+                </div>
+
         {!! Form::close() !!}
 
         <div id="imageBox" class="modal fade">
@@ -44,6 +53,9 @@
         {!!Html::script('js/crop.js')!!}
         <script>
             $(document).ready(function () {
+              if(!document.getElementById('avatar').value) {
+                    $('#delete').addClass('disabled');
+              }
                 var cloneInputFile = $('#avatar').clone();
                 $('#avatar').on('change', function(e) {
                     if(document.getElementById('avatar').value) {
