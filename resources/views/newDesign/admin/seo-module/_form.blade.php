@@ -1,6 +1,6 @@
  <div class="form-group {{ $errors->has('url') ? 'has-error' : '' }}">
      {!! Form::label('url','Url :') !!}
-     {!! Form::url('url', old('url'), array('class' => 'form-control')) !!}
+     {!! Form::text('url', old('url'), array('class' => 'form-control' , 'placeholder' => 'Use relative format (example : \'company\\{id}\' for company, but \'\\\' for root')) !!}
      <span class="text-danger">{{ $errors->first('url') }}</span>
  </div>
  <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
