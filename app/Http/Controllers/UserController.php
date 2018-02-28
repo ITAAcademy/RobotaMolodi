@@ -116,12 +116,13 @@ class UserController extends Controller
 
     public function deleteAvatar($id) {
         $user = User::find($id);
-        $directory = 'image/user/'. $user->id . '/avatar/' . $user->avatar;
+        $directory = $user->getAvatarPath();
         unlink( $directory );
         $user->avatar = null;
         $user->save();
 
-        return redirect('/');
+        return redirect()->route('user.edit', $user->id);
+
     }
 
 }

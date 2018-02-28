@@ -98,4 +98,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     return $this->hasMany('App\SocialAccount');
 	}
 
+	public function getAvatarPath(){
+        return 'image/user/' . $this->id . '/avatar/' . $this->avatar;
+    }
+
+
 }

@@ -234,7 +234,7 @@ class Company extends Eloquent {
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
-    
+
     public function getImagePath(){
         return 'image/company/' . $this->users_id . '/' . $this->image;
     }
