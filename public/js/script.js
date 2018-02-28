@@ -1,8 +1,3 @@
-var filters = {
-    region: '#list-selected-region',
-    indastry : '#list-selected-indastry',
-    specialization : '#list-selected-specialization'
-};
 function initMultiselect(container)
 {
 	$(container).multiselect(
@@ -18,15 +13,18 @@ function initMultiselect(container)
 		,selectAllText: 'Вибрати все'
 		,buttonText: function(options, select)
 		{
-            for (var key in filters) {
-                var filter_btn = $(filters[key]).find('.multiselect-clear-filter');
-                filter_btn.click(function() {
-                	$('div.btn-group.open > ul > li.multiselect-item.multiselect-all > a > label > input').trigger('click');
-                    $('div.btn-group.open > button > span.multiselect-selected-text').text('...');
-                    $('div.btn-group.open > ul > li.active').removeClass();
-                    $('div.btn-group.open > ul > li > a > label > input:checkbox').attr('checked',false);
-                 });
-            }
+            $('#list-selected-region').find('.multiselect-clear-filter').on('click', function() {
+            	$('#list-selected-region > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-region > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
+            $('#list-selected-indastry').find('.multiselect-clear-filter').on('click', function() {
+                $('#list-selected-indastry > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-indastry > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
+            $('#list-selected-specialization').find('.multiselect-clear-filter').on('click', function() {
+                $('#list-selected-specialization > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-specialization > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
 
 			if (options.length === 0)
 			{
