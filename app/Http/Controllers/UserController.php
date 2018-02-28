@@ -104,7 +104,6 @@ class UserController extends Controller
 
         return redirect('/');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -113,6 +112,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
+
+    public function deleteAvatar($id) {
+        $user = User::find($id);
+        $directory = $user->getAvatarPath();
+        unlink( $directory );
+        $user->avatar = null;
+        $user->save();
+
+        return redirect()->route('user.edit', $user->id);
+
+    }
+
 }
