@@ -1,4 +1,8 @@
-
+var filters = {
+    region: '#list-selected-region',
+    indastry : '#list-selected-indastry',
+    specialization : '#list-selected-specialization'
+};
 function initMultiselect(container)
 {
 	$(container).multiselect(
@@ -14,12 +18,16 @@ function initMultiselect(container)
 		,selectAllText: 'Вибрати все'
 		,buttonText: function(options, select)
 		{
-            $(".multiselect-clear-filter").click(function() {
-                $('li.multiselect-item.multiselect-all > a > label > input').trigger('click');
-                $('.multiselect-selected-text').text('...');
-                $('.active').removeClass();
-                $(':checkbox').attr('checked',false);
-            });
+            for (var key in filters) {
+                var filter_btn = $(filters[key]).find('.multiselect-clear-filter');
+                filter_btn.click(function() {
+                	$('div.btn-group.open > ul > li.multiselect-item.multiselect-all > a > label > input').trigger('click');
+                    $('div.btn-group.open > button > span.multiselect-selected-text').text('...');
+                    $('div.btn-group.open > ul > li.active').removeClass();
+                    $('div.btn-group.open > ul > li > a > label > input:checkbox').attr('checked',false);
+                 });
+            }
+
 			if (options.length === 0)
 			{
 				return '...';
