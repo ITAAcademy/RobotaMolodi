@@ -3,11 +3,13 @@
 </div>
 <script>
     function getSlider(viewName, category) {
-        $slider = $('.slider[data-view=' + viewName+ ']');
+        $slider = $('.slider[data-view=' + viewName + ']');
         $.ajax({
             url: '{{route('slidersByCategory')}}',
-            data: { category: category,
-                slider: viewName},
+            data: {
+                category: category,
+                slider: viewName
+            },
             type: 'POST',
             async: false,
             success: function (data) {
@@ -16,10 +18,16 @@
         });
     }
 
-    $(document).ready(function(){
-        $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')}});
+    $(document).ready(function () {
+        $.ajaxSetup({headers: {'x-csrf-token': $('meta[name="_token"]').attr('content')}});
         $('.slider').each(function (index, item) {
-           getSlider($(item).data('view'), $(item).data('category'))
+            getSlider($(item).data('view'), $(item).data('category'))
+        });
+        $('.slick-slider').slick({
+            autoplay: true,
+            autoplaySpeed: 6000,
+            infinite: true,
+            speed: 2000
         });
     })
 </script>
