@@ -7,8 +7,7 @@
             </div>
         @endif
 
-
-        <div class="col-md-3 createNews">
+        <div class="col-md-12 createNews">
             <div class="row">
                 <a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">
                     Create slider
@@ -35,9 +34,7 @@
                     <span class="notice"></span>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-5">
             <div class="slider-block" style="display: none">
                 <div class="slick-slider slider-show">
                     @foreach($sliders as $slider)
@@ -51,76 +48,90 @@
             </div>
         </div>
 
-        <table class="table table-hover sliders table-bordered">
-            <thead>
-            <tr class="sliders sliders-title">
-                <th>Pos.</th>
-                <th>Image</th>
-                <th>Url</th>
-                <th>Category</th>
-                <th>Published</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @foreach ($sliders as $slider)
-                <tr data-value="{!! $slider->category_id !!}" class="sliders">
-                    <th scope="row">
-                        <div class="btn-group-vertical">
-                            <button  value="{{$slider->position}}"
-                                     class="btn btn-link change-position"
-                                     title="change position in slider loop"
-                                     data-id="{{ $slider->id }}">
-                                {{ $slider->position }}
-                            </button>
-                            @for($i = 1; $i <= $slider->category->number_of_positions; )
-                                <button value="{{$i}}"
-                                        class="positions btn btn-link another-position
-                                        {{$slider->position == $i? 'hidden' : ''}}"
-                                        style="display: none">
-                                    {{$i++}}
-                                </button>
-                            @endfor
-                        </div>
-                    </th>
-                    <td>
-                        <img class="picture img-responsive" src="{{ asset($slider->image) }}">
-                    </td>
-                    <td>
-                        <a href="{!! $slider->url !!}" title="{!! $slider->url !!}">link</a>
-                    </td>
-                    <td>{!! $slider->category->name !!}</td>
-                    <td style="text-align: center">
-                        <div class="form-group">
-                            <button data-value="{{$slider->published}}" data-slider-id="{{$slider->id}}"
-                                    class="btn btn-link fa set-main fa-{{!$slider->published ? '' : 'check-'}}square-o">
-                            </button>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-group">
-                            {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
-                            <a href="{{ route('admin.slider.show', $slider->id) }}" class="btn btn-primary btn-block">
-                                Show
-                            </a>
-                            <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn btn-success btn-block">
-                                Edit
-                            </a>
-                            {!! Form::submit('Delete ', ['class' => 'btn btn-danger btn-block']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </td>
-                </tr>
+        <ul class="nav nav-tabs row" role="tablist">
+            @foreach ($categories as $category)
+                <li role="presentation">
+                    <a href="#{{$category->id}}" aria-controls="{{$category->id}}" role="tab"
+                       data-toggle="tab">
+                        {{$category->name}}
+                    </a>
+                </li>
             @endforeach
+        </ul>
 
-            </tbody>
-        </table>
+        <div class="tab-content">
+            @foreach ($categories as $category)
+                <div role="tabpanel" class="tab-pane " id="{{$category->id}}">
+                    <table class="table table-hover sliders table-bordered">
+                        <thead>
+                        <tr class="sliders sliders-title">
+                            <th>Pos.</th>
+                            <th class="col-md-8">Image</th>
+                            <th>Url</th>
+                            <th>Category</th>
+                            <th>Published</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @foreach ($sliders as $slider)
+                            @if($slider->category_id == $category->id)
+                                <tr data-value="{!! $slider->category_id !!}" class="sliders">
+                                    <th scope="row">
+                                        <div class="btn-group-vertical">
+                                            <button value="{{$slider->position}}"
+                                                    class="btn btn-link change-position"
+                                                    title="change position in slider loop"
+                                                    data-id="{{ $slider->id }}">
+                                                {{ $slider->position }}
+                                            </button>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <img class="picture img-responsive" src="{{ asset($slider->image) }}">
+                                    </td>
+                                    <td>
+                                        <a href="{!! $slider->url !!}" title="{!! $slider->url !!}">link</a>
+                                    </td>
+                                    <td>{!! $slider->category->name !!}</td>
+                                    <td style="text-align: center">
+                                        <div class="form-group">
+                                            <button data-value="{{$slider->published}}"
+                                                    data-slider-id="{{$slider->id}}"
+                                                    class="btn btn-link fa set-main fa-{{!$slider->published ? '' : 'check-'}}square-o">
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
+                                            <a href="{{ route('admin.slider.show', $slider->id) }}"
+                                               class="btn btn-primary btn-block">
+                                                Show
+                                            </a>
+                                            <a href="{{ route('admin.slider.edit', $slider->id) }}"
+                                               class="btn btn-success btn-block">
+                                                Edit
+                                            </a>
+                                            {!! Form::submit('Delete ', ['class' => 'btn btn-danger btn-block']) !!}
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endforeach
+        </div>
+
 
         <script>
             $(document).ready(function () {
                 $('.saveCategory').on('click', function () {
-                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('input[name="_token"]').val()}});
+                    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
                     $.ajax({
                         url: '{{ route('saveCategory') }}',
                         data: {name: $('input[name="categoryName"]').val()},
@@ -141,6 +152,9 @@
                     infinite: true,
                     speed: 2000
                 });
+
+                $("[aria-controls='1']").attr('aria-expanded', 'true').parent().addClass('active');
+                $("div [role='tabpanel']").first().addClass('active');
 
                 $('.select-cat').change(function () {
                     $('tr.sliders').hide();
@@ -169,14 +183,14 @@
                     });
                 });
 
-                $("div[data-published='0']").fadeTo( 'fast', 0.25);
+                $("div[data-published='0']").fadeTo('fast', 0.25);
 
-                $(".change-position").click(function(){
+                $(".change-position").click(function () {
                     $(".positions").hide();
                     $(this).siblings().toggle();
                 });
 
-                $(".positions").click(function(){
+                $(".positions").click(function () {
                     $(".positions").hide();
 
                     var self = $(this);
@@ -186,7 +200,7 @@
                     $.ajax({
                         url: "slider/" + id + "/changePosition/" + next,
                         method: 'POST',
-                        success: function(){
+                        success: function () {
                             location.reload();
                         }
                     });
