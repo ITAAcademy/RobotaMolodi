@@ -50,7 +50,11 @@
         {!! Form::open(array('route' => ['deleteAvatar', $user->id])) !!}
 
                 <div class="col-xs-1" style="padding:1px">
-                  {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-danger','style'=>"width:100%", 'id'=>'delete', 'onclick'=> "return ConfirmDelete();"]) !!}
+                  {!! Form::submit(trans('main.delete'),
+                  ['class' => 'btn btn-danger',
+                  'style'=>"width:100%",
+                  'id'=>'delete',
+                  'onclick'=> "return ConfirmDelete();"]) !!}
                 </div>
 
         {!! Form::close() !!}
@@ -67,13 +71,13 @@
               }
             }
             $(document).ready(function () {
-
-              // document.getElementById('avatar').value.hasClass('avaExist')
-              if($('#avatar').hasClass('avaNotExist')) {
-                       $("#delete").attr("disabled", true);
-                    // $('#delete').addClass('disabled').attr('type', 'button');
+              // if(document.getElementById('avatar').value.hasClass('avaExist')){
+              // }
+              console.log(!$('#vacImg').hasClass('avaNotExist'));
+              if(!$('#vacImg').hasClass('avaNotExist')) {
+                       // $("#delete").attr("disabled",false);
+                    $('#delete').addClass('disabled');
               }
-              else  $("#del").removeAttr("disabled");
                 var cloneInputFile = $('#avatar').clone();
                 $('#avatar').on('change', function(e) {
                     if(document.getElementById('avatar').value) {
