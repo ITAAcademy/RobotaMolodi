@@ -71,12 +71,8 @@
               }
             }
             $(document).ready(function () {
-              // if(document.getElementById('avatar').value.hasClass('avaExist')){
-              // }
-              console.log(!$('#vacImg').hasClass('avaNotExist'));
-              if(!$('#vacImg').hasClass('avaNotExist')) {
-                       // $("#delete").attr("disabled",false);
-                    $('#delete').addClass('disabled');
+              if($('img').hasClass('avaNotExist')) {
+                    $('#delete').addClass('disabled').attr('onClick', '').attr('type', 'button');
               }
                 var cloneInputFile = $('#avatar').clone();
                 $('#avatar').on('change', function(e) {
