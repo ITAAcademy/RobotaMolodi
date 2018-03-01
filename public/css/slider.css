@@ -1,0 +1,11 @@
+.change-position-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+.arrow-bottom{
+    flex: 0 0 auto;
+}
+.flex-space{
+    flex: 1 0 auto;
+}

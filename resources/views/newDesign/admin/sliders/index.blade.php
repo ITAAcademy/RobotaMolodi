@@ -1,4 +1,9 @@
 @extends('newDesign.layouts.admin')
+
+@section('head')
+    <link href="{{ asset('/css/slider.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
         @if(Session::has('flash_message'))
@@ -78,13 +83,20 @@
                         @foreach ($sliders as $slider)
                             @if($slider->category_id == $category->id)
                                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
-                                    <th scope="row">
-                                        <div class="btn-group-vertical">
+                                    <th scope="row" style="height: 120px">
+                                        <div class="btn-group-vertical change-position-wrapper">
                                             <button value="{{$slider->position}}"
                                                     class="btn btn-link change-position"
                                                     title="change position in slider loop"
                                                     data-id="{{ $slider->id }}">
-                                                {{ $slider->position }}
+                                                <i class="fa fa-arrow-circle-up fa-2x"></i>
+                                            </button>
+                                            <div class="flex-space"></div>
+                                            <button value="{{$slider->position}}"
+                                                    class="btn btn-link change-position arrow-bottom"
+                                                    title="change position in slider loop"
+                                                    data-id="{{ $slider->id }}">
+                                                <i class="fa fa-arrow-circle-down fa-2x"></i>
                                             </button>
                                         </div>
                                     </th>
