@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 
 class UsersController extends Controller
 {
@@ -62,14 +63,14 @@ class UsersController extends Controller
      */
     public function change($id)
     {
-       $user = User::find($id);
-      if($user->role_id == '1'){
-        $user->role_id = 2;
-      }else if($user->role_id == '2'){
-        $user->role_id = 1;
+       $user= User::find($id);
+      if($user->role_id == Role::ADMIN){
+        $user->role_id = Role::USER;
+      }else if($user->role_id == Role::USER) {
+        $user->role_id = Role::ADMIN;
       }
        $user->save();
-
+      
       return redirect()->route('admin.users.index');
 
     }
