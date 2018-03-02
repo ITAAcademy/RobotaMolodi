@@ -29,6 +29,10 @@ class Slider extends Model
         return $query->isPublished()->byCategory($category);
     }
     
+    public function neededSibling(){
+        return Slider::byCategory($this->category_id)->where('position', $this->position)->first();
+    }
+    
     public function shiftPositions(){
         $sliders = Slider::where('position', '>', $this->position)->get();
         

@@ -56,7 +56,9 @@
         <ul class="nav nav-tabs row" role="tablist">
             @foreach ($categories as $category)
                 <li role="presentation">
-                    <a href="#{{$category->id}}" aria-controls="{{$category->id}}" role="tab"
+                    <a href="#{{$category->id}}"
+                       aria-controls="{{$category->id}}"
+                       role="tab"
                        data-toggle="tab">
                         {{$category->name}}
                     </a>
@@ -85,19 +87,42 @@
                                 <tr data-value="{!! $slider->category_id !!}" class="sliders">
                                     <th scope="row" style="height: 120px">
                                         <div class="btn-group-vertical change-position-wrapper">
-                                            <button value="{{$slider->position}}"
-                                                    class="btn btn-link change-position"
-                                                    title="change position in slider loop"
-                                                    data-id="{{ $slider->id }}">
-                                                <i class="fa fa-arrow-circle-up fa-2x"></i>
-                                            </button>
-                                            <div class="flex-space"></div>
-                                            <button value="{{$slider->position}}"
-                                                    class="btn btn-link change-position arrow-bottom"
-                                                    title="change position in slider loop"
-                                                    data-id="{{ $slider->id }}">
-                                                <i class="fa fa-arrow-circle-down fa-2x"></i>
-                                            </button>
+                                            <div class="arrow-bottom">
+                                                {!! Form::open([
+                                                'method' => 'POST',
+                                                'route' => ['slider.position.up', $slider->id]])
+                                                !!}
+                                                {!! Form::submit("", [
+                                                    'class' => 'btn btn-link fa fa-long-arrow-up fa-2x',
+                                                    'style' => $slider->position >= $category->number_of_positions || !$slider->position ? 'display: none' : '',
+                                                    'title' => $slider->position == 0 ? 'Move From Zero' : 'Move Image Up',
+                                                    'data-id' => $slider->id])
+                                                !!}
+                                            </div>
+                                            <div class="flex-space">
+                                                {!! Form::submit("", [
+                                                    'class' => 'btn btn-link fa fa-external-link fa-2x ',
+                                                    'style' => $slider->position != 0 ? 'display: none' : '',
+                                                    'title' => 'Move From Zero',
+                                                    'data-id' => $slider->id])
+                                                !!}
+                                            </div>
+                                            {!! Form::close() !!}
+                                            <div class="arrow-bottom">
+                                                {!! Form::open([
+                                                        'method' => 'POST',
+                                                        'route' => ['slider.position.down', $slider->id]])
+                                                    !!}
+                                                {!! Form::submit("",
+                                                    [
+                                                        'class' => 'btn btn-link fa fa-long-arrow-down fa-2x',
+                                                        'style' => $slider->position <= 1 ? 'display: none' : '',
+                                                        'title' => 'Move Image Down',
+                                                        'data-id' => $slider->id
+                                                    ])
+                                                !!}
+                                                {!! Form::close() !!}
+                                            </div>
                                         </div>
                                     </th>
                                     <td>
@@ -111,13 +136,17 @@
                                         <div class="form-group">
                                             <button data-value="{{$slider->published}}"
                                                     data-slider-id="{{$slider->id}}"
-                                                    class="btn btn-link fa set-main fa-{{!$slider->published ? '' : 'check-'}}square-o">
+                                                    class="btn btn-link fa set-main
+                                                    fa-{{!$slider->published ? '' : 'check-'}}square-o">
                                             </button>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            {!! Form::open(['method' => 'DELETE','route' => ['admin.slider.destroy', $slider->id]]) !!}
+                                            {!! Form::open([
+                                                'method' => 'DELETE',
+                                                'route' => ['admin.slider.destroy', $slider->id]
+                                            ])!!}
                                             <a href="{{ route('admin.slider.show', $slider->id) }}"
                                                class="btn btn-primary btn-block">
                                                 Show
@@ -197,9 +226,26 @@
 
                 $("div[data-published='0']").fadeTo('fast', 0.25);
 
-                $(".change-position").click(function () {
-                    $(".positions").hide();
-                    $(this).siblings().toggle();
+                $(".btn-up").click(function () {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: "slider/" + id + "/positionUp",
+                        method: 'POST',
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                });
+
+                $(".btn-down").click(function () {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: "slider/" + id + "/positionDown",
+                        method: 'POST',
+                        success: function () {
+                            location.reload();
+                        }
+                    });
                 });
 
                 $(".positions").click(function () {
