@@ -4,6 +4,7 @@
     <title>Админка</title>
     <meta name="_token" content="{{ csrf_token() }}">
     @include('newDesign.layouts.includes.head')
+    @yield('head')
     @yield('ckeditor')
 </head>
 

@@ -20,7 +20,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::orderBy('category_id')->orderBy('position')->get();
+        $sliders = Slider::orderBy('category_id')->orderBy('position', 'desc')->get();
         $categories = Category::all();
         
         return view('newDesign.admin.sliders.index', [
@@ -162,12 +162,34 @@ class SliderController extends Controller
         return $chosenSlider;
     }
     
-    public function changePosition($id, $next){
-        $slider = Slider::find($id);
+    public function positionUp($id){
+        $currentSlider = Slider::find($id);
         
-        $slider->changePosition($next);
+        if($currentSlider->position == 0) {
+            $category = Category::find($currentSlider->category_id);
+            $currentSlider->position = ++$category->number_of_positions;
+            $category->save();
+        } else {
+            $currentSlider->position++;
+            $nextPositionSlider = $currentSlider->neededSibling();
+            $nextPositionSlider->position--;
+            $nextPositionSlider->save();
+        }
         
-        return 'Позиції були успішно змінені';
+        $currentSlider->save();
+        return redirect()->route('admin.slider.index');
+    }
+    
+    public function positionDown($id){
+        $currentSlider = Slider::find($id);
+
+        $currentSlider->position--;
+        $previousPositionSlider = $currentSlider->neededSibling();
+        $previousPositionSlider->position++;
+    
+        $previousPositionSlider->save();
+        $currentSlider->save();
+        return redirect()->route('admin.slider.index');
     }
     
     

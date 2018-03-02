@@ -85,7 +85,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
     Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
     Route::get('/sliders/shiftPublished/{slider_id}', 'Admin\SliderController@shiftPublished');
-    Route::post('/slider/{slider_id}/changePosition/{next}', 'Admin\SliderController@changePosition');
+    Route::post('/slider/{slider_id}/positionUp', ['as' => 'slider.position.up', 'uses' => 'Admin\SliderController@positionUp']);
+    Route::post('/slider/{slider_id}/positionDown', ['as' => 'slider.position.down', 'uses' => 'Admin\SliderController@positionDown']);
     Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
     Route::resource('/seo-module', 'Admin\SeoModuleController');
 });
