@@ -43,6 +43,16 @@
                     </div>
                 </div>
             </a>
+            <a href="{{route('admin.users.index')}}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <i class="fa fa-file-text-o " aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-9">
+                        <li><p>Користувачі</p></li>
+                    </div>
+                </div>
+            </a>
 
             <h5>
                 <div class="row">
