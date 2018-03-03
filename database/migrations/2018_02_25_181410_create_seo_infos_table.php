@@ -18,7 +18,7 @@ class CreateSeoInfosTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->json('keywords')->nullable();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
