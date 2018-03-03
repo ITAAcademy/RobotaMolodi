@@ -212,13 +212,13 @@
                 $("button.fa").click(function () {
                     var id = $(this).attr('data-slider-id');
                     $.ajax({
-                        url: '/admin/sliders/shiftPublished/' + id,
+                        url: '/admin/sliders/updatePublished/' + id,
                         method: 'GET',
                         success: function (slider) {
                             if (slider.published) {
-                                $("button[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
+                                $("[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
                             } else {
-                                $("button[data-slider-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
+                                $("[data-slider-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
                             }
                         }
                     });
