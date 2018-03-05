@@ -30,7 +30,7 @@
             <div class="col-xs-4 navtab-exit">
                 <div class="row">
                     <div class="">
-                        <div class="col-xs-7" style="margin:0; padding-top:4px">
+                        <div class="col-xs-7" style="margin:0; padding-top:4px;">
                             <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
                                 <button type="button" class="btn btn-default modal-user-button">
                                     <div class="img-user">
@@ -48,8 +48,8 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="col-xs-4" style="margin:0; padding-top:3%">
-                                <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <div class="col-xs-2" style="margin-left:-20px; padding-top:3%">
+                            <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
