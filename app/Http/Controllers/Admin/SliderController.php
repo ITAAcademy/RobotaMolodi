@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use App\Models\Category;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
