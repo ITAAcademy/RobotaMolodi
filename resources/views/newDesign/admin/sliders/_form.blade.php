@@ -14,7 +14,10 @@
     <div class="form-group">
         {!! Form::label('image', 'Add image:') !!}
         {!! Form::file('image',['class' => 'btn inputImg'])!!}
-        <img class="prevImg img-responsive img-rounded" src="" alt="" style="max-height:100px"/>
+        <img
+            class="prevImg img-responsive img-rounded"
+            src="{{isset($slider->image) ? $slider->image : ''}}"
+            alt="" style="max-height:100px"/>
     </div>
     <div class="form-group">
         {!! Form::label('url', 'Url:', ['class' => 'control-label']) !!}
