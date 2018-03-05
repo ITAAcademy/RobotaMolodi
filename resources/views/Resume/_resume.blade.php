@@ -1,4 +1,5 @@
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 
 {!!Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
@@ -18,6 +19,9 @@
                         @endif
                     </a>
                 </div>
+                @if($resume->published == '1')
+                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/resume/'.$resume->id) ])
+                @endif
             </div>
             <div class="col-xs-12 col-md-10">
                 <div class="panel-heading-cabinet">
