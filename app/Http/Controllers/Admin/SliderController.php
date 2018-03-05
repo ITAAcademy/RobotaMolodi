@@ -110,7 +110,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, StoreSliderRequest $request)
     {
         $slider = Slider::find($id);
         $input = $request->all();
@@ -118,6 +118,9 @@ class SliderController extends Controller
 
         if(Input::file('image')){
             $file = Input::file('image');
+            if(+$file->getClientSize() >= Slider::IMAGE_SIZE){
+                return redirect()->back()->withErrors(trans('errors/slider.image_size'));
+            }
             $filename = time().'-'.$file->getClientOriginalName();
             $directory = '/uploads/sliders/';
             $file->move($directory, $filename);
