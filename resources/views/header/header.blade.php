@@ -31,13 +31,13 @@
                     <a class="btn btn-default modal-user-button" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a class="btn btn-default modal-user-button" @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
                         <span class="img-user">
-                                @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
-                                    {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
-                                        array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                @else
-                                    {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
-                                @endif
-                            </span>
+                            @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
+                                {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
+                                array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                            @else
+                                {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
+                            @endif
+                        </span>
                         <span class="img-user-name">
                             <p>{{ Auth::user()->name }}</p>
                             @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
