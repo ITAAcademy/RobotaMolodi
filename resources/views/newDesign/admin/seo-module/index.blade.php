@@ -21,7 +21,7 @@
                             <th class="">Url</th>
                             <th class="">Title</th>
                             <th class="">Description</th>
-                            <th class="">Keywords</th>
+                            {{--<th class="">Keywords</th>--}}
                             <th class=""></th>
                         </tr>
                         @forelse($infos as $info)
@@ -30,7 +30,7 @@
                                 <td>{{$info->url}}</td>
                                 <td>{{$info->title}}</td>
                                 <td>{{$info->description}}</td>
-                                <td>{{$info->keywords}}</td>
+                                {{--<td>{{$info->keywords}}</td>--}}
                                 <td>
                                     {{--<a class="btn btn-info btn-group optionBtn" href="{{ route('admin.seo-module.show',$info->id) }}">Show</a>--}}
                                     <a class="btn btn-primary btn-group optionBtn" href="{{ route('admin.seo-module.edit',$info->id) }}">Edit</a>
