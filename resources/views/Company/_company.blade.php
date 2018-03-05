@@ -57,13 +57,13 @@
                         <span>{{ trans('main.edit') }}</span>
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-3">
+                {{--<div class="col-xs-12 col-md-3">--}}
                 {{--TODO TODO: fix "place in tops"--}}
-                    <a class="orangColor-cabinet unavailable" href="#" onclick="javascript:document.location.reload();">
-                        {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                        <span> {{ trans('main.placetop') }}</span>
-                    </a>
-                </div>
+                    {{--<a class="orangColor-cabinet" href="#" onclick="javascript:document.location.reload();">--}}
+                        {{--{!! Html::image('image/podiumOrenge.png', 'del') !!}--}}
+                        {{--<span> {{ trans('main.placetop') }}</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

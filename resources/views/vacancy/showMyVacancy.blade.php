@@ -124,12 +124,12 @@
                     <span>{{ trans('main.edit') }}</span>
                 </a>
             </div>
-            <div class="col-xs-12 col-md-3">
-                <a class="orangColor-myVacancy unavailable" href="#">
-                    {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                    <span> {{ trans('main.placetop') }}</span>
-                </a>
-            </div>
+            {{--<div class="col-xs-12 col-md-3">--}}
+                {{--<a class="orangColor-myVacancy" href="#">--}}
+                    {{--{!! Html::image('image/podiumOrenge.png', 'del') !!}--}}
+                    {{--<span> {{ trans('main.placetop') }}</span>--}}
+                {{--</a>--}}
+            {{--</div>--}}
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" id="updateDateVac" href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
