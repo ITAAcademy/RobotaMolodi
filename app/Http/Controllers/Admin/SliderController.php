@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreSliderRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
 use App\Models\Category;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -45,13 +47,16 @@ class SliderController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreSliderRequest $request)
     {
         $slider = new Slider($request->all());
         $category = Category::find($slider->category_id);
         
         if(Input::file('image')) {
             $file = Input::file('image');
+            if(+$file->getClientSize() >= Slider::IMAGE_SIZE){
+                return redirect()->back()->withErrors(trans('errors/slider.image_size'));
+            }
             $filename = time() . '-' . $file->getClientOriginalName();
             $directory = 'uploads/sliders/';
             Storage::makeDirectory($directory);

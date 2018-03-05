@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'url', 'category_id', 'published', 'position'];
+    protected $fillable = [
+        'image',
+        'url',
+        'category_id',
+        'published',
+        'position'
+    ];
+    
+    const IMAGE_SIZE = 512000;
 
     public $timestamps = false;
 
