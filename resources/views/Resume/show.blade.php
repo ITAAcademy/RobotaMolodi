@@ -57,7 +57,10 @@
                     </span>
                     <span class="likeError"></span>
                 </div>
-                @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
+
+                @if($resume->published == '1')
+                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
+                @endif
 
                 <div class="panel-description-resume">
                     <p class="position_resume">
