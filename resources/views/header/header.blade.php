@@ -26,32 +26,23 @@
             </button>
         </div>
         @else
-        <div class="" >
             <div class="col-xs-4 navtab-exit">
-                <div class="row">
-                    <div class="">
-                        <div class="col-xs-7" style="margin:0; padding-top:4px;">
-                            <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
-                                <button type="button" class="btn btn-default modal-user-button">
-                                    <div class="img-user">
-                                        @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
-                                            {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
-                                            array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                        @else
-                                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                        @endif
-                                    </div>
-                                    <div class="img-user-name">
-                                        <p>{{ Auth::user()->name }}</p>
-                                        @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
-                                    </div>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col-xs-2" style="margin-left:-20px; padding-top:3%">
-                            <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
+                <div class="row pull-left">
+                    <a class="btn btn-default modal-user-button" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-default modal-user-button" @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                        <span class="img-user">
+                                @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
+                                    {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
+                                        array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                @else
+                                    {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
+                                @endif
+                            </span>
+                        <span class="img-user-name">
+                            <p>{{ Auth::user()->name }}</p>
+                            @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
+                        </span>
+                    </a>
                 </div>
             </div>
             <div class="col-xs-2 navtab-exit" style="padding-top:10px">
@@ -62,7 +53,6 @@
                     </button>
                 </a>
             </div>
-        </div>
         @endif
         </div>
     </nav>
