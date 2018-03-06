@@ -24,15 +24,16 @@ class StoreSliderRequest extends Request
     public function rules()
     {
         return [
-            'image'         => 'required',
-            'url'           => 'required'
+            'image'         => 'required|max:512',
+            'url'           => 'required',
         ];
     }
     
     public function messages() {
         return [
-            "image.required" => "Image should be inputed.",
-            "url.required" => "Url should be inputed.",
+            "image.required" => trans('errors/slider.image_required'),
+            "url.required" => trans('errors/slider.url_required'),
+            "image.max" => trans('errors/slider.image_size'),
         ];
     }
 }

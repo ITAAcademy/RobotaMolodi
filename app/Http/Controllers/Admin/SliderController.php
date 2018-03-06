@@ -53,9 +53,6 @@ class SliderController extends Controller
         
         if(Input::file('image')) {
             $file = Input::file('image');
-            if(+$file->getClientSize() >= Slider::IMAGE_SIZE){
-                return redirect()->back()->withErrors(trans('errors/slider.image_size'));
-            }
             $filename = time() . '-' . $file->getClientOriginalName();
             $directory = 'uploads/sliders/';
             Storage::makeDirectory($directory);
@@ -118,9 +115,6 @@ class SliderController extends Controller
 
         if(Input::file('image')){
             $file = Input::file('image');
-            if(+$file->getClientSize() >= Slider::IMAGE_SIZE){
-                return redirect()->back()->withErrors(trans('errors/slider.image_size'));
-            }
             $filename = time().'-'.$file->getClientOriginalName();
             $directory = '/uploads/sliders/';
             $file->move($directory, $filename);
