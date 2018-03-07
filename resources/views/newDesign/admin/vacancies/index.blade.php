@@ -7,7 +7,7 @@
             </div>
         @endif
 
-        <table class="table table-bordered">
+        <table class="striped bordered highlight">
             <thead>
             <tr>
                 <th>№</th>

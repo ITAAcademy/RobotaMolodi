@@ -9,13 +9,14 @@
                 </div>
             @endif
         </div>
-        <div class="createNews">
-            <a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg pull-right">
-                Create news
-            </a>
-        </div>
+        <a href="{{ URL::route('admin.news.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+        {{--<div class="createNews">--}}
+            {{--<a href="{{ URL::route('admin.news.create') }}" class="btn btn-success btn-lg pull-right">--}}
+                {{--Create news--}}
+            {{--</a>--}}
+        {{--</div>--}}
 
-        <table class="table table-bordered table-hover ">
+        <table class=" striped bordered highlight " >
             <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -62,6 +63,9 @@
                         ]) !!}
                         {!! Form::submit('Delete news', ['class' => 'btn btn-danger  btn-group']) !!}
                         {!! Form::close() !!}
+
+
+                        {{--<form action="{{route('admin.news.destroy', $new->id)}}"></form>--}}
                     </td>
                 </tr>
             @endforeach
