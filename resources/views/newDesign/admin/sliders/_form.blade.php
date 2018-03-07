@@ -17,6 +17,7 @@
         {!! Form::label('url', 'Url:', ['class' => 'control-label']) !!}
         {!! Form::text('url', null, ['class' => 'form-control']) !!}
     </div>
+
     <div class="form-group">
         {!! Form::label('category', 'Category:', ['class' => 'control-label']) !!}
         <select name="category_id" id="categorySelect" class="form-control">
@@ -37,7 +38,11 @@
             <br>
         </div>
     @endif
+    {!! Form::submit(isset($slider) ? 'Save' : 'Create', ['class' => 'btn btn-primary']) !!}
 </div>
+
+
+
 <script>
     $('body').on('change', '.inputImg', function (e) {
         e.stopPropagation();
