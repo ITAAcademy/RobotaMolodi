@@ -6,10 +6,12 @@
             {{ Session::get('flash_message') }}
         </div>
     @endif
-    <div class="createNews"><a href="{{ URL::route('admin.industry.create') }}" class="btn btn-success btn-lg">Створити</a>
+    <div class="createNews">
+        <a href="{{ URL::route('admin.industry.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+        {{--<a href="{{ URL::route('admin.industry.create') }}" class="btn btn-success btn-lg">Створити</a>--}}
     </div>
 
-    <table class="table table-bordered">
+    <table class="striped bordered highlight">
         <thead>
             <tr>
                 <th>№ п/п</th>
@@ -23,13 +25,17 @@
                 <tr >
                     <td>{{ $count + 1 }}</td>
                     <td>{{ $industry->name }}</td>
+
                     <td data-id="{{$industry->id}}">
                         @if($industry->main)
-                            <i class="fa fa-check-square-o set-main"></i>
+                            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                           <label for="filled-in-box"></label>
                         @else
-                            <i class="fa fa-square-o set-main"></i>
+                            <input type="checkbox" class="filled-in" id="filled-in-box"/>
+                            <label for="filled-in-box"></label>
                         @endif
                     </td>
+
                     <td>
                         <div>
                         <span style="display: inline-block">
