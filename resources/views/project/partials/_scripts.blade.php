@@ -26,14 +26,14 @@
                                   <br>
                             </div>
                             <div class="col-sm-2" v-bind:class="{ hidden: vv.destroy  }">
-                                <div @click="removeField(vv, j)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
+                                <div class="btn btn-danger" @click="removeField(vv, j)" style="color: white; cursor:pointer">Del.</div>
                             </div>
                       </template>
                   </div>
               </div>
             </div>
             <div class="col-sm-2">
-                <div @click="addField(j)" style="color: #f76533; text-decoration:underline; cursor:pointer">Plus</div>
+                <div class="btn btn-success" @click="addField(j)" style="color: white; cursor:pointer">Plus</div>
             </div>
             <hr>
         </div>
