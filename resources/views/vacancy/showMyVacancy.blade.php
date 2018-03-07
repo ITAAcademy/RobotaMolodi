@@ -39,28 +39,10 @@
                         <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
                     @endif
                 </div>
-                <div class="share">
-                    <p id="share-vacancy">Поділитись</p>
-                </div>
-                <div class="social">
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp&
-                    title=Вакансія{{' '.$vacancy->position}}&
-                    url=http://robotamolodi.org/vacancy/{{$vacancy->id}}" target="_blank">
-                        <i class="fa">&#xf08c;</i>
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?
-                    u=http://robotamolodi.org/vacancy/{{$vacancy->id}}&
-                    title=Вакансія{{' '.$vacancy->position}}" target="_blank">
-                        <i class="fa">&#xf082;</i>
-                    </a>
-                    <a href="https://www.twitter.com/intent/tweet?
-                    url=http://robotamolodi.org/vacancy/{{$vacancy->id}}&
-                    text=Вакансія{{' '.$vacancy->position}}" target="_blank">
-                        <i class="fa">&#xf081;</i>
-                    </a>
-                    <a href="https://plus.google.com/share?url=http://robotamolodi.org/vacancy/{{$vacancy->id}}"
-                       target="_blank"><i class="fa fa-google-plus-square"></i></a>
-                </div>
+
+                @if($vacancy->published == '1')
+                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current() ])
+                @endif
             </div>
             <div class="col-xs-12 col-md-10">
                 <div>
@@ -142,12 +124,12 @@
                     <span>{{ trans('main.edit') }}</span>
                 </a>
             </div>
-            <div class="col-xs-12 col-md-3">
-                <a class="orangColor-myVacancy unavailable" href="#">
-                    {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                    <span> {{ trans('main.placetop') }}</span>
-                </a>
-            </div>
+            {{--<div class="col-xs-12 col-md-3">--}}
+                {{--<a class="orangColor-myVacancy" href="#">--}}
+                    {{--{!! Html::image('image/podiumOrenge.png', 'del') !!}--}}
+                    {{--<span> {{ trans('main.placetop') }}</span>--}}
+                {{--</a>--}}
+            {{--</div>--}}
             <div class="col-xs-12 col-md-3">
                 <a class="orangColor-myVacancy" id="updateDateVac" href="#">
                     <i class="fa fa-calendar" aria-hidden="true"></i>

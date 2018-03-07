@@ -62,7 +62,9 @@ class ProjectController extends Controller
 
         $industries = Industry::all()->pluck('name', 'id');
         $data['industries'] = $industries;
+
         $builder = new BuilderCompositeProject();
+
         $root = $builder->buildEmpty();
         $data['root'] = $root->toArray();
 
@@ -87,8 +89,10 @@ class ProjectController extends Controller
             $data['project']    = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
-            return view('project.create', $data);
+            $root->save();
+            return view('project.show', $data);
         }
+
         $root->save();
 
         return redirect()->route('project.show', $project->id);

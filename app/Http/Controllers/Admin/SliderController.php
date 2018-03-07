@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreSliderRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -45,7 +46,7 @@ class SliderController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreSliderRequest $request)
     {
         $slider = new Slider($request->all());
         $category = Category::find($slider->category_id);
@@ -106,7 +107,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, StoreSliderRequest $request)
     {
         $slider = Slider::find($id);
         $input = $request->all();
