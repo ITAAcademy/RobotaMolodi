@@ -717,24 +717,34 @@ nav.navbar.navbar-default{
         margin-left: 26px;
     }
 }
-@media (min-width: 412px) and (max-width: 738px) {
+@media (min-width: 720px) and (max-width: 1280px){
+    button.btn.btn-default.only-bars {
+        float: left;
+        margin-top: 26px;
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+    }
+    button.btn.btn-default.only-bars:hover{
+        float: left;
+        margin-top: 26px;
+        
+    }
+}
+
+
+@media (min-width: 412px) and (max-width: 768px) {
     /*Right modal*/
     .navtab-registraion{
         padding: 0px;
-        margin-top: 9px;
-        width: 160px;
+        width: 180px;
+        height: 29px;
+        margin-top: 20px;
         float: right;
     }
     .navtab-registraion button{
         background-color: white;
         border-color: white;
-        padding-top: 3px;
-        padding-bottom: 3px;
-        padding-right: 3px;
-        padding-left: 3px;
-        width: 55px;
-        height: 40px;
-        font-size: 11px;
     }
     .navtab-registraion button:hover{
         background-color: white;
@@ -750,15 +760,27 @@ nav.navbar.navbar-default{
         border-color: white;
         outline-color: white;
     }
-    .navtab-registraion .modal-regestry{
-        padding-bottom: 3px;
-        padding-top: 3px;
-        padding-right: 3px;
-        padding-left: 3px;
-        width: 93px;
-        height: 40px;
+    .navtab-registraion .modal-enter{
+        left:50%;
+        padding-left: 1px;
+        padding-right: 1px;
+        padding-bottom: 1px;
+        padding-top: 1px;
+        height: 25px;
+        width: 65px;
         font-size: 11px;
     }
+    .navtab-registraion .modal-regestry{
+        float:right;
+        padding-bottom: 1px;
+        padding-top: 1px;
+        padding-right: 1px;
+        padding-left: 1px;
+        height: 25px;
+        width: 85px;
+        font-size: 11px;
+    }
+    
     #rightModal .modal-content{
         width: 252px;
         margin-top: 1%;
@@ -888,103 +910,6 @@ nav.navbar.navbar-default{
         border-radius: 0 0 15px 15px;
         background-color: white;
     }
-    /*End right modal*/
-
-    nav.navbar.navbar-default{
-        border-top-width: 0px;
-        border-right-width: 0px;
-        border-left-width: 0px;
-        background-color: white;
-        padding: 0px;
-    }
-    .navbar-default .bars-left-modal{
-        width: 52px;
-        margin-left: 0px;
-    }
-    .navbar-default .center-block{
-        margin-left: 3%;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-top: 1%;
-    }
-    .navtab-exit p{
-        font-size: 10px;
-        margin: 0;
-    }
-    .col-xs-4.navtab-exit{
-        width: 28%;
-    }
-    .navtab-exit + .navtab-exit{
-        float: right;
-        width: 11%;
-    }
-    .navtab-exit a{
-        text-decoration: none;
-        float: right;
-        /*margin-right: 3px;*/
-    }
-    .navtab-exit{
-        padding: 0;
-        margin-top: 5px;
-    }
-    .img-user{
-        width: 35px;
-        height: 35px;
-        float: left;
-        border: 1px solid #f68c06;
-    }
-    .img-user-name{
-        display: table-cell;
-        /*height: 35px;*/
-        vertical-align: middle;
-        padding-left: 3px;
-        padding-right: 1px;
-        position: relative;
-        bottom: 11px;
-        left: 45px;
-    }
-
-    .navtab-exit .modal-user-button{
-        float: right;
-        padding: 0px;
-        border: 0;
-        color: #f68c06;
-        height: 39px;
-
-    }
-    .navtab-exit .modal-exit-button{
-        /*width: 131px;*/
-        padding: 3px;
-        border: 0;
-        color: #f68c06;
-        font-size: 12px;
-    }
-    .navtab-exit button:hover{
-        background-color: white;
-        color: #f68c06;
-        text-decoration: underline;
-    }
-    .navtab-exit .modal-exit-button:focus{
-        color: #f68c06;
-        background-color: white;
-        outline-color: white;
-    }
-    .navtab-exit .modal-user-button:focus{
-        color: #f68c06;
-        background-color: white;
-        outline-color: white;
-    }
-    nav.navbar.navbar-default{
-        height: 50px;
-    }
-    .navtab-registraion ul.nav.nav-tabs{
-        float: right;
-        margin-top: 16px;
-    }
-    nav.navbar.navbar-default .center-block img{
-        padding-left: 0px;
-        padding-right: 0px;
-    }
 
     /*Left modal*/
     #leftModal .modal-content{
@@ -1012,7 +937,7 @@ nav.navbar.navbar-default{
     }
     button.btn.btn-default.only-bars{
         margin-left: 21px;
-        margin-top: 1px;
+        margin-top: 10px;
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -1476,5 +1401,107 @@ nav.navbar.navbar-default{
         margin: 0;
     }
     /*End left modal*/
-
+@media (min-width: 720px) and (max-width: 1280px){
+    #leftModal .modal-content{
+        left: 50%;
+        position: fixed;
+        transform: translate(-50%);
+        width: 232px;
+        margin-left: 0px;
+        font-size: 10px;
+    }
+    #leftModal .modal-content .bars-left {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+    }
+    #leftModal .minilogo {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 5px;
+    }
+    #leftModal .list-modal-left {
+        height: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    button.btn.btn-default.only-bars{
+        padding-left: 30px;
+        padding-right: 6px;
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+    }
+    button.btn.btn-default.only-bars:hover{
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+    }
+    .text-left-modal a{
+        color: #333;
+        text-decoration: none;
+    }
+    .text-left-modal a:hover{
+        color: #f68c06;
+        text-decoration: none;
+    }
+    .text-left-modal a:focus{
+        color: #f68c06;
+        text-decoration: none;
+    }
+    #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        margin-left: -15px;
+    }
+    #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover{
+        background-color: white;
+        border-color: white;
+        outline-color: white;
+    }
+    #leftModal .modal-content .bars-left span{
+        color: #f68c06;
+    }
+    #leftModal .modal-content .bars-left a{
+        color: #f68c06;
+    }
+    #leftModal .list-modal-left-register{
+        height: 25px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-bottom: 5px;
+    }
+    #leftModal .minilogo img{
+        width: 18px;
+    }
+    #leftModal hr.modal-hr{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        border-color: #f68c06;
+    }
+    #leftModal .modal-content .bars-left a.local-ua{
+        color: orange;
+        text-decoration: none;
+    }
+    .icon-left-modal{
+        color: #f68c06;
+        margin-right: 5px;
+    }
+    #share-txt{
+        color: #9d9d9d;
+    }
+    .modal-social-share{
+        padding: 0;
+    }
+    .modal-social-share a{
+        text-decoration: none;
+    }
+    .modal-social-share a i{
+        margin: 0;
+    }
+}
 }
