@@ -72,7 +72,7 @@
         <div class="tab-content">
             @foreach ($categories as $category)
                 <div role="tabpanel" class="tab-pane " id="{{$category->id}}">
-                    <table class="striped bordered highlight">
+                    <table class="striped sliders bordered highlight">
                         <thead>
                         <tr class="sliders sliders-title">
                             <th>Pos.</th>
