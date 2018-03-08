@@ -8,14 +8,18 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
-        <div class="createNews">
-        </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="clearfix"> Seo meta data <a class="btn btn-lg btn-success pull-right" href="{{ URL::route('admin.seo-module.create') }}">Create</a></h2>
-                </div>
+        {{--<div class="createNews">--}}
+        {{--</div>--}}
+            {{--<div class="panel panel-default">--}}
+                {{--<div class="panel-heading">--}}
+
+                    <a href="{{ URL::route('admin.seo-module.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br><br>
+
+                        {{--<a class="btn btn-lg btn-success pull-right" href="{{ URL::route('admin.seo-module.create') }}">Create</a>--}}
+                {{--</div>--}}
                 <div class="panel-body">
-                    <table class="table table-bordered table-hover">
+
+                    <table class="striped bordered highlight">
                         <tr>
                             <th class="">Id</th>
                             <th class="">Url</th>

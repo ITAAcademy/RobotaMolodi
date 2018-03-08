@@ -23,7 +23,7 @@
     padding: 0;
 }
 body{
-    background-color:#3f3e3e;
+    background-color:#f0f0f0;
 }
 li {
     list-style-type: none; /* Убираем маркеры */
@@ -52,7 +52,7 @@ a:hover{
     padding-left: 10px;
     height: 30px;
     width: 100%;
-    background: #f68c06;
+    background: #ee6e73;
 }
 
 .menu>a>div>div>li>p{
@@ -66,7 +66,7 @@ a:hover{
     color: black;
     height: 30px;
     width: 100%;
-    background-color: #e8641b;
+    background-color: #e6193c;
 
 }
 .dropdown-toggle {
@@ -98,7 +98,7 @@ footer{
 
 }
 .columnLeft{
-    background:  #3f3e3e;
+    background:#f0f0f0;
 
 }
 .createNews{
