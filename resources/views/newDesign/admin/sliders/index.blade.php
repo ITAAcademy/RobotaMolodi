@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <ul class="nav nav-tabs row" role="tablist">
+        <ul class="nav nav-tabs row custom-nav" role="tablist">
             @foreach ($categories as $category)
                 <li role="presentation">
                     <a href="#{{$category->id}}"
