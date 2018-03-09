@@ -22,7 +22,7 @@ class SeoInfo extends Model
         'url',
         'title',
         'description',
-        'keywords',
+//        'keywords',
         'created_at',
         'updated_at',
     ];
@@ -31,7 +31,7 @@ class SeoInfo extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'keywords' => 'array',
-    ];
+//    protected $casts = [
+//        'keywords' => 'array',
+//    ];
 }

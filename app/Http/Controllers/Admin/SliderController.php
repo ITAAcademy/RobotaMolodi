@@ -180,7 +180,7 @@ class SliderController extends Controller
         }
         
         $currentSlider->save();
-        return redirect()->route('admin.slider.index');
+        return redirect()->back();
     }
     
     public function positionDown($id){
@@ -192,7 +192,7 @@ class SliderController extends Controller
     
         $previousPositionSlider->save();
         $currentSlider->save();
-        return redirect()->route('admin.slider.index');
+        return redirect()->back();
     }
     
     

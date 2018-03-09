@@ -13,9 +13,11 @@
         @include('newDesign.layouts.includes.header')
     </header>
 <div class="container-fluid">
+    <br>
     <div class="row">
 
         @include('newDesign.layouts.includes.columnLeft')
+
         <div class="wrapper " id="main">
             @yield('content')
         </div>

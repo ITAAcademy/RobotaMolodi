@@ -14,9 +14,11 @@
 
         <div class="col-md-12 createNews">
             <div class="row">
-                <a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">
-                    Create slider
-                </a>
+                {{--<a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">--}}
+                    {{--Create slider--}}
+                {{--</a>--}}
+
+                <a href="{{ URL::route('admin.slider.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
             </div>
 
             <div>
@@ -34,10 +36,11 @@
             <div>
                 <div class="add-cat">
                     {!! Form::text('categoryName', null, ['placeholder' => 'Додати категорію']) !!}
-                    {!! Form::submit(trans('main.save'), ['class' => 'saveCategory']) !!}
+                    {!! Form::submit(trans('main.save'), ['class' => 'waves-effect waves-light btn']) !!}
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <span class="notice"></span>
                 </div>
+                <br>
             </div>
 
             <div class="slider-block" style="display: none">
@@ -69,11 +72,11 @@
         <div class="tab-content">
             @foreach ($categories as $category)
                 <div role="tabpanel" class="tab-pane " id="{{$category->id}}">
-                    <table class="table table-hover sliders table-bordered">
+                    <table class="striped bordered highlight">
                         <thead>
                         <tr class="sliders sliders-title">
                             <th>Pos.</th>
-                            <th class="col-md-8">Image</th>
+                            <th>Image</th>
                             <th>Url</th>
                             <th>Category</th>
                             <th>Published</th>
@@ -129,8 +132,9 @@
                                         <img class="picture img-responsive" src="{{ asset($slider->image) }}">
                                     </td>
                                     <td>
-                                        <a href="{!! $slider->url !!}" title="{!! $slider->url !!}">link</a>
+                                        <a href="{!! $slider->url !!}" title="{!! $slider->url !!}" class="btn-floating blue"><i class="material-icons">link</i></a>
                                     </td>
+
                                     <td>{!! $slider->category->name !!}</td>
                                     <td style="text-align: center">
                                         <div class="form-group">
@@ -212,13 +216,13 @@
                 $("button.fa").click(function () {
                     var id = $(this).attr('data-slider-id');
                     $.ajax({
-                        url: '/admin/sliders/shiftPublished/' + id,
+                        url: '/admin/sliders/updatePublished/' + id,
                         method: 'GET',
                         success: function (slider) {
                             if (slider.published) {
-                                $("button[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
+                                $("[data-slider-id='" + id + "'").removeClass('fa-square-o').addClass('fa-check-square-o');
                             } else {
-                                $("button[data-slider-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
+                                $("[data-slider-id='" + id + "'").removeClass('fa-check-square-o').addClass('fa-square-o');
                             }
                         }
                     });

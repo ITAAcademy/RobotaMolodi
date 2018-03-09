@@ -61,7 +61,7 @@
                 <br>
             </div>
             <div class="col-sm-2" v-bind:class="{ hidden: vacancy.destroy  }">
-                <div @click="removeVacancy(vacancy)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
+                <div class="btn btn-danger" @click="removeVacancy(vacancy)" style="color: white; cursor:pointer">Del.</div>
             </div>
         </div>
     </div>
