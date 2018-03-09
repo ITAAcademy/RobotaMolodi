@@ -1,12 +1,18 @@
-<style>
-    .multiselect-container>li.not-found-message{
-        display: none;
-        padding: 5px 0 10px 20px;
-    }
-</style>
-<link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
+@section('headLinks')
+    <style>
+        .multiselect-container>li.not-found-message{
+            display: none;
+            padding: 5px 0 10px 20px;
+        }
+    </style>
+    <link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+          integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+          crossorigin="anonymous">
+    {!!Html::script('js/script.js')!!}
+@endsection
 
-    <div class="row list-section-filter" >
+    <div class="row list-section-filter animated fadeIn">
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
                 <img src="{{ asset('/image/region.png') }}" align="left">
@@ -35,7 +41,7 @@
                 <label>{{ trans('content.activity') }}</label>
             </div>
             <!-- Build select: -->
-            <div class="col-xs-12 wrapper-list-select-box">
+            <div  class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
                     @if(Session::has('industries'))
                         @foreach($industries as $industry)
@@ -74,29 +80,26 @@
             </div>
         </div>
     </div>
-    {!!Html::script('js/script.js')!!}
 <script>
-    $(document).ready(function(){
-        initMultiselect('.getting-list-selected-box');
+    initMultiselect('.getting-list-selected-box');
 
-        var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
-        notFoundLi.addClass('not-found-message');
+    var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
+    notFoundLi.addClass('not-found-message');
 
-        $('input.multiselect-search').on('keyup', function(){
-            var staticOption = 2;
-            var list = $(this).parents('ul');
-            setTimeout(function(){
-                var hiddenOptions = list.find('li.filter-hidden').length;
-                var totalOptions = list.find('li').not('.not-found-message').length;
-                if(!(totalOptions - hiddenOptions - staticOption)){
-                    list.find('li.multiselect-all').addClass('hidden');
-                    list.append(notFoundLi);
-                    $('.not-found-message').show();
-                }else{
-                    list.find('li.multiselect-all').removeClass('hidden');
-                    $('li.not-found-message').hide();
-                }
-            },300);
-        })
+    $('input.multiselect-search').on('keyup', function(){
+        var staticOption = 2;
+        var list = $(this).parents('ul');
+        setTimeout(function(){
+            var hiddenOptions = list.find('li.filter-hidden').length;
+            var totalOptions = list.find('li').not('.not-found-message').length;
+            if(!(totalOptions - hiddenOptions - staticOption)){
+                list.find('li.multiselect-all').addClass('hidden');
+                list.append(notFoundLi);
+                $('.not-found-message').show();
+            }else{
+                list.find('li.multiselect-all').removeClass('hidden');
+                $('li.not-found-message').hide();
+            }
+        },300);
     });
 </script>
