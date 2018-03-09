@@ -137,15 +137,17 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $category = Category::find($slider->category_id);
     
-        $slider->shiftPositions();
+        if($slider->position){
+            $slider->shiftPositions();
+            $category->number_of_positions--;
+            $category->save();
+        }
         
         if(file_exists($slider->image)){
             unlink($slider->image);
             $slider->destroy($id);
         }
         
-        $category->number_of_positions--;
-        $category->save();
         return redirect()->route('admin.slider.index');
     }
     
