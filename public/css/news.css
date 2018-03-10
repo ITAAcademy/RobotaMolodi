@@ -113,13 +113,26 @@ footer{
     line-height: 60px;
     height: 60px;
 }
-body > div.container-fluid > div > div.col.l2.m2.s2.columnLeft,
-body > div.container-fluid{
+
+
+.row .sidebar .columnLeft,
+div.container-fluid,
+.row .sidebar .columnLeft  .l12{
     padding: 0;
-    /*padding-left: 0;*/
-    /*padding-right: 0;*/
+}
+
+
+.row .sidebar .columnLeft .blockedContent{
+
+    background-color: #cbd4bf;
+    font-size: 26px;
+
 }
 
 .menu>a>.row{
    margin-bottom: 0;
+}
+
+ header > nav{
+    background-color: #e8f1df;
 }

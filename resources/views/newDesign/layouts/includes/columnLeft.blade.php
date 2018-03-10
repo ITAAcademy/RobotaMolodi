@@ -55,13 +55,12 @@
                 </div>
             </a>
 
-            <h5>
                 <div class="row">
                     <div class="col l12">
-                        <li><p align="center">Заблокований контент</p></li>
+                        <li><p align="center" class="blockedContent">Заблокований контент</p></li>
                     </div>
                 </div>
-            </h5>
+
             <a href="{{route('admin.companies.index')}}">
                 <div class="row">
                     {{--<div class="col l3">--}}
