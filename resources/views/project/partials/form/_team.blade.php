@@ -1,4 +1,4 @@
-<h2 class="text-center">Команда проекту</h2>
+<h2 class="text-center">{{ trans('project/description.projectteam') }}</h2>
 <div class="container">
     <template v-for="(member,index) in members">
         <div class="row">
@@ -14,7 +14,7 @@
                         :name="'members[' + index + '][destroy]'"
                         v-model="member.destroy"
                         class="hidden">
-                    <label class="col-sm-4 control-label">Фото</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectphoto') }}</label>
                     <div class="col-sm-8">
                         <div class="container-fluid">
                             <div class="row">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Ім'я та прізвище</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectmembername') }}</label>
                     <div class="col-sm-8">
                         <input
                             type="text"
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Позиція</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectposition') }}</label>
                     <div class="col-sm-8">
                         <input
                             type="text"
@@ -66,11 +66,11 @@
                 <br>
             </div>
             <div class="col-sm-2" v-bind:class="{ hidden: member.destroy  }">
-                <div @click="removeMember(member)" style="color: #f00; text-decoration:underline; cursor:pointer">Del.</div>
+                <div class="btn btn-danger" @click="removeMember(member)" style="color: white; cursor:pointer">Del.</div>
             </div>
             </div>
     </template>
 </div>
 
-<div @click="addMember" style="color: #f76533; text-decoration:underline; cursor:pointer">Додати члена команди +</div>
+<div @click="addMember" style="color: #f76533; text-decoration:underline; cursor:pointer">{{ trans('project/description.projectaddnewmember') }} +</div>
 <br>
