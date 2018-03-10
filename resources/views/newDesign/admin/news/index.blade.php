@@ -21,7 +21,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
-                <th scope="col" class="col-md-5">Description</th>
+                {{--<th scope="col" class="col-md-5">Description</th>--}}
                 <th scope="col" class="col-md-3 col-lg-6">Picture</th>
                 <th scope="col">Published</th>
                 <th scope="col">Options</th>
@@ -33,7 +33,7 @@
                 <tr>
                     <td scope="row">{{ $new->id }}</td>
                     <td><h4>{{ $new->name }}</h4></td>
-                    <td>{!!  $new->description !!}</td>
+                    {{--<td>{!!  $new->description !!}</td>--}}
 
                     <td>
                         @if($new->img!='Not picture')
