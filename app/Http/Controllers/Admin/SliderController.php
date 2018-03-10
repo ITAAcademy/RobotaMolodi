@@ -48,9 +48,6 @@ class SliderController extends Controller
      */
     public function store(StoreSliderRequest $request)
     {
-        $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:400',
-        ]);
 
         $slider = new Slider($request->all());
         $category = Category::find($slider->category_id);
