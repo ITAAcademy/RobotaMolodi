@@ -19,8 +19,8 @@ class Filter
             ->byStartDate($request->get('startDate',[]))
             ->byEndDate($request->get('endDate',[]))
             ->byRating($request->get('sortRatings'))
-            ->bySort($request->get('sortDate'));
-
+            ->bySort($request->get('sortDate'))
+            ->isActive()->where('blocked', false);
         return $vacancies;
     }
     public static function resumes(Request $request)

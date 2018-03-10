@@ -78,7 +78,7 @@ class MainController extends Controller
             'specialisations' => $specialisations,
             'news'=>News::getNews(),
             'topVacancy' => $topVacancy,
-        ));
+        ));;
     }
 
     public function showCompanies(Request $request){
