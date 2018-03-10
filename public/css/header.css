@@ -281,9 +281,6 @@ nav.navbar.navbar-default{
         color: #f68c06;
         text-decoration: none;
     }
-    #leftModal .modal-content{
-
-    }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
         background-color: white;
         border-color: white;
