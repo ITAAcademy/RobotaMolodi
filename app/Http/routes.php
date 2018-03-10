@@ -73,6 +73,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
 
     Route::resource('/news', 'Admin\NewsController');
+    Route::resource('/users', 'Admin\UsersController');
+    Route::get('/users/{id}/changeRole',['as'=>'changeRole', 'uses'=>'Admin\UsersController@change'] );
+
+
+
     Route::resource('/slider', 'Admin\SliderController');
     Route::resource('/industry', 'Admin\IndustryController');
     Route::resource('/companies', 'Admin\CompaniesController');
@@ -85,7 +90,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
     Route::get('/news/updatePublished/{news_id}', 'Admin\NewsController@updatePublished');
     Route::get('/sliders/shiftPublished/{slider_id}', 'Admin\SliderController@shiftPublished');
-    Route::post('/slider/{slider_id}/changePosition/{next}', 'Admin\SliderController@changePosition');
+    Route::post('/slider/{slider_id}/positionUp', ['as' => 'slider.position.up', 'uses' => 'Admin\SliderController@positionUp']);
+    Route::post('/slider/{slider_id}/positionDown', ['as' => 'slider.position.down', 'uses' => 'Admin\SliderController@positionDown']);
+    Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
+    Route::resource('/seo-module', 'Admin\SeoModuleController');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
@@ -194,6 +202,10 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
 
     Route::resource('cabinet','cabinet\CabinetController');
     Route::resource('user','UserController', ['only' => ['edit','update']]);
+    Route::post('user/{id}/deleteAvatar',[
+        'as' => 'deleteAvatar',
+        'uses' => 'UserController@deleteAvatar']
+    );
 });
 
 Route::filter('no-cache',function($route, $request, $response){

@@ -1,4 +1,3 @@
-
 function initMultiselect(container)
 {
 	$(container).multiselect(
@@ -14,6 +13,19 @@ function initMultiselect(container)
 		,selectAllText: 'Вибрати все'
 		,buttonText: function(options, select)
 		{
+            $('#list-selected-region').find('.multiselect-clear-filter').on('click', function() {
+            	$('#list-selected-region > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-region > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
+            $('#list-selected-indastry').find('.multiselect-clear-filter').on('click', function() {
+                $('#list-selected-indastry > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-indastry > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
+            $('#list-selected-specialization').find('.multiselect-clear-filter').on('click', function() {
+                $('#list-selected-specialization > div.col-xs-12.wrapper-list-select-box > select').multiselect('deselectAll', false);
+                $('#list-selected-specialization > div.col-xs-12.wrapper-list-select-box > div > button > span').text('...');
+            });
+
 			if (options.length === 0)
 			{
 				return '...';

@@ -1,4 +1,6 @@
-<?php namespace App\Http\Requests;
+<?php
+
+ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
@@ -33,4 +35,3 @@ class SaveResume extends Request {
     }
 
 }
-

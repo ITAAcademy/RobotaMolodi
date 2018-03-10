@@ -38,7 +38,9 @@
                             <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
                         </div>
                     </div>
-                    @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
+                    @if($vacancy->published == '1')
+                        @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
+                    @endif
                 </div>
             </div>
             <div class="col-md-10">

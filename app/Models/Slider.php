@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class Slider extends Model
 {
-    protected $fillable = ['image', 'url', 'category_id', 'published', 'position'];
-
+    protected $fillable = [
+        'image',
+        'url',
+        'category_id',
+        'published',
+        'position'
+    ];
+    
     public $timestamps = false;
 
     public function category(){
@@ -29,6 +35,10 @@ class Slider extends Model
         return $query->isPublished()->byCategory($category);
     }
     
+    public function neededSibling(){
+        return Slider::byCategory($this->category_id)->where('position', $this->position)->first();
+    }
+    
     public function shiftPositions(){
         $sliders = Slider::where('position', '>', $this->position)->get();
         
@@ -38,17 +48,5 @@ class Slider extends Model
         }
         return 'Позиції були успішно змінені';
     }
-    
-    public function changePosition($next){
-        $nextSlider = Slider::byCategory($this->category_id)
-            ->where('position', $next)
-            ->first();
-        
-        $next = $nextSlider->position;
-        $nextSlider->position = $this->position;
-        $this->position = $next;
-    
-        $nextSlider->save();
-        $this->save();
-    }
+
 }

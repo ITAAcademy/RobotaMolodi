@@ -1,0 +1,24 @@
+.change-position-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+
+.arrow-bottom{
+    flex: 0 0 auto;
+}
+
+.flex-space{
+    flex: 1 0 auto;
+}
+
+.change-position-wrapper input:focus,
+.change-position-wrapper input:active,
+.change-position-wrapper input:hover{
+    text-decoration: none;
+    outline:none !important;
+}
+
+.custom-nav{
+    padding-left: 15px;
+}

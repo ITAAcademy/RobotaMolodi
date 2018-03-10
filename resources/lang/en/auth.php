@@ -26,7 +26,7 @@ return [
     'password' => 'Password',
     'confirmpassword' => 'Confirm password',
     'email' => 'Email',
-    'issue' => 'Opps.. happened something issue',
+    'issue' => 'Oops...there&#39;s been an issue',
     'policy' => 'Policy usage',
     'agree' => 'I agree',
     'share' => 'Share it',
