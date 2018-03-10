@@ -14,10 +14,6 @@
 
         <div class="col-md-12 createNews">
             <div class="row">
-                {{--<a href="{{ URL::route('admin.slider.create') }}" class="btn btn-success btn-lg">--}}
-                    {{--Create slider--}}
-                {{--</a>--}}
-
                 <a href="{{ URL::route('admin.slider.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
             </div>
 
