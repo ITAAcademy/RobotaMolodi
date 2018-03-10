@@ -198,6 +198,7 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
     Route::get('myresumes/{id}',['as' => 'cabinet.my_resumes' ,'uses' => 'cabinet\CabinetController@showMyResumes']);
     Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
     Route::get('mycompanies/{id}',['as' => 'cabinet.my_companies' ,'uses' => 'cabinet\CabinetController@showMyCompanies']);
+    Route::get('myprojects/{id}',['as' => 'cabinet.my_projects' ,'uses' => 'cabinet\CabinetController@showMyProjects']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
     Route::resource('cabinet','cabinet\CabinetController');

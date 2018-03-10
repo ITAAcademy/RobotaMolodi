@@ -4,12 +4,7 @@
     <li role = "presentation"><a class="link-resume" href={{route('resume.index')}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> Мої резюме</a></li>
     <li role = "presentation" ><a class="link-vacancy" href={{route('vacancy.index')}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span> Мої вакансії</a></li>
     <li role = "presentation" class="active"><a class="link-company" href={{route('company.index')}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> Мої компанії</a></li>
-@stop
-
-@section('btn')
-    <div>
-       <h4 class="btn btn-default btn_cr" style="background:#f5f5f5; color:#ffffff;">{!!link_to_route('company.create','Створити компанію')!!}</h4>
-    </div>
+    <li role = "presentation"><a class="link-project" href={{route('cabinet.my_projects', Auth()->user()->id)}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allprojects']) !!}</span> {{ trans('resume.myprojects') }}</a></li>
 @stop
 
 @section('contents')

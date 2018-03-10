@@ -338,3 +338,10 @@ input{
     margin: 5px;
     text-transform: uppercase;
 }
+
+.projectAbout {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
