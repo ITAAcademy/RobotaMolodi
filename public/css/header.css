@@ -624,9 +624,6 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         margin-left: 0px;
         width: 232px;
     }
@@ -906,9 +903,6 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;
@@ -1293,9 +1287,6 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;
@@ -1396,9 +1387,6 @@ nav.navbar.navbar-default{
     /*End left modal*/
 @media (min-width: 720px) and (max-width: 1280px){
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;
