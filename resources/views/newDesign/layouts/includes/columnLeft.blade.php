@@ -40,6 +40,14 @@
                 </div>
             </a>
 
+            <a href="{{route('admin.projects.index')}}">
+                <div class="row">
+                    <div class="col l12">
+                        <li><p>Проекти</p></li>
+                    </div>
+                </div>
+            </a>
+
                 <div class="row">
                     <div class="col l12">
                         <li><p align="center" class="blockedContent">Заблокований контент</p></li>
