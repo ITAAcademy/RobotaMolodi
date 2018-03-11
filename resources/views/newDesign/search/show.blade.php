@@ -85,21 +85,23 @@
 
     var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
     notFoundLi.addClass('not-found-message');
-
-    $('input.multiselect-search').on('keyup', function(){
-        var staticOption = 2;
-        var list = $(this).parents('ul');
-        setTimeout(function(){
-            var hiddenOptions = list.find('li.filter-hidden').length;
-            var totalOptions = list.find('li').not('.not-found-message').length;
-            if(!(totalOptions - hiddenOptions - staticOption)){
-                list.find('li.multiselect-all').addClass('hidden');
-                list.append(notFoundLi);
-                $('.not-found-message').show();
-            }else{
-                list.find('li.multiselect-all').removeClass('hidden');
-                $('li.not-found-message').hide();
-            }
-        },300);
+    $(document).ready(function(){
+        $('input.multiselect-search').on('keyup', function(){
+            var staticOption = 2;
+            var list = $(this).parents('ul');
+            setTimeout(function(){
+                var hiddenOptions = list.find('li.filter-hidden').length;
+                var totalOptions = list.find('li').not('.not-found-message').length;
+                if(!(totalOptions - hiddenOptions - staticOption)){
+                    list.find('li.multiselect-all').addClass('hidden');
+                    list.append(notFoundLi);
+                    $('.not-found-message').show();
+                }else{
+                    list.find('li.multiselect-all').removeClass('hidden');
+                    $('li.not-found-message').hide();
+                }
+            },300);
+        });
+        $(document).find('.list-section-filter').removeClass('fadeIn');
     });
 </script>
