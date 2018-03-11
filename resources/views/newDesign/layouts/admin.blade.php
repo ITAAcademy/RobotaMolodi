@@ -15,9 +15,9 @@
 <div class="container-fluid">
     <br>
     <div class="row">
-
-        @include('newDesign.layouts.includes.columnLeft')
-
+        <div class="sidebar">
+            @include('newDesign.layouts.includes.columnLeft')
+        </div>
         <div class="wrapper " id="main">
             @yield('content')
         </div>

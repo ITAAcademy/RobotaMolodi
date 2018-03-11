@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ $count + 1 }}</td>
                     <td>
-                        <a href={{ url('company/'.$blockedVacancy->id) }}>
+                        <a href={{ url('vacancy/'.$blockedVacancy->id) }}>
                             <strong>
                                 {{ $blockedVacancy->getCompanyName() }}
                             </strong>

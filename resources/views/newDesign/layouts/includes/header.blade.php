@@ -1,5 +1,4 @@
 
-
 <nav>
     <a name=href="{{ url('/') }}" class="brand-logo">
         <div class=" col m9 l9 s9">

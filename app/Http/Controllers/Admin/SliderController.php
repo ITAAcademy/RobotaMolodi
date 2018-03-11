@@ -48,9 +48,10 @@ class SliderController extends Controller
      */
     public function store(StoreSliderRequest $request)
     {
+
         $slider = new Slider($request->all());
         $category = Category::find($slider->category_id);
-        
+
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
