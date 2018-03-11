@@ -11,18 +11,19 @@
         )
         )
     <div class="row cabinet-buttons">
-        <div class="col-xs-11 col-md-7 header-tabs">
+        <div class="col-xs-11 col-md-8 header-tabs">
             <ul class="nav nav-tabs">
                 {{--@yield('titles')--}}
                 @if(Auth()->user())
                     <li role = "presentation" ><a class="link-resume" href={{route('cabinet.my_resumes', Auth()->user()->id)}}><span>{!! Html::image('image/allresumes.png','Res',['id'=>'allresumes']) !!}</span> {{ trans('resume.myresume') }}</a></li>
                     <li role = "presentation" ><a class="link-vacancy" href={{route('cabinet.my_vacancies', Auth()->user()->id)}}><span>{!! Html::image('image/allvacancies.png','Vac',['id'=>'allvacancies']) !!}</span>  {{ trans('resume.myvacancy') }}</a></li>
                     <li role = "presentation" ><a class="link-company" href={{route('cabinet.my_companies', Auth()->user()->id)}}><span>{!! Html::image('image/allcompanies.png','Comp',['id'=>'allcompanies']) !!}</span> {{ trans('resume.mycompanies') }}</a></li>
+                    <li role = "presentation" ><a class="link-project" href={{route('cabinet.my_projects', Auth()->user()->id)}}><span>{!! Html::image('image/allcompanies.png','Proj',['id'=>'allprojects']) !!}</span> {{ trans('resume.myprojects') }}</a></li>
                 @endif
             </ul>
         </div>
         <!-- Add new: -Vac -Comp -Res.  Line  -->
-        <div class="col-md-5 hidden-xs hidden-sm add-list-group-nav-tab">
+        <div class="col-md-4 hidden-xs hidden-sm add-list-group-nav-tab">
             <ul class="list-inline">
                 <li class="list-unstyled_plus">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -37,6 +38,9 @@
                 <li class="list-unstyled_resume">
                     <a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a>
                 </li>
+                <li class="list-unstyled_resume">
+                    <a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a>
+                </li>
             </ul>
         </div>
         <!-- Add new: -Vac -Comp -Res. +dropdown -->
@@ -50,6 +54,7 @@
                 <li><a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a></li>
                 <li><a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a></li>
                 <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a></li>
+                <li><a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a></li>
             </ul>
         </div>
     </div>
