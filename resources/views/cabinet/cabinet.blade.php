@@ -1,7 +1,7 @@
 @extends('app')
-{{--@section('title')--}}
+@section('title')
 
-{{--@stop--}}
+@stop
 @section('content')
     <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[

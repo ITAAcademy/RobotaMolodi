@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Industry;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\Project;
 use App\Models\Vacancy;
 use App\Models\Resume;
 use App\Models\Comment;
@@ -85,8 +86,7 @@ class cabinetController extends Controller
 
     public function showMyProjects()
     {
-        $companies = auth()->user()->GetCompanies->lists('id')->toArray();
-        $projects = DB::table('projects')->whereIn('company_id', $companies)->get();
+        $projects = auth()->user()->projects;
 
         if (Request::ajax()) {
             return view('project._projects', array("projects" => $projects));
