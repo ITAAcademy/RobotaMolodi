@@ -2,9 +2,7 @@ $(document).ready(function(){
     if(!$('#right-content-column')){
         return;
     }
-    targets = $('#right-content-column').children('div');
-    targets = Array.prototype.slice.call(targets);
-
+    var targets = $('#right-content-column').children('div');
     $(targets).each(function(index){
         var item = this;
         setTimeout(function(){
