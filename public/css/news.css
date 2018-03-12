@@ -31,6 +31,11 @@ a:hover{
     background-color: #e0e9d7;
     width: 100%;
 }
+.menu a > .active {
+    background-color: #cbd4bf;
+    font-size: 26px;
+}
+
 .dropdown-toggle {
     margin-top: 30px;
     background-color: #f68c06;
@@ -94,6 +99,8 @@ div.container-fluid,
     font-size: 26px;
 
 }
+
+
 
 .menu>a>.row{
    margin-bottom: 0;

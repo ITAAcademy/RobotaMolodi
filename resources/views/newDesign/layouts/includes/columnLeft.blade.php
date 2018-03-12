@@ -77,3 +77,10 @@
             </a>
         </ol>
     </div>
+
+<script>
+   $('a').each(function () {
+      if ($(this).attr('href')==location.href) {
+          $(this).find('div').addClass('active');
+      }});
+</script>
