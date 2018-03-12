@@ -3,9 +3,11 @@
     margin: 0;
     padding: 0;
 }
+
 body{
     background-color:#f0f0f0;
 }
+
 li {
     list-style-type: none; /* Убираем маркеры */
 }
@@ -33,7 +35,6 @@ a:hover{
 }
 .menu a > .active {
     background-color: #cbd4bf;
-    font-size: 26px;
 }
 
 .dropdown-toggle {
@@ -100,8 +101,6 @@ div.container-fluid,
 
 }
 
-
-
 .menu>a>.row{
    margin-bottom: 0;
 }
@@ -109,3 +108,22 @@ div.container-fluid,
  header > nav{
     background-color: #e8f1df;
 }
+
+
+ @media (max-width: 1366px ) {
+
+     .columnLeft{
+
+         line-height: 40px;
+         height: 40px;
+     }
+
+     .row .sidebar .columnLeft .blockedContent {
+         font-size: 16px;
+     }
+
+     .menu>a>div>div>li>p{
+         text-align: center;
+         font-size: 15px;
+     }
+ }
