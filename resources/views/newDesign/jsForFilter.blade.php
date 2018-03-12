@@ -77,7 +77,7 @@ $(document).ready(function () {
                         var item = this;
                         setTimeout(function(){
                             $(item).addClass('animated fadeInUpBig').appendTo(dest);
-                        },75 * index);
+                        },200 * index);
                     });
                 }
             });
