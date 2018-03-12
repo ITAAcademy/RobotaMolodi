@@ -1,4 +1,5 @@
-<div class="form-group">
+<script type="text/javascript" src="http://services.iperfect.net/js/IP_generalLib.js"> </script>
+        <div class="form-group">
     {!! Form::label('name', trans('project/description.name'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
       {!! Form::text('name', $project['name'], ['class' => 'form-control', 'required' => '']) !!}
@@ -64,13 +65,19 @@
 </div>
 <div class="form-group">
     {!! Form::label('project_term', trans('project/description.projectTerm'), ['class' => 'col-sm-4 control-label']) !!}
-    <div class="col-sm-8">
-        {!! Form::text('project_term', $project['project_term'], ['class' => 'form-control', 'required' => '']) !!}
+        <div class="col-xs-8" style="display:inline-flex"> 
+        <div class="col-sm-4" >
+            <input type="text" name="date1" id="date1" alt="date" class="IP_calendar" title="d/m/Y" value="from">
+        </div>  
+         <div class="col-sm-4">
+            <input type="text" name="date1" id="date1" alt="date" class="IP_calendar" title="d/m/Y" value="to">
+        </div> 
+        </div> 
+        <!-- {!! Form::text('project_term', $project['project_term'], ['class' => 'form-control', 'required' => '']) !!}  -->
         @if($project->getError('project_term'))
           @each('errors.partial._validation', $project->getError('project_term'), 'error' )
         @endif
     </div>
-</div>
 <div class="form-group">
     {!! Form::label('brand', trans('project/description.brand'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
@@ -98,4 +105,3 @@
         @endif
     </div>
 </div>
-
