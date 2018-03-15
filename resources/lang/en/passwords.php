@@ -12,7 +12,9 @@ return [
 	| has failed, such as for an invalid token or invalid new password.
 	|
 	*/
-
+	"resetPassword" => "Reset Password",
+	"emailforPassword" => "Email",
+	"sendVerificationEmail" => "Send link to reset password",
 	"password" => "Passwords must be at least six characters and match the confirmation.",
 	"user" => "We can't find a user with that e-mail address.",
 	"token" => "This password reset token is invalid.",
