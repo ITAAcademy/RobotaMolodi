@@ -12,7 +12,9 @@ return [
 	| has failed, such as for an invalid token or invalid new password.
 	|
 	*/
-
+	"resetPassword" => "Скидання паролю",
+	"emailforPassword" => "Електронна адреса",
+	"sendVerificationEmail" => "Відправити посилання на скидання паролю",
 	"password" => "Пароль має складатись щонайменьше з 6 символів.",
 	"user" => "We can't find a user with that e-mail address.",
 	"token" => "This password reset token is invalid.",
