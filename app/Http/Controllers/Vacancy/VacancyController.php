@@ -349,7 +349,7 @@ class VacancyController extends Controller
         if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
             Vacancy::destroy($id);
 
-            return redirect('cabinet.my_vacancies');
+            return redirect()->route('cabinet.my_vacancies');
         }
         else abort(403);
 
