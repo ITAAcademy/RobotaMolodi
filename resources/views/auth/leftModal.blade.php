@@ -34,7 +34,7 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('http://www.profitday.info') }}" class="afterChange" target="_blank">
+                <a href="{{ url('https://profitday.info') }}" class="afterChange" target="_blank">
                     <span>{{ trans('header.carrierdays') }}</span>
                 </a>
             </div>
