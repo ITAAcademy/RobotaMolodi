@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Скидання паролю</div>
+				<div class="panel-heading">{{ trans('passwords.resetPassword') }}</div>
 				<div class="panel-body">
 					@if (session('status'))
 						<div class="alert alert-success">
@@ -27,7 +27,7 @@
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group">
-							<label class="col-md-4 control-label">Електронна адреса</label>
+							<label class="col-md-4 control-label">{{ trans('passwords.emailforPassword') }}</label>
 							<div class="col-md-6" >
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
@@ -36,7 +36,7 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary btn-sm">
-									Відправити посилання на скидання паролю
+									{{ trans('passwords.sendVerificationEmail') }}
 								</button>
 							</div>
 						</div>

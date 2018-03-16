@@ -5,6 +5,13 @@
             <button type="button" class="btn btn-default only-bars">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
             </button>
+            <div class="col-xs-offset-6">
+                <span>| </span>
+                <a class="local-ua" href="{{url()}}/language/ua">ua</a>
+                <span> | </span>
+                <a class="local-en" href="{{url()}}/language/en">en</a>
+                <span> | </span>
+            </div>
         </div>
         <div class="col-xs-5 col-md-4 center-block">
             <div class="header-logo text-center">

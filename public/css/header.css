@@ -21,6 +21,9 @@ nav.navbar.navbar-default{
 .edit-user-name:hover{
     color: #c77308;
 }
+.col-xs-offset-6 {
+    color:orange;
+}
 @media (min-width: 1300px){
     /*Right modal*/
     .navtab-registraion{
