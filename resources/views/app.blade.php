@@ -20,9 +20,7 @@
 	<link href="{{ asset('/css/creating.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('/css/errors/base.css') }}" rel="stylesheet">
+  <link href="{{ asset('/css/errors/base.css') }}" rel="stylesheet">
 
 	@yield('head')
 
@@ -46,6 +44,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
 <link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/2.0.4/js/Jcrop.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/2.0.4/js/Jcrop.js"></script>
