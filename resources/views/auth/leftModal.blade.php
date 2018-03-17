@@ -1,5 +1,5 @@
 <div id="leftModal" class="modal fade">
-    <div class="modal-content col-xs-2 col-xs-offset-2">
+    <div class="modal-content col-xs-2 col-xs-offset-2"style="margin-left: 7.666667%;">
         <div class="bars-left col-xs-12">
             <button type="button" class="btn btn-default col-xs-3 list-in-bars" data-dismiss="modal">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
