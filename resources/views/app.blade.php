@@ -13,7 +13,7 @@
 	<link href="{{ asset('/css/aboutUs/featherlight.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
+
 	<link href="{{ asset('/css/aboutUsShow.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/aboutUs/aboutUs.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
@@ -44,6 +44,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+
+<link href="{{ asset('/css/navTab.css') }}" rel="stylesheet">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/2.0.4/js/Jcrop.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/2.0.4/js/Jcrop.js"></script>
