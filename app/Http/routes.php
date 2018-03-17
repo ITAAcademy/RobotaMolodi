@@ -93,6 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
     Route::resource('/seo-module', 'Admin\SeoModuleController');
     Route::resource('/projects', 'Admin\ProjectsController');
+    Route::resource('/about-us','Admin\AboutsUsController');
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);

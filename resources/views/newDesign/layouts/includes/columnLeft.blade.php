@@ -24,6 +24,13 @@
                      </div>
                 </div>
             </a>
+            <a href="{{route('admin.about-us.index')}}">
+                <div class="row">
+                    <div class="col l12">
+                        <li><p>Про нас</p></li>
+                    </div>
+                </div>
+            </a>
 
             <a href="{{route('admin.seo-module.index')}}">
                 <div class="row">
@@ -77,3 +84,10 @@
             </a>
         </ol>
     </div>
+
+<script>
+    $('a').each(function () {
+        if ($(this).attr('href')==location.href) {
+            $(this).find('div').addClass('active');
+        }});
+</script>
