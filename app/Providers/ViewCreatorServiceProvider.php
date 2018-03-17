@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ViewComposerServiceProvider extends ServiceProvider
+class ViewCreatorServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -14,8 +14,8 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer'
+        View::creator(
+            'newDesign.seoModule.index' , 'App\Http\Creators\SeoMetaViewCreator'
         );
     }
 
@@ -28,12 +28,4 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         //
     }
-
-    /*
-     * Compose the SeoMetaTags for current page
-     *
-     */
-//    private function composeSeoMetaTags(){
-//        view()->composer('newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer');
-//    }
 }
