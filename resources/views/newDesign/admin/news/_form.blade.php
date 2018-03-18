@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('description', 'Description:', ['class' => 'control-label']) !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control','id'=>'editor2']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 <br>
 @if(!isset($newsOne->pablished))
@@ -26,6 +26,13 @@
     </div>
 @endif
 
-
-<script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description',
+        {
+            extraPlugins : 'justify',
+            filebrowserImageUploadUrl: '{{ route('upartimg',['_token' => csrf_token() ]) }}',
+            height: 500
+        }
+    );
+</script>

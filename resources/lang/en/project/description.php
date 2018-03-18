@@ -1,5 +1,6 @@
 <?php
 return [
+    "locationcity" => "City",
     "projectAddVacancy" => "Add Vacancy",
     "projectVacanciesAmount" => "Amount Vacancies",
     "projectVacancyDescription" => "Vacancy Description",

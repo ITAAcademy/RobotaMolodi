@@ -15,9 +15,5 @@
             </div>
             {!! Form::submit('Create news', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
-
-        <script type="text/javascript">
-            CKEDITOR.replace('editor2');
-        </script>
     </div>
 @endsection
