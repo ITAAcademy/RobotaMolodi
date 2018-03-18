@@ -340,15 +340,15 @@
     <script src="../../js/aboutUs/script.js"></script>
     <script src="../../js/aboutUs/featherlight.min.js" type="text/javascript"></script>
     <script src="../../js/aboutUs/featherlight.gallery.min.js" type="text/javascript"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.4.2/lazyload.min.js"></script>
-    <script src="../dist/lazyload.min.js"></script>
 
     <script type="text/javascript">
-$(document).ready(function () {
-    $(".galleries img").lazyLoad(function () {
-        effect:"fadeIn"
-    });
-});
+        (function() {
+            new LazyLoad({
+                elements_selector: "a > img"
+            });
+        }());
     </script>
 
 
