@@ -3,9 +3,11 @@
     margin: 0;
     padding: 0;
 }
+
 body{
     background-color:#f0f0f0;
 }
+
 li {
     list-style-type: none; /* Убираем маркеры */
 }
@@ -31,6 +33,10 @@ a:hover{
     background-color: #e0e9d7;
     width: 100%;
 }
+.menu a > .active {
+    background-color: #cbd4bf;
+}
+
 .dropdown-toggle {
     margin-top: 30px;
     background-color: #f68c06;
@@ -102,3 +108,22 @@ div.container-fluid,
  header > nav{
     background-color: #e8f1df;
 }
+
+
+ @media (max-width: 1366px ) {
+
+     .columnLeft{
+
+         line-height: 40px;
+         height: 40px;
+     }
+
+     .row .sidebar .columnLeft .blockedContent {
+         font-size: 16px;
+     }
+
+     .menu>a>div>div>li>p{
+         text-align: center;
+         font-size: 15px;
+     }
+ }

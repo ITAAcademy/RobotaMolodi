@@ -14,9 +14,9 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
-            <label class="col-md-4 control-label">Ім'я</label>
+            <label class="col-md-4 control-label">{{ trans('auth.name') }}</label>
             <div class="col-md-6">
-                <input type="text" placeholder="Ваше ім'я" class="form-control" name="name" value="{{ old('name') }}">
+                <input type="text" placeholder= {{ trans('auth.name') }} class="form-control" name="name" value="{{ old('name') }}">
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             <div class="col-md-6 col-md-offset-4">
                 <div class="checkbox">
                     <label>
-                        <input required type="checkbox" name="remember"><span>З</span>
+                        <input required type="checkbox" title="press to continue"><span>{{ trans('auth.with') }}</span>
                         <a href="{{ route('policy')}}" target="_blank">{{ trans('auth.policy') }}</a>
                         <span>{{ trans('auth.agree') }}</span>
                     </label>

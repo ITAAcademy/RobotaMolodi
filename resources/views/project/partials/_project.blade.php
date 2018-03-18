@@ -1,6 +1,6 @@
 <section class="project" id="about_project__id">
     <div class="about-project">
-        <h2 class="about-project__tittle">Про проект</h2>
+        <h2 class="about-project__tittle">trans('project.addProject')</h2>
         <div class="about-project__text">
             {{ $project['project_about'] }}
         </div>
@@ -13,6 +13,7 @@
                     <h2 class="project__info-items-title">Time:</h2>
                     <div class="project__info-items-text">
                         {{ $project['project_term'] }}
+                        
                     </div>
                 </li>
                 <li class="about-project__info-items">

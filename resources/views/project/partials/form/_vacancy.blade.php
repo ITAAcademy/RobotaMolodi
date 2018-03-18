@@ -1,4 +1,4 @@
-<h2 class="text-center">Вакансії на проект</h2>
+<h2 class="text-center">{{ trans('project/description.projectVacancies') }}</h2>
 <template v-for="(vacancy,index) in vacancies">
     <div class="container">
         <div class="row">
@@ -14,7 +14,7 @@
                         :name="'vacancies[' + index + '][destroy]'"
                         v-model="vacancy.destroy"
                         class="hidden">
-                    <label class="col-sm-4 control-label">Введіть назву вакансії</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacancyTittle') }}</label>
                     <div class="col-sm-8">
                         <input
                             type="text"
@@ -28,7 +28,7 @@
                 <listoption v-bind:op="vacancy.subList.options" v-bind:index="index"></listoption>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Опис вакансії</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacancyDescription') }}</label>
                     <div class="col-sm-8">
                       <input
                         type="text"
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Кількість вакансій</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacanciesAmount') }}</label>
                     <div class="col-sm-4">
                       <input
                         type="text"

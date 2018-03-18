@@ -42,6 +42,7 @@ class ProjectController extends Controller
         return view('project.index', ['projects' => $projects]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

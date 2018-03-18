@@ -26,9 +26,13 @@
                     <p>{!! $newsOne->description !!}</p>
                     <span><h4>Опубліковано </h4>{{date('j.m.Y', strtotime($newsOne->updated_at))}}</span>
                 </div>
-                <div class="col-xs-12" style="padding-top: 15px">
-                    {!! Html::linkRoute('news.show',  '&laquo; '.$previous['name'] ,  $previous['id'], [ 'style' => 'color:orange' ,'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]) !!}
-                    {!! Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'style' => 'color:orange' ,'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]) !!}
+                <div id="next-prev-news" class="col-xs-12" style="display:inline-flex; padding:20px">
+                   <div class="col-xs-8">
+                    {!! Html::linkRoute('news.show',  '&laquo;'.$previous['name'] ,$previous['id'], [ 'style' => 'color:orange' ,'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]) !!}
+                    </div>
+                    <div class="col-xs-8">
+                        {!! Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'style' => 'color:orange' ,'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]) !!}
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,7 +12,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'name' => 'Ваше Iм/я',
+    'with' => 'З',
+    'checkbox' => 'натисніть, щоб продовжити',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'signin' => 'Вхід',
@@ -28,6 +30,6 @@ return [
     'email' => 'Електронна пошта',
     'issue' => 'Ой, виникли деякі проблеми',
     'policy' => 'політикою використання',
-    'agree' => 'Я погоджуюсь',
+    'agree' => 'погоджуюсь',
     'share' => 'Поділитись',
 ];

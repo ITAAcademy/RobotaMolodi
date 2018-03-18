@@ -21,6 +21,9 @@ nav.navbar.navbar-default{
 .edit-user-name:hover{
     color: #c77308;
 }
+.col-xs-offset-6 {
+    color:orange;
+}
 @media (min-width: 1300px){
     /*Right modal*/
     .navtab-registraion{
@@ -280,6 +283,9 @@ nav.navbar.navbar-default{
     .text-left-modal a:focus{
         color: #f68c06;
         text-decoration: none;
+    }
+    #leftModal .modal-content{
+      margin-left: 7.67%;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
         background-color: white;
@@ -718,7 +724,7 @@ nav.navbar.navbar-default{
     button.btn.btn-default.only-bars:hover{
         float: left;
         margin-top: 26px;
-        
+
     }
 }
 
@@ -770,7 +776,7 @@ nav.navbar.navbar-default{
         width: 85px;
         font-size: 11px;
     }
-    
+
     #rightModal .modal-content{
         width: 252px;
         margin-top: 1%;

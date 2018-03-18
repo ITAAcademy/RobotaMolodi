@@ -14,7 +14,7 @@
     </div>
 
     <section class="contentNewsList">
-        <h1 class="title">{{ trans('content.top') }}</h1>
+        <!-- <h1 class="title">{{ trans('content.top') }}</h1> -->
         <div id="left-content-column" class="col-xs-9">
             @include('newDesign/news/includeNews/newsListContent')
         </div>

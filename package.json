@@ -2,9 +2,14 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8",
-    "laravel-elixir": "^1.0.0"
+    "laravel-elixir": "^1.0.0",
+    "laravel-elixir-vue-2": "^0.3.0"
   },
   "dependencies": {
-    "dateformat": "^3.0.2"
+    "axios": "^0.18.0",
+    "dateformat": "^3.0.2",
+    "vue": "^2.5.13",
+    "vue-resource": "^1.5.0",
+    "vue-router": "^3.0.1"
   }
 }
