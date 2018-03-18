@@ -61,6 +61,17 @@ class cabinetController extends Controller
         }
     }
 
+    // show all user vacancies when add new project
+    public function showAddVacancies()
+    {
+        $id = auth()->user()->id;
+        $currentuser = User::find($id);
+
+        $vacancies = $currentuser->ReadUserVacancies;
+
+        return $vacancies;
+    }
+
     public function showMyVacancies($id, Guard $auth)
     {
         $vacancies = auth()->user()->ReadUserVacancies;
@@ -70,7 +81,6 @@ class cabinetController extends Controller
         } else {
             return view('vacancy.myVacancies', array("vacancies" => $vacancies));
         }
-
     }
 
     public function showMyCompanies($id, Guard $auth)

@@ -43,7 +43,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function projects()
     {
-        return $this->hasManyThrough('App\Models\Project', 'App\Models\Company', 'users_id', 'company_id');
+        return $this->hasManyThrough('App\Models\Project', 'App\Models\Company', 'users_id', 'company_id')->orderBy('updated_at', 'desc');
     }
 
     public function comments()
