@@ -1,5 +1,16 @@
 <?php
 return [
+    "locationcity" => "City",
+    "projectAddVacancy" => "Add Vacancy",
+    "projectVacanciesAmount" => "Amount Vacancies",
+    "projectVacancyDescription" => "Vacancy Description",
+    "projectVacancyTittle" => "Vacancy Tittle",
+    "projectVacancies" => "Project Vacancies",
+    "projectaddnewmember" => "Add New Team Member",
+    "projectposition" => " Position",
+    "projectmembername" => "Name and Surname",
+    "projectphoto" => "Photo",
+    "projectteam" => "Project Team",
     "name" => "Project name",
     "logo" => "Logotype",
     "company" => "Company",

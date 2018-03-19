@@ -1,5 +1,6 @@
 {{--{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}--}}
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 
 {!!Form::open(['route' => 'companyDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}
 <input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
@@ -19,6 +20,7 @@
                         @endif
                     </a>
                 </div>
+                @include('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/company/'.$company->id)])
             </div>
             <div class="col-xs-12 col-md-10">
                 <div class="panel-heading-cabinet">
@@ -55,13 +57,13 @@
                         <span>{{ trans('main.edit') }}</span>
                     </a>
                 </div>
-                <div class="col-xs-12 col-md-3">
+                {{--<div class="col-xs-12 col-md-3">--}}
                 {{--TODO TODO: fix "place in tops"--}}
-                    <a class="orangColor-cabinet unavailable" href="#" onclick="javascript:document.location.reload();">
-                        {!! Html::image('image/podiumOrenge.png', 'del') !!}
-                        <span> {{ trans('main.placetop') }}</span>
-                    </a>
-                </div>
+                    {{--<a class="orangColor-cabinet" href="#" onclick="javascript:document.location.reload();">--}}
+                        {{--{!! Html::image('image/podiumOrenge.png', 'del') !!}--}}
+                        {{--<span> {{ trans('main.placetop') }}</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

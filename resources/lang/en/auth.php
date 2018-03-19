@@ -12,13 +12,15 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'name' => 'Name',
+    'with' => 'with',
+    'checkbox' => 'press to continue',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'signin' => 'Sign In',
     'signout' => 'Sign Out',
     'signup' => 'Sign Up',
-     'or' => 'or',
+    'or' => 'or',
     'osignin' => 'Sign In through social media',
     'osignup' => 'Sign Up through social media',
     'forgotpwd' => 'Forgot passwort?',

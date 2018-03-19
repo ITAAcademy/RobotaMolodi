@@ -9,4 +9,5 @@ return [
     'vacancy' => 'Вакансію',
     'company' => 'Компанію',
     'resume' => 'Резюме',
+    'project' => 'Проект',
 ];

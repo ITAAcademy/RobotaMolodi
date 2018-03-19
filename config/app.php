@@ -80,7 +80,8 @@ return [
 
 	'key' => env('APP_KEY', 'SomeRandomString'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+    'cipher' => MCRYPT_RIJNDAEL_128,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Logging Configuration
@@ -150,11 +151,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'Unisharp\Ckeditor\ServiceProvider',
-        /*
-         *  Application Views Service Providers...
-         */
-//        'App\Providers\ViewComposerServiceProvider',
-        'App\Providers\ViewCreatorServiceProvider',
+        'App\Providers\ViewComposerServiceProvider',
 	],
 
 	/*

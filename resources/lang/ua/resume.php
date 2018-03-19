@@ -6,4 +6,5 @@ return[
     'myresume' => 'Мої резюме',
     'myvacancy' => 'Мої вакансії',
     'mycompanies' => 'Мої компанії',
+    'myprojects' => 'Мої проекти',
 ];

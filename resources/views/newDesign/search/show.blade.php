@@ -1,12 +1,15 @@
-<style>
-    .multiselect-container>li.not-found-message{
-        display: none;
-        padding: 5px 0 10px 20px;
-    }
-</style>
-<link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
+@section('headLinks')
+    <style>
+        .multiselect-container>li.not-found-message{
+            display: none;
+            padding: 5px 0 10px 20px;
+        }
+    </style>
+    <link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
+    {!!Html::script('js/script.js')!!}
+@endsection
 
-    <div class="row list-section-filter" >
+    <div class="row list-section-filter animated fadeIn">
         <div class="col-md-2 wrapper-list" id="list-selected-region">
             <div class="col-xs-12 wrapper-list-label-box" id ="label-region">
                 <img src="{{ asset('/image/region.png') }}" align="left">
@@ -35,7 +38,7 @@
                 <label>{{ trans('content.activity') }}</label>
             </div>
             <!-- Build select: -->
-            <div class="col-xs-12 wrapper-list-select-box">
+            <div  class="col-xs-12 wrapper-list-select-box">
                 <select class="getting-list-selected-box" data-placeholder="Усі галузі" multiple="multiple" name="selected-indastry">
                     @if(Session::has('industries'))
                         @foreach($industries as $industry)
@@ -74,14 +77,12 @@
             </div>
         </div>
     </div>
-    {!!Html::script('js/script.js')!!}
 <script>
+    initMultiselect('.getting-list-selected-box');
+
+    var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
+    notFoundLi.addClass('not-found-message');
     $(document).ready(function(){
-        initMultiselect('.getting-list-selected-box');
-
-        var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
-        notFoundLi.addClass('not-found-message');
-
         $('input.multiselect-search').on('keyup', function(){
             var staticOption = 2;
             var list = $(this).parents('ul');
@@ -97,6 +98,7 @@
                     $('li.not-found-message').hide();
                 }
             },300);
-        })
+        });
+        $(document).find('.list-section-filter').removeClass('fadeIn');
     });
 </script>

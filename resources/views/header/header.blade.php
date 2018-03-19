@@ -5,6 +5,13 @@
             <button type="button" class="btn btn-default only-bars">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
             </button>
+            <div class="col-xs-offset-6">
+                <span>| </span>
+                <a class="local-ua" href="{{url()}}/language/ua">ua</a>
+                <span> | </span>
+                <a class="local-en" href="{{url()}}/language/en">en</a>
+                <span> | </span>
+            </div>
         </div>
         <div class="col-xs-5 col-md-4 center-block">
             <div class="header-logo text-center">
@@ -26,32 +33,23 @@
             </button>
         </div>
         @else
-        <div class="" >
             <div class="col-xs-4 navtab-exit">
-                <div class="row">
-                    <div class="">
-                        <div class="col-xs-7" style="margin:0; padding-top:4px">
-                            <a @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
-                                <button type="button" class="btn btn-default modal-user-button">
-                                    <div class="img-user">
-                                        @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
-                                            {!! Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
-                                            array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                        @else
-                                            {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                                        @endif
-                                    </div>
-                                    <div class="img-user-name">
-                                        <p>{{ Auth::user()->name }}</p>
-                                        @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
-                                    </div>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col-xs-4" style="margin:0; padding-top:3%">
-                                <a class="edit-user-name" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
+                <div class="row pull-left">
+                    <a class="modal-user-button" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="modal-user-button" @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                        <span class="img-user">
+                            @if(Auth::user()->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
+                                {!! Html::image( asset(Auth::user()->getAvatarPath()), 'logo',
+                                array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                            @else
+                                {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
+                            @endif
+                        </span>
+                        <span class="img-user-name">
+                            <p>{{ Auth::user()->name }}</p>
+                            @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
+                        </span>
+                    </a>
                 </div>
             </div>
             <div class="col-xs-2 navtab-exit" style="padding-top:10px">
@@ -62,7 +60,6 @@
                     </button>
                 </a>
             </div>
-        </div>
         @endif
         </div>
     </nav>
@@ -73,20 +70,6 @@
 @include('_modal')
 
 {!!Html::script('js/socialNetWork.js')!!}
-
-<script>
-    //Hamburger position
-    $(document).ready(function () {
-        var scroller = $('button.btn.btn-default.only-bars');
-        $(window).scroll(function (){
-            $(this).scrollTop() > 15
-                ? scroller.css('position', 'fixed').css('left', '0px')
-                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '10px')
-                : scroller.css('position', 'relative')
-                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '145px');
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function () {

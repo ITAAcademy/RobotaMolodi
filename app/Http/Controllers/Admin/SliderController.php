@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreSliderRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -45,11 +46,12 @@ class SliderController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreSliderRequest $request)
     {
+
         $slider = new Slider($request->all());
         $category = Category::find($slider->category_id);
-        
+
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
@@ -106,7 +108,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id, Request $request)
+    public function update($id, StoreSliderRequest $request)
     {
         $slider = Slider::find($id);
         $input = $request->all();
@@ -136,15 +138,17 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $category = Category::find($slider->category_id);
     
-        $slider->shiftPositions();
+        if($slider->position){
+            $slider->shiftPositions();
+            $category->number_of_positions--;
+            $category->save();
+        }
         
         if(file_exists($slider->image)){
             unlink($slider->image);
             $slider->destroy($id);
         }
         
-        $category->number_of_positions--;
-        $category->save();
         return redirect()->route('admin.slider.index');
     }
     
@@ -177,7 +181,7 @@ class SliderController extends Controller
         }
         
         $currentSlider->save();
-        return redirect()->route('admin.slider.index');
+        return redirect()->back();
     }
     
     public function positionDown($id){
@@ -189,7 +193,7 @@ class SliderController extends Controller
     
         $previousPositionSlider->save();
         $currentSlider->save();
-        return redirect()->route('admin.slider.index');
+        return redirect()->back();
     }
     
     

@@ -23,7 +23,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('owner:project',  ['only' => ['edit', 'update', 'destroy']]);
+        $this->middleware('owner:project', ['only' => ['edit', 'update', 'destroy']]);
     }
 
     private function projectsPath()
@@ -42,6 +42,7 @@ class ProjectController extends Controller
         return view('project.index', ['projects' => $projects]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +53,7 @@ class ProjectController extends Controller
         $data = [];
 
         $companies = Auth::user()->companies->pluck('company_name', 'id');
-        if($companies->isEmpty())
+        if ($companies->isEmpty())
             return redirect()->route('company.create');
 
         $data['companies'] = $companies;
@@ -62,7 +63,9 @@ class ProjectController extends Controller
 
         $industries = Industry::all()->pluck('name', 'id');
         $data['industries'] = $industries;
+
         $builder = new BuilderCompositeProject();
+
         $root = $builder->buildEmpty();
         $data['root'] = $root->toArray();
 
@@ -79,16 +82,18 @@ class ProjectController extends Controller
         $builder = new BuilderCompositeProject();
         $root = $builder->buildStore($request);
         $project = $root->getRoot();
-        if(!$root->isValid()) {
+        if (!$root->isValid()) {
             $data = [];
-            $data['companies']  = Auth::user()
+            $data['companies'] = Auth::user()
                 ->companies
                 ->pluck('company_name', 'id');
-            $data['project']    = $project;
+            $data['project'] = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
-            return view('project.create', $data);
+            $root->save();
+            return view('project.show', $data);
         }
+
         $root->save();
 
         return redirect()->route('project.show', $project->id);
@@ -97,7 +102,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function show(Project $project)
@@ -108,16 +113,16 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function edit(Project $project)
     {
         $data = [];
-        $data['companies']  = Auth::user()
+        $data['companies'] = Auth::user()
             ->companies
             ->pluck('company_name', 'id');
-        $data['project']    = $project;
+        $data['project'] = $project;
         $data['industries'] = Industry::all()->pluck('name', 'id');
         $builder = new BuilderCompositeProject();
         $root = $builder->buildSpecific($project);
@@ -129,7 +134,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function update(Request $request, Project $project)
@@ -137,12 +142,12 @@ class ProjectController extends Controller
         $builder = new BuilderCompositeProject();
         $root = $builder->buildUpdate($request, $project);
 
-        if(!$root->isValid()) {
+        if (!$root->isValid()) {
             $data = [];
-            $data['companies']  = Auth::user()
+            $data['companies'] = Auth::user()
                 ->companies
                 ->pluck('company_name', 'id');
-            $data['project']    = $project;
+            $data['project'] = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
             return view('project.edit', $data);
@@ -155,7 +160,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return Response
      */
     public function destroy(Project $project)

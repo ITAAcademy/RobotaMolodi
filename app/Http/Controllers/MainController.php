@@ -63,13 +63,12 @@ class MainController extends Controller
     public function showVacancies(Request $request)
     {
         if($request->ajax()){
-            $vacancies = Filter::vacancies($request)->where('published', 1)->paginate();
+            $vacancies = Filter::vacancies($request)->isActive()->unblockVacancies()->paginate();
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
             ));
         }
-
-        $vacancies = Vacancy::unblockVacancies()->allVacancies()->isActive()->paginate();
+        $vacancies = Vacancy::allVacancies()->isActive()->unblockVacancies()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
@@ -109,7 +108,7 @@ class MainController extends Controller
 
     public function showResumes(Request $request)
     {
-        $resumes = Filter::resumes($request)->allResumes()->isActive()->paginate();
+        $resumes = Filter::resumes($request)->allResumes()->where('blocked', false)->paginate();
         Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');

@@ -11,7 +11,7 @@ use App\Models\ProjectVacancyGroup;
 use App\Models\ProjectVacancyOption;
 use App\Models\Industry;
 use App\Lib\CompositeProject;
-use App\Lib\BuilderCompositeProject;
+//use App\Lib\BuilderCompositeProject;
 use App\Lib\Leaf;
 
 class BuilderCompositeProject
@@ -96,6 +96,7 @@ class BuilderCompositeProject
 
         $members = collect();
         $membersHash = $request['members'];
+
         foreach($membersHash as $memberHash){
             $m = new ProjectMember($memberHash);
             if($memberHash['avatar'])
