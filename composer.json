@@ -12,7 +12,8 @@
 		"unisharp/laravel-ckeditor": "^4.5",
 		"doctrine/dbal": "^2.5",
 		"guzzlehttp/guzzle": "~6.0",
-		"laravel/socialite": "~2.0"
+		"laravel/socialite": "~2.0",
+		"tinify/tinify": "^1.5"
 
 	},
 	"require-dev": {
