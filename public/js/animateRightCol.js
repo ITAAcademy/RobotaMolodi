@@ -3,6 +3,7 @@ $(document).ready(function(){
         return;
     }
     var targets = $('#right-content-column').children('div');
+    targets.push($("[data-view='underFooter']").get());
     $(targets).each(function(index){
         var item = this;
         setTimeout(function(){
