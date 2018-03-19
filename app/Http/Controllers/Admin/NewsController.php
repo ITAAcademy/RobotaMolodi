@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\ImageCompress;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,6 +31,7 @@ class NewsController extends Controller
         if ($news->validateForm($request->all())) {
             $this->helperSave($news,$request);
             Session::flash('flash_message', 'news successfully created!');
+            ImageCompress::tinifyImage($news->getPath() . $news->img);
             return redirect()->route('admin.news.index');
         } else {
             return redirect()->route('admin.news.create')->withInput()->withErrors($news->getErrorsMessages());
@@ -58,6 +60,7 @@ class NewsController extends Controller
         if ($newsOne->validateForm($request->all())) {
             $this->helperSave($newsOne,$request);
             Session::flash('flash_message', 'news successfully added!');
+            ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
             return redirect()->route('admin.news.index');
         } else {
             return redirect()->route('admin.news.edit', ['newsOne' => $newsOne])->withInput()->withErrors($newsOne->getErrorsMessages());
