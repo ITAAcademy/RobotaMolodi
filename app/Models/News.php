@@ -67,16 +67,6 @@ class News extends Model
         return $pictureName;
     }
 
-    public function validateForm($news)
-    {
-        $validatorCity = Validator::make($news, $this->rules);
-        if ($validatorCity->fails()) {
-            $this->errorsMessages = $validatorCity->getMessageBag()->all();
-            return false;
-        }
-        return true;
-    }
-
     public function getPath()
     {
         return $this->path;
