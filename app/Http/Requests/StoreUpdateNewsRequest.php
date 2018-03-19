@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreSliderRequest extends Request
+class StoreUpdateNewsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,18 @@ class StoreSliderRequest extends Request
     public function rules()
     {
         return [
-            'image'         => 'required|max:2048',
-            'url'           => 'required',
+            'name' => 'required|max:150',
+            'description' => 'required',
+            'image' => 'sometimes|image|max:2048',
         ];
     }
     
     public function messages() {
         return [
-            "image.required" => trans('errors/slider.image_required'),
-            "url.required" => trans('errors/slider.url_required'),
-            "image.max" => trans('errors/slider.image_size'),
+            "name.required" => trans('errors/news.name_required'),
+            "name.max" => trans('errors/news.name_max'),
+            "description.required" => trans('errors/news.description_required'),
+            "image.max" => trans('errors/news.image_max'),
         ];
     }
 }
