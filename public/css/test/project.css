@@ -160,3 +160,18 @@
 .btn-load-img{
     border: 1px solid #f68c06;
 }
+/*start*/
+/*styles for the drop-down menu of adding vacancies on the page of creating a new project*/
+.liAddVacProject, .liFooterAddVacProject {
+    padding-left: 3px;
+    cursor: default;
+}
+
+.liAddVacProject:hover {
+    background-color: #81a2be;
+}
+
+.liFooterAddVacProject{
+    background: #9d9d9d;
+}
+/*end*/

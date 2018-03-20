@@ -64,10 +64,7 @@ class cabinetController extends Controller
     // show all user vacancies when add new project
     public function showAddVacancies()
     {
-        $id = auth()->user()->id;
-        $currentuser = User::find($id);
-
-        $vacancies = $currentuser->ReadUserVacancies;
+        $vacancies = auth()->user()->ReadUserVacancies;
 
         return $vacancies;
     }

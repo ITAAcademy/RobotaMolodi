@@ -69,12 +69,12 @@
 
 <div class="btn-group dropup">
     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Додати вакансію
+        {{ trans('project/description.projectAddVacancy') }}
     </button>
     <ul class="dropdown-menu">
-        <li style="background: #9d9d9d; padding-left: 3px;">Обрати з існуючих</li>
-        <li onmouseover="this.style.backgroundColor='#81a2be'" onmouseout="this.style.backgroundColor=''" v-for="userVacancy in userVacancies" :value="userVacancy.id" v-on:click="getUserVacancy" class="dropdown-item" type="button" style="padding-left: 3px;">   @{{ userVacancy.position }}</li>
-        <li role="separator" class="divider"></li>
-        <li style="background: #9d9d9d; padding-left: 3px;" v-on:click="addVacancy" class="dropdown-item" type="button">Додати нову</li>
+        <li class="liFooterAddVacProject">{{ trans('project/description.choosefromexisting') }}</li>
+        <li class="dropdown-item liAddVacProject" v-for="userVacancy in userVacancies" :value="userVacancy.id" v-on:click="getUserVacancy" type="button">@{{ userVacancy.position }}</li>
+        <li class="divider" role="separator"></li>
+        <li class="dropdown-item liFooterAddVacProject" v-on:click="addVacancy" type="button">{{ trans('project/description.addnew') }}</li>
     </ul>
 </div>
