@@ -17,6 +17,18 @@ class ViewComposerServiceProvider extends ServiceProvider
         View::composer(
             'newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer'
         );
+
+        View::composer(
+            'Resume.show' , 'App\Http\Composers\Show\Resume'
+        );
+
+        View::composer(
+            'vacancy.show' , 'App\Http\Composers\Show\Vacancy'
+        );
+
+        View::composer(
+            'newDesign.company.show' , 'App\Http\Composers\Show\Company'
+        );
     }
 
     /**
