@@ -15,10 +15,6 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer'
-        );
-
-        View::composer(
             'Resume.show' , 'App\Http\Composers\Show\Resume'
         );
 
@@ -28,6 +24,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 
         View::composer(
             'newDesign.company.show' , 'App\Http\Composers\Show\Company'
+        );
+
+        View::composer(
+            'newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer'
         );
     }
 
