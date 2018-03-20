@@ -162,6 +162,10 @@
 }
 /*start*/
 /*styles for the drop-down menu of adding vacancies on the page of creating a new project*/
+.ulAddVacProject {
+    position: absolute;
+}
+
 .liAddVacProject, .liFooterAddVacProject {
     padding-left: 3px;
     cursor: default;
@@ -171,7 +175,7 @@
     background-color: #81a2be;
 }
 
-.liFooterAddVacProject{
+.liFooterAddVacProject {
     background: #9d9d9d;
 }
 /*end*/
