@@ -22,4 +22,6 @@ return [
     "brand" => "Brand",
     "location" => "Location",
     "bonuses" => "Bonuses",
+    "choosefromexisting" => "Choose from existing",
+    "addnew" => "Add new",
 ];

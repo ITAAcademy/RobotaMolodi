@@ -25,4 +25,6 @@ return [
     "brand" => "Бренд",
     "location" => "Місце знаходження",
     "bonuses" => "Бонуси",
+    "choosefromexisting" => "Обрати з існуючих",
+    "addnew" => "Додати нову",
 ];
