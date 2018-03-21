@@ -24,8 +24,4 @@
         </div>
         {!! Form::submit('Edit news', ['class' => 'btn btn-success']) !!}
     {!! Form::close() !!}
-
-    <script type="text/javascript">
-        CKEDITOR.replace('editor1');
-    </script>
 @stop

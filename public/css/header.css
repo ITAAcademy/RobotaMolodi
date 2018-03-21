@@ -21,6 +21,9 @@ nav.navbar.navbar-default{
 .edit-user-name:hover{
     color: #c77308;
 }
+.col-xs-offset-6 {
+    color:orange;
+}
 @media (min-width: 1300px){
     /*Right modal*/
     .navtab-registraion{
@@ -282,11 +285,7 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
-        margin-left: 145px;
-        margin-top:-1px;
+      margin-left: 7.67%;
     }
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars{
         background-color: white;
@@ -631,9 +630,6 @@ nav.navbar.navbar-default{
         text-decoration: none;
     }
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         margin-left: 0px;
         width: 232px;
     }
@@ -728,7 +724,7 @@ nav.navbar.navbar-default{
     button.btn.btn-default.only-bars:hover{
         float: left;
         margin-top: 26px;
-        
+
     }
 }
 
@@ -780,7 +776,7 @@ nav.navbar.navbar-default{
         width: 85px;
         font-size: 11px;
     }
-    
+
     #rightModal .modal-content{
         width: 252px;
         margin-top: 1%;
@@ -913,9 +909,6 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;
@@ -1300,9 +1293,6 @@ nav.navbar.navbar-default{
 
     /*Left modal*/
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;
@@ -1403,9 +1393,6 @@ nav.navbar.navbar-default{
     /*End left modal*/
 @media (min-width: 720px) and (max-width: 1280px){
     #leftModal .modal-content{
-        left: 50%;
-        position: fixed;
-        transform: translate(-50%);
         width: 232px;
         margin-left: 0px;
         font-size: 10px;

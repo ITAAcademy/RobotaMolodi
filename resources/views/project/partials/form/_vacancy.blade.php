@@ -1,4 +1,4 @@
-<h2 class="text-center">Вакансії на проект</h2>
+<h2 class="text-center">{{ trans('project/description.projectVacancies') }}</h2>
 <template v-for="(vacancy,index) in vacancies">
     <div class="container">
         <div class="row">
@@ -14,7 +14,7 @@
                         :name="'vacancies[' + index + '][destroy]'"
                         v-model="vacancy.destroy"
                         class="hidden">
-                    <label class="col-sm-4 control-label">Введіть назву вакансії</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacancyTittle') }}</label>
                     <div class="col-sm-8">
                         <input
                             type="text"
@@ -28,7 +28,7 @@
                 <listoption v-bind:op="vacancy.subList.options" v-bind:index="index"></listoption>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Опис вакансії</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacancyDescription') }}</label>
                     <div class="col-sm-8">
                       <input
                         type="text"
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Кількість вакансій</label>
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacanciesAmount') }}</label>
                     <div class="col-sm-4">
                       <input
                         type="text"
@@ -66,6 +66,16 @@
         </div>
     </div>
 </template>
-<br>
-<div @click="addVacancy" style="color: #f76533; text-decoration:underline; cursor:pointer">Додати вакансію +</div>
-<br><br>
+
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ trans('project/description.projectAddVacancy') }}
+    </button>
+    <ul class="dropdown-menu ulAddVacProject">
+        <li class="liFooterAddVacProject">{{ trans('project/description.choosefromexisting') }}</li>
+        <li class="dropdown-item liAddVacProject" v-for="userVacancy in userVacancies" :value="userVacancy.id" v-on:click="getUserVacancy" type="button">@{{ userVacancy.position }}</li>
+        <li class="divider" role="separator"></li>
+        <li class="dropdown-item liFooterAddVacProject" v-on:click="addVacancy" type="button">{{ trans('project/description.addnew') }}</li>
+    </ul>
+</div>
+

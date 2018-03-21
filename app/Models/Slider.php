@@ -18,6 +18,12 @@ class Slider extends Model
     ];
     
     public $timestamps = false;
+    
+    private $path = 'uploads/sliders/';
+    
+    public function getPath(){
+        return $this->path;
+    }
 
     public function category(){
         return $this->belongsTo('App\Models\Category');

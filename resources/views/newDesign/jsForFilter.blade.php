@@ -70,13 +70,15 @@ $(document).ready(function () {
                 url: url,
                 data: props,
                 success: function(resp){
-                    var result = $(resp).filter('.test').html();
-
-                    $(dest).html(result);
-                    $("html, body").animate({ scrollTop: 0 }, 500);
-                    $(dest)
-                        .css('backgroundColor','hsla(30, 10%, 90%, 0.1)')
-                        .animate({ backgroundColor: "white" }, "slow");
+                    var result = $(resp).filter('.test').children('div');
+                    $(dest).empty();
+                    $("html, body").animate({ scrollTop: 120 }, 50);
+                    $(result).each(function(index){
+                        var item = this;
+                        setTimeout(function(){
+                            $(item).addClass('animated fadeInUpBig').appendTo(dest);
+                        },200 * index);
+                    });
                 }
             });
         });

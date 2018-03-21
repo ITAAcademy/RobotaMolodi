@@ -40,6 +40,14 @@
                 </div>
             </a>
 
+            <a href="{{route('admin.projects.index')}}">
+                <div class="row">
+                    <div class="col l12">
+                        <li><p>Проекти</p></li>
+                    </div>
+                </div>
+            </a>
+
                 <div class="row">
                     <div class="col l12">
                         <li><p align="center" class="blockedContent">Заблокований контент</p></li>
@@ -69,3 +77,10 @@
             </a>
         </ol>
     </div>
+
+<script>
+   $('a').each(function () {
+      if ($(this).attr('href')==location.href) {
+          $(this).find('div').addClass('active');
+      }});
+</script>

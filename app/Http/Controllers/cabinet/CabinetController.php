@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 //use Illuminate\Support\Facades\View;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\User;
 use App\Models\Industry;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\Project;
 use App\Models\Vacancy;
 use App\Models\Resume;
 use App\Models\Comment;
@@ -29,58 +32,73 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use App\Repositoriy\Crop;
 
-class cabinetController extends Controller {
-
+class cabinetController extends Controller
+{
     /**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-	    $resumes = Auth()->user()->GetResumes;
-        if(Request::ajax()){
-            return view('Resume._resume', array('resumes' => $resumes));
-        }else{
-            return view('Resume.myResumes')
-                ->with('resumes', $resumes);
-        }
-
-		}
-
-
-    public function showMyResumes($id,Guard $auth){
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $resumes = Auth()->user()->GetResumes;
-//        dd($request);
-//        $request =
-        if(Request::ajax()) {
+
+        if (Request::ajax()) {
             return view('Resume._resume', array('resumes' => $resumes));
         } else {
-            return view('Resume.myResumes')
-                ->with('resumes', $resumes);
-//            return Redirect::to('cabinet');
+            return view('Resume.myResumes')->with('resumes', $resumes);
         }
     }
-        public function showMyVacancies($id, Guard $auth){
-            $vacancies = auth()->user()->ReadUserVacancies;
-        if(Request::ajax()){
 
-            return view ('vacancy._vacancy', array("vacancies"=>$vacancies));
-        }else{
-            return view('vacancy.myVacancies', array("vacancies"=>$vacancies));
-//            return Redirect::to('cabinet');
+    public function showMyResumes($id, Guard $auth)
+    {
+        $resumes = Auth()->user()->GetResumes;
+
+        if (Request::ajax()) {
+            return view('Resume._resume', array('resumes' => $resumes));
+        } else {
+            return view('Resume.myResumes')->with('resumes', $resumes);
         }
+    }
 
+    // show all user vacancies when add new project
+    public function showAddVacancies()
+    {
+        $vacancies = auth()->user()->ReadUserVacancies;
+
+        return $vacancies;
+    }
+
+    public function showMyVacancies($id, Guard $auth)
+    {
+        $vacancies = auth()->user()->ReadUserVacancies;
+
+        if (Request::ajax()) {
+            return view('vacancy._vacancy', array("vacancies" => $vacancies));
+        } else {
+            return view('vacancy.myVacancies', array("vacancies" => $vacancies));
         }
-        public function showMyCompanies($id, Guard $auth){
-            $companies = auth()->user()->GetCompanies;
-            if(Request::ajax()){
+    }
 
-                return view ('Company._company', array("companies"=>$companies));
-            }else{
-                return view ('Company.myCompanies', array("companies"=>$companies));
-//             return Redirect::to('cabinet');
-            }
+    public function showMyCompanies($id, Guard $auth)
+    {
+        $companies = auth()->user()->GetCompanies;
+
+        if (Request::ajax()) {
+            return view('Company._company', array("companies" => $companies));
+        } else {
+            return view('Company.myCompanies', array("companies" => $companies));
         }
+    }
 
+    public function showMyProjects()
+    {
+        $projects = auth()->user()->projects;
+
+        if (Request::ajax()) {
+            return view('project._projects', array("projects" => $projects));
+        } else {
+            return view('project.myProjects', array("projects" => $projects));
+        }
+    }
 }

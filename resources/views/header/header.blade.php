@@ -5,6 +5,13 @@
             <button type="button" class="btn btn-default only-bars">
                 <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
             </button>
+            <div class="col-xs-offset-6">
+                <span>| </span>
+                <a class="local-ua" href="{{url()}}/language/ua">ua</a>
+                <span> | </span>
+                <a class="local-en" href="{{url()}}/language/en">en</a>
+                <span> | </span>
+            </div>
         </div>
         <div class="col-xs-5 col-md-4 center-block">
             <div class="header-logo text-center">
@@ -63,20 +70,6 @@
 @include('_modal')
 
 {!!Html::script('js/socialNetWork.js')!!}
-
-<script>
-    //Hamburger position
-    $(document).ready(function () {
-        var scroller = $('button.btn.btn-default.only-bars');
-        $(window).scroll(function (){
-            $(this).scrollTop() > 15
-                ? scroller.css('position', 'fixed').css('left', '0px')
-                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '10px')
-                : scroller.css('position', 'relative')
-                && $('.modal-content.col-xs-2.col-xs-offset-2').css('margin-left', '145px');
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function () {

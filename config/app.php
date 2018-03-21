@@ -155,6 +155,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'Unisharp\Ckeditor\ServiceProvider',
         'App\Providers\ViewComposerServiceProvider',
+        'App\Providers\SeoInfoCreatorProvider'
 	],
 
 	/*

@@ -6,9 +6,6 @@
         }
     </style>
     <link href="{{ asset('/css/searchShow.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
-          integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
-          crossorigin="anonymous">
     {!!Html::script('js/script.js')!!}
 @endsection
 
@@ -85,21 +82,23 @@
 
     var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
     notFoundLi.addClass('not-found-message');
-
-    $('input.multiselect-search').on('keyup', function(){
-        var staticOption = 2;
-        var list = $(this).parents('ul');
-        setTimeout(function(){
-            var hiddenOptions = list.find('li.filter-hidden').length;
-            var totalOptions = list.find('li').not('.not-found-message').length;
-            if(!(totalOptions - hiddenOptions - staticOption)){
-                list.find('li.multiselect-all').addClass('hidden');
-                list.append(notFoundLi);
-                $('.not-found-message').show();
-            }else{
-                list.find('li.multiselect-all').removeClass('hidden');
-                $('li.not-found-message').hide();
-            }
-        },300);
+    $(document).ready(function(){
+        $('input.multiselect-search').on('keyup', function(){
+            var staticOption = 2;
+            var list = $(this).parents('ul');
+            setTimeout(function(){
+                var hiddenOptions = list.find('li.filter-hidden').length;
+                var totalOptions = list.find('li').not('.not-found-message').length;
+                if(!(totalOptions - hiddenOptions - staticOption)){
+                    list.find('li.multiselect-all').addClass('hidden');
+                    list.append(notFoundLi);
+                    $('.not-found-message').show();
+                }else{
+                    list.find('li.multiselect-all').removeClass('hidden');
+                    $('li.not-found-message').hide();
+                }
+            },300);
+        });
+        $(document).find('.list-section-filter').removeClass('fadeIn');
     });
 </script>

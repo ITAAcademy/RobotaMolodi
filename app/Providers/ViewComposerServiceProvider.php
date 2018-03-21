@@ -2,8 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\SeoInfo;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
@@ -15,7 +14,21 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->composeSeoMetaTags();
+        View::composer(
+            'Resume.show' , 'App\Http\Composers\Show\Resume'
+        );
+
+        View::composer(
+            'vacancy.show' , 'App\Http\Composers\Show\Vacancy'
+        );
+
+        View::composer(
+            'newDesign.company.show' , 'App\Http\Composers\Show\Company'
+        );
+
+        View::composer(
+            'newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer'
+        );
     }
 
     /**
@@ -32,7 +45,7 @@ class ViewComposerServiceProvider extends ServiceProvider
      * Compose the SeoMetaTags for current page
      *
      */
-    private function composeSeoMetaTags(){
-        view()->composer('newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer');
-    }
+//    private function composeSeoMetaTags(){
+//        view()->composer('newDesign.seoModule.index' , 'App\Http\Composers\SeoMetaTagsComposer');
+//    }
 }
