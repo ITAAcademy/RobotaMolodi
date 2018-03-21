@@ -29,7 +29,7 @@ class Project extends Model
     private $rules = [
        'name'          => 'required|string|min:3|max:32|regex:/^[\d Є-Їa-zа-я_\-\'\`]+$/iu',
        'brand'         => 'string|min:3|max:32',
-//       'location'      => 'required|string|min:2|max:32',
+       'location'      => 'required|string|min:2|max:32',
        'bonuses'       => 'string|min:3|max:32',
        'company_desc'  => 'required|string|min:3|max:255',
        'company_about' => 'required|string|min:3|max:10000',
