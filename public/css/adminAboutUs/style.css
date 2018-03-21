@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.optButtons a, .optButtons form{
+    display: inline-block;
+}
+
