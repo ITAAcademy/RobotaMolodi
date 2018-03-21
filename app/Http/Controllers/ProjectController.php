@@ -79,10 +79,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+//        dd();
         $builder = new BuilderCompositeProject();
         $root = $builder->buildStore($request);
         $project = $root->getRoot();
         if (!$root->isValid()) {
+//            dd($root->isValid());
+//            dd($root);
             $data = [];
             $data['companies'] = Auth::user()
                 ->companies
@@ -90,10 +93,12 @@ class ProjectController extends Controller
             $data['project'] = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
-            $root->save();
-            return view('project.show', $data);
+//            $root->save();
+//            return view('project.show', $data);
+            return view('project.create', $data);
         }
-
+//        dd($root);
+//        dd($root->isValid());
         $root->save();
 
         return redirect()->route('project.show', $project->id);
