@@ -178,7 +178,6 @@ nav.navbar.navbar-default{
     }
     /*End right modal*/
 
-
     nav.navbar.navbar-default{
         border-top-width: 0px;
         border-right-width: 0px;
@@ -1004,7 +1003,7 @@ nav.navbar.navbar-default{
     /*End left modal*/
 }
 
-@media (min-width:300px) and (max-width:411px) {
+@media (min-width:300px) and (max-width:480px) {
     /*Right modal*/
     .navtab-registraion{
         padding: 0px;
@@ -1195,7 +1194,7 @@ nav.navbar.navbar-default{
         padding-right: 0px;
     }
     .navbar-default .center-block{
-        padding-left: 5px;
+        padding-left: 25px;
         padding-right: 5px;
         border-right-width: 10px;
         margin-right: 0px;
@@ -1231,6 +1230,7 @@ nav.navbar.navbar-default{
         float: left;
         border: 1px solid #f68c06;
     }
+
     .img-user-name{
         /*display: table-cell;*/
         height: 35px;
@@ -1486,6 +1486,10 @@ nav.navbar.navbar-default{
     }
     .modal-social-share a i{
         margin: 0;
+    }
+    nav.navbar.navbar-default .center-block img{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 }
