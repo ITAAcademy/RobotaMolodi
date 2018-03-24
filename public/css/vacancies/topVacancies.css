@@ -337,7 +337,8 @@ div.wrapper-list-select-box, div.wrapper-list-label-box{
 }
 
 div.wrapper-list-label-box{
-	margin-bottom:5px;
+	margin-bottom:10px;
+	margin-top:15px;
 	padding-left:10px;
 }
 .wrapper-list-label-box label{
