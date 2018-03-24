@@ -1,6 +1,5 @@
-
 <nav>
-    <a name=href="{{ url('/') }}" class="brand-logo">
+    <a name="" href="{{ url('/') }}" class="brand-logo">
         <div class=" col m9 l9 s9">
             <img src={{asset('/image/logo.png')}} height="68" width="293"/>
         </div>
