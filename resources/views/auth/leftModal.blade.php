@@ -84,7 +84,7 @@
         </div>
         <hr class="modal-hr col-xs-10">
         <div>
-            <span class="glyphicon glyphicon-phone-alt icon-left-modal" aria-hidden="true"></span> +38-0432<strong> 52-82-67</strong>
+            <span class="glyphicon glyphicon-phone-alt icon-left-modal" aria-hidden="true"></span><b>+38(0432)52-82-67</b>
         </div>
         <div>
             <span class="glyphicon glyphicon-envelope icon-left-modal" aria-hidden="true"></span>
