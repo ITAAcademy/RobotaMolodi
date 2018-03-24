@@ -4,6 +4,9 @@
 
 <div id="news" class="row hidden-xs news">
     <div>
+        <a id="close-news" class="close-bt" href="#" title="{{ trans('content.closetopnews') }}" >
+           <img id="closenews" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
+        </a>
         <img class="tv-news-header1" src="/image/topVacancies/news.png" alt="image logo news">
         <a class="tv-link"  href="/news">
             <p id="topvac2" class="tv-news-header2">{{ trans('content.news') }}</p>
