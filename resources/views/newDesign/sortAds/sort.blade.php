@@ -27,9 +27,7 @@
 				</div>
 			</div>
 			<div class="col-xs-1 sort-filter">
-				<a id="close-all-filters" class="close-bt" href="#" title="Стерти всі фільтри">
-					<img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
-				</a>
+				<button id="close-all-filters" type="reset" href="#" value="Reset">{{ trans('content.reset') }}</button>
 			</div>
 		</div>
 </div>

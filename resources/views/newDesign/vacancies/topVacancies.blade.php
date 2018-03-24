@@ -3,6 +3,9 @@
 <div id="topvac" class="row hidden hidden-xs top-vac">
 
     <div id="topvac0">
+        <a id="close-top-vac" class="close-bt" href="#" title="{{ trans('content.closetopvac') }}" >
+            <img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
+        </a>
         <img id="topvac1" class="tv-news-header1" src="/image/topVacancies/topvacancies.png" alt="topvacancies">
         <p id="topvac2" class="tv-news-header2">{{ trans('content.vacancy') }}</p>
     </div>

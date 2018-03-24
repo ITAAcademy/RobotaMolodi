@@ -30,7 +30,7 @@
                 <hr>
                 <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span>robotamolodi@gmail.com</span>
+                    <a href="mailto: robotamolodi@gmail.com">robotamolodi@gmail.com</a>
                 </li>
             </ul>
         </div>

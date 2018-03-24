@@ -24,6 +24,7 @@ return [
     'gaps' => 'by date interval:',
     'from' => 'from',
     'to' => 'to',
+    'reset' => 'reset',
 
     'rating' => 'Rating:',
     'read_next' => 'Read next...',
@@ -38,6 +39,6 @@ return [
 
     'addVacancy' => 'Add Vacancy',
     'editVacancy' => 'Edit Vacancy',
-
-
+    'closetopvac' => 'Close Top Vacancies',
+    'closetopnews' => 'Close Top News'
 ];
