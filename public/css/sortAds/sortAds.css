@@ -51,3 +51,12 @@ hr.line-sort-box {
     padding: 0;
     width: 39%;
 }
+
+#clear{
+    margin:-50px;
+}
+#close-all-filters{
+    margin-left: -50px;
+    margin-bottom: 25px;
+    margin-top: -10px;
+}
