@@ -25,7 +25,7 @@ nav.navbar.navbar-default{
     color:orange;
 }
 #navregenterbutn {
- bottom:10px; 
+ bottom:10px;
  right:25px;
 }
 @media (min-width: 1300px){
@@ -760,7 +760,7 @@ nav.navbar.navbar-default{
         outline-color: white;
     }
     .navtab-registraion .modal-enter{
-        left:50%;
+        left:0%;
         padding-left: 1px;
         padding-right: 1px;
         padding-bottom: 1px;
