@@ -23,7 +23,8 @@
             </div>
 
         @if (Auth::guest())
-        <div class="col-xs-6 col-md-4 navtab-registraion">
+        <div class="row">
+        <div id="navregenterbutn" class="col-xs-6 col-md-4 navtab-registraion">
             <button type="button" class="btn btn-default modal-enter col-xs-6">
                 <span>{!! Html::image('image/entry.png',trans('auth.signin'),['id'=>'entry']) !!}</span>
                 <span>{{ trans('auth.signin') }}</span>
@@ -33,7 +34,7 @@
                 <span>{{ trans('auth.signup') }}</span>
             </button>
         </div>
-
+</div>
         @else
             <div class="col-xs-4 navtab-exit">
                 <div class="row pull-left">
