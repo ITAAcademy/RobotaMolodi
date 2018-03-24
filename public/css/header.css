@@ -225,6 +225,7 @@ nav.navbar.navbar-default{
     }
     .navtab-exit .modal-user-button{
         padding: 3px;
+        padding-left: 75px;
         border: 0;
         color: #f68c06;
     }
@@ -563,7 +564,8 @@ nav.navbar.navbar-default{
     }
     .navtab-exit .modal-user-button{
         float: right;
-        margin-right: 20px;
+        padding-left: 75px;
+        margin-right: -45px;
         margin-top: -11px;
         border: 0;
         color: #f68c06;
@@ -909,8 +911,7 @@ nav.navbar.navbar-default{
         border-radius: 0 0 15px 15px;
         background-color: white;
     }
-
-    /*Left modal*/
+      /*Left modal*/
     #leftModal .modal-content{
         width: 232px;
         margin-left: 0px;
