@@ -911,12 +911,7 @@ nav.navbar.navbar-default{
         border-radius: 0 0 15px 15px;
         background-color: white;
     }
-    .row pull-left
-    {
-        margin: 10px 0 0 40px;
-    }
-
-    /*Left modal*/
+      /*Left modal*/
     #leftModal .modal-content{
         width: 232px;
         margin-left: 0px;
