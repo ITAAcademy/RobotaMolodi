@@ -7,7 +7,6 @@
         'port' => 25,
         'from' => ['address' => "noreply@robotamolodi.org", 'name' => "Сайт РоботаМолоді"],
         'pretend' => false,
-
     ];
 //return [
 //
