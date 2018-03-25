@@ -1349,7 +1349,6 @@ nav.navbar.navbar-default {
 
     #rightModal .modal-content .form-group a {
         color: #333;
-        /*float: right;*/
         text-decoration: underline;
         font-size: 9px;
         height: 20px;
@@ -1421,8 +1420,6 @@ nav.navbar.navbar-default {
     }
 
     .navbar-default .center-block {
-        padding-left: 25px;
-        padding-right: 5px;
         border-right-width: 10px;
         margin-right: 0px;
         margin-left: 0px;
@@ -1430,10 +1427,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-exit {
-        padding-top: 5%;
-        margin-top: 22px;
-        height: 25px;
-        /*width: 73px;*/
+        padding: 0px;
     }
 
     .navtab-exit p {
@@ -1443,8 +1437,23 @@ nav.navbar.navbar-default {
         width: 40px;
     }
 
+    .navtab-exit .modal-exit-button {
+        width: 58px;
+        padding: 0px;
+    }
+
     .col-xs-4.navtab-exit {
-        width: 75px;
+        width: 30%;
+    }
+
+    .col-xs-4.navtab-exit div.row.pull-left {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .col-xs-4.navtab-exit div.row.pull-left a.pensil7px{
+        width: 8px;
+        padding-left: 2px;
     }
 
     .navtab-exit + .navtab-exit {
@@ -1454,43 +1463,42 @@ nav.navbar.navbar-default {
     .navtab-exit a {
         text-decoration: none;
         float: right;
-        margin-right: 10px;
     }
 
     .img-user {
         width: 22px;
         height: 22px;
-        float: left;
+        float: right;
         border: 1px solid #f68c06;
     }
 
+    .img-user img {
+        padding: 0px;
+    }
+
     .img-user-name {
-        /*display: table-cell;*/
-        height: 35px;
-        vertical-align: middle;
-        padding-left: 3px;
-        padding-right: 1px;
+        height: 27px;
+        width: 37px;
+        float: right;
+    }
+
+    .img-user-name p {
+        width: 20px;
+        height: 13px;
+        padding: 0px;
     }
 
     .navtab-exit .modal-user-button {
-        margin-right: -7px;
-        padding-bottom: 1px;
-        padding-left: 1px;
-        padding-top: 1px;
-        padding-right: 1px;
         font-size: 9px;
         height: 27px;
         border: 0;
         color: #f68c06;
-        width: 25px;
+        width: 60px;
+        float: right;
     }
 
     .navtab-exit .modal-exit-button {
         height: 27px;
-        padding-bottom: 10px;
-        padding-left: 1px;
-        padding-top: 1px;
-        padding-right: 1px;
         font-size: 12px;
         margin-left: 0px;
         border: 0;
