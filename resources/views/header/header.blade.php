@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-default col-xs-12">
         <div class="row">
-            <div class="col-xs-3 col-md-4 bars-left-modal" style="margin:0; padding:0">
+            <div class="col-xs-3 col-sm-4 col-md-4 bars-left-modal" style="margin:0; padding:0">
                 <button type="button" class="btn btn-default only-bars">
                     <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
                 </button>
@@ -36,28 +36,27 @@
                     </div>
                 </div>
             @else
+
                 <div class="col-xs-4 navtab-exit">
                     <div class="row pull-left">
-                        <a class="modal-user-button" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil"
-                                                                                                 aria-hidden="true"></i></a>
-                        <a class="modal-user-button" @if(Auth::user()->isAdmin()) href="{{url('/admin')}}"
-                           @else href="{{ url('/cabinet') }}" @endif>
-                        <span class="img-user">
-                            @if(Auth::user()->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
-                                {!! Html::image( asset(Auth::user()->getAvatarPath()), 'logo',
-                                array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
-                            @else
-                                {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
-                            @endif
-                        </span>
+                        <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="modal-user-button" @if(Auth::user()->isAdmin()) href="{{url('/admin')}}" @else href="{{ url('/cabinet') }}" @endif>
+                            <span class="img-user">
+                                @if(Auth::user()->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
+                                    {!! Html::image( asset(Auth::user()->getAvatarPath()), 'logo',
+                                    array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                                @else
+                                    {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
+                                @endif
+                            </span>
                             <span class="img-user-name">
-                            <p>{{ Auth::user()->name }}</p>
+                                <p>{{ Auth::user()->name }}</p>
                                 @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
-                        </span>
+                            </span>
                         </a>
                     </div>
                 </div>
-                <div class="col-xs-2 navtab-exit" style="padding-top:10px">
+                <div class="col-xs-2 navtab-exit">
                     <a href="{{ url('/auth/logout') }}">
                         <button type="button" class="btn btn-default modal-exit-button">
                             <i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>
@@ -65,6 +64,7 @@
                         </button>
                     </a>
                 </div>
+
             @endif
         </div>
     </nav>
