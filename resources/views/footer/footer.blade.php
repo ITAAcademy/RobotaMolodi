@@ -42,7 +42,7 @@
             <img src="{{asset('image/vidrodjenja.png')}}">
         </div>
         <div class="inner-footer col-md-5">
-            <div class="row"> 
+            <div class="row">
                 <div class="col-xs-5 col-sm-4">
                     <span>{{ trans('footer.share') }}</span>
                 </div>
