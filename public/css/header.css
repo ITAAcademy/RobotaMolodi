@@ -360,7 +360,6 @@ nav.navbar.navbar-default{
     }
     /*End left modal*/
 }
-
 @media (min-width: 739px) and (max-width: 1299px) {
     /*Right modal*/
     .navtab-registraion{
@@ -527,7 +526,7 @@ nav.navbar.navbar-default{
         padding: 0px;
     }
 
-    @media (min-width: 992px)and (max-width: 1299px) {
+@media (min-width: 992px)and (max-width: 1299px) {
         .col-xs-4.navtab-exit {
             width: 220px;
         }
@@ -732,8 +731,6 @@ nav.navbar.navbar-default{
 
     }
 }
-
-
 @media (min-width: 412px) and (max-width: 768px) {
     /*Right modal*/
     .navtab-registraion{
@@ -1010,7 +1007,6 @@ nav.navbar.navbar-default{
     }
     /*End left modal*/
 }
-
 @media (min-width:300px) and (max-width:480px) {
     /*Right modal*/
     .navtab-registraion{
