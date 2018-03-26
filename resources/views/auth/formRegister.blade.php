@@ -16,7 +16,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label">{{ trans('auth.name') }}</label>
             <div class="col-md-6">
-                <input type="text" placeholder= {{ trans('auth.name') }} class="form-control" name="name" value="{{ old('name') }}">
+                <input type="text" placeholder= "{{ trans('auth.name') }}" class="form-control" name="name" value="{{ old('name') }}">
             </div>
         </div>
 
