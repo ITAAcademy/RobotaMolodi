@@ -41,7 +41,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn">
+                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn"><i class="fa fa-pencil"></i> 
                             Edit news
                         </a>
 
