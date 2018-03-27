@@ -9,4 +9,8 @@ return [
     'vacancy' => 'Vacancy',
     'company' => 'Company',
     'resume' => 'Resume',
+    'project' => 'Project',
+    'blockedcontent' => 'Blocked content',
+    'companies' => 'Companies',
+    'vacancies' => 'Vacancies'
 ];
