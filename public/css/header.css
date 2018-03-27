@@ -70,7 +70,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-regestry {
-        width: 126px;
+        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -441,14 +441,14 @@ nav.navbar.navbar-default {
     .navtab-registraion {
         padding: 0px;
         margin-top: 15px;
-        width: 252px;
+        /*width: 252px;*/
         float: right;
     }
 
     .navtab-registraion button {
         background-color: white;
         border-color: white;
-        width: 126px;
+        /*width: 126px;*/
     }
 
     .navtab-registraion button:hover {
@@ -469,7 +469,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-regestry {
-        width: 126px;
+        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -913,6 +913,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion {
+        /*width: 150px;*/
         padding: 0px;
         float: right;
     }
