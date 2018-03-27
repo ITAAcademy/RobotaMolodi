@@ -41,11 +41,11 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn">
+                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn"><i class="fa fa-pencil"></i> 
                             Edit news
                         </a>
 
-                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary btn-group optionBtn">
+                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary btn-group optionBtn"><i class="fa fa-eye"></i>
                             Show news
                         </a>
 
