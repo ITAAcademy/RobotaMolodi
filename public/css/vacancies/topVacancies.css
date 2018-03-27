@@ -427,14 +427,6 @@ div.wrapper-list-label-box{
 	overflow:hidden;
 }
 
-.sort-box{
-	margin-top:15px;
-}
-.sort-filter{
-	margin-top:3px;
-	margin-left: -2%;
-}
-
 span.opsion-sort-box{
 	color:#f68c06;
 	text-decoration:underline;
