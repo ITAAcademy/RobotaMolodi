@@ -1,4 +1,4 @@
-<div class="col l2 m2 s2 columnLeft">
+<div class="columnLeft">
     <ol class="menu">
         <a href="{{route('admin.news.index')}}">
             <div class="row">
