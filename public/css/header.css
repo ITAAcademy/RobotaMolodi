@@ -32,8 +32,7 @@ nav.navbar.navbar-default {
 }
 
 #navregenterbutn {
-    bottom: 10px;
-    right: 25px;
+    margin: 0;
 }
 
 @media (min-width: 1300px) {
@@ -71,7 +70,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-regestry {
-        width: 126px;
+        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -442,14 +441,14 @@ nav.navbar.navbar-default {
     .navtab-registraion {
         padding: 0px;
         margin-top: 15px;
-        width: 252px;
+        /*width: 252px;*/
         float: right;
     }
 
     .navtab-registraion button {
         background-color: white;
         border-color: white;
-        width: 126px;
+        /*width: 126px;*/
     }
 
     .navtab-registraion button:hover {
@@ -470,7 +469,7 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-regestry {
-        width: 126px;
+        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -877,11 +876,45 @@ nav.navbar.navbar-default {
 
 @media (min-width: 412px) and (max-width: 768px) {
     /*Right modal*/
+    #navregenterbutn button {
+        padding: 0;
+        font-size: 9px;
+    }
+
+    img#entry {
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
+    .only-bars {
+        padding-left: 0;
+    }
+
+    .navbar-default {
+        font-size: 9px;
+        background-color: white;
+        padding: 0;
+        border: 0;
+    }
+
+    .center-block {
+        padding: 5px 5px 0 0;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .main-img {
+        padding: 0;
+    }
+
     .navtab-registraion {
+        /*width: 150px;*/
         padding: 0px;
-        width: 180px;
-        height: 29px;
-        margin-top: 20px;
         float: right;
     }
 
@@ -908,24 +941,19 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-enter {
-        left: 0%;
         padding-left: 1px;
         padding-right: 1px;
         padding-bottom: 1px;
         padding-top: 1px;
-        height: 25px;
-        width: 65px;
+        width: 40px;
         font-size: 11px;
     }
 
     .navtab-registraion .modal-regestry {
-        float: right;
         padding-bottom: 1px;
         padding-top: 1px;
         padding-right: 1px;
         padding-left: 1px;
-        height: 25px;
-        width: 85px;
         font-size: 11px;
     }
 
@@ -1028,7 +1056,6 @@ nav.navbar.navbar-default {
 
     #rightModal .modal-content .form-group a {
         color: #333;
-        /*float: right;*/
         text-decoration: underline;
         font-size: 9px;
         height: 20px;

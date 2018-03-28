@@ -10,4 +10,7 @@ return [
     'company' => 'Компанію',
     'resume' => 'Резюме',
     'project' => 'Проект',
+    'blockedcontent' => 'Заблокований контент',
+    'companies' => 'Компанії',
+    'vacancies' => 'Вакансії'
 ];
