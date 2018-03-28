@@ -26,7 +26,7 @@
             @foreach ($news as $new)
                 <tr>
                     <td scope="row">{{ $new->id }}</td>
-                    <td><h5>{{ $new->name }}</h5></td>
+                    <td style="text-align: center"><h5>{{ $new->name }}</h5></td>
                     <td>
                         @if($new->img!='Not picture')
                             <img class="picture" src="{{ asset($new->getPath().$new->img) }}" style="width: 100%">
@@ -82,5 +82,6 @@
 
             </tbody>
         </table>
+
     </div>
 @stop
