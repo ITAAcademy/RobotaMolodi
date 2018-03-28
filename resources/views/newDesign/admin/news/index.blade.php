@@ -52,9 +52,9 @@
                         {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
-                        ]) !!}
-                        {!! Form::submit('Delete news', ['class' => 'btn btn-danger  btn-group']) !!}
-                        {!! Form::close() !!}
+                        ]) !!} 
+                        {!! Form::submit ('&#xf014;'.' Delete news', [' class' => ' btn btn-danger btn-group fa fa-trash-o optionBtn']) !!}
+                        {!! Form::close() !!} 
 
                     </td>
                 </tr>
