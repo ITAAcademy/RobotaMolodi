@@ -1,21 +1,20 @@
 @extends('newDesign.layouts.admin')
 @section('content')
-    <div class="col-md-10 col-sm-10 col-xs-10 contentAndmin">
+    <div class="contentAndmin">
         @if(Session::has('flash_message'))
             <div class="alert alert-success">
                 {{ Session::get('flash_message') }}
             </div>
         @endif
-
         <table class="striped bordered highlight">
             <thead>
-            <tr>
-                <th>№</th>
-                <th>Blocked Vacancy</th>
-                <th>Blocked since</th>
-                <th>Blocked by</th>
-                <th>Actions</th>
-            </tr>
+                <tr>
+                    <th class="s1 m2 l1 xl1">№</th>
+                    <th class="s3 m3 l3 xl3">Blocked Vacancy</th>
+                    <th class="s3 m2 l2 xl3">Blocked since</th>
+                    <th class="s2 m3 l3 xl2">Blocked by</th>
+                    <th class="s3 m2 l3 xl3">Actions</th>
+                </tr>
             </thead>
             <tbody>
             @foreach($blockedVacancies as $count => $blockedVacancy)
@@ -39,7 +38,7 @@
                                     'route' => ['setVacancyUnBlock', $blockedVacancy->id],
                                     'style' => 'display:inline-block'
                                 ]) !!}
-                                {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-success']) !!}
+                                {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-small confirm']) !!}
                                 {!! Form::close() !!}
                             </span>
                         </div>

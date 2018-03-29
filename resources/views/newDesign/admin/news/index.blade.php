@@ -1,28 +1,25 @@
 @extends('newDesign.layouts.admin')
-
 @section('content')
-    <div class=" col-md-10 col-sm-10 col-xs-10 contentAndmin">
-        <div style="padding-top: 15px">
-            @if(Session::has('flash_message'))
-                <div class="alert alert-success">
-                    {{ Session::get('flash_message') }}
-                </div>
-            @endif
+    <div class="contentAndmin">
+        @if(Session::has('flash_message'))
+            <div class="alert alert-success">
+                {{ Session::get('flash_message') }}
+            </div>
+        @endif
+        <div class="fixed-action-btn">
+            <a href="{{ URL::route('admin.news.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
         </div>
-        <a href="{{ URL::route('admin.news.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
-
-        <table class=" striped bordered highlight " >
+        <table class="striped bordered highlight" >
             <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col" class="col-md-3 col-lg-6">Picture</th>
-                <th scope="col">Published</th>
-                <th scope="col">Options</th>
-            </tr>
+                <tr>
+                    <th class="s1 m2 l2 xl1">Id</th>
+                    <th class="s4 m3 l4 xl4">Title</th>
+                    <th class="s3 m3 l3 xl4">Picture</th>
+                    <th class="s1 m1 l1 xl1">Published</th>
+                    <th class="s3 m3 l2 xl2">Options</th>
+                </tr>
             </thead>
             <tbody>
-
             @foreach ($news as $new)
                 <tr>
                     <td scope="row">{{ $new->id }}</td>
@@ -34,53 +31,49 @@
                             Not picture
                         @endif
                     </td>
-                    <td style="text-align: center">
-                        <div class="form-group">
-                            <button id="{{$new->id}}" value="{{$new->published}}" class="btn btn-link fa set-main"></button>
-                            <br>
-                        </div>
+                    <td>
+                        <button id="{{$new->id}}" value="{{$new->published}}" class="btn btn-flat fa set-main"></button>
                     </td>
                     <td>
-                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-success btn-group optionBtn">
-                            Edit news
+                        <a href="{{ route('admin.news.edit', $new->id) }}" class="btn btn-small optionBtn">
+                            Edit
                         </a>
 
-                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-primary btn-group optionBtn">
-                            Show news
+                        <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-small blue optionBtn">
+                            Show
                         </a>
 
                         {!! Form::open([
+                        'class' => 'confirm',
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
                         ]) !!}
-                        {!! Form::submit('Delete news', ['class' => 'btn btn-danger  btn-group']) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-small red optionBtn']) !!}
                         {!! Form::close() !!}
-
                     </td>
                 </tr>
             @endforeach
-            <script>
-                $(document).ready(function () {
-                    $("button[value='0']").addClass("fa-square-o");
-                    $("button[value='1']").addClass("fa-check-square-o");
-                    $("button.fa").click( function() {
-                        var id = $(this).attr('id');
-                        $.ajax({
-                            url: '/admin/news/updatePublished/'+id,
-                            methof: 'GET',
-                            success: function(published) {
-                                if (published > 0) {
-                                    return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
-                                } else {
-                                    return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
-                                }
-                            }
-                        });
-                    });
-                })
-            </script>
-
             </tbody>
         </table>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("button[value='0']").addClass("fa-square-o");
+            $("button[value='1']").addClass("fa-check-square-o");
+            $("button.fa").click( function() {
+                var id = $(this).attr('id');
+                $.ajax({
+                    url: '/admin/news/updatePublished/'+id,
+                    methof: 'GET',
+                    success: function(published) {
+                        if (published > 0) {
+                            return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
+                        } else {
+                            return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @stop

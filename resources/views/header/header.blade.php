@@ -24,12 +24,12 @@
 
             @if (Auth::guest())
                 <div class="row">
-                    <div id="navregenterbutn" class="col-xs-6 col-md-4 navtab-registraion">
-                        <button type="button" class="btn btn-default modal-enter col-xs-6">
+                    <div id="navregenterbutn" class="col-xs-offset-6 col-md-4 navtab-registraion">
+                        <button type="button" class="btn btn-default modal-enter col-xs-6 col-md-2">
                             <span>{!! Html::image('image/entry.png',trans('auth.signin'),['id'=>'entry']) !!}</span>
                             <span>{{ trans('auth.signin') }}</span>
                         </button>
-                        <button type="button" class="btn btn-default modal-regestry col-xs-6">
+                        <button type="button" class="btn btn-default modal-regestry col-xs-6 col-md-2">
                             <span>{!! Html::image('image/registry.png',trans('auth.signup'),['id'=>'registry']) !!}</span>
                             <span>{{ trans('auth.signup') }}</span>
                         </button>
