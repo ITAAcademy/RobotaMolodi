@@ -13,7 +13,37 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.styles([
-        'test.css',
-        'test2.css'
-    ], 'elixir-test.css');
+        './public/css/aboutUs/featherlight.gallery.min.css',
+        './public/css/aboutUs/featherlight.min.css',
+        './public/css/aboutUs/aboutUs.css',
+        './public/css/slick/slick.css',
+        './public/css/slick/slick-theme.css',
+        './public/css/paginator/paginator.css',
+        './public/css/errors/base.css',
+        './public/css/style.css',
+        './public/css/select2.css',
+        './public/css/aboutUsShow.css',
+        './public/css/cabinet.css',
+        './public/css/creating.css',
+        './public/css/navTab.css',
+        './public/css/header.css',
+    ], 'public/elixir-test/elixir-test.css');
+
+    mix.scripts([
+        './public/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.messagestore.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.fallbacks.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.language.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.parser.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.emitter.js',
+        './public/js/lib/jquery_i18n/jquery.i18n.emitter.bidi.js',
+        './public/js/robotaMolodiUtils.js',
+        './public/js/formatDate.js',
+        './public/js/initMap.js',
+        './public/js/slick/slick.min.js',
+        './public/js/select2.full.js',
+        './public/js/liker.js',
+        './public/js/animateRightCol.js',
+    ],'public/elixir-test/elixir-test.js');
 });

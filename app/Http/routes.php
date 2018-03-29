@@ -244,3 +244,9 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
+
+Route::group(['prefix' => 'test'], function () {
+    Route::get('contacts', function (){
+        return view('elixir-test.contacts');
+    });
+});
