@@ -41,7 +41,7 @@
 	<!-- App styles -->
 	<link href="{{ asset('elixir-test/elixir-test.css') }}" rel="stylesheet">
 	<!-- App Scripts -->
-	<link href="{{ asset('elixir-test/elixir-test.js') }}" rel="stylesheet">
+	<script src="{{ asset('elixir-test/elixir-test.js') }}"></script>
 </head>
 <body>
     <div class="wrapper-page">
