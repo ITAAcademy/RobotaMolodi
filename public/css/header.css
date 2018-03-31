@@ -13,6 +13,7 @@
 }
 
 nav.navbar.navbar-default {
+    /*margin: 0;*/
     margin-bottom: 12px;
 }
 
@@ -36,6 +37,14 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 1300px) {
+    .modal-regestry{
+        padding: 0;
+    }
+
+    .modal-enter {
+        padding: 0;
+    }
+
     .center-block {
         padding-left: 0;
         padding-right: 27px;
@@ -263,9 +272,13 @@ nav.navbar.navbar-default {
         border: 1px solid #f68c06;
     }
 
+    .img-user img {
+        padding: 0px;
+    }
+
     .img-user-name {
         display: table-cell;
-        height: 35px;
+        /*height: 35px;*/
         vertical-align: middle;
         padding-left: 3px;
         padding-right: 1px;
@@ -273,7 +286,7 @@ nav.navbar.navbar-default {
 
     .navtab-exit .modal-user-button {
         padding: 3px;
-        padding-left: 75px;
+        /*padding-left: 75px;*/
         border: 0;
         color: #f68c06;
     }
@@ -304,7 +317,7 @@ nav.navbar.navbar-default {
     }
 
     nav.navbar.navbar-default {
-        height: 70px;
+        /*height: 70px;*/
     }
 
     .navtab-registraion ul.nav.nav-tabs {
@@ -319,14 +332,14 @@ nav.navbar.navbar-default {
 
     /*Left modal*/
     button.btn.btn-default.only-bars {
-        margin-left: 46px;
+        /*margin-left: 46px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
 
     button.btn.btn-default.only-bars:hover {
-        margin-left: 46px;
+        /*margin-left: 46px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -437,6 +450,18 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 739px) and (max-width: 1299px) {
+    .img-user img {
+        padding: 0px;
+    }
+
+    .modal-enter {
+        padding: 0;
+    }
+
+    .modal-regestry{
+        padding: 0;
+    }
+
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
@@ -629,11 +654,6 @@ nav.navbar.navbar-default {
         padding: 0px;
     }
 
-    @media (min-width: 992px)and (max-width: 1299px) {
-        .col-xs-4.navtab-exit {
-            width: 220px;
-        }
-    }
     .navtab-exit p {
         font-size: 12px;
         margin: 0;
@@ -654,6 +674,7 @@ nav.navbar.navbar-default {
     }
 
     .img-user {
+        padding: 0;
         width: 35px;
         height: 35px;
         float: left;
@@ -666,18 +687,18 @@ nav.navbar.navbar-default {
         padding-left: 3px;
         padding-right: 1px;
         position: relative;
-        bottom: 11px;
-        left: 45px;
+        /*bottom: 11px;*/
+        /*left: 45px;*/
     }
 
     .navtab-exit .modal-user-button {
         float: right;
-        padding-left: 75px;
-        margin-right: -45px;
-        margin-top: -11px;
+        /*padding-left: 75px;*/
+        /*margin-right: -45px;*/
+        /*margin-top: -11px;*/
         border: 0;
         color: #f68c06;
-        height: 39px;
+        /*height: 39px;*/
     }
 
     .navtab-exit .modal-exit-button {
@@ -706,12 +727,12 @@ nav.navbar.navbar-default {
     }
 
     .navbar-default .bars-left-modal {
-        margin-left: 10px;
-        margin-right: 20px;
+        /*margin-left: 10px;*/
+        /*margin-right: 20px;*/
     }
 
     nav.navbar.navbar-default {
-        height: 60px;
+        /*height: 60px;*/
     }
 
     .navtab-registraion ul.nav.nav-tabs {
@@ -726,15 +747,15 @@ nav.navbar.navbar-default {
 
     /*Left modal*/
     button.btn.btn-default.only-bars {
-        margin-left: 8px;
-        margin-top: 1px;
+        /*margin-left: 8px;*/
+        /*margin-top: 1px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
 
     button.btn.btn-default.only-bars:hover {
-        margin-left: 8px;
+        /*margin-left: 8px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -845,23 +866,45 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 572px) and (max-width: 768px) {
+    .img-user img {
+        padding: 0px;
+    }
+
     button.btn.btn-default.only-bars {
-        margin-left: 26px;
-        margin-top: 1px;
+        /*margin-left: 26px;*/
+        /*margin-top: 1px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
 
     button.btn.btn-default.only-bars:hover {
-        margin-left: 26px;
+        /*margin-left: 26px;*/
     }
 }
 
 @media (min-width: 720px) and (max-width: 1280px) {
+    .modal-regestry{
+        padding: 0;
+    }
+
+    .modal-enter {
+        padding: 0;
+    }
+
+    .navtab-exit {
+        padding: 0;
+        margin-top: 14px;
+        float: right;
+    }
+
+    .img-user img {
+        padding: 0px;
+    }
+
     button.btn.btn-default.only-bars {
         float: left;
-        margin-top: 26px;
+        /*margin-top: 26px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -869,12 +912,22 @@ nav.navbar.navbar-default {
 
     button.btn.btn-default.only-bars:hover {
         float: left;
-        margin-top: 26px;
+        /*margin-top: 26px;*/
 
     }
 }
 
 @media (min-width: 412px) and (max-width: 768px) {
+    .navtab-exit {
+        padding: 0;
+        margin-top: 14px;
+        float: right;
+    }
+
+    .img-user img {
+        padding: 0px;
+    }
+
     /*Right modal*/
     #navregenterbutn button {
         padding: 0;
@@ -890,7 +943,7 @@ nav.navbar.navbar-default {
     }
 
     .only-bars {
-        padding-left: 0;
+        padding: 0;
     }
 
     .navbar-default {
@@ -908,9 +961,9 @@ nav.navbar.navbar-default {
         margin: 0;
     }
 
-    .main-img {
-        padding: 0;
-    }
+    /*.main-img {*/
+        /*padding: 0;*/
+    /*}*/
 
     .navtab-registraion {
         /*width: 150px;*/
@@ -941,11 +994,8 @@ nav.navbar.navbar-default {
     }
 
     .navtab-registraion .modal-enter {
-        padding-left: 1px;
-        padding-right: 1px;
-        padding-bottom: 1px;
-        padding-top: 1px;
-        width: 40px;
+        padding: 0;
+        /*width: 40px;*/
         font-size: 11px;
     }
 
@@ -1266,18 +1316,15 @@ nav.navbar.navbar-default {
         padding-top: 1px;
         padding-right: 1px;
         padding-left: 1px;
-        height: 29px;
-        width: 79px;
+        /*height: 29px;*/
+        /*width: 79px;*/
         font-size: 9px;
     }
 
     .navtab-registraion .modal-enter {
-        padding-left: 1px;
-        padding-right: 1px;
-        padding-bottom: 1px;
-        padding-top: 1px;
-        height: 29px;
-        width: 49px;
+        padding: 0;
+        /*height: 29px;*/
+        /*width: 49px;*/
         font-size: 9px;
     }
 
@@ -1444,20 +1491,21 @@ nav.navbar.navbar-default {
     }
 
     .navbar-default .bars-left-modal {
-        width: 40px;
+        /*width: 40px;*/
         margin-left: 0px;
-        padding-left: 10px;
+        padding-left: 0px;
         padding-right: 0px;
     }
 
     .navbar-default .center-block {
-        border-right-width: 10px;
+        /*border-right-width: 10px;*/
         margin-right: 0px;
         margin-left: 0px;
-        margin-top: 10px;
+        margin-top: 00px;
     }
 
     .navtab-exit {
+        float: right;
         padding: 0px;
     }
 
@@ -1478,7 +1526,8 @@ nav.navbar.navbar-default {
     }
 
     .col-xs-4.navtab-exit div.row.pull-left {
-        width: 100%;
+        /*width: 100%;*/
+        float: right;
         margin: 0px;
     }
 
@@ -1508,8 +1557,8 @@ nav.navbar.navbar-default {
     }
 
     .img-user-name {
-        height: 27px;
-        width: 37px;
+        /*height: 27px;*/
+        /*width: 37px;*/
         float: right;
     }
 
@@ -1521,10 +1570,10 @@ nav.navbar.navbar-default {
 
     .navtab-exit .modal-user-button {
         font-size: 9px;
-        height: 27px;
+        /*height: 27px;*/
         border: 0;
         color: #f68c06;
-        width: 60px;
+        /*width: 60px;*/
         float: right;
     }
 
@@ -1555,7 +1604,7 @@ nav.navbar.navbar-default {
     }
 
     nav.navbar.navbar-default {
-        height: 50px;
+        /*height: 50px;*/
     }
 
     .navtab-registraion ul.nav.nav-tabs {
@@ -1594,8 +1643,8 @@ nav.navbar.navbar-default {
     }
 
     button.btn.btn-default.only-bars {
-        padding-left: 23px;
-        padding-right: 6px;
+        /*padding-left: 23px;*/
+        /*padding-right: 6px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -1626,10 +1675,10 @@ nav.navbar.navbar-default {
         background-color: white;
         border-color: white;
         outline-color: white;
-        padding: 0;
-        width: 32px;
-        height: 32px;
-        margin-left: -15px;
+        /*padding: 0;*/
+        /*width: 32px;*/
+        /*height: 32px;*/
+        /*margin-left: -15px;*/
     }
 
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover {
@@ -1690,130 +1739,4 @@ nav.navbar.navbar-default {
     }
 
     /*End left modal*/
-    @media (min-width: 720px) and (max-width: 1280px) {
-        #leftModal .modal-content {
-            width: 232px;
-            margin-left: 0px;
-            font-size: 10px;
-        }
-
-        #leftModal .modal-content .bars-left {
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-bottom: 0px;
-        }
-
-        #leftModal .minilogo {
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-bottom: 5px;
-        }
-
-        #leftModal .list-modal-left {
-            height: 15px;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        button.btn.btn-default.only-bars {
-            padding-left: 30px;
-            padding-right: 6px;
-            background-color: white;
-            border-color: white;
-            outline-color: white;
-        }
-
-        button.btn.btn-default.only-bars:hover {
-            background-color: white;
-            border-color: white;
-            outline-color: white;
-        }
-
-        .text-left-modal a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .text-left-modal a:hover {
-            color: #f68c06;
-            text-decoration: none;
-        }
-
-        .text-left-modal a:focus {
-            color: #f68c06;
-            text-decoration: none;
-        }
-
-        #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars {
-            background-color: white;
-            border-color: white;
-            outline-color: white;
-            padding: 0;
-            width: 32px;
-            height: 32px;
-            margin-left: -15px;
-        }
-
-        #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover {
-            background-color: white;
-            border-color: white;
-            outline-color: white;
-        }
-
-        #leftModal .modal-content .bars-left span {
-            color: #f68c06;
-        }
-
-        #leftModal .modal-content .bars-left a {
-            color: #f68c06;
-        }
-
-        #leftModal .list-modal-left-register {
-            height: 25px;
-            padding-left: 0px;
-            padding-right: 0px;
-            margin-bottom: 5px;
-        }
-
-        #leftModal .minilogo img {
-            width: 18px;
-        }
-
-        #leftModal hr.modal-hr {
-            margin-bottom: 10px;
-            margin-top: 10px;
-            border-color: #f68c06;
-        }
-
-        #leftModal .modal-content .bars-left a.local-ua {
-            color: orange;
-            text-decoration: none;
-        }
-
-        .icon-left-modal {
-            color: #f68c06;
-            margin-right: 5px;
-        }
-
-        #share-txt {
-            color: #9d9d9d;
-        }
-
-        .modal-social-share {
-            padding: 0;
-        }
-
-        .modal-social-share a {
-            text-decoration: none;
-        }
-
-        .modal-social-share a i {
-            margin: 0;
-        }
-
-        nav.navbar.navbar-default .center-block img {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-    }
 }
