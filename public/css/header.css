@@ -14,6 +14,7 @@
 
 nav.navbar.navbar-default {
     /*margin: 0;*/
+    margin-top: 12px;
     margin-bottom: 12px;
 }
 
@@ -34,6 +35,7 @@ nav.navbar.navbar-default {
 
 #navregenterbutn {
     margin: 0;
+    float: right;
 }
 
 @media (min-width: 1300px) {
@@ -239,7 +241,7 @@ nav.navbar.navbar-default {
     }
 
     .col-xs-4.navtab-exit {
-        width: 240px;
+        /*width: 240px;*/
     }
 
     .navtab-exit p {
@@ -258,7 +260,7 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        margin-top: 14px;
+        /*margin-top: 14px;*/
     }
 
     .navtab-exit a {
@@ -266,8 +268,8 @@ nav.navbar.navbar-default {
     }
 
     .img-user {
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
         float: left;
         border: 1px solid #f68c06;
     }
@@ -670,7 +672,7 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        margin-top: 14px;
+        /*margin-top: 14px;*/
     }
 
     .img-user {
@@ -703,7 +705,7 @@ nav.navbar.navbar-default {
 
     .navtab-exit .modal-exit-button {
         /*width: 131px;*/
-        padding: 3px;
+        /*padding: 3px;*/
         border: 0;
         color: #f68c06;
     }
@@ -894,7 +896,7 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        margin-top: 14px;
+        /*margin-top: 14px;*/
         float: right;
     }
 
@@ -918,14 +920,70 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 412px) and (max-width: 768px) {
-    .navtab-exit {
-        padding: 0;
-        margin-top: 14px;
+    .modal-user-button {
+        float: right;
+        /* padding-left: 75px; */
+        /* margin-right: -45px; */
+        /* margin-top: -11px; */
+        border: 0;
+        color: #f68c06;
+        /* height: 39px; */
+    }
+
+    .modal-exit-button {
+        font-size: 9px;
+        /*width: 131px;*/
+        /*padding: 3px;*/
+        border: 0;
+        color: #f68c06;
+        /*width: 58px;*/
+        padding: 0px;
+    }
+
+    .navtab-exit a {
+        text-decoration: none;
         float: right;
     }
 
+    .pensil7px{
+        width: 6px;
+        /*padding-left: 2px;*/
+    }
+
+    .navtab-exit {
+        padding: 0;
+        /*margin-top: 14px;*/
+        float: right;
+    }
+
+    .img-user {
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        float: left;
+        border: 1px solid #f68c06;
+    }
+
     .img-user img {
+        padding: 0;
+    }
+
+    .img-user-name {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 3px;
+        padding-right: 1px;
+        position: relative;
+        /*bottom: 11px;*/
+        /*left: 45px;*/
+    }
+
+    .img-user-name p {
+        /*width: 20px;*/
+        /*height: 13px;*/
         padding: 0px;
+        margin: 0;
+        font-size: 10px;
     }
 
     /*Right modal*/
@@ -1280,11 +1338,23 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 300px) and (max-width: 480px) {
+    .row {
+        margin: 0;
+    }
+
+    img#entry {
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
-        width: 140px;
-        height: 29px;
+        /*width: 140px;*/
+        /*height: 29px;*/
         margin-top: 20px;
         float: right;
     }
@@ -1501,7 +1571,7 @@ nav.navbar.navbar-default {
         /*border-right-width: 10px;*/
         margin-right: 0px;
         margin-left: 0px;
-        margin-top: 00px;
+        margin-top: 0px;
     }
 
     .navtab-exit {
@@ -1517,12 +1587,12 @@ nav.navbar.navbar-default {
     }
 
     .navtab-exit .modal-exit-button {
-        width: 58px;
+        /*width: 58px;*/
         padding: 0px;
     }
 
     .col-xs-4.navtab-exit {
-        width: 30%;
+        /*width: 30%;*/
     }
 
     .col-xs-4.navtab-exit div.row.pull-left {
@@ -1548,7 +1618,7 @@ nav.navbar.navbar-default {
     .img-user {
         width: 22px;
         height: 22px;
-        float: right;
+        float: left;
         border: 1px solid #f68c06;
     }
 
@@ -1563,8 +1633,8 @@ nav.navbar.navbar-default {
     }
 
     .img-user-name p {
-        width: 20px;
-        height: 13px;
+        /*width: 20px;*/
+        /*height: 13px;*/
         padding: 0px;
     }
 
@@ -1578,8 +1648,8 @@ nav.navbar.navbar-default {
     }
 
     .navtab-exit .modal-exit-button {
-        height: 27px;
-        font-size: 12px;
+        /*height: 27px;*/
+        font-size: 9px;
         margin-left: 0px;
         border: 0;
         color: #f68c06;
@@ -1643,8 +1713,7 @@ nav.navbar.navbar-default {
     }
 
     button.btn.btn-default.only-bars {
-        /*padding-left: 23px;*/
-        /*padding-right: 6px;*/
+        padding: 0;
         background-color: white;
         border-color: white;
         outline-color: white;
