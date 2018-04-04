@@ -337,7 +337,8 @@ div.wrapper-list-select-box, div.wrapper-list-label-box{
 }
 
 div.wrapper-list-label-box{
-	margin-bottom:5px;
+	margin-bottom:10px;
+	margin-top:15px;
 	padding-left:10px;
 }
 .wrapper-list-label-box label{
@@ -424,14 +425,6 @@ div.wrapper-list-label-box{
 	width:95%;
 	text-align:left;
 	overflow:hidden;
-}
-
-.sort-box{
-	margin-top:15px;
-}
-.sort-filter{
-	margin-top:3px;
-	margin-left: -2%;
 }
 
 span.opsion-sort-box{

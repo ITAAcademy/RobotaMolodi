@@ -32,7 +32,6 @@
                         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
                         <span>Змiнити фото</span>
                     </span>
-                    <br>
                     @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
                         <span class="orange-link-myresume" id="deleteImage">
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -46,7 +45,10 @@
                 <div id="datAnnoyingSizes">
                     <div class="panel-heading-resume">
                         <p class="position-resume">
-                            {!! Html::linkRoute('resume.showResumes', $resume->position, [ 'name' => 'specialisation', 'value' => $resume->position], ['class' => 'orangColor-resume-name', 'tabindex' => 1 ]) !!}
+                            {!! Html::linkRoute('resume.showResumes', $resume->position,
+                                [ 'name' => 'specialisation', 'value' => $resume->position],
+                                ['class' => 'orangColor-resume-name', 'tabindex' => 1 ])
+                            !!}
                             <br>
                         </p>
                         <p class="price-resume">
@@ -143,6 +145,7 @@
                     });
                 }
             });
+
 
             $.ajaxSetup({
                 headers: {

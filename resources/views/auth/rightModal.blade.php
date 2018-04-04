@@ -21,7 +21,7 @@
             <div id="panel1" class="tab-pane fade in active">
                 <div>
                     @include('auth.formLogin')
-                    <div class="modal-social-icon">
+                    <!-- <div class="modal-social-icon">
                         <p>{{ trans('auth.or') }}</p>
                         <div>{{ trans('auth.osignin') }}</div>
                         <a href="/login/twitter">
@@ -40,13 +40,13 @@
                             <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
                             </a>
                             <a href="auth/intita"><span class="logoINTITA"></span></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div id="panel2" class="tab-pane fade">
                 <div>
                     @include('auth.formRegister')
-                    <div class="modal-social-icon">
+                    <!-- <div class="modal-social-icon">
                         <p>{{ trans('auth.or') }}</p>
                         <div>{{ trans('auth.osignup') }}</div>
                         <a href="/login/twitter">
@@ -65,9 +65,10 @@
                         <i class="fa-soc fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
                         </a>
                         <a href="auth/intita"><span class="logoINTITA"></span></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
+    
 </div>

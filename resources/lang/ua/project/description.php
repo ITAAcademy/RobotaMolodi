@@ -27,4 +27,6 @@ return [
     "bonuses" => "Бонуси",
     "choosefromexisting" => "Обрати з існуючих",
     "addnew" => "Додати нову",
+    "briefDesc" => "Короткий опис проекту",
+    "fullDesc" => "Повний опис проекту"
 ];

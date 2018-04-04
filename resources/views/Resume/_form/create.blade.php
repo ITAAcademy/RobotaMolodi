@@ -65,7 +65,7 @@
             </div>
             <div class=" col-md-6 col-sm-6 resume-form">
                 <div class="resume-form-input">
-                    <select name="city" style="width: 100%" class="form-control js-example-basic-multiple" multiple="multiple" id="selectCity">
+                    <select name="city" style="width: 100%" class="form-control" id="selectCity">
                         @foreach($cities as $city)
                             <option value="{{$city->id}}"> {{$city->name}} </option>
                         @endforeach
