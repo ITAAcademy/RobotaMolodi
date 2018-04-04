@@ -35,16 +35,16 @@ nav.navbar.navbar-default {
     margin: 0;
 }
 
+img#entry {
+    margin-right: 5px;
+    padding: 0;
+}
+
+img#registry {
+    padding: 0;
+}
+
 @media (min-width: 1300px) {
-    img#entry {
-        margin-right: 7px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
-    }
-
     .center-block {
         padding-left: 0;
         padding-right: 27px;
@@ -446,15 +446,6 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 739px) and (max-width: 1299px) {
-    img#entry {
-        margin-right: 5px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
-    }
-
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
@@ -863,15 +854,6 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 572px) and (max-width: 768px) {
-    img#entry {
-        margin-right: 5px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
-    }
-
     button.btn.btn-default.only-bars {
         margin-left: 26px;
         margin-top: 1px;
@@ -886,15 +868,6 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 720px) and (max-width: 1280px) {
-    img#entry {
-        margin-right: 5px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
-    }
-
     button.btn.btn-default.only-bars {
         float: left;
         margin-top: 26px;
@@ -915,15 +888,6 @@ nav.navbar.navbar-default {
     #navregenterbutn button {
         padding: 0;
         font-size: 9px;
-    }
-
-    img#entry {
-        margin-right: 5px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
     }
 
     .only-bars {
@@ -1267,15 +1231,6 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 300px) and (max-width: 480px) {
-    img#entry {
-        margin-right: 5px;
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
-    }
-
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
