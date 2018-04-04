@@ -13,7 +13,6 @@
 }
 
 nav.navbar.navbar-default {
-    /*margin: 0;*/
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -78,10 +77,6 @@ nav.navbar.navbar-default {
         background-color: white;
         border-color: white;
         outline-color: white;
-    }
-
-    .navtab-registraion .modal-regestry {
-        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -176,7 +171,6 @@ nav.navbar.navbar-default {
 
     #rightModal .modal-content .form-group a {
         color: #333;
-        /*float: right;*/
         text-decoration: underline;
         font-size: 12px;
         height: 25px;
@@ -228,7 +222,6 @@ nav.navbar.navbar-default {
         border: 1px solid #f68c06;
         border-radius: 0 0 15px 15px;
         background-color: white;
-        /*border-top-color: transparent;*/
     }
 
     /*End right modal*/
@@ -238,10 +231,6 @@ nav.navbar.navbar-default {
         border-left-width: 0px;
         background-color: white;
         padding: 0px;
-    }
-
-    .col-xs-4.navtab-exit {
-        /*width: 240px;*/
     }
 
     .navtab-exit p {
@@ -260,7 +249,6 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        /*margin-top: 14px;*/
     }
 
     .navtab-exit a {
@@ -280,7 +268,6 @@ nav.navbar.navbar-default {
 
     .img-user-name {
         display: table-cell;
-        /*height: 35px;*/
         vertical-align: middle;
         padding-left: 3px;
         padding-right: 1px;
@@ -288,13 +275,11 @@ nav.navbar.navbar-default {
 
     .navtab-exit .modal-user-button {
         padding: 3px;
-        /*padding-left: 75px;*/
         border: 0;
         color: #f68c06;
     }
 
     .navtab-exit .modal-exit-button {
-        /*width: 131px;*/
         padding: 3px;
         border: 0;
         color: #f68c06;
@@ -319,7 +304,6 @@ nav.navbar.navbar-default {
     }
 
     nav.navbar.navbar-default {
-        /*height: 70px;*/
     }
 
     .navtab-registraion ul.nav.nav-tabs {
@@ -334,14 +318,12 @@ nav.navbar.navbar-default {
 
     /*Left modal*/
     button.btn.btn-default.only-bars {
-        /*margin-left: 46px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
 
     button.btn.btn-default.only-bars:hover {
-        /*margin-left: 46px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -468,14 +450,12 @@ nav.navbar.navbar-default {
     .navtab-registraion {
         padding: 0px;
         margin-top: 15px;
-        /*width: 252px;*/
         float: right;
     }
 
     .navtab-registraion button {
         background-color: white;
         border-color: white;
-        /*width: 126px;*/
     }
 
     .navtab-registraion button:hover {
@@ -493,10 +473,6 @@ nav.navbar.navbar-default {
         background-color: white;
         border-color: white;
         outline-color: white;
-    }
-
-    .navtab-registraion .modal-regestry {
-        /*width: 126px;*/
     }
 
     #rightModal .modal-content {
@@ -592,7 +568,6 @@ nav.navbar.navbar-default {
 
     #rightModal .modal-content .form-group a {
         color: #333;
-        /*float: right;*/
         text-decoration: underline;
         font-size: 12px;
         height: 25px;
@@ -644,7 +619,6 @@ nav.navbar.navbar-default {
         border: 1px solid #f68c06;
         border-radius: 0 0 15px 15px;
         background-color: white;
-        /*border-top-color: transparent;*/
     }
 
     /*End right modal*/
@@ -672,7 +646,6 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        /*margin-top: 14px;*/
     }
 
     .img-user {
@@ -689,23 +662,16 @@ nav.navbar.navbar-default {
         padding-left: 3px;
         padding-right: 1px;
         position: relative;
-        /*bottom: 11px;*/
-        /*left: 45px;*/
     }
 
     .navtab-exit .modal-user-button {
         float: right;
-        /*padding-left: 75px;*/
-        /*margin-right: -45px;*/
-        /*margin-top: -11px;*/
         border: 0;
         color: #f68c06;
-        /*height: 39px;*/
     }
 
     .navtab-exit .modal-exit-button {
-        /*width: 131px;*/
-        /*padding: 3px;*/
+        font-size: 9px;
         border: 0;
         color: #f68c06;
     }
@@ -728,15 +694,6 @@ nav.navbar.navbar-default {
         outline-color: white;
     }
 
-    .navbar-default .bars-left-modal {
-        /*margin-left: 10px;*/
-        /*margin-right: 20px;*/
-    }
-
-    nav.navbar.navbar-default {
-        /*height: 60px;*/
-    }
-
     .navtab-registraion ul.nav.nav-tabs {
         float: right;
         margin-top: 16px;
@@ -749,15 +706,12 @@ nav.navbar.navbar-default {
 
     /*Left modal*/
     button.btn.btn-default.only-bars {
-        /*margin-left: 8px;*/
-        /*margin-top: 1px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
 
     button.btn.btn-default.only-bars:hover {
-        /*margin-left: 8px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -873,19 +827,18 @@ nav.navbar.navbar-default {
     }
 
     button.btn.btn-default.only-bars {
-        /*margin-left: 26px;*/
-        /*margin-top: 1px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
     }
-
-    button.btn.btn-default.only-bars:hover {
-        /*margin-left: 26px;*/
-    }
 }
 
 @media (min-width: 720px) and (max-width: 1280px) {
+    #navregenterbutn button {
+        padding: 0;
+        font-size: 9px;
+    }
+
     .modal-regestry{
         padding: 0;
     }
@@ -896,7 +849,6 @@ nav.navbar.navbar-default {
 
     .navtab-exit {
         padding: 0;
-        /*margin-top: 14px;*/
         float: right;
     }
 
@@ -906,7 +858,6 @@ nav.navbar.navbar-default {
 
     button.btn.btn-default.only-bars {
         float: left;
-        /*margin-top: 26px;*/
         background-color: white;
         border-color: white;
         outline-color: white;
@@ -914,7 +865,6 @@ nav.navbar.navbar-default {
 
     button.btn.btn-default.only-bars:hover {
         float: left;
-        /*margin-top: 26px;*/
 
     }
 }
@@ -922,21 +872,14 @@ nav.navbar.navbar-default {
 @media (min-width: 412px) and (max-width: 768px) {
     .modal-user-button {
         float: right;
-        /* padding-left: 75px; */
-        /* margin-right: -45px; */
-        /* margin-top: -11px; */
         border: 0;
         color: #f68c06;
-        /* height: 39px; */
     }
 
     .modal-exit-button {
         font-size: 9px;
-        /*width: 131px;*/
-        /*padding: 3px;*/
         border: 0;
         color: #f68c06;
-        /*width: 58px;*/
         padding: 0px;
     }
 
@@ -947,12 +890,10 @@ nav.navbar.navbar-default {
 
     .pensil7px{
         width: 6px;
-        /*padding-left: 2px;*/
     }
 
     .navtab-exit {
         padding: 0;
-        /*margin-top: 14px;*/
         float: right;
     }
 
@@ -974,13 +915,9 @@ nav.navbar.navbar-default {
         padding-left: 3px;
         padding-right: 1px;
         position: relative;
-        /*bottom: 11px;*/
-        /*left: 45px;*/
     }
 
     .img-user-name p {
-        /*width: 20px;*/
-        /*height: 13px;*/
         padding: 0px;
         margin: 0;
         font-size: 10px;
@@ -1019,12 +956,7 @@ nav.navbar.navbar-default {
         margin: 0;
     }
 
-    /*.main-img {*/
-        /*padding: 0;*/
-    /*}*/
-
     .navtab-registraion {
-        /*width: 150px;*/
         padding: 0px;
         float: right;
     }
@@ -1053,7 +985,6 @@ nav.navbar.navbar-default {
 
     .navtab-registraion .modal-enter {
         padding: 0;
-        /*width: 40px;*/
         font-size: 11px;
     }
 
@@ -1353,8 +1284,6 @@ nav.navbar.navbar-default {
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
-        /*width: 140px;*/
-        /*height: 29px;*/
         margin-top: 20px;
         float: right;
     }
@@ -1386,15 +1315,11 @@ nav.navbar.navbar-default {
         padding-top: 1px;
         padding-right: 1px;
         padding-left: 1px;
-        /*height: 29px;*/
-        /*width: 79px;*/
         font-size: 9px;
     }
 
     .navtab-registraion .modal-enter {
         padding: 0;
-        /*height: 29px;*/
-        /*width: 49px;*/
         font-size: 9px;
     }
 
@@ -1561,14 +1486,12 @@ nav.navbar.navbar-default {
     }
 
     .navbar-default .bars-left-modal {
-        /*width: 40px;*/
         margin-left: 0px;
         padding-left: 0px;
         padding-right: 0px;
     }
 
     .navbar-default .center-block {
-        /*border-right-width: 10px;*/
         margin-right: 0px;
         margin-left: 0px;
         margin-top: 0px;
@@ -1587,16 +1510,10 @@ nav.navbar.navbar-default {
     }
 
     .navtab-exit .modal-exit-button {
-        /*width: 58px;*/
         padding: 0px;
     }
 
-    .col-xs-4.navtab-exit {
-        /*width: 30%;*/
-    }
-
     .col-xs-4.navtab-exit div.row.pull-left {
-        /*width: 100%;*/
         float: right;
         margin: 0px;
     }
@@ -1627,28 +1544,21 @@ nav.navbar.navbar-default {
     }
 
     .img-user-name {
-        /*height: 27px;*/
-        /*width: 37px;*/
         float: right;
     }
 
     .img-user-name p {
-        /*width: 20px;*/
-        /*height: 13px;*/
         padding: 0px;
     }
 
     .navtab-exit .modal-user-button {
         font-size: 9px;
-        /*height: 27px;*/
         border: 0;
         color: #f68c06;
-        /*width: 60px;*/
         float: right;
     }
 
     .navtab-exit .modal-exit-button {
-        /*height: 27px;*/
         font-size: 9px;
         margin-left: 0px;
         border: 0;
@@ -1671,10 +1581,6 @@ nav.navbar.navbar-default {
         color: #f68c06;
         background-color: white;
         outline-color: white;
-    }
-
-    nav.navbar.navbar-default {
-        /*height: 50px;*/
     }
 
     .navtab-registraion ul.nav.nav-tabs {
@@ -1744,10 +1650,6 @@ nav.navbar.navbar-default {
         background-color: white;
         border-color: white;
         outline-color: white;
-        /*padding: 0;*/
-        /*width: 32px;*/
-        /*height: 32px;*/
-        /*margin-left: -15px;*/
     }
 
     #leftModal .modal-content button.btn.btn-default.col-xs-3.list-in-bars:hover {

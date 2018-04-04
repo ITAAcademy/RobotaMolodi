@@ -9,7 +9,7 @@
                 </button>
             </div>
         </div>
-        <div class="removeOffset col-xs-offset-2 col-xs-6 col-sm-offset-2 col-sm-6 col-lg-6" style="padding: 0">
+        <div class="headerRemoveOffsetLogo col-xs-offset-2 col-xs-6 col-sm-offset-2 col-sm-6 col-lg-6" style="padding: 0">
             <a href="{{ url('/') }}" class="afterChange">
                 <div class="row">
                     <div class="col-xs-offset-1 col-xs-2" style="padding: 0">
@@ -29,7 +29,7 @@
         {{--<span> | </span>--}}
         {{--</div>--}}
         @if (Auth::guest())
-            <div class="col-xs-3 col-sm-3 col-lg-offset-1 col-lg-2" style="padding: 0;">
+            <div class="headerChangeRowXS3 col-xs-3 col-sm-3 col-lg-offset-1 col-lg-2" style="padding: 0;">
                 <div class="navtab-exit">
                     <div class="navtab-registraion" id="navregenterbutn">
                         <button type="button" class="btn btn-default modal-enter">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         @else
-            <div class="addRowXS1 col-xs-2 col-sm-2 col-lg-2" style="padding: 0">
+            <div class="headerChangeRowXS1 col-xs-2 col-sm-2 col-lg-2" style="padding: 0">
                 <div class="navtab-exit">
                     <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i
                                 class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -65,7 +65,7 @@
                     </a>
                 </div>
             </div>
-            <div class="addRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">
+            <div class="headerChangeRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">
                 <div class="navtab-exit">
                     <a href="{{ url('/auth/logout') }}">
                         <button type="button" class="btn btn-default modal-exit-button">
@@ -90,13 +90,15 @@
 <script>
     $(window).resize(function () {
         if ($(window).width() <= 483) {
-            $('.removeOffset').removeClass('col-xs-offset-2');
-            $('.addRowXS1').removeClass('col-xs-2').addClass('col-xs-3');
-            $('.addRowXS2').removeClass('col-xs-1').addClass('col-xs-2');
+            $('.headerRemoveOffsetLogo').removeClass('col-xs-offset-2');
+            $('.headerChangeRowXS1').removeClass('col-xs-2').addClass('col-xs-3');
+            $('.headerChangeRowXS2').removeClass('col-xs-1').addClass('col-xs-2');
+            $('.headerChangeRowXS3').removeClass('col-xs-3').addClass('col-xs-5');
         } else {
-            $('.removeOffset').addClass('col-xs-offset-2');
-            $('.addRowXS1').removeClass('col-xs-3').addClass('col-xs-2');
-            $('.addRowXS2').removeClass('col-xs-2').addClass('col-xs-1');
+            $('.headerRemoveOffsetLogo').addClass('col-xs-offset-2');
+            $('.headerChangeRowXS1').removeClass('col-xs-3').addClass('col-xs-2');
+            $('.headerChangeRowXS2').removeClass('col-xs-2').addClass('col-xs-1');
+            $('.headerChangeRowXS3').removeClass('col-xs-5').addClass('col-xs-3');
         }
     });
 </script>
