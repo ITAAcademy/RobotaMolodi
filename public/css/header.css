@@ -37,6 +37,15 @@ nav.navbar.navbar-default {
     float: right;
 }
 
+img#entry {
+    margin-right: 5px;
+    padding: 0;
+}
+
+img#registry {
+    padding: 0;
+}
+
 @media (min-width: 1300px) {
     .modal-regestry{
         padding: 0;
@@ -927,14 +936,6 @@ nav.navbar.navbar-default {
     #navregenterbutn button {
         padding: 0;
         font-size: 9px;
-    }
-
-    img#entry {
-        padding: 0;
-    }
-
-    img#registry {
-        padding: 0;
     }
 
     .only-bars {
