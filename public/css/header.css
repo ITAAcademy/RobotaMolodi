@@ -36,6 +36,16 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 1300px) {
+    img#entry {
+        /*width: 20px;*/
+        margin-right: 7px;
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     .center-block {
         padding-left: 0;
         padding-right: 27px;
@@ -437,6 +447,16 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 739px) and (max-width: 1299px) {
+    img#entry {
+        /*width: 20px;*/
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
@@ -845,6 +865,16 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 572px) and (max-width: 768px) {
+    img#entry {
+        /*width: 20px;*/
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     button.btn.btn-default.only-bars {
         margin-left: 26px;
         margin-top: 1px;
@@ -859,6 +889,16 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 720px) and (max-width: 1280px) {
+    img#entry {
+        /*width: 20px;*/
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     button.btn.btn-default.only-bars {
         float: left;
         margin-top: 26px;
@@ -882,6 +922,8 @@ nav.navbar.navbar-default {
     }
 
     img#entry {
+        /*width: 20px;*/
+        margin-right: 5px;
         padding: 0;
     }
 
@@ -1230,6 +1272,16 @@ nav.navbar.navbar-default {
 }
 
 @media (min-width: 300px) and (max-width: 480px) {
+    img#entry {
+        /*width: 20px;*/
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    img#registry {
+        padding: 0;
+    }
+
     /*Right modal*/
     .navtab-registraion {
         padding: 0px;
