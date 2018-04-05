@@ -393,7 +393,12 @@ img#registry {
     }
 
     #leftModal .minilogo img {
+        padding: 0;
         width: 18px;
+    }
+
+    #leftModal .minilogo span {
+        padding-left: 3px;
     }
 
     #leftModal .minilogo {
@@ -786,7 +791,12 @@ img#registry {
     }
 
     #leftModal .minilogo img {
+        padding: 0;
         width: 18px;
+    }
+
+    #leftModal .minilogo span {
+        padding-left: 3px;
     }
 
     #leftModal .minilogo {
@@ -1231,7 +1241,12 @@ img#registry {
     }
 
     #leftModal .minilogo img {
+        padding: 0;
         width: 18px;
+    }
+
+    #leftModal .minilogo span {
+        padding-left: 3px;
     }
 
     #leftModal hr.modal-hr {
@@ -1312,10 +1327,7 @@ img#registry {
     }
 
     .navtab-registraion .modal-regestry {
-        padding-bottom: 1px;
-        padding-top: 1px;
-        padding-right: 1px;
-        padding-left: 1px;
+        padding: 0;
         font-size: 9px;
     }
 
@@ -1675,7 +1687,12 @@ img#registry {
     }
 
     #leftModal .minilogo img {
+        padding: 0;
         width: 18px;
+    }
+
+    #leftModal .minilogo span {
+        padding-left: 3px;
     }
 
     #leftModal hr.modal-hr {
