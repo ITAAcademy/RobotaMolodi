@@ -39,9 +39,9 @@
 	@yield('headLinks')
 	@yield('seo-module')
 	<!-- App styles -->
-	<link href="{{ asset('elixir-test/elixir-test.css') }}" rel="stylesheet">
+	<link href="{{ asset('./rm-styles.css') }}" rel="stylesheet">
 	<!-- App Scripts -->
-	<script src="{{ asset('elixir-test/elixir-test.js') }}"></script>
+	<script src="{{ asset('./rm-scripts.js') }}"></script>
 </head>
 <body>
     <div class="wrapper-page">
