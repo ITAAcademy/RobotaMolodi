@@ -1,6 +1,4 @@
 <header>
-    {{--<div class="container">--}}
-    {{--<div class="row">--}}
     <nav class="navbar navbar-default">
         <div class="col-xs-1 col-sm-1" style="padding: 0">
             <div class="bars-left-modal">
@@ -21,13 +19,6 @@
                 </div>
             </a>
         </div>
-        {{--<div class="col-xs-1 col-sm-1" style="padding: 0">--}}
-        {{--<span>| </span>--}}
-        {{--<a class="local-ua" href="{{url()}}/language/ua">ua</a>--}}
-        {{--<span> | </span>--}}
-        {{--<a class="local-en" href="{{url()}}/language/en">en</a>--}}
-        {{--<span> | </span>--}}
-        {{--</div>--}}
         @if (Auth::guest())
             <div class="headerChangeRowXS3 col-xs-3 col-sm-3 col-lg-offset-1 col-lg-2" style="padding: 0;">
                 <div class="navtab-exit">
@@ -77,8 +68,6 @@
             </div>
         @endif
     </nav>
-    {{--</div>--}}
-    {{--</div>--}}
 </header>
 
 @include('auth.rightModal')
