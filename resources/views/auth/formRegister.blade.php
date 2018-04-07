@@ -1,6 +1,6 @@
 <div class="panel-body">
     @if (count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-danger-register">
             <strong>Ой!</strong>{{ trans('auth.issue')}}<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -78,7 +78,7 @@
                 if (data['success']) {
                     form.unbind('submit').submit();
                 } else {
-                    if (form.prev().hasClass('alert-danger'))
+                    if (form.prev().hasClass('alert-danger-register'))
                         form.prev().remove();
 
                     form.before(data['errors']);

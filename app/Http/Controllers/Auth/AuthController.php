@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-
 class AuthController extends Controller {
 
 	protected $redirectPath = '/resume';
@@ -39,16 +38,14 @@ class AuthController extends Controller {
 
 	public function __construct()
 	{
-
         $this->middleware('guest', ['except' => 'getLogout']);
-
 	}
 
 	public function getLastRoute(){
 		return Redirect::intended();
 	}
 
-	/**
+    /**
 	 * Get a validator for an incoming registration request.
 	 *
 	 * @param  array  $data
@@ -101,4 +98,20 @@ class AuthController extends Controller {
         ));
     }
 
+    public function postLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email', 'password' => 'required',
+        ]);
+
+        $credentials = $this->getCredentials($request);
+
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            return redirect()->intended($this->redirectPath());
+        }
+
+        return response()->json(array(
+            'errors'  => $this->getFailedLoginMessage()
+        ));
+    }
 }

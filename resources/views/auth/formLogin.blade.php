@@ -1,6 +1,6 @@
 <div class="panel-body">
     @if (count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-danger-login">
             <strong>Ой!</strong>{{ trans('auth.issue')}}<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
+    <form class="form-horizontal form-login" role="form" method="POST" action="{{ url('/auth/login') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
@@ -57,3 +57,37 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+    $('.form-login').submit(function (event) {
+        event.preventDefault();
+        var form = $(this),
+            spiner = $(document.createElement('i')).addClass('fa fa-spinner fa-spin fa-2x');
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('auth.login') }}',
+            data: form.serialize(),
+            beforeSend: function () {
+                form.find('[type="submit"]')
+                    .append(spiner);
+            },
+            success: function (data) {
+                // console.log(data);
+                if (data['success']) {
+                    form.unbind('submit').submit();
+                } else {
+                    if (form.prev().hasClass('alert-danger-login')) {
+                        form.prev().remove();
+                    }
+                    form.before(data['errors']);
+                }
+            },
+            complete: function () {
+                spiner.remove();
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    });
+</script>
