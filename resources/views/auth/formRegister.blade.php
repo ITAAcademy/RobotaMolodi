@@ -78,9 +78,9 @@
                 if (data['success']) {
                     form.unbind('submit').submit();
                 } else {
-                    if (form.prev().hasClass('alert-danger-register'))
+                    if (form.prev().hasClass('alert-danger-register')) {
                         form.prev().remove();
-
+                    }
                     form.before(data['errors']);
                 }
             },

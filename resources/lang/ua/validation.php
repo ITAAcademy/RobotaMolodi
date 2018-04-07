@@ -86,6 +86,7 @@ return [
 	*/
 
 	'custom' => [
+	    'login' => 'Перевірте правильність вашої електронної пошти або пароля',
 		'attribute-name' => [
 			'rule-name' => 'custom-message',
 		],

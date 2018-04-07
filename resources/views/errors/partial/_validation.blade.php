@@ -1,1 +1,1 @@
-<div class="alert alert-danger" role="alert"> {{ $error }} </div>
+<div class="alert alert-danger alert-danger-register" role="alert"> {{ $error }} </div>

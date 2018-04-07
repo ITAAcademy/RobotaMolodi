@@ -46,7 +46,7 @@ Route::get('/js/lang.js', function () {
     exit();
 });
 
-Route::post('auth/login', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@postLogin']);
+Route::post('auth/loginValidator', ['as' => 'auth.loginValidator', 'uses' => 'Auth\AuthController@postLoginValidator']);
 
 //sso oAuth2.0 API
 

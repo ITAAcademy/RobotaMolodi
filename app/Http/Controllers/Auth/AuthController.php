@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Input;
 use View;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,106 +14,115 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller {
+class AuthController extends Controller
+{
 
-	protected $redirectPath = '/resume';
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
+    protected $redirectPath = '/resume';
+    /*
+    |--------------------------------------------------------------------------
+    | Registration & Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users, as well as the
+    | authentication of existing users. By default, this controller uses
+    | a simple trait to add these behaviors. Why don't you explore it?
+    |
+    */
 
-	use AuthenticatesAndRegistersUsers;
-
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-
-	public function __construct()
-	{
-        $this->middleware('guest', ['except' => 'getLogout']);
-	}
-
-	public function getLastRoute(){
-		return Redirect::intended();
-	}
+    use AuthenticatesAndRegistersUsers;
 
     /**
-	 * Get a validator for an incoming registration request.
-	 *
-	 * @param  array  $data
-	 * @return \Illuminate\Contracts\Validation\Validator
-	 */
-	public function validator(array $data)
-	{
-		return Validator::make($data, [
-			'name' => 'required|max:30|regex:/^[Є-Їa-zа-я_\-\'\`]+$/iu',
-			'email' => 'required|email|max:30|unique:users',
-			'password' => 'required|confirmed|min:6',
-		]);
-	}
+     * Create a new authentication controller instance.
+     *
+     * @param  \Illuminate\Contracts\Auth\Guard $auth
+     * @param  \Illuminate\Contracts\Auth\Registrar $registrar
+     * @return void
+     */
 
-	/**
-	 * Create a new user instance after a valid registration.
-	 *
-	 * @param  array  $data
-	 * @return User
-	 */
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'getLogout']);
+    }
 
-	public function create(array $data)
-	{
-		return User::create([
-			'name' => $data['name'],
-			'email' => $data['email'],
-			'password' => bcrypt($data['password']),
-		]);
-	}
+    public function getLastRoute()
+    {
+        return Redirect::intended();
+    }
 
-	protected function getFailedLoginMessage()
-	{
-		return 'Check the correct of your email or password';
-	}
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:30|regex:/^[Є-Їa-zа-я_\-\'\`]+$/iu',
+            'email' => 'required|email|max:30|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array $data
+     * @return User
+     */
+
+    public function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    protected function getFailedLoginMessage()
+    {
+        return trans('validation.custom.login');
+    }
 
     public function ajaxValidation(Request $request)
     {
         $validator = $this->validator($request->all());
         $isFail = $validator->fails();
         $errors = false;
-        if($isFail)
-        {
-            $view = View::make('errors.validation',['errors' => $validator->errors()->all()]);
+        if ($isFail) {
+            $view = View::make('errors.validation', ['errors' => $validator->errors()->all()]);
             $errors = $view->render();
         }
 
         return response()->json(array(
             'success' => !$isFail,
-            'errors'  => $errors
+            'errors' => $errors
         ));
     }
 
-    public function postLogin(Request $request)
+    public function postLoginValidator(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email', 'password' => 'required',
-        ]);
+        $credentials = [
+            $email = Input::get('email'),
+            $pass = Input::get('password')
+        ];
 
-        $credentials = $this->getCredentials($request);
+        $email = Input::get('email');
+        $pass = Input::get('password');
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
-            return redirect()->intended($this->redirectPath());
+        $this->validate($request, $credentials);
+
+        if (Auth::attempt(['email' => $email, 'password' => $pass])) {
+            return response()->json(array(
+                'success' => true
+            ));
+        } else {
+            $view = View::make('errors.loginError', ['errors' => $this->getFailedLoginMessage()]);
+            $errors = $view->render();
+            return response()->json(array(
+                'errors' => $errors
+            ));
         }
-
-        return response()->json(array(
-            'errors'  => $this->getFailedLoginMessage()
-        ));
     }
 }

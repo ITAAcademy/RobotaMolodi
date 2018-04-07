@@ -16,7 +16,8 @@
         <div class="form-group">
             <label class="col-md-4 control-label">{{ trans('auth.email') }}</label>
             <div class="col-md-6">
-                <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control" name="email" value="{{ old('email') }}">
+                <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control" name="email"
+                       value="{{ old('email') }}">
             </div>
         </div>
 
@@ -41,9 +42,11 @@
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <div>
-                    <button type="submit" tabindex="1" class="btn btn-primary enter-button">{{ trans('auth.signin') }}</button>
+                    <button type="submit" tabindex="1"
+                            class="btn btn-primary enter-button">{{ trans('auth.signin') }}</button>
                     <div>
-                        <a class="btn btn-link login-text" href="{{ url('/password/email') }}">{{ trans('auth.forgotpwd')}}</a>
+                        <a class="btn btn-link login-text"
+                           href="{{ url('/password/email') }}">{{ trans('auth.forgotpwd')}}</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +54,8 @@
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
                 <div class="member-btn">
-                    <a class="btn btn-link login-text as" href="{{ url('/auth/register') }}">{{ trans('auth.signup')}}</a>
+                    <a class="btn btn-link login-text as"
+                       href="{{ url('/auth/register') }}">{{ trans('auth.signup')}}</a>
                 </div>
             </div>
         </div>
@@ -65,14 +69,13 @@
             spiner = $(document.createElement('i')).addClass('fa fa-spinner fa-spin fa-2x');
         $.ajax({
             type: 'POST',
-            url: '{{ route('auth.login') }}',
+            url: '{{ route('auth.loginValidator') }}',
             data: form.serialize(),
             beforeSend: function () {
                 form.find('[type="submit"]')
                     .append(spiner);
             },
             success: function (data) {
-                // console.log(data);
                 if (data['success']) {
                     form.unbind('submit').submit();
                 } else {
