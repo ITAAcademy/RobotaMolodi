@@ -28,7 +28,7 @@ elixir(function(mix) {
     //     './public/css/navTab.css',
     //     './public/css/header.css',
     // ], './public/rm-styles.css');
-    mix.stylesIn('./public/css', './public/rm-styles.css');
+    mix.stylesIn('./public', './public/rm-styles.css');
 
     // mix.scripts([
     //     './public/js/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js',
@@ -48,5 +48,5 @@ elixir(function(mix) {
     //     './public/js/animateRightCol.js',
     // ],'./public/rm-scripts.js');
 
-    mix.scriptsIn('./public/js', './public/rm-scripts.js')
+    mix.scriptsIn('./public', './public/rm-scripts.js')
 });
