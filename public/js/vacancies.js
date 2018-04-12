@@ -45,4 +45,12 @@ $(document).ready(function() {
             thisSkills.slideUp(500);
         }
     })
+
+    /* smooth scrolling to anchor links */
+    $(document).on('click', '.nav-vacancy a[href$="__id"][href!="#"]', function (event) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top,
+        }, 600);
+    });
 });
