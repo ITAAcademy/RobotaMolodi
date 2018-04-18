@@ -36,6 +36,7 @@ class UploadFile extends Controller
 
     public function editResumeImg(Request $request){
         $resume = Resume::find($request->id);
+
         if($resume->image != ''){
             $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
             if (File::exists($file)) {
@@ -49,6 +50,7 @@ class UploadFile extends Controller
     }
 
     public function deleteResumeImg(Request $request){
+
         $resume = Resume::find($request->id);
         $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
         if (File::exists($file)) {
