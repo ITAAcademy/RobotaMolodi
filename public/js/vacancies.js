@@ -49,8 +49,11 @@ $(document).ready(function() {
     /* smooth scrolling to anchor links */
     $(document).on('click', '.nav-vacancy a[href$="__id"][href!="#"]', function (event) {
         event.preventDefault();
+        var target = $($.attr(this, 'href'));
         $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top,
-        }, 600);
+            scrollTop: target.offset().top,
+        }, 600 , function (){target.addClass("animated bounceIn")});
+
+
     });
 });
