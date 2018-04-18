@@ -35,7 +35,9 @@
 		  crossorigin="anonymous">
 	<!-- Internal Resources -->
 	@include('newDesign.seoModule.index')
+	<!-- head-->
 	@yield('head')
+	<!-- headLinks-->
 	@yield('headLinks')
 	@yield('seo-module')
 	<!-- App styles -->
