@@ -31,7 +31,7 @@ class Project extends Model
         'name'          => 'required|string|min:3|max:32|regex:/^[\d Є-Їa-zа-я_\-\'\`]+$/iu',
         'brand'         => 'string|min:3|max:32',
         'location'      => 'required|string|min:2|max:32',
-        'location_city' => 'required|string|min:2|max:64',
+        'location_city' => 'required|string|alpha|min:2|max:64',
         'bonuses'       => 'string|min:3|max:32',
         'company_desc'  => 'required|string|min:3|max:255',
         'company_about' => 'required|string|min:3|max:10000',
