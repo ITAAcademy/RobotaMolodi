@@ -28,18 +28,19 @@ class Project extends Model
     * @var array
     */
     private $rules = [
-       'name'          => 'required|string|min:3|max:32|regex:/^[\d Є-Їa-zа-я_\-\'\`]+$/iu',
-       'brand'         => 'string|min:3|max:32',
-       'location'      => 'required|string|min:2|max:32',
-       'bonuses'       => 'string|min:3|max:32',
-       'company_desc'  => 'required|string|min:3|max:255',
-       'company_about' => 'required|string|min:3|max:10000',
-       'project_about' => 'required|string|min:3|max:10000',
-//       'project_term'  => 'required|string|min:3|max:32',
-       'brief_desc'    => 'required|string|min:3|max:32',
-       'full_desc'     => 'required|string|min:3|max:255',
-       'company_id'    => 'required|integer',
-       'industry_id'   => 'required|integer'
+        'name'          => 'required|string|min:3|max:32|regex:/^[\d Є-Їa-zа-я_\-\'\`]+$/iu',
+        'brand'         => 'string|min:3|max:32',
+        'location'      => 'required|string|min:2|max:32',
+        'location_city' => 'required|string|min:2|max:64',
+        'bonuses'       => 'string|min:3|max:32',
+        'company_desc'  => 'required|string|min:3|max:255',
+        'company_about' => 'required|string|min:3|max:10000',
+        'project_about' => 'required|string|min:3|max:10000',
+        //       'project_term'  => 'required|string|min:3|max:32',
+        'brief_desc'    => 'required|string|min:3|max:32',
+        'full_desc'     => 'required|string|min:3|max:255',
+        'company_id'    => 'required|integer',
+        'industry_id'   => 'required|integer'
     ];
 
     public function isOwner($userId){
