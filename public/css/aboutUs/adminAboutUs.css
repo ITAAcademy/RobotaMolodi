@@ -1,0 +1,18 @@
+.imageIcon{
+    width: 10%;
+    height: 10%;
+    border-radius: 15px;
+}
+.thumb{
+    width: 10%;
+    height: 10%;
+    margin-left: 4px;
+    border-radius: 10px;
+}
+/*.optButtons>a{*/
+    /*display: block ;*/
+/*}*/
+
+.optButtons form{
+     display: inline-block;
+ }
