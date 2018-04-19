@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreSliderRequest;
+use App\Services\ImageCompress;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -55,10 +56,11 @@ class SliderController extends Controller
         if(Input::file('image')) {
             $file = Input::file('image');
             $filename = time() . '-' . $file->getClientOriginalName();
-            $directory = 'uploads/sliders/';
+            $directory = $slider->getPath();
             Storage::makeDirectory($directory);
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
+            ImageCompress::tinifyImage($slider->image);
         }
         
         $category->number_of_positions++;
@@ -117,9 +119,10 @@ class SliderController extends Controller
         if(Input::file('image')){
             $file = Input::file('image');
             $filename = time().'-'.$file->getClientOriginalName();
-            $directory = '/uploads/sliders/';
+            $directory = $slider->getPath();
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
+            ImageCompress::tinifyImage($slider->image);
         }
 
         $slider->save();

@@ -12,7 +12,7 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'name' => 'Ваше Iм/я',
+    'name' => 'Ваше iм&#39;я',
     'with' => 'З',
     'checkbox' => 'натисніть, щоб продовжити',
     'failed' => 'These credentials do not match our records.',

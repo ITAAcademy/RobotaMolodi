@@ -27,4 +27,8 @@ return [
     "brand" => "Brand",
     "location" => "Location",
     "bonuses" => "Bonuses",
+    "choosefromexisting" => "Choose from existing",
+    "addnew" => "Add new",
+    "briefDesc" => "Brief description of the project",
+    "fullDesc" => "Full description of the project"
 ];

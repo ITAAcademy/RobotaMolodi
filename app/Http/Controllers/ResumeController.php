@@ -205,6 +205,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             $currency = new Currency();
             $currencies = $currency->getCurrencies();
             $positions = Resume::groupBy('position')->lists('position');
+
             if ($resume->user->id == Auth::id())
             return view('Resume.edit')
                 ->with('resume',$resume)
@@ -233,8 +234,8 @@ class ResumeController extends Controller {// Клас по роботі з ре
                 return true;
             else return false;
         });
-        
-        Validator::make($request,[
+
+        $rules =[
             'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
@@ -244,9 +245,11 @@ class ResumeController extends Controller {// Клас по роботі з ре
             'description' => 'required|string|min:130',
             'city' => 'required',
             'loadResume' => 'mimes:jpg,jpeg,png|max:2048'
-        ]);
+        ];
 
+        $this->validate($request,$rules);
         $updateResume = $resume->fillResume($id,$auth,$request);
+
         if(Input::hasFile('loadResume'))
         {
             $cropcoord = explode(',', $request->fcoords);
@@ -257,6 +260,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
             Crop::input($cropcoord, $filename, $file, $directory);      //cuts and stores the image in the appropriate directory
             $updateResume->image = $filename;
         }
+
         $updateResume->push();
         $updateResume->save();
 

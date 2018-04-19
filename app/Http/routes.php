@@ -46,7 +46,10 @@ Route::get('/js/lang.js', function () {
     exit();
 });
 
+Route::post('auth/loginValidator', ['as' => 'auth.loginValidator', 'uses' => 'Auth\AuthController@postLoginValidator']);
+
 //sso oAuth2.0 API
+
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
@@ -93,6 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
     Route::resource('/seo-module', 'Admin\SeoModuleController');
     Route::resource('/projects', 'Admin\ProjectsController');
+    Route::post('upartimg', ['as'=>'upartimg', 'uses' => 'UploadFile@addArticleContent']);
 });
 
 Route::post('/slider/category', ['as' => 'slidersByCategory','uses' => 'SliderController@byCategory']);
@@ -196,6 +200,8 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
 {
     Route::get('myresumes/{id}',['as' => 'cabinet.my_resumes' ,'uses' => 'cabinet\CabinetController@showMyResumes']);
     Route::get('myvacancies/{id}',['as' => 'cabinet.my_vacancies' ,'uses' => 'cabinet\CabinetController@showMyVacancies']);
+    Route::get('project/myaddvacancies',['as' => 'cabinet.my_addvacancies' ,'uses' => 'cabinet\CabinetController@showAddVacancies']);
+    Route::get('project/myaddvacancy/{id}',['as' => 'cabinet.my_addvacancy' ,'uses' => 'Vacancy\VacancyController@getVacancy']);
     Route::get('mycompanies/{id}',['as' => 'cabinet.my_companies' ,'uses' => 'cabinet\CabinetController@showMyCompanies']);
     Route::get('myprojects/{id}',['as' => 'cabinet.my_projects' ,'uses' => 'cabinet\CabinetController@showMyProjects']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);

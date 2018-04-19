@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class UploadFile extends Controller
 
     public function editResumeImg(Request $request){
         $resume = Resume::find($request->id);
+
         if($resume->image != ''){
             $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
             if (File::exists($file)) {
@@ -48,6 +50,7 @@ class UploadFile extends Controller
     }
 
     public function deleteResumeImg(Request $request){
+
         $resume = Resume::find($request->id);
         $file = 'image/resume/'.Auth::user()->id.'/'.$resume->image;
         if (File::exists($file)) {
@@ -70,6 +73,27 @@ class UploadFile extends Controller
         $company->image = $this->savePhoto($request, $directory);
         $company->save();
         return $directory.$company->image;
+    }
+
+    public function addArticleContent(Request $request){
+        $CKEditor = $request->input('CKEditor');
+        $funcNum  = $request->input('CKEditorFuncNum');
+        $message = $url = '';
+        if (Input::hasFile('upload')) {
+            $file = Input::file('upload');
+            if ($file->isValid()) {
+                $url = $this->saveImage($file,'image/uploads/news/content/');
+                $url = url($url);
+            } else {
+                $message = 'An error occured while uploading the file.';
+            }
+        } else {
+            $message = 'No file uploaded.';
+        }
+
+        $response = '<html><body><script>window.parent.CKEDITOR.tools.callFunction('.$funcNum.', "'.$url.'", "'.$message.'")</script></body></html>';
+        return response($response)
+            ->header('Content-Type', 'text/html');
     }
 }
 

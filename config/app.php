@@ -80,8 +80,10 @@ return [
 
 	'key' => env('APP_KEY', 'SomeRandomString'),
 
+
     // 'cipher' => MCRYPT_RIJNDAEL_128,
     'cipher' => "AES-256-CBC",
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -153,6 +155,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'Unisharp\Ckeditor\ServiceProvider',
         'App\Providers\ViewComposerServiceProvider',
+        'App\Providers\SeoInfoCreatorProvider'
 	],
 
 	/*

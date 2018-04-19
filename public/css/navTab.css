@@ -89,6 +89,7 @@
 
 .dropdown-menu{
 	width: 100%;
+	position: absolute;
 }
 
 #dropdownMenu1 {

@@ -68,6 +68,16 @@
         </div>
     </div>
 </template>
-<br>
-<div @click="addVacancy" style="color: #f76533; text-decoration:underline; cursor:pointer">{{ trans('project/description.projectAddVacancy') }} +</div>
-<br><br>
+
+<div class="btn-group dropup">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ trans('project/description.projectAddVacancy') }}
+    </button>
+    <ul class="dropdown-menu ulAddVacProject">
+        <li class="liFooterAddVacProject">{{ trans('project/description.choosefromexisting') }}</li>
+        <li class="dropdown-item liAddVacProject" v-for="userVacancy in userVacancies" :value="userVacancy.id" v-on:click="getUserVacancy" type="button">@{{ userVacancy.position }}</li>
+        <li class="divider" role="separator"></li>
+        <li class="dropdown-item liFooterAddVacProject" v-on:click="addVacancy" type="button">{{ trans('project/description.addnew') }}</li>
+    </ul>
+</div>
+

@@ -1,4 +1,4 @@
-<div class="slider" data-category="{{ $category }}" data-view="{{ $viewName }}">
+<div class="slider hidden" data-category="{{ $category }}" data-view="{{ $viewName }}">
 
 </div>
 <script>

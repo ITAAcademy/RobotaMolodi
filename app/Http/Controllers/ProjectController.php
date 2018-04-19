@@ -90,10 +90,8 @@ class ProjectController extends Controller
             $data['project'] = $project;
             $data['industries'] = Industry::all()->pluck('name', 'id');
             $data['root'] = $root->toArray();
-            $root->save();
-            return view('project.show', $data);
+            return view('project.create', $data);
         }
-
         $root->save();
 
         return redirect()->route('project.show', $project->id);

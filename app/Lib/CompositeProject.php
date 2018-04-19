@@ -83,6 +83,7 @@ class CompositeProject implements IComposite
                 $isValid = $v->isValid() && $isValid;
             }
         }
+//        dd($isValid);
         return $isValid;
     }
 

@@ -24,7 +24,7 @@ class StoreSliderRequest extends Request
     public function rules()
     {
         return [
-            'image'         => 'required|max:512',
+            'image'         => 'required|max:2048',
             'url'           => 'required',
         ];
     }
