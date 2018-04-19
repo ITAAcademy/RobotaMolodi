@@ -14,7 +14,8 @@
                         :name="'vacancies[' + index + '][destroy]'"
                         v-model="vacancy.destroy"
                         class="hidden">
-                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacancyTittle') }}</label>
+                    <label class="col-sm-4 control-label">
+                    </label>
                     <div class="col-sm-8">
                         <input
                             type="text"
@@ -41,7 +42,7 @@
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">{{ trans('project/description.projectVacanciesAmount') }}</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                       <input
                         type="text"
                         :name="'vacancies[' + index + '][total]'"
@@ -49,7 +50,8 @@
                         v-model="vacancy.total">
                         <span class="help-block">@{{ vacancy.error.total }}</span>
                     </div>
-                    <div class="col-sm-4">
+                    <label class="col-sm-4 control-label">{{ trans('project/description.projectVacanciesFree') }}</label>
+                    <div class="col-sm-2">
                       <input
                         type="text"
                         :name="'vacancies[' + index + '][free]'"

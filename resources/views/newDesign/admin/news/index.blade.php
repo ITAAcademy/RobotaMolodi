@@ -1,3 +1,6 @@
+
+<link href="{{ asset('/css/newsList.css') }}" rel="stylesheet">
+ <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 @extends('newDesign.layouts.admin')
 
 @section('content')
@@ -59,6 +62,7 @@
                     </td>
                 </tr>
             @endforeach
+            
             <script>
                 $(document).ready(function () {
                     $("button[value='0']").addClass("fa-square-o");
@@ -82,6 +86,6 @@
 
             </tbody>
         </table>
-
+  <!-- @include('newDesign.paginator', ['paginator' => $news]) -->
     </div>
 @stop

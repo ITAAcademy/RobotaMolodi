@@ -341,7 +341,10 @@
     <option value="YE">Yemen</option>
     <option value="ZM">Zambia</option>
     <option value="ZW">Zimbabwe</option>
-</select> 
+</select>
+@if($project->getError('location'))
+          @each('errors.partial._validation', $project->getError('location'), 'error' )
+        @endif  
 </div>
 </div>
 <div class="form-group">

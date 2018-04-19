@@ -2,7 +2,10 @@
 <link href="{{ asset('/css/sortAds/sortAds.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/sortAds/calendarDatepicker.css') }}" rel="stylesheet">
 <!-- EndSort -->
+
 <div class='row sort-box'>
+
+	<!-- <form action="/action_page.php"> -->
 
 		<div class='col-xs-12 sort-box'>
 			<div class='col-xs-2 sort-rating toggleFilter' style="padding:0">
@@ -27,11 +30,15 @@
 				</div>
 			</div>
 			<div class="col-xs-1 sort-filter">
-				<button id="close-all-filters" type="reset" href="#" value="Reset">{{ trans('content.reset') }}</button>
+				<!-- <input type="reset" value="{{ trans('content.reset') }}"> -->
+				 <button id="close-all-filters" type="reset" value="Reset">{{ trans('content.reset') }}</button> 
 			</div>
 		</div>
+		<!-- </form> -->
 </div>
+
 	<hr class='line-sort-box'>
+
 	<script>
 	//close filters:
 	$('#close-all-filters').on('click', function (e) {

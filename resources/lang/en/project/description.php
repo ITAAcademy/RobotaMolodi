@@ -1,5 +1,10 @@
 <?php
 return [
+    "Essentialskills" => "Essential skills",
+    "Personalskills" => "Personal skills",
+    "Wouldbeagoodplus" => "Would be a good plus",
+    "Whatsinitforyou" => "What's in it for you",
+    "Responsibilities" => "Responsibilities",
     "locationcity" => "City",
     "projectAddVacancy" => "Add Vacancy",
     "projectVacanciesAmount" => "Amount Vacancies",
@@ -15,7 +20,7 @@ return [
     "logo" => "Logotype",
     "company" => "Company",
     "industry" => "Industry",
-    "companyDesc" => "Company Description",
+    "companyDesc" => "Short Company Description",
     "companyAbout" => "About Company",
     "projectAbout" => "About Project",
     "projectTerm" => "Project Term",

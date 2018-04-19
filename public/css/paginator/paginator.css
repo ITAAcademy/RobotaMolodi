@@ -85,5 +85,6 @@ ul.pagination>.hide-md{
 @media(min-width: 0px) and (max-width: 770px) {
     ul.pagination>.hide-md{
         display: inline;
+        font-size: x-small;
     }
 }

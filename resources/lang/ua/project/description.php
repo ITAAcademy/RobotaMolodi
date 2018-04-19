@@ -1,5 +1,10 @@
 <?php
 return [
+    "Essentialskills" => "Основні навички",
+    "Personalskills" => "Персональні навички",
+    "Wouldbeagoodplus" => "Буде плюсом" ,
+    "Whatsinitforyou" => "Що це для тебе",
+    "Responsibilities" => "Відповідальність",
     "locationcity" => "Miсто",
     "projectVacanciesFree" => "Вільні вакансії",
     "projectMorePhotoSlider" => "Ще фото",
@@ -18,7 +23,7 @@ return [
     "logo" => "Логотип компанії",
     "company" => "Компанія",
     "industry" => "Галузь",
-    "companyDesc" => "Опис компанії",
+    "companyDesc" => "Короткий опис компанії",
     "companyAbout" => "Про компанію",
     "projectAbout" => "Про проект",
     "projectTerm" => "Строк проекту",

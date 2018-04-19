@@ -81,7 +81,7 @@ class AuthController extends Controller {
 
 	protected function getFailedLoginMessage()
 	{
-		return 'Check the correct of your email or password';
+		return 'auth.checkout' ;
 	}
 
     public function ajaxValidation(Request $request)

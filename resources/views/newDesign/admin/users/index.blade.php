@@ -1,3 +1,4 @@
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 @extends('newDesign.layouts.admin')
 
 @section('content')
@@ -41,17 +42,13 @@
       </tr>
       @endforeach
     </table>
-    <div class="center">
-  <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a href="#" class="active">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-  </div>
+<!-- $users->links('newDesign.paginator'));  -->
+<!-- @include('newDesign.paginator', ['paginator' => $users]) -->
+<!-- @include('newDesign.paginator', ['paginator' => $user]) -->
+<!-- @include('paginator.default', ['paginator' => $users]); -->
+
 </div>
-</div>
+
+
 @endsection
+

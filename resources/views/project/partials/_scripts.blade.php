@@ -1,17 +1,20 @@
 <script type="text/x-template" id="option-template">
     <div>
         <div class="form-group" v-for="(opt,j) in op">
-            <label class="col-sm-4 control-label">@{{ opt.name }}</label>
+            <label class="col-sm-4 control-label"> @{{opt.name}} </label>
             <div class="col-sm-6">
                 <div class="container-fluid">
                     <div class="row">
-                        <template v-for="(vv,i) in opt.subList.values">
+                      
+                        <template v-for="(vv,i) in opt.subList.values"> 
                             <div class="col-sm-10" v-bind:class="{ hidden: vv.destroy  }">
-                              <input
+                             <label class="col-sm-4 control-label"> </label> 
+                             <input
                                   type="text"
                                   :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][id]'"
                                   class="hidden"
                                   v-model="vv.id">
+
                               <input
                                 type="text"
                                 :name="'vacancies[' + index + '][options][' + opt.groupId + '][' + i + '][destroy]'"
@@ -126,7 +129,7 @@ window.onload = function(){
                       subList: {
                           options: [
                               {
-                                  name: 'Essential Skills',
+                                  name: 'Essentialskills' ,
                                   groupId: 1,
                                   subList: {
                                       values: [
@@ -135,7 +138,7 @@ window.onload = function(){
                                     }
                               },
                               {
-                                  name: 'Personal Skills',
+                                  name: 'Personalskills',
                                   groupId: 2,
                                   subList: {
                                       values: [
@@ -153,7 +156,7 @@ window.onload = function(){
                                     }
                               },
                               {
-                                  name: 'What\'s in it for you',
+                                  name: 'Whats in it for you',
                                   groupId: 4,
                                   subList: {
                                       values: [
