@@ -44,7 +44,7 @@ $(document).ready(function() {
             thisVacLink.slideUp(500);
             thisSkills.slideUp(500);
         }
-    })
+    });
 
     /* smooth scrolling to anchor links */
     $(document).on('click', '.nav-vacancy a[href$="__id"][href!="#"]', function (event) {
