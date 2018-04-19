@@ -18,7 +18,8 @@ class Project extends Model
         'brand',      'company_about',
         'bonuses',    'project_term',
         'full_desc',  'brief_desc',
-        'company_id', 'industry_id'
+        'company_id', 'industry_id',
+        'location_city'
     ];
 
     /**
