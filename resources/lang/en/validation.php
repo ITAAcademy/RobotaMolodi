@@ -86,6 +86,7 @@ return [
 	*/
 
 	'custom' => [
+        'login' => 'Check the correct of your email or password',
 		'attribute-name' => [
 			'rule-name' => 'custom-message',
 		],

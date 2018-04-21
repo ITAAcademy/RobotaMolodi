@@ -36,11 +36,11 @@ class ProjectVacancy extends Model
     public function getGroup($key = null)
     {
         $data = [
-            ProjectVacancyOption::ESSENTIALSKILLS => 'Essential skills',
-            ProjectVacancyOption::PERSONALSKILLS => 'Personal skills',
-            ProjectVacancyOption::BEPLUS => 'Would be a good plus',
-            ProjectVacancyOption::FORYOU => 'What’s in it for you',
-            ProjectVacancyOption::RESPONSIBILITIES => 'Responsibilities',
+            ProjectVacancyOption::ESSENTIALSKILLS => trans('project/description.Essentialskills'),
+            ProjectVacancyOption::PERSONALSKILLS => trans('project/description.Personalskills'),
+            ProjectVacancyOption::BEPLUS => trans('project/description.Wouldbeagoodplus'),
+            ProjectVacancyOption::FORYOU => trans('project/description.Whatsinitforyou'),
+            ProjectVacancyOption::RESPONSIBILITIES => trans('project/description.Responsibilities'),
         ];
         if(is_null($key))
             return $data;

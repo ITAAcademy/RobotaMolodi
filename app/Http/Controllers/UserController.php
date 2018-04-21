@@ -98,6 +98,9 @@ class UserController extends Controller
                 $user->avatar = $filename;
             }
 
+            $name = $request->input('name');
+            $user->name =$name;
+            
             $user->push();
             $user->save();
         }
@@ -122,7 +125,5 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.edit', $user->id);
-
     }
-
 }

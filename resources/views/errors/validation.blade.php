@@ -1,4 +1,4 @@
-<div class="alert alert-danger">
+<div class="alert alert-danger alert-danger-register">
     <strong>Ой!</strong> Виникли деякі проблеми з вашим входом.<br><br>
     <ul>
         @foreach ($errors as $error)

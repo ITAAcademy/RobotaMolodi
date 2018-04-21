@@ -32,4 +32,5 @@ return [
     'policy' => 'Policy usage',
     'agree' => 'I agree',
     'share' => 'Share it',
+    'сheckout' =>'Check the correct of your email or password',
 ];
