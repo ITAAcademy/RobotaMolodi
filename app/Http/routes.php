@@ -123,6 +123,8 @@ Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchControll
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
 
+Route::get('vacancy/search/byIndustries',['as'=>'vacancy.search.byIndustries', 'uses' => 'Vacancy\SearchController@byIndustries']);
+
 Route::get('vacancy/{vacancy}/response/link',['as'=>'vacancy.response.link', 'uses' => 'Vacancy\ResponseController@link', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendFile',['as'=>'vacancy.response.sendFile', 'uses' => 'Vacancy\ResponseController@sendFile', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendResume',['as'=>'vacancy.response.sendResume', 'uses' => 'Vacancy\ResponseController@sendResume', 'middleware'=>'auth']);
