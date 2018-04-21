@@ -1,62 +1,43 @@
-.sort-box{
-    margin-top:15px;
-    width: 106%;
-}
-
-span.label-sort-box{
+span.label-sort-box {
     color: #666666;
     font-family: SegoeUIRegular;
-    font-size:12px;
-    margin: 0;
+    font-size: 12px;
 }
 
-span.opsion-sort-box{
-    color:#f68c06;
-    text-decoration:underline;
+span.opsion-sort-box {
+    color: #f68c06;
+    text-decoration: underline;
     font-weight: normal;
 }
 
-span.opsion-sort-box:hover{
-    color:#e8641b;
-    cursor:pointer;
+span.opsion-sort-box:hover {
+    color: #e8641b;
+    cursor: pointer;
 }
 
-#from, #to{
-    width:80px;
+.block-datepicker label {
+    width: 19px;
 }
 
-hr.line-sort-box {
-    border-top: 1px solid #cccccc;
-    margin-top: 0;
-}
-
-.sort-rating {
-    /*margin-top: 4px;*/
-    width: 22.6667%;
-}
-
-.sort-date{
-    width: 28%;
-}
-
-#startDate{
-    width: 130px;
-}
-
-#endDate{
-    width: 130px;
-}
-
-.input-sort-box{
+.sort-date {
     padding: 0;
-    width: 39%;
 }
 
-#clear{
-    margin:-50px;
+.sort-box {
+    padding: 0;
+    margin: 0;
 }
-#close-all-filters{
-    margin-left: -50px;
-    margin-bottom: 25px;
-    margin-top: -10px;
+
+.sort-filter {
+    padding: 0;
+    font-size: 12px;
+    margin-top: 26px;
+}
+
+.input-sort-box {
+    padding: 0;
+}
+
+#close-all-filters {
+    padding: 0;
 }

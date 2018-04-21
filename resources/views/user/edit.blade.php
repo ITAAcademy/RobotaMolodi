@@ -74,8 +74,8 @@
               if($('img').hasClass('avaNotExist')) {
                     $('#delete').addClass('disabled').attr('onClick', '').attr('type', 'button');
               }
-                var cloneInputFile = $('#avatar').clone();
-                $('#avatar').on('change', function(e) {
+              var cloneInputFile = $('#avatar').clone();
+              $('#avatar').on('change', function(e) {
                     if(document.getElementById('avatar').value) {
                         cloneInputFile = $('#avatar').clone();
                         $('#imageBox').modal({
@@ -87,15 +87,15 @@
                         $('#avatar').replaceWith(cloneInputFile);
                     }
                     document.getElementById('filename').innerHTML = document.getElementById('avatar').value;
-                });
+              });
 
-                $.ajaxSetup({
+              $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('input[name="_token"]').val()
                     }
-                });
+              });
 
-                $('#description').text($('.change_description').html());
+              $('#description').text($('.change_description').html());
             })
         </script>
 @endsection
