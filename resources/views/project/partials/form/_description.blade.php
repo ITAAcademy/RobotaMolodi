@@ -108,6 +108,7 @@
 <div class="form-group">
     {!! Form::label('location', trans('project/description.location'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
+
         <select class="form-control" name="location">
             <option value="AF" selected="selected">Afghanistan</option>
             <option value="AX">Åland Islands</option>

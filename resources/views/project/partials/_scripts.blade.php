@@ -1,10 +1,11 @@
 <script type="text/x-template" id="option-template">
     <div>
         <div class="form-group" v-for="(opt,j) in op">
-            <label class="col-sm-4 control-label">@{{ opt.name }}</label>
+            <label class="col-sm-4 control-label"> @{{opt.name}} </label>
             <div class="col-sm-6">
                 <div class="container-fluid">
                     <div class="row">
+
                         <template v-for="(vv,i) in opt.subList.values">
                             <div class="col-sm-10" v-bind:class="{ hidden: vv.destroy }">
                                 <input
@@ -294,6 +295,7 @@
             mounted: function () {
                 this.getUserVacancies();
             }
+
         })
     }
 
