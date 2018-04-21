@@ -108,6 +108,7 @@
 <div class="form-group">
     {!! Form::label('location', trans('project/description.location'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
+
         <select class="form-control" name="location">
             <option value="AF" selected="selected">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -365,11 +366,11 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('locationcity', trans('project/description.locationcity'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('location_city', trans('project/description.locationcity'), ['class' => 'col-sm-4 control-label']) !!}
     <div class="col-sm-8">
-        {!! Form::text('locationcity', $project['locationcity'], ['class' => 'form-control', 'required' => '']) !!}
-        @if($project->getError('locationcity'))
-            @each('errors.partial._validation', $project->getError('locationcity'), 'error' )
+        {!! Form::text('location_city', $project['location_city'], ['class' => 'form-control', 'required' => '']) !!}
+        @if($project->getError('location_city'))
+            @each('errors.partial._validation', $project->getError('location_city'), 'error' )
         @endif
     </div>
 </div>

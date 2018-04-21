@@ -13,6 +13,10 @@
 
             <a href="{{ route('admin.news.edit', $newsOne->id) }}" class="btn btn-primary">Edit News</a>
             <a href="{{ route('admin.news.index', $newsOne->id) }}" class="btn btn-primary">Show All</a>
-        </div>
+            
+            </div>
+
+            @include('newDesign.paginator', ['paginator' => $news])
+
     </div>
 @endsection

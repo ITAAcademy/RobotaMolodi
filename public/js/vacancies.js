@@ -44,13 +44,29 @@ $(document).ready(function() {
             thisVacLink.slideUp(500);
             thisSkills.slideUp(500);
         }
-    })
+    });
 
     /* smooth scrolling to anchor links */
     $(document).on('click', '.nav-vacancy a[href$="__id"][href!="#"]', function (event) {
         event.preventDefault();
+        var target = $.attr(this, 'href');
         $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top,
-        }, 600);
+            scrollTop: $(target).offset().top,
+        }, 600, 'swing', function (){
+            animate(target);
+        });
     });
+
+    /* Attach animate class to element */
+    function animate(elem){
+        var prop = 'animated bounceIn';
+        var animated = $(elem).hasClass(prop);
+        if(animated){
+            $(elem).removeClass(prop);
+        }
+        setTimeout(function(){
+                $(elem).addClass(prop)
+            }
+        ,0);
+    }
 });

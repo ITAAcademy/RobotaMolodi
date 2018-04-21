@@ -1,3 +1,4 @@
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 @extends('newDesign.layouts.admin')
 @section('content')
 <div class="contentAndmin">
@@ -34,5 +35,13 @@
         @endforeach
         </tbody>
     </table>
+<!-- $users->links('newDesign.paginator'));  -->
+<!-- @include('newDesign.paginator', ['paginator' => $users]) -->
+<!-- @include('newDesign.paginator', ['paginator' => $user]) -->
+<!-- @include('paginator.default', ['paginator' => $users]); -->
+
 </div>
+
+
 @endsection
+

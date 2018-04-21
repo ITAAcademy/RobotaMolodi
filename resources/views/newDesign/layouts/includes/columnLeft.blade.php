@@ -12,12 +12,13 @@
                 <div class="col l12">
                     <li><p>Слайдер</p></li>
                 </div>
-            </div>
-        </a>
-        <a href="{{route('admin.industry.index')}}">
-            <div class="row">
-                <div class="col l12">
-                    <li><p>Индустрии</p></li>
+            </a>
+
+            <a href="{{route('admin.industry.index')}}">
+                <div class="row">
+                    <div class="col l12">
+                         <li><p>Iндустрії</p></li>
+                     </div>
                 </div>
             </div>
         </a>

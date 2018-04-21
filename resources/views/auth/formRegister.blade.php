@@ -48,7 +48,7 @@
             <div class="col-md-6 col-md-offset-4">
                 <div class="checkbox">
                     <label>
-                        <input required type="checkbox" title="press to continue"><span>{{ trans('auth.with') }}</span>
+                        <input required type="checkbox" title="{{ trans('auth.checkbox') }}"><span>{{ trans('auth.with') }}</span>
                         <a href="{{ route('policy')}}" target="_blank">{{ trans('auth.policy') }}</a>
                         <span>{{ trans('auth.agree') }}</span>
                     </label>

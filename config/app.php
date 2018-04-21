@@ -83,6 +83,7 @@ return [
    // 'cipher' => MCRYPT_RIJNDAEL_128,
    'cipher' => 'AES-256-CBC',
 
+
 	/*
 	|--------------------------------------------------------------------------
 	| Logging Configuration
