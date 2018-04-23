@@ -83,9 +83,10 @@
 <script>
     initMultiselect('.getting-list-selected-box');
 
-    var notFoundLi = $('<li> За вашим запитом нічого не знайдено </li>');
+    var notFoundLi = $('<li class="not-found-message"> За вашим запитом нічого не знайдено </li>');
     notFoundLi.addClass('not-found-message');
     $(document).ready(function () {
+        $('#list-selected-specialization > div > div > ul').append(notFoundLi);
         $('input.multiselect-search').on('keyup', function () {
             var staticOption = 2;
             var list = $(this).parents('ul');

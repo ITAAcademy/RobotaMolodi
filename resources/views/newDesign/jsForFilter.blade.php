@@ -42,18 +42,17 @@
                                             $(this).closest("li").show();
                                         }
                                     });
-                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').remove();
+                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
                                 } else if (data.length === 0 && getFilters().industries) {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").hide();
                                     });
-                                    let notFoundLi = $('<li class="not-found-message show"> За вашим запитом нічого не знайдено </li>');
-                                    $('#list-selected-specialization > div > div > ul').append(notFoundLi);
+                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').show();
                                 } else {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").show();
-                                    })
-                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').remove();
+                                    });
+                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
                                 }
                             }
                         });
