@@ -16,6 +16,9 @@
             }
 
             function applyFilter() {
+
+                let li = '#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]';
+
                 $.ajax({
                     url: '{{ route(Route::currentRouteName()) }}',
                     data: getFilters(),
@@ -27,7 +30,7 @@
                             cache: false,
                             success: function (data) {
                                 if (data.length !== 0) {
-                                    $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
+                                    $(li).each(function () {
                                         let count = 0;
                                         for (let d in data) {
                                             if (this.value === data[d].position) {
@@ -41,26 +44,36 @@
                                             $(this).closest("li").show();
                                         }
                                     });
-                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
-                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').show();
+                                    hideShow(1);
                                 } else if (data.length === 0 && getFilters().industries) {
-                                    $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
+                                    $(li).each(function () {
                                         $(this).closest("li").hide();
                                     });
-                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').show();
-                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').hide();
+                                    hideShow(0);
                                 } else {
-                                    $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
+                                    $(li).each(function () {
                                         $(this).closest("li").show();
                                     });
-                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
-                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').show();
+                                    hideShow(1);
                                 }
                             }
                         });
                         $('.test').html(data);
                     }
                 });
+            }
+
+            function hideShow(showHide) {
+                let liNotFoundMessage = '#list-selected-specialization > div > div > ul > li.not-found-message';
+                let liMultiselectItemFilter = '#list-selected-specialization > div > div > ul > li.multiselect-item.filter';
+
+                if (showHide) {
+                    $(liNotFoundMessage).hide();
+                    $(liMultiselectItemFilter).show();
+                } else {
+                    $(liNotFoundMessage).show();
+                    $(liMultiselectItemFilter).hide();
+                }
             }
 
             function sortByRating(context) {
