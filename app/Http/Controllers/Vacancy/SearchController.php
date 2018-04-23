@@ -11,9 +11,9 @@ use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
 {
-    public function byIndustries(Request $request) {
-        $vacancies = Vacancy::where('branch', $request->get('industries',[]));
-//        dd($vacancies->get());
-        return response()->json($vacancies->get()->unique('position'));
+    public function byIndustries(Request $request)
+    {
+        $specialisations = Vacancy::byIndustries($request->get('industries',[]))->get()->unique('position');
+        return response()->json($specialisations);
     }
 }
