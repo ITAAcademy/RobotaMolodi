@@ -42,16 +42,19 @@
                                         }
                                     });
                                     $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
+                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').show();
                                 } else if (data.length === 0 && getFilters().industries) {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").hide();
                                     });
                                     $('#list-selected-specialization > div > div > ul > li.not-found-message').show();
+                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').hide();
                                 } else {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").show();
                                     });
                                     $('#list-selected-specialization > div > div > ul > li.not-found-message').hide();
+                                    $('#list-selected-specialization > div > div > ul > li.multiselect-item.filter').show();
                                 }
                             }
                         });
