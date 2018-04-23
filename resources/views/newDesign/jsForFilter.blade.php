@@ -36,20 +36,24 @@
                                             }
                                         }
                                         console.log(count);
-                                        if (count === 0) {
+                                        if (count === 0 && !$(this).closest("li").hasClass('multiselect-all')) {
                                             $(this).closest("li").hide();
                                         } else {
                                             $(this).closest("li").show();
                                         }
                                     });
+                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').remove();
                                 } else if (data.length === 0 && getFilters().industries) {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").hide();
-                                    })
+                                    });
+                                    let notFoundLi = $('<li class="not-found-message show"> За вашим запитом нічого не знайдено </li>');
+                                    $('#list-selected-specialization > div > div > ul').append(notFoundLi);
                                 } else {
                                     $('#list-selected-specialization > div > div > ul > li > a > label > input[type="checkbox"]').each(function () {
                                         $(this).closest("li").show();
                                     })
+                                    $('#list-selected-specialization > div > div > ul > li.not-found-message').remove();
                                 }
                             }
                         });
