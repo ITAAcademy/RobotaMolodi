@@ -48,7 +48,6 @@ class AboutUsesController extends Controller
 
     public function store(Request $request)
     {
-
         $rules = [
             'title'               => 'required',
             'short_description'   => 'required',
@@ -83,9 +82,6 @@ class AboutUsesController extends Controller
 
           //store icon in public folder
         $insPhoto->storeImages($request->all()["icon"],$aboutUs->id);
-
-
-
         return redirect()->route('admin.about-us.index');
     }
 

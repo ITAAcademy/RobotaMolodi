@@ -16,7 +16,7 @@ class Photo extends Model
     }
 
     public function storeImages($nameOfObject,$id){
-        $imageName = time().'_'
+        $imageName = '_'
             .$nameOfObject->getClientOriginalName();
         $actualPath = public_path('/AboutUs/record_id-#'.$id);
         $nameOfObject->move($actualPath,$imageName);
