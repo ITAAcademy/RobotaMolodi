@@ -72,7 +72,6 @@ class MainController extends Controller
         }
         $vacancies = Vacancy::allVacancies()->isActive()->unblockVacancies()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
-//        dd($specialisations);
         Filter::routeFilterPaginator($request, $vacancies);
         $topVacancy = Vacancy::getTopVacancies();
         return View::make('main.filter.filterVacancies', array(

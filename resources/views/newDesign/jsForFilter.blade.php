@@ -35,7 +35,6 @@
                                                 break;
                                             }
                                         }
-                                        console.log(count);
                                         if (count === 0 && !$(this).closest("li").hasClass('multiselect-all')) {
                                             $(this).closest("li").hide();
                                         } else {
@@ -56,7 +55,6 @@
                                 }
                             }
                         });
-                        console.log(getFilters().industries);
                         $('.test').html(data);
                     }
                 });
