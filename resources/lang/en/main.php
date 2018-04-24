@@ -12,5 +12,8 @@ return [
     'city' => 'City',
     'phone' => 'Phone:',
     'dosent' => '"Sorry for the inconvenience, this feature is currently not working"',
-    'unblock' => 'Unblock'
+    'unblock' => 'Unblock',
+    'sendfile' => 'Send file',
+    'sendresume' => 'Send resume',
+    'respond' => 'Respond',
 ];

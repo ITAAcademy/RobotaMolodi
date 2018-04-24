@@ -1,5 +1,5 @@
 <div class="share">
-    <p id="share-vacancy">Поділитись</p>
+    <p id="share-vacancy">{{ trans('social.share') }}</p>
 </div>
 <div class="social">
     <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $url }}" target="_blank">
