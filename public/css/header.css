@@ -283,6 +283,9 @@ img#registry {
     }
 
     .navtab-exit .modal-user-button {
+bottom:25px;
+        /*margin-right: 25px; 
+        margin-top: -25px;*/
         padding: 3px;
         border: 0;
         color: #f68c06;
