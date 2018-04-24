@@ -1,35 +1,30 @@
 <?php namespace App\Http\Controllers\Vacancy;
 
-use App\Http\Controllers\MainController;
-use App\Http\Requests;
-use App\Models\Currency;
-use App\Models\profOrientation\test1;
-use App\Models\profOrientation\UserSession;
-use App\Models\Rating;
-use App\Models\Vacancy_City;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Input;
-//use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Database\Eloquent\Collection;
-
-use Illuminate\Support\Facades\Validator;
-use Mail;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UploadFile;
 use App\Models\City;
-use App\Models\Industry;
-use Illuminate\Contracts\Auth\Guard;
 use App\Models\Company;
-use App\Models\Vacancy;
+use App\Models\Currency;
+use App\Models\Industry;
+use App\Models\Rating;
+use App\Models\Resume;
 use App\Models\User;
+use App\Models\Vacancy;
+use App\Models\Vacancy_City;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
-use App\Models\Resume;
-use App\Http\Controllers\UploadFile;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Mail;
 use View;
+
+//use Illuminate\Support\Facades\Session;
+
 //use Request;
 
 //use Session;
@@ -37,7 +32,8 @@ class VacancyController extends Controller
 {
 
 
-    private $publishedOptions = ['Недоступно','Доступно всім','Доступно зареєстрованим'];
+    private $publishedOptions = ['Недоступно', 'Доступно всім', 'Доступно зареєстрованим'];
+
     /**
      * Returns vacancy if exists and 500 code if id or vacancy incorrect .
      *
@@ -70,11 +66,10 @@ class VacancyController extends Controller
         if (Auth::check()) {
 
 
-            $companies = Company::where('users_id','=',$auth->user()->getAuthIdentifier())->get();
+            $companies = Company::where('users_id', '=', $auth->user()->getAuthIdentifier())->get();
             session_start();
 
-            if (count($companies)!=0)
-            {
+            if (count($companies) != 0) {
 
                 $industry = new Industry();
                 $industries = $industry->getIndustries();
@@ -84,7 +79,7 @@ class VacancyController extends Controller
 
 
                 $userEmail = User::find($auth->user()->getAuthIdentifier())->email;
-                $position = Input::get('position_',0);
+                $position = Input::get('position_', 0);
                 $positions = Vacancy::groupBy('position')->lists('position');
 
                 $currency = new Currency();
@@ -97,7 +92,7 @@ class VacancyController extends Controller
                         'userEmail' => $userEmail,
                         'positions' => $positions,
                         'currencies' => $currencies,
-                        'publishedOptions'=> $this->publishedOptions,
+                        'publishedOptions' => $this->publishedOptions,
                     ]);
             } else {
                 $_SESSION['path'] = 'vacancy.create';
@@ -124,15 +119,15 @@ class VacancyController extends Controller
 
             $vacancies = User::find($auth->user()->getAuthIdentifier())->ReadUserVacancies()->paginate();
 
-            if (count($vacancies)==0) {
+            if (count($vacancies) == 0) {
                 $mes = "Зараз у Вас немає вакансій.";
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+                return view('vacancy.myVacancies', ['vacancies' => $vacancies, 'mes' => $mes]);
 
             } else {
                 $vacancies->sortByDesc('created_at');
-                $mes =null;
+                $mes = null;
 //                return  view('vacancy._vacancy', ['vacancies'=> $vacancies, 'mes'=>$mes]);
-                return  view('vacancy.myVacancies', ['vacancies'=> $vacancies, 'mes'=>$mes]);
+                return view('vacancy.myVacancies', ['vacancies' => $vacancies, 'mes' => $mes]);
             }
 
         } else {
@@ -150,7 +145,7 @@ class VacancyController extends Controller
 
         if (Auth::check()) {
             Input::flash();
-            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request) {
                 if ($value < $request['salary_max'])
                     return true;
                 else return false;
@@ -207,7 +202,7 @@ class VacancyController extends Controller
 
     public function show($id)
     {
-        Cookie::queue('url', 'vacancy/'.$id);
+        Cookie::queue('url', 'vacancy/' . $id);
         $view = 'vacancy.show';
         $vacancy = $this->getVacancy($id);
         $cities = $vacancy->Cities();
@@ -221,12 +216,12 @@ class VacancyController extends Controller
             }
         }
 
-        if(!Auth::check() && $vacancy->published != 1) {
-            $view ="vacancy.noAccessVacancy";
+        if (!Auth::check() && $vacancy->published != 1) {
+            $view = "vacancy.noAccessVacancy";
         }
 
         $userResumes = null;
-        if(Auth::check() && Auth::user()->resumes()->get()->count())
+        if (Auth::check() && Auth::user()->resumes()->get()->count())
             $userResumes = Auth::user()->resumes()->get();
         return view($view)
             ->with('vacancy', $vacancy)
@@ -274,7 +269,7 @@ class VacancyController extends Controller
                     ->with('positions', $positions)
                     ->with('vacancy_City', $vacancy_City);
             else
-              return abort(403);
+                return abort(403);
         } else
             return Redirect::to('auth/login');
     }
@@ -289,11 +284,11 @@ class VacancyController extends Controller
     {
 
         if (!Vacancy::find($id))
-             return  abort(404);
+            return abort(404);
 
         if (Auth::check()) {
 
-            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request){
+            Validator::extend('minSalary', function ($attribute, $value, $parameters) use ($request) {
                 if ($value < $request['salary_max'])
                     return true;
                 else return false;
@@ -315,8 +310,7 @@ class VacancyController extends Controller
             $vacancy->update();
             $vacancy->push();
 
-            if (Company::find($vacancy->company_id)->users_id != Auth::user()->id && Auth::user()->role == 1)
-            {
+            if (Company::find($vacancy->company_id)->users_id != Auth::user()->id && Auth::user()->role == 1) {
                 Mail::send('emails.notificationEdit', ['messageText' => 'Ваша вакансія була відредагована адміністратором'], function ($message) use ($vacancy) {
                     $to = User::find(Company::find($vacancy->company_id)->users_id)->email;
                     $message->to($to, User::find(Company::find($vacancy->company_id)->users_id)->name)->subject('Ваша вакансія була відредагована адміністратором');
@@ -346,16 +340,16 @@ class VacancyController extends Controller
         if (!is_numeric($id)) {
             abort(500);
         }
-        if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id==Auth::id()) {
+        if (User::find(Company::find(Vacancy::find($id)->company_id)->users_id)->id == Auth::id()) {
             Vacancy::destroy($id);
 
             return redirect()->route('cabinet.my_vacancies');
-        }
-        else abort(403);
+        } else abort(403);
 
     }
 
     //Show response form (take one param "id" vacancy)
+
     /**
      * @param $id
      * @return mixed
@@ -388,16 +382,16 @@ class VacancyController extends Controller
     {
         $user = User::find($auth->user()->getAuthIdentifier());
         $uploadFile = UploadFile::upFile();
-        if($uploadFile==null) {
-                $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
-                return View::make('errors.uploadFileError', array(
-                    'error' => $error
-                ));
+        if ($uploadFile == null) {
+            $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
+            return View::make('errors.uploadFileError', array(
+                'error' => $error
+            ));
         }
         Mail::send('emails.vacancyFile', ['user' => $user], function ($message) use ($uploadFile) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
             $to = User::find($company->users_id)->email;
-            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
+            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії ' . Vacancy::find(Input::get('id'))->position);
             $message->attach($uploadFile);
         });
         File::delete($uploadFile);
@@ -424,14 +418,14 @@ class VacancyController extends Controller
                             ->users_id)
                             ->name)
                         ->subject('Ваша вакансія була заблокована адміністратором');
-            });
+                });
         }
         return redirect()->back();
     }
 
     public function link(Guard $auth, Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'Link' => 'url|required'
         ]);
 
@@ -441,7 +435,7 @@ class VacancyController extends Controller
         Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $link], function ($message) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
             $to = User::find($company->users_id)->email;
-            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
+            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії ' . Vacancy::find(Input::get('id'))->position);
         });
 
 
@@ -459,7 +453,7 @@ class VacancyController extends Controller
         Mail::send('emails.vacancyResume', ['user' => $user, 'resume' => $resume], function ($message) {
             $company = Company::find(Vacancy::find(Input::get('id'))->company_id);
             $to = User::find($company->users_id)->email;
-            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії '.Vacancy::find(Input::get('id'))->position);
+            $message->to($to, User::find($company->users_id)->name)->subject('Резюме по вакансії ' . Vacancy::find(Input::get('id'))->position);
         });
         return view('vacancy/vacancyAnswer');
     }
@@ -486,7 +480,8 @@ class VacancyController extends Controller
         return View::make('vacancy.pasteVacancyForm.resume', array("vacancy" => $vacancy, "user" => $user, "resume" => $resume));
     }
 
-    public function updatePablishDate($id){
+    public function updatePablishDate($id)
+    {
         $vacancy = Vacancy::find($id);
         $vacancy->touch();
         return $vacancy->updated_at->format('j m Y');
@@ -495,7 +490,7 @@ class VacancyController extends Controller
     public function rateVacancy($id, Request $request)
     {
         $vacancy = Vacancy::find($id);
-        if(Rating::isValid($request->all())){
+        if (Rating::isValid($request->all())) {
             $mark = $request->mark;
             Rating::addRate($mark, $vacancy);
             $countLike = Rating::getLikes($vacancy);
@@ -508,12 +503,11 @@ class VacancyController extends Controller
 
     public function showVacancies(Request $request)
     {
-        $nameFilter  = $request->get('name');
+        $nameFilter = $request->get('name');
         $valueFilter = $request->get('value');
         // Have to validate ?
-        if(isset($nameFilter, $valueFilter))
+        if (isset($nameFilter, $valueFilter))
             $request->session()->flash($nameFilter, $valueFilter);
         return redirect()->route('main.showVacancies');
     }
-
 }

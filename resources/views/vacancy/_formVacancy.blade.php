@@ -4,7 +4,7 @@
             {{ trans('form.position') }}
         </label>
         <div class="col-md-6 col-sm-6">
-        {{--{!! Form::text('position', Input::old('position'), array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}--}}
+{{--        {!! Form::text('position', Input::old('position'), array('class' => 'form-control','onSubmit' =>'checkForm(this)')) !!}--}}
             <select name="position" id="position" class="form-control" onsubmit="checkForm(this)">
                 @foreach($positions as $spec)
                     @if(isset($vacancy) && ($vacancy->position == $spec))

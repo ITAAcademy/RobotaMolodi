@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+
 use App\Models\City;
 use App\Models\Rating;
 use App\Models\Resume;
@@ -41,6 +42,7 @@ class MainController extends Controller
     {
         //$this->middleware('guest');
     }
+
     /**
      * Show the application welcome screen to the user.
      *
@@ -62,7 +64,7 @@ class MainController extends Controller
 
     public function showVacancies(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $vacancies = Filter::vacancies($request)->isActive()->unblockVacancies()->paginate();
             return view('newDesign.vacancies.vacanciesList', array(
                 'vacancies' => $vacancies,
@@ -77,18 +79,19 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>News::getNews(),
+            'news' => News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }
 
-    public function showCompanies(Request $request){
+    public function showCompanies(Request $request)
+    {
 
         $companies = Filter::companies($request)->allCompanies()->where('blocked', false)->paginate();
-       Filter::routeFilterPaginator($request, $companies);
+        Filter::routeFilterPaginator($request, $companies);
 
         $specialisations = Vacancy::groupBy('position')->lists('position');
-        if($request->ajax()){
+        if ($request->ajax()) {
             return view('newDesign.company.companiesList', array(
                 'companies' => $companies,
             ));
@@ -101,7 +104,7 @@ class MainController extends Controller
             'cities' => City::all(),
             'industries' => Industry::all(),
             'specialisations' => $specialisations,
-            'news'=>News::getNews(),
+            'news' => News::getNews(),
             'topVacancy' => $topVacancy,
         ));
     }
@@ -112,7 +115,7 @@ class MainController extends Controller
         Filter::routeFilterPaginator($request, $resumes);
 
         $specialisations = Resume::groupBy('position')->lists('position');
-        if($request->ajax()){
+        if ($request->ajax()) {
             return view('newDesign.resume.resumesList', ['resumes' => $resumes]);
         }
         $topVacancy = Vacancy::getTopVacancies();
