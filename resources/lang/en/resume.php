@@ -7,4 +7,5 @@ return [
     'myresume' => 'My resume',
     'myvacancy' => 'My vacancies',
     'mycompanies' => 'My companies',
+    'myprojects' => 'My projects'
 ];
