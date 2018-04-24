@@ -96,7 +96,12 @@ class IndustryController extends Controller
     }
     
     public function setMainIndustry(Request $request){
-        Industry::where('main', true)->update(array('main' => false));
-        return Industry::where('id', $request->id)->update(array('main' => true));
+        //Industry::where('main', true)->update(array('main' => false));
+        //return
+        if($request->checked == 'true')
+            Industry::where('id', $request->id)->update(array('main' => true));
+        else
+            Industry::where('id', $request->id)->update(array('main' => false));
+
     }
 }
