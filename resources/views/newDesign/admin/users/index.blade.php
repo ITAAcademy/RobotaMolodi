@@ -35,10 +35,8 @@
         @endforeach
         </tbody>
     </table>
-<!-- $users->links('newDesign.paginator'));  -->
-<!-- @include('newDesign.paginator', ['paginator' => $users]) -->
-<!-- @include('newDesign.paginator', ['paginator' => $user]) -->
-<!-- @include('paginator.default', ['paginator' => $users]); -->
+    
+ @include('newDesign.paginator', ['paginator' => $users]) 
 
 </div>
 
