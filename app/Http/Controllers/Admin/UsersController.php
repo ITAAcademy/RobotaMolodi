@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
 
-        $users = User::latest('created_at')->get();
+        $users = User::latest('created_at')->paginate(15);
         return view('newDesign.admin.users.index', ['users' => $users]);
     }
 

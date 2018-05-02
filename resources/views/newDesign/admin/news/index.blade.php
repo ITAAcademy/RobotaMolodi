@@ -81,7 +81,7 @@
 
             </tbody>
         </table>
-  <!-- @include('newDesign.paginator', ['paginator' => $news]) -->
+  @include('newDesign.paginator', ['paginator' => $news])
     </div>
     <script>
         $(document).ready(function () {
