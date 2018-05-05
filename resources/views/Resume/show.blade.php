@@ -4,16 +4,6 @@
     <link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
-@section('seo-module')
-    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $resume->description ])
-    @include('newDesign.socialModule.meta',
-        [
-            'title'         =>  trans('social.resume') . ' : ' . $resume->position,
-            'description'   =>  $resume->description,
-            'image'         =>  $resume->image
-            ])
-@endsection
-
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
         ['url'=> 'head','name'=>trans('content.main')],
