@@ -9,5 +9,6 @@
 return [
     'company'   => 'Company',
     'resume'    => 'Resume',
-    'vacancy'   => 'Vacancy'
+    'vacancy'   => 'Vacancy',
+    'share'     =>'Share',
 ];

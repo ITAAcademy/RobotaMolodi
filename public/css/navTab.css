@@ -89,7 +89,7 @@
 
 .dropdown-menu{
 	width: 100%;
-	position: inherit;
+	position: absolute;
 }
 
 #dropdownMenu1 {

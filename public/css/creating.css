@@ -10,15 +10,12 @@
     font-family: "ACLine";
     src: url(../fonts/ACLine.ttf);
 }
-.l-form-vacancy{
+
+.l-form-vacancy {
     display: flex;
     flex-direction: column;
+}
 
-}
-.l-form-vacancy-item{
-    /*display: flex;*/
-    /*justify-content: space-around;*/
-}
 .header-text-vacancy {
     color: #F68C06;
     /*margin-left: 15px;*/
@@ -29,32 +26,38 @@
     font-weight: bold;
 }
 
-.label-text-vacancy{
-    /*margin-right: -15px;*/
+.label-text-vacancy {
     line-height: 44px;
     display: inline-block;
-    /*text-align: right;*/
-    /*margin-bottom: -3px;*/
     min-width: 167px;
     font-family: "Segoe UI", sans-serif;
     -ms-font-family: "Segoe UI", sans-serif;
     font-size: 15px;
     font-weight: 500;
-    color:#666666;
+    color: #666666;
 }
 
-.inputPlace{
+.inputPlace {
     width: 100%;
     height: 44px;
     border-radius: 5px;
     border: 1px solid #D6D6D6;
 }
 
-
 /*///////////////NEW COMPANY////////////*/
-.left{padding-left:17px;}
-.red-star{color:red;}
-.err-info{color:white;}
+
+.left {
+    padding-left: 17px;
+}
+
+.red-star {
+    color: red;
+}
+
+.err-info {
+    color: white;
+}
+
 .err-info .err-message:not(:hover) {
     position: relative;
     color: white;
@@ -63,13 +66,25 @@
 }
 
 @keyframes err {
-    0%   {color: white;}
-    75%  {color: red; left:0px; top:0px;}
-    100% {color: white; left:200px; top:0px;}
+    0% {
+        color: white;
+    }
+    75% {
+        color: red;
+        left: 0px;
+        top: 0px;
+    }
+    100% {
+        color: white;
+        left: 200px;
+        top: 0px;
+    }
 }
-.l-header-text-company{
+
+.l-header-text-company {
     margin-bottom: 15px;
 }
+
 .header-text-company {
     color: #F68C06;
     margin-bottom: 0;
@@ -78,11 +93,13 @@
     font-size: 36px;
     font-weight: bold;
 }
-.form-company-row{
+
+.form-company-row {
     display: flex;
     align-items: center;
 }
-.label-text-company{
+
+.label-text-company {
     line-height: 45px;
     display: inline-block;
     text-align: right;
@@ -91,30 +108,36 @@
     -ms-font-family: "Segoe UI", sans-serif;
     font-size: 15px;
     font-weight: 500;
-    color:#666666;
+    color: #666666;
 }
 
-.after-form-item{
+.after-form-item {
     margin-top: 15px;
     text-align: left;
     line-height: 30px;
 }
 
-.inputPlace2{
+.inputPlace2 {
     width: 100%;
     height: 35px;
     border-radius: 5px;
     border: 1px solid #D6D6D6;
 }
 
-.dangerIco{
-    width:20px;
+.dangerIco {
+    width: 20px;
 }
-.upload-image{
+
+.upload-image {
     padding-bottom: 15px;
 }
 
 /*//////////////////NEW RESUME////////////*/
+
+span.red-star {
+    color: red;
+    width: 5px;
+}
 
 .header-resume {
     margin-bottom: 20px;
@@ -122,7 +145,6 @@
 
 .header-text-resume {
     color: #F68C06;
-    /*margin-left: 15px;*/
     margin-bottom: 0;
     font-family: "ACLine";
     -ms-font-family: "ACLine";
@@ -130,61 +152,61 @@
     font-weight: bold;
 }
 
-.label-text-resume{
-    /*margin-right: -15px;*/
-    /*line-height: 44px;*/
+.label-text-resume {
     display: inline-block;
-    /*text-align: right;*/
-    /*margin-bottom: 3px;*/
-    /*min-width: 175px;*/
     font-family: "Segoe UI", sans-serif;
     -ms-font-family: "Segoe UI", sans-serif;
     font-size: 15px;
     font-weight: 500;
-    color:#666666;
+    color: #666666;
 }
-.select-width{
+
+.select-width {
     width: 100%;
 }
-.resume-row{
+
+.resume-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.resume-form{
+
+.resume-form {
     display: flex;
     justify-content: space-between;
 }
-.resume-form-input{
+
+.resume-form-input {
     flex-basis: 100%;
 }
-.resume-form-f{
+
+.resume-form-f {
     margin-left: 22.3%;
     margin-bottom: 2%;
 }
 
-
-
-.change_description{
+.change_description {
     display: none;
 }
-.change_description p{
+
+.change_description p {
     margin-left: 20px;
 }
-input.btn.btn-primary{
+
+input.btn.btn-primary {
     color: white;
     background-color: #F68C06;
     border-color: #F68C06;
 }
-input.btn.btn-primary:hover{
-    color: white;
-    background-color: #f26522;
-    border-color: #f26522;
-}
-input.btn.btn-primary:focus{
+
+input.btn.btn-primary:hover {
     color: white;
     background-color: #f26522;
     border-color: #f26522;
 }
 
-
+input.btn.btn-primary:focus {
+    color: white;
+    background-color: #f26522;
+    border-color: #f26522;
+}

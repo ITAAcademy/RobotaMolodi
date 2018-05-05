@@ -17,7 +17,7 @@
         <ul>
             <li>
                 <span class="tv-news-date">{{$oneNews->created_at->format('d.m.Y')}}</span><br>
-                <a class="tv-link"  href="/news/{{$oneNews->id}}">
+                <a class="tv-link"  href="/news">
                     <p class="tvl-position">{{$oneNews->name}}</p>
                     @if($oneNews->img!='Not picture')
                     <img class="picture" src="{{ asset($oneNews->getPath().$oneNews->img) }}">

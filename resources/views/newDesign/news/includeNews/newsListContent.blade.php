@@ -18,7 +18,7 @@
                     <a class="links" href="/news/{{$oneNews->id}}">
                         <h3>{{ $oneNews->name}}</h3>
                     </a>
-                    <h5>{{$oneNews->shortDescription()}}</h5>
+                    <!-- <h5>{{$oneNews->shortDescription()}}</h5> -->
                 </div>
             </div>
 

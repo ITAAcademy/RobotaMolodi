@@ -1,3 +1,6 @@
+
+<link href="{{ asset('/css/newsList.css') }}" rel="stylesheet">
+ <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 @extends('newDesign.layouts.admin')
 @section('content')
     <div class="contentAndmin">
@@ -23,7 +26,7 @@
             @foreach ($news as $new)
                 <tr>
                     <td scope="row">{{ $new->id }}</td>
-                    <td><h5>{{ $new->name }}</h5></td>
+                    <td style="text-align: center"><h5>{{ $new->name }}</h5></td>
                     <td>
                         @if($new->img!='Not picture')
                             <img class="picture" src="{{ asset($new->getPath().$new->img) }}" style="width: 100%">
@@ -47,14 +50,38 @@
                         'class' => 'confirm',
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
-                        ]) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-small red optionBtn']) !!}
-                        {!! Form::close() !!}
+                        ]) !!} 
+                        {!! Form::submit ('&#xf014;'.' Delete news', [' class' => ' btn btn-danger btn-group fa fa-trash-o optionBtn']) !!}
+                        {!! Form::close() !!} 
+
                     </td>
                 </tr>
             @endforeach
+            
+            <script>
+                $(document).ready(function () {
+                    $("button[value='0']").addClass("fa-square-o");
+                    $("button[value='1']").addClass("fa-check-square-o");
+                    $("button.fa").click( function() {
+                        var id = $(this).attr('id');
+                        $.ajax({
+                            url: '/admin/news/updatePublished/'+id,
+                            methof: 'GET',
+                            success: function(published) {
+                                if (published > 0) {
+                                    return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
+                                } else {
+                                    return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
+                                }
+                            }
+                        });
+                    });
+                })
+            </script>
+
             </tbody>
         </table>
+  @include('newDesign.paginator', ['paginator' => $news])
     </div>
     <script>
         $(document).ready(function () {

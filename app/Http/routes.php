@@ -46,7 +46,10 @@ Route::get('/js/lang.js', function () {
     exit();
 });
 
+Route::post('auth/loginValidator', ['as' => 'auth.loginValidator', 'uses' => 'Auth\AuthController@postLoginValidator']);
+
 //sso oAuth2.0 API
+
 Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
@@ -93,6 +96,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/sliders/updatePublished/{slider_id}', 'Admin\SliderController@updatePublished');
     Route::resource('/seo-module', 'Admin\SeoModuleController');
     Route::resource('/projects', 'Admin\ProjectsController');
+    Route::resource('/about-us','Admin\AboutUsesController');
     Route::post('upartimg', ['as'=>'upartimg', 'uses' => 'UploadFile@addArticleContent']);
 });
 
@@ -119,6 +123,8 @@ Route::any('searchCompanies',['as' => 'searchCompany' ,'uses' => 'SearchControll
 //Vacancy Route
 Route::post('vacancyAnswer','Vacancy\VacancyController@sendFile');
 $router->resource('vacancy','Vacancy\VacancyController');
+
+Route::get('vacancy/search/byIndustries',['as'=>'vacancy.search.byIndustries', 'uses' => 'Vacancy\SearchController@byIndustries']);
 
 Route::get('vacancy/{vacancy}/response/link',['as'=>'vacancy.response.link', 'uses' => 'Vacancy\ResponseController@link', 'middleware'=>'auth']);
 Route::post('vacancy/{vacancy}/response/sendFile',['as'=>'vacancy.response.sendFile', 'uses' => 'Vacancy\ResponseController@sendFile', 'middleware'=>'auth']);

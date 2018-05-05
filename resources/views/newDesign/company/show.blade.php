@@ -40,7 +40,7 @@
                     <div class="change-img-myresume">
                         <span class="orange-link-myresume"  id="changeImage">
                             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-                            <span>Змiнити фото</span>
+                            <span>{{ trans('company.changephoto') }}</span>
                         </span>
                     </div>
                     @endif
@@ -49,7 +49,7 @@
   							<i class="fa newFa">&#xf0b1;</i>
   						</span>
                         <div class="consult">
-                            <a href="#">запланувати консультацію</a>
+                            <a href="#">{{ trans('company.planaconsultation') }}</a>
                         </div>
                     </div>
                     @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="col-xs-3 text_com">
-                        <span>Аббревиатура: </span>
+                        <span> {{ trans('company.Abbreviation') }}</span>
                     </div>
                     <div class="col-xs-9 text_com">
                         <span>{{ !empty($company->short_name) ? $company->short_name : "Не вказано"}}</span>
@@ -104,7 +104,7 @@
 
 
                     <div class="col-xs-3 text_com">
-                        <span>Посилання: </span>
+                        <span>{{ trans('company.links') }} </span>
                     </div>
                     @if(!empty($company->link))
                         <div class="col-xs-9 text_com">
@@ -117,7 +117,7 @@
                     @endif
 
                     <div class="col-xs-3 text_com">
-                        <span>Мiсто: </span>
+                        <span> {{ trans('company.City') }}</span>
                     </div>
                     <div class="col-xs-9 text_com">
                         <span>{{!empty($city->name) ? $city->name : "Не вказано"}}</span>
@@ -138,7 +138,7 @@
                     </div>
 
                     <div class="col-xs-12 textCompany verticalIndent">
-                        <span class="anagraph verticalIndent">Подробиці </span>
+                        <span class="anagraph verticalIndent">{{ trans('company.Details') }} </span>
                     </div>
                     <div class="col-xs-12 description">
                        <span>
@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="col-xs-12 textCompany verticalIndent">
-                        <span class="anagraph verticalIndent">Вакансії </span>
+                        <span class="anagraph verticalIndent">{{ trans('company.vacancies') }} </span>
                         @if(!empty($vacancies[0]))
                             @foreach($vacancies as $vacancy)
                                 <div class="description">
@@ -164,7 +164,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>На даний момент немає активних вакансій</p>
+                            <p>{{ trans('company.noactiveVacansies') }}</p>
                         @endif
 
                         @if(Auth::check() && Auth::user()->isAdmin())
@@ -185,9 +185,9 @@
                    onclick="return confirm('Ви дійсно бажаєте видалити коментарій?');">{{ trans('main.delete') }}</a>
                 <a href="{{$company->id}}/edit" class="btn-default btn">{{ trans('main.edit') }}</a>
                 @endif
-                <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">Відгукнутись</a>
-                <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">Відправити файл</a>
-                <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">Відправити резюме</a>
+                <a href="{{route('company.response.index',$company->id)}}" class="response-call btn-default btn">{{ trans('main.respond') }}</a>
+                <a href="{{route('scompany.company_formSendFile',$company->id)}}" class="file-call btn-default btn">{{ trans('main.sendfile') }}</a>
+                <a href="{{route('scompany.company_formSendResume',$company->id)}}" class="resume-call btn-default btn">{{ trans('main.sendresume') }}</a>
             </div>
 
         </div>

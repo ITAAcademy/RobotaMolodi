@@ -26,11 +26,11 @@
 
                         <td data-id="{{$industry->id}}">
                             @if($industry->main)
-                                <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                               <label for="filled-in-box"></label>
+                                <input type="checkbox" class="filled-in" id="{{$industry->id}}" checked="checked" myAttr="forAjax"/>
+                               <label for="{{$industry->id}}"></label>
                             @else
-                                <input type="checkbox" class="filled-in" id="filled-in-box"/>
-                                <label for="filled-in-box"></label>
+                                <input type="checkbox" class="filled-in" id="{{$industry->id}}" myAttr="forAjax"/>
+                                <label for="{{$industry->id}}"></label>
                             @endif
                         </td>
 
@@ -53,13 +53,14 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('.set-main').click(function () {
+            $('[myAttr="forAjax"]').click(function () {
                 var that = $(this);
+                var checkField = that.parent().context.checked;
                 var id = that.parent().data('id');
                 $.ajax({
                     url:'{{ route('setMainIndustry') }}',
                     method: 'post',
-                    data: {id: id},
+                    data: {id: id, checked: checkField},
                     success: function () {
                         $('.fa-check-square-o')
                             .removeClass('fa-check-square-o')
