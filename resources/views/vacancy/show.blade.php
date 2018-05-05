@@ -2,16 +2,6 @@
 @section('head')
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 @endsection
-@section('seo-module')
-    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $vacancy->description ])
-    @include('newDesign.socialModule.meta',
-        [
-            'title'         =>  trans('social.vacancy') . ' : ' . $vacancy->position,
-            'description'   =>  $vacancy->description,
-            'image'         =>  $vacancy->image
-            ])
-@endsection
-
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
            ['url'=> 'head','name'=>'Головна'],
