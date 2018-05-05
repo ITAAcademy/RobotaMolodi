@@ -34,7 +34,6 @@
 		  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
 		  crossorigin="anonymous">
 	<!-- Internal Resources -->
-	@include('newDesign.seoModule.index')
 	<!-- head-->
 	@yield('head')
 	<!-- headLinks-->

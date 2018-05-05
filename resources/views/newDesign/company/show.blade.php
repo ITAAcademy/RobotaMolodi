@@ -2,15 +2,6 @@
 @section('head')
     <link href="{{ asset('/css/oneCompany.css') }}" rel="stylesheet">
 @stop
-@section('seo-module')
-    @include('newDesign.seoModule._meta', ['name' => 'description' , 'content' => $company->description ])
-    @include('newDesign.socialModule.meta',
-        [
-            'title'         =>  trans('social.company') . ' : ' . $company->company_name,
-            'description'   =>  $company->description,
-            'image'         =>  $company->image
-            ])
-@endsection
 @section('content')
     @include('newDesign.scrollup')
 
