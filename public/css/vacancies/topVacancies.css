@@ -1,3 +1,8 @@
+
+img {
+	padding: 0px;
+}
+
 @font-face {
 	font-family: ACLine;
 	src:    url('../../fonts/ACLine.eot') format('embedded-opentype'),
