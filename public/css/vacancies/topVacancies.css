@@ -1,3 +1,8 @@
+
+img {
+	padding: 0px;
+}
+
 @font-face {
 	font-family: ACLine;
 	src:    url('../../fonts/ACLine.eot') format('embedded-opentype'),
@@ -34,9 +39,10 @@
 
 .tv-news-header1 {
 	float:left;
-	margin:6px 0 0 5px;
+	margin:-5px 0 0 5px;
 }
 .tv-news-header2 {
+	margin-top: 18px;
 	color:#f68c06;
 	font-family:ACLine;
 	font-size:32px;
