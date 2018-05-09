@@ -5,16 +5,20 @@
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
     @include('newDesign/search/show')
-    <div id="left-content-column" class="col-sm-9">
-        @include('newDesign/sortAds/sort')
-        @include('newDesign/vacancies/vacanciesList')
-        @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])
+    <div class="row">
+        <div id="left-content-column" class="col-sm-9">
+            @include('newDesign/sortAds/sort')
+            @include('newDesign/vacancies/vacanciesList')
+            {{--@include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])--}}
+        </div>
+        <div id="right-content-column" class="col-sm-3">
+
+            @include('newDesign/vacancies/topVacancies')
+            @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2])
+            @include('newDesign/topNews')
+        </div>
     </div>
-    <div id="right-content-column" class="col-sm-3">
-        @include('newDesign/vacancies/topVacancies')
-        @include('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2])
-        @include('newDesign/topNews')
-    </div>
+    @include('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1])
     {{--<div class="posts">--}}
         {{--@include('vacancy._vacancy')--}}
     {{--</div>--}}
