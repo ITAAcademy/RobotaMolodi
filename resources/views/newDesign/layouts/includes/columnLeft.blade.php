@@ -1,4 +1,4 @@
-<div class="columnLeft">
+<div class=" columnLeft">
 
         <ol class="menu">
             <a href="{{route('admin.news.index')}}">
@@ -57,8 +57,8 @@
                 </div>
             </a>
 
-               <div class="row">
-                   <div class="col l12">
+                <div class="row">
+                    <div class="col l12">
                         <li><p align="center" class="blockedContent">Заблокований контент</p></li>
                     </div>
                 </div>

@@ -31,19 +31,11 @@ a:hover{
 }
 .menu>a>div:hover{
     background-color: #e0e9d7;
-    width: 200px;
+    width: 100%;
 }
 .menu a > .active {
-    background-color: #red;
-
+    background-color: #cbd4bf;
 }
-
-.menu a{
-    background-color: #red;
-
-}
-
-
 
 .dropdown-toggle {
     margin-top: 30px;
