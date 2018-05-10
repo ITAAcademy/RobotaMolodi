@@ -5,7 +5,7 @@
         </div>
         <div class=" col-md-6 col-sm-6 resume-form">
             <div class="resume-form-input">
-                {!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control']) !!}
+                {!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control' ,'id' => 'name']) !!}
             </div>
             <span class="red-star">*</span>
         </div>
@@ -14,6 +14,18 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $().ready(function(){
+        $('#name').keypress(function(e){
+            if(e.which ==48 ||e.which ==49 || e.which ==50 || e.which ==51|| e.which ==52|| e.which ==53|| e.which ==54|| e.which ==55|| e.which ==56|| e.which ==57){
+                $('#name').val('');
+                $('#name').css({"border": "2px dotted red"});
+                return false;
+            }
+            else $('#name').css({"border": "inherit "});
+        });
+    });
+</script>
 <div class="row">
     <div class="form-group resume-row {{$errors->has('telephone') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">
