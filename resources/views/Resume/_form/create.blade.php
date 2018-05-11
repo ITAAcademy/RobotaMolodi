@@ -14,18 +14,6 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $().ready(function(){
-        $('#name').keypress(function(e){
-            if(e.which ==48 ||e.which ==49 || e.which ==50 || e.which ==51|| e.which ==52|| e.which ==53|| e.which ==54|| e.which ==55|| e.which ==56|| e.which ==57){
-                $('#name').val('');
-                $('#name').css({"border": "1px dotted red"});
-                return false;
-            }
-            else $('#name').css({"border": "inherit "});
-        });
-    });
-</script>
 <div class="row">
     <div class="form-group resume-row {{$errors->has('telephone') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">
@@ -173,32 +161,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $().ready(function(){
-        $('#salary').keypress(function(e){
-            if(e.which ==48 ||e.which ==49 || e.which ==50 || e.which ==51|| e.which ==52|| e.which ==53|| e.which ==54|| e.which ==55|| e.which ==56|| e.which ==57){
-                $('#salary').css({"border": "inherit "});
-            }
-            else {
-                $('#salary').val('');
-                $('#salary').css({"border": "1px dotted red"});
-                return false;
-            }
-        });
-
-        $('#salary_max').keypress(function(e){
-            if(e.which ==48 ||e.which ==49 || e.which ==50 || e.which ==51|| e.which ==52|| e.which ==53|| e.which ==54|| e.which ==55|| e.which ==56|| e.which ==57){
-                $('#salary_max').css({"border": "inherit "});
-            }
-            else {
-                $('#salary_max').val('');
-                $('#salary_max').css({"border": "1px dotted red"});
-                return false;
-            }
-        });
-    });
-</script>
-
+{!!Html::script('js/resume.js')!!}
 <div class="row">
     <div class="form-group resume-row {{$errors-> has('salary_max') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">
