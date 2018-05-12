@@ -34,8 +34,6 @@
     });
 
     function validElem(el) {
-        if(el>=48 && el<=57){
-            return true;
-        }
-        else return false;
+
+      return (el>=48 && el<=57);
     }
