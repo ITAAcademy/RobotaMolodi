@@ -38,7 +38,7 @@
 
 
                             @foreach($cities->get() as $city)
-                                <li> {!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}</li>
+                       <li class="list-style-type"> {!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}</li>
                         @endforeach
 
 
