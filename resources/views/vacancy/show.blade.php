@@ -22,10 +22,11 @@
 
                     </div>
                     <div class="col-xs-12 case">
-                        <div class="col-xs-2 case-img">
-                            <i class="fa vacancy">&#xf0b1;</i>
-                        </div>
                         <div class="col-xs-10 consult">
+                           <div class="col-xs-2 case-img">
+                              <i class="fa vacancy">&#xf0b1;</i>
+                        </div>
+
                             <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
 
                 @if(Auth::check() && Auth::user()->isAdmin())
                     <div>
-                        <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">
+                        <button class="btn btn-default block-vacancy" onclick="blockVacancy()">
                             Заблокувати
                         </button>
                     </div>
