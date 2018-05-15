@@ -39,7 +39,7 @@
                 <div class="navtab-exit">
                     <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i
                                 class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="modal-user-button" style="margin-right: 25px; margin-top: -25px;" 
+                    <a class="modal-user-button" style="margin-right: 25px; margin-top: -2px;"
                        @if(Auth::user()->isAdmin()) href="{{url('/admin')}}"
                        @else href="{{ url('/cabinet') }}" @endif>
                         <span class="img-user">
