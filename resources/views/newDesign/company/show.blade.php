@@ -37,7 +37,9 @@
                     @endif
                     <div class="case">
   						<span>
-  							<i class="fa newFa">&#xf0b1;</i>
+                            <a href="#">
+                                <i class="fa newFa">&#xf0b1;</i>
+                            </a>
   						</span>
                         <div class="consult">
                             <a href="#">{{ trans('company.planaconsultation') }}</a>

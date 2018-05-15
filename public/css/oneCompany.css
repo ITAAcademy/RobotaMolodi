@@ -7,21 +7,21 @@
 div.case{
     display: block;
     width: 134px;
-    height:30px;
+    height:32px;
     clear:both;
 }
  i.fa.newFa{
     color:  #f68c06;
-    width: 24px;
+    width: 18px;
     height: 21px;
-    padding-top: 5px;
+    padding-top: 8px;
     float: left;
     padding-left: 20px;
-    font-size: 25px;
+    font-size: 26px;
     display: block;
 }
 div.consult {
-    padding-top: 3px;
+    padding-top: 7px;
     width: 84px;
     height: 25px;
     display: flex;
@@ -31,9 +31,8 @@ div.consult {
 }
 .consult a {
     color:  #f68c06;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    text-decoration: underline;
     text-align: left;
     line-height: 11px;
     text-align: justify;
