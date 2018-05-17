@@ -1,6 +1,6 @@
 
 <link href="{{ asset('/css/newsList.css') }}" rel="stylesheet">
- <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 @extends('newDesign.layouts.admin')
 @section('content')
     <div class="contentAndmin">
@@ -14,13 +14,13 @@
         </div>
         <table class="striped bordered highlight" >
             <thead>
-                <tr>
-                    <th class="s1 m2 l2 xl1">Id</th>
-                    <th class="s4 m3 l4 xl4">Title</th>
-                    <th class="s3 m3 l3 xl4">Picture</th>
-                    <th class="s1 m1 l1 xl1">Published</th>
-                    <th class="s3 m3 l2 xl2">Options</th>
-                </tr>
+            <tr>
+                <th class="s1 m2 l2 xl1">Id</th>
+                <th class="s4 m3 l4 xl4">Title</th>
+                <th class="s3 m3 l3 xl4">Picture</th>
+                <th class="s1 m1 l1 xl1">Published</th>
+                <th class="s3 m3 l2 xl2">Options</th>
+            </tr>
             </thead>
             <tbody>
             @foreach ($news as $new)
@@ -47,17 +47,17 @@
                         </a>
 
                         {!! Form::open([
-                        'class' => 'confirm',
+
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
-                        ]) !!} 
+                        ]) !!}
                         {!! Form::submit ('&#xf014;'.' Delete news', [' class' => ' btn btn-danger btn-group fa fa-trash-o optionBtn']) !!}
-                        {!! Form::close() !!} 
+                        {!! Form::close() !!}
 
                     </td>
                 </tr>
             @endforeach
-            
+
             <script>
                 $(document).ready(function () {
                     $("button[value='0']").addClass("fa-square-o");
@@ -81,7 +81,7 @@
 
             </tbody>
         </table>
-  @include('newDesign.paginator', ['paginator' => $news])
+        @include('newDesign.paginator', ['paginator' => $news])
     </div>
     <script>
         $(document).ready(function () {
