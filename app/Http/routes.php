@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::get('/',['as' => 'admin','uses' => 'Admin\AdminController@index']);
 
     Route::resource('/news', 'Admin\NewsController');
+    Route::get('/news/{id}/destroyNews',['as'=>'destroyNews', 'uses'=>'Admin\NewsController@destroy'] );
     Route::resource('/users', 'Admin\UsersController');
     Route::get('/users/{id}/changeRole',['as'=>'changeRole', 'uses'=>'Admin\UsersController@change'] );
     Route::resource('/slider', 'Admin\SliderController');

@@ -45,15 +45,9 @@
                         <a href="{{ route('admin.news.show', $new->id) }}" class="btn btn-small blue optionBtn">
                             Show
                         </a>
-
-                        {!! Form::open([
-                        'class' => 'confirm',
-                        'method' => 'DELETE',
-                        'route' => ['admin.news.destroy', $new->id]
-                        ]) !!} 
-                        {!! Form::submit ('&#xf014;'.' Delete news', [' class' => ' btn btn-danger btn-group fa fa-trash-o optionBtn']) !!}
-                        {!! Form::close() !!} 
-
+                        <a href="{!! route('destroyNews',$new->id) !!}" class="btn btn-small blue optionBtn">
+                           Delete
+                        </a>
                     </td>
                 </tr>
             @endforeach
