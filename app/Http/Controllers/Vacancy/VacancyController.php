@@ -96,7 +96,6 @@ class VacancyController extends Controller
                     ]);
             } else {
                 $_SESSION['path'] = 'vacancy.create';
-
                 return redirect()->route('company.create');
 
             }

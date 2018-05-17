@@ -62,14 +62,10 @@ class NewsController extends Controller
 
     public function destroy($id)
     {
-        /**
-         * @var News $news
-         */
-        $news = News::find($id);
-        $news->deleteNews();
-        Session::flash('flash_message', 'news successfully deleted!');
+        News::where('id',$id)->delete();
         return redirect()->route('admin.news.index');
     }
+
     private function helperSave($news, $request){
         if($request->image) {
             $news->saveImage($request);

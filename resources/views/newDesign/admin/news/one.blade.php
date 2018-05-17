@@ -16,7 +16,7 @@
             
             </div>
 
-            @include('newDesign.paginator', ['paginator' => $news])
+            @include('newDesign.paginator', ['paginator' => $newsOne])
 
     </div>
 @endsection

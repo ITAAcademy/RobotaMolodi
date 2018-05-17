@@ -3,14 +3,14 @@
     @if ($paginator->hasPages())
         <ul class="pagination">
 
-            {{-- First Page Link / For Mobile --}}
+             First Page Link / For Mobile
             @if ($paginator->currentPage() == 1)
                 <li class="disabled hide-md"><span>&#60;&#60;</span></li>
             @else
                 <li class="prev hide-md"><a href="{{ $paginator->url(1) }}" rel="prev">&#60;&#60;</a></li>
             @endif
 
-            {{-- Previous Page Link --}}
+             Previous Page Link
             @if ($paginator->currentPage() == 1)
                 <li class="disabled"><span>&#60;</span></li>
             @else
@@ -21,7 +21,7 @@
                 <li class="hidden-xs"><a href="{{ $paginator->url(1) }}">1</a></li>
             @endif
 
-            {{-- Correct output when a few pages --}}
+             Correct output when a few pages
             @if($paginator->currentPage() > 3)
                 @if( $paginator->lastPage()<8)
                     @if( $paginator->currentPage()>4)
@@ -32,7 +32,7 @@
                 @endif
             @endif
 
-            {{-- Active Page Iterator --}}
+             Active Page Iterator
             @foreach(range(1, $paginator->lastPage()) as $i)
                 @if($i >= $paginator->currentPage() - 2 && $i <= $paginator->currentPage() + 2)
                     @if ($i == $paginator->currentPage())
@@ -51,14 +51,14 @@
                 <li class="hidden-xs"><a href="{{ $paginator->url($paginator->lastPage()) }}">{{ $paginator->lastPage() }}</a></li>
             @endif
 
-            {{-- Next Page Link --}}
+             Next Page Link
             @if ($paginator->hasMorePages())
                 <li class="next"><a href="{{ $paginator->nextPageUrl() }}" rel="next">&#62;</a></li>
             @else
                 <li class="disabled"><span>&#62;</span></li>
             @endif
 
-            {{-- Last Page Link / For Mobile --}}
+             Last Page Link / For Mobile
             @if ($paginator->hasMorePages())
                 <li class="next hide-md"><a href="{{ $paginator->url($paginator->lastPage()) }}" rel="next">&#62;&#62;</a></li>
             @else
