@@ -19,6 +19,7 @@ class NewsController extends Controller
     {
         $news = News::latest('created_at')->paginate(15);
         return view('newDesign.admin.news.index', ['news' => $news]);
+
     }
 
     public function create()
@@ -66,8 +67,7 @@ class NewsController extends Controller
          * @var News $news
          */
         $news = News::find($id);
-        $news->deleteNews();
-        Session::flash('flash_message', 'news successfully deleted!');
+        $news->delete();
         return redirect()->route('admin.news.index');
     }
     private function helperSave($news, $request){

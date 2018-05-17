@@ -25,6 +25,13 @@
                 </div>
             </a>
 
+            <a href="{{route('admin.possition.index')}}">
+                <div class="row">
+                    <div class="col l12">
+                        <li><p>Позиції</p></li>
+                    </div>
+                </div>
+            </a>
 
             <a href="{{route('admin.about-us.index')}}">
                 <div class="row">
