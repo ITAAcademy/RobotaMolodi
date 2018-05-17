@@ -47,7 +47,7 @@
                         </a>
 
                         {!! Form::open([
-                        'class' => 'confirm',
+
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
                         ]) !!} 
