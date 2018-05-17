@@ -5,7 +5,7 @@
         </div>
         <div class=" col-md-6 col-sm-6 resume-form">
             <div class="resume-form-input">
-                {!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control']) !!}
+                {!! Form::text('name_u', Input::old('name_u'), ['class'=>'form-control' ,'id' => 'name']) !!}
             </div>
             <span class="red-star">*</span>
         </div>
@@ -161,6 +161,7 @@
         </div>
     </div>
 </div>
+{!!Html::script('js/resume.js')!!}
 <div class="row">
     <div class="form-group resume-row {{$errors-> has('salary_max') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">
