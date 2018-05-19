@@ -1,4 +1,4 @@
-<div class="col l2 m2 s2 columnLeft">
+<div class=" columnLeft">
 
         <ol class="menu">
             <a href="{{route('admin.news.index')}}">
@@ -20,7 +20,7 @@
             <a href="{{route('admin.industry.index')}}">
                 <div class="row">
                     <div class="col l12">
-                         <li><p>Индустрии</p></li>
+                         <li><p>Індустрії</p></li>
                      </div>
                 </div>
             </a>

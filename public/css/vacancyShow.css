@@ -23,7 +23,7 @@ div.consult {
     display: flex;
     float: left;
     text-align: justify;
-    margin-left: 0px;
+    margin: 5px 0 5px 5px;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 0px;
@@ -128,6 +128,8 @@ i.fa-google-plus-square {
 }
 .text_data{
     color: #777777;
+    list-style-type: none;
+    padding:17px;
 }
 #yellowCircleVacancy{
     color: #777777;
@@ -344,4 +346,9 @@ input{
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.block-vacancy {
+    background: #f48952;
+    margin: 5px 0 10px 43px;
 }

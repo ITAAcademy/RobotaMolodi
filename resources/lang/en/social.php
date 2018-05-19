@@ -10,5 +10,5 @@ return [
     'company'   => 'Company',
     'resume'    => 'Resume',
     'vacancy'   => 'Vacancy',
-    'share'     =>'Share',
+    'share'     =>'Share'
 ];

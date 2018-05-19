@@ -19,12 +19,14 @@
                         @else
                             <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
                         @endif
+
                     </div>
                     <div class="col-xs-12 case">
-                        <div class="col-xs-2 case-img">
-                            <i class="fa vacancy">&#xf0b1;</i>
-                        </div>
                         <div class="col-xs-10 consult">
+                           <div class="col-xs-2 case-img">
+                              <i class="fa vacancy">&#xf0b1;</i>
+                        </div>
+
                             <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
                         </div>
                     </div>
@@ -32,6 +34,26 @@
                         @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
                     @endif
                 </div>
+                <div>
+                    <div class="text_data">
+
+
+                            @foreach($cities->get() as $city)
+                       <li class=""> {!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}</li>
+                        @endforeach
+
+
+                    </div>
+                </div>
+
+                @if(Auth::check() && Auth::user()->isAdmin())
+                    <div>
+                        <button class="btn btn-default block-vacancy" onclick="blockVacancy()">
+                            Заблокувати
+                        </button>
+                    </div>
+                @endif
+
             </div>
             <div class="col-md-10">
                 <div id="datAnnoyingSizes">
@@ -66,16 +88,19 @@
                         <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                     </div>
                     <div>
-                        <div class="descriptionStyle"><span class="anagraph">Подробиці </span><br>{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>
+                        <span id="yellowCircleVacancy">Дата створення: {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>
                     <div>
-                        <div class="text_data">
-                            @foreach($cities->get() as $city)
-                                {!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}
-                            @endforeach
-                                <span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
-                        </div>
+                        <div class="descriptionStyle"><span class="anagraph">Подробиці </span><br>{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>
                     </div>
+                    {{--<div>--}}
+                        {{--<div class="text_data">--}}
+                            {{--@foreach($cities->get() as $city)--}}
+                                {{--{!! Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
+                            {{--@endforeach--}}
+                                {{--<span id="yellowCircleVacancy"><span>&bull;</span> {{date('j m Y', strtotime($vacancy->updated_at))}}</span>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                 </div>
             </div>
@@ -175,14 +200,6 @@
     <script>
         socialNetWork('.social > a');
     </script>
-
-    @if(Auth::check() && Auth::user()->isAdmin())
-        <div>
-            <button class="btn btn-default" style="background: #f48952; margin-left: 50px" onclick="blockVacancy()">
-                Заблокувати
-            </button>
-        </div>
-    @endif
 
     <script>
         function blockVacancy() {
