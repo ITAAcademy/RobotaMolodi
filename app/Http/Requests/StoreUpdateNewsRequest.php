@@ -26,7 +26,7 @@ class StoreUpdateNewsRequest extends Request
         return [
             'name' => 'required|max:150',
             'description' => 'required',
-            'image' => 'sometimes|image|max:2048',
+            'img' => 'sometimes|image|max:2048',
         ];
     }
     
