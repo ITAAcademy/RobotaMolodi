@@ -60,7 +60,7 @@ class SliderController extends Controller
             Storage::makeDirectory($directory);
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
-            ImageCompress::tinifyImage($slider->image);
+            #ImageCompress::tinifyImage($slider->image);
         }
         
         $category->number_of_positions++;
@@ -122,7 +122,7 @@ class SliderController extends Controller
             $directory = $slider->getPath();
             $file->move($directory, $filename);
             $slider->image = $directory.$filename;
-            ImageCompress::tinifyImage($slider->image);
+            #ImageCompress::tinifyImage($slider->image);
         }
 
         $slider->save();
