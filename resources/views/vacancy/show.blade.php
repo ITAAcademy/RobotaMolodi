@@ -17,7 +17,7 @@
                         @if(File::exists(public_path('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image)) and $vacancy->Company->image != '')
                             {!! Html::image('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                         @else
-                            <h3 style="text-align: center; color: #f48952; margin-top: 40px">логотип вiдсутнiй</h3>
+                            <h3 style="text-align: center; color: #f48952; margin-top: 40px">{{ trans('vacancy.logo_missing') }}</h3>
                         @endif
 
                     </div>
@@ -27,7 +27,7 @@
                               <i class="fa vacancy">&#xf0b1;</i>
                         </div>
 
-                            <a href="javascript:alert( {{ trans('main.dosent') }} )">запланувати консультацію</a>
+                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
                         </div>
                     </div>
                     @if($vacancy->published == '1')
@@ -49,7 +49,7 @@
                 @if(Auth::check() && Auth::user()->isAdmin())
                     <div>
                         <button class="btn btn-default block-vacancy" onclick="blockVacancy()">
-                            Заблокувати
+                            {{ trans('vacancy.to_block') }}
                         </button>
                     </div>
                 @endif
@@ -62,7 +62,7 @@
                         <strong>{{ $vacancy->position }}</strong>
                     </div>
                     <div>
-                        <div class="text_vac"><span>Компанія: </span><a class="orangeLinks" tabindex="1" href="/company/{{$company->id}}">{{$company->company_name}}</a> </div>
+                        <div class="text_vac"><span>{{ trans('vacancy.company') }}</span><a class="orangeLinks" tabindex="1" href="/company/{{$company->id}}">{{$company->company_name}}</a> </div>
                     </div>
 
                     <div class="ratings text_vac">
@@ -80,18 +80,18 @@
 
                     <div>
                         <div class="text_vac">
-                            <span>{{ trans('form.branch') }}: </span>
+                            <span>{{ trans('form.branch') }} </span>
                             {!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}
                         </div>
                     </div>
                     <div>
-                        <div class="text_vac"><span>Заробітна платня: </span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
+                        <div class="text_vac"><span>{{ trans('vacancy.salary') }}</span><span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> </div>
                     </div>
                     <div>
-                        <span id="yellowCircleVacancy">Дата створення: {{date('j m Y', strtotime($vacancy->updated_at))}}</span>
+                        <span id="yellowCircleVacancy">{{ trans('vacancy.date') }}{{date('j m Y', strtotime($vacancy->updated_at))}}</span>
                     </div>
                     <div>
-                        <div class="descriptionStyle"><span class="anagraph">Подробиці </span><br>{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>
+                        <div class="descriptionStyle"><span class="anagraph">{{ trans('vacancy.details') }} </span><br>{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>
                     </div>
                     {{--<div>--}}
                         {{--<div class="text_data">--}}
@@ -112,15 +112,15 @@
                 <ul class="list-inline">
                     <li class="li-link send-url-link" data-type="url">
                         <i class="fa fa-link"></i>
-                        <button type="button" class="btn btn-link" onclick="showDiv('send-URL-vacancy')">відправити URL</button>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-URL-vacancy')">{{ trans('vacancy.send_url') }}</button>
                     </li>
                     <li class="li-link send-file-link" data-type="file">
                         <i class="fa fa-file-o"></i>
-                        <button type="button" class="btn btn-link" onclick="showDiv('send-file-vacancy')">відправити файл</button>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-file-vacancy')">{{ trans('vacancy.send_file') }}</button>
                     </li>
                     <li class="li-link send-resume-link" data-type="resume">
                         <i class="fa fa-file-text-o"></i>
-                        <button type="button" class="btn btn-link" onclick="showDiv('send-resume-vacancy')">відправити резюме</button>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-resume-vacancy')">{{ trans('vacancy.send_resume') }}</button>
                     </li>
                 </ul>
             </div>
@@ -149,7 +149,7 @@
 
             <div id="send-resume-vacancy">
                 <div>
-                    <h3 style="margin-top: 5px">Виберіть резюме</h3>
+                    <h3 style="margin-top: 5px">{{ trans('vacancy.choose_resume') }}</h3>
                 </div>
                 <div>
                     {!!Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"])!!}
@@ -163,8 +163,8 @@
                         </div>
                         {!! Form::hidden('id', $vacancy->id, array('class' => 'form-control')) !!}
                     @else
-                        <p>У вас немає резюме.Перейти до створення резюме</p>
-                        <p>{!!link_to_route('resume.create','Створення резюме','','style="color:#f68c06"')!!}</p>
+                        <p>{{ trans('vacancy.not_have_resume') }}</p>
+                        <p>{!!link_to_route('resume.create',trans('vacancy.creating_resume'),'','style="color:#f68c06"')!!}</p>
                     @endif
                 </div>
                 <div>
