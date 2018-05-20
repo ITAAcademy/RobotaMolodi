@@ -95,6 +95,16 @@ class UploadFile extends Controller
         return response($response)
             ->header('Content-Type', 'text/html');
     }
+
+    static public function upFile(Request $request)
+    {
+        $resume = $request->file("FileName");
+        $name = $request->file("FileName")->getClientOriginalName();
+        $destination = base_path() . '/public/uploads/';
+        $resume->move($destination, $name);
+        return ($destination.$name);
+    }
+
 }
 
 ?>
