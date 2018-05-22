@@ -65,21 +65,23 @@ class ResponseController extends Controller
 
     public function sendResume($id, Guard $auth, Request $request)
     {
-        //dd($request->all());
         $this->validate($request,[
             'resumeId' => 'required'
         ]);
 
-        $user = User::find($auth->user()->getAuthIdentifier());
-        $resume = Resume::find($id);
-        Mail::send('emails.vacancyResume', ['user' => $user, 'resume' => $resume], function ($message) use($id){
+        $domain = $request->root();
+        $idResume = $request->input('resumeId');
+        $linkResume = $domain.'/'.'resume'.'/'.$idResume;
+        $user = Auth::user();
+
+        Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $linkResume], function ($message) use($id){
             $vacancy = Vacancy::find($id);
-            $company = Company::find($vacancy->company_id);
-            $user = User::find($company->users_id);
-            $to = $user->email;
-            $message->to($to, $user->name)->subject('Резюме по вакансії '.$vacancy->position);
+            $user = Auth::user();
+            $to = $vacancy->user_email;
+            $message->from($user->email, $user->name);
+            $message->to($to, $vacancy->position)->subject('Резюме по вакансії '.$vacancy->position);
         });
+
         return view('vacancy/vacancyAnswer');
     }
-
 }
