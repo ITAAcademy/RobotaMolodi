@@ -29,9 +29,9 @@ span.opsion-sort-box:hover {
 }
 
 .sort-filter {
-    padding: 0;
+    padding-top: 5px;
     font-size: 12px;
-    margin-top: 26px;
+    text-align: center;
 }
 
 .input-sort-box {
@@ -40,4 +40,8 @@ span.opsion-sort-box:hover {
 
 #close-all-filters {
     padding: 0;
+    color: orange;
+    text-decoration: underline;
+    font-weight: normal;
+    font-size: 14px;
 }
