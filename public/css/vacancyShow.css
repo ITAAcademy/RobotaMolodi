@@ -264,6 +264,7 @@ input.btn.btn-warning.btn-send:hover{
 .open-file-vac{
     color: white;
     border-radius: 3px;
+    float: left;
 }
 
 .right-colomn-vacancy input.form-control {
