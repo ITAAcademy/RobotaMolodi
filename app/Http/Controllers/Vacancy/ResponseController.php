@@ -69,9 +69,8 @@ class ResponseController extends Controller
             'resumeId' => 'required'
         ]);
 
-        $domain = $request->root();
         $idResume = $request->input('resumeId');
-        $linkResume = $domain.'/'.'resume'.'/'.$idResume;
+        $linkResume = route('resume.show', $idResume);
         $user = Auth::user();
 
         Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $linkResume], function ($message) use($id){
