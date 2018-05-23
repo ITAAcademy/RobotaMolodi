@@ -127,20 +127,20 @@
 
             <div id="send-URL-vacancy">
                 {!!Form::open(['route' => ['vacancy.response.link',$vacancy->id],'method'=>'get']) !!}
-                {!!Form::label('url', 'Вставити посилання на URL:',['class' => 'url-text-vac'] )!!}
+                {!!Form::label('url',trans('vacancy.add_url'),['class' => 'url-text-vac'] )!!}
                 {!!Form::text('link',null,array('class' => 'form-control url-input-vac','placeholder' =>'URL:','autocomplete'=>"off",'required','id'=>'Link'))!!}
                 <div align="right">
-                    {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
+                    {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send'])!!}
                 </div>
 
                 {!!Form::close()!!}
             </div>
 
-            <div id="send-file-vacancy">
+            <div id="send-file-vacancy" class="row">
                 {!!Form::open(['route' => ['vacancy.response.sendFile',$vacancy->id],'method'=>"POST", 'enctype' => 'multipart/form-data', 'files' => true])!!}
                 {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
                 <div align="right">
-                    {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
+                    {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send'])!!}
                 </div>
 
                 {!!Form::close()!!}
@@ -170,7 +170,7 @@
                 <div>
                     @if (!empty($userResumes))
                         <div align="right">
-                            {!!Form::submit('Відправити', ['class' => 'btn btn-warning btn-send'])!!}
+                            {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send'])!!}
                         </div>
                     @endif
                 </div>
