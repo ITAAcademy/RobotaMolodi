@@ -1,5 +1,6 @@
 input.btn.btn-warning.btn-send{
     background-color: #f68c06;
+    margin-top: -57px;
 }
 .send-file-company input[type=file]{
     color: white;

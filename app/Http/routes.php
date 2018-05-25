@@ -143,7 +143,7 @@ Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Va
 
 Route::post('vacancy/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
 Route::post('vacancy/sendresume',[ 'as'=>'vacancy.sendresume', 'uses'=>'Vacancy\VacancyController@sendResume']);
-Route::post('vacancy/sendfile',[ 'as'=>'vacancy.sendfile', 'uses'=>'Vacancy\VacancyController@sendFile']);
+Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
 
 Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 

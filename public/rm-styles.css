@@ -1847,6 +1847,16 @@ ul.pagination>.hide-md{
     text-align: center;
     color: grey;
 }
+
+
+
+	.col-md-10 {
+		width: 83.33333333%;
+		margin-left: 164px;
+		margin-top: -225px;
+	}
+
+
 body
 {
 	font-family: Arial, Helvetica, sans-serif;
@@ -3762,8 +3772,8 @@ img#registry {
     }
 
     .navtab-exit p {
-        font-size: 14px;
-        margin: 0;
+        font-size: 17px;
+        margin: 9px;
     }
 
     .navtab-exit + .navtab-exit {
