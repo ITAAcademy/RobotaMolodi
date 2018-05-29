@@ -172,7 +172,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Auth::check())
         {
-            if($user->id == $resume->user->id)
+            if($user->id == $resume->id)
             {
                 $view = "Resume.showMyResume";
             }
