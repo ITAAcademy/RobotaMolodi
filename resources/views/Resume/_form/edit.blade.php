@@ -397,12 +397,8 @@
         });
 
         function ConfirmDelete() {
-            var conf = confirm("Ви дійсно хочете видалити фото?");
-
-            if(conf){
-                return true;
-            } else{
-                return false;
+            
+            return confirm("Ви дійсно хочете видалити фото?");
+             
             }
-        }
     </script>
