@@ -13,7 +13,7 @@ class ChangeDefaultValueResumeAllUkraineToTableResumes extends Migration
     public function up()
     {
         Schema::table('resumes', function ($table) {
-            $table->boolean('resumeAllUkraine');
+            $table->true('resumeAllUkraine');
         });
     }
 
