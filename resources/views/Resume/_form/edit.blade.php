@@ -398,11 +398,8 @@
 
         function ConfirmDelete() {
             var conf = confirm("Ви дійсно хочете видалити фото?");
-
-            if(conf){
+             if(conf == true){
                 return true;
-            } else{
-                return false;
+                } 
             }
-        }
     </script>
