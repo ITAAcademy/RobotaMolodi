@@ -127,7 +127,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         });
         
         $this->validate($request,[
-            'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
+            'name_u' => 'required|min:3|max:30|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => 'required|min:3',
@@ -172,7 +172,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
 
         if(Auth::check())
         {
-            if($user->id == $resume->user->id)
+            if($user->id == $resume->id)
             {
                 $view = "Resume.showMyResume";
             }
@@ -236,7 +236,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         });
 
         $rules =[
-            'name_u' => 'required|min:3|regex:/[a-zA-Zа-яА-Я]/',
+            'name_u' => 'required|min:3|max:30|regex:/[a-zA-Zа-яА-Я]/',
             'telephone' => 'regex:/^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/',
             'email' => 'required|email',
             'position' => 'required|min:3',
@@ -267,6 +267,7 @@ class ResumeController extends Controller {// Клас по роботі з ре
         return redirect()->route('cabinet.index');
 
     }
+
 
     public function block(Request $request, Guard $auth)
     {

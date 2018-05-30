@@ -78,7 +78,7 @@ img {
 .add2top :-webkit-any-link {text-decoration: none;}
 
 .tv-news-list, .tv-vac-list{
-	 height: 500px;
+	 height: 455px;
 	 font-family: SegoeUIRegular;
 	 color: #cc3300;
 	 overflow-y: auto;

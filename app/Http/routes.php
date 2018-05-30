@@ -143,7 +143,7 @@ Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Va
 
 Route::post('vacancy/link',[ 'as'=>'vacancy.link', 'uses'=>'Vacancy\VacancyController@link']);
 Route::post('vacancy/sendresume',[ 'as'=>'vacancy.sendresume', 'uses'=>'Vacancy\VacancyController@sendResume']);
-Route::post('vacancy/sendfile',[ 'as'=>'vacancy.sendfile', 'uses'=>'Vacancy\VacancyController@sendFile']);
+Route::post('vacancy/sendFile',[ 'as'=>'vacancy.sendFile', 'uses'=>'Vacancy\VacancyController@sendFile']);
 
 Route::model('vacancy/{vacancy}/edit','App\Models\Vacancy');
 
@@ -188,8 +188,8 @@ Route::post('resume/deletephoto','ResumeController@deletePhoto');
 Route::post('resume/block','ResumeController@block');
 Route::get('resume/filter/showResumes', ['as' => 'resume.showResumes', 'uses' => 'ResumeController@showResumes']);
 //Route::model('resume/{resume}/destroy','App\Models\Resume');
-get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index','middleware' => 'auth']);
-$router->resource('resume', 'ResumeController'); //created oll routes of ResumeController(with create to destroy)
+Route::get('resumes', ['as'=>'resumes', 'uses'=>'ResumeController@index','middleware' => 'auth']);
+$router->resource('resume', 'ResumeController'); //created all routes of ResumeController(with create to destroy)
 
 Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 

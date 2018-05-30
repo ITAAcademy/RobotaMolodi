@@ -13,7 +13,7 @@
         <span class='opsion-sort-box sort-by-date'>{{ trans('content.new_first') }}</span>
         <span class='opsion-sort-box sort-by-date hidden'>{{ trans('content.old_first') }}</span>
     </div>
-    <div class='col-xs-4 col-sm-3 col-md-2 col-lg-2 input-sort-box'>
+    <div class='col-xs-4 col-sm-3 col-md-2 col-lg-4 input-sort-box'>
         <span class='label-sort-box'>{{ trans('content.gaps') }}</span>
         <div class="block-datepicker">
             <label for="startDate"><span class='opsion-sort-box'
@@ -26,8 +26,8 @@
             <input class="datePicker" type="text" id="datepicker2" name="endDate"/>
         </div>
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 sort-filter">
-        <button id="close-all-filters" type="reset" href="#" value="Reset">{{ trans('content.reset') }}</button>
+    <div class="col-xs-2 col-sm-2 col-md-1 col-lg-2 sort-filter" >
+        <a id="close-all-filters" type="reset" href="#" value="Reset">{{ trans('content.reset') }}</a>
     </div>
 </div>
 <hr class='line-sort-box'>
