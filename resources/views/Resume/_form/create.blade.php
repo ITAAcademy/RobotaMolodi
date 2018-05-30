@@ -269,7 +269,7 @@
         <div class=" col-md-4 col-sm-4 resume-form resume-form-f">
             <div class="resume-form-input">
                 <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">
-                    Виберіть фото
+                    {{ trans('form.choose') }} 
                 </button>
                 <div id="filename">
                     {{ trans('form.unselected') }}
