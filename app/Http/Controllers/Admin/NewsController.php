@@ -31,8 +31,10 @@ class NewsController extends Controller
     {
         $news = new News;
         $this->helperSave($news,$request);
+        if ($news->img != null) {
+            ImageCompress::tinifyImage($news->getPath() . $news->img);
+        }
         Session::flash('flash_message', 'news successfully created!');
-        ImageCompress::tinifyImage($news->getPath() . $news->img);
         return redirect()->route('admin.news.index');
     }
 
@@ -51,13 +53,17 @@ class NewsController extends Controller
 
     public function update(StoreUpdateNewsRequest $request, $id)
     {
+
         /**
          * @var News $newsOne
          */
         $newsOne = News::find($id);
         $this->helperSave($newsOne,$request);
         Session::flash('flash_message', 'news successfully added!');
-        ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
+        if ($newsOne->img != null) {
+
+            ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
+        }
         return redirect()->route('admin.news.index');
     }
 
