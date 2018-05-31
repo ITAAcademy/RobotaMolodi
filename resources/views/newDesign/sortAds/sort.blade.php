@@ -10,8 +10,8 @@
     </div>
     <div class='col-xs-3 col-sm-2 col-md-3 col-lg-3 sort-date'>
         <span class='label-sort-box'>{{ trans('content.date') }}:</span>
-        <span class='opsion-sort-box sort-by-date'>{{ trans('content.new_first') }}</span>
-        <span class='opsion-sort-box sort-by-date hidden'>{{ trans('content.old_first') }}</span>
+        <span class='opsion-sort-box sort-by-date'>{{ trans('content.old_first') }}</span>
+        <span class='opsion-sort-box sort-by-date hidden'>{{ trans('content.new_first') }}</span>
     </div>
     <div class='col-xs-4 col-sm-3 col-md-2 col-lg-4 input-sort-box'>
         <span class='label-sort-box'>{{ trans('content.gaps') }}</span>

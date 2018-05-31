@@ -1,7 +1,9 @@
+<link href="{{ asset('/css/resumes/myResume.css') }}" rel="stylesheet">
+
 <div class="form-group row resume-row {{$errors->has('name_u') ? 'has-error' : ''}}">
     <div class="col-md-3 col-sm-3 control-label label-text-resume">
         <span class="pull-right">
-            {!! Form::label("name_u" ,trans('form.fullname'), ['class'=>'label-text-resume']) !!}
+            {!! Form::label('name_u', trans('form.fullname'), ['class'=>'label-text-resume']) !!}
         </span>
     </div>
     <div class="col-md-6 col-sm-6 resume-form">
@@ -9,7 +11,7 @@
             {!! Form::text('name_u', $resume->name_u, ['class'=>'form-control']) !!}
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -31,7 +33,7 @@
              ]) !!}
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field"></span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -50,7 +52,7 @@
             {!! Form::text('email', $resume->email, array('class' => 'form-control','id' => 'exampleInputEmail1'  )) !!}
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -66,7 +68,7 @@
     </div>
     <div class=" col-md-6 col-sm-6 resume-form">
         <div class="resume-form-input">
-            <select name="city" style="width: 100%" class="form-control select-width js-example-basic-multiple "
+            <select name="city" style="width: 100%" class="form-control select-width js-example-basic-multiple"
                     multiple="multiple" id="selectCity">
                 @foreach($cities as $city)
                     <option value="{{$city->id}}"> {{$city->name}} </option>
@@ -77,7 +79,7 @@
             </select>
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -105,11 +107,10 @@
                         </option>
                     @endif
                 @endforeach
-
             </select>
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -140,7 +141,7 @@
             </select>
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -159,7 +160,7 @@
             {!! Form::text('salary', $resume->salary, ['class'=>'form-control']) !!}
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -178,7 +179,7 @@
             {!! Form::text('salary_max', $resume->salary_max, ['class'=>'form-control']) !!}
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -209,7 +210,7 @@
             </select>
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field"></span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -232,7 +233,7 @@
             @endif
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field">*</span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
@@ -263,14 +264,14 @@
             </select>
         </div>
         <div class="col-xs-1 resume-form-star">
-            <span class="required_field"></span>
+            <span class="red-star">*</span>
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
     </div>
 </div>
-
-<div class="form-group row resume-row {{$errors-> has('loadResume') ? 'has-error' : ''}}">
+<!-- <div class="row">
+ <div class="form-group row resume-row {{$errors-> has('loadResume') ? 'has-error' : ''}}">
     <div class=" col-md-offset-3 col-md-6 col-sm-6 resume-form">
         <div class="resume-form-input">
             <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">
@@ -279,31 +280,125 @@
             <div id="filename">
                 {{ trans('form.unselected') }}
             </div>
-            {!! Form::file('loadResume', array(
-            'id'=>'loadResume',
-            'style'=>'display:none',
-            'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+            {!! Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
         </div>
     </div>
     <div class=" col-md-3 col-sm-3">
         {!! $errors->first('loadResume', '<span class="help-block">:message</span>') !!}
     </div>
+ </div>
+</div> -->
+{!! Form::file('fileImg', array( 'id'=>'fileImg', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')) !!}
+    <input type="hidden" name="fcoords" id="coords" class="coords" value="" data-id="{{$resume->id}}">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+<div class="panel" id="vrBlock">
+        <div class="row">
+            <div class="col-xs-12 col-md-3">
+                <div class="panel panel-orange" id="vimg">
+                    @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
+                        {!! Html::image('image/resume/'.$resume->user_id.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
+                    @else
+                        {!! Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
+                    @endif
+                </div>
+                <div class="change-img-myresume">
+                    <span class="orange-link-myresume"  id="changeImage">
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                        <span>Змiнити фото</span>
+                    </span>
+                    @if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != '')
+                        <span class="orange-link-myresume" id="deleteImage">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <span>Видалити фото</span>
+                        </span>
+                    @endif
+                </div>
+            </div>
+</div>
 </div>
 
 <div class="form-group row resume-row">
     <div class=" col-md-offset-3 col-md-6 col-sm-6">
-        <span class="required_field">* </span> – Обов'язкові для заповнення.
+        <span class="red-star">* </span> – Обов'язкові для заповнення.
     </div>
     <div class=" col-md-3 col-sm-3">
     </div>
 </div>
+
+
 
 <div class="form-group row resume-row">
     <div class="col-md-offset-3 col-md-6 col-sm-6 resume-form">
         {!!Form::submit(trans('form.editResume'),['class' => 'btn btn-success registr'])!!}
     </div>
-    <div class=" col-md-3 col-sm-3">
-    </div>
     {!!Form::token()!!}
-</div>
+</div> 
 
+<div id="changeImageBox" class="modal fade">
+        @include('newDesign.cropModal')
+    </div>
+    
+    {!!Html::script('js/crop.js')!!}
+
+    <script>
+        $(document).ready(function () {
+            $('#changeImage').on('click', function () {
+                $('#fileImg').click();
+            });
+
+            $('#fileImg').on('change', function (e) {
+                $('#changeImageBox').modal({
+                    show: true,
+                    backdrop: 'static'
+                });
+                crop(e, 'img-src', '#crop', '#changeImageBox');
+            });
+
+            $('#changeImageBox').on('hidden.bs.modal', function () {
+                if($('#coords').val()){
+                    var $input = $("#fileImg");
+                    var fd = new FormData;
+                    fd.append('fileImg', $input.prop('files')[0]);
+                    fd.append('coords', $('.coords').val());
+                    fd.append('id', $('.coords').attr('data-id'));
+                    $.ajax({
+                        url: '{{ route('upimg') }}',
+                        data: fd,
+                        processData: false,
+                        contentType: false,
+                        type: 'POST',
+                        success: function (data) {
+                            $('#vimg img').attr('src', window.location.origin + '/' + data);
+                        }
+                    });
+                }
+            });
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            });
+
+            $('#deleteImage').on('click', function () {
+                if(ConfirmDelete()){
+                    $.ajax({
+                        url: '{{ route('deleteimg') }}',
+                        data: {'id' : $('.coords').attr('data-id')},
+                        type: 'POST',
+                        success: function (data) {
+                            $('#vimg img').attr('src', window.location.origin + '/' + data);
+                        }
+                    })
+                }
+            })
+        });
+
+        function ConfirmDelete() {
+            
+            return confirm("Ви дійсно хочете видалити фото?");
+             
+            }
+    </script>
