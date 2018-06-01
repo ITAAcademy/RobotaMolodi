@@ -1,8 +1,10 @@
 <link href="{{ asset('/css/vacancies/vacanciesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 <div class="test">
+    <div>
     @foreach($vacancies as $vacancy)
-            <div>
+
+                <div>
                 <div class="section">
                     <a class="links ib-block" href="/vacancy/{{$vacancy->id}}">
                         <h3>{{ $vacancy->position}}</h3>
@@ -46,8 +48,9 @@
                 </p>
                 <hr>
             </div>
-    @endforeach
 
+    @endforeach
+            </div>
     @include('newDesign.paginator', ['paginator' => $vacancies])
 </div>
 
