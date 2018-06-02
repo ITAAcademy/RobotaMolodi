@@ -172,7 +172,7 @@
                 </div>
             <hr/>
 
-            <div class="col-xs-12 configButton">
+            <div class="button_company">
                 @if(Auth::check() && Auth::id() == $company->users_id)
                 <a href="{{$company->id}}/destroy" class="btn-default btn"
                    onclick="return confirm('Ви дійсно бажаєте видалити коментарій?');">{{ trans('main.delete') }}</a>
