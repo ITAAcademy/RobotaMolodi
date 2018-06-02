@@ -3323,6 +3323,17 @@ input.btn.btn-primary:focus {
     background-color: #f26522;
     border-color: #f26522;
 }
+
+
+.response-call btn-default btn{
+	color: #bb8a35;
+}
+
+.file-call btn-default btn > a {
+	color: #bb8a35;
+}
+
+
 #navregenterbutn {
 	margin: -4px;
 }
