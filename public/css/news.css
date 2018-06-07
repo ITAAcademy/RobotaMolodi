@@ -97,9 +97,10 @@ div.container-fluid,
 
 .row .sidebar .columnLeft .blockedContent{
 
-    background-color: #cbd4bf;
+    /*background-color: #cbd4bf;*/
+    background-color: darkorange;
     font-size: 26px;
-
+    margin: 0px;
 }
 
 .menu>a>.row{
