@@ -6,6 +6,9 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
+            <div>
+                <h4 style="text-align: center">Список заблокованих компаній</h4>
+            </div>
         <table class="striped bordered highlight">
             <thead>
                 <tr>
@@ -35,7 +38,7 @@
                                     'route' => ['setCompanyUnBlock', $blockedCompany->id],
                                     'style' => 'display:inline-block'
                                 ]) !!}
-                                {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-small confirm']) !!}
+                                {!! Form::submit('&#xf09c;', [' class' => 'fa']) !!}
                                 {!! Form::close() !!}
                             </span>
                         </div>

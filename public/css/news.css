@@ -1,4 +1,3 @@
-
 *{
     margin: 0;
     padding: 0;
@@ -28,10 +27,12 @@ a:hover{
     text-align: center;
     color: black;
     font-size: 20px;
+    margin-bottom: 0px;
 }
 .menu>a>div:hover{
     background-color: #e0e9d7;
     width: 100%;
+    border-left: 10px solid darkorange;
 }
 .menu a > .active {
     background-color: #cbd4bf;
@@ -60,8 +61,8 @@ footer{
     background: white;
 }
 .wrapper{
-    min-height:100%
-
+    min-height:100%;
+    background: #f0fff0;
 }
 .createNews{
     margin-top: 30px;
@@ -96,34 +97,41 @@ div.container-fluid,
 
 .row .sidebar .columnLeft .blockedContent{
 
-    background-color: #cbd4bf;
+    /*background-color: #cbd4bf;*/
+    background-color: darkorange;
     font-size: 26px;
-
+    margin: 0px;
 }
 
 .menu>a>.row{
-   margin-bottom: 0;
+    margin-bottom: 0;
 }
 
- header > nav{
+header > nav{
     background-color: #e8f1df;
 }
 
 
- @media (max-width: 1366px ) {
+@media (max-width: 1366px ) {
 
-     .columnLeft{
+    .columnLeft{
 
-         line-height: 40px;
-         height: 40px;
-     }
+        line-height: 40px;
+        height: 40px;
+    }
 
-     .row .sidebar .columnLeft .blockedContent {
-         font-size: 16px;
-     }
+    .row .sidebar .columnLeft .blockedContent {
+        font-size: 16px;
+    }
 
-     .menu>a>div>div>li>p{
-         text-align: center;
-         font-size: 15px;
-     }
- }
+    .menu>a>div>div>li>p{
+        text-align: center;
+        font-size: 15px;
+    }
+    .fa{
+        color:darkorange;
+        border: none;
+        background:none;
+        font-size:20px
+    }
+}

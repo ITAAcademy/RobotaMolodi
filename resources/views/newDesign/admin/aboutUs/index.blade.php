@@ -1,7 +1,7 @@
 @extends('newDesign.layouts.admin')
 
 @section('content')
-    <div class=" col l10 col s10 col m10 contentAndmin">
+    <div class=" col l12 col s12 col m12 contentAndmin">
         <br>
         <a href="{{ URL::route('admin.about-us.create') }}"
            class="btn-floating btn-large waves-effect waves-light red right">
@@ -10,7 +10,7 @@
         <table class=" striped bordered highlight " >
             <thead>
             <tr>
-                <th>Id</th>
+                {{--<th>Id</th>--}}
                 <th>Title</th>
                 <th>Short description</th>
                 <th>Year</th>
@@ -23,7 +23,7 @@
             @forelse($aboutUses as $aboutUs)
 
                 <tr>
-                    <td>{{$aboutUs->id}}</td>
+                    {{--<td>{{$aboutUs->id}}</td>--}}
                     <td>{{$aboutUs->title}}</td>
                     <td>{{$aboutUs->short_description}}</td>
                     <td>{{$aboutUs->year}}</td>
@@ -60,7 +60,7 @@
                 </tr>
             @empty
                 <div>
-                    <h5 class="center-align truncate">There are no records</h5>
+                    <h4 class="center-align truncate">There are no records</h4>
                 </div>
 
 

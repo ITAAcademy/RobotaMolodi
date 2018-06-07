@@ -3,12 +3,12 @@
 @section('content')
 <div class="contentAndmin">
     <table class="striped bordered highlight">
-        <h1>You can change user status</h1>
+        <h4>Змінити статус користувача</h4>
         <thead>
         <tr>
             <th class="s4 m4 l5 xl5">Username</th>
             <th class="s3 m3 l2 xl2">is Admin</th>
-            <th class="s5 m5 l5 xl5">Edit user</th>
+            <th class="s5 m5 l5 xl5">Set admin</th>
         </tr>
         </thead>
         <tbody>

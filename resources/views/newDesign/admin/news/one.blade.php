@@ -1,9 +1,9 @@
 @extends('newDesign.layouts.admin')
 
 @section('content')
-    <div class=" col-md-10 col-sm-10 col-xs-10 contentAndmin">
-        <div class="col-lg-8 col-lg-push-2 wrapperOneNews">
-            <div><h2>{{ $newsOne->name }}</h2></div>
+    <div class=" col-md-11 col-sm-11 col-xs-11 contentAndmin">
+        <div class="col-lg-10 col-lg-push-1 wrapperOneNews">
+            <div><h4>{{ $newsOne->name }}</h4></div>
             <div>
                 @if($newsOne->img!='Not picture')
                     <img class="imageOneNews" src="{{ asset($newsOne->getPath().$newsOne->img) }}">
@@ -11,12 +11,13 @@
             </div>
             <div>{!! $newsOne->description !!}</div>
 
-            <a href="{{ route('admin.news.edit', $newsOne->id) }}" class="btn btn-primary">Edit News</a>
-            <a href="{{ route('admin.news.index', $newsOne->id) }}" class="btn btn-primary">Show All</a>
-            
-            </div>
+        </div>
 
-            {{--@include('newDesign.paginator', ['paginator' => $news])--}}
+        {{--@include('newDesign.paginator', ['paginator' => $news])--}}
+    </div>
 
+    <div class="col-md-1 col-sm-1 col-xs-1">
+        <a href="{{ route('admin.news.edit', $newsOne->id) }}"><i class="fa fa-edit"></i></a>
+        <a href="{{ route('admin.news.index', $newsOne->id) }}"><i class="fa fa-reply-all"></i></a>
     </div>
 @endsection

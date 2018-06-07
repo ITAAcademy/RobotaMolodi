@@ -14,6 +14,6 @@
      <span class="text-danger">{{ $errors->first('description') }}</span>
  </div>
  <div class="btn-block">
-     {!! Form::submit('Submit' , ['class' => 'btn btn-lg btn-success pull-right']); !!}
-     <a class="btn btn-lg btn-primary" href="{{ route('admin.seo-module.index') }}"> Back</a>
+     {!! Form::submit('&#xf046;', [' class' => 'fa']); !!}
+     <a href="{{ route('admin.seo-module.index') }}"><i class="fa fa-reply-all"></i></a>
  </div>
