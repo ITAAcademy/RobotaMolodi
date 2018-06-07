@@ -40,11 +40,11 @@
                         <td>
                             <div>
                             <span style="display: inline-block">
-                                <a href="{{ route('admin.industry.edit', $industry->id) }}"><i class="fa fa-edit" style="font-size:18px; color:darkorange"></i></a>
+                                <a href="{{ route('admin.industry.edit', $industry->id) }}"><i class="fa fa-edit"></i></a>
                             </span>
                             <span style="display: inline-block">
                                 {!! Form::open(['method' => 'DELETE','route' => ['admin.industry.destroy', $industry->id]]) !!}
-                                    {!! Form::submit('&#xf014;', [' class' => 'fa', 'style' => 'color:orange; border: none; background:none; font-size:20px']) !!}
+                                    {!! Form::submit('&#xf014;', [' class' => 'fa']) !!}
                                 {!! Form::close() !!}
                             </span>
                             </div>

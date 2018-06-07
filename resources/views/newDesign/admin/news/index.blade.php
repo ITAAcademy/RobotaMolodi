@@ -41,18 +41,18 @@
                     </td>
                     <td>
                         <a href="{{ route('admin.news.edit', $new->id) }}">
-                            <i class="fa fa-edit" style="font-size:18px; color:darkorange"></i>
+                            <i class="fa fa-edit"></i>
                         </a><br>
 
                         <a href="{{ route('admin.news.show', $new->id) }}">
-                            <i class="fa fa-eye" style="font-size:18px; color:darkorange"></i>
+                            <i class="fa fa-eye"></i>
                         </a><br>
 
                         {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id]
                         ]) !!}
-                        {!! Form::submit ('&#xf014;', [' class' => 'fa', 'style' => 'color:orange; border: none; background:none; font-size:20px']) !!}
+                        {!! Form::submit ('&#xf014;', [' class' => 'fa']) !!}
                         {!! Form::close() !!}
 
                     </td>

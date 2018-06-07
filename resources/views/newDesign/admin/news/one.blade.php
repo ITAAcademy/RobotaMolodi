@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-md-1 col-sm-1 col-xs-1">
-        <a href="{{ route('admin.news.edit', $newsOne->id) }}"><i class="fa fa-edit" style="font-size:18px; color:darkorange"></i></a>
-        <a href="{{ route('admin.news.index', $newsOne->id) }}"><i class="fa fa-reply-all" style="font-size:18px; color:darkorange"></i></a>
+        <a href="{{ route('admin.news.edit', $newsOne->id) }}"><i class="fa fa-edit"></i></a>
+        <a href="{{ route('admin.news.index', $newsOne->id) }}"><i class="fa fa-reply-all"></i></a>
     </div>
 @endsection
