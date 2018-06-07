@@ -6,6 +6,9 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
+        <div>
+            <h4 style="text-align: center">Список індустрій</h4>
+        </div>
         <div class="fixed-action-btn">
             <a href="{{ URL::route('admin.industry.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
         </div>
@@ -37,11 +40,11 @@
                         <td>
                             <div>
                             <span style="display: inline-block">
-                                <a href="{{ route('admin.industry.edit', $industry->id) }}" class="btn btn-small blue">{{ trans('main.edit') }}</a>
+                                <a href="{{ route('admin.industry.edit', $industry->id) }}"><i class="fa fa-edit" style="font-size:18px; color:darkorange"></i></a>
                             </span>
                             <span style="display: inline-block">
                                 {!! Form::open(['method' => 'DELETE','route' => ['admin.industry.destroy', $industry->id]]) !!}
-                                    {!! Form::submit(trans('main.delete'), ['class' => 'btn btn-small red confirm']) !!}
+                                    {!! Form::submit('&#xf014;', [' class' => 'fa', 'style' => 'color:orange; border: none; background:none; font-size:20px']) !!}
                                 {!! Form::close() !!}
                             </span>
                             </div>
