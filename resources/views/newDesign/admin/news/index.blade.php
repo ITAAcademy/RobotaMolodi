@@ -50,7 +50,8 @@
 
                         {!! Form::open([
                         'method' => 'DELETE',
-                        'route' => ['admin.news.destroy', $new->id]
+                        'route' => ['admin.news.destroy', $new->id],
+                        'onsubmit' => 'return confirm("Are you sure you want to delete this news?")'
                         ]) !!}
                         {!! Form::submit ('&#xf014;', [' class' => 'fa']) !!}
                         {!! Form::close() !!}
@@ -58,7 +59,6 @@
                     </td>
                 </tr>
             @endforeach
-
             <script>
                 $(document).ready(function () {
                     $("button[value='0']").addClass("fa-square-o");

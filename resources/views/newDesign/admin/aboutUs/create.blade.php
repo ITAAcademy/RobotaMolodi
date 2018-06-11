@@ -52,7 +52,7 @@
 
             <div class="input-field col s12">
                 {{--Year--}}
-                <input id="input_text" type="number" data-length="4" name="year">
+                <input id="input_text" class="year" type="number" data-length="4" name="year">
                 <label for="input_text">Year</label>
 
             </div>
@@ -95,8 +95,22 @@
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
-        //Script for icon
+        $().ready(function () {
+            $('.btn').on('click',function () {
+                var year = $('.year').val();
+                if(year < 1990 || year > 2018 ){
+                    alert('Please enter the  correct date from 1980 to 2018 year !');
+                    $('.year').empty();
+                }
 
+            })
+
+        });
+    </script>
+
+
+    <script>
+        //Script for icon
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -148,16 +162,5 @@
         }
         document.getElementById('multi_files').addEventListener('change', handleFileSelect, false);
     </script>
-
-
-    <script>
-        //Croper
-
-
-    </script>
-
-
-
-
 
 @endsection
