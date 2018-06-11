@@ -22,7 +22,7 @@
             {!! Form::label('image', 'Add another image:') !!}
             {!! Form::file('image', ['class' => 'btn'])!!}
         </div>
-        {!! Form::submit('&#xf044;', [' class' => 'fa']) !!}
+        {!! Form::submit('Edit', [' class' => 'btn']) !!}
         {!! Form::close() !!}
     </div>
     {{--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">{!! Form::submit('&#xf044;', [' class' => 'fa', 'style' => 'color:darkorange; border: none; background:none; font-size:20px']) !!}--}}
