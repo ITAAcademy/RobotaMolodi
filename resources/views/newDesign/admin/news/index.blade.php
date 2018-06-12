@@ -12,14 +12,16 @@
             <h4 style="text-align: center">Список новин</h4>
         </div>
         <div class="fixed-action-btn">
-            <a href="{{ URL::route('admin.news.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+            <a href="{{ URL::route('admin.news.create') }}"
+               class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
         </div>
-        <table class="striped bordered highlight" >
+        <table class="striped bordered highlight">
             <thead>
             <tr>
                 {{--<th class="s1 m2 l2 xl1">Id</th>--}}
-                <th class="s4 m3 l4 xl4">Title</th>
-                <th class="s3 m3 l3 xl4">Picture</th>
+                <th class="s3 m3 l3 xl3">Title</th>
+                <th class="s2 m2 l3 xl3">Short description</th>
+                <th class="s3 m3 l3 xl3">Picture</th>
                 <th class="s1 m1 l1 xl1">Published</th>
                 <th class="s3 m3 l2 xl2">Options</th>
             </tr>
@@ -28,7 +30,12 @@
             @foreach ($news as $new)
                 <tr>
                     {{--<td scope="row">{{ $new->id }}</td>--}}
-                    <td style="text-align: center"><h5>{{ $new->name }}</h5></td>
+                    <td style="text-align: center">
+                        <h5>{{ $new->name }}</h5>
+                    </td>
+                    <td>
+                        {!! substr($new->description, 0, 100)."..." !!}
+                    </td>
                     <td>
                         @if($new->img!='Not picture')
                             <img class="picture" src="{{ asset($new->getPath().$new->img) }}" style="width: 100%">
@@ -63,12 +70,12 @@
                 $(document).ready(function () {
                     $("button[value='0']").addClass("fa-square-o");
                     $("button[value='1']").addClass("fa-check-square-o");
-                    $("button.fa").click( function() {
+                    $("button.fa").click(function () {
                         var id = $(this).attr('id');
                         $.ajax({
-                            url: '/admin/news/updatePublished/'+id,
+                            url: '/admin/news/updatePublished/' + id,
                             methof: 'GET',
-                            success: function(published) {
+                            success: function (published) {
                                 if (published > 0) {
                                     return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
                                 } else {
@@ -88,12 +95,12 @@
         $(document).ready(function () {
             $("button[value='0']").addClass("fa-square-o");
             $("button[value='1']").addClass("fa-check-square-o");
-            $("button.fa").click( function() {
+            $("button.fa").click(function () {
                 var id = $(this).attr('id');
                 $.ajax({
-                    url: '/admin/news/updatePublished/'+id,
-                    method: 'GET',
-                    success: function(published) {
+                    url: '/admin/news/updatePublished/' + id,
+                    methof: 'GET',
+                    success: function (published) {
                         if (published > 0) {
                             return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
                         } else {
