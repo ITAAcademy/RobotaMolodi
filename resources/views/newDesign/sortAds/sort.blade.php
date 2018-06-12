@@ -3,7 +3,7 @@
 <link href="{{ asset('/css/sortAds/calendarDatepicker.css') }}" rel="stylesheet">
 <!-- EndSort -->
 <div class='row row-centered sort-box'>
-    <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3  toggleFilter' style="padding:0">
+    <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3 sort-rating toggleFilter' style="padding:0">
         <span class='label-sort-box'>{{ trans('content.sort_by') }}</span>
         <span class='opsion-sort-box sort-by-rating hidden'>{{ trans('content.rating_m') }}</span>
         <span class='opsion-sort-box sort-by-rating'>{{ trans('content.rating_p') }}</span>
