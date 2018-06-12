@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "dateformat": "^3.0.2",
+    "gulp-install": "^1.1.0",
     "require-dir": "^1.0.0"
   },
   "name": "robota-molodi",
