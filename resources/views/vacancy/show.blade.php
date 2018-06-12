@@ -55,7 +55,7 @@
                 @endif
 
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10" style="margin: 0;">
                 <div id="datAnnoyingSizes">
                     <div class="panel-headings">
                         {{--{!! Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisation', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]) !!}--}}
