@@ -9,7 +9,8 @@
                     <img class="imageOneNews" src="{{ asset($newsOne->getPath().$newsOne->img) }}">
                 @endif
             </div>
-            <div>{!! $newsOne->description !!}</div>
+            {{--<div class="short">{!! $newsOne->description !!}</div>--}}
+            <div class="short"> <?= mb_substr($newsOne->description, 0, 103); ?></div>
 
         </div>
 
