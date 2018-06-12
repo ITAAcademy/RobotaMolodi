@@ -99,7 +99,7 @@
                 var id = $(this).attr('id');
                 $.ajax({
                     url: '/admin/news/updatePublished/' + id,
-                    methof: 'GET',
+                    method: 'GET',
                     success: function (published) {
                         if (published > 0) {
                             return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
