@@ -97,10 +97,9 @@ a@extends('newDesign.layouts.admin')
 
             <div class="input-field col s3 offset-s9">
                 {{--save button--}}
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action">Зберегти
                     <i class="material-icons right">send</i>
                 </button>
-
             </div>
             {{ csrf_token() }}
             {!! Form::close() !!}

@@ -6,6 +6,9 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
+            <div>
+                <h4 style="text-align: center">Список заблокованих резюме</h4>
+            </div>
         <table class="striped bordered highlight">
             <thead>
                 <tr>
@@ -34,7 +37,7 @@
                                 'route' => ['setResumeUnBlock', $blockedResume->id],
                                 'style' => 'display:inline-block'
                             ]) !!}
-                            {!! Form::submit(trans('main.unblock'), ['class' => 'btn btn-small confirm']) !!}
+                            {!! Form::submit('&#xf09c;', [' class' => 'fa']) !!}
                             {!! Form::close() !!}
                         </div>
                     </td>

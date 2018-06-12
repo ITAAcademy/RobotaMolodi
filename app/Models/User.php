@@ -104,6 +104,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return false;
     }
 
+    public function isAdwiser()
+    {
+        if (isset($this->role_id)) {
+            return $this->role_id == Role::ADWISER;
+        }
+        return false;
+    }
+
     public function accounts()
     {
 

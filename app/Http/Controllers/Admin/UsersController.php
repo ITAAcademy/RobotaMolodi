@@ -74,7 +74,26 @@ class UsersController extends Controller
       return redirect()->route('admin.users.index');
 
     }
+    public function switchToAdwiser($id)
+    {
 
+        $user= User::find($id);
+
+        if($user->role_id == Role::ADWISER){
+
+            $user->role_id = Role::USER;
+
+        }else if($user->role_id == Role::USER) {
+
+            $user->role_id = Role::ADWISER;
+
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users.index');
+
+    }
 
     /**
      * Update the specified resource in storage.
