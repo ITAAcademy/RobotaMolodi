@@ -1,15 +1,15 @@
-a@extends('newDesign.layouts.admin')
+@extends('newDesign.layouts.admin')
 
 @section('ckeditor')
     @include('newDesign.layouts.includes.ckeditor')
 @endsection
 @section('content')
 
-    <div class=" col l10 col s10 col m10 contentAndmin">
-        <center><h3>Adding Information About US</h3></center>
+    <div class=" col l12 col s12 col m12 contentAndmin">
+        <center><h4>Змінити інформацію Про нас</h4></center>
 
         <div class="row">
-            <h3>Edit row-#{{$aboutUs->id}}</h3>
+            {{--<h4>Edit row-#{{$aboutUs->id}}</h4>--}}
             {!! Form::open(['route' =>['admin.about-us.update',$aboutUs->id],'method'=>'PUT']) !!}
 
 
@@ -97,12 +97,12 @@ a@extends('newDesign.layouts.admin')
 
             <div class="input-field col s3 offset-s9">
                 {{--save button--}}
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action">Зберегти
                     <i class="material-icons right">send</i>
                 </button>
 
             </div>
-            {{ csrf_token() }}
+            {{--{{ csrf_token() }}--}}
             {!! Form::close() !!}
         </div>
     </div>

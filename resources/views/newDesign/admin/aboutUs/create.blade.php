@@ -6,7 +6,7 @@
 @section('content')
 
     <div class=" col l10 col s10 col m10 contentAndmin">
-        <center><h3>Adding Information About US</h3></center>
+        <center><h4>Додати інформацію Про нас</h4></center>
 
         <div class="row">
             {!! Form::open(['route' =>['admin.about-us.store'], 'files'=>true]) !!}
@@ -83,7 +83,7 @@
 
                 <div class="input-field col s3 offset-s9">
                     {{--save button--}}
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Створити
                         <i class="material-icons right">send</i>
                     </button>
 
