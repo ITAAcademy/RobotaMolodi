@@ -13,4 +13,4 @@
     {!! Form::text('name', $industry->name, ['class' => 'form-control']) !!}
 </div>
 
-{!! Form::submit(trans('main.save'), ['class' => 'btn btn-primary']) !!}
+{!! Form::submit('&#xf0c7;', [' class' => 'fa', 'style' => 'color:darkorange; border: none; background:none; font-size:20px']) !!}

@@ -1850,11 +1850,11 @@ ul.pagination>.hide-md{
 
 
 
-	.col-md-10 {
-		width: 83.33333333%;
-		margin-left: 164px;
-		margin-top: -225px;
-	}
+	/*.col-md-10 {*/
+		/*width: 83.33333333%;*/
+		/*margin-left: 164px;*/
+		/*margin-top: -225px;*/
+	/*}*/
 
 
 body
@@ -3323,6 +3323,17 @@ input.btn.btn-primary:focus {
     background-color: #f26522;
     border-color: #f26522;
 }
+
+
+.response-call btn-default btn{
+	color: #bb8a35;
+}
+
+.file-call btn-default btn > a {
+	color: #bb8a35;
+}
+
+
 #navregenterbutn {
 	margin: -4px;
 }

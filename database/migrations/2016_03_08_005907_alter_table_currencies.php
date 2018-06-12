@@ -12,7 +12,7 @@ class AlterTableCurrencies extends Migration
      */
     public function up()
     {
-        Schema::table('currencies', function ($table) {
+        Schema::create('currencies', function ($table) {
             $table->timestamp('created_at');
         });
         Schema::table('currencies', function ($table) {
