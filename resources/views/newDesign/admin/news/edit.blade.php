@@ -19,6 +19,7 @@
             @else
                 Not picture
             @endif
+            <br>
             {!! Form::label('image', 'Add another image:') !!}
             {!! Form::file('image', ['class' => 'btn btnFile'])!!}
         </div>
