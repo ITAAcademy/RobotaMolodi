@@ -5,11 +5,11 @@ a@extends('newDesign.layouts.admin')
 @endsection
 @section('content')
 
-    <div class=" col l10 col s10 col m10 contentAndmin">
-        <center><h3>Adding Information About US</h3></center>
+    <div class=" col l12 col s12 col m12 contentAndmin">
+        <center><h4>Змінити інформацію Про нас</h4></center>
 
         <div class="row">
-            <h3>Edit row-#{{$aboutUs->id}}</h3>
+            {{--<h3>Edit row-#{{$aboutUs->id}}</h3>--}}
             {!! Form::open(['route' =>['admin.about-us.update',$aboutUs->id],'method'=>'PUT']) !!}
 
 
@@ -62,7 +62,6 @@ a@extends('newDesign.layouts.admin')
             </div>
 
 
-
             <div class="input-field col s12">
                 {{--Year--}}
                 <input id="input_text" type="number" data-length="4"
@@ -81,7 +80,6 @@ a@extends('newDesign.layouts.admin')
             {{--<div class="input-field col s12">--}}
             {{--Gallery--}}
 
-
             {{--<div class="file-field input-field">--}}
             {{--<div class="btn">--}}
             {{--<i class="material-icons">add_circle_outline</i>--}}
@@ -93,19 +91,18 @@ a@extends('newDesign.layouts.admin')
 
             {{--</div>--}}
 
-
-
             <div class="input-field col s3 offset-s9">
                 {{--save button--}}
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action">Зберегти
                     <i class="material-icons right">send</i>
                 </button>
-
             </div>
-            {{ csrf_token() }}
+            {{--{{ csrf_token() }}--}}
             {!! Form::close() !!}
         </div>
     </div>
-    <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
+    <script>$(document).ready(function () {
+            CKEDITOR.replace('description');
+        });</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 @endsection

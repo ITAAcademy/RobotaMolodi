@@ -5,7 +5,8 @@
     "laravel-elixir": "^4.0.0"
   },
   "dependencies": {
-    "dateformat": "^3.0.2",
+    "dateformat": "^3.0.3",
+    "node-gyp": "^3.7.0",
     "require-dir": "^1.0.0"
   },
   "name": "robota-molodi",
