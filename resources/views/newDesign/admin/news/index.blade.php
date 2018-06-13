@@ -77,9 +77,9 @@
                             methof: 'GET',
                             success: function (published) {
                                 if (published > 0) {
-                                    return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
-                                } else {
                                     return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
+                                } else {
+                                    return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
                                 }
                             }
                         });
@@ -102,9 +102,9 @@
                     method: 'GET',
                     success: function (published) {
                         if (published > 0) {
-                            return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
-                        } else {
                             return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
+                        } else {
+                            return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
                         }
                     }
                 });
