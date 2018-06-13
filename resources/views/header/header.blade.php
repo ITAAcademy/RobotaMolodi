@@ -37,8 +37,7 @@
         @else
             <div class="headerChangeRowXS1 col-xs-2 col-sm-2 col-lg-2" style="padding: 0">
                 <div class="navtab-exit">
-                    <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i
-                                class="fa fa-pencil" aria-hidden="true"></i></a>
+
                     <a class="modal-user-button" style="margin-top: -2px;"
                        @if(Auth::user()->isAdmin()) href="{{url('/admin')}}"
                        @else href="{{ url('/cabinet') }}" @endif>
@@ -50,11 +49,13 @@
                                 {!! Html::image('image/m.jpg', 'logo', array( 'width' => '100%', 'height' => '100%')) !!}
                             @endif
                         </span>
-                        <span class="img-user-name">
+                        <div class="img-user-name">
                             <p>{{ Auth::user()->name }}</p>
                             @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
-                        </span>
+                        </div>
                     </a>
+                    <a class="modal-user-button pensil0px" href="/user/{{ Auth::user()->id }}/edit"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="headerChangeRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">
