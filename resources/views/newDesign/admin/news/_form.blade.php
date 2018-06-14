@@ -30,7 +30,7 @@
 <script>
     CKEDITOR.replace('description',
         {
-            extraPlugins : 'justify',
+            extraPlugins: 'justify',
             filebrowserImageUploadUrl: '{{ route('upartimg',['_token' => csrf_token() ]) }}',
             height: 500
         }
