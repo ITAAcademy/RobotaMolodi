@@ -163,6 +163,17 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $idProject = $project->id;
+        if(!is_numeric($idProject))
+        {
+            abort(500);
+        }
+        if (Project::find($idProject)->company->user->id == Auth::id()) {
+            Project::destroy($idProject);
+            return redirect()->route('cabinet.my_projects');
+        }
+        else
+            abort(403);
     }
+
 }
