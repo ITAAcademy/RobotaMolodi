@@ -2183,7 +2183,7 @@ a.link{
 margin-top: 20px;
 }
 .formTitle{
-	text-indent: 1.5em;
+	/*text-indent: 1.5em;*/
 }
 .errors{
 	border-color: red;
@@ -3208,7 +3208,7 @@ html,body{
 }
 
 .form-company-row {
-    display: flex;
+    /*display: flex;*/
     align-items: center;
 }
 
