@@ -57,7 +57,7 @@
                     <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i
                                 class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
-            </div>h
+            </div>
             <div class="headerChangeRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">
                 <div class="navtab-exit">
                     <a href="{{ url('/auth/logout') }}">
