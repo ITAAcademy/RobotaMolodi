@@ -210,6 +210,8 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
     Route::get('myprojects/{id}',['as' => 'cabinet.my_projects' ,'uses' => 'cabinet\CabinetController@showMyProjects']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
+    Route::get('project/{project}/destroy',['as'=>'projectDestroy','uses' => 'ProjectController@destroy']);
+
     Route::resource('cabinet','cabinet\CabinetController');
     Route::resource('user','UserController', ['only' => ['edit','update']]);
     Route::post('user/{id}/deleteAvatar',[

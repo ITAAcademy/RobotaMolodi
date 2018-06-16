@@ -40,8 +40,10 @@
     @endforeach
 
         <div class="row paginatorr">
-            @if($newsPagin->lastPage() > 1)
-                @include('newDesign.paginator', ['paginator' => $newsPagin])
-            @endif
+            <div class="pagination-sm">
+                @if($newsPagin->lastPage() > 1)
+                    @include('newDesign.paginator', ['paginator' => $newsPagin])
+                @endif
+            </div>
         </div>
 </div>
