@@ -2348,8 +2348,8 @@ span.heading {
     color: #d96123;
 }
 
-a.link {
-    text-decoration: none;
+.formTitle{
+	/*text-indent: 1.5em;*/
 }
 
 .list:hover {
@@ -3552,7 +3552,7 @@ html, body {
 }
 
 .form-company-row {
-    display: flex;
+    /*display: flex;*/
     align-items: center;
 }
 
