@@ -3258,11 +3258,11 @@ span.red-star {
 
 .header-text-resume {
     color: #F68C06;
-    margin-bottom: 0;
     font-family: "ACLine";
     -ms-font-family: "ACLine";
     font-size: 36px;
     font-weight: bold;
+    text-align: center;
 }
 
 .label-text-resume {
@@ -3279,7 +3279,7 @@ span.red-star {
 }
 
 .resume-row {
-    display: flex;
+
     justify-content: space-between;
     align-items: center;
 }
