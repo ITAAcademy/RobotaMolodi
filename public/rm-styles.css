@@ -8,7 +8,7 @@
 @media all {
     .featherlight-next, .featherlight-previous {
         display: block;
-        position: absolute;
+        position: relative;
         top: 25px;
         right: 25px;
         bottom: 0;
