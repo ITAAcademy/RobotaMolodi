@@ -57,7 +57,7 @@
 9. To fix mcript exeption run:
     sudo apt-get install mcrypt php7.1-mcrypt
     sudo /etc/init.d/nginx restart
-
+y
 8. Go to your project's directory and run commands:
     'composer update'
     'php artisan key:generate'

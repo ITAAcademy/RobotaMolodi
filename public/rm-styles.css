@@ -2041,6 +2041,12 @@ body {
     display: block;
 }
 
+	/*.col-md-10 {*/
+		/*width: 83.33333333%;*/
+		/*margin-left: 164px;*/
+		/*margin-top: -225px;*/
+	/*}*/
+
 #main {
     display: inline;
     min-height: 350px;

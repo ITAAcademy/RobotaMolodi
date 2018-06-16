@@ -14,7 +14,6 @@ class AddNullableToUserService extends Migration
     {
         Schema::table('users', function($table)
         {
-
             $table->string('service')->nullable()->change();
             $table->text('access_token')->nullable()->change();
             $table->text('refresh_token')->nullable()->change();

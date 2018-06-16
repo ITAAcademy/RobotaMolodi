@@ -17,4 +17,6 @@
     </div>
 
     {!!Html::script('js/scrollup.js')!!}
+    @include('newDesign.jsForFilter')
+
 @stop

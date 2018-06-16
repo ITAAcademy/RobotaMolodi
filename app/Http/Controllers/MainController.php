@@ -89,7 +89,6 @@ class MainController extends Controller
 
         $companies = Filter::companies($request)->allCompanies()->where('blocked', false)->paginate();
         Filter::routeFilterPaginator($request, $companies);
-
         $specialisations = Vacancy::groupBy('position')->lists('position');
         if ($request->ajax()) {
             return view('newDesign.company.companiesList', array(
