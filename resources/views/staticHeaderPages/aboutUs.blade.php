@@ -14,17 +14,17 @@
     <section class="content">
                 <div class="article">
                     <h1 class="title">{{ trans('aboutus.about') }}</h1>
-                    <div class="row full-content">
+                    <div class="row full-content" >
                         <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
                             <img data-src="{{asset('image/aboutUsImages/icon_lamp.png')}}" alt="lamp">
                         </div>
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
                             {{ trans('aboutus.ideaofcreation') }}
                             <div class="row second_level">
                                 <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
                                     <img data-src="{{asset('image/aboutUsImages/map_icon.png')}}" alt="map">
                                 </div>
-                                <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                                <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
                                     <p>{{ trans('aboutus.mainpurpose') }}</p>
                                     <p>{{ trans('aboutus.present') }}</p>
                                     <p>{{ trans('aboutus.highmember') }}</p>
@@ -349,9 +349,9 @@
         lozad('.gallery-item a img', {
             load: function(el) {
                 el.src = el.dataset.src;
-                el.onload = function() {
-                    el.classList.add('fade')
-                }
+                // el.onload = function() {
+                //     el.classList.add('fade')
+                // }
             }
         }).observe();
     </script>
