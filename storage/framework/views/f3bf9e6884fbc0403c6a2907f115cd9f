@@ -1,0 +1,120 @@
+<?php $__env->startSection('content'); ?>
+        <?php echo Form::model($user, array('route' => array('user.update', $user->id), 'enctype' => 'multipart/form-data' ,'method'  => 'PUT')); ?>
+
+        <?php echo Form::token(); ?>
+
+        <div class="form-group">
+            <?php echo Form::label('name', 'Ім\'я користувача'); ?>
+
+            <?php echo Form::text('name', $user->name, ['class' => 'form-control']); ?>
+
+        </div>
+
+        <div class="form-group">
+            <div class="panel panel-orange" id="vimg">
+                <?php if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar))): ?>
+                    <?php echo Html::image( 'image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar, 'logo',
+                    array(
+                    'id' => 'vacImg',
+                    'class' => 'avaExist',
+                    'width' => '100%',
+                    'height' => '100%')); ?>
+
+                <?php else: ?>
+                    <?php echo Html::image('image/m.jpg', 'logo', array(
+                    'id' => 'vacImg',
+                    'class' => 'avaNotExist',
+                    'width' => '100%',
+                    'height' => '100%')); ?>
+
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="form-group <?php echo e($errors-> has('avatar') ? 'has-error' : ''); ?>">
+            <button id="but" type="button" onclick="document.getElementById('avatar').click()" onchange="">Виберіть фото</button>
+            <div id="filename">
+                <?php echo e(trans('form.unselected')); ?>
+
+            </div>
+            <?php echo Form::file('avatar', array( 'id'=>'avatar', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png')); ?>
+
+
+            <div class="form-group">
+                <?php echo $errors->first('avatar', '<span class="help-block">:message</span>'); ?>
+
+            </div>
+        </div>
+
+        <input type="hidden" name="fcoords" class="coords" id="coords" value="">
+        <input type="hidden" name="fname" value="{{}}">
+
+        <div class="col-xs-1" style="padding:1px">
+            <?php echo Form::submit(trans('main.save'), ['class' => 'btn btn-success','style'=>"width:100%"]); ?>
+
+        </div>
+
+        <?php echo Form::close(); ?>
+
+
+        <?php echo Form::open(array('route' => ['deleteAvatar', $user->id])); ?>
+
+
+                <div class="col-xs-1" style="padding:1px">
+                  <?php echo Form::submit(trans('main.delete'),
+                  ['class' => 'btn btn-danger',
+                  'style'=>"width:100%",
+                  'id'=>'delete',
+                  'onclick'=> "return ConfirmDelete();"]); ?>
+
+                </div>
+
+        <?php echo Form::close(); ?>
+
+
+        <div id="imageBox" class="modal fade">
+            <?php echo $__env->make('newDesign.cropModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+        <?php echo Html::script('js/crop.js'); ?>
+
+        <script>
+            function ConfirmDelete() {
+              var conf = confirm("Are you sure want delete avatar?");
+                if(conf){ return true;
+                } else { return false;
+              }
+            }
+            $(document).ready(function () {
+              if($('img').hasClass('avaNotExist')) {
+                    $('#delete').addClass('disabled').attr('onClick', '').attr('type', 'button');
+              }
+              var cloneInputFile = $('#avatar').clone();
+              $('#avatar').on('change', function(e) {
+                    if(document.getElementById('avatar').value) {
+                        cloneInputFile = $('#avatar').clone();
+                        $('#imageBox').modal({
+                            show: true,
+                            backdrop: 'static'
+                        });
+                        crop(e, 'img-src', '#crop', '#imageBox');
+                    } else {
+                        $('#avatar').replaceWith(cloneInputFile);
+                    }
+                    document.getElementById('filename').innerHTML = document.getElementById('avatar').value;
+              });
+
+              $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                    }
+              });
+
+              $('#description').text($('.change_description').html());
+            })
+        </script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('footer'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

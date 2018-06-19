@@ -1,0 +1,11 @@
+<?php $__env->startSection('content'); ?>
+    <div class="l-header-text-company">
+        <h3 class="formTitle header-text-company"><b><?php echo e(trans('content.addCompany')); ?></b></h3>
+    </div>
+    <?php echo Form::open(['route' => 'company.store','enctype' => 'multipart/form-data', 'id'=>'form_id']); ?>
+
+        <?php echo $__env->make('Company.regCompany', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('NewVacancy/users', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

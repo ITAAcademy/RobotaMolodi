@@ -1,0 +1,95 @@
+<?php /*<?php echo $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)); ?>*/ ?>
+<link href="<?php echo e(asset('/css/cabinet/cabinetMyResVacCom.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(asset('/css/vacancyShow.css')); ?>" rel="stylesheet">
+
+<?php /*<?php echo Form::open(['route' => 'projectDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform']); ?>*/ ?>
+<?php /*<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>*/ ?>
+<?php /*<input type = "hidden" name = "filterValue" id = "filterValue"/>*/ ?>
+<?php /*<?php echo Form::close(); ?>*/ ?>
+<?php /*<h1>Projects</h1>*/ ?>
+<?php foreach($projects as $project): ?>
+    <div class="one-for-cabinet">
+        <div class="row">
+            <div class="col-xs-12 col-md-2">
+                <div class="panel panel-orange" id="vimg">
+                    <a href="<?php echo e(route('project.show', $project->id)); ?>">
+                        <?php if(File::exists(public_path('image/company/' . $project->id .'/'. $project->logo)) and $project->logo != ''): ?>
+                            <?php echo Html::image('image/company/' . $project->id .'/'. $project->logo, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']); ?>
+
+                        <?php else: ?>
+                            <?php echo Html::image('image/company_tmp.png', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')); ?>
+
+                        <?php endif; ?>
+                    </a>
+                </div>
+                <?php echo $__env->make('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/project/'.$project->id)], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+            <div class="col-xs-12 col-md-10">
+                <div class="panel-heading-cabinet">
+                    <p class="position-cabinet">
+                        <a class="orangColor-cabinet-name" href="<?php echo e(route('project.show', $project->id)); ?>"><?php echo e($project->name); ?></a>
+                        <br>
+                    </p>
+                    <p  class="description-cabinet projectAbout"><?php echo strip_tags($project->project_about); ?></p>
+                    <?php /*<p class="name-cabinet"> <?php echo e($company->Industry()->name); ?></p>*/ ?>
+                    <?php /*TODO need to added company Industry*/ ?>
+                </div>
+                <div>
+                    <p class="cityTime-cabinet">
+                        <?php /*TODO Refactor code to city in CompanyController*/ ?>
+                        <?php /*<span class="description-cabinet"><?php foreach($company->Cities()->get() as $city): ?><?php echo e($city->name); ?> <?php endforeach; ?></span>*/ ?>
+                        <span id="yellowCircle-cabinet">&#183;</span>
+                        <span class="updateDate-cabinet-vac"><?php echo e(date('j m Y', strtotime($project->updated_at))); ?></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/project/<?php echo e($project->id); ?>/destroy" onclick="return ConfirmDelete();">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span><?php echo e(trans('project/navbar.delete_project')); ?></span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/project/<?php echo e($project->id); ?>/edit">
+                        <?php echo Html::image('image/edit.png', 'del'); ?>
+
+                        <span><?php echo e(trans('project/navbar.edit_project')); ?></span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="#">
+                        <?php echo Html::image('image/podiumOrenge.png', 'del'); ?>
+
+                        <span><?php echo e(trans('project/navbar.publish_project')); ?></span>
+                    </a>
+                </div>
+                <?php /*<div class="col-xs-12 col-md-3">*/ ?>
+                <?php /*TODO TODO: fix "place in tops"*/ ?>
+                <?php /*<a class="orangColor-cabinet" href="#" onclick="javascript:document.location.reload();">*/ ?>
+                <?php /*<?php echo Html::image('image/podiumOrenge.png', 'del'); ?>*/ ?>
+                <?php /*<span> <?php echo e(trans('main.placetop')); ?></span>*/ ?>
+                <?php /*</a>*/ ?>
+                <?php /*</div>*/ ?>
+            </div>
+        </div>
+    </div>
+    <hr class="line-sort-box">
+<?php endforeach; ?>
+
+<?php /*<?php echo $projects->render(new App\Presenters\BootstrapTwoPresenter($projects)); ?>*/ ?>
+
+<script>
+    function ConfirmDelete() {
+        var conf = confirm("Ви дійсно хочете видалити проект?");
+
+        if(conf) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>

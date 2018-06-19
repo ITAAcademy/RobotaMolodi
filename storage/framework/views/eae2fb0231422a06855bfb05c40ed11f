@@ -1,0 +1,59 @@
+<link href="<?php echo e(asset('/css/vacancies/vacanciesList.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(asset('/css/paginator/paginator.css')); ?>" rel="stylesheet">
+<div class="test">
+    <div>
+    <?php foreach($vacancies as $vacancy): ?>
+
+                <div>
+                <div class="section">
+                    <a class="links ib-block" href="/vacancy/<?php echo e($vacancy->id); ?>">
+                        <h3><?php echo e($vacancy->position); ?></h3>
+                    </a>
+                    <h4>
+                        <strong><?php echo e($vacancy->salary); ?> - <?php echo e($vacancy->salary_max); ?> <?php echo e($vacancy->Currency()[0]['currency']); ?></strong>
+                    </h4>
+                    <p class="text-left"> <?php echo e(strip_tags($vacancy->description)); ?> </p>
+                </div>
+
+                <div class="section-link__right">
+                   <a class="links ib-block" href="/vacancy/<?php echo e($vacancy->id); ?>">
+                        <p class="read-next"><?php echo e(trans('content.read_next')); ?></p>
+                    </a>
+                </div>
+
+
+                <div class="below-section">
+                    <span><?php echo e($vacancy->company->company_name); ?></span>
+                </div>
+
+                <div class="ratings">
+                    <span class = "ratingsTitle"><?php echo e(trans('content.rating')); ?></span>
+                    <span class="morph">
+                        <?php echo Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']); ?>
+
+                        <span class="findLike" id="<?php echo e(route('vac.rate', $vacancy->id)); ?>_1"><?php echo e($vacancy->rated()->getLikes($vacancy)); ?></span>
+                    </span>
+                    <span class="morph">
+                        <?php echo Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']); ?>
+
+                        <span class="findDislike" id="<?php echo e(route('vac.rate', $vacancy->id)); ?>_-1"><?php echo e($vacancy->rated()->getDisLikes($vacancy)); ?></span>
+                    </span>
+                    <span class="likeError"></span>
+                </div>
+
+                <p class="links ib-block">
+                    <div class="line">
+                        <span class="town"><?php foreach($vacancy->Cities()->get() as $city): ?><?php echo e($city->name); ?> <?php endforeach; ?></span>
+                        <span class="drop">&bull;</span>
+                        <span class="data"><?php echo e(date('j m Y', strtotime($vacancy->updated_at))); ?></span>
+                    </div>
+                </p>
+                <hr>
+            </div>
+
+    <?php endforeach; ?>
+            </div>
+    <?php echo $__env->make('newDesign.paginator', ['paginator' => $vacancies], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+
+<?php echo $__env->make('newDesign.jsForFilter', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
