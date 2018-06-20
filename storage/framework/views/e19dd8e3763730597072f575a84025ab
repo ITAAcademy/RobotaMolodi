@@ -1,0 +1,19 @@
+<?php $__env->startSection('contents'); ?>
+    <div>
+        <ul class="nav nav-tabs">
+            <li role="presentation"><?php echo link_to_route('vacancy.index','Мої вакансії'); ?></li>
+
+        </ul>
+    </div>
+    <div>
+        <ul class="nav nav-tabs">
+            <li role="presentation"><?php echo link_to_route('vacancy.create','Створити вакансію'); ?></li>
+            <li role="presentation"><?php echo link_to_route('vacancy.edit','Редагувати вакансію'); ?></li>
+            <li role="presentation"><?php echo link_to_route('vacancy.destroy','Видалити вакансію'); ?></li>
+            <li role="presentation"><?php echo link_to_route('company.create','Створити компанію'); ?></li>
+            <li role="presentation"><?php echo link_to_route('company.edit','Редагувати компанію'); ?></li>
+        </ul>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('NewVacancy/layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

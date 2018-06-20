@@ -1,0 +1,23 @@
+<link href="<?php echo e(asset('/css/aboutUsShow.css')); ?>" rel="stylesheet">
+<div class="col-xs-12">
+    <div class="container-link-menu">
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('about_us')); ?>"><?php echo e(trans('header.about')); ?></a>
+        </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('/news')); ?>"><?php echo e(trans('header.news')); ?></a>
+        </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('https://intita.com/courses')); ?>" target="_blank"><?php echo e(trans('header.education')); ?></a>
+        </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('http://www.profitday.info')); ?>" target="_blank"><?php echo e(trans('header.carrierdays')); ?></a>
+        </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('https://profitday.info/allcompanies')); ?>" target="_blank"><?php echo e(trans('header.partners')); ?></a>
+        </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="<?php echo e(url('/contacts')); ?>"><?php echo e(trans('header.contacts')); ?></a>
+        </div>
+    </div>
+</div>

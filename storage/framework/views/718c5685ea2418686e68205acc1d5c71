@@ -1,0 +1,28 @@
+<?php $__env->startSection('content'); ?>
+	<div class="container-fluid container-main">
+		<?php echo $__env->make('header/header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<?php echo $__env->make('main/mainContent', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</div>
+
+	<footer>
+		<?php echo $__env->make('footer/footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</footer>
+
+	<script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-83807118-1', 'auto');
+        ga('send', 'pageview');
+	</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
