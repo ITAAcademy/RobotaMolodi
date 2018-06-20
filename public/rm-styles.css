@@ -4831,6 +4831,9 @@ bottom:25px;
     .row {
         margin: 0;
     }
+    .row .small-row{
+        margin: -40px;
+    }
 
     img#entry {
         padding: 0;
