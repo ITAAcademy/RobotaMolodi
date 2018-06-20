@@ -1,0 +1,33 @@
+
+<link  href="<?php echo e(asset('/css/vacancies/topVacancies.css')); ?>" rel="stylesheet">
+
+
+<div id="news" class="row hidden hidden-xs news">
+    <div>
+        <a id="close-news" class="close-bt" href="#" title="<?php echo e(trans('content.closetopnews')); ?>" >
+           <img id="closenews" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
+        </a>
+        <img class="tv-news-header1" src="/image/topVacancies/news.png" alt="image logo news">
+        <a class="tv-link"  href="/news">
+            <p id="topvac2" class="tv-news-header2"><?php echo e(trans('content.news')); ?></p>
+        </a>
+    </div>
+    <div class="tv-news-list cool-scroll">
+    <?php foreach($news as $oneNews): ?>
+        <ul>
+            <li>
+                <span class="tv-news-date"><?php echo e($oneNews->created_at->format('d.m.Y')); ?></span><br>
+                <a class="tv-link"  href="/news">
+                    <p class="tvl-position"><?php echo e($oneNews->name); ?></p>
+                    <?php if($oneNews->img!='Not picture'): ?>
+                    <img class="picture" src="<?php echo e(asset($oneNews->getPath().$oneNews->img)); ?>">
+                    <?php endif; ?>
+                </a>
+            </li>
+        </ul>
+    <?php endforeach; ?>
+    </div>
+    <div class="tv-news-footer">
+        <img src="/image/topVacancies/footer_logo.png" alt="image_logo_footer">
+    </div>
+</div>

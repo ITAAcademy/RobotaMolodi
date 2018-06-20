@@ -1,0 +1,436 @@
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors->has('name_u') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label("name_u", trans('form.fullname'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php echo Form::text('name_u', Input::old('name_u'), ['class'=>'form-control' ,'id' => 'name']); ?>
+
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('name_u', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors->has('telephone') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('telephone', trans('main.phone'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php echo Form::text('telephone', Input::old('telephone'), ['class'=>'form-control input-medium bfh-phone', 'id' => 'telephone']); ?>
+
+            </div>
+            <span class="red-star"></span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('telephone', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<?php echo Html::script('js/jquery.maskedinput.min.js'); ?>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#telephone").mask("+38(099) 999-99-99");
+    });
+</script>
+<div class="row">
+    <div class="form-group resume-row<?php echo e($errors->has('email') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('email', trans('form.email'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php echo Form::text('email', $resume->email, array( 'class' => 'form-control','id' => 'exampleInputEmail1'  )); ?>
+
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('email', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors->has('city') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('city', trans('main.city'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <select name="city" style="width: 100%" class="form-control" id="selectCity">
+                    <?php foreach($cities as $city): ?>
+                        <option value="<?php echo e($city->id); ?>"> <?php echo e($city->name); ?> </option>
+                    <?php endforeach; ?>
+                    <?php if(Input::old('city')!= ''): ?>
+                        <?php foreach($cities as $city): ?>
+                            <?php if($city->id == Input::old('city')): ?>
+                                <option value="<?php echo e($city->id); ?>" selected><?php echo e($city->name); ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php if($resume->city_id): ?>
+                            <option value="<?php echo e($resume->city_id); ?>" selected><?php echo e($resume->city->name); ?></option>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('city', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('industry', trans('form.branch'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <select name="industry" style="width: 100%" class="form-control" id="selectIndustry">
+                    <?php foreach($industries as $industry): ?>
+                        <?php if($industry->main): ?>
+                            <option value="<?php echo e($industry->id); ?>" selected> <?php echo e($industry->name); ?> </option>
+                        <?php else: ?>
+                            <option value="<?php echo e($industry->id); ?>"> <?php echo e($industry->name); ?> </option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php if(Input::old('industry')!= ''): ?>
+                        <option value="<?php echo e(Input::old('industry')); ?>"
+                                selected><?php echo e(\App\Models\Industry::find(Input::old('industry'))->name); ?>
+
+                            <?php endif; ?>
+                        </option>
+                </select>
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('position', trans('form.position'), ['class'=>'label-text-resume'] ); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <select name="position" id="position" class="form-control">
+                    <?php if(Input::old('position')== ''): ?>
+                        <?php foreach($positions as $position): ?>
+                            <?php if($position == Input::old('position')): ?>
+                                <option value="<?php echo e($position); ?>" selected><?php echo e($position); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($position); ?>"><?php echo e($position); ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php foreach($positions as $position): ?>
+                            <?php if($position == Input::old('position')): ?>
+                                <option value="<?php echo e($position); ?>" selected><?php echo e($position); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($position); ?>"><?php echo e($position); ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('position', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors-> has('salary') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('salary', trans('form.salarymin'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php echo Form::text('salary', Input::old('salary'), ['class'=>'form-control']); ?>
+
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('salary', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<?php echo Html::script('js/resume.js'); ?>
+
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors-> has('salary_max') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('salary_max', trans('form.salarymax'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php echo Form::text('salary_max', Input::old('salary_max'), ['class'=>'form-control']); ?>
+
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('salary_max', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('currency_id', trans('form.currency'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <select class="form-control" id="selectCurrency" name="currency_id" style="">
+                    <?php if(Input::old('currency_id') ==''): ?>)
+                    <?php foreach($currencies as $currency): ?>
+                        {
+                        <option value="<?php echo e($currency->id); ?>"><?php echo e($currency->currency); ?></option>
+                        }
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php foreach($currencies as $currency): ?>
+                            {
+                            <?php if($currency->id !=  Input::old('currency_id')): ?>
+                                <option value="<?php echo e($currency->id); ?>"><?php echo e($currency->currency); ?></option>
+                            <?php else: ?>
+                                <option selected value="<?php echo e($currency->id); ?>"><?php echo e($currency->currency); ?></option>
+                                }
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+            <span class="red-star"></span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors-> has('description') ? 'has-error' : ''); ?>">
+        <div class="col-md-2 col-sm-2 control-label label-text-resume">
+            <?php echo Form::label('description',trans('main.description'), ['class'=>'label-text-resume']); ?>
+
+        </div>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <?php if($resume->description): ?>
+                    <?php echo Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'desc']); ?>
+
+                <?php else: ?>
+                    <?php echo Form::textarea('description',$resume->description, ['class'=>'form-control', 'id'=>'description']); ?>
+
+                <?php endif; ?>
+            </div>
+            <span class="red-star">*</span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('description', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row" >
+        <div class="col-md-2 col-sm-2 "></div>
+        <div class="col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+            <span style="color: red" >Для корректного відображення на сайті Вашого резюме, заповніть поля по запропонованій вище формі.</span>
+            </div>
+        </div>
+        <div class=" col-md-3 col-sm-3"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row" style="margin-top: 30px">
+        <label class="col-sm-2 control-label label-text-resume">
+            <?php echo e(trans('form.status')); ?>
+
+        </label>
+        <div class=" col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+                <select class="form-control" id="published" name="published">
+                    <?php if(Input::old('published')==''): ?>
+                        <?php for($i=0; $i<count($publishedOptions); $i++): ?>
+                            <?php if($i==1): ?>
+                                <option selected value="<?php echo e($i); ?>"><?php echo e($publishedOptions[$i]); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($i); ?>"><?php echo e($publishedOptions[$i]); ?></option>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    <?php else: ?>
+                        <?php for($i=0; $i<count($publishedOptions); $i++): ?>
+                            <?php if(Input::old('published')==$i): ?>
+                                <option selected value="<?php echo e($i); ?>"><?php echo e($publishedOptions[$i]); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($i); ?>"><?php echo e($publishedOptions[$i]); ?></option>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+            <span class="red-star"></span>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row <?php echo e($errors-> has('loadResume') ? 'has-error' : ''); ?>">
+        <div class=" col-md-4 col-sm-4 resume-form resume-form-f">
+            <div class="resume-form-input">
+                <button id="but" type="button" onclick="document.getElementById('loadResume').click()" onchange="">
+                    <?php echo e(trans('form.choose')); ?> 
+                </button>
+                <div id="filename">
+                    <?php echo e(trans('form.unselected')); ?>
+
+                </div>
+                <?php echo Form::file('loadResume', array( 'id'=>'loadResume', 'style'=>'display:none', 'accept'=>'.jpg, .jpeg, .gif, .png, .svg')); ?>
+
+            </div>
+        </div>
+        <div class=" col-md-3 col-sm-3">
+            <?php echo $errors->first('loadResume', '<span class="help-block">:message</span>'); ?>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" name="fcoords" class="coords" id="coords" value="">
+<input type="hidden" name="fname" value="{{}}">
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-offset-3 col-sm-offset-3 resume-form-f">
+            <span class="red-star">*</span> – Обов'язкові для заповнення.
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2  col-sm-2 form-group resume-form-f" style="width: 400px">
+        <?php echo Form::submit(trans('form.regresume'),['class' => 'btn btn-primary registr']); ?>
+
+    </div>
+    <?php echo Form::token(); ?>
+
+</div>
+<br>
+<div class="change_description">
+    <span><b>Контактна інформація:</b></span>
+    <p>- регіон проживання:</p>
+    <p>- тел: +38 (000)-000-00-00</p>
+    <p>- E-mail: <em>example@mail.com</em></p>
+    <p>- LinkedIn:</p>
+    <p>- Skype:</p>
+    <div><span><b>Бажана посада:</b></span></div>
+    <div><span><b>Досвід роботи:</b></span></div>
+    <div><span><b>Освіта:</b></span></div>
+    <div><span><b>Додаткова освіта:</b></span></div>
+    <div><span><b>Сертифікати:</b></span></div>
+</div>
+<script>$(document).ready(function () {
+        CKEDITOR.replace('description');
+    });</script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<div id="imageBox" class="modal fade">
+    <?php echo $__env->make('newDesign.cropModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+<?php echo Html::script('js/crop.js'); ?>
+
+<script>
+    $(document).ready(function () {
+        var cloneInputFile = $('#loadResume').clone();
+        $('#loadResume').on('change', function (e) {
+            if (document.getElementById('loadResume').value) {
+                cloneInputFile = $('#loadResume').clone();
+                $('#imageBox').modal({
+                    show: true,
+                    backdrop: 'static'
+                });
+                crop(e, 'img-src', '#crop', '#imageBox');
+            } else {
+                $('#loadResume').replaceWith(cloneInputFile);
+            }
+            document.getElementById('filename').innerHTML = document.getElementById('loadResume').value;
+        });
+        if (!$('#description').val()) {
+            $('#description').text($('.change_description').html());
+        }
+    })
+</script>
+<?php $__env->startSection('footer'); ?>
+    <script type="text/javascript">
+        //        $('loadResume').formValidation({
+        //            fields: {
+        //                fileInput: {
+        //                    validators: {
+        //                        file: {
+        //                            extension: 'doc,docx,odt,rtf,txt,pdf',
+        //                            type: 'file/doc,file/docx,file/odt,file/rtf,file/txt,file/pdf',
+        //                            message: 'Please choose a MP3 file'
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        });
+        var wrapper = $(".col-sm-offset-2"),
+            inp = wrapper.find("input"),
+            btn = wrapper.find("button"),
+            lbl = wrapper.find("div");
+        btn.focus(function () {
+            inp.focus()
+        });
+        // Crutches for the :focus style:
+        inp.focus(function () {
+            wrapper.addClass("focus");
+        }).blur(function () {
+            wrapper.removeClass("focus");
+        });
+        var file_api = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+        inp.change(function () {
+            var file_name;
+            if (file_api && inp[0].files[0])
+                file_name = inp[0].files[0].name;
+            else
+                file_name = inp.val().replace("C:\\fakepath\\", '');
+
+            if (!file_name.length)
+                return;
+
+            if (lbl.is(":visible")) {
+                lbl.text(file_name);
+                btn.text("Вибрати");
+            } else
+                btn.text(file_name);
+        }).change();
+    </script>
+<?php $__env->stopSection(); ?>

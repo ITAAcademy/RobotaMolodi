@@ -1,0 +1,34 @@
+<link  href="<?php echo e(asset('/css/vacancies/topVacancies.css')); ?>" rel="stylesheet">
+
+<div id="topvac" class="row hidden hidden-xs top-vac">
+
+    <div id="topvac0">
+        <a id="close-top-vac" class="close-bt" href="#" title="<?php echo e(trans('content.closetopvac')); ?>" >
+            <img id="closetv" src="/image/topVacancies/modal_close_icon.png" alt="image_close">
+        </a>
+        <img id="topvac1" class="tv-news-header1" src="/image/topVacancies/topvacancies.png" alt="topvacancies">
+        <p id="topvac2" class="tv-news-header2"><?php echo e(trans('content.vacancy')); ?></p>
+    </div>
+
+    <div id="add-vac-2-top" class="add2top">
+        <a href="/unavailable"><p>+ <span><?php echo e(trans('content.top')); ?></span></p></a>
+    </div>
+
+    <div id="tv-news-list" class="tv-vac-list cool-scroll">
+        <ul>
+            <?php foreach($topVacancy as $vacancy): ?>
+            <li id="top-vac-li-<?php echo e($vacancy->id); ?>">
+                <span id="top-vac-li-<?php echo e($vacancy->id); ?>-date" class="tv-news-date"><?php echo e(date('j.m.Y', strtotime($vacancy->updated_at))); ?></span>
+                <a id="top-vac-<?php echo e($vacancy->id); ?>" class="tv-link" href="/vacancy/<?php echo e($vacancy->id); ?>">
+                    <p id="top-vac-<?php echo e($vacancy->id); ?>-pos" class="tvl-position"><?php echo e($vacancy->position); ?><?php foreach($vacancy->Cities()->get() as $city): ?>, <?php echo e($city->name); ?><?php endforeach; ?></p>
+                    <p id="top-vac-li-<?php echo e($vacancy->id); ?>-salary" class="tvl-salary"><?php echo e($vacancy->salary_max); ?> <?php echo e($vacancy->Currency()[0]['currency']); ?></p>
+                </a>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="tv-news-footer">
+        <img src="/image/topVacancies/footer_logo.png" alt="image_logo_footer">
+    </div>
+</div>
