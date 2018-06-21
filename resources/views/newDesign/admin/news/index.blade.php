@@ -12,14 +12,16 @@
             <h4 style="text-align: center">Список новин</h4>
         </div>
         <div class="fixed-action-btn">
-            <a href="{{ URL::route('admin.news.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+            <a href="{{ URL::route('admin.news.create') }}"
+               class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
         </div>
-        <table class="striped bordered highlight" >
+        <table class="striped bordered highlight">
             <thead>
             <tr>
                 {{--<th class="s1 m2 l2 xl1">Id</th>--}}
-                <th class="s4 m3 l4 xl4">Title</th>
-                <th class="s3 m3 l3 xl4">Picture</th>
+                <th class="s3 m3 l3 xl3">Title</th>
+                <th class="s2 m2 l3 xl3">Short description</th>
+                <th class="s3 m3 l3 xl3">Picture</th>
                 <th class="s1 m1 l1 xl1">Published</th>
                 <th class="s3 m3 l2 xl2">Options</th>
             </tr>
@@ -28,7 +30,12 @@
             @foreach ($news as $new)
                 <tr>
                     {{--<td scope="row">{{ $new->id }}</td>--}}
-                    <td style="text-align: center"><h5>{{ $new->name }}</h5></td>
+                    <td style="text-align: center">
+                        <h5>{{ $new->name }}</h5>
+                    </td>
+                    <td>
+                        {!! substr($new->description, 0, 100)."..." !!}
+                    </td>
                     <td>
                         @if($new->img!='Not picture')
                             <img class="picture" src="{{ asset($new->getPath().$new->img) }}" style="width: 100%">
@@ -36,8 +43,18 @@
                             Not picture
                         @endif
                     </td>
-                    <td>
-                        <button id="{{$new->id}}" value="{{$new->published}}" class="btn btn-flat fa set-main"></button>
+                    {{--<td data-id="{{$new->id}}">--}}
+                    {{--<button id="{{$new->id}}" value="{{$new->published}}" class="btn btn-flat fa set-main"></button>--}}
+                    {{--</td>--}}
+                    <td data-id="{{$new->id}}">
+                        @if($new->published)
+                            <input type="checkbox" class="filled-in" id="{{$new->id}}" checked="checked"
+                                   myAttr="forAjax"/>
+                            <label for="{{$new->id}}"></label>
+                        @else
+                            <input type="checkbox" class="filled-in" id="{{$new->id}}" myAttr="forAjax"/>
+                            <label for="{{$new->id}}"></label>
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('admin.news.edit', $new->id) }}">
@@ -50,7 +67,10 @@
 
                         {!! Form::open([
                         'method' => 'DELETE',
-                        'route' => ['admin.news.destroy', $new->id]
+                        'route' => ['admin.news.destroy', $new->id],
+
+                        'onsubmit' => 'return confirm("Ви дійсно хочете видалити цю новину?")'
+
                         ]) !!}
                         {!! Form::submit ('&#xf014;', [' class' => 'fa']) !!}
                         {!! Form::close() !!}
@@ -59,49 +79,51 @@
                 </tr>
             @endforeach
 
-            <script>
-                $(document).ready(function () {
-                    $("button[value='0']").addClass("fa-square-o");
-                    $("button[value='1']").addClass("fa-check-square-o");
-                    $("button.fa").click( function() {
-                        var id = $(this).attr('id');
-                        $.ajax({
-                            url: '/admin/news/updatePublished/'+id,
-                            methof: 'GET',
-                            success: function(published) {
-                                if (published > 0) {
-                                    return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
-                                } else {
-                                    return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
-                                }
-                            }
-                        });
-                    });
-                })
-            </script>
-
             </tbody>
         </table>
         @include('newDesign.paginator', ['paginator' => $news])
-    </div>
-    <script>
-        $(document).ready(function () {
-            $("button[value='0']").addClass("fa-square-o");
-            $("button[value='1']").addClass("fa-check-square-o");
-            $("button.fa").click( function() {
-                var id = $(this).attr('id');
-                $.ajax({
-                    url: '/admin/news/updatePublished/'+id,
-                    methof: 'GET',
-                    success: function(published) {
-                        if (published > 0) {
-                            return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');
-                        } else {
-                            return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');
+
+        {{--<script>--}}
+        {{--$(document).ready(function () {--}}
+        {{--$("button[value='0']").addClass("fa-square-o");--}}
+        {{--$("button[value='1']").addClass("fa-check-square-o");--}}
+        {{--$("button.fa").click(function () {--}}
+        {{--var id = $(this).attr('id');--}}
+        {{--$.ajax({--}}
+        {{--url: '/admin/news/updatePublished/' + id,--}}
+        {{--method: 'GET',--}}
+        {{--success: function (published) {--}}
+        {{--if (published > 0) {--}}
+        {{--return $("button#" + id).removeClass('fa-check-square-o').addClass('fa-square-o');--}}
+        {{--} else {--}}
+        {{--return $("button#" + id).removeClass('fa-square-o').addClass('fa-check-square-o');--}}
+        {{--}--}}
+        {{--}--}}
+        {{--});--}}
+        {{--});--}}
+        {{--})--}}
+        {{--</script>--}}
+
+        <script>
+            $(document).ready(function () {
+                $('[myAttr="forAjax"]').click(function () {
+                    var that = $(this);
+                    var checkField = that.parent().context.checked;
+                    var id = that.parent().data('id');
+                    $.ajax({
+                        url: '/admin/news/updatePublished/' + id,
+                        method: 'GET',
+                        data: {id: id, checked: checkField},
+                        success: function () {
+                            $('.fa-check-square-o').removeClass('fa-check-square-o').addClass('fa-square-o');
+                            that.removeClass('fa-square-o').addClass('fa-check-square-o');
+
                         }
-                    }
+                    })
                 });
-            });
-        });
-    </script>
+
+            })
+        </script>
+    </div>
+
 @stop

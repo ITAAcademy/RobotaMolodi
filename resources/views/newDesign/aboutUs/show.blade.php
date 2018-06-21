@@ -2,7 +2,7 @@
 <div class="col-xs-12">
     <div class="container-link-menu">
         <div class="staticLinksMenu">
-            <a class="btn" href="{{ url('aboutus') }}">{{trans('header.about')}}</a>
+            <a class="btn" href="{{ url('about_us') }}">{{trans('header.about')}}</a>
         </div>
         <div class="staticLinksMenu">
             <a class="btn" href="{{ url('/news') }}">{{trans('header.news')}}</a>

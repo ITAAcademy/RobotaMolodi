@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('/news', 'Admin\NewsController');
     Route::resource('/users', 'Admin\UsersController');
     Route::get('/users/{id}/changeRole',['as'=>'changeRole', 'uses'=>'Admin\UsersController@change'] );
+    Route::get('/users/{id}/changeRole',['as'=>'changeRoleToAdwiser', 'uses'=>'Admin\UsersController@switchToAdwiser'] );
     Route::resource('/slider', 'Admin\SliderController');
     Route::resource('/industry', 'Admin\IndustryController');
     Route::resource('/companies', 'Admin\CompaniesController');
@@ -209,6 +210,8 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
     Route::get('myprojects/{id}',['as' => 'cabinet.my_projects' ,'uses' => 'cabinet\CabinetController@showMyProjects']);
     Route::post('myresumes/{id}/updateDate',['as' => 'updateCabinetResumeDate', 'uses' => 'ResumeController@updatePablishDate']);
 
+    Route::get('project/{project}/destroy',['as'=>'projectDestroy','uses' => 'ProjectController@destroy']);
+
     Route::resource('cabinet','cabinet\CabinetController');
     Route::resource('user','UserController', ['only' => ['edit','update']]);
     Route::post('user/{id}/deleteAvatar',[
@@ -235,8 +238,9 @@ Route::post('upimgcom', ['as'=>'upimgcom', 'uses' => 'UploadFile@editCompanyImg'
 Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeImg']);
 
 //staticHeaderPages
-Route::get('aboutus', function () {
+Route::get('about_us', function () {
     return view('staticHeaderPages.aboutUs');
+
 });
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');

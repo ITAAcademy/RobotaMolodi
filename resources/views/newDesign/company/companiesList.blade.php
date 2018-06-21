@@ -34,9 +34,6 @@
                         </div>
 
                         <div class="amount-companies-list">
-    {{--                        <p>  <a href="{{route('main.showVacancies', $company->id)}}" class="link">
-        {{ trans('content.vsc') }}
-    </a></p>--}}
                             <p>  <a href="/company/{{$company->id}}" class="showCompanyVacancies"><span class="vacancy-text">{{ trans('content.vac') }}</span> {{$company->Vacancies()->count()}}</a></p>
                         </div>
                         <div class="row description-companies">
@@ -53,7 +50,6 @@
     @endforeach
 
     @include('newDesign.paginator', ['paginator' => $companies])
-
 </div>
 
-@include('newDesign.jsForFilter')
+{{--@include('newDesign.jsForFilter')--}}
