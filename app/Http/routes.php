@@ -240,6 +240,7 @@ Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeI
 //staticHeaderPages
 Route::get('about_us', function () {
     return view('staticHeaderPages.aboutUs');
+
 });
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');

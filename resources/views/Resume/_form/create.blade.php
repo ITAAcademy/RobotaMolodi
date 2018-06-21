@@ -229,6 +229,18 @@
         <div class=" col-md-3 col-sm-3">
             {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
         </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="form-group resume-row" >
+        <div class="col-md-2 col-sm-2 "></div>
+        <div class="col-md-6 col-sm-6 resume-form">
+            <div class="resume-form-input">
+            <span style="color: red" >Для корректного відображення на сайті Вашого резюме, заповніть поля по запропонованій вище формі.</span>
+            </div>
+        </div>
+        <div class=" col-md-3 col-sm-3"></div>
     </div>
 </div>
 <div class="row">

@@ -3251,7 +3251,10 @@ span.red-star {
     color: red;
     width: 5px;
 }
-
+.textInf{
+    border: 1px;
+    border-radius:5px;
+}
 .header-resume {
     margin-bottom: 20px;
 }
@@ -4830,6 +4833,9 @@ bottom:25px;
 @media (min-width: 300px) and (max-width: 480px) {
     .row {
         margin: 0;
+    }
+    .row .small-row{
+        margin: -40px;
     }
 
     img#entry {
