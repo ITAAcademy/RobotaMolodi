@@ -238,8 +238,9 @@ Route::post('upimgcom', ['as'=>'upimgcom', 'uses' => 'UploadFile@editCompanyImg'
 Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeImg']);
 
 //staticHeaderPages
-Route::get('aboutus', function () {
+Route::get('about_us', function () {
     return view('staticHeaderPages.aboutUs');
+
 });
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
