@@ -54,8 +54,6 @@
                             @if(Auth::user()->isAdmin())<p style="color: red">(Admin)</p>@endif
                         </div>
                     </a>
-                    <a class="modal-user-button pensil7px" href="/user/{{ Auth::user()->id }}/edit"><i
-                                class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="headerChangeRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">
