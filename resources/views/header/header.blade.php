@@ -37,7 +37,6 @@
         @else
             <div class="headerChangeRowXS1 col-xs-2 col-sm-2 col-lg-2" style="padding: 0">
                 <div class="navtab-exit">
-
                     <a class="modal-user-button" style="margin-top: -2px;"
                        @if(Auth::user()->isAdmin()) href="{{url('/admin')}}"
                        @else href="{{ url('/cabinet') }}" @endif>

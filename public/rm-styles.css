@@ -3595,18 +3595,21 @@ span.red-star {
     color: red;
     width: 5px;
 }
-
+.textInf{
+    border: 1px;
+    border-radius:5px;
+}
 .header-resume {
     margin-bottom: 20px;
 }
 
 .header-text-resume {
     color: #F68C06;
-    margin-bottom: 0;
     font-family: "ACLine";
     -ms-font-family: "ACLine";
     font-size: 36px;
     font-weight: bold;
+    text-align: center;
 }
 
 .label-text-resume {
@@ -3623,7 +3626,7 @@ span.red-star {
 }
 
 .resume-row {
-    display: flex;
+
     justify-content: space-between;
     align-items: center;
 }
@@ -5186,6 +5189,9 @@ img#registry {
 @media (min-width: 300px) and (max-width: 480px) {
     .row {
         margin: 0;
+    }
+    .row .small-row{
+        margin: -40px;
     }
 
     img#entry {
