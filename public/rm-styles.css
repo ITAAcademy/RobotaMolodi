@@ -269,6 +269,23 @@ header .header_top .dropdown-block .tab-content {
     border-radius: 0 0 10px 10px;
 }
 
+.row_width{
+    width: 100%;
+
+}
+.col1_width{
+    width: 95%;
+    float: left;
+
+}
+.col2_width{
+    width: 5%;
+    float: left;
+    position: relative;
+    left: 30px;
+}
+
+
 header .logo {
     text-align: center;
     position: relative;

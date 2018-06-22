@@ -12,40 +12,52 @@
 
     <form class="form-register form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-        <div class="form-group">
+        <div class="form-group row_width">
             <label class="col-md-4 control-label">{{ trans('auth.name') }}</label>
-            <div class="col-md-6">
-                <input type="text" placeholder="{{ trans('auth.name') }}" class="form-control" name="name"
+            <div class="col-md-6 col1_width">
+                <input type="text" placeholder="{{ trans('auth.name') }}" class="form-control col1_width" name="name"
                        value="{{ old('name') }}">
             </div>
+                <span class="red-star col2_width">* </span>
         </div>
 
-        <div class="form-group">
-            <label class="col-md-4 control-label">{{ trans('auth.email') }}</label>
-            <div class="col-md-6">
-                <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control" name="email"
+        <div class="form-group row_width">
+            <label class="col-md-4 control-label col1_width">{{ trans('auth.email') }}</label>
+            <div class="col-md-6 col1_width">
+                <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control col1_width" name="email"
                        value="{{ old('email') }}">
             </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-md-4 control-label">{{ trans('auth.password') }}</label>
-            <div class="col-md-6">
-                <input type="password" placeholder="{{ trans('auth.password') }}" class="form-control" name="password">
+            <div class=" col2_width">
+                <span class="red-star">* </span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group row_width">
+            <label class="col-md-4 control-label">{{ trans('auth.password') }}</label>
+            <div class="col-md-6 col1_width">
+                <input type="password" placeholder="{{ trans('auth.password') }}" class="form-control col1_width" name="password">
+            </div>
+            <div class=" col2_width">
+                <span class="red-star">* </span>
+            </div>
+        </div>
+
+        <div class="form-group row_width">
             <label class="col-md-4 control-label">{{ trans('auth.confirmpassword') }}</label>
-            <div class="col-md-6">
+            <div class="col-md-6 col1_width">
                 <input type="password" placeholder="{{ trans('auth.confirmpassword') }}" class="form-control"
                        name="password_confirmation">
+            </div>
+            <div class=" col2_width">
+                <span class="red-star">* </span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6 col-md-offset-4">
+                <div>
+                    <span class="red-star">* </span> – Обов'язкові для заповнення.
+                </div>
                 <div class="checkbox">
                     <label>
                         <input required type="checkbox" title="{{ trans('auth.checkbox') }}"><span>{{ trans('auth.with') }}</span>
