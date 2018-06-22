@@ -2619,7 +2619,9 @@ button.btn.btn-primary.enter-button:focus {
 .inner-footer img {
     margin-right: 10px;
 }
-
+.col-xs-5 col-sm-4{
+    padding: 0;
+}
 .inner-footer hr {
     margin: 0px 0px 20px 0px;
 }
@@ -2639,16 +2641,25 @@ button.btn.btn-primary.enter-button:focus {
     color: white;
     font-weight: bold;
 }
-
+.li_header_rows{
+    width:243px;
+}
 .li_header img {
     margin-right: 10px;
 }
-
+#vidro{
+    padding: 17px;
+}
 .footer a:hover {
     color: #d17c11;
     text-decoration: none;
 }
-
+#footerlinks{
+    padding: 2px;
+}
+#screem{
+    padding: 0;
+}
 .footer :link {
     text-decoration: none;
 }

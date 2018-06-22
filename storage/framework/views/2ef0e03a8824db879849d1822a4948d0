@@ -1,0 +1,126 @@
+<?php /*<?php echo $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)); ?>*/ ?>
+
+<link href="<?php echo e(asset('/css/cabinet/cabinetMyResVacCom.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(asset('/css/vacancyShow.css')); ?>" rel="stylesheet">
+
+<?php echo Form::open(['route' => 'vacancyDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform']); ?>
+
+<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
+<input type = "hidden" name = "filterValue" id = "filterValue"/>
+<?php echo Form::close(); ?>
+
+
+<?php foreach($vacancies as $vacancy): ?>
+    <div class="one-for-cabinet">
+        <div class="row">
+            <div class="col-xs-12 col-md-2">
+                <div class="panel panel-orange" id="vimg">
+                    <a href="<?php echo e(route('vacancy.show', $vacancy->id)); ?>">
+                        <?php if(File::exists(public_path('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image)) and $vacancy->Company->image != ''): ?>
+                            <?php echo Html::image('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']); ?>
+
+                        <?php else: ?>
+                            <h3 class="nologo-cabinet">логотип вiдсутнiй</h3>
+                        <?php endif; ?>
+                    </a>
+                </div>
+                <?php if($vacancy->published == '1'): ?>
+                    <?php echo $__env->make('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/vacancy/'.$vacancy->id) ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-xs-12 col-md-10">
+                <div class="panel-heading-cabinet">
+                    <p class="position-cabinet">
+                        <a class="orangColor-cabinet-name" href="<?php echo e(route('vacancy.show', $vacancy->id)); ?>"><?php echo $vacancy->position; ?></a>
+                        <br>
+                    </p>
+                    <p class="price-cabinet">
+                        <span><?php echo e($vacancy->salary); ?> - <?php echo e($vacancy->salary_max); ?> <?php echo e($vacancy->Currency()[0]['currency']); ?></span>
+                    </p>
+                    <p class="description-cabinet"><?php echo strip_tags($vacancy->description); ?></p>
+                    <p class="name-cabinet"> <?php echo e($vacancy->company->company_name); ?></p>
+                </div>
+                <div>
+                    <p class="cityTime-cabinet">
+                        <span class="description-cabinet"><?php foreach($vacancy->Cities()->get() as $city): ?><?php echo e($city->name); ?> <?php endforeach; ?></span>
+                        <span id="yellowCircle-cabinet">&#183;</span>
+                        <span class="updateDate-cabinet-vac"><?php echo e(date('j m Y', strtotime($vacancy->updated_at))); ?></span>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/vacancy/<?php echo e($vacancy->id); ?>/destroy" onclick="return ConfirmDelete();">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span><?php echo e(trans('main.delete')); ?></span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/vacancy/<?php echo e($vacancy->id); ?>/edit">
+                        <?php echo Html::image('image/edit.png', 'del'); ?>
+
+                        <span><?php echo e(trans('main.edit')); ?></span>
+                    </a>
+                </div>
+                <?php /*<div class="col-xs-12 col-md-3">*/ ?>
+                    <?php /*<a class="orangColor-cabinet" href="#">*/ ?>
+                        <?php /*<?php echo Html::image('image/podiumOrenge.png', 'del'); ?>*/ ?>
+                        <?php /*<span> <?php echo e(trans('main.placetop')); ?></span>*/ ?>
+                    <?php /*</a>*/ ?>
+                <?php /*</div>*/ ?>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet update-date-cab-vac" href="<?php echo e(route('updateVacancyDate', $vacancy->id)); ?>">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span><?php echo e(trans('main.updatedate')); ?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="line-sort-box">
+    <?php endforeach; ?>
+<?php /*<?php echo $vacancies->render(new App\Presenters\BootstrapTwoPresenter($vacancies)); ?>*/ ?>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        });
+
+    });
+
+    function ConfirmDelete() {
+        var conf = confirm("Ви дійсно хочете видалити вакансію?");
+
+        if(conf){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    $('.update-date-cab-vac').click(function (e) {
+        var href = $(this).attr('href');
+        var dateElement = $(this)
+            .parents('.one-for-cabinet')
+            .find('.updateDate-cabinet-vac');
+
+        e.preventDefault();
+
+        $.ajax({
+            url: href,
+            method: 'post',
+            success: function (data) {
+                dateElement.text(data);
+                dateElement.css('backgroundColor','orange');
+                dateElement.animate({ backgroundColor: "white" }, "slow");
+            }
+        })
+    })
+</script>

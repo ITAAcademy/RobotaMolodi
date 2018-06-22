@@ -1,0 +1,235 @@
+<?php $__env->startSection('head'); ?>
+    <link href="<?php echo e(asset('/css/vacancyShow.css')); ?>" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('newDesign.breadcrumb',array('breadcrumbs' =>[
+           ['url'=> 'head','name'=>'Головна'],
+           ['name' => 'Вакансія: '.$vacancy->position , 'url' => false]
+           ]
+       )
+       , array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="panel panel-orange" id="vrBlock">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="logos">
+                    <div class="panel panel-orange" id="vimg">
+                        <?php if(File::exists(public_path('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image)) and $vacancy->Company->image != ''): ?>
+                            <?php echo Html::image('image/company/' . $vacancy->Company->users_id .'/'. $vacancy->Company->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']); ?>
+
+                        <?php else: ?>
+                            <h3 style="text-align: center; color: #f48952; margin-top: 40px"><?php echo e(trans('vacancy.logo_missing')); ?></h3>
+                        <?php endif; ?>
+
+                    </div>
+                    <div class="col-xs-12 case">
+                        <div class="col-xs-10 consult">
+                           <div class="col-xs-2 case-img">
+                              <i class="fa vacancy">&#xf0b1;</i>
+                        </div>
+
+                            <a href="javascript:alert( <?php echo e(trans('main.dosent')); ?> )"><?php echo e(trans('vacancy.plan_consultation')); ?></a>
+                        </div>
+                    </div>
+                    <?php if($vacancy->published == '1'): ?>
+                        <?php echo $__env->make('newDesign.socialModule.share-btn-block' , ['url' => URL::current()], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <div class="text_data">
+
+
+                            <?php foreach($cities->get() as $city): ?>
+                       <li class=""> <?php echo Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]); ?></li>
+                        <?php endforeach; ?>
+
+
+                    </div>
+                </div>
+
+                <?php if(Auth::check() && Auth::user()->isAdmin()): ?>
+                    <div>
+                        <button class="btn btn-default block-vacancy" onclick="blockVacancy()">
+                            <?php echo e(trans('vacancy.to_block')); ?>
+
+                        </button>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+            <div class="col-md-10" style="margin: 0;">
+                <div id="datAnnoyingSizes">
+                    <div class="panel-headings">
+                        <?php /*<?php echo Html::linkRoute('vacancy.showVacancies', $vacancy->position, [ 'name' => 'specialisation', 'value' => $vacancy->position], ['class' => 'greyLinks', 'tabindex' => 1 ]); ?>*/ ?>
+                        <strong><?php echo e($vacancy->position); ?></strong>
+                    </div>
+                    <div>
+                        <div class="text_vac"><span><?php echo e(trans('vacancy.company')); ?></span><a class="orangeLinks" tabindex="1" href="/company/<?php echo e($company->id); ?>"><?php echo e($company->company_name); ?></a> </div>
+                    </div>
+
+                    <div class="ratings text_vac">
+                        <span class = "ratingsTitle"><?php echo e(trans('content.rating')); ?></span>
+                        <span class="morph">
+                            <?php echo Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']); ?>
+
+                            <span class="findLike" id="<?php echo e(route('vac.rate', $vacancy->id)); ?>_1"><?php echo e($vacancy->rated()->getLikes($vacancy)); ?></span>
+                        </span>
+                        <span class="morph">
+                            <?php echo Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']); ?>
+
+                            <span class="findDislike" id="<?php echo e(route('vac.rate', $vacancy->id)); ?>_-1"><?php echo e($vacancy->rated()->getDisLikes($vacancy)); ?></span>
+                        </span>
+                        <span class="likeError"></span>
+                    </div>
+
+                    <div>
+                        <div class="text_vac">
+                            <span><?php echo e(trans('form.branch')); ?> </span>
+                            <?php echo Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]); ?>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text_vac"><span><?php echo e(trans('vacancy.salary')); ?></span><span class="seleryvacancy"><?php echo e($vacancy->salary); ?> - <?php echo e($vacancy->salary_max); ?> <?php echo e($vacancy->Currency()[0]['currency']); ?></span> </div>
+                    </div>
+                    <div>
+                        <span id="yellowCircleVacancy"><?php echo e(trans('vacancy.date')); ?><?php echo e(date('j m Y', strtotime($vacancy->updated_at))); ?></span>
+                    </div>
+                    <div>
+                        <div class="descriptionStyle"><span class="anagraph"><?php echo e(trans('vacancy.details')); ?> </span><br><?php echo strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>'); ?></div>
+                    </div>
+                    <?php /*<div>*/ ?>
+                        <?php /*<div class="text_data">*/ ?>
+                            <?php /*<?php foreach($cities->get() as $city): ?>*/ ?>
+                                <?php /*<?php echo Html::linkRoute('vacancy.showVacancies', $city->name, [ 'name' => 'regions', 'value' => $city->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]); ?>*/ ?>
+                            <?php /*<?php endforeach; ?>*/ ?>
+                                <?php /*<span id="yellowCircleVacancy"><span>&bull;</span> <?php echo e(date('j m Y', strtotime($vacancy->updated_at))); ?></span>*/ ?>
+                        <?php /*</div>*/ ?>
+                    <?php /*</div>*/ ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-colomn-vacancy">
+        <div class="right-vac">
+            <div class="list-but-vac">
+                <ul class="list-inline">
+                    <li class="li-link send-url-link" data-type="url">
+                        <i class="fa fa-link"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-URL-vacancy')"><?php echo e(trans('vacancy.send_url')); ?></button>
+                    </li>
+                    <li class="li-link send-file-link" data-type="file">
+                        <i class="fa fa-file-o"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-file-vacancy')"><?php echo e(trans('vacancy.send_file')); ?></button>
+                    </li>
+                    <li class="li-link send-resume-link" data-type="resume">
+                        <i class="fa fa-file-text-o"></i>
+                        <button type="button" class="btn btn-link" onclick="showDiv('send-resume-vacancy')"><?php echo e(trans('vacancy.send_resume')); ?></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="send-URL-vacancy">
+                <?php echo Form::open(['route' => ['vacancy.response.link',$vacancy->id],'method'=>'get']); ?>
+
+                <?php echo Form::label('url',trans('vacancy.add_url'),['class' => 'url-text-vac'] ); ?>
+
+                <?php echo Form::text('link',null,array('class' => 'form-control url-input-vac','placeholder' =>'URL:','autocomplete'=>"off",'required','id'=>'Link')); ?>
+
+                <div align="right">
+                    <?php echo Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send']); ?>
+
+                </div>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+
+            <div id="send-file-vacancy" class="row">
+                <?php echo Form::open(['route' => ['vacancy.response.sendFile',$vacancy->id],'method'=>"POST", 'enctype' => 'multipart/form-data', 'files' => true]); ?>
+
+                <?php echo Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')); ?>
+
+                <div align="right">
+                    <?php echo Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send']); ?>
+
+                </div>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+
+
+            <div id="send-resume-vacancy">
+                <div>
+                    <h3 style="margin-top: 5px"><?php echo e(trans('vacancy.choose_resume')); ?></h3>
+                </div>
+                <div>
+                    <?php echo Form::open(['route' => ['vacancy.response.sendResume',$vacancy->id],'method'=>"POST"]); ?>
+
+                    <?php if(!empty($userResumes)): ?>
+                        <div class="form-group <?php echo e($errors-> has('Load') ? 'has-error' : ''); ?>" >
+                            <select class="form-control" id="resume" name="resumeId" style="margin-top: 10px">
+                                <?php foreach($userResumes as $res): ?>
+                                    <option value="<?php echo e($res->id); ?>" selected><?php echo e($res->position); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php echo Form::hidden('id', $vacancy->id, array('class' => 'form-control')); ?>
+
+                    <?php else: ?>
+                        <p><?php echo e(trans('vacancy.not_have_resume')); ?></p>
+                        <p><?php echo link_to_route('resume.create',trans('vacancy.creating_resume'),'','style="color:#f68c06"'); ?></p>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <?php if(!empty($userResumes)): ?>
+                        <div align="right">
+                            <?php echo Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send']); ?>
+
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+
+            </div>
+        </div>
+            <script>
+                function showDiv(id){
+                    var closeAll = false;
+                    if(document.getElementById(id).style.display == "block")
+                        closeAll = true;
+                    document.getElementById('send-URL-vacancy').style.display = "none";
+                    document.getElementById('send-file-vacancy').style.display = "none";
+                    document.getElementById('send-resume-vacancy').style.display = "none";
+                    if(!closeAll)
+                        document.getElementById(id).style.display = "block";
+                }
+            </script>
+        </div>
+    </div>
+
+    <?php echo Html::script('js/socialNetWork.js'); ?>
+
+
+    <script>
+        socialNetWork('.social > a');
+    </script>
+
+    <script>
+        function blockVacancy() {
+            var dialogResult = confirm("Ви дійсно бажаєте заблокувати вакансію?");
+            if(dialogResult) {
+                $.post( '/vacancy/block', {_token: '<?php echo e(csrf_token()); ?>', id: '<?php echo e($vacancy->id); ?>'},
+                    function( data ) {
+                        location="<?php echo e(URL::to('vacancy')); ?>";
+                    });
+            }
+        }
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

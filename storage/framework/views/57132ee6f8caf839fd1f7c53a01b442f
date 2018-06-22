@@ -2,31 +2,31 @@
     <div class="container-footer col-xs-12">
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.information') }}</li>
+                <li class="li_header"><img src="<?php echo e(asset('image/redHat.png')); ?>"><?php echo e(trans('footer.information')); ?></li>
                 <hr class="li_header_rows">
-                <li><a href="aboutus">{{ trans('footer.about') }}</a></li>
-                <li><a href="https://profitday.info/allcompanies" target="_blank">{{ trans('footer.partners') }}</a></li>
+                <li><a href="aboutus"><?php echo e(trans('footer.about')); ?></a></li>
+                <li><a href="https://profitday.info/allcompanies" target="_blank"><?php echo e(trans('footer.partners')); ?></a></li>
             </ul>
 
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.education') }}</li>
+                <li class="li_header"><img src="<?php echo e(asset('image/redHat.png')); ?>"><?php echo e(trans('footer.education')); ?></li>
                 <hr class="li_header_rows">
-                <li><a href="https://profitday.info/upcomingevents" target="_blank">{{ trans('footer.training') }}</a></li>
-                <li><a href="https://intita.com/courses" target="_blank">{{ trans('footer.courses') }}</a></li>
+                <li><a href="https://profitday.info/upcomingevents" target="_blank"><?php echo e(trans('footer.training')); ?></a></li>
+                <li><a href="https://intita.com/courses" target="_blank"><?php echo e(trans('footer.courses')); ?></a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.service') }}</li>
+                <li class="li_header"><img src="<?php echo e(asset('image/redHat.png')); ?>"><?php echo e(trans('footer.service')); ?></li>
                 <hr class="li_header_rows">
-                <li><a href="https://intita.com" target="_blank">{{ trans('footer.education') }}</a></li>
+                <li><a href="https://intita.com" target="_blank"><?php echo e(trans('footer.education')); ?></a></li>
             </ul>
         </div>
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
-                <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.contacts') }}</li>
+                <li class="li_header"><img src="<?php echo e(asset('image/redHat.png')); ?>"><?php echo e(trans('footer.contacts')); ?></li>
                 <hr class="li_header_rows">
                 <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -38,13 +38,13 @@
 
     <div class="down-footer col-xs-12">
         <div class="inner-footer col-md-7">
-            <span>{{ trans('footer.copy') }}</span>
-            <img  id="vidro" src="{{asset('image/vidrodjenja.png')}}" >
+            <span><?php echo e(trans('footer.copy')); ?></span>
+            <img  id="vidro" src="<?php echo e(asset('image/vidrodjenja.png')); ?>" >
         </div>
         <div class="inner-footer col-md-5">
             <div class="row" id="footerlinks" >
                 <div class="col-xs-5 col-sm-4" id="screem" >
-                    <span>{{ trans('footer.share') }}</span>
+                    <span><?php echo e(trans('footer.share')); ?></span>
                 </div>
                 <div class="col-xs-1 col-sm-2">
                     <a href="https://www.facebook.com/sharer/sharer.php?u=http://robotamolodi.org/"
@@ -75,7 +75,8 @@
     </div>
 </footer>
 
-{!!Html::script('js/socialNetWork.js')!!}
+<?php echo Html::script('js/socialNetWork.js'); ?>
+
 <script>
     socialNetWork('.inner-footer > a');
 </script>
