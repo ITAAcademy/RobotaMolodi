@@ -269,20 +269,20 @@ header .header_top .dropdown-block .tab-content {
     border-radius: 0 0 10px 10px;
 }
 
-.row_width{
+.row-width{
     width: 100%;
 
 }
-.col1_width{
+.col1-width{
     width: 95%;
     float: left;
 
 }
-.col2_width{
+.col2-width{
     width: 5%;
     float: left;
     position: relative;
-    left: 30px;
+    left: 33px;
 }
 
 

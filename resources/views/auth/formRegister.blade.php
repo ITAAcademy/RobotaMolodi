@@ -12,45 +12,45 @@
 
     <form class="form-register form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="form-group row_width">
+        <div class="form-group row-width">
             <label class="col-md-4 control-label">{{ trans('auth.name') }}</label>
-            <div class="col-md-6 col1_width">
+            <div class="col-md-6 col1-width">
                 <input type="text" placeholder="{{ trans('auth.name') }}" class="form-control" name="name"
                        value="{{ old('name') }}">
             </div>
-            <div class=" col2_width">
+            <div class=" col2-width">
                 <span class="red-star">* </span>
             </div>
         </div>
 
-        <div class="form-group row_width">
+        <div class="form-group row-width">
             <label class="col-md-4 control-label col1_width">{{ trans('auth.email') }}</label>
-            <div class="col-md-6 col1_width">
+            <div class="col-md-6 col1-width">
                 <input type="email" placeholder="{{ trans('auth.email') }}" class="form-control" name="email"
                        value="{{ old('email') }}">
             </div>
-            <div class=" col2_width">
+            <div class=" col2-width">
                 <span class="red-star">* </span>
             </div>
         </div>
 
-        <div class="form-group row_width">
+        <div class="form-group row-width">
             <label class="col-md-4 control-label">{{ trans('auth.password') }}</label>
-            <div class="col-md-6 col1_width">
+            <div class="col-md-6 col1-width">
                 <input type="password" placeholder="{{ trans('auth.password') }}" class="form-control" name="password">
             </div>
-            <div class=" col2_width">
+            <div class=" col2-width">
                 <span class="red-star">* </span>
             </div>
         </div>
 
-        <div class="form-group row_width">
+        <div class="form-group row-width">
             <label class="col-md-4 control-label">{{ trans('auth.confirmpassword') }}</label>
-            <div class="col-md-6 col1_width">
+            <div class="col-md-6 col1-width">
                 <input type="password" placeholder="{{ trans('auth.confirmpassword') }}" class="form-control"
                        name="password_confirmation">
             </div>
-            <div class=" col2_width">
+            <div class=" col2-width">
                 <span class="red-star">* </span>
             </div>
         </div>
