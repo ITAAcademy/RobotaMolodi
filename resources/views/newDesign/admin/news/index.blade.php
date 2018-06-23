@@ -68,7 +68,9 @@
                         {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['admin.news.destroy', $new->id],
+
                         'onsubmit' => 'return confirm("Ви дійсно хочете видалити цю новину?")'
+
                         ]) !!}
                         {!! Form::submit ('&#xf014;', [' class' => 'fa']) !!}
                         {!! Form::close() !!}
@@ -76,6 +78,7 @@
                     </td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
         @include('newDesign.paginator', ['paginator' => $news])
@@ -114,10 +117,13 @@
                         success: function () {
                             $('.fa-check-square-o').removeClass('fa-check-square-o').addClass('fa-square-o');
                             that.removeClass('fa-square-o').addClass('fa-check-square-o');
+
                         }
                     })
                 });
+
             })
         </script>
     </div>
+
 @stop

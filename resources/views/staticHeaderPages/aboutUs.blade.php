@@ -14,7 +14,7 @@
     <section class="content">
                 <div class="article">
                     <h1 class="title">{{ trans('aboutus.about') }}</h1>
-                    <div class="row full-content" >
+                    <div class="row full-content small-row" >
                         <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
                             <img data-src="{{asset('image/aboutUsImages/icon_lamp.png')}}" alt="lamp">
                         </div>
