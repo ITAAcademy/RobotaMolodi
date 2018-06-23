@@ -13,6 +13,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Mail;
 
 class AuthController extends Controller
 {
@@ -73,6 +74,11 @@ class AuthController extends Controller
 
     public function create(array $data)
     {
+        Mail::send('emails.successRegistration', ['user'=>$data], function ($message)use ($data) {
+            $message->from('robotamolodi@gmail.com', 'RobotaMolodi');
+            $to = $data['email'];
+            $message->to($to, $data['name'])->subject('Реєстрація на сайті ' );
+        });
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
