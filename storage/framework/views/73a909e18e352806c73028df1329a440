@@ -1,8 +1,0 @@
-<div class="alert alert-danger alert-danger-register">
-    <strong>Ой!</strong> Виникли деякі проблеми з вашим входом.<br><br>
-    <ul>
-        <?php foreach($errors as $error): ?>
-            <li><?php echo e($error); ?></li>
-        <?php endforeach; ?>
-    </ul>
-</div>
