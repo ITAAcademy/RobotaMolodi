@@ -3,7 +3,7 @@
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.information') }}</li>
-                <hr>
+                <hr class="li-header-rows">
                 <li><a href="aboutus">{{ trans('footer.about') }}</a></li>
                 <li><a href="https://profitday.info/allcompanies" target="_blank">{{ trans('footer.partners') }}</a></li>
                 <li><a href="#" target="_blank">{{ trans('footer.support') }}</a></li>
@@ -33,7 +33,7 @@
         <div class="inner-footer col-sm-6 col-md-3">
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.contacts') }}</li>
-                <hr>
+                <hr class="li-header-rows">
                 <li>
                     <i class="fa fa-phone" aria-hidden="true"></i>
                     <a href="tel:+380432528267">+38-0432<strong>52-82-67</strong></a>
@@ -54,11 +54,11 @@
     <div class="down-footer col-xs-12">
         <div class="inner-footer col-md-7">
             <span>{{ trans('footer.copy') }}</span>
-            <img src="{{asset('image/vidrodjenja.png')}}">
+            <img  id="revival" src="{{asset('image/vidrodjenja.png')}}" >
         </div>
         <div class="inner-footer col-md-5">
-            <div class="row">
-                <div class="col-xs-5 col-sm-4">
+            <div class="row" id="footerlinks" >
+                <div class="col-xs-5 col-sm-4" id="footershare" >
                     <span>{{ trans('footer.share') }}</span>
                 </div>
                 <div class="col-xs-1 col-sm-1">

@@ -118,6 +118,11 @@ div.container-fluid,
     float: right;
 }
 
+#published {
+    opacity: inherit;
+    pointer-events: auto;
+}
+
 header > nav{
     background-color: #e8f1df;
 }
