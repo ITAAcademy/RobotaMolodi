@@ -2619,7 +2619,7 @@ button.btn.btn-primary.enter-button:focus {
 .inner-footer img {
     margin-right: 10px;
 }
-.col-xs-5 col-sm-4{
+.col-xs-5 .col-sm-4{
     padding: 0;
 }
 .inner-footer hr {
@@ -2641,13 +2641,13 @@ button.btn.btn-primary.enter-button:focus {
     color: white;
     font-weight: bold;
 }
-.li_header_rows{
+.li-header-rows{
     width:243px;
 }
 .li_header img {
     margin-right: 10px;
 }
-#vidro{
+#revival{
     padding: 17px;
 }
 .footer a:hover {
@@ -2657,7 +2657,7 @@ button.btn.btn-primary.enter-button:focus {
 #footerlinks{
     padding: 2px;
 }
-#screem{
+#footershare{
     padding: 0;
 }
 .footer :link {
