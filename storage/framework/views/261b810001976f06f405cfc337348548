@@ -1,6 +1,0 @@
-<?php $__env->startSection('notification'); ?>
-    <div>
-        <h2><?php echo e(trans('errors/503.caption')); ?></h2>
-    </div>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('errors.partial._base', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

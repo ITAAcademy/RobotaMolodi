@@ -1,5 +1,0 @@
-<p>Вы запросили восстановление пароля</p>
-
-<p>Нажмите на ссылку для восстановления пароля <a href="<?php echo e(url('password/reset/'.$token)); ?>"><?php echo e(url('password/reset/'.$token)); ?></a></p>
-<br>
-<p>С Уважением команда сайта.</p>
