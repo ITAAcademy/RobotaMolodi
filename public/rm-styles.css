@@ -2536,12 +2536,60 @@ html,body{
   text-decoration: none;
 }
 
-.fa-soc {
-  color: #3f3e3e;
-  margin-left: 10px;
+a.vk{
+    background-image: url(image/vk.png);
+    width: 44px;
+    height: 44px;
+    display: block;
 }
-.fa-soc:hover {
-  color:#d17c11;
+a.vk:hover {
+    background-image: url(image/vk-h.png);
+    width: 44px;
+    height: 44px;
+}
+a.fb{
+    background-image: url(image/fb.png);
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+a.fb:hover {
+    background-image: url(image/fb-h.png);
+    width: 44px;
+    height: 44px;
+}
+a.ggl{
+    background-image: url(image/ggl.png);
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+a.ggl:hover {
+    background-image: url(image/ggl-h.png);
+    width: 44px;
+    height: 44px;
+}
+a.lnk{
+    background-image: url(image/lnk.png);
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+a.lnk:hover {
+    background-image: url(image/lnk-h.png);
+    width: 44px;
+    height: 44px;
+}
+a.ttr{
+    background-image: url(image/ttr.png);
+    width: 44px;
+    height: 44px;
+    display: block;
+}
+a.ttr:hover {
+    background-image: url(image/ttr-h.png);
+    width: 44px;
+    height: 44px;
 }
 
 .wrapper-page{
