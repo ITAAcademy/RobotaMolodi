@@ -32,7 +32,7 @@ class NewsController extends Controller
         $news = new News;
         $this->helperSave($news,$request);
         Session::flash('flash_message', 'news successfully created!');
-        ImageCompress::tinifyImage($news->getPath() . $news->img);
+        if($news->img!='Not picture') ImageCompress::tinifyImage($news->getPath() . $news->img);
         return redirect()->route('admin.news.index');
     }
 
@@ -57,7 +57,7 @@ class NewsController extends Controller
         $newsOne = News::find($id);
         $this->helperSave($newsOne,$request);
         Session::flash('flash_message', 'news successfully added!');
-        ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
+        if($newsOne->img!='Not picture') ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
         return redirect()->route('admin.news.index');
     }
 
@@ -71,7 +71,7 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index');
     }
     private function helperSave($news, $request){
-        if($request->image) {
+        if($request->image !='Not picture') {
             $news->saveImage($request);
         }
         $input = $request->all();
