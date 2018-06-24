@@ -1,0 +1,21 @@
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('newDesign.scrollup', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('newDesign/aboutUs/show', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('newDesign/navTab/navTab', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('newDesign/search/show', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div id="left-content-column" class="col-sm-9">
+        <?php echo $__env->make('newDesign/sortAds/sort', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('newDesign/company/companiesList', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('newDesign/sliders/byCategory', ['viewName' => 'underFooter', 'category' => 1], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <div id="right-content-column" class="col-sm-3">
+        <?php echo $__env->make('newDesign/vacancies/topVacancies', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('newDesign/sliders/byCategory', ['viewName' => 'news', 'category' => 2], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make('newDesign/topNews', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+
+    <?php echo Html::script('js/scrollup.js'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

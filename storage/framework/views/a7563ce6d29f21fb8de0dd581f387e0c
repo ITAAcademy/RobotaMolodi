@@ -1,0 +1,177 @@
+<link href="<?php echo e(asset('/css/cabinet/cabinetMyResVacCom.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(asset('/css/vacancyShow.css')); ?>" rel="stylesheet">
+
+<?php echo Form::open(['route' => 'resumeDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform']); ?>
+
+<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>
+<input type = "hidden" name = "filterValue" id = "filterValue"/>
+<?php echo Form::close(); ?>
+
+
+    <?php $__empty_1 = true; foreach($resumes as $resume): $__empty_1 = false; ?>
+    <div class="one-for-cabinet">
+        <div class="row">
+            <div class="col-xs-12 col-md-2">
+                <div class="panel panel-orange" id="vimg">
+                    <a href="<?php echo e(route('resume.show', $resume->id)); ?>">
+                        <?php if(File::exists(public_path('image/resume/'.$resume->user_id.'/'.$resume->image)) and $resume->image != ''): ?>
+                            <?php echo Html::image('image/resume/'.$resume->user_id.'/'.$resume->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']); ?>
+
+                        <?php else: ?>
+                            <?php echo Html::image('image/m.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')); ?>
+
+                        <?php endif; ?>
+                    </a>
+                </div>
+                <?php if($resume->published == '1'): ?>
+                    <?php echo $__env->make('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/resume/'.$resume->id) ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endif; ?>
+            </div>
+            <div class="col-xs-12 col-md-10">
+                <div class="panel-heading-cabinet">
+                    <p class="position-cabinet">
+                        <a class="orangColor-cabinet-name" href="<?php echo e(route('resume.show', $resume->id)); ?>"><?php echo $resume->position; ?></a>
+                        <br>
+                    </p>
+                    <p class="price-cabinet">
+                        <span><?php echo e($resume->salary); ?> - <?php echo e($resume->salary_max); ?> <?php echo e($resume->currency->currency); ?></span>
+                    </p>
+                    <p class="description-cabinet"><?php echo strip_tags($resume->description); ?></p>
+                    <p class="name-cabinet"> <?php echo strip_tags($resume->name_u); ?></p>
+                </div>
+                <div>
+                    <p class="cityTime-cabinet">
+                        <span class="description-cabinet"><?php echo e($resume->city->name); ?></span>
+                        <span id="yellowCircle-cabinet">&#183;</span>
+                        <span class="updateDate-cabinet"><?php echo e(date('j m Y', strtotime($resume->updated_at))); ?></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/resume/<?php echo e($resume->id); ?>/destroy" onclick="return ConfirmDelete();">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <span><?php echo e(trans('main.delete')); ?></span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet" href="/resume/<?php echo e($resume->id); ?>/edit">
+                        <?php echo Html::image('image/edit.png', 'del'); ?>
+
+                        <span><?php echo e(trans('main.edit')); ?></span>
+                    </a>
+                </div>
+                <?php /*<div class="col-xs-12 col-md-3">*/ ?>
+                    <?php /*<a class="orangColor-cabinet" href="#">*/ ?>
+                        <?php /*<?php echo Html::image('image/podiumOrenge.png', 'del'); ?>*/ ?>
+                        <?php /*<span> <?php echo e(trans('main.placetop')); ?></span>*/ ?>
+                    <?php /*</a>*/ ?>
+                <?php /*</div>*/ ?>
+                <div class="col-xs-12 col-md-3">
+                    <a class="orangColor-cabinet update-date-cab-res" href="<?php echo e(route('updateCabinetResumeDate', $resume->id)); ?>">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span><?php echo e(trans('main.updatedate')); ?></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="line-sort-box">
+        <div id="changeImageBox" class="modal fade">
+            <?php echo $__env->make('newDesign.cropModal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+    <?php endforeach; if ($__empty_1): ?>
+        <span><?php echo e(trans('resume.noresume')); ?>.<a href="<?php echo e(url('/resume/create')); ?>"> <?php echo e(trans('resume.create')); ?></a></span>
+
+    <?php endif; ?>
+<?php /*<?php echo $resumes->render(new App\Presenters\BootstrapTwoPresenter($resumes)); ?>*/ ?>
+
+<?php echo Html::script('js/crop.js'); ?>
+
+
+<script>
+    $(document).ready(function () {
+        $('#changeImage').on('click', function () {
+            $('#fileImg').click();
+        });
+
+        $('#fileImg').on('change', function (e) {
+            $('#changeImageBox').modal({
+                show: true,
+                backdrop: 'static'
+            });
+            crop(e, 'img-src', '#crop', '#changeImageBox');
+        });
+
+        $('#changeImageBox').on('hidden.bs.modal', function () {
+            if($('#coords').val()){
+                var $input = $("#fileImg");
+                var fd = new FormData;
+                fd.append('fileImg', $input.prop('files')[0]);
+                fd.append('coords', $('.coords').val());
+                fd.append('id', $('.coords').attr('data-id'));
+                $.ajax({
+                    url: '<?php echo e(route('upimg')); ?>',
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        $('#vimg img').attr('src', window.location.origin + '/' + data);
+                    }
+                });
+            }
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('input[name="_token"]').val()
+            }
+        });
+
+        $('#deleteImage').on('click', function () {
+            if(ConfirmDelete()){
+                $.ajax({
+                    url: '<?php echo e(route('deleteimg')); ?>',
+                    data: {'id' : $('.coords').attr('data-id')},
+                    type: 'POST',
+                    success: function (data) {
+                        $('#vimg img').attr('src', window.location.origin + '/' + data);
+                    }
+                })
+            }
+        })
+    });
+
+    function ConfirmDelete() {
+        var conf = confirm("Ви дійсно хочете видалити резюме?");
+
+        if(conf){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    $('.update-date-cab-res').click(function (e) {
+        var href = $(this).attr('href');
+        var dateElement = $(this)
+            .parents('.one-for-cabinet')
+            .find('.updateDate-cabinet');
+
+        e.preventDefault();
+
+        $.ajax({
+            url: href,
+            method: 'post',
+            success: function (data) {
+                dateElement.text(data);
+                dateElement.css('backgroundColor','orange');
+                dateElement.animate({ backgroundColor: "white" }, "slow");
+            }
+        })
+    })
+</script>

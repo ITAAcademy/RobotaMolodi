@@ -1,0 +1,49 @@
+<link href="<?php echo e(asset('/css/newsPage.css')); ?>" rel="stylesheet">
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('newDesign/aboutUs/show', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <div class="col-xs-12">
+        <div class="newsPageBreadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="/"><?php echo e(trans('content.main')); ?></a></li>
+                <li><a href="/news"><?php echo e(trans('content.news')); ?></a></li>
+                <li class="active"><?php echo e(date('j.m.Y', strtotime($newsOne->updated_at))); ?> </li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="contentNewsPage">
+
+        <div class="sectionNews">
+            <div id="left-content-column" class="col-xs-9">
+                <div class="col-xs-12">
+                    <h3 class="nameNews"><?php echo e($newsOne->name); ?></h3>
+                    <?php if($newsOne->img!='Not picture'): ?>
+                        <div><img class="picture" src="<?php echo e(asset($newsOne->getPath().$newsOne->img)); ?>"></div>
+                    <?php endif; ?>
+                    <p><?php echo $newsOne->description; ?></p>
+                    <span><h4>Опубліковано </h4><?php echo e(date('j.m.Y', strtotime($newsOne->updated_at))); ?></span>
+                </div>
+                <div id="next-prev-news" class="col-xs-12" style="display:inline-flex; padding:20px">
+                   <div class="col-xs-8">
+                    <?php echo Html::linkRoute('news.show',  '&laquo;'.$previous['name'] ,$previous['id'], [ 'style' => 'color:orange' ,'class' => 'previous pull-left', 'title' => trans('pagination.previousNews')]); ?>
+
+                    </div>
+                    <div class="col-xs-8">
+                        <?php echo Html::linkRoute('news.show', $next['name'].' &raquo;',  $next['id'], [ 'style' => 'color:orange' ,'class' => 'next pull-right ', 'title' => trans('pagination.nextNews') ]); ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right-content-column" class="col-xs-3">
+            <?php echo $__env->make('newDesign/vacancies/topVacancies', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('newDesign/topNews', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+
+    </section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('newDesign.news.includeNews.newsLayout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -758,17 +758,20 @@ header .tads_panel .nav-tabs > li > a {
 
 .content .article {
     color: #666666;
-    font-size: 18px;
+    font-size: 20px;
+    line-height: 26px;
     font-family: "SegoeUIRegular";
 }
 
 .content .article .line {
     border-bottom: 1px solid #d7d7d7;
     margin-top: 20px;
+    line-height: 26px;
+
 }
 
 .content .article .line > span {
-    font-size: 14px;
+    font-size: 16px;
     color: #f07c00;
     float: right;
     display: block;
