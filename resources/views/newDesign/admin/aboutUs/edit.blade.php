@@ -1,4 +1,4 @@
-a@extends('newDesign.layouts.admin')
+@extends('newDesign.layouts.admin')
 
 @section('ckeditor')
     @include('newDesign.layouts.includes.ckeditor')
