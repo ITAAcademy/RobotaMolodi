@@ -12,6 +12,6 @@
         <i class="fa">&#xf081;</i>
     </a>
     <a href="https://plus.google.com/share?url={{ $url }}" target="_blank">
-        <i class="fa fa-google-plus-square"></i>
+        <i class="fa"></i>
     </a>
 </div>
