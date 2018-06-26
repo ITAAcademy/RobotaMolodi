@@ -2536,17 +2536,6 @@ html,body{
   text-decoration: none;
 }
 
-a.vk{
-    background-image: url(image/vk.png);
-    width: 44px;
-    height: 44px;
-    display: block;
-}
-a.vk:hover {
-    background-image: url(image/vk-h.png);
-    width: 44px;
-    height: 44px;
-}
 a.fb{
     background-image: url(image/fb.png);
     width: 44px;

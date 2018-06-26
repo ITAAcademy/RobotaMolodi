@@ -77,9 +77,6 @@
                     </a>
                 </div>
                 <div class="col-xs-1 col-sm-1">
-                    <a href="#" class="vk" title="Share on vk.com" target="_blank"></a>
-                </div>
-                <div class="col-xs-1 col-sm-1">
                     <a href="https://plus.google.com/share?url=http://robotamolodi.org/"
                        class="ggl" target="_blank" title="Share on plus.google.com">
                     </a>
