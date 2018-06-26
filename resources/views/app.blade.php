@@ -46,9 +46,9 @@
 </head>
 <body>
     <div class="wrapper-page">
+		@include('header/header')
         <div class="container container-main">
             <div class="row">
-                @include('header/header')
                 @include('main/mainContent')
             </div>
         </div>
