@@ -6,7 +6,11 @@
             {!! Form::label('name', 'Ім\'я користувача') !!}
             {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
         </div>
-
+        @if(session()->has('message'))
+            <div class="alert alert-success" style="text-align: center">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <div class="form-group">
             <div class="panel panel-orange" id="vimg">
                 @if(Auth::user()->avatar and File::exists(public_path('image/user/' . Auth::user()->id .'/avatar/'. Auth::user()->avatar)))
@@ -25,6 +29,7 @@
                 @endif
             </div>
         </div>
+
 
         <div class="form-group {{$errors-> has('avatar') ? 'has-error' : ''}}">
             <button id="but" type="button" onclick="document.getElementById('avatar').click()" onchange="">Виберіть фото</button>
