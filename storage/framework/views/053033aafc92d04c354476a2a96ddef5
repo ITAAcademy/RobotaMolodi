@@ -1,2 +1,0 @@
-<link href="<?php echo e(asset('/css/scrollup.css')); ?>" rel="stylesheet">
-<button class="scrollup btn btn-link"></button>
