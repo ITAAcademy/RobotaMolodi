@@ -52,7 +52,7 @@
 
             <div class="input-field col s12">
                 {{--Year--}}
-                <input id="input_text" class="year" type="number" data-length="4" name="year">
+                <input id="input_text" class="year" type="number" data-length="4" name="year"  name="year" min="1990" max="2050" value="{{date('Y')}}">
                 <label for="input_text">Year</label>
 
             </div>
