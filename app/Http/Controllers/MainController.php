@@ -129,4 +129,8 @@ class MainController extends Controller
         ));
     }
 
+    public function showConsults(Request $request)
+    {
+            return view('newDesign.consults.consultsList');
+    }
 }
