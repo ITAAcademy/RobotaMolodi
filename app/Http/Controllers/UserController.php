@@ -105,7 +105,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect('/');
+        return redirect()->back()->with('message', 'Done!');
     }
     /**
      * Remove the specified resource from storage.
