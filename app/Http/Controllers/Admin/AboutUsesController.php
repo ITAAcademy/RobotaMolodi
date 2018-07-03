@@ -58,29 +58,29 @@ class AboutUsesController extends Controller
             'multi_files'         => 'required'
         ];
 
-          $this->validate($request,$rules);
-          $aboutUs = About_Us::create($request->all());
-          $aboutUs->save();
+        $this->validate($request,$rules);
+        $aboutUs = About_Us::create($request->all());
+        $aboutUs->save();
 
-          $insPhoto  = new Photo;
-          $insPhoto->about_uses_id = $aboutUs->id;
+        $insPhoto  = new Photo;
+        $insPhoto->about_uses_id = $aboutUs->id;
 
-          foreach ($request->all()["multi_files"] as $multi_file){
+        foreach ($request->all()["multi_files"] as $multi_file){
 
-                // store images into database
-              $insertMultiImages  = new Photo;
-              $insertMultiImages->about_uses_id = $aboutUs->id;
-              $insertMultiImages->image = $multi_file;
-              $insertMultiImages->save();
+            // store images into database
+            $insertMultiImages  = new Photo;
+            $insertMultiImages->about_uses_id = $aboutUs->id;
+            $insertMultiImages->image = $multi_file;
+            $insertMultiImages->save();
 
-                //store images in public folder
-              $insertMultiImages->storeImages($multi_file,$aboutUs->id);
-          }
-            //store icon into our db
-          $insPhoto->image = $request->all()["icon"];
-          $insPhoto->save();
+            //store images in public folder
+            $insertMultiImages->storeImages($multi_file,$aboutUs->id);
+        }
+        //store icon into our db
+        $insPhoto->image = $request->all()["icon"];
+        $insPhoto->save();
 
-          //store icon in public folder
+        //store icon in public folder
         $insPhoto->storeImages($request->all()["icon"],$aboutUs->id);
         return redirect()->route('admin.about-us.index');
     }
@@ -121,6 +121,11 @@ class AboutUsesController extends Controller
         $aboutUs = About_Us::find($id);
         $this->helperSave($aboutUs,$request);
         return redirect()->route('admin.about-us.index');
+    }
+
+    private function helperSave($aboutUs, $request){
+        $input = $request->all();
+        $aboutUs->fill($input)->save();
     }
 
     /**
