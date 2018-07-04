@@ -1,5 +1,6 @@
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/project/project.css') }}" rel="stylesheet">
 
 @extends ('cabinet/cabinet')
 
@@ -26,7 +27,7 @@
                     </div>
                     @include('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/project/'.$project->id)])
                 </div>
-                <div class="col-xs-12 col-md-10">
+                <div id="description-project" class="col-xs-12 col-md-10">
                     <div class="panel-heading-cabinet">
                         <p class="position-cabinet">
                             <a class="orangColor-cabinet-name" href="{{route('project.show', $project->id)}}">{{$project->name}}</a>
@@ -48,7 +49,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-10">
+                <div id="user-menu" class="col-md-10">
                     <div class="col-xs-12 col-md-3">
                         <a class="orangColor-cabinet" href="/project/{{$project->id}}/destroy" onclick="return ConfirmDelete();">
                             <i class="fa fa-trash" aria-hidden="true"></i>
