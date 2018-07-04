@@ -128,9 +128,4 @@ class MainController extends Controller
             'topVacancy' => $topVacancy,
         ));
     }
-
-    public function showConsults(Request $request)
-    {
-            return view('newDesign.consults.consultsList');
-    }
 }

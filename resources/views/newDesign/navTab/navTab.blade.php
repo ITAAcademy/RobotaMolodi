@@ -15,7 +15,7 @@
 					{{ trans('navtab.allresume')  }}
 				</a>
 			</li>
-			  <li class="{{Request::path() == 'sresume' ? 'active' : ''}}">
+			  <li class="{{Request::path() == 'sadvisors' ? 'active' : ''}}">
 				  <a href="{{route('main.consult')}}">
 					  <img src="{{asset('/image/alladvisors.png')}}">
 					  {{ trans('navtab.alladvisor')  }}
