@@ -54,6 +54,11 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('sconsult') }}" class="afterChange">
+                    <span>{{ trans('navtab.alladvisor') }}</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/') }}" class="afterChange">
                     <span>{{ trans('header.allvacancy') }}</span>
                 </a>
