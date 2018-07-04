@@ -1,4 +1,4 @@
-a@extends('newDesign.layouts.admin')
+@extends('newDesign.layouts.admin')
 
 @section('ckeditor')
     @include('newDesign.layouts.includes.ckeditor')
@@ -65,7 +65,7 @@ a@extends('newDesign.layouts.admin')
             <div class="input-field col s12">
                 {{--Year--}}
                 <input id="input_text" type="number" data-length="4"
-                       name="year" value="{{$aboutUs->year}}">
+                       name="year" value="{{$aboutUs->year}}" min="1990" max="2050">
                 <label for="input_text">Year</label>
 
             </div>
