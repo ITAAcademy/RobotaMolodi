@@ -128,5 +128,4 @@ class MainController extends Controller
             'topVacancy' => $topVacancy,
         ));
     }
-
 }
