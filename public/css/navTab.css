@@ -9,13 +9,14 @@
 }
 
 .header-nav-tabs>ul>li {
+   width: available;
 	padding-bottom:0;
 	font-family: SegoeUIRegular;
-	font-size: 13px;
+	font-size: 15px;
 }
 
 .header-nav-tabs img {
-	margin-right:10px;
+	margin-right:0px;
 }
 
 .header-nav-tabs>ul>li.active>a, .header-nav-tabs>ul>li.active>a:focus, .header-nav-tabs>ul>li.active>a:hover {
