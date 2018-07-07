@@ -13,7 +13,9 @@
             {!! Form::label('image', 'Add image:') !!}
             {!! Form::file('image',['class' => 'btn btnFile'])!!}
         </div>
+
         {!! Form::submit('Створити новину', ['class' => 'btn btn-primary crtNews']) !!}
+
         {!! Form::close() !!}
     </div>
 @endsection

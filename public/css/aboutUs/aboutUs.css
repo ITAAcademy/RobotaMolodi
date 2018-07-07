@@ -57,7 +57,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #fff;
-    color: #666666;
+    /*color: #666666;*/
     font-family: "SegoeUIRegular";
 }
 
@@ -245,6 +245,7 @@ header .header_top .dropdown-block .nav-tabs li a .auth-word {
 
 header .header_top .dropdown-block .nav-tabs li.active a .auth-word {
     color: #666666;
+
 }
 
 header .header_top .dropdown-block .tab-content {
@@ -765,7 +766,7 @@ header .tads_panel .nav-tabs > li > a {
 .content .article .line {
     border-bottom: 1px solid #d7d7d7;
     margin-top: 20px;
-}
+ }
 
 .content .article .line > span {
     font-size: 14px;

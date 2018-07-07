@@ -1,12 +1,13 @@
 .header-tabs{
     margin-bottom:-0px;
-    padding-left: 0px;
+    padding: 0;
 }
 
 .header-tabs>ul>li {
     padding-bottom:0;
     font-family: SegoeUIRegular;
     font-size: 18px;
+    width: 190px;
 }
 
 .header-tabs img {
@@ -35,3 +36,8 @@
     margin-left: 15px;
     margin-top: 15px;
 }
+
+.padding-left-cab{
+    padding-left: 25px;
+}
+

@@ -60,12 +60,13 @@ Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallba
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
-Route::get('sconsult',['as' => 'main.consult','uses' => 'MainController@showConsults']);
+//Route::get('sconsult',['as' => 'main.consult','uses' => 'ConsultsController@showConsults']);
+Route::get('consults', 'ConsultsController@index');
 Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showCompanies']);
 /////
 Route::any('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
 Route::any('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
-Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'MainController@showConsult'] );
+Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'ConsultsController@showConsult'] );
 
 
 Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
@@ -240,6 +241,7 @@ Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeI
 //staticHeaderPages
 Route::get('about_us', function () {
     return view('staticHeaderPages.aboutUs');
+
 });
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');

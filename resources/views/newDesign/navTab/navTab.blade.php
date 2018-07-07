@@ -15,11 +15,18 @@
 					{{ trans('navtab.allresume')  }}
 				</a>
 			</li>
+			  <li class="{{Request::path() == 'consults' ? 'active' : ''}}">
+				  <a href="{{url('consults')}}">
+					  <img src="{{asset('/image/alladvisors.png')}}">
+					  {{ trans('navtab.alladvisor')  }}
+				  </a>
+			  </li>
 			<li class="{{Request::path() == 'scompany' ? 'active' : ''}}">
 				<a href="{{route('main.companies')}}">
 					<img src="{{asset('/image/allcompanies.png')}}">
 					{{ trans('navtab.allcompany')  }}
 				</a>
+			</li>
 			</ul>
 		</div>
 													<!-- Add new: -Vac -Comp -Res.  Line  -->
@@ -34,6 +41,9 @@
 				</li>
 				<li class="list-unstyled_company">
 					<a href="{{route('company.create')}}">{{ trans('navtab.company')  }}</a>
+				</li>
+				<li class="list-unstyled_company">
+					<a href="{{route('company.create')}}">{{ trans('navtab.advisor')  }}</a>
 				</li>
 				<li class="list-unstyled_resume">
 					<a href="{{route('resume.create')}}">{{ trans('navtab.resume')  }}</a>
@@ -50,6 +60,7 @@
 			  <li role="separator" class="divider"></li>
 			  <li><a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy')  }}</a></li>
 			  <li><a href="{{route('company.create')}}">{{ trans('navtab.company')  }}</a></li>
+			  <li><a href="{{route('company.create')}}">{{ trans('navtab.advisor')  }}</a></li>
 			  <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume')  }}</a></li>
 		  </ul>
 		</div>
