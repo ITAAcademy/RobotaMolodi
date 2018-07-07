@@ -1,0 +1,32 @@
+article, p{
+    font-size: 15px;
+    line-height: 20px;
+}
+
+li{
+    margin-top: 10px;
+    text-align: justify;
+}
+
+ul{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+ol{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+span{
+    font-style: oblique;
+    font-weight: bold;
+}
+
+p,em{
+    margin-left: 12px;
+}
+
+h4{
+    font-weight: bold;
+}
