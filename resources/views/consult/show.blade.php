@@ -4,7 +4,7 @@
 @extends('app')
 
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
 @section('content')
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
@@ -86,7 +86,14 @@
                         <div class="descriptionStyle">
                             <span class="anagraph">{{ trans('consult.resume') }} </span>
                             <br>
-                            <span>Some test text</span>
+                            <span>Опыт работы на должности экономиста — 5 лет. <br>
+— Знание налогового законодательства, бухгалтерского и налогового учёта. <br>
+— Навык разработки, внедрения и ведения управленческого учета. <br>
+— Умение разрабатывать финансово-экономические модели. <br>
+— Опыт анализа, планирования и регламентации финансово-хозяйственной деятельности. <br>
+— Навык планирования и контроля исполнения бюджетов. <br>
+— Знание видов себестоимости, методов ценообразования. <br>
+— Опыт составления аналитических отчётов.</span>
                             {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
                     </div>
 
