@@ -3,6 +3,8 @@
 
 @extends('app')
 
+    <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
+
 @section('content')
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
@@ -14,7 +16,7 @@
 
     <div class="panel panel-orange" id="vrBlock">
         <div class="row">
-            {{--hello--}}
+
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
@@ -66,16 +68,16 @@
                     </div>
 
                     <div>
-                        <div class="text_vac">
+                        <div class="ratings text_cons">
                             <span>{{ trans('form.branch') }} </span>
                            <span> Any industries</span>
                             {{--{!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
                         </div>
                     </div>
                     <div>
-                        <div class="text_vac">
+                        <div class=" text_vac">
                             <span>{{ trans('consult.cost') }}</span>
-                            <span>2000</span>
+                            <span class="seleryvacancy">2000</span>
                             {{--<span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> --}}
                         </div>
                     </div>
@@ -84,7 +86,7 @@
                         <div class="descriptionStyle">
                             <span class="anagraph">{{ trans('consult.resume') }} </span>
                             <br>
-                            Some test text
+                            <span>Some test text</span>
                             {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
                     </div>
 
@@ -93,6 +95,6 @@
             </div>
         </div>
     </div>
+    </div>
 
-
-@stop
+    @stop
