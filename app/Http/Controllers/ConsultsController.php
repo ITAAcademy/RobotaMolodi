@@ -14,7 +14,7 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function showConsults(Request $request)
+    public function index(Request $request)
     {
 //        if ($request->ajax()) {
 //            return view('newDesign.consults.consultsList', ['resumes' => $resumes]);
@@ -25,6 +25,13 @@ class ConsultsController extends Controller
 
     public function showConsult(Request $request)
     {
-       // return view('newDesign.consults.consultsList');
+       // return view('consult.show');
+    }
+
+    public function show($id)
+    {
+
+        return view('consult.show');
+
     }
 }

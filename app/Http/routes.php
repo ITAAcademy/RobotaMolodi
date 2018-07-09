@@ -66,7 +66,7 @@ Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showC
 Route::any('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
 Route::any('showResumes',['as' => 'main.showResumes', 'uses' => 'MainController@showResumes'] );
 Route::post('showConsult',['as' => 'main.showConsults', 'uses' => 'ConsultsController@showConsult'] );
-
+Route::resource('/sconsult', 'ConsultsController'); //created all routes of ConsultController
 
 Route::get('vacancy/sortVacancies',['as' => 'vacancy.sortVacancies', 'uses' => 'Vacancy\VacancyController@sortVacancies']);
 
