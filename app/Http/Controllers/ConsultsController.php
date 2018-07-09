@@ -14,12 +14,9 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
-//        if ($request->ajax()) {
-//            return view('newDesign.consults.consultsList', ['resumes' => $resumes]);
-//        }
-        return view('newDesign.consults.consultsList');
+        return view('newDesign.consults.index');
     }
 
 

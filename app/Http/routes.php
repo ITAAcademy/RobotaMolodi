@@ -60,7 +60,8 @@ Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallba
 
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
-Route::get('sconsult',['as' => 'main.consult','uses' => 'ConsultsController@showConsults']);
+//Route::get('sconsult',['as' => 'main.consult','uses' => 'ConsultsController@showConsults']);
+Route::get('consults', 'ConsultsController@index');
 Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showCompanies']);
 /////
 Route::any('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );

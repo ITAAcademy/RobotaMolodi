@@ -49,13 +49,13 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('sresume') }}" class="afterChange">
-                    <span>{{ trans('header.allresume') }}</span>
+                <a href="{{ url('consults') }}" class="afterChange">
+                    <span>{{ trans('navtab.alladvisor') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('sconsult') }}" class="afterChange">
-                    <span>{{ trans('navtab.alladvisor') }}</span>
+                <a href="{{ url('sresume') }}" class="afterChange">
+                    <span>{{ trans('header.allresume') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
