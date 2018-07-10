@@ -86,6 +86,7 @@
             {{--fakeFilter('{{$search_boolean}}', '{{$data}}', 'showVacancies');--}}
          {{--@endif--}}
 
+
     </script>
 
 @stop
