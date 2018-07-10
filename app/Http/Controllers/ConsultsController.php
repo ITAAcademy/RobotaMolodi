@@ -22,6 +22,13 @@ class ConsultsController extends Controller
 
     public function showConsult(Request $request)
     {
-       // return view('newDesign.consults.consultsList');
+       // return view('consult.show');
+    }
+
+    public function show($id)
+    {
+
+        return view('consult.show');
+
     }
 }
