@@ -14,17 +14,17 @@
     <section class="content">
                 <div class="article">
                     <h1 class="title">{{ trans('aboutus.about') }}</h1>
-                    <div class="row full-content">
+                    <div class="row full-content small-row" >
                         <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
-                            <img data-src="{{asset('image/aboutUsImages/icon_lamp.png')}}" alt="lamp">
+                            <img src="{{asset('image/aboutUsImages/icon_lamp.png')}}" alt="lamp">
                         </div>
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
                             {{ trans('aboutus.ideaofcreation') }}
                             <div class="row second_level">
                                 <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
-                                    <img data-src="{{asset('image/aboutUsImages/map_icon.png')}}" alt="map">
+                                    <img src="{{asset('image/aboutUsImages/map_icon.png')}}" alt="map">
                                 </div>
-                                <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11">
+                                <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
                                     <p>{{ trans('aboutus.mainpurpose') }}</p>
                                     <p>{{ trans('aboutus.present') }}</p>
                                     <p>{{ trans('aboutus.highmember') }}</p>
@@ -239,7 +239,7 @@
                                             <span>2016</span>
                                         </div>
                                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
-                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="http://www.profitday.info/datedevents?year=2016">«PROFIT DAY»</a> -  {{ trans('aboutus.cycleofevents') }}</p>
+                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="http://www.profitday.info/datedevents?year=2016">«PROFIT DAY»</a>   {{ trans('aboutus.cycleofevents') }}</p>
                                             <div class="row galleries ">
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_1.jpg')}}">
@@ -332,6 +332,54 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2017</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{{ trans('aboutus.in2017') }} <a href="https://profitday.info/datedevents?years%5B%5D=2017&cities%5B%5D=1&events%5B%5D=PROF+IT+Day">«PROFIT DAY»</a>   {{ trans('aboutus.events2017') }}</p>
+                                            <div class="row galleries ">
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_3.jpg')}}"/></a>
+                                                </div>
+
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_9.jpg')}}"/></a>
+                                                </div>
+                                                {{--<div class="gallery-item nopadding">--}}
+                                                    {{--<a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_4.jpg')}}">--}}
+                                                        {{--<img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_4.jpg')}}"/></a>--}}
+                                                {{--</div>--}}
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -349,9 +397,9 @@
         lozad('.gallery-item a img', {
             load: function(el) {
                 el.src = el.dataset.src;
-                el.onload = function() {
-                    el.classList.add('fade')
-                }
+                // el.onload = function() {
+                //     el.classList.add('fade')
+                // }
             }
         }).observe();
     </script>

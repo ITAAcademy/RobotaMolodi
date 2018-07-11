@@ -5,17 +5,18 @@
 
 .header-nav-tabs{
 	margin-bottom:-0px;
-    padding-left: 0px;
+	padding-left: 0px;
 }
 
 .header-nav-tabs>ul>li {
+   width: available;
 	padding-bottom:0;
 	font-family: SegoeUIRegular;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 .header-nav-tabs img {
-	margin-right:10px;
+	margin-right:0px;
 }
 
 .header-nav-tabs>ul>li.active>a, .header-nav-tabs>ul>li.active>a:focus, .header-nav-tabs>ul>li.active>a:hover {
@@ -86,10 +87,10 @@
 }
 
 .bottom-line4row-tab {
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 10px;
-    margin-left: 15px;
-    margin-right:15px;
+	border-bottom: 1px solid #dddddd;
+	margin-bottom: 10px;
+	margin-left: 15px;
+	margin-right:15px;
 }
 
 .dropdown-menu{
@@ -98,60 +99,60 @@
 }
 
 #dropdownMenu1 {
-    border: none;
-    margin-right: 15px;
+	border: none;
+	margin-right: 15px;
 }
 
 .btn-default:hover {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
 }
 
 #cross{
-    color: red;
-    font-size: 36px;
-    line-height: 36px;
+	color: red;
+	font-size: 36px;
+	line-height: 36px;
 }
 
 .btn-default {
-    border-color: #ccc;
+	border-color: #ccc;
 }
 
 .plus-dropdn span {
-    color: #cccccc;
-    font-size: 36px;
-    line-height: 36px;
+	color: #cccccc;
+	font-size: 36px;
+	line-height: 36px;
 }
 
 .plus-dropdn{
-    color: #cccccc;
-    font-size: 36px;
-    line-height: 36px;
+	color: #cccccc;
+	font-size: 36px;
+	line-height: 36px;
 }
 
 .plus-dropdn-h {
-    color: #f68c06;
-    padding: 0 10px;
-    font-weight: bold;
+	color: #f68c06;
+	padding: 0 10px;
+	font-weight: bold;
 }
 
 .nav-tabs {
-    border-bottom:none;
+	border-bottom:none;
 }
 
 .add-list-group-nav-tab .list-inline{
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 .row.bottom-line4row-tab.few col-md-5.hidden-xs.hidden-sm.add-list-group-nav-tab{
-    padding-right: 0px;
-    padding-left: 0px;
-    height: 50px;
+	padding-right: 0px;
+	padding-left: 0px;
+	height: 50px;
 }
 
 .row.bottom-line4row-tab.few{
-    margin-top: 10px;
+	margin-top: 10px;
 }
 @media(min-width: 535px) and (max-width: 575px) {
 	.bottom-line4row-tab .header-nav-tabs li{
@@ -196,7 +197,7 @@
 		width: 265px;
 	}
 	/*.bottom-line4row-tab .header-nav-tabs li a{*/
-		/*padding: 5px;*/
+	/*padding: 5px;*/
 	/*}*/
 	.bottom-line4row-tab .header-nav-tabs li img{
 		width: 21px;

@@ -1,6 +1,7 @@
 
 .paginatorBlock{
     margin: 0;
+    margin-outside: 5px;
 }
 
 .pagination{
@@ -20,7 +21,7 @@ ul.pagination li.disabled.hidden-xs span{
 }
 
 ul.pagination a{
-    border: 1px solid #CBCBCB;
+    border: none;
     margin: 0 3px 0 3px;
     height: 30px;
     width: 30px;
@@ -74,6 +75,7 @@ ul.pagination a{
 li.disabled span, li.next>a, li.prev>a{
     font-weight: 700;
     color: #777777;
+    border: none;
     margin-left: 3px;
     margin-right: 3px;
 }

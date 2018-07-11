@@ -18,7 +18,7 @@
                     <a class="links" href="/news/{{$oneNews->id}}">
                         <h3>{{ $oneNews->name}}</h3>
                     </a>
-                    <!-- <h5>{{$oneNews->shortDescription()}}</h5> -->
+                    <span><h5>{{$oneNews->shortDescription()}}</h5></span>
                 </div>
             </div>
 
@@ -40,8 +40,10 @@
     @endforeach
 
         <div class="row paginatorr">
-            @if($newsPagin->lastPage() > 1)
-                @include('newDesign.paginator', ['paginator' => $newsPagin])
-            @endif
+            <div class="pagination-sm">
+                @if($newsPagin->lastPage() > 1)
+                    @include('newDesign.paginator', ['paginator' => $newsPagin])
+                @endif
+            </div>
         </div>
 </div>

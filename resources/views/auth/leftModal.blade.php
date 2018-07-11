@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('aboutus') }}" class="afterChange">
+                <a href="{{ url('about_us') }}" class="afterChange">
                     <span>{{ trans('header.about') }}</span>
                 </a>
             </div>
@@ -46,6 +46,11 @@
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
                     <span>{{ trans('header.contacts') }}</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('consults') }}" class="afterChange">
+                    <span>{{ trans('navtab.alladvisor') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">

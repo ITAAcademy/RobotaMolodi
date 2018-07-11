@@ -6,7 +6,7 @@
 @section('content')
 
     <div class=" col l10 col s10 col m10 contentAndmin">
-        <center><h3>Adding Information About US</h3></center>
+        <center><h4>Додати інформацію Про нас</h4></center>
 
         <div class="row">
             {!! Form::open(['route' =>['admin.about-us.store'], 'files'=>true]) !!}
@@ -52,7 +52,7 @@
 
             <div class="input-field col s12">
                 {{--Year--}}
-                <input id="input_text" class="year" type="number" data-length="4" name="year">
+                <input id="input_text" class="year" type="number" data-length="4" name="year"  name="year" min="1990" max="2050" value="{{date('Y')}}">
                 <label for="input_text">Year</label>
 
             </div>
@@ -83,7 +83,7 @@
 
                 <div class="input-field col s3 offset-s9">
                     {{--save button--}}
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Зберегти
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Створити
                         <i class="material-icons right">send</i>
                     </button>
 

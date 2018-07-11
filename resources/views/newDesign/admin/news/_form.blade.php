@@ -17,11 +17,11 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 <br>
-@if(!isset($newsOne->pablished))
+@if(!isset($newsOne->published))
     <div class="form-group">
         {!! Form::label('published', 'Опублікувати:') !!}
         {!! Form::hidden('published', 0) !!}
-        {!! Form::checkbox('published') !!}
+        {!! Form::checkbox('published', 1, ['class' => 'form-control']) !!}
         <br>
     </div>
 @endif
@@ -30,7 +30,7 @@
 <script>
     CKEDITOR.replace('description',
         {
-            extraPlugins : 'justify',
+            extraPlugins: 'justify',
             filebrowserImageUploadUrl: '{{ route('upartimg',['_token' => csrf_token() ]) }}',
             height: 500
         }
