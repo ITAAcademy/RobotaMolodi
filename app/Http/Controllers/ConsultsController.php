@@ -21,14 +21,36 @@ class ConsultsController extends Controller
 
 
     public function showConsult(Request $request)
+{
+    // return view('consult.show');
+}
+
+public function show($id)
+{
+
+    return view('consult.show');
+
+}
+
+
+public function create()
     {
-       // return view('consult.show');
+        //
+        return view('consult.create');
+
     }
 
-    public function show($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+
+    public function store(Request $request)
     {
 
-        return view('consult.show');
-
+    //
+        return redirect('newDesign.consults.index');
     }
+
 }
