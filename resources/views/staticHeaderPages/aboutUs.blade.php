@@ -239,7 +239,7 @@
                                             <span>2016</span>
                                         </div>
                                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
-                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="http://www.profitday.info/datedevents?year=2016">«PROFIT DAY»</a> -  {{ trans('aboutus.cycleofevents') }}</p>
+                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="http://www.profitday.info/datedevents?year=2016">«PROFIT DAY»</a>   {{ trans('aboutus.cycleofevents') }}</p>
                                             <div class="row galleries ">
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_1.jpg')}}">
@@ -329,6 +329,54 @@
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_22.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_22.jpg')}}"/></a>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2017</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{{ trans('aboutus.in2017') }} <a href="https://profitday.info/datedevents?years%5B%5D=2017&cities%5B%5D=1&events%5B%5D=PROF+IT+Day">«PROFIT DAY»</a>   {{ trans('aboutus.events2017') }}</p>
+                                            <div class="row galleries ">
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_3.jpg')}}"/></a>
+                                                </div>
+
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_9.jpg')}}"/></a>
+                                                </div>
+                                                {{--<div class="gallery-item nopadding">--}}
+                                                    {{--<a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_4.jpg')}}">--}}
+                                                        {{--<img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_4.jpg')}}"/></a>--}}
+                                                {{--</div>--}}
+
                                             </div>
                                         </div>
                                     </div>
