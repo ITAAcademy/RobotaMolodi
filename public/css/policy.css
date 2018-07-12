@@ -1,0 +1,27 @@
+.mainArticle{
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.rightPolicy{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.addressPolicy{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.personalData{
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.policyLocation{
+    margin-left: 12px;
+}
+
+.infoPolicy{
+    font-weight: bold;
+}
