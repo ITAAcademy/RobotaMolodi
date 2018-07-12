@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Consult;
 use Illuminate\Http\Request;
-
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -48,9 +49,18 @@ public function create()
 
     public function store(Request $request)
     {
+        $consult = new Consult;
+  //      dd($request);
+        $consult->consult_id = auth()->user()->id;
 
-    //
-        return redirect('newDesign.consults.index');
+        $consult->telephone = $request->get('telephone');
+        $consult->city = $request->get('city');
+        $consult->area = $request->get('area');
+        $consult->position = $request->get('position');
+        $consult->description = $request->get('description');
+
+        $consult->save();
+        return redirect('sconsult');
     }
 
 }
