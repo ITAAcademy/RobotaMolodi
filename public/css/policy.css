@@ -1,32 +1,27 @@
-article, p{
+.mainArticle{
     font-size: 15px;
     line-height: 20px;
 }
 
-li{
-    margin-top: 10px;
-    text-align: justify;
-}
-
-ul{
+.rightPolicy{
     margin-left: 30px;
     margin-top: 20px;
 }
 
-ol{
+.addressPolicy{
     margin-left: 30px;
     margin-top: 20px;
 }
 
-span{
+.personalData{
     font-style: oblique;
     font-weight: bold;
 }
 
-p,em{
+.policyLocation{
     margin-left: 12px;
 }
 
-h4{
+.infoPolicy{
     font-weight: bold;
 }
