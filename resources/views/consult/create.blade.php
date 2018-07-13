@@ -20,20 +20,34 @@
                 <label for="city" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.city') }}
                 </label>
-                <div class="col-md-5">
-                    <input type="text" placeholder="{{ trans('main.city') }}" class="form-control" name="city"
-                           value="{{ old('city') }}">
+                <div class="col-md-5 col-sm-5">
+                    <select class="inputPlace2" id="city_id" name="city_id">
+                        @foreach($cities as $city)
+                                <option value="{{$city->id}}">{{$city->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
+                {{--<div class="col-md-5">--}}
+                    {{--<input type="text" placeholder="{{ trans('main.city') }}" class="form-control" name="city"--}}
+                           {{--value="{{ old('city') }}">--}}
+                {{--</div>--}}
             </div>
 
             <div class="form-group row">
                 <label for="area" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.area') }}
                 </label>
-                <div class="col-md-5">
-                    <input type="text" placeholder="{{ trans('main.area') }}" class="form-control" name="area"
-                           value="{{ old('area') }}">
+                <div class="col-md-5 col-sm-5">
+                    <select class="inputPlace2" id="industry_id" name="industry_id">
+                        @foreach($industries as $industry)
+                                <option value="{{$industry->id}}">{{$industry->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
+                {{--<div class="col-md-5">--}}
+                    {{--<input type="text" placeholder="{{ trans('main.area') }}" class="form-control" name="area"--}}
+                           {{--value="{{ old('area') }}">--}}
+                {{--</div>--}}
             </div>
 
             <div class="form-group row">
@@ -54,7 +68,7 @@
             {{--</div>--}}
 
             <div class="form-group row row">
-                <label for="position" class="col-md-3 col-sm-3 label-text-company">
+                <label for="description" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.description') }}
                 </label>
                 <div class="col-md-5">

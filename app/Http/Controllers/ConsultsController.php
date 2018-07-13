@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Consult;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Industry;
+use App\Models\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -36,9 +39,14 @@ public function show($id)
 
 public function create()
     {
-        //
-        return view('consult.create');
-
+        if(Auth::check())
+        {
+            $cities = City::all();
+            $industries = Industry::all();
+            return view('consult.create',['cities' => $cities, 'industries' => $industries]);
+        } else {
+            return Redirect::to('auth/login');
+        }
     }
 
     /**
@@ -54,8 +62,8 @@ public function create()
         $consult->consult_id = auth()->user()->id;
 
         $consult->telephone = $request->get('telephone');
-        $consult->city = $request->get('city');
-        $consult->area = $request->get('area');
+        $consult->city = $request->get('city_id');
+        $consult->area = $request->get('industry_id');
         $consult->position = $request->get('position');
         $consult->description = $request->get('description');
 
