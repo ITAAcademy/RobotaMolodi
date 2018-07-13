@@ -9,7 +9,7 @@
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
                ['url'=> 'head','name'=>'Головна'],
-               ['name' => 'Радник: ' , 'url' => false]
+               ['name' => trans('consult.consult').$consultant->consult->name , 'url' => false]
                ]
            )
            )
@@ -50,7 +50,7 @@
 
                     <div class="panel-headings">
 
-                        <strong>Name and Surname</strong>
+                        <strong> {{$consultant->consult->name}}</strong>
                     </div>
 
 
@@ -70,7 +70,7 @@
                     <div>
                         <div class="ratings text_cons">
                             <span>{{ trans('form.branch') }} </span>
-                           <span> Any industries</span>
+                           <span> {{$consultant->area}}</span>
                             {{--{!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
                         </div>
                     </div>
@@ -84,19 +84,14 @@
 
                     <div>
                         <div class="descriptionStyle">
-                            <span class="anagraph">{{ trans('consult.resume') }} </span>
+                            <span class="anagraph">{{ trans('consult.experience') }} </span>
                             <br>
-                            <span>Опыт работы на должности экономиста — 5 лет. <br>
-— Знание налогового законодательства, бухгалтерского и налогового учёта. <br>
-— Навык разработки, внедрения и ведения управленческого учета. <br>
-— Умение разрабатывать финансово-экономические модели. <br>
-— Опыт анализа, планирования и регламентации финансово-хозяйственной деятельности. <br>
-— Навык планирования и контроля исполнения бюджетов. <br>
-— Знание видов себестоимости, методов ценообразования. <br>
-— Опыт составления аналитических отчётов.</span>
+                            <span>{{$consultant->description}}</span>
                             {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
                     </div>
-
+                    <div class="conslink">
+                        <a  href='javascript:alert( {{ trans('main.dosent') }} )' class='alfa'>{{ trans('consult.resume') }} </a>
+                    </div>
 
                 </div>
             </div>

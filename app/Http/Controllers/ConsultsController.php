@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Consult;
+use App\Models\Resume;
+use App\Models\City;
+use App\Models\Industry;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -27,8 +32,12 @@ class ConsultsController extends Controller
 
     public function show($id)
     {
+        $consultant = Consult::find($id);
 
-        return view('consult.show');
+
+
+        return view('consult.show',compact('consultant', $consultant));
+            //->with('consultant',$consultant);
 
     }
 }
