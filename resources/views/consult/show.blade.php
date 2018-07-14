@@ -9,7 +9,7 @@
 
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
                ['url'=> 'head','name'=>'Головна'],
-               ['name' => 'Радник: ' , 'url' => false]
+               ['name' => trans('consult.consult').$consultant->consult->name , 'url' => false]
                ]
            )
            )
@@ -50,7 +50,7 @@
 
                     <div class="panel-headings">
 
-                        <strong>Name and Surname</strong>
+                        <strong> {{$consultant->consult->name}}</strong>
                     </div>
 
 
@@ -70,7 +70,7 @@
                     <div>
                         <div class="ratings text_cons">
                             <span>{{ trans('form.branch') }} </span>
-                           <span> Any industries</span>
+                           <span> {{$consultant->area}}</span>
                             {{--{!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
                         </div>
                     </div>
@@ -84,24 +84,114 @@
 
                     <div>
                         <div class="descriptionStyle">
-                            <span class="anagraph">{{ trans('consult.resume') }} </span>
+                            <span class="anagraph">{{ trans('consult.experience') }} </span>
                             <br>
-                            <span>Опыт работы на должности экономиста — 5 лет. <br>
-— Знание налогового законодательства, бухгалтерского и налогового учёта. <br>
-— Навык разработки, внедрения и ведения управленческого учета. <br>
-— Умение разрабатывать финансово-экономические модели. <br>
-— Опыт анализа, планирования и регламентации финансово-хозяйственной деятельности. <br>
-— Навык планирования и контроля исполнения бюджетов. <br>
-— Знание видов себестоимости, методов ценообразования. <br>
-— Опыт составления аналитических отчётов.</span>
+                            <span>{{$consultant->description}}</span>
                             {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
                     </div>
-
+                    <div class="conslink">
+                        <a  href='javascript:alert( {{ trans('main.dosent') }} )' class='alfa'>{{ trans('consult.resume') }} </a>
+                    </div>
 
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
 
-    @stop
+
+        </div>
+        <br>
+    </div>
+        <div class="row">
+            <hr class="gray-line">
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-first-card">
+                    <div class="type-card-text">Виберiть тип:</div>
+                    <span class="offline">
+                    <img src={{asset('image/consult/coffee.png')}}>
+                    офлайн:
+                    <p class="p-card-text"> м. Iвано-Франкiвськ</p>
+                    <p class="p-card-text"> вул. Князя Святослава, 12а, «Lylo»</p>
+                </span>
+                    <span class="offline">
+                    <img src={{asset('image/consult/on-line.png')}}>
+                    онлайн:
+                    <div class="p-card-text p-card-underline">
+                        <img src={{asset('image/consult/skype.png')}}>
+                        Skype
+                        <span class="p-card-text p-card-underline">
+                            <img src={{asset('image/consult/Hangouts.png')}}>
+                            Hangouts
+                        </span>
+                    </div>
+                    <span class="p-card-text p-card-underline" style="margin-left: 100px; ">
+                        <img src={{asset('image/consult/facebook.png')}}> FB
+                    </span>
+                    <span class="p-card-text p-card-underline">
+                        <img src={{asset('image/consult/watshapp.png')}}> Mesenger
+                    </span>
+                </span>
+
+                    <hr class="orange-line">
+
+                    <div class="type-card-text" style="padding-top: 0px;">
+                        Виберіть день
+                    </div>
+                    <div style="overflow:hidden;">
+                        <div class="form-group">
+                            <div id="datetimepicker"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-second-card">
+                    <div class="type-card-text">Виберіть годину</div>
+                    <div class="time-slot">29 лютня 2015 року</div>
+                    <div><img src="{{asset('image/consult/block-time-slot.png')}}"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-third-card">
+                    <div class="type-card-text" style="padding-left: 123px;">Оплата</div>
+                    <span class="offline">
+                        <p class="payment-text"> 29 лютня 2015 року з 18:20 по 19:00 у вас запланована консультація у радника кар’эри:</p>
+                        <p class="payment-text bold-name"> Oреста Остаповича Лютого.</p>
+                    </span>
+                    <div class="pay"> 569 грн</div>
+
+                    <hr class="gray-line" style="margin: 8px">
+
+                    <p class="orange-text-pay">
+                        Натисніть на кнопку "Сплатити рахунок", щоб перейти на сторінку вибора оплати.
+                        Після оплати рахунка Вам автоматично буде надано доступ до навчання.
+                    </p>
+
+                    <hr class="gray-line" style="margin: 8px">
+
+                    <p class="orange-text-pay">Доступні способи платежу</p>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="payment-methods"> 1. Банківською картою MasterCard, Visa та різними іншими </p>
+                            <p class="payment-methods"> 2. Терминалами QIWI, Элекснет, Мобил Элемент</p>
+                            <p class="payment-methods"> 3. Електричними гаманцями Webmoney, Яндекс.Деньги</p>
+                            <p class="payment-methods"> 5. Інтернет-банк Прихват25, ВТБ24</p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src={{asset('image/consult/ico.png')}}>
+                        </div>
+                    </div>
+                    <button type="button" class=" btn orange-button-pay">
+                        <p class="pay-word">
+                            Сплатити
+                        </p>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+@stop
+
+

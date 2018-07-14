@@ -11,6 +11,9 @@ return [
 
 
     'cost' => 'Cost of consultation:',
-    'resume' => 'Resume',
+    'resume' => 'Resume >>>',
+    'consult' => 'Consultant: ',
+    'experience' => 'Experience',
+
 
 ];
