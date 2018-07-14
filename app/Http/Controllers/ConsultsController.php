@@ -10,6 +10,7 @@ use App\Models\Industry;
 use App\Models\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Authenticate;
 
 class ConsultsController extends Controller
 {
@@ -39,14 +40,9 @@ public function show($id)
 
 public function create()
     {
-        if(Auth::check())
-        {
             $cities = City::all();
             $industries = Industry::all();
             return view('consult.create',['cities' => $cities, 'industries' => $industries]);
-        } else {
-            return Redirect::to('auth/login');
-        }
     }
 
     /**
