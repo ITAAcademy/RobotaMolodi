@@ -16,4 +16,7 @@ return [
     'sendfile' => 'Send file',
     'sendresume' => 'Send resume',
     'respond' => 'Respond',
+
+    'area' => 'Area',
+    'position' => 'Position',
 ];
