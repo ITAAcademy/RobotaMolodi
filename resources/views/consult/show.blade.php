@@ -96,6 +96,62 @@
                 </div>
             </div>
 
+
+        </div>
+        <br>
+    </div>
+        <div class="row">
+            <hr class="gray-line">
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-first-card">
+                    <div class="type-card-text">Виберiть тип:</div>
+                    <span class="offline">
+                    <img src={{asset('image/consult/coffee.png')}}>
+                    офлайн:
+                    <p class="p-card-text"> м. Iвано-Франкiвськ</p>
+                    <p class="p-card-text"> вул. Князя Святослава, 12а, «Lylo»</p>
+                </span>
+                    <span class="offline">
+                    <img src={{asset('image/consult/on-line.png')}}>
+                    онлайн:
+                    <div class="p-card-text p-card-underline">
+                        <img src={{asset('image/consult/skype.png')}}>
+                        Skype
+                        <span class="p-card-text p-card-underline">
+                            <img src={{asset('image/consult/Hangouts.png')}}>
+                            Hangouts
+                        </span>
+                    </div>
+                    <span class="p-card-text p-card-underline" style="margin-left: 100px; ">
+                        <img src={{asset('image/consult/facebook.png')}}> FB
+                    </span>
+                    <span class="p-card-text p-card-underline">
+                        <img src={{asset('image/consult/watshapp.png')}}> Mesenger
+                    </span>
+                </span>
+
+                    <hr class="orange-line">
+
+                    <div class="type-card-text" style="padding-top: 0px;">
+                        Виберіть день
+                    </div>
+                    <div style="overflow:hidden;">
+                        <div class="form-group">
+                            <div id="datetimepicker"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-second-card">
+                    <div class="type-card-text">Виберіть годину</div>
+                    <div class="time-slot">29 лютня 2015 року</div>
+                    <div><img src="{{asset('image/consult/block-time-slot.png')}}"></div>
+                </div>
+            </div>
+
             <div class="col-lg-4">
                 <div class="date-consult-card size-third-card">
                     <div class="type-card-text" style="padding-left: 123px;">Оплата</div>
@@ -136,7 +192,6 @@
         </div>
         <br>
     </div>
-
 @stop
 
 
