@@ -8,3 +8,119 @@
 .conslink{
     text-align: right;
 }
+.date-consult-card {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.49);
+    border-radius: 10px;
+    border: 1px solid #f68c06;
+    background-color: #fafafa;
+}
+
+.size-first-card {
+    width: 307px;
+    height: 543px;
+    margin: 0 45px;
+}
+
+.size-second-card {
+    width: 285px;
+    height: 268px;
+    margin: 0 0 0 35px;
+}
+
+.size-third-card {
+    width: 307px;
+    height: 590px;
+}
+
+.type-card-text {
+    color: #f68c06;
+    font-family: "Myriad Pro";
+    font-size: 18px;
+    font-weight: bold;
+    padding: 17px 57px 3px 75px;
+}
+
+.offline {
+    font-family: "Myriad Pro";
+    font-size: 16px;
+    color: #333333;
+}
+
+.offline .p-card-text {
+    width: 249px;
+    color: #999999;
+    font-weight: 400;
+}
+
+.offline .p-card-underline {
+    text-decoration: underline;
+}
+
+.offline .payment-text {
+    width: 266px;
+    color: #787878;
+    font-family: "Segoe UI";
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.offline .bold-name {
+    font-weight: bold;
+}
+
+.orange-line {
+    height: 1px;
+    background-color: #f26522;
+    margin: 20px 15px;
+}
+
+.gray-line {
+    margin: 25px 15px;
+    height: 1px;
+    background-color: #dedede;
+}
+
+.time-slot {
+    color: #787878;
+    font-family: "Segoe UI";
+    font-size: 12px;
+    padding: 0 90px;
+}
+
+.pay {
+    color: #f68c06;
+    font-size: 24px;
+    margin: 23px 0 0 108px;
+}
+
+.orange-text-pay {
+    width: 254px;
+    color: #f68c06;
+    font-family: "Myriad Pro";
+    font-size: 14px;
+}
+
+.payment-methods {
+    word-wrap: break-word;
+    padding-left: 25px;
+    font-family: "Myriad Pro";
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+}
+
+.orange-button-pay {
+    width: 135px;
+    height: 36px;
+    background-color: #f68c06;
+    border-radius: 10px !important  ;
+    margin-left: 87px;
+    margin-top: 4px;
+}
+
+.orange-button-pay .pay-word{
+    color: #ffffff;
+    font-family: "Myriad Pro";
+    font-size: 16px;
+    line-height: 16px;
+}

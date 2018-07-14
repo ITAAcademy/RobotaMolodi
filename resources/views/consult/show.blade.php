@@ -95,8 +95,48 @@
 
                 </div>
             </div>
+
+            <div class="col-lg-4">
+                <div class="date-consult-card size-third-card">
+                    <div class="type-card-text" style="padding-left: 123px;">Оплата</div>
+                    <span class="offline">
+                        <p class="payment-text"> 29 лютня 2015 року з 18:20 по 19:00 у вас запланована консультація у радника кар’эри:</p>
+                        <p class="payment-text bold-name"> Oреста Остаповича Лютого.</p>
+                    </span>
+                    <div class="pay"> 569 грн</div>
+
+                    <hr class="gray-line" style="margin: 8px">
+
+                    <p class="orange-text-pay">
+                        Натисніть на кнопку "Сплатити рахунок", щоб перейти на сторінку вибора оплати.
+                        Після оплати рахунка Вам автоматично буде надано доступ до навчання.
+                    </p>
+
+                    <hr class="gray-line" style="margin: 8px">
+
+                    <p class="orange-text-pay">Доступні способи платежу</p>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="payment-methods"> 1. Банківською картою MasterCard, Visa та різними іншими </p>
+                            <p class="payment-methods"> 2. Терминалами QIWI, Элекснет, Мобил Элемент</p>
+                            <p class="payment-methods"> 3. Електричними гаманцями Webmoney, Яндекс.Деньги</p>
+                            <p class="payment-methods"> 5. Інтернет-банк Прихват25, ВТБ24</p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src={{asset('image/consult/ico.png')}}>
+                        </div>
+                    </div>
+                    <button type="button" class=" btn orange-button-pay">
+                        <p class="pay-word">
+                            Сплатити
+                        </p>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+        <br>
     </div>
 
-    @stop
+@stop
+
+
