@@ -62,7 +62,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'reply@robotamolodi.org', 'name' => 'Сайт РоботаМолоді'],
+	'from' => ['address' => env('MAIL_ADDRESS','root@localhost'), 'name' => env('MAIL_FROM_NAME','Root')],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -75,7 +75,7 @@ return [
 	|
 	*/
 
-	'encryption' => 'tls',
+	'encryption' => 'env('MAIL_ENCRYPTION',null),
 
 	/*
 	|--------------------------------------------------------------------------
