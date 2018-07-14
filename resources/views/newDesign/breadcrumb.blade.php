@@ -1,5 +1,5 @@
 <link href="{{ asset('/css/breadcrumb.css') }}" rel="stylesheet">
-
+<link href="{{ asset('/css/policy.css') }}" rel="stylesheet">
 
     <div class="routeBreadcrumb">
         <ol class="breadcrumb">

@@ -5,7 +5,7 @@
     <div class="content">
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+            <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
             <div class="form-group row">
                 <label for="telephone" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.phone') }}
@@ -21,9 +21,9 @@
                     {{ trans('main.city') }}
                 </label>
                 <div class="col-md-5 col-sm-5">
-                    <select class="inputPlace2" id="city_id" name="city_id">
+                    <select class="inputPlace2" id="city_id" name="city">
                         @foreach($cities as $city)
-                                <option value="{{$city->id}}">{{$city->name}}</option>
+                                <option value="{{$city->name}}">{{$city->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,9 +38,9 @@
                     {{ trans('main.area') }}
                 </label>
                 <div class="col-md-5 col-sm-5">
-                    <select class="inputPlace2" id="industry_id" name="industry_id">
+                    <select class="inputPlace2" id="industry_id" name="area">
                         @foreach($industries as $industry)
-                                <option value="{{$industry->id}}">{{$industry->name}}</option>
+                                <option value="{{$industry->name}}">{{$industry->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -72,7 +72,7 @@
                     {{ trans('main.description') }}
                 </label>
                 <div class="col-md-5">
-                    <textarea rows="5" cols="40" placeholder="Ваш експіріенс" class="form-control" name="description"
+                    <textarea rows="5" cols="40" placeholder="{{ trans('main.description') }}" class="form-control" name="description"
                            value="{{ old('description') }}"></textarea>
                 </div>
             </div>

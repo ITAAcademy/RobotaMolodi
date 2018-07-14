@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Consult;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Consult;
+use App\Models\Resume;
+use App\Models\City;
+use App\Models\Industry;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\Industry;
-use App\Models\City;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
@@ -30,10 +32,14 @@ class ConsultsController extends Controller
     // return view('consult.show');
 }
 
-public function show($id)
-{
+    public function show($id)
+    {
+        $consultant = Consult::find($id);
 
-    return view('consult.show');
+
+
+        return view('consult.show',compact('consultant', $consultant));
+            //->with('consultant',$consultant);
 
 }
 
@@ -53,16 +59,9 @@ public function create()
 
     public function store(Request $request)
     {
-        $consult = new Consult;
-  //      dd($request);
-        $consult->consult_id = auth()->user()->id;
+     //   dd($request);
 
-        $consult->telephone = $request->get('telephone');
-        $consult->city = $request->get('city_id');
-        $consult->area = $request->get('industry_id');
-        $consult->position = $request->get('position');
-        $consult->description = $request->get('description');
-
+        $consult = new Consult($request->all());
         $consult->save();
         return redirect('sconsult');
     }
