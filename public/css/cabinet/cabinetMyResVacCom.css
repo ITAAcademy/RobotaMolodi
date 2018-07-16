@@ -60,6 +60,7 @@ a.orangColor-cabinet:hover
 .orangColor-cabinet img{
     color: #f68c06;
     width: 16px;
+    padding: 0px;
 }
 .nologo-cabinet{
     text-align: center;

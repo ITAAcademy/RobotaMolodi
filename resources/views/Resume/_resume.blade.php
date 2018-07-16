@@ -19,9 +19,9 @@
                         @endif
                     </a>
                 </div>
-                @if($resume->published == '1')
+                {{--@if($resume->published == '1')--}}
                     @include('newDesign.socialModule.share-btn-block' , ['url' => URL::asset('/resume/'.$resume->id) ])
-                @endif
+                {{--@endif--}}
             </div>
             <div class="col-xs-12 col-md-10 topResText">
                 <div class="panel-heading-cabinet">
@@ -56,6 +56,8 @@
                 <div class="col-xs-12 col-md-3">
                     <a class="orangColor-cabinet" href="/resume/{{$resume->id}}/edit">
                         {!! Html::image('image/edit.png', 'del') !!}
+                        {{--<i class="fas fa-eraser" aria-hidden="true"></i>--}}
+                        {{--<img src="./image/edit.png">--}}
                         <span>{{ trans('main.edit') }}</span>
                     </a>
                 </div>
