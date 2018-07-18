@@ -120,3 +120,12 @@
     });
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.validator.addMethod("endDate", function(value, element) {
+            var startDate = $('.startDate').val();
+            return Date.parse(startDate) <= Date.parse(value) || value == "";
+        }, "* End date must be after start date");
+        $('#formId').validate();
+    });
+</script>

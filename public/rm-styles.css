@@ -2041,7 +2041,7 @@ ul.pagination > .hide-md {
 .col-md-10 {
     width: 83.33333333%;
     margin-left: 164px;
-    margin-top: -225px;
+    /*margin-top: -225px;*/
 }
 
 body {
@@ -3755,7 +3755,7 @@ input.btn.btn-primary:focus {
 .header-nav-tabs > ul > li {
     padding-bottom: 0;
     font-family: SegoeUIRegular;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 .header-nav-tabs img {
@@ -3798,13 +3798,13 @@ input.btn.btn-primary:focus {
 }
 
 .add {
-    font-size: 18px;
+    font-size: 15px;
     color: #999999;
     font-family: "SegoeUIRegular";
 }
 
 .glyphicon-plus {
-    font-size: 18px;
+    font-size: 15px;
     color: #999999;
     font-family: "SegoeUIRegular";
 }

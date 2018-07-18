@@ -36,4 +36,8 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function consult(){
+        return $this->hasOne('App\Consult', 'consult_id', 'id');
+    }
 }

@@ -145,10 +145,10 @@
 
         $(function () {
             $("#datepicker1").datepicker({
-                dateFormat: "yy-mm-dd"
+                dateFormat: "dd-mm-yy"
             });
             $("#datepicker2").datepicker({
-                dateFormat: "yy-mm-dd"
+                dateFormat: "dd-mm-yy"
             });
         });
 
