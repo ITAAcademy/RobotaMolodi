@@ -21,16 +21,25 @@
             </div>
             <div class="col-xs-4 col-lg-4">
                 <div class="block-datepicker">
-                    <label for="startDate"><span class='opsion-sort-box'
-                                                 id="datePicker-label1">{{ trans('content.from') }}</span></label>
+                    <label for="startDate">
+                        <span class='opsion-sort-box' id="datePicker-label1">{{ trans('content.from') }}</span>
+                    </label>
+                    <span class="input-group-addon">
                     <input class="datePicker" type="text" id="datepicker1" name="startDate"/>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
+
             </div>
             <div class="col-xs-4 col-lg-4">
                 <div class="block-datepicker">
-                    <label for="endDate"><span class='opsion-sort-box'
-                                               id="datePicker-label2">{{ trans('content.to') }}</span></label>
+                    <label for="endDate">
+                        <span class='opsion-sort-box' id="datePicker-label2">{{ trans('content.to') }}</span>
+                    </label>
+                    <span class="input-group-addon">
                     <input class="datePicker" type="text" id="datepicker2" name="endDate"/>
+					<span class="glyphicon glyphicon-calendar"></span>
+					</span>
                 </div>
             </div>
         </div>

@@ -1,13 +1,36 @@
-#datepicker1{
+#datepicker1 {
+    position: relative;
     width: 67px;
     color: black;
     text-align: center;
+    border-radius: 10px 10px;
+    border-color: #f68c06;
+    border-style: solid;
+    border-width:thin;
+}
+
+.input-group-addon{
+    background-color: white;
+    /*border-color: #f68c06;*/
+    border: 0;
+    float: right;
+    width: 67px;
+    margin-top: -5px;
+}
+
+.glyphicon, .glyphicon-calendar{
+    color:orange;
 }
 
 #datepicker2{
+    position: relative;
     width: 67px;
     color: black;
     text-align: center;
+    border-radius: 10px 10px;
+    border-color: #f68c06;
+    border-style: solid;
+    border-width: thin;
 }
 
 .block-datepicker{

@@ -18,7 +18,6 @@ Vagrantfile
 /public/image/company/*
 /package-lock.json
 /config/app.php
-
 /public/storage
 /storage/*key
 /vendor
