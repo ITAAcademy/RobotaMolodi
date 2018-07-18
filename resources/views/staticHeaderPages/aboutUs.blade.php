@@ -332,7 +332,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2017</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>Some content</p>
+                                            <div class="row galleries ">
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_22.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_22.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2018</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>SHackathon</p>
+                                            <div class="row galleries ">
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/1.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                     </div>
