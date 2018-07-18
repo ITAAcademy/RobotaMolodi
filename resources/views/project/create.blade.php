@@ -1,10 +1,14 @@
 @extends('app')
 @section('headLinks')
     <link href="{{ asset('/css/test/project.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/project/create_project.css') }}" rel="stylesheet">
     <script src="https://unpkg.com/vue"></script>
 @endsection
 @section('content')
-<h1 class="text-center">{{ trans('project.addProject')}} </h1>
+    <div class="title">
+        <h1 class="text-center col-md-4">{{ trans('project.addProject')}} </h1>
+    </div>
+
 <div class="container">
     <div class="row">
         <div class="col-xs-10">
