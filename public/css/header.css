@@ -2,6 +2,10 @@
     border-bottom: 0px solid;
 }
 
+.headerRemoveOffsetLogo {
+    margin-bottom: -11px;
+}
+
 .text-left-modal .list-modal-left-register,
 .text-left-modal .list-modal-left,
 .text-left-modal .minilogo {
@@ -11,6 +15,7 @@
 #rightModal input[type=checkbox] {
     height: auto;
 }
+
 
 nav.navbar.navbar-default {
     margin-top: 12px;

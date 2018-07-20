@@ -1,3 +1,5 @@
+<link href="{{ asset('/css/header.css') }}" rel="stylesheet">
+
 <header>
     <nav class="navbar navbar-default">
         <div class="col-xs-1 col-sm-1" style="padding: 0">
@@ -7,7 +9,7 @@
                 </button>
             </div>
         </div>
-        <div class="headerRemoveOffsetLogo col-xs-offset-2 col-xs-6 col-sm-offset-2 col-sm-6 col-lg-6" style="padding: 0">
+        <div id="qwe" class="headerRemoveOffsetLogo col-xs-offset-2 col-xs-6 col-sm-offset-2 col-sm-6 col-lg-6" style="padding: 0">
             <a href="{{ url('/') }}" class="afterChange">
                 <div class="row">
                     <div class="col-xs-offset-1 col-xs-2" style="padding: 0">

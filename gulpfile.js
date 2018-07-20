@@ -27,6 +27,7 @@ elixir(function(mix) {
         './public/css/creating.css',
         './public/css/navTab.css',
         './public/css/header.css',
+        './public/css/project/create_project.css'
     ], './public/rm-styles.css');
     //mix.stylesIn('./public', './public/rm-styles.css');
 

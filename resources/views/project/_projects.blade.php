@@ -1,6 +1,7 @@
 {{--{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}--}}
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/project/project.css') }}" rel="stylesheet">
 
 {{--{!!Form::open(['route' => 'projectDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}--}}
 {{--<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>--}}

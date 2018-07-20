@@ -9,6 +9,8 @@
   <link href="{{ asset('/css/test/project.css') }}" rel="stylesheet">
   <link href="{{ asset('/css/test/our-vacancies.css') }}" rel="stylesheet">
   <link href="{{ asset('/css/test/vacancies-contacts.css') }}" rel="stylesheet">
+  <link href="{{ asset('/css/project/project.css') }}" rel="stylesheet">
+
 @endsection
 @section('content')
   @include('project.partials._breadcrumb')
