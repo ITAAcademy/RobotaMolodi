@@ -124,3 +124,13 @@
     font-size: 16px;
     line-height: 16px;
 }
+#calendar .fc-day{
+    transition: all .5s;
+}
+#calendar .fc-day:hover{
+    background: #fcf8e3;
+}
+#calendar .fc-day-header .fc-widget-header .fc-sun th{
+    padding: 5px ;
+    font-size: 14px;
+}
