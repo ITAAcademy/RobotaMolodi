@@ -1,0 +1,18 @@
+ .title .text-center{
+    color: #f68c06;
+     font-family: "ACLine";
+     font-weight: bold;
+     font-size: 36px;
+     text-align: left;
+ }
+
+.control-label {
+    display: inline-block;
+    text-align: right;
+    min-width: 167px;
+    font-family: "Segoe UI", sans-serif;
+    -ms-font-family: "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666666;
+}
