@@ -23,7 +23,7 @@ class ConsultEventsController extends Controller
 
     public function show($id)
     {
-        $consultant = Consult::all();
+        $consultant = Consult::find($id);
         //if($request->isAjax()){
             return json_encode($consultant);
        //}

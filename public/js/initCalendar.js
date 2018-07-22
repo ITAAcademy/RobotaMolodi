@@ -23,6 +23,16 @@ function initCalendar(selector) {
             week: "Тиждень",
             day: "День"
         },
+        timeFormat: 'h:mm',
+        eventOrder: 'start',
+        themeSystem: 'bootstrap3',
+        dayClick: function(date, jsEvent, view) {
+
+            alert('Clicked on: ' + date.format());
+
+            
+
+        },
 
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -30,18 +40,31 @@ function initCalendar(selector) {
                 type: "GET",
                 dataType: 'json',
                 success: function (doc) {
-                   console.log(doc);
-                     var events = doc.map(function (item) {
-                         return {
-                             title: item.consult_id,
-                             start: item.created_at,
-                                }
-                    })
+                    //console.log(doc);
+                    var events = [];
+                    if (Array.isArray(doc)){
+                         events = doc.map(function (item) {
+                            return {
+                                title: item.consult_id,
+                                start: item.created_at,
+                            }
+                        })
+                }else{
+                       // console.log("not array");
+                        events.push(
+                            {
+                                title: doc.consult_id,
+                                start: doc.created_at,
+                            }
+                        )
+                    }
 
                     callback(events);
+
                 }
             });
         }
+
 
     });
 }
