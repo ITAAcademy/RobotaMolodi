@@ -2,6 +2,14 @@ function initCalendar(selector) {
 
     $(selector).fullCalendar({
 
+        eventClick: function(calEvent, jsEvent, view) {
+            //console.log(calEvent);
+
+            $('#dialog').dialog('open');
+            $('#sptitle').text(calEvent.title);
+            $('#spstart').text(calEvent.start);
+            $('#ui-id-1').text('Детальніше');
+        },
 
         firstDay: 1,
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
@@ -26,13 +34,7 @@ function initCalendar(selector) {
         timeFormat: 'h:mm',
         eventOrder: 'start',
         themeSystem: 'bootstrap3',
-        dayClick: function(date, jsEvent, view) {
 
-            alert('Clicked on: ' + date.format());
-
-            
-
-        },
 
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -67,4 +69,22 @@ function initCalendar(selector) {
 
 
     });
+
+    $('#dialog').dialog({
+        autoOpen: false,
+    show: {
+        effect: 'drop',
+        duration: 500
+    },
+    hide: {
+        effect: 'clip',
+        duration: 500
+    }
+
+    });
+
+    $(".ui-dialog-titlebar-close").html("<span>X</span>");
+
+
+
 }

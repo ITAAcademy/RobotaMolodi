@@ -18,6 +18,10 @@ class ConsultEventsController extends Controller
     public function index()
     {
         //
+        $consultant = Consult::all();
+        //if($request->isAjax()){
+        return json_encode($consultant);
+        //}
     }
 
 
