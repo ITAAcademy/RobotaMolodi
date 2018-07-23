@@ -11,7 +11,7 @@
         )
         )
     <div class="row cabinet-buttons">
-        <div class="col-xs-11 col-md-8 header-tabs">
+        <div class="col-xs-11 col-md-11 header-tabs">
             <ul class="nav nav-tabs">
                 @if(Auth()->user())
                     <li role="presentation">
@@ -34,32 +34,38 @@
                             <span>{!! Html::image('image/allcompanies.png','Proj',['id'=>'allprojects']) !!}</span>
                             {{ trans('resume.myprojects') }}
                         </a></li>
+                    <li role="presentation">
+                        <a class="link-project" href={{url('sconsult')}}>
+                            <span>{!! Html::image('image/alladvisors.png') !!}</span>
+                            {{ trans('consult.myconsults') }}
+                        </a></li>
                 @endif
             </ul>
         </div>
         <!-- Add new: -Vac -Comp -Res.  Line  -->
-        <div class="col-md-4 hidden-xs hidden-sm add-list-group-nav-tab padding-left-cab">
-            <ul class="list-inline">
-                <li class="list-unstyled_plus" style="padding: 0;">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="add">{{ trans('navtab.add') }}</span>
-                </li>
-                <li class="list-unstyled_vacansy">
-                    <a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a>
-                </li>
-                <li class="list-unstyled_company">
-                    <a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a>
-                </li>
-                <li class="list-unstyled_resume">
-                    <a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a>
-                </li>
-                <li class="list-unstyled_resume">
-                    <a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a>
-                </li>
-            </ul>
-        </div>
+        {{--<div class="col-md-4 hidden-xs hidden-sm add-list-group-nav-tab padding-left-cab">--}}
+            {{--<ul class="list-inline">--}}
+                {{--<li class="list-unstyled_plus" style="padding: 0;">--}}
+                    {{--<span class="glyphicon glyphicon-plus"></span>--}}
+                    {{--<span class="add">{{ trans('navtab.add') }}</span>--}}
+                {{--</li>--}}
+                {{--<li class="list-unstyled_vacansy">--}}
+                    {{--<a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a>--}}
+                {{--</li>--}}
+                {{--<li class="list-unstyled_company">--}}
+                    {{--<a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a>--}}
+                {{--</li>--}}
+                {{--<li class="list-unstyled_resume">--}}
+                    {{--<a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a>--}}
+                {{--</li>--}}
+                {{--<li class="list-unstyled_resume">--}}
+                    {{--<a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
         <!-- Add new: -Vac -Comp -Res. +dropdown -->
-        <div class="col-xs-1 hidden-md hidden-lg dropdown plus-dropdn">
+        <div class="col-xs-1 {{--hidden-md hidden-lg--}} dropdown plus-dropdn">
+
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="true">
                 <span class="">+</span>
