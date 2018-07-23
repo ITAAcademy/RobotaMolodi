@@ -37,11 +37,11 @@ class ConsultsController extends Controller
         $consultant = Consult::find($id);
 
 
-
         return view('consult.show',compact('consultant', $consultant));
             //->with('consultant',$consultant);
 
 }
+
 
 
 public function create()
@@ -67,3 +67,11 @@ public function create()
     }
 
 }
+
+//public function index($id){
+//    $events = Consult::find($id)->events();
+//    if($request->isAjax()){
+//        return response()->json($events);
+//    }
+//
+//}
