@@ -8,7 +8,7 @@
 {{--<input type = "hidden" name = "filterValue" id = "filterValue"/>--}}
 {{--{!!Form::close()!!}--}}
 {{--<h1>Projects</h1>--}}
-@foreach($projects as $project)
+@forelse ($projects as $project)
     <div class="one-for-cabinet">
         <div class="row">
             <div class="col-xs-12 col-md-2">
@@ -75,7 +75,9 @@
         </div>
     </div>
     <hr class="line-sort-box">
-@endforeach
+@empty
+    <li><a href="{{ route('project.create') }}" > {{ trans('project.addProject') }}</a></li>
+@endforelse
 
 {{--{!! $projects->render(new App\Presenters\BootstrapTwoPresenter($projects)) !!}--}}
 
