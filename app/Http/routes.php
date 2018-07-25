@@ -200,7 +200,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
 //
 Route::get('/consult/{id}/events', 'ConsultEventsController@show');
-Route::get('/consult/events', 'ConsultEventsController@index');
+
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
 Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()

@@ -2,6 +2,17 @@ function initCalendar(selector) {
 
     $(selector).fullCalendar({
 
+        eventClick: function(calEvent, jsEvent, view) {
+            console.log(calEvent);
+
+            $('#dialog').dialog('open');
+
+            var starttime = new Date(calEvent.start._i);
+            var endtime = new Date(calEvent.end._i);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
+            $('#ui-id-1').text('Детальніше');
+        },
 
         firstDay: 1,
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
@@ -23,6 +34,11 @@ function initCalendar(selector) {
             week: "Тиждень",
             day: "День"
         },
+        timeFormat: 'h:mm',
+        eventOrder: 'start',
+        themeSystem: 'bootstrap3',
+        displayEventEnd: true,
+
 
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -30,18 +46,52 @@ function initCalendar(selector) {
                 type: "GET",
                 dataType: 'json',
                 success: function (doc) {
-                   console.log(doc);
-                     var events = doc.map(function (item) {
-                         return {
-                             title: item.consult_id,
-                             start: item.created_at,
-                                }
-                    })
+                    console.log(doc);
+                    var events = [];
+                    if (Array.isArray(doc)){
+                         events = doc.map(function (item) {
+                            return {
+                                //title: item.consults_id,
+                                start: item.date,
+                                end: item.time_end,
+                            }
+                        })
+                }else{
+                       // console.log("not array");
+                        events.push(
+                            {
+                                //title: doc.consults_id,
+                                start: doc.date,
+                                end: doc.time_end,
+
+                            }
+                        )
+                    }
 
                     callback(events);
+
                 }
             });
         }
 
+
     });
+
+    $('#dialog').dialog({
+        autoOpen: false,
+    show: {
+        effect: 'drop',
+        duration: 500
+    },
+    hide: {
+        effect: 'clip',
+        duration: 500
+    }
+
+    });
+
+    $(".ui-dialog-titlebar-close").html("<span>X</span>");
+
+
+
 }
