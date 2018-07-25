@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Consult;
+use App\Models\TimeConsultation;
 
 class ConsultEventsController extends Controller
 {
@@ -18,16 +19,18 @@ class ConsultEventsController extends Controller
     public function index()
     {
         //
-        $consultant = Consult::all();
+        //$consultant = Consult::all();
         //if($request->isAjax()){
-        return json_encode($consultant);
+        //return json_encode($consultant);
         //}
     }
 
 
     public function show($id)
     {
-        $consultant = Consult::find($id);
+        $consultant = TimeConsultation::where('consults_id', $id)
+                       ->get();
+
         //if($request->isAjax()){
             return json_encode($consultant);
        //}

@@ -3,11 +3,14 @@ function initCalendar(selector) {
     $(selector).fullCalendar({
 
         eventClick: function(calEvent, jsEvent, view) {
-            //console.log(calEvent);
+            console.log(calEvent);
 
             $('#dialog').dialog('open');
-            $('#sptitle').text(calEvent.title);
-            $('#spstart').text(calEvent.start);
+
+            var starttime = new Date(calEvent.start._i);
+            var endtime = new Date(calEvent.end._i);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
             $('#ui-id-1').text('Детальніше');
         },
 
@@ -34,6 +37,7 @@ function initCalendar(selector) {
         timeFormat: 'h:mm',
         eventOrder: 'start',
         themeSystem: 'bootstrap3',
+        displayEventEnd: true,
 
 
         events: function (start, end, timezone, callback) {
@@ -42,21 +46,24 @@ function initCalendar(selector) {
                 type: "GET",
                 dataType: 'json',
                 success: function (doc) {
-                    //console.log(doc);
+                    console.log(doc);
                     var events = [];
                     if (Array.isArray(doc)){
                          events = doc.map(function (item) {
                             return {
-                                title: item.consult_id,
-                                start: item.created_at,
+                                //title: item.consults_id,
+                                start: item.date,
+                                end: item.time_end,
                             }
                         })
                 }else{
                        // console.log("not array");
                         events.push(
                             {
-                                title: doc.consult_id,
-                                start: doc.created_at,
+                                //title: doc.consults_id,
+                                start: doc.date,
+                                end: doc.time_end,
+
                             }
                         )
                     }

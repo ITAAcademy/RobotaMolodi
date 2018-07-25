@@ -199,7 +199,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //Other Route
 //Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
 //
-Route::get('/consult/{id}/events', 'ConsultEventsController@index');
+Route::get('/consult/{id}/events', 'ConsultEventsController@show');
 
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 

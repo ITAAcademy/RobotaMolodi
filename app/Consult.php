@@ -14,6 +14,6 @@ class Consult extends Model
     }
 
     public function timeConsult(){
-        return $this->hasMany('App\Models\TimeConsultation', 'consults_id');
+        return $this->hasMany('App\Models\TimeConsultation', 'consults_id', 'id');
     }
 }
