@@ -1,15 +1,14 @@
 @extends('app')
-@section('title')
-
-@stop
+<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+<link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
+<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 @section('content')
-    <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
-            ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
-            ['name' => trans('content.personalcab'), 'url' => false]
-            ]
-        )
-        )
+         ['url'=> 'head','name'=>trans('content.main'),'showDisplay'=>'none'],
+         ['name' => trans('content.personalcab'), 'url' => false]
+         ]
+     )
+     )
     <div class="row cabinet-buttons">
         <div class="col-xs-11 col-md-11 header-tabs">
             <ul class="nav nav-tabs">
@@ -42,29 +41,8 @@
                 @endif
             </ul>
         </div>
-        <!-- Add new: -Vac -Comp -Res.  Line  -->
-        {{--<div class="col-md-4 hidden-xs hidden-sm add-list-group-nav-tab padding-left-cab">--}}
-            {{--<ul class="list-inline">--}}
-                {{--<li class="list-unstyled_plus" style="padding: 0;">--}}
-                    {{--<span class="glyphicon glyphicon-plus"></span>--}}
-                    {{--<span class="add">{{ trans('navtab.add') }}</span>--}}
-                {{--</li>--}}
-                {{--<li class="list-unstyled_vacansy">--}}
-                    {{--<a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy') }}</a>--}}
-                {{--</li>--}}
-                {{--<li class="list-unstyled_company">--}}
-                    {{--<a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a>--}}
-                {{--</li>--}}
-                {{--<li class="list-unstyled_resume">--}}
-                    {{--<a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a>--}}
-                {{--</li>--}}
-                {{--<li class="list-unstyled_resume">--}}
-                    {{--<a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-        <!-- Add new: -Vac -Comp -Res. +dropdown -->
-        <div class="col-xs-1 {{--hidden-md hidden-lg--}} dropdown plus-dropdn">
+
+        <div class="col-xs-1 dropdown plus-dropdn">
 
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="true">
@@ -81,42 +59,16 @@
         </div>
     </div>
 
-
-    <div class="contentAjax">
-        @yield('contents')
+    <div class="content">
+        Всі консультації
+        <div id="calendar"></div>
     </div>
+    <script src='{{ asset('/js/fullcalendar/fullcalendar.min.js') }}'></script>
+    <script src='{{ asset('/js/initCalendar.js') }}'></script>
     <script>
-        $(document).ready(function () {
-
-            $('li[role="presentation"] a').click(function (e) {
-                e.preventDefault();
-                var href = $(this).attr('href');
-
-                getContent(href, true);
-            });
-            window.addEventListener('popstate', function (e) {
-                getContent(location.pathname, false);
-                $('a[href*="' + location.pathname + '"]').focus();
-
-            });
+        $(document).ready(function() {
+            initCalendar('#calendar');
         });
 
-        function getContent(url, addEntry) {
-            $.get(url).done(function (data) {
-
-                $.ajax({
-                    url: url,
-                    success: function (data) {
-                        $('.contentAjax').show().html(data);
-                    }
-                });
-
-                if (addEntry) {
-                    // Добавляем запись в историю, используя pushState
-                    history.pushState(null, null, url);
-                }
-            });
-        }
     </script>
-
 @stop
