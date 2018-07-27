@@ -6,6 +6,7 @@
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
+
             <div class="form-group row">
                 <label for="telephone" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.phone') }}
@@ -78,18 +79,28 @@
                 </div>
             </div>
 
-            <div class="row">
-                <label for="description" class="col-md-3 col-sm-3 label-text-company">
-                    Виберiть дату:
+            <div class="form-group row">
+                <label for="time_start" class="col-md-3 col-sm-5 label-text-company">
+                    Виберiть початкову дату:
                 </label>
-                <div class="col-md-5 block-calendar">
-                    <div style="overflow:hidden;">
-                        <div class="form-group">
-                            <div id="datetimepicker"></div>
-                        </div>
-                    </div>
+                <div class='input-group date col-md-5 col-sm-6' id='datetimepicker6'>
+                    <input type='text' class="form-control" name="time_start" id="time_start"
+                           value="{{old('time_start')}}"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label for="time_end" class="col-md-3 col-sm-5 label-text-company">
+                    Виберiть кiнцеву дату:
+                </label>
+                <div class='input-group date col-md-5 col-sm-6' id='datetimepicker7'>
+                    <input type='text' class="form-control" name="time_end" id="time_end"
+                           value="{{old('time_end')}}"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+
 
             <div class="form-group row">
                 <div class="col-md-5">
@@ -108,3 +119,4 @@
         </form>
     </div>
 @stop
+
