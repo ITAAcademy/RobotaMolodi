@@ -3,15 +3,24 @@ function initCalendar(selector) {
     $(selector).fullCalendar({
 
         eventClick: function(calEvent, jsEvent, view) {
-            console.log(calEvent);
+            //console.log(calEvent);
 
             $('#dialog').dialog('open');
 
             var starttime = new Date(calEvent.start._i);
+
             var endtime = new Date(calEvent.end._i);
             $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
             $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
             $('#ui-id-1').text('Детальніше');
+           // var long = endtime - starttime;
+            //console.log(long);
+        },
+        eventMouseover: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#4196f2');
+        },
+        eventMouseout: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#3348ce');
         },
 
         firstDay: 1,
@@ -38,6 +47,8 @@ function initCalendar(selector) {
         eventOrder: 'start',
         themeSystem: 'bootstrap3',
         displayEventEnd: true,
+        eventBackgroundColor: '#3348ce',
+
 
 
         events: function (start, end, timezone, callback) {
@@ -51,17 +62,17 @@ function initCalendar(selector) {
                     if (Array.isArray(doc)){
                          events = doc.map(function (item) {
                             return {
-                                //title: item.consults_id,
-                                start: item.date,
+
+                                start: item.time_start,
                                 end: item.time_end,
                             }
                         })
                 }else{
-                       // console.log("not array");
+
                         events.push(
                             {
-                                //title: doc.consults_id,
-                                start: doc.date,
+
+                                start: doc.time_start,
                                 end: doc.time_end,
 
                             }
