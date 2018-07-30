@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
+use Auth;
 use App\Consult;
-use App\Models\Resume;
 use App\Models\City;
 use App\Models\Industry;
-use Auth;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
+use Illuminate\Http\Request;
+use App\Models\TimeConsultation;
 
 class ConsultsController extends Controller
 {
@@ -28,27 +23,26 @@ class ConsultsController extends Controller
 
 
     public function showConsult(Request $request)
-{
-    // return view('consult.show');
-}
+    {
+        // return view('consult.show');
+    }
 
     public function show($id)
     {
         $consultant = Consult::find($id);
 
 
-        return view('consult.show',compact('consultant', $consultant));
-            //->with('consultant',$consultant);
+        return view('consult.show', compact('consultant', $consultant));
+        //->with('consultant',$consultant);
 
-}
+    }
 
 
-
-public function create()
+    public function create()
     {
-            $cities = City::all();
-            $industries = Industry::all();
-            return view('consult.create',['cities' => $cities, 'industries' => $industries]);
+        $cities = City::all();
+        $industries = Industry::all();
+        return view('consult.create', ['cities' => $cities, 'industries' => $industries]);
     }
 
     /**
@@ -59,15 +53,18 @@ public function create()
 
     public function store(Request $request)
     {
-     //   dd($request);
-
-        $consult = new Consult($request->all());
+        $consult = new Consult($request->except(["time_start", "time_end"]));
         $consult->save();
+        //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
+
+        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->consult_id]));
+        $timeConsultation->save();
+
         return redirect('sconsult');
     }
 
 }
-
+//
 //public function index($id){
 //    $events = Consult::find($id)->events();
 //    if($request->isAjax()){
