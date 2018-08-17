@@ -7,8 +7,9 @@ use Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Consult;
+use App\Models\Consult;
 use App\Models\TimeConsultation;
+use Illuminate\Support\Facades\Auth;
 
 
 class ConsultEventsController extends Controller
@@ -18,11 +19,14 @@ class ConsultEventsController extends Controller
      *
      * @return Response
      */
+    const PER_PAGE = 15;
     public function index()
     {
-        $consultant = Consult:: with(['timeConsult'])->get();
+        $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
+            ->with('timeConsult')
+            ->paginate(self::PER_PAGE);
 //        $timeConsult= TimeConsultation::all();
-//        dd($consultant);
+ //      dd($consultant);
         if (Request::ajax()) {
             return view('event.index')->with('consultant', $consultant);
 //            , 'timeConsult', $timeConsult
@@ -39,5 +43,6 @@ class ConsultEventsController extends Controller
             return json_encode($consultant);
        //}
     }
+
 
 }

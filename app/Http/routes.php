@@ -201,6 +201,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //
 Route::get('/consult/{id}/events', 'ConsultEventsController@show');
 Route::get('/events', 'ConsultEventsController@index');
+Route::delete('/events', 'ConsultEventsController@destroy');
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
 Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
