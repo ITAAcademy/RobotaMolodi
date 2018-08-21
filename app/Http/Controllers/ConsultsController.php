@@ -7,6 +7,7 @@ use App\Consult;
 use App\Models\City;
 use App\Models\Industry;
 use Illuminate\Http\Request;
+use Illuminate\Database\Query\Builder;
 use App\Models\TimeConsultation;
 
 class ConsultsController extends Controller
@@ -45,20 +46,25 @@ class ConsultsController extends Controller
         return view('consult.create', ['cities' => $cities, 'industries' => $industries]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $consult = new Consult($request->except(["time_start", "time_end"]));
-        $consult->save();
-        //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
-        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->consult_id]));
-        $timeConsultation->save();
+//        transaction()
+
+        foreach ($request->consultation_times as $key => $value) {
+
+            $timeConsultation = new TimeConsultation(['time_start'=> json_decode($value)->time_start, 'time_end' => json_decode($value)->time_end, "consults_id" => $consult->consult_id]);
+
+            $timeConsultation->save();
+        }
+
+        $consult->save();
 
         return redirect('sconsult');
     }
