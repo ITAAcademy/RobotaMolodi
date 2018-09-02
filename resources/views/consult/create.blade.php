@@ -6,6 +6,7 @@
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
+
             <div class="form-group row">
                 <label for="telephone" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.phone') }}
@@ -23,13 +24,13 @@
                 <div class="col-md-5 col-sm-5">
                     <select class="inputPlace2" id="city_id" name="city">
                         @foreach($cities as $city)
-                                <option value="{{$city->name}}">{{$city->name}}</option>
+                            <option value="{{$city->name}}">{{$city->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 {{--<div class="col-md-5">--}}
-                    {{--<input type="text" placeholder="{{ trans('main.city') }}" class="form-control" name="city"--}}
-                           {{--value="{{ old('city') }}">--}}
+                {{--<input type="text" placeholder="{{ trans('main.city') }}" class="form-control" name="city"--}}
+                {{--value="{{ old('city') }}">--}}
                 {{--</div>--}}
             </div>
 
@@ -40,13 +41,13 @@
                 <div class="col-md-5 col-sm-5">
                     <select class="inputPlace2" id="industry_id" name="area">
                         @foreach($industries as $industry)
-                                <option value="{{$industry->name}}">{{$industry->name}}</option>
+                            <option value="{{$industry->name}}">{{$industry->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 {{--<div class="col-md-5">--}}
-                    {{--<input type="text" placeholder="{{ trans('main.area') }}" class="form-control" name="area"--}}
-                           {{--value="{{ old('area') }}">--}}
+                {{--<input type="text" placeholder="{{ trans('main.area') }}" class="form-control" name="area"--}}
+                {{--value="{{ old('area') }}">--}}
                 {{--</div>--}}
             </div>
 
@@ -61,26 +62,50 @@
             </div>
 
             {{--<div class="form-group">--}}
-                {{--<div class="col-md-5">--}}
-                    {{--<input type="text" placeholder="Вартість консультації" class="form-control" name="cost"--}}
-                           {{--value="{{ old('cost') }}">--}}
-                {{--</div>--}}
+            {{--<div class="col-md-5">--}}
+            {{--<input type="text" placeholder="Вартість консультації" class="form-control" name="cost"--}}
+            {{--value="{{ old('cost') }}">--}}
+            {{--</div>--}}
             {{--</div>--}}
 
-            <div class="form-group row row">
+            <div class="form-group row">
                 <label for="description" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.description') }}
                 </label>
                 <div class="col-md-5">
-                    <textarea rows="5" cols="40" placeholder="{{ trans('main.description') }}" class="form-control" name="description"
-                           value="{{ old('description') }}"></textarea>
+                    <textarea rows="5" cols="40" placeholder="{{ trans('main.description') }}" class="form-control"
+                              name="description"
+                              value="{{ old('description') }}"></textarea>
                 </div>
             </div>
 
             <div class="form-group row">
+                <label for="time_start" class="col-md-3 col-sm-5 label-text-company">
+                    Виберiть початкову дату:
+                </label>
+                <div class='input-group date col-md-5 col-sm-6' id='datetimepicker6'>
+                    <input type='text' class="form-control" name="time_start" id="time_start"
+                           value="{{old('time_start')}}"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="time_end" class="col-md-3 col-sm-5 label-text-company">
+                    Виберiть кiнцеву дату:
+                </label>
+                <div class='input-group date col-md-5 col-sm-6' id='datetimepicker7'>
+                    <input type='text' class="form-control" name="time_end" id="time_end"
+                           value="{{old('time_end')}}"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="img">Ваш аватар Ще не працює</label>
-                    <input id="image" type="file"  name="img">
+                    <label for="img">Ваш аватар ще не працює</label>
+                    <input id="image" type="file" name="img">
                 </div>
             </div>
 
@@ -94,3 +119,4 @@
         </form>
     </div>
 @stop
+

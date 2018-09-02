@@ -1,13 +1,14 @@
 {{--{!! $companies->render(new App\Presenters\BootstrapTwoPresenter($companies)) !!}--}}
 <link href="{{ asset('/css/cabinet/cabinetMyResVacCom.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/project/project.css') }}" rel="stylesheet">
 
 {{--{!!Form::open(['route' => 'projectDestroy', 'method' => 'post', 'name' => 'filthForm', 'id' => 'aform'])!!}--}}
 {{--<input type="hidden" name="filterName" id="filterName" xmlns="http://www.w3.org/1999/html"/>--}}
 {{--<input type = "hidden" name = "filterValue" id = "filterValue"/>--}}
 {{--{!!Form::close()!!}--}}
 {{--<h1>Projects</h1>--}}
-@foreach($projects as $project)
+@forelse ($projects as $project)
     <div class="one-for-cabinet">
         <div class="row">
             <div class="col-xs-12 col-md-2">
@@ -74,7 +75,9 @@
         </div>
     </div>
     <hr class="line-sort-box">
-@endforeach
+@empty
+    <li><a href="{{ route('project.create') }}" > {{ trans('project.addProject') }}</a></li>
+@endforelse
 
 {{--{!! $projects->render(new App\Presenters\BootstrapTwoPresenter($projects)) !!}--}}
 

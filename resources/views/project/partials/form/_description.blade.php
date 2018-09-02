@@ -10,7 +10,7 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('industry_id', trans('project/description.industry'), ['class' => 'col-sm-4 control-label']) !!}
+    {!! Form::label('industry_id', trans('project/description.industry'), ['class' => 'col-sm-4 control-label ']) !!}
     <div class="col-sm-8">
         {!! Form::select('industry_id', $industries, null, ['class' => 'form-control', 'required' => '']) !!}
         @if($project->getError('industry_id'))

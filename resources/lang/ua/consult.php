@@ -14,4 +14,5 @@ return [
     'resume' => 'Резюме >>>',
     'consult' => 'Радник: ',
     'experience' => 'Досвід',
+    'myconsults' => 'Консультації',
 ];
