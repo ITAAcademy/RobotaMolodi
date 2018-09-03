@@ -34,8 +34,7 @@
                             <div class="col-xs-2 case-img">
                                 <i class="fa vacancy">&#xf0b1;</i>
                             </div>
-
-                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
+                            <a href="#calendar">{{ trans('vacancy.plan_consultation') }}</a>
                         </div>
                     </div>
 
@@ -116,16 +115,16 @@
                     <div class="form-group">
                         <span>Час початку: </span>
                         <span id="spstart"></span>
-                        {{--<label for="start">Начало события</label>--}}
-                        {{--<input type="text" class="form-control datepicker" id="start" placeholder="Начало события">--}}
+
                     </div>
                     <div class="form-group">
                         <span>Час закінчення: </span>
                         <span id="spend"></span>
-                        {{--<label for="end">Конец события</label>--}}
-                        {{--<input type="text" class="form-control datepicker" id="end" placeholder="Конец события">--}}
+
                     </div>
-                    {{--<button type="submit" class="btn btn-success">Добавить событие</button>--}}
+
+                    <button type="submit" class="btn btn-success" >{{ trans('consult.plan') }}</button>
+
                 </form>
 
             </div>
