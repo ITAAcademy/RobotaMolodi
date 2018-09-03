@@ -2,6 +2,26 @@ function initCalendar(selector) {
 
     $(selector).fullCalendar({
 
+        eventClick: function(calEvent, jsEvent, view) {
+            //console.log(calEvent);
+
+            $('#dialog').dialog('open');
+
+            var starttime = new Date(calEvent.start._i);
+
+            var endtime = new Date(calEvent.end._i);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
+            $('#ui-id-1').text('Детальніше');
+           // var long = endtime - starttime;
+            //console.log(long);
+        },
+        eventMouseover: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#4196f2');
+        },
+        eventMouseout: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#3348ce');
+        },
 
         firstDay: 1,
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
@@ -23,6 +43,13 @@ function initCalendar(selector) {
             week: "Тиждень",
             day: "День"
         },
+        timeFormat: 'h:mm',
+        eventOrder: 'start',
+        themeSystem: 'bootstrap3',
+        displayEventEnd: true,
+        eventBackgroundColor: '#3348ce',
+
+
 
         events: function (start, end, timezone, callback) {
             $.ajax({
@@ -30,18 +57,52 @@ function initCalendar(selector) {
                 type: "GET",
                 dataType: 'json',
                 success: function (doc) {
-                   console.log(doc);
-                     var events = doc.map(function (item) {
-                         return {
-                             title: item.consult_id,
-                             start: item.created_at,
-                                }
-                    })
+                    console.log(doc);
+                    var events = [];
+                    if (Array.isArray(doc)){
+                         events = doc.map(function (item) {
+                            return {
+
+                                start: item.time_start,
+                                end: item.time_end,
+                            }
+                        })
+                }else{
+
+                        events.push(
+                            {
+
+                                start: doc.time_start,
+                                end: doc.time_end,
+
+                            }
+                        )
+                    }
 
                     callback(events);
+
                 }
             });
         }
 
+
     });
+
+    $('#dialog').dialog({
+        autoOpen: false,
+    show: {
+        effect: 'drop',
+        duration: 500
+    },
+    hide: {
+        effect: 'clip',
+        duration: 500
+    }
+
+    });
+
+    $(".ui-dialog-titlebar-close").html("<span>X</span>");
+
+
+
 }

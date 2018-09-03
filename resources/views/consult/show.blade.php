@@ -105,6 +105,30 @@
 
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
+            <div id="dialog">
+                <form>
+                    {{--<div class="form-group">--}}
+                        {{--<span>Радник: </span>--}}
+                        {{--<span id="sptitle"></span>--}}
+                        {{--<label for="title">Название события</label>--}}
+                        {{--<input type="text" class="form-control" id="title" placeholder="Название события">--}}
+                    {{--</div>--}}
+                    <div class="form-group">
+                        <span>Час початку: </span>
+                        <span id="spstart"></span>
+                        {{--<label for="start">Начало события</label>--}}
+                        {{--<input type="text" class="form-control datepicker" id="start" placeholder="Начало события">--}}
+                    </div>
+                    <div class="form-group">
+                        <span>Час закінчення: </span>
+                        <span id="spend"></span>
+                        {{--<label for="end">Конец события</label>--}}
+                        {{--<input type="text" class="form-control datepicker" id="end" placeholder="Конец события">--}}
+                    </div>
+                    {{--<button type="submit" class="btn btn-success">Добавить событие</button>--}}
+                </form>
+
+            </div>
          </div>
         <br>
     </div>
@@ -113,7 +137,6 @@
     <script>
         $(document).ready(function() {
              initCalendar('#calendar');
-
         });
 
     </script>
