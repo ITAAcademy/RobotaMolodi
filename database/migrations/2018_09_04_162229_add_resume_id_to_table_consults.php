@@ -14,6 +14,7 @@ class AddResumeIdToTableConsults extends Migration
     {
         Schema::table('consults', function ($table) {
             $table->integer('resume_id')->unsigned()->nullable();
+            $table->foreign('resume_id')->references('id')->on('resumes');
         });
     }
 
