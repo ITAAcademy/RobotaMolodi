@@ -80,24 +80,9 @@ function initCalendar(selector) {
                     }
 
                     callback(events);
-
                 }
             });
         }
-
-
-    });
-
-    $('#dialog').dialog({
-        autoOpen: false,
-    show: {
-        effect: 'drop',
-        duration: 500
-    },
-    hide: {
-        effect: 'clip',
-        duration: 500
-    }
 
     });
 

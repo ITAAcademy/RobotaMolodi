@@ -16,4 +16,7 @@ class Consult extends Model
     public function timeConsult(){
         return $this->hasMany('App\Models\TimeConsultation', 'consults_id');
     }
+    public function resume(){
+        return $this->belongsTo('App\Models\Resume', 'resume_id','id');
+    }
 }

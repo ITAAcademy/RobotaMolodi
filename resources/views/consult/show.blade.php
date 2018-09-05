@@ -34,7 +34,8 @@
                             <div class="col-xs-2 case-img">
                                 <i class="fa vacancy">&#xf0b1;</i>
                             </div>
-                            <a href="#calendar">{{ trans('vacancy.plan_consultation') }}</a>
+
+                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
                         </div>
                     </div>
 

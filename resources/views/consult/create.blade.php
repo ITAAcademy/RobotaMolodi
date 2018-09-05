@@ -101,6 +101,29 @@
                 </div>
             </div>
 
+            @if(!$resumes->isEmpty())
+            <div class="form-group row">
+                <label for="resume" class="col-md-3 col-sm-3 label-text-company">
+                    {{ trans('main.resume') }}
+                </label>
+                <div class="col-md-5 col-sm-5">
+                    <select class="inputPlace2" id="resume_id" name="resume">
+                        @foreach($resumes as $resume)
+                            <option value="{{$resume->id}}">{{$resume->position}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            @else
+            <div class="form-group row">
+                <div class="col-md-5">
+                    <label>У Вас ще немає резюме</label><br>
+                    <a href="{{action("ResumeController@create")}}">
+                        <button type="button"  class="btn btn-green btn-large">Створити резюме</button>
+                    </a>
+                </div>
+            </div>
+            @endif
 
             <div class="form-group row">
                 <div class="col-md-5">
