@@ -11,6 +11,6 @@ class TimeConsultation extends Model
     protected $fillable = ['consults_id', 'time_start', 'time_end'];
 
     public function consults(){
-        return $this->belongsTo('App\Consult');
+        return $this->belongsTo('App\Models\Consult');
     }
 }

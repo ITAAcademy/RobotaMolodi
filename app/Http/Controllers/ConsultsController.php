@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Consult;
+use App\Models\Consult;
 use App\Models\City;
 use App\Models\Industry;
 use Illuminate\Http\Request;
@@ -64,12 +64,22 @@ class ConsultsController extends Controller
         dd($consult);
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
-        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->consult_id]));
+        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->id]));
         $timeConsultation->save();
 
         return redirect('sconsult');
     }
 
+
+
+    public function destroy($id)
+    {
+        $data = Consult::find($id);
+
+            $data->timeConsult()->delete();
+            $data->delete();
+        return redirect('events');
+    }
 }
 //
 //public function index($id){
