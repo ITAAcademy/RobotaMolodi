@@ -38,11 +38,18 @@ class ConsultEventsController extends Controller
 
     public function show($id)
     {
-        $consultant = Consult::all();
+        $consultant = TimeConsultation::where('consults_id', $id)
+            ->get();
         //if($request->isAjax()){
             return json_encode($consultant);
        //}
     }
 
+    public function store(Request $request)
+    {
+        //dd($request->all());
+
+        //return "Success!";
+    }
 
 }
