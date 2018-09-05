@@ -43,9 +43,7 @@ class ConsultsController extends Controller
     {
         $cities = City::all();
         $industries = Industry::all();
-        $id= Auth::user()->id;
-        $resumes = Resume::where('user_id', $id)->orderBy('created_at', 'desc')
-            ->get();
+        $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
         return view('consult.create', ['cities' => $cities, 'industries' => $industries])->with('resumes', $resumes);
     }
 
@@ -57,9 +55,8 @@ class ConsultsController extends Controller
 
     public function store(Request $request)
     {
-        $resumeId = $request->input('resume');
         $consult = new Consult($request->except(["time_start", "time_end"]));
-        $consult->resume_id = $resumeId;
+        $consult->resume_id = $request->input('resume');
         $consult->save();
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 

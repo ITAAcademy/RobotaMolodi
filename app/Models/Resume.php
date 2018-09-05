@@ -14,8 +14,8 @@ class Resume extends Model {
     public function rates(){
        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
     }
-    public function resume(){
-        return $this->hasOne('App\Consult', 'resume_id', 'id');
+    public function consult(){
+        return $this->hasOne('App\Models\Consult', 'resume_id', 'id');
     }
 
     public function rated(){
