@@ -5,8 +5,8 @@
     @include('newDesign.scrollup')
     @include('newDesign/aboutUs/show')
     @include('newDesign/navTab/navTab')
-<div class="content">
-    Всі радники кар'єри
+    <div class="content">
+        Всі радники кар'єри
 
-</div>
+    </div>
 @stop

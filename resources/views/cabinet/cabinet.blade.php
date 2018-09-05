@@ -35,7 +35,7 @@
                             {{ trans('resume.myprojects') }}
                         </a></li>
                     <li role="presentation">
-                        <a class="link-project" href={{url('/consult/events')}}>
+                        <a class="link-project" href={{url('/events')}}>
                             <span>{!! Html::image('image/alladvisors.png') !!}</span>
                             {{ trans('consult.myconsults') }}
                         </a></li>

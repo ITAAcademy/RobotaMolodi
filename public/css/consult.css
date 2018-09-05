@@ -130,10 +130,7 @@
 #calendar .fc-day:hover{
     background: #fcf8e3;
 }
-#calendar  th{
+#calendar .fc-day-header .fc-widget-header .fc-sun th{
     padding: 5px ;
     font-size: 14px;
-}
-#calendar .fc-content{
-    color: orange;
 }

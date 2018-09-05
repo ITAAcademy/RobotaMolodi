@@ -3,18 +3,18 @@ function initCalendar(selector) {
     $(selector).fullCalendar({
 
         eventClick: function(calEvent, jsEvent, view) {
-            //console.log(calEvent);
+            console.log(calEvent);
 
             $('#dialog').dialog('open');
 
             var starttime = new Date(calEvent.start._i);
 
             var endtime = new Date(calEvent.end._i);
-            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
-            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
-            $('#ui-id-1').text('Детальніше');
-           // var long = endtime - starttime;
-            //console.log(long);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes()+'0');
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes()+'0');
+            $('#starts-at').val(starttime);
+            $('#ends-at').val(endtime);
+
         },
         eventMouseover: function( event, jsEvent, view ) {
             $(this).css('background-color', '#4196f2');
@@ -62,7 +62,7 @@ function initCalendar(selector) {
                     if (Array.isArray(doc)){
                          events = doc.map(function (item) {
                             return {
-
+                                name: item.consults_id,
                                 start: item.time_start,
                                 end: item.time_end,
                             }
@@ -71,7 +71,7 @@ function initCalendar(selector) {
 
                         events.push(
                             {
-
+                                name: item.consults_id,
                                 start: doc.time_start,
                                 end: doc.time_end,
 
@@ -102,6 +102,27 @@ function initCalendar(selector) {
     });
 
     $(".ui-dialog-titlebar-close").html("<span>X</span>");
+
+    $('#submitButton').on('click', function(e) {
+        e.preventDefault()
+        var cons = $('#cons_id').val();
+        var begin = $('#starts-at').val();
+        var fin = $('#ends-at').val();
+        //alert(begin);
+
+        $.ajax({
+            url: '/submitsconsult',
+            type: "POST",
+            data: {
+
+
+
+            },
+
+
+
+            });
+        });
 
 
 

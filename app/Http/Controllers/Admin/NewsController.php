@@ -32,7 +32,6 @@ class NewsController extends Controller
         $news = new News;
         $this->helperSave($news,$request);
         Session::flash('flash_message', 'news successfully created!');
-        if($news->img!='Not picture') ImageCompress::tinifyImage($news->getPath() . $news->img);
         return redirect()->route('admin.news.index');
     }
 

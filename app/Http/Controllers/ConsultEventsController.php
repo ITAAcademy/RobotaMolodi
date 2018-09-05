@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+//use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Consult;
+use App\Models\Consult;
 use App\Models\TimeConsultation;
+use Illuminate\Support\Facades\Auth;
+
 
 class ConsultEventsController extends Controller
 {
@@ -16,24 +19,37 @@ class ConsultEventsController extends Controller
      *
      * @return Response
      */
+    const PER_PAGE = 15;
     public function index()
     {
-        //
-        //$consultant = Consult::all();
-        //if($request->isAjax()){
-        //return json_encode($consultant);
-        //}
+        $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
+            ->with('timeConsult')
+            ->paginate(self::PER_PAGE);
+//        $timeConsult= TimeConsultation::all();
+ //      dd($consultant);
+        if (Request::ajax()) {
+            return view('event.index')->with('consultant', $consultant);
+//            , 'timeConsult', $timeConsult
+        } else {
+            return view('event._index')->with('consultant', $consultant);
+        }
     }
 
 
     public function show($id)
     {
         $consultant = TimeConsultation::where('consults_id', $id)
-                       ->get();
-
+            ->get();
         //if($request->isAjax()){
             return json_encode($consultant);
        //}
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request->all());
+
+        //return "Success!";
     }
 
 }

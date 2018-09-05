@@ -104,14 +104,10 @@
 
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
+            {{--<div id="resp"></div>--}}
             <div id="dialog">
-                <form>
-                    {{--<div class="form-group">--}}
-                        {{--<span>Радник: </span>--}}
-                        {{--<span id="sptitle"></span>--}}
-                        {{--<label for="title">Название события</label>--}}
-                        {{--<input type="text" class="form-control" id="title" placeholder="Название события">--}}
-                    {{--</div>--}}
+                <form id="submitEventForm"  >
+
                     <div class="form-group">
                         <span>Час початку: </span>
                         <span id="spstart"></span>
@@ -123,7 +119,12 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-success" >{{ trans('consult.plan') }}</button>
+                    <div class="form-group">
+                    <input type="hidden"  id="cons_id" value="{{$consultant->id}}">
+                        <input type="hidden"  id="starts-at" >
+                        <input type="hidden" id="ends-at"  >
+                    </div>
+                    <button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>
 
                 </form>
 
@@ -136,6 +137,7 @@
     <script>
         $(document).ready(function() {
              initCalendar('#calendar');
+
         });
 
     </script>

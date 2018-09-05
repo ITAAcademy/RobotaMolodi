@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +14,6 @@ class Consult extends Model
     }
 
     public function timeConsult(){
-        return $this->hasMany('App\Models\TimeConsultation', 'consults_id', 'id');
+        return $this->hasMany('App\Models\TimeConsultation', 'consults_id');
     }
 }

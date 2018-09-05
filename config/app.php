@@ -144,6 +144,9 @@ return [
 		 Laravel\Socialite\SocialiteServiceProvider::class,
 
 
+		'Laravel\Socialite\SocialiteServiceProvider',
+		 Laravel\Socialite\SocialiteServiceProvider::class,
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -205,7 +208,6 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
 
 	],
 
