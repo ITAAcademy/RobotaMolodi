@@ -61,7 +61,6 @@ class ConsultsController extends Controller
         $consult = new Consult($request->except(["time_start", "time_end"]));
         $consult->resume_id = $resumeId;
         $consult->save();
-        dd($consult);
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
         $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->id]));
