@@ -38,10 +38,10 @@ class ConsultEventsController extends Controller
 
     public function show($id)
     {
-        $consultant = TimeConsultation::where('consults_id', $id)
+        $timeConsultations = TimeConsultation::where('consults_id', $id)
             ->get();
         //if($request->isAjax()){
-            return json_encode($consultant);
+            return json_encode($timeConsultations);
        //}
     }
 

@@ -10,8 +10,8 @@ function initCalendar(selector) {
             var starttime = new Date(calEvent.start._i);
 
             var endtime = new Date(calEvent.end._i);
-            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes()+'0');
-            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes()+'0');
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
             $('#starts-at').val(starttime);
             $('#ends-at').val(endtime);
 
@@ -86,6 +86,22 @@ function initCalendar(selector) {
 
     });
 
+
+
+    $("#dialog").dialog({
+        autoOpen: false,
+        height: 200,
+        width: 300,
+        modal: true,
+        my: "center",
+        at: "center",
+        of: window,
+        close : function(){
+            // functionality goes here
+        }
+
+    });
+
     $(".ui-dialog-titlebar-close").html("<span>X</span>");
 
     $('#submitButton').on('click', function(e) {
@@ -96,7 +112,7 @@ function initCalendar(selector) {
         //alert(begin);
 
         $.ajax({
-            url: '/submitsconsult',
+            url: '/consult',
             type: "POST",
             data: {
 
@@ -107,6 +123,7 @@ function initCalendar(selector) {
 
 
             });
+        $('#dialog').dialog('close');
         });
 
 

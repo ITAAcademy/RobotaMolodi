@@ -200,7 +200,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //Route::get('/filter',['as' => 'filter' , 'uses' => 'MainController@filters']);
 //
 Route::get('/consult/{id}/events', 'ConsultEventsController@show');
-Route::post('/submitsconsult', 'ConsultEventsController@store');
+Route::post('/consult', 'ConsultEventsController@store');
 Route::get('/events', 'ConsultEventsController@index');
 Route::delete('/events', 'ConsultEventsController@destroy');
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);

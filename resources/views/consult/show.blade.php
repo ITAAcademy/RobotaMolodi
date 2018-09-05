@@ -105,9 +105,9 @@
 
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
-            {{--<div id="resp"></div>--}}
-            <div id="dialog">
-                <form id="submitEventForm"  >
+
+            <div id="dialog" >
+                <form   >
 
                     <div class="form-group">
                         <span>Час початку: </span>
