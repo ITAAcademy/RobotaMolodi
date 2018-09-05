@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use App\Models\TimeConsultation;
+use App\Models\Resume;
 
 class ConsultsController extends Controller
 {
@@ -42,7 +43,10 @@ class ConsultsController extends Controller
     {
         $cities = City::all();
         $industries = Industry::all();
-        return view('consult.create', ['cities' => $cities, 'industries' => $industries]);
+        $id= Auth::user()->id;
+        $resumes = Resume::where('user_id', $id)->orderBy('created_at', 'desc')
+            ->get();
+        return view('consult.create', ['cities' => $cities, 'industries' => $industries])->with('resumes', $resumes);
     }
 
     /**
@@ -53,8 +57,11 @@ class ConsultsController extends Controller
 
     public function store(Request $request)
     {
+        $resumeId = $request->input('resume');
         $consult = new Consult($request->except(["time_start", "time_end"]));
+        $consult->resume_id = $resumeId;
         $consult->save();
+        dd($consult);
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
         $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->consult_id]));
