@@ -12,8 +12,9 @@ function initCalendar(selector) {
             var endtime = new Date(calEvent.end._i);
             $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
             $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
-            $('#starts-at').val(starttime);
-            $('#ends-at').val(endtime);
+            //$('#starts-at').val(starttime);
+            //$('#ends-at').val(endtime);
+            $('#time_cons_id').val(calEvent.time_id);
 
         },
         eventMouseover: function( event, jsEvent, view ) {
@@ -62,7 +63,7 @@ function initCalendar(selector) {
                     if (Array.isArray(doc)){
                          events = doc.map(function (item) {
                             return {
-                                name: item.consults_id,
+                                time_id: item.id,
                                 start: item.time_start,
                                 end: item.time_end,
                             }
@@ -71,7 +72,7 @@ function initCalendar(selector) {
 
                         events.push(
                             {
-                                name: item.consults_id,
+                                time_id: item.id,
                                 start: doc.time_start,
                                 end: doc.time_end,
 
@@ -106,20 +107,21 @@ function initCalendar(selector) {
 
     $('#submitButton').on('click', function(e) {
         e.preventDefault()
-        var cons = $('#cons_id').val();
-        var begin = $('#starts-at').val();
-        var fin = $('#ends-at').val();
-        //alert(begin);
+        // var cons = $('#cons_id').val();
+        // var begin = $('#starts-at').val();
+        // var fin = $('#ends-at').val();
+        var confirmedCons = $('#time_cons_id').val();
+        //alert(confirmedCons);
 
         $.ajax({
             url: '/consult',
             type: "POST",
-            data: {
+            data: confirmedCons,
 
-
-
-            },
-
+            //dataType: 'json',
+            success: function (doc) {
+                console.log(doc);
+            }
 
 
             });

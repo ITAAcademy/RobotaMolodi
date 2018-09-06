@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ConfirmedConsultation;
 use Request;
 //use Illuminate\Http\Request;
 
@@ -47,9 +48,16 @@ class ConsultEventsController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->all());
 
-        //return "Success!";
+
+//        $confirmedCons = new ConfirmedConsultation;
+//        $confirmedCons->time_consultation_id = $request->confirmedCons;
+
+
+//        $confirmedCons->user_id = Auth::user();
+//        $confirmedCons->save();
+
+        //return $request;
     }
 
 }

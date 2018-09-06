@@ -121,9 +121,9 @@
                     </div>
 
                     <div class="form-group">
-                    <input type="hidden"  id="cons_id" value="{{$consultant->id}}">
-                        <input type="hidden"  id="starts-at" >
-                        <input type="hidden" id="ends-at"  >
+                    <input type="hidden"  id="time_cons_id" >
+                        {{--<input type="hidden"  id="starts-at" >--}}
+                        {{--<input type="hidden" id="ends-at"  >--}}
                     </div>
                     <button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>
 
