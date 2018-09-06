@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-//use Illuminate\Http\Request;
+//use Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Consult;
 use App\Models\TimeConsultation;
 use Illuminate\Support\Facades\Auth;
+use App\Models\City;
+use App\Models\Industry;
 
 
 class ConsultEventsController extends Controller
@@ -19,15 +21,15 @@ class ConsultEventsController extends Controller
      *
      * @return Response
      */
-    const PER_PAGE = 15;
-    public function index()
+    const PER_PAGE = 5;
+    public function index(Request $request)
     {
         $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
             ->with('timeConsult')
             ->paginate(self::PER_PAGE);
 //        $timeConsult= TimeConsultation::all();
  //      dd($consultant);
-        if (Request::ajax()) {
+        if ($request->ajax()) {
             return view('event.index')->with('consultant', $consultant);
 //            , 'timeConsult', $timeConsult
         } else {
@@ -44,5 +46,33 @@ class ConsultEventsController extends Controller
        //}
     }
 
+    public function edit($id)
+    {
+        $cities = City::all();
+        $industries = Industry::all();
+        $consultant = Consult::with('timeConsult') -> find($id);
+        return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries]);
+    }
+
+    public function update(Request $request, $id)
+    {
+     //   dd ($request);
+        $consult = Consult::find($id);
+        $consult->telephone=$request->get('telephone');
+        $consult->city=$request->get('city');
+        $consult->area=$request->get('area');
+        $consult->position=$request->get('position');
+        $consult->description=$request->get('description');
+        $consult->save();
+
+        $time_id=$request->get('time_id');
+
+        $timeConsultation = TimeConsultation::find($time_id);
+        $timeConsultation->time_start = $request->get('time_start');
+        $timeConsultation->time_end = $request->get('time_end');
+        $timeConsultation->save();
+
+        return redirect('events');
+    }
 
 }

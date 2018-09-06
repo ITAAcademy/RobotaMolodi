@@ -55,6 +55,7 @@
                 <li><a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a></li>
                 <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a></li>
                 <li><a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a></li>
+                <li><a href="{{route('sconsult.create')}}">{{ trans('navtab.advisor')  }}</a></li>
             </ul>
         </div>
     </div>
@@ -64,11 +65,11 @@
 <?php //  dd($consultant)  ?>
         <div class="row">
             <!-- header -->
-            <div class=" col-md-2 col-sm-4 col-xs-12"><h5>Початок консультації</h5></div>
-            <div class=" col-md-2 col-sm-4 col-xs-12 "><h5>Кінець консультації</h5></div>
-            <div class=" col-md-1 col-sm-3 col-xs-4 "><h5>Місто </h5></div>
-            <div class=" col-md-3 col-sm-6 col-xs-4"><h5>Галузь </h5></div>
-            <div class=" col-md-1 col-sm-3 col-xs-4"><h5>Посада </h5></div>
+            <div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>
+            <div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>
+            <div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>
+            <div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>
+            <div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>
             {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
             {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
             {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
@@ -88,7 +89,7 @@
                         <div>{{$timeConsult->time_end}}</div>
                      @endforeach
                 </div>
-                <div class=" col-md-1 col-sm-3 col-xs-4">
+                <div class=" col-md-2 col-sm-3 col-xs-4">
                     <div>{{$consult->city}}</div>
                 </div>
                 <div class=" col-md-3 col-sm-6 col-xs-4">
@@ -98,10 +99,27 @@
                     <div>{{$consult->position}}</div>
                 </div>
                 <div class=" col-md-1 col-sm-3 col-xs-4">
+                    {{--<form action="{{ action('ConsultEventsController@edit') }}">--}}
+                        {{--<button type="submit" class=" fa orange-button">Редагувати</button>--}}
+                    {{--</form>--}}
+                    <a class="fa orange-button" href="{{action('ConsultEventsController@edit', $consult['id'])}}">
+                        {{--{!! Html::image('image/edit.png', 'del') !!}--}}
+                        <span>&#xf044;{{ trans('main.edit') }}</span>
+                    </a>
 
-                    {!! Form::open(['method' => 'DELETE','route' => ['sconsult.destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
-                    {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                    {!! Form::close() !!}
+                    {{--<div><a href="{{action('ConsultEventsController@edit', $consult['id'])}}" class=" fa orange-button">Редагувати</a></div>--}}
+                </div>
+
+                <div class=" col-md-1 col-sm-3 col-xs-4">
+                    <a class="fa orange-button" href="{{action('ConsultEventsController@destroy', $consult['id'])}}" onclick="return ConfirmDelete();">
+                        <span>&#xf014;{{ trans('main.delete') }}</span>
+                    </a>
+
+                    {{----}}
+                    {{----}}
+                    {{--{!! Form::open(['method' => 'DELETE','route' => ['sconsult.destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}--}}
+                    {{--{!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}--}}
+                    {{--{!! Form::close() !!}--}}
 
 
                 </div>
@@ -112,3 +130,15 @@
     </div>
 
 @stop
+
+<script>
+    function ConfirmDelete() {
+        var conf = confirm("Ви дійсно хочете видалити радника?");
+
+        if(conf){
+            return true;
+        } else{
+            return false;
+        }
+    }
+</script>
