@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Consult;
+use App\Models\Consult;
 use App\Models\City;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use App\Models\TimeConsultation;
+use App\Models\Resume;
 
 class ConsultsController extends Controller
 {
@@ -46,7 +47,8 @@ class ConsultsController extends Controller
     {
         $cities = City::all();
         $industries = Industry::all();
-        return view('consult.create', ['cities' => $cities, 'industries' => $industries]);
+        $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
+        return view('consult.create', ['cities' => $cities, 'industries' => $industries])->with('resumes', $resumes);
     }
 
     /**
@@ -58,15 +60,26 @@ class ConsultsController extends Controller
     public function store(Request $request)
     {
         $consult = new Consult($request->except(["time_start", "time_end"]));
+        $consult->resume_id = $request->input('resume');
         $consult->save();
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
-        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->consult_id]));
+        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->id]));
         $timeConsultation->save();
 
         return redirect('sconsult');
     }
 
+
+
+    public function destroy($id)
+    {
+        $data = Consult::find($id);
+
+            $data->timeConsult()->delete();
+            $data->delete();
+        return redirect('events');
+    }
 }
 //
 //public function index($id){

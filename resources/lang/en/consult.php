@@ -15,5 +15,6 @@ return [
     'consult' => 'Consultant: ',
     'experience' => 'Experience',
     'myconsults' => 'Сonsultation',
+    'plan' => 'schedule a consultation',
 
 ];

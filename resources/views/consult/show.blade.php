@@ -105,6 +105,31 @@
 
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
+            {{--<div id="resp"></div>--}}
+            <div id="dialog">
+                <form id="submitEventForm"  >
+
+                    <div class="form-group">
+                        <span>Час початку: </span>
+                        <span id="spstart"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <span>Час закінчення: </span>
+                        <span id="spend"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                    <input type="hidden"  id="cons_id" value="{{$consultant->id}}">
+                        <input type="hidden"  id="starts-at" >
+                        <input type="hidden" id="ends-at"  >
+                    </div>
+                    <button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>
+
+                </form>
+
+            </div>
          </div>
         <br>
     </div>
