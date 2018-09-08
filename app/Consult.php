@@ -9,7 +9,7 @@ class Consult extends Model
 {
     protected $fillable  = ['consult_id', 'telephone', 'city', 'area', 'position', 'description'];
 
-    public function consult(){
+    public function user(){
         return $this->belongsTo('App\Models\User', 'consult_id','id');
     }
 

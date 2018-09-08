@@ -18,7 +18,11 @@ class ConsultsController extends Controller
      */
     public function index()
     {
-        return view('newDesign.consults.index');
+//        $u = new Consult();
+//        $consultants=$u->user()->name->get();
+        $consultants= Consult::with('user')->get();
+//        dd($consultants);
+        return view('newDesign.consults.index', ['consultants' => $consultants]);
     }
 
 
