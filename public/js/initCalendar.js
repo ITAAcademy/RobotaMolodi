@@ -10,10 +10,11 @@ function initCalendar(selector) {
             var starttime = new Date(calEvent.start._i);
 
             var endtime = new Date(calEvent.end._i);
-            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes()+'0');
-            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes()+'0');
-            $('#starts-at').val(starttime);
-            $('#ends-at').val(endtime);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
+            //$('#starts-at').val(starttime);
+            //$('#ends-at').val(endtime);
+            $('#time_consultation_id').val(calEvent.time_id);
 
         },
         eventMouseover: function( event, jsEvent, view ) {
@@ -62,7 +63,7 @@ function initCalendar(selector) {
                     if (Array.isArray(doc)){
                          events = doc.map(function (item) {
                             return {
-                                name: item.consults_id,
+                                time_id: item.id,
                                 start: item.time_start,
                                 end: item.time_end,
                             }
@@ -71,7 +72,7 @@ function initCalendar(selector) {
 
                         events.push(
                             {
-                                name: item.consults_id,
+                                time_id: item.id,
                                 start: doc.time_start,
                                 end: doc.time_end,
 
@@ -86,27 +87,50 @@ function initCalendar(selector) {
 
     });
 
+
+
+    $("#dialog").dialog({
+        autoOpen: false,
+        height: 200,
+        width: 300,
+        modal: true,
+        my: "center",
+        at: "center",
+        of: window,
+        close : function(){
+            // functionality goes here
+        }
+
+    });
+
+
     $(".ui-dialog-titlebar-close").html("<span>X</span>");
 
     $('#submitButton').on('click', function(e) {
         e.preventDefault()
-        var cons = $('#cons_id').val();
-        var begin = $('#starts-at').val();
-        var fin = $('#ends-at').val();
-        //alert(begin);
+        // var cons = $('#cons_id').val();
+        // var begin = $('#starts-at').val();
+        // var fin = $('#ends-at').val();
+        var time_consultation_id = $('#time_consultation_id').val();
+
+        // alert( token);
 
         $.ajax({
-            url: '/submitsconsult',
+            url: '/consult',
             type: "POST",
-            data: {
-
-
-
-            },
-
+             data:  {
+                 'time_consultation_id': time_consultation_id,
+             },
+            dataType: 'json',
+            success: function (respond) {
+                if(respond){
+                    alert(respond );
+                }
+            }
 
 
             });
+        $('#dialog').dialog('close');
         });
 
 

@@ -92,7 +92,7 @@
                             {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
                     </div>
                     <div class="conslink">
-                        <a  href='javascript:alert( {{ trans('main.dosent') }} )' class='alfa'>{{ trans('consult.resume') }} </a>
+                        <a  href='/resume/{{$consultant->resume_id}}' class='alfa'>{{ trans('consult.resume') }} </a>
                     </div>
 
                 </div>
@@ -105,9 +105,9 @@
 
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
-            {{--<div id="resp"></div>--}}
-            <div id="dialog">
-                <form id="submitEventForm"  >
+
+            <div id="dialog" >
+                <form  id="submForm" >
 
                     <div class="form-group">
                         <span>Час початку: </span>
@@ -121,9 +121,10 @@
                     </div>
 
                     <div class="form-group">
-                    <input type="hidden"  id="cons_id" value="{{$consultant->id}}">
-                        <input type="hidden"  id="starts-at" >
-                        <input type="hidden" id="ends-at"  >
+                    <input type="hidden"  id="time_consultation_id" >
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                        {{--<input type="hidden"  id="starts-at" >--}}
+                        {{--<input type="hidden" id="ends-at"  >--}}
                     </div>
                     <button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>
 

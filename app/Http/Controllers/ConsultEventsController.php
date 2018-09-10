@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-//use Illuminate\Http\Request;
+use App\Models\ConfirmedConsultation;
+//use Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -38,18 +39,22 @@ class ConsultEventsController extends Controller
 
     public function show($id)
     {
-        $consultant = TimeConsultation::where('consults_id', $id)
+        $timeConsultations = TimeConsultation::where('consults_id', $id)
             ->get();
         //if($request->isAjax()){
-            return json_encode($consultant);
+            return json_encode($timeConsultations);
        //}
     }
 
     public function store(Request $request)
     {
-        //dd($request->all());
 
-        //return "Success!";
+
+      $confirmedCons = ConfirmedConsultation::create($request->all());
+      $confirmedCons->user_id = Auth::user()->id;
+      $confirmedCons->save();
+
+        return json_encode("Registration completed successfully.") ;
     }
 
 }
