@@ -14,7 +14,7 @@ function initCalendar(selector) {
             $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
             //$('#starts-at').val(starttime);
             //$('#ends-at').val(endtime);
-            $('#time_cons_id').val(calEvent.time_id);
+            $('#time_consultation_id').val(calEvent.time_id);
 
         },
         eventMouseover: function( event, jsEvent, view ) {
@@ -103,6 +103,7 @@ function initCalendar(selector) {
 
     });
 
+
     $(".ui-dialog-titlebar-close").html("<span>X</span>");
 
     $('#submitButton').on('click', function(e) {
@@ -110,17 +111,21 @@ function initCalendar(selector) {
         // var cons = $('#cons_id').val();
         // var begin = $('#starts-at').val();
         // var fin = $('#ends-at').val();
-        var confirmedCons = $('#time_cons_id').val();
-        //alert(confirmedCons);
+        var time_consultation_id = $('#time_consultation_id').val();
+
+        // alert( token);
 
         $.ajax({
             url: '/consult',
             type: "POST",
-            data: confirmedCons,
-
-            //dataType: 'json',
-            success: function (doc) {
-                console.log(doc);
+             data:  {
+                 'time_consultation_id': time_consultation_id,
+             },
+            dataType: 'json',
+            success: function (respond) {
+                if(respond){
+                    alert(respond );
+                }
             }
 
 

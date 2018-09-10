@@ -16,5 +16,6 @@ return [
     'experience' => 'Experience',
     'myconsults' => 'Сonsultation',
     'plan' => 'schedule a consultation',
+    'confirmed' => 'Success registration to the consultation',
 
 ];

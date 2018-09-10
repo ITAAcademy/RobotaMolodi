@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\ConfirmedConsultation;
-use Request;
-//use Illuminate\Http\Request;
+use App\Models\ConfirmedConsultation;
+//use Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -50,14 +50,11 @@ class ConsultEventsController extends Controller
     {
 
 
-//        $confirmedCons = new ConfirmedConsultation;
-//        $confirmedCons->time_consultation_id = $request->confirmedCons;
+      $confirmedCons = ConfirmedConsultation::create($request->all());
+      $confirmedCons->user_id = Auth::user()->id;
+      $confirmedCons->save();
 
-
-//        $confirmedCons->user_id = Auth::user();
-//        $confirmedCons->save();
-
-        //return $request;
+        return json_encode("Registration completed successfully.") ;
     }
 
 }
