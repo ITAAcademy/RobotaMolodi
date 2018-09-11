@@ -99,29 +99,14 @@
                     <div>{{$consult->position}}</div>
                 </div>
                 <div class=" col-md-1 col-sm-3 col-xs-4">
-                    {{--<form action="{{ action('ConsultEventsController@edit') }}">--}}
-                        {{--<button type="submit" class=" fa orange-button">Редагувати</button>--}}
-                    {{--</form>--}}
-                    <a class="fa orange-button" href="{{action('ConsultEventsController@edit', $consult['id'])}}">
-                        {{--{!! Html::image('image/edit.png', 'del') !!}--}}
-                        <span>&#xf044;{{ trans('main.edit') }}</span>
-                    </a>
-
-                    {{--<div><a href="{{action('ConsultEventsController@edit', $consult['id'])}}" class=" fa orange-button">Редагувати</a></div>--}}
+                    <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
+                        <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
+                    </form>
                 </div>
-
                 <div class=" col-md-1 col-sm-3 col-xs-4">
-                    <a class="fa orange-button" href="{{action('ConsultEventsController@destroy', $consult['id'])}}" onclick="return ConfirmDelete();">
-                        <span>&#xf014;{{ trans('main.delete') }}</span>
-                    </a>
-
-                    {{----}}
-                    {{----}}
-                    {{--{!! Form::open(['method' => 'DELETE','route' => ['sconsult.destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}--}}
-                    {{--{!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}--}}
-                    {{--{!! Form::close() !!}--}}
-
-
+                    {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
+                    {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
             {{--@endif--}}
@@ -131,14 +116,14 @@
 
 @stop
 
-<script>
-    function ConfirmDelete() {
-        var conf = confirm("Ви дійсно хочете видалити радника?");
+{{--<script>--}}
+    {{--function ConfirmDelete() {--}}
+        {{--var conf = confirm("Ви дійсно хочете видалити радника?");--}}
 
-        if(conf){
-            return true;
-        } else{
-            return false;
-        }
-    }
-</script>
+        {{--if(conf){--}}
+            {{--return true;--}}
+        {{--} else{--}}
+            {{--return false;--}}
+        {{--}--}}
+    {{--}--}}
+{{--</script>--}}

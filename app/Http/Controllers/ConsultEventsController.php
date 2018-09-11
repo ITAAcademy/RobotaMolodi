@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
 //use Request;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Consult;
@@ -12,8 +9,6 @@ use App\Models\TimeConsultation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Industry;
-
-
 class ConsultEventsController extends Controller
 {
     /**
@@ -28,7 +23,7 @@ class ConsultEventsController extends Controller
             ->with('timeConsult')
             ->paginate(self::PER_PAGE);
 //        $timeConsult= TimeConsultation::all();
- //      dd($consultant);
+        //      dd($consultant);
         if ($request->ajax()) {
             return view('event.index')->with('consultant', $consultant);
 //            , 'timeConsult', $timeConsult
@@ -36,21 +31,17 @@ class ConsultEventsController extends Controller
             return view('event._index')->with('consultant', $consultant);
         }
     }
-
-
     public function show($id)
     {
         $consultant = TimeConsultation::where('consults_id', $id)
             ->get();
         //if($request->isAjax()){
-            return json_encode($consultant);
-       //}
+        return json_encode($consultant);
+        //}
     }
-
     public function store(Request $request)
     {
         //dd($request->all());
-
         //return "Success!";
     }
     public function edit($id)
@@ -60,10 +51,9 @@ class ConsultEventsController extends Controller
         $consultant = Consult::with('timeConsult') -> find($id);
         return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries]);
     }
-
     public function update(Request $request, $id)
     {
-     //   dd ($request);
+        //   dd ($request);
         $consult = Consult::find($id);
         $consult->telephone=$request->get('telephone');
         $consult->city=$request->get('city');
@@ -71,15 +61,19 @@ class ConsultEventsController extends Controller
         $consult->position=$request->get('position');
         $consult->description=$request->get('description');
         $consult->save();
-
         $time_id=$request->get('time_id');
-
         $timeConsultation = TimeConsultation::find($time_id);
         $timeConsultation->time_start = $request->get('time_start');
         $timeConsultation->time_end = $request->get('time_end');
         $timeConsultation->save();
-
         return redirect('events');
     }
-
+    public function destroy($id)
+    {
+        $data = Consult::find($id);
+//       dd ($data);
+        $data->timeConsult()->delete();
+        $data->delete();
+        return redirect('events');
+    }
 }

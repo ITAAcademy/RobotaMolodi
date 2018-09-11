@@ -201,7 +201,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //
 Route::get('/consult/{id}/events', 'ConsultEventsController@show');
 //Route::get('/events', 'ConsultEventsController@index');
-Route::resource('/events', 'ConsultEventsController');
+
 Route::post('/submitsconsult', 'ConsultEventsController@store');
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
@@ -224,6 +224,8 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
         'uses' => 'UserController@deleteAvatar']
     );
     Route::resource('/sconsult', 'ConsultsController');
+    Route::resource('/events', 'ConsultEventsController' , ['only' => ['index','edit','update','destroy']]);
+//, ['only' => ['index','edit','update','destroy']]
 });
 
 Route::filter('no-cache',function($route, $request, $response){
