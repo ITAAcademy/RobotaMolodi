@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use Auth;
 use App\Models\Consult;
 use App\Models\City;
@@ -44,7 +45,12 @@ class ConsultsController extends Controller
         $cities = City::all();
         $industries = Industry::all();
         $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
-        return view('consult.create', ['cities' => $cities, 'industries' => $industries])->with('resumes', $resumes);
+        $currencies = Currency::all();
+        return view('consult.create',
+            ['cities' => $cities,
+            'industries' => $industries,
+            'currencies' => $currencies
+        ])->with('resumes', $resumes);
     }
 
     /**
@@ -57,6 +63,8 @@ class ConsultsController extends Controller
     {
         $consult = new Consult($request->except(["time_start", "time_end"]));
         $consult->resume_id = $request->input('resume');
+        $consult->value = $request->value;
+        $consult->currency_id = $request->input('currency');
         $consult->save();
         //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
 
