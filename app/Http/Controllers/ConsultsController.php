@@ -55,6 +55,7 @@ class ConsultsController extends Controller
 
     public function store(Request $request)
     {
+        self::validateData($request);
         $consult = new Consult($request->except(["time_start", "time_end"]));
         $consult->resume_id = $request->input('resume');
         $consult->save();
@@ -75,6 +76,18 @@ class ConsultsController extends Controller
             $data->timeConsult()->delete();
             $data->delete();
         return redirect('events');
+    }
+
+    public function validateData(Request $request){
+        return $request->validate([
+            'telephone' => 'required|integer',
+            'value' => 'required|integer',
+            'position' => 'required|max:255',
+            'description' => 'required|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_ts',
+            'resume' => 'required'
+        ]);
     }
 }
 //

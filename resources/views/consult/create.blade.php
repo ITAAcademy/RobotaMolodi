@@ -1,6 +1,25 @@
 @extends('app')
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
+
+{{--@php--}}
+        {{--$url = url('quizzes/create');--}}
+        {{--$typeDate = "date";--}}
+        {{--$nameButton = " Create ";--}}
+        {{--$namePage = "Input the data";--}}
+        {{--$placeholderName = "Input name of the test.";--}}
+        {{--$placeholderDuration = "Input duration of the test.";--}}
+        {{--$classButton = "btn btn-outline-primary btn-lg btn-block";--}}
+{{--@endphp--}}
+{{--@section('script')--}}
+    {{--@parent--}}
+    {{--@include('layout.scriptsValidate')--}}
+{{--@endsection()--}}
+{{--@section('style')--}}
+    {{--@parent--}}
+    {{--@include('layout.styleValidate')--}}
+{{--@endsection--}}
+
 @section('content')
     <div class="content">
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
