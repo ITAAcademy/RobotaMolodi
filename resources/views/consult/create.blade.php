@@ -61,12 +61,22 @@
                 </div>
             </div>
 
-            {{--<div class="form-group">--}}
-            {{--<div class="col-md-5">--}}
-            {{--<input type="text" placeholder="Вартість консультації" class="form-control" name="cost"--}}
-            {{--value="{{ old('cost') }}">--}}
-            {{--</div>--}}
-            {{--</div>--}}
+            <div class="form-group row">
+                <label for="value" class="col-md-3 col-sm-3 label-text-company">
+                    {{ trans('main.value') }}
+                </label>
+                <div class="col-md-4">
+                    <input type="number" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
+                           value="{{ old('value') }}">
+                </div>
+                <div class="col-sm-1">
+                    <select class="form-control input-sm" id="currency_id" name="currency">
+                        @foreach($currencies as $currency)
+                            <option value="{{$currency->id}}">{{$currency->currency}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
             <div class="form-group row">
                 <label for="description" class="col-md-3 col-sm-3 label-text-company">
