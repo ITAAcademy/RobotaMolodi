@@ -1,27 +1,30 @@
 @extends('app')
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/styleValidation.css') }}" rel="stylesheet">
+<script type="text/javascript" src="{{ asset('/js/consultValidation.js') }}" crossorigin="anonymous" defer></script>
 
-{{--@php--}}
-        {{--$url = url('quizzes/create');--}}
-        {{--$typeDate = "date";--}}
-        {{--$nameButton = " Create ";--}}
-        {{--$namePage = "Input the data";--}}
-        {{--$placeholderName = "Input name of the test.";--}}
-        {{--$placeholderDuration = "Input duration of the test.";--}}
-        {{--$classButton = "btn btn-outline-primary btn-lg btn-block";--}}
-{{--@endphp--}}
+
 {{--@section('script')--}}
     {{--@parent--}}
-    {{--@include('layout.scriptsValidate')--}}
-{{--@endsection()--}}
+    {{--@include('consultValidation.scriptsValidate')--}}
+{{--@endsection--}}
 {{--@section('style')--}}
     {{--@parent--}}
-    {{--@include('layout.styleValidate')--}}
+    {{--@include('consultValidation.styleValidate')--}}
 {{--@endsection--}}
 
 @section('content')
     <div class="content">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
@@ -32,7 +35,7 @@
                 </label>
                 <div class="col-md-5">
                     <input type="text" placeholder="{{ trans('main.phone') }}" class="form-control" name="telephone"
-                           value="{{ old('phone') }}">
+                           value="{{ old('phone') }}" id="telephone">
                 </div>
             </div>
 
@@ -76,7 +79,7 @@
                 </label>
                 <div class="col-md-5">
                     <input type="text" placeholder=" {{ trans('main.position') }}" class="form-control" name="position"
-                           value="{{ old('position') }}">
+                           value="{{ old('position') }}" id="positionCon">
                 </div>
             </div>
 
@@ -86,7 +89,7 @@
                 </label>
                 <div class="col-md-4">
                     <input type="number" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
-                           value="{{ old('value') }}">
+                           value="{{ old('value') }}" id="value">
                 </div>
                 <div class="col-sm-1">
                     <select class="form-control input-sm" id="currency_id" name="currency">
@@ -104,7 +107,7 @@
                 <div class="col-md-5">
                     <textarea rows="5" cols="40" placeholder="{{ trans('main.description') }}" class="form-control"
                               name="description"
-                              value="{{ old('description') }}"></textarea>
+                              value="{{ old('description') }}" id="description"></textarea>
                 </div>
             </div>
 
@@ -132,7 +135,7 @@
 
             @if(!$resumes->isEmpty())
             <div class="form-group row">
-                <label for="resume" class="col-md-3 col-sm-3 label-text-company">
+                <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.resume') }}
                 </label>
                 <div class="col-md-5 col-sm-5">
@@ -163,7 +166,7 @@
 
             <div class="form-group row">
                 <div class="col-md-5">
-                    <button type="submit" tabindex="1" class="btn btn-primary">
+                    <button type="submit" tabindex="1" class="btn btn-primary btn-block">
                         {{ trans('auth.signup') }}
                     </button>
                 </div>

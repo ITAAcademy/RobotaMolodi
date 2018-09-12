@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Currency;
 use Auth;
+use App\Models\Currency;
 use App\Models\Consult;
 use App\Models\City;
 use App\Models\Industry;
@@ -87,15 +87,16 @@ class ConsultsController extends Controller
     }
 
     public function validateData(Request $request){
-        return $request->validate([
+        $validateFields = array([
             'telephone' => 'required|integer',
             'value' => 'required|integer',
             'position' => 'required|max:255',
             'description' => 'required|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_ts',
-            'resume' => 'required'
+            'time_start' => 'required|date',
+            'time_end' => 'required|date|after:time_start',
+//            'resume' => 'required'
         ]);
+        $this->validate($request, $validateFields);
     }
 }
 //
