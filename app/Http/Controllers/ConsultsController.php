@@ -9,6 +9,8 @@ use App\Models\Industry;
 use Illuminate\Http\Request;
 use App\Models\TimeConsultation;
 use App\Models\Resume;
+use App\Models\Vacancy;
+use App\Models\News;
 
 class ConsultsController extends Controller
 {
@@ -17,13 +19,29 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-//        $u = new Consult();
-//        $consultants=$u->user()->name->get();
-        $consultants= Consult::with('user')->get();
-//        dd($consultants);
-        return view('newDesign.consults.index', ['consultants' => $consultants]);
+//dd($request);
+        $consultants= Consult::with('user')->paginate(25);
+        $specialisations = Resume::groupBy('position')->lists('position');
+        if ($request->ajax()) {
+//            return view('newDesign.consults.index', ['consultants' => $consultants]);
+            return view('newDesign.consults.index');
+
+        }
+
+        $topVacancy = Vacancy::getTopVacancies();
+
+        return view('main.filter.filterConsultants', array(
+            'consultants' => $consultants,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations,
+            'news' => News::getNews(),
+            'topVacancy' => $topVacancy,
+        ));
+
+
     }
 
 
