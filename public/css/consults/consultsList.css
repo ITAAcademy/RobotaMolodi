@@ -1,0 +1,113 @@
+#vacImg{
+    border-radius: 7px;
+}
+
+.limit-line-w{
+    border-top: 1px solid darkgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.imeg-companies-list{
+    width: 136px;
+    height: 136px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 3px solid #f26522;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.nologo-companies-list{
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 25%;
+}
+.name-companies-list{
+    color: #4F4F4F;
+    font-size: 24px;
+    font-family: SegoeUIRegular;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+.links-line-companies-list{
+    color: #4F4F4F;
+    text-decoration: none;
+}
+.links-line-companies-list:hover{
+    color: #f68c06;
+    text-decoration: none;
+}
+.links-line-companies-list:focus{
+    color: #f26522;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.links-line :-webkit-any-link{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.read-next-link{
+    text-align: right;
+    color: royalblue;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+    margin-bottom: 0px;
+    text-decoration: none;
+}
+.section-links{
+    max-height: 140px;
+    overflow: hidden;
+}
+.description-companies{
+    margin-left: 15px;
+}
+.content-companies-list{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.oll-companies-list{
+    padding: 0;
+}
+.amount-companies-list{
+    color: #CD2626;
+    font-size: 18px;
+    font-family: SegoeUIRegular;
+}
+.showCompanyVacancies{
+    color: #f68c06;
+    font-size: 14px;
+    font-family: SegoeUIRegular;
+}
+.showCompanyVacancies:hover{
+    color: #f26522;
+}
+.showCompanyVacancies:focus{
+    color: #f26522;
+    text-decoration: none;
+}
+.read-next-link .next-com-list{
+    color: royalblue;
+}
+.read-next-link .next-com-list:hover{
+    color: #f26522;
+}
+.read-next-link .next-com-list:focus{
+    color: #f26522;
+    text-decoration: none;
+}
+
+.description{
+    color: gray;
+}

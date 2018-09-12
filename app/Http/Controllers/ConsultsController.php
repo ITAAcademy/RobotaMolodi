@@ -22,8 +22,9 @@ class ConsultsController extends Controller
      */
     public function index(Request $request)
     {
-//dd($request);
+
         $consultants= Consult::with('user')->paginate(25);
+        //dd($consultants);
         $specialisations = Resume::groupBy('position')->lists('position');
         if ($request->ajax()) {
 //            return view('newDesign.consults.index', ['consultants' => $consultants]);

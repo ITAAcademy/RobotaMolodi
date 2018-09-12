@@ -1,4 +1,5 @@
-<link href="{{ asset('/css/companies/companiesList.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('/css/companies/companiesList.css') }}" rel="stylesheet"> -->
+<link href="{{ asset('/css/consults/consultsList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 <div class="test">
@@ -16,7 +17,9 @@
                     <div class="section-links">
                         <div>
                             <h3 class="name-consultants-list">
-                                <span>{{ $consultant->user->name}}</span>
+                                <span>
+                                  <a  href='/sconsult/{{$consultant->consultid}}'>
+                                    {{ $consultant->user->name}}</a></span>
                             </h3>
                         </div>
                         <div class="ratings">
@@ -24,15 +27,20 @@
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
                                 {{--<span class="findLike" id="{{route('com.rate', $consultant->id)}}_1">{{$consultant->rated()->getLikes($consultant)}}</span>--}}
+                                <span>2</span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
                                 {{--<span class="findDislike" id="{{route('com.rate', $consultant->id)}}_-1">{{$consultant->rated()->getDisLikes($consultant)}}</span>--}}
+                                <span>2</span>
                             </span>
                             <span class="likeError"></span>
                         </div>
                         <div class="row description-companies">
-                            <div>{{strip_tags($consultant->description)}}</div>
+
+                            <div> Галузь:{{($consultant->description)}}</div>
+                            <div>Вартість консультації:{{($consultant->value)}}{{$consultant->currency['currency']}}</div>
+                           <!--  <div>{{$consultant->currency['currency']}}</div> -->
                         </div>
                     </div>
                 </div>
