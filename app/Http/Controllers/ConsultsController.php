@@ -74,16 +74,6 @@ class ConsultsController extends Controller
         return redirect('sconsult');
     }
 
-
-
-    public function destroy($id)
-    {
-        $data = Consult::find($id);
-
-            $data->timeConsult()->delete();
-            $data->delete();
-        return redirect('events');
-    }
 }
 //
 //public function index($id){
