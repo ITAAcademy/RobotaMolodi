@@ -78,9 +78,8 @@
                     </div>
                     <div>
                         <div class=" text_vac">
-                            <span>{{ trans('consult.cost') }}</span>
-                            <span class="seleryvacancy">2000</span>
-                            {{--<span class="seleryvacancy">{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</span> --}}
+                            <span>{{ trans('main.value') }}: </span>
+                            <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currency->currency}}</span>
                         </div>
                     </div>
 
