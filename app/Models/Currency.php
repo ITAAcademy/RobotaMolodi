@@ -21,4 +21,9 @@ class Currency extends Model
         return $this->hasMany('App\Models\Resume', 'currency_id');
     }
 
+    public function consults()
+    {
+        return $this->hasMany('App\Models\Consult', 'currency_id');
+    }
+
 }
