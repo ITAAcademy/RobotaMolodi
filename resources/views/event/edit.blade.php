@@ -15,11 +15,6 @@
                            value="{{$consultant->telephone}}">
                 </div>
             </div>
-<?php  // dd($consultant);
-            $timecons =[];
-            foreach ($consultant->timeConsult as $timeConsult)
-                $timecons = $timeConsult;
-            ?>
             <div class="form-group row">
                 <label for="city" class="col-md-3 col-sm-3 label-text-company">
                     {{ trans('main.city') }}

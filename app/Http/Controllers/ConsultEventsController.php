@@ -61,23 +61,19 @@ class ConsultEventsController extends Controller
         $cities = City::all();
         $industries = Industry::all();
         $consultant = Consult::with('timeConsult') -> find($id);
-        return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries]);
+        $timecons =[];
+        foreach ($consultant->timeConsult as $timeConsult)
+            $timecons = $timeConsult;
+        return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries, 'timecons' => $timecons]);
     }
     public function update(Request $request, $id)
     {
         //   dd ($request);
         $consult = Consult::find($id);
-        $consult->telephone=$request->get('telephone');
-        $consult->city=$request->get('city');
-        $consult->area=$request->get('area');
-        $consult->position=$request->get('position');
-        $consult->description=$request->get('description');
-        $consult->save();
+        $consult->update($request ->all());
         $time_id=$request->get('time_id');
         $timeConsultation = TimeConsultation::find($time_id);
-        $timeConsultation->time_start = $request->get('time_start');
-        $timeConsultation->time_end = $request->get('time_end');
-        $timeConsultation->save();
+        $timeConsultation->update($request ->all());
         return redirect('events');
     }
     public function destroy($id)

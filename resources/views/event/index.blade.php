@@ -4,19 +4,13 @@
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     <div class="content">
         <div class="row">
-            <!-- header -->
             <div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>
             <div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>
             <div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>
             <div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>
             <div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>
-            {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
-            {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
-            {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
-            {{--<div class=" col-md-1 col-sm-2 col-xs-3"></div>--}}
         </div>
         @foreach($consultant as $consult)
-            {{--@if(!is_array($consult))--}}
             <div class="row">
                 <div class=" col-md-2 col-sm-2 col-xs-12">
                     @foreach($consult->timeConsult as $timeConsult)
@@ -49,20 +43,6 @@
                     {!! Form::close() !!}
                 </div>
             </div>
-            {{--@endif--}}
         @endforeach
         <div>{!! $consultant->render() !!}</div>
     </div>
-
-{{--<script>--}}
-    {{--function ConfirmDelete() {--}}
-        {{--var conf = confirm("Ви дійсно хочете видалити радника?");--}}
-
-        {{--if(conf){--}}
-            {{--return true;--}}
-        {{--} else{--}}
-            {{--return false;--}}
-        {{--}--}}
-    {{--}--}}
-{{--</script>--}}
-
