@@ -13,7 +13,7 @@ return [
     'cost' => 'Cost of consultation:',
     'resume' => 'Resume >>>',
     'consult' => 'Consultant: ',
-    'experience' => 'Experience',
+    'experience' => 'Field of expertise',
     'myconsults' => 'Сonsultation',
     'plan' => 'schedule a consultation',
     'confirmed' => 'Success registration to the consultation',

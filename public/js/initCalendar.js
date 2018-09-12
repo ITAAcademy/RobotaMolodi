@@ -5,7 +5,8 @@ function initCalendar(selector) {
         eventClick: function(calEvent, jsEvent, view) {
             console.log(calEvent);
 
-            $('#dialog').dialog('open');
+            //$('#dialog').dialog('open');
+            $('#centralModalWarning').modal('show')
 
             var starttime = new Date(calEvent.start._i);
 
@@ -89,22 +90,22 @@ function initCalendar(selector) {
 
 
 
-    $("#dialog").dialog({
-        autoOpen: false,
-        height: 200,
-        width: 300,
-        modal: true,
-        my: "center",
-        at: "center",
-        of: window,
-        close : function(){
-            // functionality goes here
-        }
+    // $("#dialog").dialog({
+    //     autoOpen: false,
+    //     //height: 200,
+    //    // width: 300,
+    //     modal: true,
+    //     //my: "center",
+    //    // at: "center",
+    //     //of: window,
+    //     close : function(){
+    //         // functionality goes here
+    //     }
+    //
+    // });
 
-    });
 
-
-    $(".ui-dialog-titlebar-close").html("<span>X</span>");
+    //$(".ui-dialog-titlebar-close").html("<span>X</span>");
 
     $('#submitButton').on('click', function(e) {
         e.preventDefault()
