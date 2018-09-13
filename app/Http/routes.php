@@ -61,7 +61,9 @@ Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallba
 Route::any('/',['as' => 'head' ,'uses' => 'MainController@showVacancies']);
 Route::any('sresume',['as' => 'main.resumes','uses' => 'MainController@showResumes']);
 //Route::get('sconsult',['as' => 'main.consult','uses' => 'ConsultsController@showConsults']);
-Route::get('consults', 'ConsultsController@index');
+//Route::get('consults', 'ConsultsController@index');
+//Route::resource('/consults', 'ConsultsController');
+
 Route::get('scompany',['as' => 'main.companies', 'uses' => 'MainController@showCompanies']);
 /////
 Route::any('showVacancies',['as' => 'main.showVacancies', 'uses' => 'MainController@showVacancies'] );
@@ -140,6 +142,7 @@ Route::post('resume/{id}/updateDate',['as' => 'updateResumeDate', 'uses' => 'Res
 Route::get('company/{id}/likeData',['as' => 'com.rate', 'uses' => 'Company\CompanyController@rateCompany', 'middleware'=>'auth']);
 Route::get('vacancy/{id}/likeData',['as' => 'vac.rate', 'uses' => 'Vacancy\VacancyController@rateVacancy', 'middleware'=>'auth']);
 Route::get('resume/{id}/likeData',['as' => 'res.rate', 'uses' => 'ResumeController@rateResume', 'middleware'=>'auth']);
+Route::get('consultant/{id}/likeData',['as' => 'con.rate', 'uses' => 'ConsaltsController@rateConsalts', 'middleware'=>'auth']);
 
 Route::get('vacancy/{vacancy}/response',['as'=>'vacancy.response', 'uses' => 'Vacancy\VacancyController@response']);
 
