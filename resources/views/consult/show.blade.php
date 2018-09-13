@@ -35,7 +35,7 @@
                                 <i class="fa vacancy">&#xf0b1;</i>
                             </div>
 
-                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
+                            <a href="#calendar">{{ trans('vacancy.plan_consultation') }}</a>
                         </div>
                     </div>
 
