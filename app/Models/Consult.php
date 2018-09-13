@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Consult extends Model
 {
     protected $fillable  = ['consult_id', 'telephone', 'city', 'area', 'position', 'description'];
@@ -23,4 +22,14 @@ class Consult extends Model
     {
         return  $this->belongsTo('App\Models\Currency', 'currency_id');
     }
+    public function rated(){
+        return new Rating();
+    }
+      public function rates(){
+        return $this->hasMany('App\Models\Rating', 'object_id', 'id')->where('object_type', substr($this->table, 0, 3));
+    }
+    public function userName(){
+        return $this->user->name;
+    }
 }
+

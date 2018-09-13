@@ -1,47 +1,58 @@
-<!-- <link href="{{ asset('/css/companies/companiesList.css') }}" rel="stylesheet"> -->
+
 <link href="{{ asset('/css/consults/consultsList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 
 <div class="test">
     @foreach($consultants as $consultant)
         <div class="row">
-            <div class="col-xs-12 oll-companies-list">
-                <div class="col-xs-3 imeg-companies-list">
+            <div class="col-xs-12 oll-consults-list">
+                <div class="col-xs-3 imeg-consults-list">
+                   
                     @if(File::exists(public_path('image/consult/' . $consultant->users_id .'/'. $consultant->image)) and $consultant->image != '')
-                        {!! Html::image('image/consult/' . $consultant->users_id .'/'. $consultant->image, 'logo', ['id' => 'conImg', 'width' => '100%', 'height' => '100%']) !!}
+                        {!! Html::image('image/company/' . $consultant->users_id .'/'. $consultant->image, 'logo', ['id' => 'vacImg', 'width' => '100%', 'height' => '100%']) !!}
                     @else
-                        {!! Html::image('image/consultant_tmp.png', 'logo', array('id' => 'conImg', 'width' => '100%', 'height' => '100%')) !!}
+                        {!! Html::image('image/it.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
                     @endif
                 </div>
-                <div class="col-xs-9 content-companies-list">
+                <div class="col-xs-9 content-consults-list">
                     <div class="section-links">
                         <div>
                             <h3 class="name-consultants-list">
                                 <span>
-                                  <a  href='/sconsult/{{$consultant->consultid}}'>
-                                    {{ $consultant->user->name}}</a></span>
+                                  <a  href='/sconsult/{{$consultant->id}}'>
+                                    {{ $consultant->userName()}}</a>
+                                </span>
                             </h3>
                         </div>
                         <div class="ratings">
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
-                                {{--<span class="findLike" id="{{route('com.rate', $consultant->id)}}_1">{{$consultant->rated()->getLikes($consultant)}}</span>--}}
-                                <span>2</span>
+                                <span class="findLike" id="{{route('com.rate', $consultant->id)}}_1"> {{$consultant->rated()->getLikes($consultant)}}</span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
-                                {{--<span class="findDislike" id="{{route('com.rate', $consultant->id)}}_-1">{{$consultant->rated()->getDisLikes($consultant)}}</span>--}}
-                                <span>2</span>
+                                <span class="findDislike" id="{{route('com.rate', $consultant->id)}}_-1">{{$consultant->rated()->getDisLikes($consultant)}}</span>
+                              
                             </span>
                             <span class="likeError"></span>
                         </div>
-                        <div class="row description-companies">
+                        <div class="row description-consultants">
+                        <span> Галузь: {{($consultant->description)}}</span>
+                            </div>
 
-                            <div> Галузь:{{($consultant->description)}}</div>
-                            <div>Вартість консультації:{{($consultant->value)}}{{$consultant->currency['currency']}}</div>
-                           <!--  <div>{{$consultant->currency['currency']}}</div> -->
-                        </div>
+                            <div class="consultations-cost">
+                             <div>Вартість консультації:<span id="value"> {{$consultant->currency['currency']}} {{($consultant->value)}} /час</span></div>
+                            </div>
+                           
+                            <div class="consultations">
+                              <div> <img src="{{ asset('/image/consult.png') }}" align="left"></div> 
+                                  <a href='/sconsult{{$consultant->id}}' > 
+                                         <div class="consultations-planing" > запланувати консультацію</div>
+                                    </a>
+                            </div>
+                         
+                        
                     </div>
                 </div>
                 <hr class="col-xs-12 limit-line-w">

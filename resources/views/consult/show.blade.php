@@ -8,10 +8,9 @@
     <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
 
 @section('content')
-
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
                ['url'=> 'head','name'=>'Головна'],
-               ['name' => trans('consult.consult').$consultant->consult->name , 'url' => false]
+               ['name' => trans('consult.consult').$consultant->userName , 'url' => false]
                ]
            )
            )
@@ -52,7 +51,7 @@
 
                     <div class="panel-headings">
 
-                        <strong> {{$consultant->consult->name}}</strong>
+                        <strong> {{$consultant->userName()}}</strong>
                     </div>
 
 
