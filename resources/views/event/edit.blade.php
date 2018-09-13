@@ -103,7 +103,7 @@
             <input type='hidden' name="time_id" value="{{$timecons->id}}"/>
 
             <div class="form-group row">
-                <div class="col-md-5">
+                <div class="container">
                     <button type="submit" tabindex="1" class="btn-lg fa orange-button">
                         Зберегти
                     </button>
