@@ -46,3 +46,12 @@
     background: none;
     border: none;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+.consult-table{
+    width: 100%;
+    table-layout: fixed;
+}

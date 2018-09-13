@@ -62,48 +62,63 @@
 
     <div class="content">
 
-        <div class="row">
-            <div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>
-            <div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>
-            <div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>
-            <div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>
-            <div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>
-        </div>
+        <table class="table table-striped consult-table">
+            <thead>
+            <tr>
+                <th scope="col">Початок консультації</th>
+                <th scope="col">Кінець консультації</th>
+                <th scope="col">Місто</th>
+                <th scope="col">Галузь</th>
+                {{--<th scope="col">Посада</th>--}}
+                <th scope="col">Редагувати</th>
+                <th scope="col">Видалити</th>
+            </tr>
+            </thead>
+
+        {{--<div class="row">--}}
+            {{--<div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>--}}
+            {{--<div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>--}}
+            {{--<div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>--}}
+            {{--<div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>--}}
+            {{--<div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>--}}
+        {{--</div>--}}
         @foreach($consultant as $consult)
-            <div class="row">
-                <div class=" col-md-2 col-sm-2 col-xs-12">
+          <tbody>
+            <tr scope="row">
+                <td>
                     @foreach($consult->timeConsult as $timeConsult)
                         <div>{{$timeConsult->time_start}}</div>
                     @endforeach
-
-                </div>
-                <div class=" col-md-2 col-sm-4 col-xs-12">
+                </td>
+                <td>
                      @foreach($consult->timeConsult as $timeConsult)
                         <div>{{$timeConsult->time_end}}</div>
                      @endforeach
-                </div>
-                <div class=" col-md-2 col-sm-3 col-xs-4">
+                </td>
+                <td>
                     <div>{{$consult->city}}</div>
-                </div>
-                <div class=" col-md-3 col-sm-6 col-xs-4">
+                </td>
+                <td>
                     <div>{{$consult->area}}</div>
-                </div>
-                <div class=" col-md-1 col-sm-3 col-xs-4">
-                    <div>{{$consult->position}}</div>
-                </div>
-                <div class=" col-md-1 col-sm-3 col-xs-4">
+                </td>
+                {{--<td>--}}
+                    {{--<div>{{$consult->position}}</div>--}}
+                {{--</td>--}}
+                <td>
                     <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
                         <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
                     </form>
-                </div>
-                <div class=" col-md-1 col-sm-3 col-xs-4">
+                </td>
+                <td>
                     {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
                     {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
                     {!! Form::close() !!}
-                </div>
-            </div>
+                </td>
+            </tr>
+          </tbody>
         @endforeach
-        <div>{!! $consultant->render() !!}</div>
+        </table>
+        <div class="container"> {!! $consultant->render() !!}</div>
     </div>
 
 @stop

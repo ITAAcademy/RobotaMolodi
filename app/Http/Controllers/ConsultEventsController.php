@@ -26,11 +26,11 @@ class ConsultEventsController extends Controller
         $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
             ->with('timeConsult')
             ->paginate(self::PER_PAGE);
-//        $timeConsult= TimeConsultation::all();
+
         //      dd($consultant);
         if ($request->ajax()) {
             return view('event.index')->with('consultant', $consultant);
-//            , 'timeConsult', $timeConsult
+
         } else {
             return view('event._index')->with('consultant', $consultant);
         }
@@ -50,11 +50,15 @@ class ConsultEventsController extends Controller
     {
 
 
-      $confirmedCons = ConfirmedConsultation::create($request->all());
-      $confirmedCons->user_id = Auth::user()->id;
-      $confirmedCons->save();
 
-        return json_encode("Registration completed successfully.") ;
+        if(Auth::user()) {
+            $confirmedCons = ConfirmedConsultation::create($request->all());
+            $confirmedCons->user_id = Auth::user()->id;
+            $confirmedCons->save();
+            return json_encode("Registration completed successfully.");
+        }else{
+            return json_encode("Only available to authorized users! ");
+        }
     }
     public function edit($id)
     {
@@ -79,8 +83,6 @@ class ConsultEventsController extends Controller
     public function destroy($id)
     {
         $data = Consult::find($id);
-//       dd ($data);
-        $data->timeConsult()->delete();
         $data->delete();
         return redirect('events');
     }
