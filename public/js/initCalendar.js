@@ -3,9 +3,10 @@ function initCalendar(selector) {
     $(selector).fullCalendar({
 
         eventClick: function(calEvent, jsEvent, view) {
-            console.log(calEvent);
+           // console.log(calEvent);
 
-            $('#dialog').dialog('open');
+
+            $('#centralModalWarning').modal('show')
 
             var starttime = new Date(calEvent.start._i);
 
@@ -89,23 +90,6 @@ function initCalendar(selector) {
 
 
 
-    $("#dialog").dialog({
-        autoOpen: false,
-        height: 200,
-        width: 300,
-        modal: true,
-        my: "center",
-        at: "center",
-        of: window,
-        close : function(){
-            // functionality goes here
-        }
-
-    });
-
-
-    $(".ui-dialog-titlebar-close").html("<span>X</span>");
-
     $('#submitButton').on('click', function(e) {
         e.preventDefault()
         // var cons = $('#cons_id').val();
@@ -113,7 +97,7 @@ function initCalendar(selector) {
         // var fin = $('#ends-at').val();
         var time_consultation_id = $('#time_consultation_id').val();
 
-        // alert( token);
+         //alert( time_consultation_id);
 
         $.ajax({
             url: '/consult',
@@ -130,7 +114,7 @@ function initCalendar(selector) {
 
 
             });
-        $('#dialog').dialog('close');
+        $('#centralModalWarning').modal('hide');
         });
 
 

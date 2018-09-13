@@ -50,11 +50,15 @@ class ConsultEventsController extends Controller
     {
 
 
-      $confirmedCons = ConfirmedConsultation::create($request->all());
-      $confirmedCons->user_id = Auth::user()->id;
-      $confirmedCons->save();
 
-        return json_encode("Registration completed successfully.") ;
+        if(Auth::user()) {
+            $confirmedCons = ConfirmedConsultation::create($request->all());
+            $confirmedCons->user_id = Auth::user()->id;
+            $confirmedCons->save();
+            return json_encode("Registration completed successfully.");
+        }else{
+            return json_encode("Only available to authorized users! ");
+        }
     }
     public function edit($id)
     {
