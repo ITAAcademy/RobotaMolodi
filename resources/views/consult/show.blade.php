@@ -123,46 +123,28 @@
                         <div class="modal-body">
                             <div class="text-center">
                                 {{--<i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>--}}
-                                <p id="spstart"></p>
-                                <p id="spend"></p>
+                                <p >{{ trans('consult.possibility') }} {{$consultant->consult->name}} {{ trans('consult.confirm') }} </p>
+                               {{--<p id="spstart"></p>--}}
+                                {{--<p id="spend"></p>--}}
                             </div>
                         </div>
 
                         <!--Footer-->
                         <div class="modal-footer justify-content-center">
-                            {{--<a type="button" class="btn btn-warning">Get it now <i class="fa fa-diamond ml-1"></i></a>--}}
-                            <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+                            <form>
+                                <input type="hidden"  id="time_consultation_id" >
+                                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                <button type="submit" class="btn btn-warning" id="submitButton">{{ trans('consult.action') }}<i class="fa fa-calendar-plus-o"></i></button>
+                                {{--<a type="button" class="btn btn-warning">{{ trans('consult.action') }} <i class="fa fa-calendar-plus-o"></i></a>--}}
+                                <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+                            </form>
                         </div>
                     </div>
                     <!--/.Content-->
                 </div>
             </div>
             <!-- Central Modal Medium Warning-->
-            {{--<div id="dialog" >--}}
-                {{--<form  id="submForm" >--}}
 
-                    {{--<div class="form-group">--}}
-                        {{--<span>Час початку: </span>--}}
-                        {{--<span id="spstart"></span>--}}
-
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<span>Час закінчення: </span>--}}
-                        {{--<span id="spend"></span>--}}
-
-                    {{--</div>--}}
-
-                    {{--<div class="form-group">--}}
-                    {{--<input type="hidden"  id="time_consultation_id" >--}}
-                        {{--<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />--}}
-                        {{--<input type="hidden"  id="starts-at" >--}}
-                        {{--<input type="hidden" id="ends-at"  >--}}
-                    {{--</div>--}}
-                    {{--<button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>--}}
-
-                {{--</form>--}}
-
-            {{--</div>--}}
          </div>
         <br>
     </div>
