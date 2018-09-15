@@ -5,15 +5,15 @@
     @foreach($vacancies as $vacancy)
 
                 <div>
-                <div class="section">
-                    <a class="links ib-block" href="/vacancy/{{$vacancy->id}}">
-                        <h3>{{ $vacancy->position}}</h3>
-                    </a>
-                    <h4>
-                        <strong>{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</strong>
-                    </h4>
-                    <p class="text-left"> {{strip_tags($vacancy->description)}} </p>
-                </div>
+                        <div class="section">
+                            <a class="links ib-block" href="/vacancy/{{$vacancy->id}}">
+                                <h3>{{ $vacancy->position}}</h3>
+                            </a>
+                            <h4>
+                                <strong>{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</strong>
+                            </h4>
+                            <p class="text-left"> {{strip_tags($vacancy->description)}} </p>
+                        </div>
 
                 <div class="section-link__right">
                    <a class="links ib-block" href="/vacancy/{{$vacancy->id}}">

@@ -8,10 +8,9 @@
     <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
 
 @section('content')
-
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
                ['url'=> 'head','name'=>'Головна'],
-               ['name' => trans('consult.consult').$consultant->consult->name , 'url' => false]
+               ['name' => trans('consult.consult').$consultant->userName , 'url' => false]
                ]
            )
            )
@@ -35,7 +34,7 @@
                                 <i class="fa vacancy">&#xf0b1;</i>
                             </div>
 
-                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
+                            <a href="#calendar">{{ trans('vacancy.plan_consultation') }}</a>
                         </div>
                     </div>
 
@@ -52,7 +51,7 @@
 
                     <div class="panel-headings">
 
-                        <strong> {{$consultant->consult->name}}</strong>
+                        <strong> {{$consultant->userName()}}</strong>
                     </div>
 
 
@@ -76,19 +75,19 @@
                             {{--{!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
                         </div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <div class=" text_vac">
                             <span>{{ trans('main.value') }}: </span>
                             <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currency->currency}}</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div>
                         <div class="descriptionStyle">
                             <span class="anagraph">{{ trans('consult.experience') }} </span>
                             <br>
                             <span>{{$consultant->description}}</span>
-                            {{--{!! strip_tags($vacancy->description, '<em><a><s><p><span><b><ul><ol><li><strong><h1><h2><h3><h4><h5><blockquote><body><table><tr><td>') !!}</div>--}}
+                           
                     </div>
                     <div class="conslink">
                         <a  href='/resume/{{$consultant->resume_id}}' class='alfa'>{{ trans('consult.resume') }} </a>
@@ -105,31 +104,46 @@
         <div class="row">
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
 
-            <div id="dialog" >
-                <form  id="submForm" >
+            <!-- Central Modal Medium Warning -->
+            <div class="modal fade" id="centralModalWarning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-notify modal-warning" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+                        <!--Header-->
+                        <div class="modal-header">
+                            {{--<p class="heading lead">Modal Warning</p>--}}
 
-                    <div class="form-group">
-                        <span>Час початку: </span>
-                        <span id="spstart"></span>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="white-text">&times;</span>
+                            </button>
+                        </div>
 
+                        <!--Body-->
+                        <div class="modal-body">
+                            <div class="text-center">
+                                {{--<i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>--}}
+                                <p >{{ trans('consult.possibility') }} {{$consultant->consult->name}} {{ trans('consult.confirm') }} </p>
+                               {{--<p id="spstart"></p>--}}
+                                {{--<p id="spend"></p>--}}
+                            </div>
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center">
+                            <form>
+                                <input type="hidden"  id="time_consultation_id" >
+                                <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                                <button type="submit" class="btn btn-warning" id="submitButton">{{ trans('consult.action') }}<i class="fa fa-calendar-plus-o"></i></button>
+                                {{--<a type="button" class="btn btn-warning">{{ trans('consult.action') }} <i class="fa fa-calendar-plus-o"></i></a>--}}
+                                <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span>Час закінчення: </span>
-                        <span id="spend"></span>
-
-                    </div>
-
-                    <div class="form-group">
-                    <input type="hidden"  id="time_consultation_id" >
-                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                        {{--<input type="hidden"  id="starts-at" >--}}
-                        {{--<input type="hidden" id="ends-at"  >--}}
-                    </div>
-                    <button type="submit" class="btn btn-success" id="submitButton">{{ trans('consult.plan') }}</button>
-
-                </form>
-
+                    <!--/.Content-->
+                </div>
             </div>
+            <!-- Central Modal Medium Warning-->
+
          </div>
         <br>
     </div>

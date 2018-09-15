@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="{{Request::path() == 'consults' ? 'active' : ''}}">
-                <a href="{{url('consults')}}">
+                <a href="{{url('sconsult')}}">
                     <img src="{{asset('/image/alladvisors.png')}}">
                     {{ trans('navtab.alladvisor')  }}
                 </a>

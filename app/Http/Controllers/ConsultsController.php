@@ -10,6 +10,9 @@ use App\Models\Industry;
 use Illuminate\Http\Request;
 use App\Models\TimeConsultation;
 use App\Models\Resume;
+use App\Models\Vacancy;
+use App\Models\News;
+use App\Models\Rating;
 
 class ConsultsController extends Controller
 {
@@ -18,9 +21,30 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('newDesign.consults.index');
+
+        $consultants= Consult::with('user')->paginate(5);
+        //dd($consultants);
+        $specialisations = Resume::groupBy('position')->lists('position');
+        if ($request->ajax()) {
+           return view('newDesign.consults.index', ['consultants' => $consultants]);
+            // return view('newDesign.consults.index');
+
+        }
+
+        $topVacancy = Vacancy::getTopVacancies();
+
+        return view('main.filter.filterConsultants', array(
+            'consultants' => $consultants,
+            'cities' => City::all(),
+            'industries' => Industry::all(),
+            'specialisations' => $specialisations,
+            'news' => News::getNews(),
+            'topVacancy' => $topVacancy,
+        ));
+
+
     }
 
 
@@ -73,6 +97,23 @@ class ConsultsController extends Controller
 
         return redirect('sconsult');
     }
+
+        public function rateConsult($id, Request $request)
+    {
+        $consultant  = Consult::find($id);
+        if(Rating::isValid($request->all())){
+            $mark = $request->mark;
+            Rating::addRate($mark, $consultant);
+            $countLike = Rating::getLikes($consultant);
+            $countDisLike = Rating::getDislikes($consultant);
+            return ['countLike' => $countLike, 'countDisLike' => $countDisLike];
+        } else {
+            return ['error' => Rating::getErrorsMessages()->first('mark')];
+        }
+    }
+
+
+
 
 }
 //

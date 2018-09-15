@@ -52,4 +52,4 @@
     @include('newDesign.paginator', ['paginator' => $companies])
 </div>
 
-{{--@include('newDesign.jsForFilter')--}}
+@include('newDesign.jsForFilter')
