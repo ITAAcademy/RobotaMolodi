@@ -223,7 +223,6 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
     );
     Route::resource('/sconsult', 'ConsultsController');
     Route::resource('/events', 'ConsultEventsController' , ['only' => ['index','edit','update','destroy']]);
-//, ['only' => ['index','edit','update','destroy']]
 });
 
 Route::filter('no-cache',function($route, $request, $response){
