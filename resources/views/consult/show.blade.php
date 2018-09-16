@@ -10,7 +10,7 @@
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
                ['url'=> 'head','name'=>'Головна'],
-               ['name' => trans('consult.consult').$consultant->userName , 'url' => false]
+               ['name' => trans('consult.consult').$consultant->userName() , 'url' => false]
                ]
            )
            )
@@ -122,7 +122,7 @@
                         <div class="modal-body">
                             <div class="text-center">
                                 {{--<i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>--}}
-                                <p >{{ trans('consult.possibility') }} {{$consultant->consult->name}} {{ trans('consult.confirm') }} </p>
+                                <p >{{ trans('consult.possibility') }} {{$consultant->userName()}} {{ trans('consult.confirm') }} </p>
                                {{--<p id="spstart"></p>--}}
                                 {{--<p id="spend"></p>--}}
                             </div>

@@ -23,17 +23,36 @@ class ConsultEventsController extends Controller
     const PER_PAGE = 5;
     public function index(Request $request)
     {
+        $filter = [
+            'my' => 'my->1'
+        ];
         $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
             ->with('timeConsult')
+            ->with('confirmedConsultation')
             ->paginate(self::PER_PAGE);
 
-        //      dd($consultant);
-        if ($request->ajax()) {
-            return view('event.index')->with('consultant', $consultant);
+        $consultations = ConfirmedConsultation:: where('user_id', '=', Auth::User()->id)
+            ->with('timeConsultation')
+            ->with('user')
+            ->paginate(self::PER_PAGE);
+            dd($consultant);
+        if ($request->has($filter)) {
+            if ($request->ajax()) {
+                return view('event.index')->with('consultant', $consultant);
 
-        } else {
-            return view('event._index')->with('consultant', $consultant);
+            } else {
+                return view('event._index')->with('consultant', $consultant);
+            }
         }
+        else{
+            if ($request->ajax()) {
+                return view('event.index')->with('consultant', $consultant);
+
+            } else {
+                return view('event._index')->with('consultant', $consultant);
+            }
+        }
+
     }
 
 

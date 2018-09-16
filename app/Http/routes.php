@@ -204,7 +204,7 @@ Route::any('resume/{resume}/send_message', 'ResumeController@send_message');
 //
 Route::get('/consult/{id}/events', 'ConsultEventsController@show');
 Route::post('/consult', 'ConsultEventsController@store');
-Route::resource('/sconsult', 'ConsultsController', [ 'only' => ['index', 'show']]);
+Route::resource('/sconsult', 'ConsultsController', [ 'only' => ['index', 'show','create', 'store']]);
 //Route::post('filterVacancy',['as' => 'filter.vacancy' , 'uses' => 'MainController@filterVacancy']);
 
 Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()

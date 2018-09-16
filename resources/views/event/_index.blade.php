@@ -61,6 +61,16 @@
     </div>
 
     <div class="content">
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
+            <a href="{{ url('events' ) }}" type="link" class="fa orange-button" >Всі консультацій</a>
+        </div>
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+            <a href="?my=1" type="link" class="fa orange-button" >Підтвердженні консультації</a>
+        </div>
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+            <a href="?my=2" type="link" class="fa orange-button" >Мої консультації</a>
+        </div>
+        <div class="container"> {!! $consultant->render() !!}</div>
 
         <table class="table table-striped consult-table">
             <thead>
@@ -118,7 +128,6 @@
           </tbody>
         @endforeach
         </table>
-        <div class="container"> {!! $consultant->render() !!}</div>
     </div>
 
 @stop
