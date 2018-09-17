@@ -14,6 +14,7 @@ use App\Models\Vacancy;
 use App\Models\News;
 use App\Models\Rating;
 
+
 class ConsultsController extends Controller
 {
     /**
@@ -57,7 +58,7 @@ class ConsultsController extends Controller
     {
         $consultant = Consult::find($id);
 
-
+            
         return view('consult.show', compact('consultant', $consultant));
         //->with('consultant',$consultant);
 
@@ -100,6 +101,7 @@ class ConsultsController extends Controller
 
         public function rateConsult($id, Request $request)
     {
+
         $consultant  = Consult::find($id);
         if(Rating::isValid($request->all())){
             $mark = $request->mark;
