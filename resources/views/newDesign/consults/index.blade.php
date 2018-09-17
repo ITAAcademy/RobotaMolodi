@@ -24,19 +24,21 @@
                                 </span>
                             </h3>
                         </div>
-                        <div class="ratings">
+
+                         <div class="ratings">
                             <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                             <span class="morph">
+
                                 {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
-                                <span class="findLike" id="{{route('com.rate', $consultant->id)}}_1"> {{$consultant->rated()->getLikes($consultant)}}</span>
+                                <span class="findLike" id="{{route('con.rate', $consultant->id)}}_1">{{$consultant->rated()->getLikes($consultant)}}</span>
                             </span>
                             <span class="morph">
                                 {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
-                                <span class="findDislike" id="{{route('com.rate', $consultant->id)}}_-1">{{$consultant->rated()->getDisLikes($consultant)}}</span>
-                              
+                                <span class="findDislike" id="{{route('con.rate', $consultant->id)}}_-1">{{$consultant->rated()->getDisLikes($consultant)}}</span>
                             </span>
                             <span class="likeError"></span>
                         </div>
+                       
                         <div class="row description-consultants">
                         <span> Галузь: {{($consultant->description)}}</span>
                             </div>
