@@ -67,7 +67,7 @@
                                 <span class="findDislike" >{{$consultant->rating}}</span>
                                 @endif
                         </span>
-                        
+
                     </div>
 
                     <div>
