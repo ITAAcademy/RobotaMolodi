@@ -19,5 +19,6 @@ return [
     'possibility' => 'You have the opportunity to register for a counseling counselor ',
     'confirm' => 'on the hour you chose. Confirm your action.',
     'action' => 'Register ',
+    'attention' => '"Sorry, this functionality is only available from cabinet."',
 
 ];

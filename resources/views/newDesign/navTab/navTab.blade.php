@@ -43,7 +43,7 @@
                 <a href="{{route('company.create')}}">{{ trans('navtab.company')  }}</a>
             </li>
             <li class="list-unstyled_company">
-                <a href="{{route('sconsult.create')}}">{{ trans('navtab.advisor')  }}</a>
+                <a href="javascript:alert( {{ trans('consult.attention') }} )">{{ trans('navtab.advisor')  }}</a>
             </li>
             <li class="list-unstyled_resume">
                 <a href="{{route('resume.create')}}">{{ trans('navtab.resume')  }}</a>
@@ -60,7 +60,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="{{route('vacancy.create')}}">{{ trans('navtab.vacancy')  }}</a></li>
             <li><a href="{{route('company.create')}}">{{ trans('navtab.company')  }}</a></li>
-            <li><a href="{{route('sconsult.create')}}">{{ trans('navtab.advisor')  }}</a></li>
+            <li><a href="javascript:alert( {{ trans('consult.attention') }}  )">{{ trans('navtab.advisor')  }}</a></li>
             <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume')  }}</a></li>
         </ul>
     </div>

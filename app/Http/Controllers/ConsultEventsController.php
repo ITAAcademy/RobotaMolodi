@@ -7,12 +7,14 @@ use App\Models\ConfirmedConsultation;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\StoreConfirmConsultation;
 use App\Http\Controllers\Controller;
 use App\Models\Consult;
 use App\Models\TimeConsultation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Industry;
+
 class ConsultEventsController extends Controller
 {
     /**
@@ -46,19 +48,15 @@ class ConsultEventsController extends Controller
        //}
     }
 
-    public function store(Request $request)
+    public function store(StoreConfirmConsultation $request)
     {
 
+                $confirmedCons = ConfirmedConsultation::create($request->all());
+                $confirmedCons->user_id = Auth::user()->id;
+                $confirmedCons->save();
+                return json_encode("Registration completed successfully.");
 
 
-        if(Auth::user()) {
-            $confirmedCons = ConfirmedConsultation::create($request->all());
-            $confirmedCons->user_id = Auth::user()->id;
-            $confirmedCons->save();
-            return json_encode("Registration completed successfully.");
-        }else{
-            return json_encode("Only available to authorized users! ");
-        }
     }
     public function edit($id)
     {

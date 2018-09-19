@@ -80,7 +80,7 @@
                     <div>
                         <div class=" text_vac">
                             <span>{{ trans('main.value') }}: </span>
-                            <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currency->currency}}</span>
+                            <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currencyName()}}</span>
                         </div>
                     </div>
 
