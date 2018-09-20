@@ -77,9 +77,9 @@
                 <th scope="col">Кінець консультації</th>
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
-                {{--<th scope="col">Посада</th>--}}
-                <th scope="col">Редагувати</th>
-                <th scope="col">Видалити</th>
+                <th scope="col">Посада</th>
+                {{--<th scope="col">Редагувати</th>--}}
+                {{--<th scope="col">Видалити</th>--}}
             </tr>
             </thead>
 
@@ -90,43 +90,53 @@
             {{--<div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>--}}
             {{--<div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>--}}
         {{--</div>--}}
-        @foreach($consultant as $consult)
+{{--            {{dd($consultant)}}--}}
+        @foreach($consultations as $consultation)
+
           <tbody>
             <tr scope="row">
                 <td>
-                    @foreach($consult->timeConsult as $timeConsult)
-                        <div>{{$timeConsult->time_start}}</div>
-                    @endforeach
+                    {{--{{dd($consultant)}}--}}
+                    {{--@foreach($consult->timeConsultation as $timeConsultation)--}}
+                        <div>{{$consultation->timeConsultation->time_start}}</div>
+                    {{--@endforeach--}}
                 </td>
                 <td>
-                     @foreach($consult->timeConsult as $timeConsult)
-                        <div>{{$timeConsult->time_end}}</div>
-                     @endforeach
+                     {{--@foreach($consult->timeConsultation as $timeConsultation)--}}
+                        <div>{{$consultation->timeConsultation->time_end}}</div>
+                     {{--@endforeach--}}
                 </td>
+{{--                {{$consultation->timeConsultation->consults_id}}--}}
+                @foreach($consultants as $consult)
+
+                    @if($consultation->timeConsultation->consults_id==$consult->id)
                 <td>
+
                     <div>{{$consult->city}}</div>
                 </td>
                 <td>
                     <div>{{$consult->area}}</div>
                 </td>
-                {{--<td>--}}
-                    {{--<div>{{$consult->position}}</div>--}}
+                <td>
+                    <div>{{$consult->position}}</div>
+                </td>
+                <td>
+                    @endif
+                        @endforeach
+                    {{--<form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">--}}
+                        {{--<button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>--}}
+                    {{--</form>--}}
                 {{--</td>--}}
                 <td>
-                    <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
-                        <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
-                    </form>
-                </td>
-                <td>
-                    {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
-                    {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                    {!! Form::close() !!}
-                </td>
+                    {{--{!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}--}}
+                    {{--{!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}--}}
+                    {{--{!! Form::close() !!}--}}
+                {{--</td>--}}
             </tr>
           </tbody>
         @endforeach
         </table>
-        <div class="container"> {!! $consultant->render() !!}</div>
+        <div class="container"> {!! $consultations->render() !!}</div>
     </div>
 
 @stop

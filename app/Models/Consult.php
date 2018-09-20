@@ -16,7 +16,8 @@ class Consult extends Model
         return $this->hasMany('App\Models\TimeConsultation', 'consults_id');
     }
     public function confirmedConsultation(){
-        return $this->hasManyThrough('App\Models\ConfirmedConsultation', 'App\Models\TimeConsultation', 'id', 'time_consultation_id', 'consults_id');
+        return $this->hasManyThrough('App\Models\ConfirmedConsultation', 'App\Models\TimeConsultation',
+            'id', 'time_consultation_id', 'consults.consults_id');
     }
     public function resume(){
         return $this->belongsTo('App\Models\Resume', 'resume_id','id');
