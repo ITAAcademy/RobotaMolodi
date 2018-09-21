@@ -78,18 +78,9 @@
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
                 <th scope="col">Посада</th>
-                {{--<th scope="col">Редагувати</th>--}}
-                {{--<th scope="col">Видалити</th>--}}
+                <th scope="col">Видалити</th>
             </tr>
             </thead>
-
-        {{--<div class="row">--}}
-            {{--<div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>--}}
-            {{--<div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>--}}
-            {{--<div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>--}}
-            {{--<div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>--}}
-            {{--<div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>--}}
-        {{--</div>--}}
 {{--            {{dd($consultant)}}--}}
         @foreach($consultations as $consultation)
 
@@ -120,19 +111,19 @@
                 <td>
                     <div>{{$consult->position}}</div>
                 </td>
-                <td>
-                    @endif
-                        @endforeach
+
                     {{--<form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">--}}
                         {{--<button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>--}}
                     {{--</form>--}}
                 {{--</td>--}}
                 <td>
-                    {{--{!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}--}}
+                    {{--{!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}--}}
                     {{--{!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}--}}
                     {{--{!! Form::close() !!}--}}
-                {{--</td>--}}
+                </td>
             </tr>
+            @endif
+            @endforeach
           </tbody>
         @endforeach
         </table>

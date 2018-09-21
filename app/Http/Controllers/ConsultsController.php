@@ -14,6 +14,7 @@ use App\Models\Vacancy;
 use App\Models\News;
 use App\Models\Rating;
 
+
 class ConsultsController extends Controller
 {
     /**
@@ -57,49 +58,18 @@ class ConsultsController extends Controller
     {
         $consultant = Consult::find($id);
 
-
+            
         return view('consult.show', compact('consultant', $consultant));
         //->with('consultant',$consultant);
 
     }
 
 
-    public function create()
-    {
-        $cities = City::all();
-        $industries = Industry::all();
-        $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
-        $currencies = Currency::all();
-        return view('consult.create',
-            ['cities' => $cities,
-            'industries' => $industries,
-            'currencies' => $currencies
-        ])->with('resumes', $resumes);
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-
-    public function store(Request $request)
-    {
-        $consult = new Consult($request->except(["time_start", "time_end"]));
-        $consult->resume_id = $request->input('resume');
-        $consult->value = $request->value;
-        $consult->currency_id = $request->input('currency');
-        $consult->save();
-        //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
-
-        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->id]));
-        $timeConsultation->save();
-
-        return redirect('sconsult');
-    }
 
         public function rateConsult($id, Request $request)
     {
+
         $consultant  = Consult::find($id);
         if(Rating::isValid($request->all())){
             $mark = $request->mark;

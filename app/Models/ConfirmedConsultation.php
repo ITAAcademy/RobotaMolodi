@@ -18,6 +18,6 @@ class ConfirmedConsultation extends Model
     }
     public function consultant(){
         return $this->hasManyThrough('App\Models\Consult', 'App\Models\TimeConsultation',
-            'consults_id','consult_id','time_consultation_id');
+            'consults_id','id','time_consultation_id');
     }
 }

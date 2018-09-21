@@ -3,7 +3,6 @@
 <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     <div class="content">
-        <div class="container"> {!! $consultant->render() !!}</div>
             <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
                 <a href="{{ url('events' ) }}" type="link" class="fa orange-button" >Всі консультацій</a>
             </div>
@@ -39,10 +38,8 @@
                     <td>
                         @foreach($consult->timeConsult as $timeConsult)
                             <div>{{$timeConsult->time_start}}</div>
-                        @endforeach
                     </td>
                     <td>
-                        @foreach($consult->timeConsult as $timeConsult)
                             <div>{{$timeConsult->time_end}}</div>
                         @endforeach
                     </td>
@@ -69,5 +66,5 @@
                 </tbody>
             @endforeach
         </table>
-
+        <div class="container"> {!! $consultant->render() !!}</div>
     </div>

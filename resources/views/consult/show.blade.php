@@ -58,14 +58,16 @@
                     <div class="ratings text_vac">
                         <span class = "ratingsTitle">{{ trans('content.rating') }}</span>
                         <span class="morph">
-                            {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
-                            <span class="findLike" >5</span>
+
+                                @if($consultant->rating >= 0)
+                                {!! Html::image(asset('image/like.png'), 'like', ['class'=>'likeDislike']) !!}
+                            <span class="findLike" >{{$consultant->rating}}</span>
+                                @else
+                                {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
+                                <span class="findDislike" >{{$consultant->rating}}</span>
+                                @endif
                         </span>
-                        <span class="morph">
-                            {!! Html::image(asset('image/dislike.png'), 'dislike', ['class'=>'likeDislike']) !!}
-                            <span class="findDislike" >-1</span>
-                        </span>
-                        <span class="likeError"></span>
+
                     </div>
 
                     <div>
@@ -75,12 +77,12 @@
                             {{--{!! Html::linkRoute('vacancy.showVacancies', $industry->name, [ 'name' => 'industries', 'value' => $industry->id], ['class' => 'orangeLinks', 'tabindex' => 1 ]) !!}--}}
                         </div>
                     </div>
-                    <!-- <div>
+                    <div>
                         <div class=" text_vac">
                             <span>{{ trans('main.value') }}: </span>
-                            <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currency->currency}}</span>
+                            <span class="seleryvacancy">{{$consultant->value}} {{$consultant->currencyName()}}</span>
                         </div>
-                    </div> -->
+                    </div>
 
                     <div>
                         <div class="descriptionStyle">

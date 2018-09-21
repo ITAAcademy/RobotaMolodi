@@ -7,12 +7,14 @@ use App\Models\ConfirmedConsultation;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\StoreConfirmConsultation;
 use App\Http\Controllers\Controller;
 use App\Models\Consult;
 use App\Models\TimeConsultation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Industry;
+
 class ConsultEventsController extends Controller
 {
     /**
@@ -30,23 +32,19 @@ class ConsultEventsController extends Controller
             'conf' => 'conf'
         ];
         $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
-            //->first()->confirmedConsultation();
-   //     dd($consultant->toSql());
-
-        ->with('timeConsult')
-            ->with('confirmedConsultation')
-            ->paginate(self::PER_PAGE);
-        $confirmedConsultation = ConfirmedConsultation::all;
+                ->with('timeConsult')
+                ->with('confirmedConsultation')
+                ->paginate(self::PER_PAGE);
         $consultations = ConfirmedConsultation:: where('user_id', '=', Auth::User()->id)
             ->with('timeConsultation')
+            ->with('consultant')
             ->paginate(self::PER_PAGE);
- //       dd($consultant->toSql());
-      //     dd($consultations);
+         //  dd($consultations);
         $consultants = Consult::all();
 
         //   dd($consultants);
         if ($request->has($filter1)) {
-            return view('event._index',['consultant' => $consultant, 'confirmedConsultation'=> $confirmedConsultation]);
+            return view('event._index__')->with('consultant', $consultant);
         }
         elseif($request->has($filter)){
             return view('event._index_', ['consultants' => $consultants, 'consultations'=> $consultations]);
@@ -72,19 +70,15 @@ class ConsultEventsController extends Controller
        //}
     }
 
-    public function store(Request $request)
+    public function store(StoreConfirmConsultation $request)
     {
 
+                $confirmedCons = ConfirmedConsultation::create($request->all());
+                $confirmedCons->user_id = Auth::user()->id;
+                $confirmedCons->save();
+                return json_encode("Registration completed successfully.");
 
 
-        if(Auth::user()) {
-            $confirmedCons = ConfirmedConsultation::create($request->all());
-            $confirmedCons->user_id = Auth::user()->id;
-            $confirmedCons->save();
-            return json_encode("Registration completed successfully.");
-        }else{
-            return json_encode("Only available to authorized users! ");
-        }
     }
     public function edit($id)
     {
@@ -109,7 +103,11 @@ class ConsultEventsController extends Controller
     public function destroy($id)
     {
         $data = Consult::find($id);
+        $data->confirmedConsultation()->delete();
+        $data->timeConsult()->delete();
         $data->delete();
+
+//     dd ($data);
         return redirect('events');
     }
 }

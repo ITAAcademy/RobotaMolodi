@@ -82,24 +82,18 @@
                 <th scope="col">Видалити</th>
             </tr>
             </thead>
-
-        {{--<div class="row">--}}
-            {{--<div class=" col-md-2 col-sm-4 col-xs-12"><h5><b>Початок консультації</b></h5></div>--}}
-            {{--<div class=" col-md-2 col-sm-4 col-xs-12 "><h5><b>Кінець консультації</b></h5></div>--}}
-            {{--<div class=" col-md-2 col-sm-3 col-xs-4 "><h5><b>Місто </b></h5></div>--}}
-            {{--<div class=" col-md-3 col-sm-6 col-xs-4"><h5><b>Галузь </b></h5></div>--}}
-            {{--<div class=" col-md-1 col-sm-3 col-xs-4"><h5><b>Посада </b></h5></div>--}}
-        {{--</div>--}}
         @foreach($consultant as $consult)
+            @foreach($consult->timeConsult as $timeConsult)
+                @foreach($consult->confirmedConsultation as $confirmedConsultation)
+
+                    @if($confirmedConsultation)
           <tbody>
             <tr scope="row">
                 <td>
-                    @foreach($consult->timeConsult as $timeConsult)
                         <div>{{$timeConsult->time_start}}</div>
                 </td>
                 <td>
                         <div>{{$timeConsult->time_end}}</div>
-                     @endforeach
                 </td>
                 <td>
                     <div>{{$consult->city}}</div>
@@ -110,7 +104,9 @@
                 {{--<td>--}}
                     {{--<div>{{$consult->position}}</div>--}}
                 {{--</td>--}}
+
                 <td>
+
                     <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
                         <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
                     </form>
@@ -122,9 +118,12 @@
                 </td>
             </tr>
           </tbody>
+        @endif
+                @endforeach
+            @endforeach
         @endforeach
         </table>
-        <div class="container"> {!! $consultant->render() !!}</div>
+        <div class="container"> {!! $consultant->appends(['conf' => '1'])->render() !!}</div>
     </div>
 
 @stop
