@@ -61,10 +61,13 @@ a:hover{
 .consultations-cost{
     margin-left: 0px;
     font-size: 15px;
-    color: #666666; 
+    color: #666666;
 }
 #value{
     color:red;
     font-size: 17px;
 }
-
+.container{
+    padding-left: 0px;
+    padding-right: 0px;
+}
