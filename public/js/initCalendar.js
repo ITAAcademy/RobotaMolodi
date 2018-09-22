@@ -107,11 +107,24 @@ function initCalendar(selector) {
              },
             dataType: 'json',
             success: function (respond) {
-                if(respond){
+                //if(respond){
                     alert(respond );
-                }
-            }
+               // }
+            },
+            // error: function(data){
+            //     alert("Available only for authorized users! Please log in.");
+            // }
+            statusCode: {
+                500: function () {
 
+                   alert("Available only for authorized users! Please log in.");
+
+                },
+                422: function () {
+
+                    alert("You have already registered for a consultation at this time.");
+                }
+            },
 
             });
         $('#centralModalWarning').modal('hide');

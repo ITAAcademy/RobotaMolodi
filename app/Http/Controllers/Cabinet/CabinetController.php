@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\cabinet;
+<?php namespace App\Http\Controllers\Cabinet;
 
 use App\Http\Requests;
 use Request;

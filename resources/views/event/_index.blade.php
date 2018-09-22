@@ -55,7 +55,7 @@
                 <li><a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a></li>
                 <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a></li>
                 <li><a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a></li>
-                <li><a href="{{route('sconsult.create')}}">{{ trans('navtab.advisor')  }}</a></li>
+                <li><a href="javascript:alert( {{ trans('consult.attention') }} )">{{ trans('navtab.advisor')  }}</a></li>
             </ul>
         </div>
     </div>

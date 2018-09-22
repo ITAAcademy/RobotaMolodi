@@ -103,5 +103,10 @@ class Consult extends Model
     public function scopeOrderByDate($query){
         return $query->orderBy('updated_at', 'desc');
     }
+
+    public function currencyName()
+    {
+        return $this->currency->currency;
+    }
 }
 
