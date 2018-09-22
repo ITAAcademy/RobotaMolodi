@@ -22,16 +22,15 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
+
+    const PER_PAGE = 9;
     public function index(Request $request)
     {
 
-        $consultants= Consult::with('user')->paginate(5);
-        //dd($consultants);
+        $consultants =Consult::with('user')->paginate(self::PER_PAGE);
         $specialisations = Resume::groupBy('position')->lists('position');
         if ($request->ajax()) {
            return view('newDesign.consults.index', ['consultants' => $consultants]);
-            // return view('newDesign.consults.index');
-
         }
 
         $topVacancy = Vacancy::getTopVacancies();
