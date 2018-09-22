@@ -124,6 +124,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return 'image/user/' . $this->id . '/avatar/' . $this->avatar;
     }
     public function consult(){
-        return $this->hasOne('App\Consult', 'consult_id', 'id');
+        return $this->hasOne('App\Models\Consult', 'consult_id', 'id');
     }
 }

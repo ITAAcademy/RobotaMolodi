@@ -1,0 +1,32 @@
+.info {
+    text-align: left;
+    padding: 5px;
+    font-size: 11px;
+    color: #fff;
+    position: absolute ;
+    display: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: -1px 1px 2px #a9a9a9;
+    -moz-box-shadow: -1px 1px 2px #a9a9a9;
+    box-shadow: -1px 1px 2px #a9a9a9;
+}
+.error {
+    background-color: #f68717;
+    border: 3px solid #d50000;
+    font-size: 15px;
+}
+.correct {
+    background: #56d800;
+    border: 3px solid #008000;
+    font-size: 15px;
+}
+.wrong {
+    font-weight: bold;
+    color: #222;
+}
+.normal {
+    font-weight: normal;
+    color: #222;
+}
