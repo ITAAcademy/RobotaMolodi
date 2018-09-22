@@ -31,9 +31,6 @@ class ConsultsController extends Controller
         $specialisations = Resume::groupBy('position')->lists('position');
         if ($request->ajax()) {
            return view('newDesign.consults.index', ['consultants' => $consultants]);
-            // return view('newDesign.consults.index');
-
-
         }
 
         $topVacancy = Vacancy::getTopVacancies();
