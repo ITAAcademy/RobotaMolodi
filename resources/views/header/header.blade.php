@@ -57,16 +57,6 @@
                     </a>
                 </div>
             </div>
-            {{--<div class="headerChangeRowXS2 col-xs-1 col-sm-1 col-lg-1" style="padding: 0">--}}
-            {{--<div class="navtab-exit">--}}
-            {{--<a href="{{ url('/auth/logout') }}">--}}
-            {{--<button type="button" class="btn btn-default modal-exit-button">--}}
-            {{--<i class="fa fa-sign-out fa-lg fa-rotate-180" aria-hidden="true"></i>--}}
-            {{--<span>{{trans('auth.signout')}}</span>--}}
-            {{--</button>--}}
-            {{--</a>--}}
-            {{--</div>--}}
-            {{--</div>--}}
         @endif
     </nav>
 </header>
