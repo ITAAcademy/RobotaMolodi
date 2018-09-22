@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Requests\Request;
+
+class ConsultValid extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'positionCon' => 'required',
+            'description' => 'required|max:255',
+            'value' => 'required|integer',
+            'telephone' => 'required',
+            'time_start' => 'required|date|before:time_end',
+            'time_end' => 'required|date|after:time_start',
+        ];
+    }
+}

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Cabinet;
 
+use App\Http\Requests\ConsultValid;
 use Illuminate\Http\Request;
-
-//use App\Http\Requests;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
 use Auth;
@@ -16,6 +16,7 @@ use App\Models\Resume;
 use App\Models\Vacancy;
 use App\Models\News;
 use App\Models\Rating;
+use App\Models\User;
 
 class ConsultsController extends Controller
 {
@@ -46,18 +47,32 @@ class ConsultsController extends Controller
      * @return Response
      */
 
-    public function store(Request $request)
+    public function store(ConsultValid $request)
     {
-        $consult = new Consult($request->except(["time_start", "time_end"]));
-        $consult->resume_id = $request->input('resume');
-        $consult->value = $request->value;
-        $consult->currency_id = $request->input('currency');
+        $consultData = $request->t;
+        $consult = new Consult;
+        $consult->consult_id = $consultData['consult_id'];
+        $consult->resume_id = $consultData['resume'];
+        $consult->value = $consultData['value'];
+        $consult->currency_id = $consultData['currency'];
+        $consult->city = $consultData['city'];
+        $consult->area = $consultData['area'];
+        $consult->position = $consultData['position'];
+        $consult->description = $consultData['description'];
+        $consult->telephone = $consultData['telephone'];
         $consult->save();
-        //dd(array_merge($request->only(["time_start", "time_end"]), ["consult_id" => $consult->consult_id]) );
+        foreach ($consultData['events'] as $event) {
+            $timeConsultation = new TimeConsultation;
+            $startSec = strtotime($event['start']);
+            $endSec = strtotime($event['end']);
+            $start = date('Y-m-d H:i:s', $startSec);
+            $end = date('Y-m-d H:i:s', $endSec);
+            $timeConsultation->consults_id = $consult->id;
+            $timeConsultation->time_start = $start;
+            $timeConsultation->time_end = $end;
+            $timeConsultation->save();
 
-        $timeConsultation = new TimeConsultation(array_merge($request->only(["time_start", "time_end"]), ["consults_id" => $consult->id]));
-        $timeConsultation->save();
-
+        }
         return redirect('sconsult');
     }
 }
