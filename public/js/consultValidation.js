@@ -86,8 +86,6 @@ $(document).ready(function(){
             console.log('dasasdasda');
             $('body').append('<div id="endValidInfo" class="info"></div>');
             var endValidInfo = $('#endValidInfo');
-            $('body').append('<div id="endValidInfo" class="info"></div>');
-            var endValidInfo = $('#endValidInfo');
             // var date_s = Date.parse($('#time_start');
             var date_s = new Date ('#time_start');
             var ms = date_s.getMonth(), ds = date_s.getDate(), ys = date_s.getFullYear();
@@ -98,15 +96,6 @@ $(document).ready(function(){
             var pos = elem.offset();
             endValidInfo.css({
                 top: pos.top - 3,
-                left: pos.left + elem.width() + 30
-            });
-            if (Date.parse($('#time_end').val()) < Date.parse($('#time_start').val()) ) {
-                error.val = true;
-                endValidInfo.removeClass('correct').addClass('error').html('← Date should be after \"Available from\".').show();
-                elem.removeClass('normal').addClass('wrong');
-            } else {
-                console.log('dassdadas')
-                error.val = false;
                 left: pos.left + elem.width() + 200
             });
             if (Date.parse($('#time_end').val()) < Date.parse($('#time_start').val()) ) {
@@ -139,7 +128,6 @@ $(document).ready(function(){
     };
     function checkButton(){
         if(!error.positionCon && !error.description && !error.telephone && !error.value && !error.val ){
-        if(!error.positionCon && !error.description && !error.telephone && !error.val && !error.value){
             $(":submit").removeAttr("disabled");
         }
         else{

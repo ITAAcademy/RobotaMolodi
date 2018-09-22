@@ -17,16 +17,6 @@
             </div>
         @endif
 
-        <form class="form" role="form" method="POST" action="{{ url('/cabinet/consult') }}" id="consultCreate">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
@@ -181,7 +171,6 @@
 
             <div class="form-group row">
                 <div class="col-md-5">
-                    <button type="submit" tabindex="1" class="btn btn-primary btn-block">
                     <button type="submit" tabindex="1" class="btn btn-primary btn-block" id="consultSubmit">
                         {{ trans('auth.signup') }}
                     </button>
