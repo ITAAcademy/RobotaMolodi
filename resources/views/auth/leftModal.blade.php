@@ -85,7 +85,14 @@
                         <span>{{ trans('header.cabinet') }}</span>
                     </a>
                 </div>
+                <div class="col-xs-12 list-modal-left">
+                    <a href="{{ url('/auth/logout') }}">
+                        <span>{{trans('auth.signout')}}</span>
+                    </a>
+                </div>
+
             @endif
+
         </div>
         <hr class="modal-hr col-xs-10">
         <div>

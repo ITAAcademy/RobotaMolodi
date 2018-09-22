@@ -16,10 +16,10 @@
 
     <div class='col-xs-12 col-sm-3 col-md-2 col-lg-5 input-sort-box'>
         <div class="row">
-            <div class="col-xs-4 col-lg-3 sort-date">
+            <div class="col-xs-12 col-lg-3 sort-date">
                 <span class='label-sort-box'>{{ trans('content.gaps') }}</span>
             </div>
-            <div class="col-xs-4 col-lg-4">
+            <div class="col-xs-6 col-lg-4 ">
                 <div class="block-datepicker">
                     <label for="startDate">
                         <span class='opsion-sort-box' id="datePicker-label1">{{ trans('content.from') }}</span>
@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="col-xs-4 col-lg-4">
+            <div class="col-xs-6 col-lg-4 ">
                 <div class="block-datepicker">
                     <label for="endDate">
                         <span class='opsion-sort-box' id="datePicker-label2">{{ trans('content.to') }}</span>

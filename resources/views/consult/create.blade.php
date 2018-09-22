@@ -16,8 +16,7 @@
                 </ul>
             </div>
         @endif
-
-        <form class="form" role="form" method="POST" action="{{ url('sconsult') }}">
+        <form class="form" role="form" method="POST" action="{{ url('/cabinet/consult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
 
