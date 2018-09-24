@@ -49,7 +49,7 @@ class ConsultsController extends Controller
 
     public function store(Request $request)
     {
-        $consultData = $request->t;
+        $consultData = $request->allData;
         $consult = new Consult;
         $consult->consult_id = $consultData['consult_id'];
         $consult->resume_id = $consultData['resume'];
