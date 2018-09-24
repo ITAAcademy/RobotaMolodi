@@ -24,7 +24,7 @@ class ConsultValid extends Request
     public function rules()
     {
         return [
-            'positionCon' => 'required',
+            'position' => 'required',
             'description' => 'required|max:255',
             'value' => 'required|integer',
             'telephone' => 'required',

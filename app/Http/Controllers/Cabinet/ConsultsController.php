@@ -47,7 +47,7 @@ class ConsultsController extends Controller
      * @return Response
      */
 
-    public function store(ConsultValid $request)
+    public function store(Request $request)
     {
         $consultData = $request->t;
         $consult = new Consult;
@@ -71,7 +71,6 @@ class ConsultsController extends Controller
             $timeConsultation->time_start = $start;
             $timeConsultation->time_end = $end;
             $timeConsultation->save();
-
         }
         return redirect('sconsult');
     }

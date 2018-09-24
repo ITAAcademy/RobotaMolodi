@@ -83,34 +83,34 @@ $(document).ready(function(){
         },
 
         'time_end' : function () {
-            console.log('dasasdasda');
             $('body').append('<div id="endValidInfo" class="info"></div>');
             var endValidInfo = $('#endValidInfo');
-            // var date_s = Date.parse($('#time_start');
-            var date_s = new Date ('#time_start');
+            var s = $("#time_start").data("DateTimePicker").date();
+            var date_s = new Date(s);
             var ms = date_s.getMonth(), ds = date_s.getDate(), ys = date_s.getFullYear();
-            // var date_e = Date.parse($('#time_end');
-            var date_e = new Date ('#time_end');
+            var e = $("#time_end").data("DateTimePicker").date();
+            var date_e = new Date(e);
             var me = date_e.getMonth(), de = date_e.getDate(), ye = date_e.getFullYear();
+            var curr_date = new Date;
+            var curr_pars = Date.parse(curr_date);
+
             var elem = $('#time_end');
             var pos = elem.offset();
             endValidInfo.css({
                 top: pos.top - 3,
                 left: pos.left + elem.width() + 200
             });
-            if (Date.parse($('#time_end').val()) < Date.parse($('#time_start').val()) ) {
-                if(ms===me || ds===de || ys===ye){
-                    error.val = true;
-                    endValidInfo.removeClass('correct').addClass('error').html('← Date should be after \"Available from\".').show();
-                    elem.removeClass('normal').addClass('wrong');
-                }
 
+            if ( ms !== me || ds!==de || ys!== ye || Date.parse($('#time_start').val()) < curr_pars) {
+                error.val = true;
+                endValidInfo.removeClass('correct').addClass('error').html('← Consultation can be appointed only on the next days, duration is not more than 1 day.').show();
+                elem.removeClass('normal').addClass('wrong');
             } else {
                 error.val = false;
                 endValidInfo.removeClass('error').addClass('correct').html('√').show();
                 elem.removeClass('wrong').addClass('normal');
             }
-        }
+        },
     };
     $('#positionCon').change(jVal.positionCon);
     $('#description').change(jVal.description);
