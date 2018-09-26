@@ -239,6 +239,7 @@ Route::filter('no-cache',function($route, $request, $response){
     $response -> headers -> set('Pragma', 'no-cache');
 });
 Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function(){
+
     Route::resource('/cabinet/consult', 'cabinet\ConsultsController');
 });
 
@@ -271,4 +272,7 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
-Route::get('/cabinet/consult/showEvents', 'Cabinet/ConsultsController@showEvents');
+
+Route::group(['prefix' => '/public/consult'], function () {
+    Route::match(['get'],'/show','EventsController@show')->name('events.show');
+});

@@ -17,6 +17,7 @@ use App\Models\Vacancy;
 use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
+use App\Http\Controllers\EventsController;
 
 class ConsultsController extends Controller
 {
@@ -76,15 +77,5 @@ class ConsultsController extends Controller
         return redirect('sconsult');
     }
 
-    public function showEvents()
-    {
-        $user_id = Auth::user()->id;
-        $consults_id = Consult::where('consult_id', $user_id)->get();
-        //$timeConsultations = TimeConsultation::where('consults_id', $id)
-        //    ->get();
-        //if($request->isAjax()){
-        return json_encode($consults_id);
-        //return json_encode($timeConsultations);
-        //}
-    }
+
 }
