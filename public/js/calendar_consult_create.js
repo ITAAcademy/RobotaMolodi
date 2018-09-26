@@ -7,6 +7,12 @@ function calendar_consult_create(selector) {
                 right: 'month,agendaWeek,agendaDay'
             },
             defaultDate: '2016-09-12',
+            validRange: function(nowDate) {
+                return {
+                    start: nowDate
+                    // end: nowDate.clone().add(1, 'months')
+                };
+            },
             timeFormat: 'h:mm',
             eventOrder: 'start',
             themeSystem: 'bootstrap3',
@@ -77,21 +83,20 @@ function calendar_consult_create(selector) {
     $( '#consultCreate' ).on( "submit", ( e)=> {
 
         e.preventDefault();
-        var t = {};
+        var allData = {};
 
         $( '#consultCreate' ).serializeArray().forEach(function(item) {
-            t[item['name']] = item['value'];
+            allData[item['name']] = item['value'];
         });
-        t.events = events;
+        allData.events = events;
         $.ajax({
             url: '/cabinet/consult',
             method: 'POST',
             dataType: 'json',
-            data: {t},
+            data: {allData},
             statusCode: {
                 200: function () {
                     window.location = "/sconsult";
-                    // console.log(t);
                 },
             },
         });
