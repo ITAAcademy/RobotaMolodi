@@ -22,16 +22,14 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
+
+    const PER_PAGE = 9;
     public function index(Request $request)
     {
-
-        $consultants= Consult::with('user')->paginate(5);
-        //dd($consultants);
+        $consultants =Consult::with('user')->paginate(self::PER_PAGE);
         $specialisations = Resume::groupBy('position')->lists('position');
         if ($request->ajax()) {
-           return view('newDesign.consults.index', ['consultants' => $consultants]);
-            // return view('newDesign.consults.index');
-
+            return view('newDesign.consults.index', ['consultants' => $consultants]);
         }
 
         $topVacancy = Vacancy::getTopVacancies();
@@ -44,10 +42,7 @@ class ConsultsController extends Controller
             'news' => News::getNews(),
             'topVacancy' => $topVacancy,
         ));
-
-
     }
-
 
     public function showConsult(Request $request)
     {
@@ -57,17 +52,12 @@ class ConsultsController extends Controller
     public function show($id)
     {
         $consultant = Consult::find($id);
-
-            
         return view('consult.show', compact('consultant', $consultant));
         //->with('consultant',$consultant);
 
     }
 
-
-
-
-        public function rateConsult($id, Request $request)
+    public function rateConsult($id, Request $request)
     {
 
         $consultant  = Consult::find($id);
@@ -82,15 +72,4 @@ class ConsultsController extends Controller
         }
     }
 
-
-
-
 }
-//
-//public function index($id){
-//    $events = Consult::find($id)->events();
-//    if($request->isAjax()){
-//        return response()->json($events);
-//    }
-//
-//}
