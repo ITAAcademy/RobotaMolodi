@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consult extends Model
 {
-    protected $fillable  = ['consult_id', 'telephone', 'city', 'area', 'position', 'description'];
+    protected $fillable  = ['user_id', 'telephone', 'city', 'area', 'position', 'description'];
     protected $table = "consults";
 
     public function user(){
-        return $this->belongsTo('App\Models\User', 'consult_id','id');
+        return $this->belongsTo('App\Models\User', 'user_id','id');
     }
 
     public function timeConsult(){

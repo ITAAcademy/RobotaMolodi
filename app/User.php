@@ -38,6 +38,6 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
     public function consult(){
-        return $this->hasOne('App\Consult', 'consult_id', 'id');
+        return $this->hasOne('App\Consult', 'user_id', 'id');
     }
 }
