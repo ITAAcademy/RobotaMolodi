@@ -274,5 +274,5 @@ Route::resource('project', 'ProjectController');
 Route::get('unavailable', 'ClosureController@unavailableService');
 
 Route::group(['prefix' => '/public/consult'], function () {
-    Route::match(['get'],'/show','EventsController@show')->name('events.show');
+    Route::get('/show','EventsController@show');
 });

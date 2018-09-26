@@ -90,8 +90,8 @@ function calendar_consult_create(selector) {
             data: {t},
             statusCode: {
                 200: function () {
-                    // window.location = "http://localhost:8000/sconsult";
-                    console.log(t);
+                    window.location = "http://localhost:8000/sconsult";
+                    // console.log(t);
                 },
             },
         });
