@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        <form class="form" role="form" method="POST" action="{{ url('/cabinet/consult') }}">
+        <form class="form" role="form" method="POST" id="consultCreate" action="{{ url('/cabinet/consult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
 
@@ -128,7 +128,7 @@
 
             <div class="form-group row" id="calendar_consult">
 
-            <div id='calendar2'></div>
+            <div id='calendar2' data-consult-id="{{ auth()->user()->id }}"></div>
             <div id='datepicker'></div>
 
             <div class="modal fade" tabindex="-1" role="dialog" id="modalCal">

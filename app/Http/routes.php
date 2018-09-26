@@ -271,3 +271,4 @@ Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancie
 Route::resource('project', 'ProjectController');
 
 Route::get('unavailable', 'ClosureController@unavailableService');
+Route::get('/cabinet/consult/showEvents', 'Cabinet/ConsultsController@showEvents');
