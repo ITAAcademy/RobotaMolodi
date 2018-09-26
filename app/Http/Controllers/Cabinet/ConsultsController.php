@@ -48,7 +48,7 @@ class ConsultsController extends Controller
      * @return Response
      */
 
-    public function store(Request $request)
+    public function store(ConsultValid $request)
     {
         $consultData = $request->allData;
         $consult = new Consult;
