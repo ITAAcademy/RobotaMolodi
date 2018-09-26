@@ -1,6 +1,6 @@
 @extends('app')
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
-<link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
+<link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}'/>
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
@@ -62,13 +62,13 @@
 
     <div class="content">
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
-            <a href="{{ url('events' ) }}" type="link" class="fa orange-button" >Всі консультацій</a>
+            <a href="{{ url('events' ) }}" type="link" class="fa orange-button">Всі консультацій</a>
         </div>
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
-            <a href="?conf=1" type="link" class="fa orange-button" >Підтвердженні консультації</a>
+            <a href="?conf=1" type="link" class="fa orange-button">Підтвердженні консультації</a>
         </div>
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
-            <a href="?my=1" type="link" class="fa orange-button" >Мої консультації</a>
+            <a href="?my=1" type="link" class="fa orange-button">Мої консультації</a>
         </div>
         <table class="table table-striped consult-table">
             <thead>
@@ -81,51 +81,38 @@
                 <th scope="col">Видалити</th>
             </tr>
             </thead>
-{{--            {{dd($consultant)}}--}}
-        @foreach($consultations as $consultation)
+            {{--            {{dd($consultations)}}--}}
+            @foreach($consultations as $consultation)
 
-          <tbody>
-            <tr scope="row">
-                <td>
-                    {{--{{dd($consultant)}}--}}
-                    {{--@foreach($consult->timeConsultation as $timeConsultation)--}}
+                <tbody>
+                <tr scope="row">
+                    <td>
                         <div>{{$consultation->timeConsultation->time_start}}</div>
-                    {{--@endforeach--}}
-                </td>
-                <td>
-                     {{--@foreach($consult->timeConsultation as $timeConsultation)--}}
+                    </td>
+                    <td>
                         <div>{{$consultation->timeConsultation->time_end}}</div>
-                     {{--@endforeach--}}
-                </td>
-{{--                {{$consultation->timeConsultation->consults_id}}--}}
-                @foreach($consultants as $consult)
-
-                    @if($consultation->timeConsultation->consults_id==$consult->id)
-                <td>
-
-                    <div>{{$consult->city}}</div>
-                </td>
-                <td>
-                    <div>{{$consult->area}}</div>
-                </td>
-                <td>
-                    <div>{{$consult->position}}</div>
-                </td>
-
-                    {{--<form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">--}}
-                        {{--<button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>--}}
-                    {{--</form>--}}
-                {{--</td>--}}
-                <td>
-                    {{--{!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}--}}
-                    {{--{!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}--}}
-                    {{--{!! Form::close() !!}--}}
-                </td>
-            </tr>
-            @endif
+                    </td>
+                    @foreach($consultants as $consult)
+                        @if($consultation->timeConsultation->consults_id==$consult->id)
+                            <td>
+                                <div>{{$consult->city}}</div>
+                            </td>
+                            <td>
+                                <div>{{$consult->area}}</div>
+                            </td>
+                            <td>
+                                <div>{{$consult->position}}</div>
+                            </td>
+                            <td>
+                                {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
+                                {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
+                                {!! Form::close() !!}
+                            </td>
+                        @endif
+                    @endforeach
+                </tr>
+                </tbody>
             @endforeach
-          </tbody>
-        @endforeach
         </table>
         <div class="container"> {!! $consultations->render() !!}</div>
     </div>

@@ -16,7 +16,7 @@ class ConfirmedConsultation extends Model
     public function user(){
         return $this->belongsTo('App\Models\Consult', 'user_id','consult_id');
     }
-    public function consultant(){
+    public function consultants(){
         return $this->hasManyThrough('App\Models\Consult', 'App\Models\TimeConsultation',
             'consults_id','id','time_consultation_id');
     }

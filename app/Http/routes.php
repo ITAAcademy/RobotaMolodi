@@ -54,7 +54,7 @@ Route::any('auth/intita', 'oAuthApiController@intitaLogin');
 Route::any('auth/intitaAuth', 'oAuthApiController@intitaAuth');
 Route::post('auth/ajaxValidation', ['as' => 'auth.ajaxValidation', 'uses' => 'Auth\AuthController@ajaxValidation']);
 
-Route::get('/redirect', 'SocialFAuthController@redirect');
+Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('login/{provider}','SocialAuthController@redirectToProvider');
 Route::get('/handleProviderCallback', 'SocialAuthController@handleProviderCallback');
 

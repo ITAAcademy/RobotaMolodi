@@ -36,7 +36,7 @@
                 <tbody>
                 <tr scope="row">
                     <td>
-                        @foreach($consult->timeConsult as $timeConsult)
+                        @foreach($consult->timeConsults as $timeConsult)
                             <div>{{$timeConsult->time_start}}</div>
                     </td>
                     <td>

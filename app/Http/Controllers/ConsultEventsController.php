@@ -32,19 +32,18 @@ class ConsultEventsController extends Controller
             'conf' => 'conf'
         ];
         $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
-                ->with('timeConsult')
-                ->with('confirmedConsultation')
+                ->with('timeConsults')
+                ->with('confirmedConsultations')
                 ->paginate(self::PER_PAGE);
         $consultations = ConfirmedConsultation:: where('user_id', '=', Auth::User()->id)
             ->with('timeConsultation')
-            ->with('consultant')
+            ->with('consultants')
             ->paginate(self::PER_PAGE);
          //  dd($consultations);
         $consultants = Consult::all();
-
-        //   dd($consultants);
+//dd($filter1);
         if ($request->has($filter1)) {
-            return view('event._index__')->with('consultant', $consultant);
+            return view('event._index', ['consultant' => $consultant, 'filter'=> $filter]);
         }
         elseif($request->has($filter)){
             return view('event._index_', ['consultants' => $consultants, 'consultations'=> $consultations]);
@@ -54,7 +53,7 @@ class ConsultEventsController extends Controller
                 return view('event.index')->with('consultant', $consultant);
 
             } else {
-                return view('event._index')->with('consultant', $consultant);
+                return view('event._index', ['consultant' => $consultant, 'filter'=> '0']);
             }
         }
 
@@ -84,9 +83,9 @@ class ConsultEventsController extends Controller
     {
         $cities = City::all();
         $industries = Industry::all();
-        $consultant = Consult::with('timeConsult') -> find($id);
+        $consultant = Consult::with('timeConsults') -> find($id);
         $timecons =[];
-        foreach ($consultant->timeConsult as $timeConsult)
+        foreach ($consultant->timeConsults as $timeConsult)
             $timecons = $timeConsult;
         return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries, 'timecons' => $timecons]);
     }
@@ -103,8 +102,8 @@ class ConsultEventsController extends Controller
     public function destroy($id)
     {
         $data = Consult::find($id);
-        $data->confirmedConsultation()->delete();
-        $data->timeConsult()->delete();
+        $data->confirmedConsultations()->delete();
+        $data->timeConsults()->delete();
         $data->delete();
 
 //     dd ($data);
