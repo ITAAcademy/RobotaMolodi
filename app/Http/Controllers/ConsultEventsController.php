@@ -25,7 +25,7 @@ class ConsultEventsController extends Controller
     const PER_PAGE = 5;
     public function index(Request $request)
     {
-        $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
+        $consultant = Consult:: where('user_id', '=', Auth::User()->id)
             ->with('timeConsult')
             ->paginate(self::PER_PAGE);
 

@@ -16,9 +16,9 @@
                 </ul>
             </div>
         @endif
-        <form class="form" role="form" method="POST" action="{{ url('/cabinet/consult') }}" id="consultCreate">
+        <form class="form" role="form" method="POST" id="consultCreate" action="{{ url('/cabinet/consult') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="consult_id" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             <div class="form-group row">
                 <label for="telephone" class="col-md-3 col-sm-3 label-text-company">
