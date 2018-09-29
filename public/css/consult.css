@@ -134,3 +134,8 @@
     padding: 5px ;
     font-size: 14px;
 }
+.name_edit{
+    display: inline-block;
+    float: left;
+    padding-right: 20px;
+}

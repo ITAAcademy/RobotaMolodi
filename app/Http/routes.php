@@ -275,4 +275,5 @@ Route::get('unavailable', 'ClosureController@unavailableService');
 
 Route::group(['prefix' => '/public/consult'], function () {
     Route::get('/show','EventsController@show');
+    Route::post('/delete','EventsController@destroy');
 });

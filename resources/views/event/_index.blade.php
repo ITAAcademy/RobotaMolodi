@@ -65,11 +65,12 @@
         <table class="table table-striped consult-table">
             <thead>
             <tr>
-                <th scope="col">Початок консультації</th>
-                <th scope="col">Кінець консультації</th>
+                {{--<th scope="col">Початок консультації</th>--}}
+                {{--<th scope="col">Кінець консультації</th>--}}
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
                 {{--<th scope="col">Посада</th>--}}
+                <th scope="col">Детальніше</th>
                 <th scope="col">Редагувати</th>
                 <th scope="col">Видалити</th>
             </tr>
@@ -85,16 +86,16 @@
         @foreach($consultant as $consult)
           <tbody>
             <tr scope="row">
-                <td>
-                    @foreach($consult->timeConsult as $timeConsult)
-                        <div>{{$timeConsult->time_start}}</div>
-                    @endforeach
-                </td>
-                <td>
-                     @foreach($consult->timeConsult as $timeConsult)
-                        <div>{{$timeConsult->time_end}}</div>
-                     @endforeach
-                </td>
+                {{--<td>--}}
+                    {{--@foreach($consult->timeConsult as $timeConsult)--}}
+                        {{--<div>{{$timeConsult->time_start}}</div>--}}
+                    {{--@endforeach--}}
+                {{--</td>--}}
+                {{--<td>--}}
+                     {{--@foreach($consult->timeConsult as $timeConsult)--}}
+                        {{--<div>{{$timeConsult->time_end}}</div>--}}
+                     {{--@endforeach--}}
+                {{--</td>--}}
                 <td>
                     <div>{{$consult->city}}</div>
                 </td>
@@ -104,6 +105,11 @@
                 {{--<td>--}}
                     {{--<div>{{$consult->position}}</div>--}}
                 {{--</td>--}}
+                <td>
+                    <a  href='/sconsult/{{$consult->id}}' target="_blank">
+                        <button class=" fa orange-button">&#xf05a;Детальніше</button>
+                    </a>
+                </td>
                 <td>
                     <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
                         <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
