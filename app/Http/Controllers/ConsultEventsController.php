@@ -22,42 +22,16 @@ class ConsultEventsController extends Controller
      *
      * @return Response
      */
-    const PER_PAGE = 5;
-    public function index(Request $request)
+      public function index(Request $request)
     {
-        if ($request->has('conf')) {
-            $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
-                ->has('confirmedConsultations')
-                ->whereHas('consults', function ($q) {
-                    $q->where('consult_id', '=', Auth::User()->id);
-                })
-                ->paginate(self::PER_PAGE);
-            return view('event._index', ['consultations' => $consultations, 'my' => 0]);
-        } elseif ($request->has('my')) {
-            $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
-                ->whereHas('confirmedConsultations', function ($q) {
-                    $q->where('user_id', '=', Auth::User()->id);
-                })
-                ->paginate(self::PER_PAGE);
-            return view('event._index', ['consultations' => $consultations, 'my' => 1]);
-        } else {
+        $consultations = TimeConsultation::get_consultations($request);
+        $request->has('my')? $my = 1: $my = 0;
             if ($request->ajax()) {
-                $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
-                    ->whereHas('consults', function ($q) {
-                        $q->where('consult_id', '=', Auth::User()->id);
-                    })
-                    ->paginate(self::PER_PAGE);
-                return view('event.index', ['consultations' => $consultations, 'my' => 0]);
+                return view('event.index', ['consultations' => $consultations]);
             } else {
-                $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
-                    ->whereHas('consults', function ($q) {
-                        $q->where('consult_id', '=', Auth::User()->id);
-                    })
-                    ->paginate(self::PER_PAGE);
-                return view('event._index', ['consultations' => $consultations, 'my' => 0]);
+                return view('event._index', ['consultations' => $consultations, 'my'=>$my]);
             }
         }
-    }
 
 
     public function show($id)
