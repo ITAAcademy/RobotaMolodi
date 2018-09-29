@@ -179,8 +179,8 @@
 
 
     </div>
-    <script type="text/javascript" src="{{ asset('/js/calendar_consult_create.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/consultValidation.js') }}" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/calendar_consult_create.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/consultValidation.js') }}" crossorigin="anonymous" defer></script>
     <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous" defer></script>
 
     <script>

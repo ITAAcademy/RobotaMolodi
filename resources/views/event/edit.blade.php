@@ -189,8 +189,8 @@
         {!! Form::close() !!}
     </div>
 
-    <script type="text/javascript" src="{{ asset('/js/consult_edit/calendar_consult_edit.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/consult_edit/consult_edit_valid.js') }}" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_edit/calendar_consult_edit.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_edit/consult_edit_valid.js') }}" crossorigin="anonymous" defer></script>
     <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous" defer></script>
 
     <script>
