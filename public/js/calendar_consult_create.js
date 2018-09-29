@@ -7,6 +7,12 @@ function calendar_consult_create(selector) {
                 right: 'month,agendaWeek,agendaDay'
             },
             defaultDate: '2016-09-12',
+            validRange: function(nowDate) {
+                return {
+                    start: nowDate
+                    // end: nowDate.clone().add(1, 'months')
+                };
+            },
             timeFormat: 'h:mm',
             eventOrder: 'start',
             themeSystem: 'bootstrap3',
@@ -18,6 +24,39 @@ function calendar_consult_create(selector) {
             select: function(start, end) {
                 $('#modalCal').modal('show');
             },
+
+        // events: function (start, end, timezone, callback) {
+        //     $.ajax({
+        //         url: '/public/consult/show',
+        //         type: "GET",
+        //         dataType: 'json',
+        //         success: function (doc) {
+        //             console.log(doc);
+        //             let events = [];
+        //             if (Array.isArray(doc)){
+        //                 events = doc.map(function (item) {
+        //                     return {
+        //                         time_id: item.id,
+        //                         start: item.time_start,
+        //                         end: item.time_end,
+        //                     }
+        //                 })
+        //             }else{
+        //
+        //                 events.push(
+        //                     {
+        //                         time_id: item.id,
+        //                         start: doc.time_start,
+        //                         end: doc.time_end,
+        //
+        //                     }
+        //                 )
+        //             }
+        //
+        //             callback(events);
+        //         }
+        //     });
+        // },
             eventClick: function(event, element) {
                 $('#modalCal').modal('show');
                 $('.modal').find('#time_start').val(event.start);
@@ -44,21 +83,20 @@ function calendar_consult_create(selector) {
     $( '#consultCreate' ).on( "submit", ( e)=> {
 
         e.preventDefault();
-        var t = {};
+        var allData = {};
 
         $( '#consultCreate' ).serializeArray().forEach(function(item) {
-            t[item['name']] = item['value'];
+            allData[item['name']] = item['value'];
         });
-        t.events = events;
+        allData.events = events;
         $.ajax({
             url: '/cabinet/consult',
             method: 'POST',
             dataType: 'json',
-            data: {t},
+            data: {allData},
             statusCode: {
                 200: function () {
-                    // window.location = "http://localhost:8000/sconsult";
-                    console.log(t);
+                    window.location = "/sconsult";
                 },
             },
         });

@@ -17,6 +17,7 @@ use App\Models\Vacancy;
 use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
+use App\Http\Controllers\EventsController;
 
 class ConsultsController extends Controller
 {
@@ -49,10 +50,9 @@ class ConsultsController extends Controller
 
     public function store(ConsultValid $request)
     {
-        $consultData = $request->t;
+        $consultData = $request->allData;
         $consult = new Consult;
-        $consult->consult_id = $consultData['consult_id'];
-        $consult->resume_id = $consultData['resume'];
+        $consult->user_id = $consultData['user_id'];
         $consult->value = $consultData['value'];
         $consult->currency_id = $consultData['currency'];
         $consult->city = $consultData['city'];
@@ -60,6 +60,9 @@ class ConsultsController extends Controller
         $consult->position = $consultData['position'];
         $consult->description = $consultData['description'];
         $consult->telephone = $consultData['telephone'];
+        if(isset($consultData['resume'])){
+            $consult->resume_id = $consultData['resume'];
+        }
         $consult->save();
         foreach ($consultData['events'] as $event) {
             $timeConsultation = new TimeConsultation;
@@ -71,7 +74,6 @@ class ConsultsController extends Controller
             $timeConsultation->time_start = $start;
             $timeConsultation->time_end = $end;
             $timeConsultation->save();
-
         }
         return redirect('sconsult');
     }
