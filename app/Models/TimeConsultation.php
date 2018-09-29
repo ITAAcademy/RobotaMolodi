@@ -13,4 +13,7 @@ class TimeConsultation extends Model
     public function consults(){
         return $this->belongsTo('App\Models\Consult');
     }
+    public function confirmedConsultations(){
+        return $this->hasMany('App\Models\ConfirmedConsultation', 'time_consultation_id');
+    }
 }

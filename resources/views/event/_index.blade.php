@@ -79,80 +79,55 @@
                 <th scope="col">Кінець консультації</th>
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
-                <th scope="col">Редагувати</th>
+                @if($my)
+                    <th scope="col">Посада</th>
+                @else
+                    <th scope="col">Редагувати</th>
+                @endif
                 <th scope="col">Видалити</th>
             </tr>
             </thead>
-            @if($filter)
-                @foreach($consultant as $consult)
-                    @foreach($consult->timeConsults as $timeConsult)
-                        @foreach($consult->confirmedConsultations as $confirmedConsultation)
-                            @if($confirmedConsultation)
-                                <tbody>
-                                <tr scope="row">
-                                    <td>
-                                        <div>{{$timeConsult->time_start}}</div>
-                                    </td>
-                                    <td>
-                                        <div>{{$timeConsult->time_end}}</div>
-                                    </td>
-                                    <td>
-                                        <div>{{$consult->city}}</div>
-                                    </td>
-                                    <td>
-                                        <div>{{$consult->area}}</div>
-                                    </td>
-                                    <td>
-
-                                        <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
-                                            <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
-                                        {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            @endif
-                        @endforeach
-                    @endforeach
-                @endforeach
-            @else
-                @foreach($consultant as $consult)
-                    <tbody>
-                    <tr scope="row">
+            @foreach($consultations as $consultation)
+{{--    {{dd($consultation)}}--}}
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <div>{{$consultation->time_start}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->time_end}}</div>
+                    </td>
                         <td>
-                            @foreach($consult->timeConsults as $timeConsult)
-                                <div>{{$timeConsult->time_start}}</div>
+                            <div>{{$consultation->consults->city}}</div>
                         </td>
                         <td>
-                            <div>{{$timeConsult->time_end}}</div>
-                            @endforeach
+                            <div>{{$consultation->consults->area}}</div>
                         </td>
-                        <td>
-                            <div>{{$consult->city}}</div>
-                        </td>
-                        <td>
-                            <div>{{$consult->area}}</div>
-                        </td>
-                        <td>
-                            <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
+                    <td>
+                        @if($my)
+                            <div>{{$consultation->consults->position}}</div>
+                        @else
+                            <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
                                 <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
                             </form>
-                        </td>
-                        <td>
-                            {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
+                        @endif
+                    </td>
+                    <td>
+                        @if($my)
+                            {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
                             {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
                             {!! Form::close() !!}
-                        </td>
-                    </tr>
-                    </tbody>
-                @endforeach
-            @endif
-        </table>
-        <div class="container"> {!! $consultant->render() !!}</div>
-    </div>
+                        @else
+                            {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
+                            {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
+                            {!! Form::close() !!}
+                        @endif
 
+                    </td>
+                </tr>
+                </tbody>
+            @endforeach
+        </table>
+        <div class="container"> {!!  $consultations->render() !!}</div>
+    </div>
 @stop

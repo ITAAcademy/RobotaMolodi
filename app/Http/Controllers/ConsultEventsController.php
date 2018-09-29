@@ -25,38 +25,38 @@ class ConsultEventsController extends Controller
     const PER_PAGE = 5;
     public function index(Request $request)
     {
-        $filter = [
-            'my' => 'my'
-        ];
-        $filter1 = [
-            'conf' => 'conf'
-        ];
-        $consultant = Consult:: where('consult_id', '=', Auth::User()->id)
-                ->with('timeConsults')
-                ->with('confirmedConsultations')
+        if ($request->has('conf')) {
+            $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
+                ->has('confirmedConsultations')
+                ->whereHas('consults', function ($q) {
+                    $q->where('consult_id', '=', Auth::User()->id);
+                })
                 ->paginate(self::PER_PAGE);
-        $consultations = ConfirmedConsultation:: where('user_id', '=', Auth::User()->id)
-            ->with('timeConsultation')
-            ->with('consultants')
-            ->paginate(self::PER_PAGE);
-         //  dd($consultations);
-        $consultants = Consult::all();
-//dd($filter1);
-        if ($request->has($filter1)) {
-            return view('event._index', ['consultant' => $consultant, 'filter'=> $filter]);
-        }
-        elseif($request->has($filter)){
-            return view('event._index_', ['consultants' => $consultants, 'consultations'=> $consultations]);
-        }
-        else{
+            return view('event._index', ['consultations' => $consultations, 'my' => 0]);
+        } elseif ($request->has('my')) {
+            $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
+                ->whereHas('confirmedConsultations', function ($q) {
+                    $q->where('user_id', '=', Auth::User()->id);
+                })
+                ->paginate(self::PER_PAGE);
+            return view('event._index', ['consultations' => $consultations, 'my' => 1]);
+        } else {
             if ($request->ajax()) {
-                return view('event.index')->with('consultant', $consultant);
-
+                $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
+                    ->whereHas('consults', function ($q) {
+                        $q->where('consult_id', '=', Auth::User()->id);
+                    })
+                    ->paginate(self::PER_PAGE);
+                return view('event.index', ['consultations' => $consultations, 'my' => 0]);
             } else {
-                return view('event._index', ['consultant' => $consultant, 'filter'=> '0']);
+                $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
+                    ->whereHas('consults', function ($q) {
+                        $q->where('consult_id', '=', Auth::User()->id);
+                    })
+                    ->paginate(self::PER_PAGE);
+                return view('event._index', ['consultations' => $consultations, 'my' => 0]);
             }
         }
-
     }
 
 
@@ -65,17 +65,17 @@ class ConsultEventsController extends Controller
         $timeConsultations = TimeConsultation::where('consults_id', $id)
             ->get();
         //if($request->isAjax()){
-            return json_encode($timeConsultations);
-       //}
+        return json_encode($timeConsultations);
+        //}
     }
 
     public function store(StoreConfirmConsultation $request)
     {
 
-                $confirmedCons = ConfirmedConsultation::create($request->all());
-                $confirmedCons->user_id = Auth::user()->id;
-                $confirmedCons->save();
-                return json_encode("Registration completed successfully.");
+        $confirmedCons = ConfirmedConsultation::create($request->all());
+        $confirmedCons->user_id = Auth::user()->id;
+        $confirmedCons->save();
+        return json_encode("Registration completed successfully.");
 
 
     }
@@ -85,13 +85,13 @@ class ConsultEventsController extends Controller
         $industries = Industry::all();
         $consultant = Consult::with('timeConsults') -> find($id);
         $timecons =[];
-        foreach ($consultant->timeConsults as $timeConsult)
-            $timecons = $timeConsult;
+            foreach ($consultant->timeConsults as $timeConsult)
+                $timecons = $timeConsult;
         return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries, 'timecons' => $timecons]);
     }
     public function update(Request $request, $id)
     {
-        //   dd ($request);
+     //   dd ($request);
         $consult = Consult::find($id);
         $consult->update($request ->all());
         $time_id=$request->get('time_id');
@@ -101,9 +101,8 @@ class ConsultEventsController extends Controller
     }
     public function destroy($id)
     {
-        $data = Consult::find($id);
+        $data = TimeConsultation::find($id);
         $data->confirmedConsultations()->delete();
-        $data->timeConsults()->delete();
         $data->delete();
 
 //     dd ($data);

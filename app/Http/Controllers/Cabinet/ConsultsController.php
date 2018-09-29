@@ -77,9 +77,8 @@ class ConsultsController extends Controller
     }
     public function destroy($id)
     {
-        $data = Consult::find($id);
+        $data = TimeConsultation::find($id);
         $data->confirmedConsultations()->delete();
-//     dd ($data);
         return redirect('events');
     }
 }
