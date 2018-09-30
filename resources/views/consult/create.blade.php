@@ -103,62 +103,63 @@
             </div>
 
             @if(!$resumes->isEmpty())
-            <div class="form-group row">
-                <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
-                    {{ trans('main.resume') }}
-                </label>
-                <div class="col-md-5 col-sm-5">
-                    <select class="inputPlace2" id="resume_id" name="resume">
-                        @foreach($resumes as $resume)
-                            <option value="{{$resume->id}}">{{$resume->position}}</option>
-                        @endforeach
-                    </select>
+                <div class="form-group row">
+                    <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
+                        {{ trans('main.resume') }}
+                    </label>
+                    <div class="col-md-5 col-sm-5">
+                        <select class="inputPlace2" id="resume_id" name="resume">
+                            @foreach($resumes as $resume)
+                                <option value="{{$resume->id}}">{{$resume->position}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
             @else
-            <div class="form-group row">
-                <div class="col-md-5">
-                    <label>У Вас ще немає резюме</label><br>
-                    <a href="{{action("ResumeController@create")}}">
-                        <button type="button"  class="btn btn-green btn-large">Створити резюме</button>
-                    </a>
+                <div class="form-group row">
+                    <div class="col-md-5">
+                        <label>У Вас ще немає резюме</label><br>
+                        <a href="{{action("ResumeController@create")}}">
+                            <button type="button" class="btn btn-green btn-large">Створити резюме</button>
+                        </a>
+                    </div>
                 </div>
-            </div>
             @endif
 
             <div class="form-group row" id="calendar_consult">
 
-            <div id='calendar2'></div>
-            <div id='datepicker'></div>
+                <div id='calendar2'></div>
+                <div id='datepicker'></div>
 
-            <div class="modal fade" tabindex="-1" role="dialog" id="modalCal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Create new event</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <label class="col-xs-4" for="time_start">Starts at</label>
-                                    <input type="text" name="time_start" id="time_start" />
+                <div class="modal fade" tabindex="-1" role="dialog" id="modalCal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Create new event</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label class="col-xs-4" for="time_start">Starts at</label>
+                                        <input type="text" name="time_start" id="time_start"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label class="col-xs-4" for="time_end">Ends at</label>
+                                        <input type="text" name="time_end" id="time_end"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <label class="col-xs-4" for="time_end">Ends at</label>
-                                    <input type="text" name="time_end" id="time_end" />
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="save-event">Save changes</button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="save-event">Save changes</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </div>
             {{--<input type="hidden" value="" id="input_hidden_field_obj" />--}}
             <div class="form-group row">
@@ -181,7 +182,8 @@
     </div>
     <script type="text/javascript" src="{{ asset('/js/calendar_consult_create.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('/js/consultValidation.js') }}" crossorigin="anonymous" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous"
+            defer></script>
 
     <script>
         $(document).ready(function () {
