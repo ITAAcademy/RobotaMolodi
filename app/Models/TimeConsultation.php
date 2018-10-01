@@ -28,7 +28,7 @@ class TimeConsultation extends Model
             $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
                 ->has('confirmedConsultations')
                 ->whereHas('consults', function ($q) {
-                    $q->where('consult_id', '=', Auth::User()->id);
+                    $q->where('user_id', '=', Auth::User()->id);
                 })
                 ->paginate(5);
             return $consultations;
@@ -42,7 +42,7 @@ class TimeConsultation extends Model
         } else {
             $consultations = TimeConsultation:: with('consults', 'confirmedConsultations')
                 ->whereHas('consults', function ($q) {
-                    $q->where('consult_id', '=', Auth::User()->id);
+                    $q->where('user_id', '=', Auth::User()->id);
                 })
                 ->paginate(5);
             return $consultations;

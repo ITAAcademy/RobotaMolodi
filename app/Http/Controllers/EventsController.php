@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Consult;
-use App\Http\Controllers\Cabinet\ConsultsController;
+//use App\Http\Controllers\Cabinet\ConsultsController;
 use App\Models\TimeConsultation;
 
 
