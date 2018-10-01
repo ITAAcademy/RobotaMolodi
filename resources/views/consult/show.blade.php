@@ -50,7 +50,7 @@
                 <div id="datAnnoyingSizes">
 
                     <div class="panel-headings">
-
+{{--{{dd($consultant)}}--}}
                         <strong class="name_edit"> {{$consultant->userName()}}</strong>
                         <form action="{{ action('ConsultEventsController@edit' , $consultant->id) }}">
                             <button  type="submit" class=" fa orange-button">&#xf044;</button>

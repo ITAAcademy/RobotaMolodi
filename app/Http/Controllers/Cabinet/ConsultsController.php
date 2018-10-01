@@ -54,6 +54,11 @@ class ConsultsController extends Controller
         $consult = new Consult($consultData);
         $consult->value = $consultData['value'];
         $consult->currency_id = $consultData['currency'];
+        $consult->city = $consultData['city'];
+        $consult->area = $consultData['area'];
+        $consult->position = $consultData['position'];
+        $consult->description = $consultData['description'];
+        $consult->telephone = $consultData['telephone'];
         if(isset($consultData['resume'])){
             $consult->resume_id = $consultData['resume'];
         }
@@ -71,6 +76,10 @@ class ConsultsController extends Controller
         }
         return redirect('sconsult');
     }
-
-
+    public function destroy($id)
+    {
+        $data = TimeConsultation::find($id);
+        $data->confirmedConsultations()->delete();
+        return redirect('events');
+    }
 }

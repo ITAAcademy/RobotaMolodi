@@ -9,5 +9,15 @@ class ConfirmedConsultation extends Model
     //
     protected $fillable = ['time_consultation_id', 'user_id'];
 
+    public function timeConsultation(){
 
+        return $this->belongsTo('App\Models\TimeConsultation', 'time_consultation_id');
+    }
+    public function user(){
+        return $this->belongsTo('App\Models\Consult', 'user_id','consult_id');
+    }
+    public function consultants(){
+        return $this->hasManyThrough('App\Models\Consult', 'App\Models\TimeConsultation',
+            'consults_id','id','time_consultation_id');
+    }
 }

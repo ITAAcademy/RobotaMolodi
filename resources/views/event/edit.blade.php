@@ -155,7 +155,6 @@
             </div><br>
             <div id="error_calendar"></div>
         <div class="row form-company-row" id="calendar_consult">
-
             <div id='calendar_edit' data-consult-id="{{$consultant->id}}"></div>
             <div class="modal fade" tabindex="-1" role="dialog" id="modalCal">
                 <div class="modal-dialog" role="document">

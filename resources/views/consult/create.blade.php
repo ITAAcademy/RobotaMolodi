@@ -1,4 +1,4 @@
-@extends ('NewVacancy/users')
+@extends('app')
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/styleValidation.css') }}" rel="stylesheet">

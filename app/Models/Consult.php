@@ -13,8 +13,12 @@ class Consult extends Model
         return $this->belongsTo('App\Models\User', 'user_id','id');
     }
 
-    public function timeConsult(){
+    public function timeConsults(){
         return $this->hasMany('App\Models\TimeConsultation', 'consults_id');
+    }
+    public function confirmedConsultations(){
+        return $this->hasManyThrough('App\Models\ConfirmedConsultation', 'App\Models\TimeConsultation',
+            'consults_id', 'time_consultation_id');
     }
     public function resume(){
         return $this->belongsTo('App\Models\Resume', 'resume_id','id');

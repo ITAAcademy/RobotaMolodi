@@ -1,6 +1,6 @@
 @extends('app')
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
-<link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
+<link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}'/>
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 @section('content')
     @include('newDesign.breadcrumb',array('breadcrumbs' =>[
@@ -55,56 +55,89 @@
                 <li><a href="{{route('company.create')}}">{{ trans('navtab.company') }}</a></li>
                 <li><a href="{{route('resume.create')}}">{{ trans('navtab.resume') }}</a></li>
                 <li><a href="{{route('project.create')}}">{{ trans('navtab.project') }}</a></li>
-                <li><a href="javascript:alert( {{ trans('consult.attention') }} )">{{ trans('navtab.advisor')  }}</a></li>
+                <li><a href="javascript:alert( {{ trans('consult.attention') }} )">{{ trans('navtab.advisor')  }}</a>
+                </li>
             </ul>
         </div>
     </div>
 
     <div class="content">
-
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
+            <a href="{{ url('events' ) }}" type="link" class="fa orange-button">Всі консультацій</a>
+        </div>
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+            <a href="?conf=1" type="link" class="fa orange-button">Підтвердженні консультації</a>
+        </div>
+        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+            <a href="?my=1" type="link" class="fa orange-button">Мої консультації</a>
+        </div>
         <table class="table table-striped consult-table">
             <thead>
+
             <tr>
+                <th scope="col">Початок консультації</th>
+                <th scope="col">Кінець консультації</th>
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
-                <th scope="col">Посада</th>
                 <th scope="col">Опис</th>
+                @if($my)
+                    <th scope="col">Посада</th>
+                @else
+                    <th scope="col">Редагувати</th>
+                @endif
                 <th scope="col">Опції</th>
             </tr>
             </thead>
-        @foreach($consultant as $consult)
-          <tbody>
-            <tr scope="row">
-                <td>
-                    <div>{{$consult->city}}</div>
-                </td>
-                <td>
-                    <div>{{$consult->area}}</div>
-                </td>
-                <td>
-                    <div>{{$consult->position}}</div>
-                </td>
-                <td>
-                    <div>{{$consult->description}}</div>
-                </td>
-                <td>
-                    <div>
-                        <a  href='/sconsult/{{$consult->id}}' target="_blank">
-                            <button class=" fa orange-button">&#xf05a;Детальніше</button>
-                        </a>
-                    </div><br>
-                    <form action="{{ action('ConsultEventsController@edit' , $consult->id) }}">
-                        <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
-                    </form>
-                    {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consult->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
-                    {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-          </tbody>
-        @endforeach
+            @foreach($consultations as $consultation)
+                <tbody>
+                <tr scope="row">
+                    <td>
+                        <div>{{$consultation->time_start}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->time_end}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->consults->city}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->consults->area}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->consults->description}}</div>
+                    </td>
+                    <td>
+                        @if($my)
+                            <div>{{$consultation->consults->position}}</div>
+                        @else
+                            <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
+                                <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
+                            </form>
+                        @endif
+                    </td>
+
+                    <td>
+                        <div>
+                            <a  href='/sconsult/{{$consultation->consults->id}}' target="_blank">
+                                <button class=" fa orange-button">&#xf05a;Детальніше</button>
+                            </a>
+                        </div><br>
+                        @if($my)
+                            {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
+                            {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
+                            {!! Form::close() !!}
+                        @else
+                            {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
+                            {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
+                            {!! Form::close() !!}
+                        @endif
+
+                    </td>
+                </tr>
+                </tbody>
+            @endforeach
         </table>
-        <div class="container"> {!! $consultant->render() !!}</div>
+        <div class="container"> {!!  $consultations->render() !!}</div>
     </div>
 
 @stop
