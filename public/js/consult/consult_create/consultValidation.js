@@ -12,11 +12,11 @@ $(document).ready(function(){
             var patt = /^([а-яё\s]+|[a-z\s]+)$/iu;
             if(elem.val().length > 255 || !patt.test($('#positionCon').val()) ) {
                 error.positionCon = true;
-                positionInfo.removeClass('correct').addClass('error').html('← Only letters').show();
+                positionInfo.removeClass('correct').addClass('error').html('← Лише літери').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.positionCon = false;
-                positionInfo.removeClass('error').addClass('correct').html('√').show();
+                positionInfo.removeClass('error').addClass('correct');
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -31,11 +31,11 @@ $(document).ready(function(){
             });
             if(elem.val().length > 255 ) {
                 error.description = true;
-                descriptionInfo.removeClass('correct').addClass('error').html('← Entered more than 255 characters').show();
+                descriptionInfo.removeClass('correct').addClass('error').html('← Перевищено ліміт 255 символів').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.description = false;
-                descriptionInfo.removeClass('error').addClass('correct').html('√').show();
+                descriptionInfo.removeClass('error').addClass('correct');
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -52,11 +52,11 @@ $(document).ready(function(){
             var patt = /^\d+$/i;
             if(!patt.test($('#value').val()) ){
                 error.value = true;
-                valueInfo.removeClass('correct').addClass('error').html('← Enter the integer value').show();
+                valueInfo.removeClass('correct').addClass('error').html('← Лише цілі числа').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.value = false;
-                valueInfo.removeClass('error').addClass('correct').html('√').show();
+                valueInfo.removeClass('error').addClass('correct');
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -73,11 +73,11 @@ $(document).ready(function(){
             var patt = /^\(\d{3}\) \d{3}-\d{2}-\d{2}$/i;
             if(!patt.test($('#telephone').val()) ){
                 error.telephone = true;
-                telephoneInfo.removeClass('correct').addClass('error').html('← Format (XXX) XXX-XX-XX').show();
+                telephoneInfo.removeClass('correct').addClass('error').html('← Формат номеру (XXX) XXX-XX-XX').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.telephone = false;
-                telephoneInfo.removeClass('error').addClass('correct').html('√').show();
+                telephoneInfo.removeClass('error').addClass('correct');
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -94,20 +94,20 @@ $(document).ready(function(){
             var curr_date = new Date;
             var curr_pars = Date.parse(curr_date);
 
-            var elem = $('#time_end');
+            var elem = $('#error_calendar');
             var pos = elem.offset();
             endValidInfo.css({
                 top: pos.top - 3,
-                left: pos.left + elem.width() + 200
+                left: pos.left + elem.width() + 5
             });
 
             if ( ms !== me || ds!==de || ys!== ye || Date.parse($('#time_start').val()) < curr_pars) {
                 error.val = true;
-                endValidInfo.removeClass('correct').addClass('error').html('← Consultation can be appointed only on the next days, duration is not more than 1 day.').show();
+                endValidInfo.removeClass('correct').addClass('error').html('← Тривалість консультації не може перевищувати 1 день').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.val = false;
-                endValidInfo.removeClass('error').addClass('correct').html('√').show();
+                endValidInfo.removeClass('error').addClass('correct');
                 elem.removeClass('wrong').addClass('normal');
             }
         },

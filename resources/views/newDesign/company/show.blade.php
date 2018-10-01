@@ -33,20 +33,11 @@
                         </span>
                     </div>
                 @endif
-                <div class="case">
-  						<span>
-                            <a href="#">
-                                <i class="fa newFa">&#xf0b1;</i>
-                            </a>
-  						</span>
-                    <div class="consult">
-                        <a href="#">{{ trans('company.planaconsultation') }}</a>
-                    </div>
-                </div>
+
                 @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
             </div>
         </div>
-        <div class="col-md-10 contentConpany">
+        <div class="col-md-8" id="contentCompany">
 
             <div class="panelHeadings">
                 <div class="textCompany">

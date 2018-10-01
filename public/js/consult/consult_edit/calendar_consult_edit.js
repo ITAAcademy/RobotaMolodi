@@ -1,6 +1,5 @@
 function calendar_consult_edit(selector) {
     var events = [];
-    var delTime = [];
     $(selector).fullCalendar({
         header: {
             left: 'prev,next today',
@@ -10,8 +9,8 @@ function calendar_consult_edit(selector) {
         defaultDate: '2016-09-12',
         validRange: function(nowDate) {
             return {
-                start: nowDate
-                // end: nowDate.clone().add(1, 'months')
+                start: nowDate,
+                end: nowDate.clone().add(1, 'months')
             };
         },
         timeFormat: 'h:mm',
@@ -91,8 +90,9 @@ function calendar_consult_edit(selector) {
             end: $('#time_end').val(),
         };
         events.push(eventData);
-        $('#calendar-edit').fullCalendar('renderEvent', eventData, true);
+        $('#calendar_edit').fullCalendar('renderEvent', eventData, true);
         $('.modal').find('input').val('');
+        $('#calendar_edit').fullCalendar('unselect');
         $('.modal').modal('hide');
     });
 

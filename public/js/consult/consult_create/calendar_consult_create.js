@@ -9,8 +9,8 @@ function calendar_consult_create(selector) {
             defaultDate: '2016-09-12',
             validRange: function(nowDate) {
                 return {
-                    start: nowDate
-                    // end: nowDate.clone().add(1, 'months')
+                    start: nowDate,
+                    end: nowDate.clone().add(1, 'months')
                 };
             },
             timeFormat: 'h:mm',
@@ -44,6 +44,7 @@ function calendar_consult_create(selector) {
         events.push(eventData);
         $('#calendar2').fullCalendar('renderEvent', eventData, true);
         $('.modal').find('input').val('');
+        $('#calendar2').fullCalendar('unselect');
         $('.modal').modal('hide');
         });
 

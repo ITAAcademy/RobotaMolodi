@@ -1291,8 +1291,3 @@ be a descendant of the grid when it is being dragged.
 .fc-unthemed .fc-list-empty {
   /* theme will provide own background */
   background-color: #eee; }
-#calendar2{
-  width: 650px;
-  /*padding-left: 100px;*/
-  margin-left: 200px;
-}
