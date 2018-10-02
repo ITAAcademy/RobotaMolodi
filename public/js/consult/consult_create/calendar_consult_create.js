@@ -1,12 +1,13 @@
 function calendar_consult_create(selector) {
     var events = [];
+    var curr_date = new Date;
     $(selector).fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2016-09-12',
+        defaultDate:curr_date,
             validRange: function(nowDate) {
                 return {
                     start: nowDate,
@@ -40,7 +41,6 @@ function calendar_consult_create(selector) {
                     start: $('#time_start').val(),
                     end: $('#time_end').val()
                 };
-                // if()
         events.push(eventData);
         $('#calendar2').fullCalendar('renderEvent', eventData, true);
         $('.modal').find('input').val('');

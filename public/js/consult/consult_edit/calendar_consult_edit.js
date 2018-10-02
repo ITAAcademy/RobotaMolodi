@@ -1,12 +1,13 @@
 function calendar_consult_edit(selector) {
     var events = [];
+    var curr_date = new Date;
     $(selector).fullCalendar({
         header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        defaultDate: '2016-09-12',
+        defaultDate: curr_date,
         validRange: function(nowDate) {
             return {
                 start: nowDate,
