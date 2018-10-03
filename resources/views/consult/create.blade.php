@@ -83,7 +83,7 @@
                            value="{{ old('value') }}" id="value">
                 </div>
                 <div class="col-md-1 col-sm-1">
-                    <select class="form-control input-sm" id="currency_id" name="currency">
+                    <select class="form-control input-sm" id="currency_id" name="currency_id">
                         @foreach($currencies as $currency)
                             <option value="{{$currency->id}}">{{$currency->currency}}</option>
                         @endforeach
@@ -109,7 +109,7 @@
                         {{ trans('main.resume') }}
                     </label>
                     <div class="col-md-6 col-sm-6">
-                        <select class="inputPlace2" id="resume_id" name="resume">
+                        <select class="inputPlace2" id="resume_id" name="resume_id">
                             @foreach($resumes as $resume)
                                 <option value="{{$resume->id}}">{{$resume->position}}</option>
                             @endforeach

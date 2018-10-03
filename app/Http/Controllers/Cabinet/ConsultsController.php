@@ -52,15 +52,8 @@ class ConsultsController extends Controller
     {
         $consultData = $request->allData;
         $consult = new Consult($consultData);
-        $consult->value = $consultData['value'];
-        $consult->currency_id = $consultData['currency'];
-        $consult->city = $consultData['city'];
-        $consult->area = $consultData['area'];
-        $consult->position = $consultData['position'];
-        $consult->description = $consultData['description'];
-        $consult->telephone = $consultData['telephone'];
-        if(isset($consultData['resume'])){
-            $consult->resume_id = $consultData['resume'];
+        if(isset($consultData['resume_id'])){
+            $consult->resume_id = $consultData['resume_id'];
         }
         $consult->save();
         foreach ($consultData['events'] as $event) {
