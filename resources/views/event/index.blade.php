@@ -51,7 +51,7 @@
                         <a  href='/sconsult/{{$consultation->consults->id}}' target="_blank">
                             <button class=" fa orange-button">&#xf05a;Детальніше</button>
                         </a>
-                    </div><br>
+                    </div>
                     <div>
                         <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
                             <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
