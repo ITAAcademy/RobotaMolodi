@@ -164,8 +164,8 @@
             {{--<input type="hidden" value="" id="input_hidden_field_obj" />--}}
             <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="img">Ваш аватар ще не працює</label>
-                    <input id="image" type="file" name="img">
+                    <label for="img">Ваш аватар</label>
+                    <input id="img" type="file" name="img">
                 </div>
             </div>
 
