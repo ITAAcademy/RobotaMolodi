@@ -51,17 +51,9 @@ class ConsultsController extends Controller
     public function store(ConsultValid $request)
     {
         $consultData = $request->allData;
-        $consult = new Consult;
-        $consult->user_id = $consultData['user_id'];
-        $consult->value = $consultData['value'];
-        $consult->currency_id = $consultData['currency'];
-        $consult->city = $consultData['city'];
-        $consult->area = $consultData['area'];
-        $consult->position = $consultData['position'];
-        $consult->description = $consultData['description'];
-        $consult->telephone = $consultData['telephone'];
-        if(isset($consultData['resume'])){
-            $consult->resume_id = $consultData['resume'];
+        $consult = new Consult($consultData);
+        if(isset($consultData['resume_id'])){
+            $consult->resume_id = $consultData['resume_id'];
         }
         $consult->save();
         foreach ($consultData['events'] as $event) {

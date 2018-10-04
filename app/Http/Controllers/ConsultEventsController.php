@@ -14,6 +14,9 @@ use App\Models\TimeConsultation;
 use Illuminate\Support\Facades\Auth;
 use App\Models\City;
 use App\Models\Industry;
+use App\Models\Currency;
+use App\Http\Requests\ConsultValid;
+
 
 class ConsultEventsController extends Controller
 {
@@ -36,8 +39,7 @@ class ConsultEventsController extends Controller
 
     public function show($id)
     {
-        $timeConsultations = TimeConsultation::where('consults_id', $id)
-            ->get();
+        $timeConsultations = TimeConsultation::where('consults_id', $id)->get();
         //if($request->isAjax()){
         return json_encode($timeConsultations);
         //}
@@ -57,29 +59,54 @@ class ConsultEventsController extends Controller
     {
         $cities = City::all();
         $industries = Industry::all();
-        $consultant = Consult::with('timeConsults') -> find($id);
-        $timecons =[];
-            foreach ($consultant->timeConsults as $timeConsult)
-                $timecons = $timeConsult;
-        return view('event.edit', ['consultant'=> $consultant, 'cities' => $cities, 'industries' => $industries, 'timecons' => $timecons]);
+        $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
+        $currencies = Currency::all();
+        $consultant = Consult::find($id);
+//        dd($consultant);
+        return view('event.edit',
+            ['consultant'=> $consultant,
+            'cities' => $cities,
+            'industries' => $industries,
+            'resumes' => $resumes,
+            'currencies' => $currencies]);
     }
-    public function update(Request $request, $id)
+
+    public function update(ConsultValid $request, $id)
     {
-     //   dd ($request);
+        $consultData = $request->allData;
         $consult = Consult::find($id);
-        $consult->update($request ->all());
-        $time_id=$request->get('time_id');
-        $timeConsultation = TimeConsultation::find($time_id);
-        $timeConsultation->update($request ->all());
-        return redirect('events');
+        $consult->value = $consultData['value'];
+        $consult->currency_id = $consultData['currency'];
+        $consult->city = $consultData['city'];
+        $consult->area = $consultData['area'];
+        $consult->position = $consultData['position'];
+        $consult->description = $consultData['description'];
+        $consult->telephone = $consultData['telephone'];
+
+        if(isset($consultData['resume'])){
+            $consult->resume_id = $consultData['resume'];
+        }
+        $consult->save();
+
+        if(isset($consultData['events'])) {
+            foreach ($consultData['events'] as $event) {
+                $timeConsultation = new TimeConsultation;
+                $startSec = strtotime($event['start']);
+                $endSec = strtotime($event['end']);
+                $start = date('Y-m-d H:i:s', $startSec);
+                $end = date('Y-m-d H:i:s', $endSec);
+                $timeConsultation->consults_id = $consult->id;
+                $timeConsultation->time_start = $start;
+                $timeConsultation->time_end = $end;
+                $timeConsultation->save();
+            }
+        }
     }
     public function destroy($id)
     {
         $data = TimeConsultation::find($id);
         $data->confirmedConsultations()->delete();
         $data->delete();
-
-//     dd ($data);
         return redirect('events');
     }
 }

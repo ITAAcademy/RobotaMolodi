@@ -21,15 +21,6 @@
                         @endif
 
                     </div>
-                    <div class="col-xs-12 case">
-                        <div class="col-xs-10 consult">
-                           <div class="col-xs-2 case-img">
-                              <i class="fa vacancy">&#xf0b1;</i>
-                        </div>
-
-                            <a href="javascript:alert( {{ trans('main.dosent') }} )">{{ trans('vacancy.plan_consultation') }}</a>
-                        </div>
-                    </div>
                     @if($vacancy->published == '1')
                         @include('newDesign.socialModule.share-btn-block' , ['url' => URL::current()])
                     @endif

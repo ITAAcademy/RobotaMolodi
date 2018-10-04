@@ -1,6 +1,7 @@
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
 <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}'/>
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
+
 <div class="content">
     <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
         <a href="{{ url('events' ) }}" type="link" class="fa orange-button">Всі консультацій</a>
@@ -19,8 +20,9 @@
             <th scope="col">Кінець консультації</th>
             <th scope="col">Місто</th>
             <th scope="col">Галузь</th>
-            <th scope="col">Редагувати</th>
-            <th scope="col">Видалити</th>
+            <th scope="col">Посада</th>
+            <th scope="col">Опис</th>
+            <th scope="col">Опції</th>
         </tr>
         </thead>
         @foreach($consultations as $consultation)
@@ -39,11 +41,22 @@
                     <div>{{$consultation->consults->area}}</div>
                 </td>
                 <td>
-                    <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
-                        <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
-                    </form>
+                    <div>{{$consultation->consults->position}}</div>
                 </td>
                 <td>
+                    <div>{{$consultation->consults->description}}</div>
+                </td>
+                <td>
+                    <div>
+                        <a  href='/sconsult/{{$consultation->consults->id}}' target="_blank">
+                            <button class=" fa orange-button">&#xf05a;Детальніше</button>
+                        </a>
+                    </div>
+                    <div>
+                        <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
+                            <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
+                        </form>
+                    </div>
                     {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
                     {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
                     {!! Form::close() !!}

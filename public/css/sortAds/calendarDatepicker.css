@@ -35,4 +35,7 @@
 
 .block-datepicker{
     display: inline-block;
+    float: left;
+    position: relative;
+    opacity: 1;
 }

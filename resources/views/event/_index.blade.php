@@ -79,16 +79,16 @@
                 <th scope="col">Кінець консультації</th>
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
+                <th scope="col">Опис</th>
                 @if($my)
                     <th scope="col">Посада</th>
                 @else
                     <th scope="col">Редагувати</th>
                 @endif
-                <th scope="col">Видалити</th>
+                <th scope="col">Опції</th>
             </tr>
             </thead>
             @foreach($consultations as $consultation)
-{{--    {{dd($consultation)}}--}}
                 <tbody>
                 <tr scope="row">
                     <td>
@@ -97,12 +97,15 @@
                     <td>
                         <div>{{$consultation->time_end}}</div>
                     </td>
-                        <td>
-                            <div>{{$consultation->consults->city}}</div>
-                        </td>
-                        <td>
-                            <div>{{$consultation->consults->area}}</div>
-                        </td>
+                    <td>
+                        <div>{{$consultation->consults->city}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->consults->area}}</div>
+                    </td>
+                    <td>
+                        <div>{{$consultation->consults->description}}</div>
+                    </td>
                     <td>
                         @if($my)
                             <div>{{$consultation->consults->position}}</div>
@@ -112,7 +115,13 @@
                             </form>
                         @endif
                     </td>
+
                     <td>
+                        <div>
+                            <a  href='/sconsult/{{$consultation->consults->id}}' target="_blank">
+                                <button class=" fa orange-button">&#xf05a;Детальніше</button>
+                            </a>
+                        </div><br>
                         @if($my)
                             {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
                             {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
@@ -130,4 +139,5 @@
         </table>
         <div class="container"> {!!  $consultations->render() !!}</div>
     </div>
+
 @stop

@@ -31,4 +31,10 @@ class EventsController extends Controller
         return response()->json($timeConsultations);
     }
 
+    public function destroy(Request $request)
+    {
+        $timeId = $request->id;
+        $time = TimeConsultation::find($timeId);
+        $time->delete();
+    }
 }

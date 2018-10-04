@@ -1,16 +1,17 @@
 function calendar_consult_create(selector) {
     var events = [];
+    var curr_date = new Date;
     $(selector).fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2016-09-12',
+        defaultDate:curr_date,
             validRange: function(nowDate) {
                 return {
-                    start: nowDate
-                    // end: nowDate.clone().add(1, 'months')
+                    start: nowDate,
+                    end: nowDate.clone().add(1, 'months')
                 };
             },
             timeFormat: 'h:mm',
@@ -24,39 +25,6 @@ function calendar_consult_create(selector) {
             select: function(start, end) {
                 $('#modalCal').modal('show');
             },
-
-        // events: function (start, end, timezone, callback) {
-        //     $.ajax({
-        //         url: '/public/consult/show',
-        //         type: "GET",
-        //         dataType: 'json',
-        //         success: function (doc) {
-        //             console.log(doc);
-        //             let events = [];
-        //             if (Array.isArray(doc)){
-        //                 events = doc.map(function (item) {
-        //                     return {
-        //                         time_id: item.id,
-        //                         start: item.time_start,
-        //                         end: item.time_end,
-        //                     }
-        //                 })
-        //             }else{
-        //
-        //                 events.push(
-        //                     {
-        //                         time_id: item.id,
-        //                         start: doc.time_start,
-        //                         end: doc.time_end,
-        //
-        //                     }
-        //                 )
-        //             }
-        //
-        //             callback(events);
-        //         }
-        //     });
-        // },
             eventClick: function(event, element) {
                 $('#modalCal').modal('show');
                 $('.modal').find('#time_start').val(event.start);
@@ -73,10 +41,10 @@ function calendar_consult_create(selector) {
                     start: $('#time_start').val(),
                     end: $('#time_end').val()
                 };
-                // if()
         events.push(eventData);
         $('#calendar2').fullCalendar('renderEvent', eventData, true);
         $('.modal').find('input').val('');
+        $('#calendar2').fullCalendar('unselect');
         $('.modal').modal('hide');
         });
 
