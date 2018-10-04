@@ -18,6 +18,7 @@ use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
 use App\Http\Controllers\EventsController;
+use Illuminate\Support\Facades\Storage;
 
 class ConsultsController extends Controller
 {
@@ -48,10 +49,17 @@ class ConsultsController extends Controller
      * @return Response
      */
 
-    public function store(ConsultValid $request)
+    public function store(Request $request)
     {
         $consultData = $request->allData;
+    //    if(isset($_FILES['file'])){
+     //   if( isset( $_POST['my_file_upload'] ) ){
+        if( isset( $_GET['my_file_upload'] ) ){
+            $directory = 'image/user/'. Auth::user()->id . '/avatar/';
+            Storage::makeDirectory($directory);
+        }
         $consult = new Consult;
+    //    $consult->img=$consultData['img'];
         $consult->user_id = $consultData['user_id'];
         $consult->value = $consultData['value'];
         $consult->currency_id = $consultData['currency'];
@@ -63,6 +71,7 @@ class ConsultsController extends Controller
         if(isset($consultData['resume'])){
             $consult->resume_id = $consultData['resume'];
         }
+        echo (dd($consultData));
         $consult->save();
         foreach ($consultData['events'] as $event) {
             $timeConsultation = new TimeConsultation;
