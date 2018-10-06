@@ -66,14 +66,14 @@ function calendar_consult_create(selector) {
             cache: false,
             processData: false,
             contentType: false,
-            success: function (data) {
-                console.log(data);
-            },
-            // statusCode: {
-            //     200: function () {
-            //         window.location = "/sconsult";
-            //     },
+            // success: function (data) {
+            //     console.log(data);
             // },
+            statusCode: {
+                200: function () {
+                    window.location = "/sconsult";
+                },
+            },
         });
     });
 }
