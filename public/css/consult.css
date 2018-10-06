@@ -124,13 +124,38 @@
     font-size: 16px;
     line-height: 16px;
 }
-#calendar .fc-day{
+#calendar_edit .fc-day{
     transition: all .5s;
 }
-#calendar .fc-day:hover{
-    background: #fcf8e3;
+#calendar_edit .fc-day:hover{
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);;
 }
-#calendar .fc-day-header .fc-widget-header .fc-sun th{
+#calendar_edit .fc-day-header .fc-widget-header .fc-sun th{
     padding: 5px ;
     font-size: 14px;
+}
+.name_edit{
+    display: inline-block;
+    float: left;
+    padding-right: 20px;
+}
+.bootstrap-datetimepicker-widget table td:hover, .bootstrap-datetimepicker-widget table td.active:hover{
+    background-color: #337ab7;
+    color:#fff;
+    cursor: pointer;
+}
+.bootstrap-datetimepicker-widget table th {
+    text-align: center !important;
+    position: relative;
+}
+.bootstrap-datetimepicker-widget table tr {
+    text-align: center !important;
+}
+.bootstrap-datetimepicker-widget, .dropdown-menu {
+    position: relative !important;
+    text-align: center !important;
+}
+div.bootstrap-datetimepicker-widget, .dropdown-menu, .bottom, .pull-right{
+    top: 0 !important;
+    left: 0 !important;
 }

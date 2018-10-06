@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Cabinet;
-
 use App\Http\Requests\ConsultValid;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,8 +16,8 @@ use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
 use App\Http\Controllers\EventsController;
+use App\Repositoriy\Crop;
 use Illuminate\Support\Facades\Storage;
-
 class ConsultsController extends Controller
 {
     /**
@@ -28,7 +26,6 @@ class ConsultsController extends Controller
      * @return Response
      */
     public function index(){
-
     }
     public function create()
     {
@@ -42,49 +39,50 @@ class ConsultsController extends Controller
                 'currencies' => $currencies
             ])->with('resumes', $resumes);
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-
-    public function store(Request $request)
+    public function store(ConsultValid $request)
     {
-        $consultData = $request->allData;
-    //    if(isset($_FILES['file'])){
-     //   if( isset( $_POST['my_file_upload'] ) ){
-        if( isset( $_GET['my_file_upload'] ) ){
-            $directory = 'image/user/'. Auth::user()->id . '/avatar/';
-            Storage::makeDirectory($directory);
+        //  dd($request->all());
+        if (isset($_FILES['img'])) {
+            $extension_file = mb_strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));
+            if( $extension_file === 'gif' || $extension_file === 'png' || $extension_file === 'jpg' || $extension_file === 'jpeg' ) {
+                $directory = 'image/user/' . Auth::user()->id . '/avatar/';
+                Storage::makeDirectory($directory);
+                if ($_FILES['img']['error'] == UPLOAD_ERR_OK) {
+
+                    $filename = Auth::user()->id . '_' . time() . '.' . $extension_file;
+                    $full_unique_name = $directory . $filename;
+                    if (move_uploaded_file($_FILES['img']['tmp_name'], $full_unique_name)) {
+                        $user = Auth::user();
+                        $user->avatar = $filename;
+                        $user->save();
+                    }
+                }
+            }
         }
-        $consult = new Consult;
-    //    $consult->img=$consultData['img'];
-        $consult->user_id = $consultData['user_id'];
-        $consult->value = $consultData['value'];
-        $consult->currency_id = $consultData['currency'];
-        $consult->city = $consultData['city'];
-        $consult->area = $consultData['area'];
-        $consult->position = $consultData['position'];
-        $consult->description = $consultData['description'];
-        $consult->telephone = $consultData['telephone'];
-        if(isset($consultData['resume'])){
-            $consult->resume_id = $consultData['resume'];
+        $consultData = $request->all();
+        $consult = new Consult($consultData);
+        if (isset($consultData['resume_id'])) {
+            $consult->resume_id = $consultData['resume_id'];
         }
-        echo (dd($consultData));
         $consult->save();
-        foreach ($consultData['events'] as $event) {
-            $timeConsultation = new TimeConsultation;
-            $startSec = strtotime($event['start']);
-            $endSec = strtotime($event['end']);
-            $start = date('Y-m-d H:i:s', $startSec);
-            $end = date('Y-m-d H:i:s', $endSec);
-            $timeConsultation->consults_id = $consult->id;
-            $timeConsultation->time_start = $start;
-            $timeConsultation->time_end = $end;
-            $timeConsultation->save();
-        }
-        return redirect('sconsult');
+        $events = json_decode($consultData['ev'], true);
+        foreach ($events as $event) {
+                $timeConsultation = new TimeConsultation;
+                $startSec = strtotime($event['start']);
+                $endSec = strtotime($event['end']);
+                $start = date('Y-m-d H:i:s', $startSec);
+                $end = date('Y-m-d H:i:s', $endSec);
+                $timeConsultation->consults_id = $consult->id;
+                $timeConsultation->time_start = $start;
+                $timeConsultation->time_end = $end;
+                $timeConsultation->save();
+           }
+        return json_encode($request);
     }
     public function destroy($id)
     {

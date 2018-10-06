@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consult extends Model
 {
-    protected $fillable  = ['user_id', 'telephone', 'city', 'area', 'position', 'description'];
+    protected $fillable  = ['user_id', 'telephone', 'city', 'area', 'position', 'description', 'currency_id', 'resume_id', 'value'];
     protected $table = "consults";
 
     public function user(){
