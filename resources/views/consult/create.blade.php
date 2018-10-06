@@ -132,7 +132,7 @@
                 <label for="img" class="col-md-3 col-sm-3 label-text-company">Ваш аватар</label>
                 <div class="col-md-6 col-sm-6">
                     <label for="img">Ваш аватар</label>
-                    <input id="img" type="file" name="img">
+                    <input id="img" type="file" name="img"  accept=".jpg, .jpeg, .png, .gif">
                 </div>
             </div><br>
             <div id="error_calendar"></div>

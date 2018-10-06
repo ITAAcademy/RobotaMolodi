@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Cabinet;
+
 use App\Http\Requests\ConsultValid;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -18,6 +20,8 @@ use App\Models\User;
 use App\Http\Controllers\EventsController;
 use App\Repositoriy\Crop;
 use Illuminate\Support\Facades\Storage;
+use File;
+
 class ConsultsController extends Controller
 {
     /**
@@ -25,8 +29,10 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function index(){
+    public function index()
+    {
     }
+
     public function create()
     {
         $cities = City::all();
@@ -39,6 +45,7 @@ class ConsultsController extends Controller
                 'currencies' => $currencies
             ])->with('resumes', $resumes);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -46,23 +53,16 @@ class ConsultsController extends Controller
      */
     public function store(ConsultValid $request)
     {
-        //  dd($request->all());
+//          dd($request->all());
         if (isset($_FILES['img'])) {
             $extension_file = mb_strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));
-            if( $extension_file === 'gif' || $extension_file === 'png' || $extension_file === 'jpg' || $extension_file === 'jpeg' ) {
-                $directory = 'image/user/' . Auth::user()->id . '/avatar/';
-                Storage::makeDirectory($directory);
-                if ($_FILES['img']['error'] == UPLOAD_ERR_OK) {
-
-                    $filename = Auth::user()->id . '_' . time() . '.' . $extension_file;
-                    $full_unique_name = $directory . $filename;
-                    if (move_uploaded_file($_FILES['img']['tmp_name'], $full_unique_name)) {
-                        $user = Auth::user();
-                        $user->avatar = $filename;
-                        $user->save();
-                    }
-                }
-            }
+            $directory = 'image/user/' . Auth::user()->id . '/avatar/';
+            Storage::makeDirectory($directory);
+            $filename = Auth::user()->id . '_' . time() . '.' . $extension_file;
+            move_uploaded_file($_FILES['img']['tmp_name'], $directory . $filename);
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
         }
         $consultData = $request->all();
         $consult = new Consult($consultData);
@@ -72,18 +72,19 @@ class ConsultsController extends Controller
         $consult->save();
         $events = json_decode($consultData['ev'], true);
         foreach ($events as $event) {
-                $timeConsultation = new TimeConsultation;
-                $startSec = strtotime($event['start']);
-                $endSec = strtotime($event['end']);
-                $start = date('Y-m-d H:i:s', $startSec);
-                $end = date('Y-m-d H:i:s', $endSec);
-                $timeConsultation->consults_id = $consult->id;
-                $timeConsultation->time_start = $start;
-                $timeConsultation->time_end = $end;
-                $timeConsultation->save();
-           }
+            $timeConsultation = new TimeConsultation;
+            $startSec = strtotime($event['start']);
+            $endSec = strtotime($event['end']);
+            $start = date('Y-m-d H:i:s', $startSec);
+            $end = date('Y-m-d H:i:s', $endSec);
+            $timeConsultation->consults_id = $consult->id;
+            $timeConsultation->time_start = $start;
+            $timeConsultation->time_end = $end;
+            $timeConsultation->save();
+        }
         return json_encode($request);
     }
+
     public function destroy($id)
     {
         $data = TimeConsultation::find($id);
