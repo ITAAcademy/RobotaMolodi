@@ -156,6 +156,7 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 		'Unisharp\Ckeditor\ServiceProvider',
+        'Illuminate\Filesystem\FilesystemServiceProvider',
 	],
 
 	/*

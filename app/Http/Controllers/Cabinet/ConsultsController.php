@@ -53,18 +53,18 @@ class ConsultsController extends Controller
      */
     public function store(ConsultValid $request)
     {
-//          dd($request->all());
-        if (isset($_FILES['img'])) {
-            $extension_file = mb_strtolower(pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION));
+        $consultData = $request->all();
+        if (isset($consultData['img'])) {
+            $file = $request->file('img');
+            $filename = Auth::user()->id . '_' . time() . '.' . $file->getClientOriginalExtension();
             $directory = 'image/user/' . Auth::user()->id . '/avatar/';
             Storage::makeDirectory($directory);
-            $filename = Auth::user()->id . '_' . time() . '.' . $extension_file;
-            move_uploaded_file($_FILES['img']['tmp_name'], $directory . $filename);
+            Storage::put($directory . $filename, file_get_contents($file));
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
         }
-        $consultData = $request->all();
+
         $consult = new Consult($consultData);
         if (isset($consultData['resume_id'])) {
             $consult->resume_id = $consultData['resume_id'];

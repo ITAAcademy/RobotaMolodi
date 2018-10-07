@@ -28,6 +28,7 @@ class ConsultValid extends Request
             'description' => 'required|max:255',
             'value' => 'required|integer',
             'telephone' => 'required',
+            'img' => 'sometimes|required|image'
         ];
     }
 }
