@@ -16,6 +16,7 @@ use App\Models\City;
 use App\Models\Industry;
 use App\Models\Currency;
 use App\Http\Requests\ConsultValid;
+use Illuminate\Support\Facades\Storage;
 
 
 class ConsultEventsController extends Controller
@@ -71,7 +72,7 @@ class ConsultEventsController extends Controller
             'currencies' => $currencies]);
     }
 
-    public function update(Request $request, $id)
+    public function update(ConsultValid $request, $id)
     {
 
         $consultData = $request->all();
@@ -94,6 +95,16 @@ class ConsultEventsController extends Controller
                 $timeConsultation->time_end = $end;
                 $timeConsultation->save();
             }
+        }
+        if (isset($consultData['img'])) {
+            $file = $request->file('img');
+            $filename = Auth::user()->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $directory = 'image/user/' . Auth::user()->id . '/avatar/';
+            Storage::makeDirectory($directory);
+            Storage::put($directory . $filename, file_get_contents($file));
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
         }
     }
     public function destroy($id)
