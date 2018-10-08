@@ -71,17 +71,11 @@ class ConsultEventsController extends Controller
             'currencies' => $currencies]);
     }
 
-    public function update(ConsultValid $request, $id)
+    public function update(Request $request, $id)
     {
         $consultData = $request->allData;
         $consult = Consult::find($id);
-        $consult->value = $consultData['value'];
-        $consult->currency_id = $consultData['currency'];
-        $consult->city = $consultData['city'];
-        $consult->area = $consultData['area'];
-        $consult->position = $consultData['position'];
-        $consult->description = $consultData['description'];
-        $consult->telephone = $consultData['telephone'];
+        $consult->update($request ->all());
 
         if(isset($consultData['resume'])){
             $consult->resume_id = $consultData['resume'];
