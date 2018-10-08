@@ -18,7 +18,6 @@ use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
 use App\Http\Controllers\EventsController;
-use App\Repositoriy\Crop;
 use Illuminate\Support\Facades\Storage;
 use File;
 
@@ -70,7 +69,7 @@ class ConsultsController extends Controller
             $consult->resume_id = $consultData['resume_id'];
         }
         $consult->save();
-        $events = json_decode($consultData['ev'], true);
+        $events = json_decode($consultData['events'], true);
         foreach ($events as $event) {
             $timeConsultation = new TimeConsultation;
             $startSec = strtotime($event['start']);

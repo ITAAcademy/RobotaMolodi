@@ -51,12 +51,7 @@ function calendar_consult_create(selector) {
     $('#consultCreate').on("submit", (e) => {
         e.preventDefault();
         var allData = new FormData($('#consultCreate')[0]);
-
         allData.append('events', JSON.stringify(events));
-        for (var i = 0; i < events.length; i++) {
-            ev=JSON.stringify(events);
-            allData.append('ev',ev);
-        }
         $.ajax({
             url: '/cabinet/consult',
             method: 'POST',

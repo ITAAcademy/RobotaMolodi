@@ -73,17 +73,17 @@ class ConsultEventsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $consultData = $request->allData;
-        $consult = Consult::find($id);
-        $consult->update($request ->all());
 
+        $consultData = $request->all();
+        $consult = Consult::find($id);
         if(isset($consultData['resume'])){
             $consult->resume_id = $consultData['resume'];
         }
-        $consult->save();
-
+        $consult->update($request ->all());
+  //      dd($request->all());
+        $events = json_decode($consultData['events'], true);
         if(isset($consultData['events'])) {
-            foreach ($consultData['events'] as $event) {
+            foreach ($events as $event) {
                 $timeConsultation = new TimeConsultation;
                 $startSec = strtotime($event['start']);
                 $endSec = strtotime($event['end']);
