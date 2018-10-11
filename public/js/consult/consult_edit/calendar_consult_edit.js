@@ -100,18 +100,19 @@ function calendar_consult_edit(selector) {
     $( '#consultEdit' ).on( "submit", ( e)=> {
 
         e.preventDefault();
-        var allData = {};
-
-        $( '#consultEdit' ).serializeArray().forEach(function(item) {
-            allData[item['name']] = item['value'];
-        });
-        allData.events = events;
-        console.log(allData);
+        var allData = new FormData($('#consultEdit')[0]);
+        allData.append('events', JSON.stringify(events));
         $.ajax({
-            url: '/events/:ID'.replace(':ID', $('#calendar_edit').data('consult-id')),
-            method: 'PUT',
+            url: '/events/:ID'.replace(':ID', $('#calendar_edit').data('consult-id')), //
+            method: 'post',
             dataType: 'json',
-            data: {allData},
+            data: allData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            // success: function (data) {
+            //     console.log(data);
+            // },
             statusCode: {
                 200: function () {
                     window.location = "/events";

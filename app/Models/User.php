@@ -9,6 +9,7 @@ use App\SocialAccount;
 use Illuminate\Support\Facades\DB;
 
 
+
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
 
@@ -121,7 +122,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function getAvatarPath()
     {
-        return 'image/user/' . $this->id . '/avatar/' . $this->avatar;
+        return  $this->avatar;
     }
     public function consult(){
         return $this->hasOne('App\Models\Consult', 'user_id', 'id');

@@ -18,6 +18,8 @@ use App\Models\News;
 use App\Models\Rating;
 use App\Models\User;
 use App\Http\Controllers\EventsController;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class ConsultsController extends Controller
 {
@@ -26,9 +28,10 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-    public function index(){
-
+    public function index()
+    {
     }
+
     public function create()
     {
         $cities = City::all();
@@ -47,16 +50,27 @@ class ConsultsController extends Controller
      *
      * @return Response
      */
-
     public function store(ConsultValid $request)
     {
-        $consultData = $request->allData;
+        $consultData = $request->all();
+        if (isset($consultData['img'])) {
+            $file = $request->file('img');
+            $filename = Auth::user()->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $directory = 'image/user/' . Auth::user()->id . '/avatar/';
+            Storage::makeDirectory($directory);
+            Storage::put($directory . $filename, file_get_contents($file));
+            $user = Auth::user();
+            $user->avatar = $directory.$filename;
+            $user->save();
+        }
+
         $consult = new Consult($consultData);
-        if(isset($consultData['resume_id'])){
+        if (isset($consultData['resume_id'])) {
             $consult->resume_id = $consultData['resume_id'];
         }
         $consult->save();
-        foreach ($consultData['events'] as $event) {
+        $events = json_decode($consultData['events'], true);
+        foreach ($events as $event) {
             $timeConsultation = new TimeConsultation;
             $startSec = strtotime($event['start']);
             $endSec = strtotime($event['end']);
@@ -67,8 +81,9 @@ class ConsultsController extends Controller
             $timeConsultation->time_end = $end;
             $timeConsultation->save();
         }
-        return redirect('sconsult');
+        return json_encode($request);
     }
+
     public function destroy($id)
     {
         $data = TimeConsultation::find($id);

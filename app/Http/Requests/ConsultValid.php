@@ -24,10 +24,11 @@ class ConsultValid extends Request
     public function rules()
     {
         return [
-            'allData.position' => 'required',
-            'allData.description' => 'required|max:255',
-            'allData.value' => 'required|integer',
-            'allData.telephone' => 'required',
+            'position' => 'required',
+            'description' => 'required|max:255',
+            'value' => 'required|integer',
+            'telephone' => 'required',
+            'img' => 'sometimes|required|image'
         ];
     }
 }

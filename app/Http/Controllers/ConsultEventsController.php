@@ -16,6 +16,7 @@ use App\Models\City;
 use App\Models\Industry;
 use App\Models\Currency;
 use App\Http\Requests\ConsultValid;
+use Illuminate\Support\Facades\Storage;
 
 
 class ConsultEventsController extends Controller
@@ -73,23 +74,17 @@ class ConsultEventsController extends Controller
 
     public function update(ConsultValid $request, $id)
     {
-        $consultData = $request->allData;
-        $consult = Consult::find($id);
-        $consult->value = $consultData['value'];
-        $consult->currency_id = $consultData['currency'];
-        $consult->city = $consultData['city'];
-        $consult->area = $consultData['area'];
-        $consult->position = $consultData['position'];
-        $consult->description = $consultData['description'];
-        $consult->telephone = $consultData['telephone'];
 
+        $consultData = $request->all();
+        $consult = Consult::find($id);
         if(isset($consultData['resume'])){
             $consult->resume_id = $consultData['resume'];
         }
-        $consult->save();
-
+        $consult->update($request ->all());
+  //      dd($request->all());
+        $events = json_decode($consultData['events'], true);
         if(isset($consultData['events'])) {
-            foreach ($consultData['events'] as $event) {
+            foreach ($events as $event) {
                 $timeConsultation = new TimeConsultation;
                 $startSec = strtotime($event['start']);
                 $endSec = strtotime($event['end']);
@@ -100,6 +95,16 @@ class ConsultEventsController extends Controller
                 $timeConsultation->time_end = $end;
                 $timeConsultation->save();
             }
+        }
+        if (isset($consultData['img'])) {
+            $file = $request->file('img');
+            $filename = Auth::user()->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $directory = 'image/user/' . Auth::user()->id . '/avatar/';
+            Storage::makeDirectory($directory);
+            Storage::put($directory . $filename, file_get_contents($file));
+            $user = Auth::user();
+            $user->avatar = $directory.$filename;
+            $user->save();
         }
     }
     public function destroy($id)

@@ -13,8 +13,8 @@
 		"doctrine/dbal": "^2.5",
 		"guzzlehttp/guzzle": "~6.0",
 		"laravel/socialite": "~2.0",
-		"tinify/tinify": "^1.5"
-
+		"tinify/tinify": "^1.5",
+		"illuminate/filesystem": "5.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

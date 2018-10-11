@@ -91,10 +91,10 @@ class UserController extends Controller
             {
                 $cropcoord = explode(',', $request->fcoords);
                 $file = Input::file('avatar');
-                $filename = Auth::user()->id . '_'. time() . '.' . $file->getClientOriginalExtension(); //take file name
+                $filename = 'image/user/' . Auth::user()->id . '/avatar/'. time() . '.' . $file->getClientOriginalExtension();
                 $directory = 'image/user/'. Auth::user()->id . '/avatar/';                              //create url to directory
                 Storage::makeDirectory($directory);                                                     //create directory
-                Crop::input($cropcoord, $filename, $file, $directory);                                  //cuts and stores the image in the appropriate directory
+                Crop::input($cropcoord, $directory.$filename, $file, $directory);              //cuts and stores the image in the appropriate directory
                 $user->avatar = $filename;
             }
 
