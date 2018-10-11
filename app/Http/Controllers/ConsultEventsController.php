@@ -103,7 +103,7 @@ class ConsultEventsController extends Controller
             Storage::makeDirectory($directory);
             Storage::put($directory . $filename, file_get_contents($file));
             $user = Auth::user();
-            $user->avatar = $filename;
+            $user->avatar = $directory.$filename;
             $user->save();
         }
     }
