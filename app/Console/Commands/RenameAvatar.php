@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\User;
+use App\Models\User;
+use Illuminate\Contracts\Auth\Access\Authorizable;
+
 
 class RenameAvatar extends Command
 {
@@ -19,10 +21,7 @@ class RenameAvatar extends Command
      *
      * @var string
      */
-    protected $description = 'Change name in field Avatar in tabel User to path+avatar_name. 
-                             To use this command you should in APP/User commit field implement... 
-                             and field /use Authenticatable, Authorizable, CanResetPassword;/ 
-                             After change return all back!!!';
+    protected $description = 'Change name in field Avatar in tabel User to path + avatar_name.';
 
     /**
      * Create a new command instance.
