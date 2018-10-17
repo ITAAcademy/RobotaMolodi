@@ -40,7 +40,7 @@
                         </div>
                        
                         <div class="row description-consultants">
-                        <span> Галузь: {{($consultant->description)}}</span>
+                        <span> Галузь: {{($consultant->area)}}</span>
                             </div>
 
                             <div class="consultations-cost">
