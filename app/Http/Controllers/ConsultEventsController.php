@@ -48,9 +48,11 @@ class ConsultEventsController extends Controller
 
     public function store(StoreConfirmConsultation $request)
     {
-
+    //    dd($request->all());
         $confirmedCons = ConfirmedConsultation::create($request->all());
+
         $confirmedCons->user_id = Auth::user()->id;
+
         $confirmedCons->save();
         return json_encode("Registration completed successfully.");
 

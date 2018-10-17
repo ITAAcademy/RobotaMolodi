@@ -85,82 +85,22 @@ function calendar_consult_create(selector) {
       $('#consultCreate').on("submit", (e) => {
 
         e.preventDefault();
-        // var allData = {};
-         //var file = fileSelect.files;
-        //
-        // $( '#consultCreate' ).serializeArray().forEach(function(item) {
-        //     allData[item['name']] = item['value'];
-        // });
-        // allData.events = events;
-        var allData = new FormData();
-        // $( '#consultCreate' ).serializeArray().forEach(function(item) {
-        //     allData[item['name']] = item['value'];
-        // });
-        // allData.events = events;
-     //     allData.append("CustomField", "This is some extra data");
-          allData.append( 'img', $('#img')[0].files[0]);
-          allData.append( 'my_file_upload', 1 );
-   //     allData.append('avatar', 'av.jpg');
+        var allData = {};
+
+        $( '#consultCreate' ).serializeArray().forEach(function(item) {
+            allData[item['name']] = item['value'];
+        });
+        allData.events = events;
         $.ajax({
             url: '/cabinet/consult',
             method: 'POST',
             dataType: 'json',
-           processData: false,
-           contentType: false,
-            data: {a: allData},
+            data: {allData},
             statusCode: {
                 200: function () {
-           //         window.location = "/sconsult";
-                    console.log(allData);
-              //      console.log(data);
+                    window.location = "/sconsult";
                 },
             },
         });
     });
 }
-
-
-//       //  allData = new FormData($('#consultCreate' )[0]).append( 'name' , value );
-//        var allData = new FormData();
-//         allData.append('data',$('#consultCreate')[0]);
-//         // $( '#consultCreate' ).serializeArray().forEach(function(item) {
-//         //     allData[item['name']] = item['value'];
-//         // });
-//          allData.events = events;
-//         $.ajax({
-//             url: '/cabinet/consult',
-//             data: allData,
-//             // dataType: 'json',
-//             // async: false,
-//             cache: false,
-//             type: 'POST',
-//             processData: false,
-//             contentType: false,
-//             statusCode: {
-//                 200: function () {
-//                     window.location = "/sconsult";
-//                 },
-//             }
-//         });
-//     });
-// }
-
-//         var allData = {};
-//
-//         $( '#consultCreate' ).serializeArray().forEach(function(item) {
-//             allData[item['name']] = item['value'];
-//         });
-//         allData.events = events;
-//         $.ajax({
-//             url: '/cabinet/consult',
-//             method: 'POST',
-//             dataType: 'json',
-//             data: {allData},
-//             statusCode: {
-//                 200: function () {
-//                     window.location = "/sconsult";
-//                 },
-//             },
-//         });
-//     });
-// }

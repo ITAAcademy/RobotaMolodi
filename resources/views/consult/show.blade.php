@@ -21,7 +21,7 @@
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
-                        @if($consultant->user->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
+                        @if($consultant->user->avatar)
                             {!! Html::image( asset($consultant->user->getAvatarPath()), 'logo',
                             array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}                    @else
                             {!! Html::image('image/it.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}

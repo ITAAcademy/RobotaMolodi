@@ -8,9 +8,9 @@ function initCalendar(selector) {
 
             $('#centralModalWarning').modal('show')
 
-            var starttime = new Date(calEvent.start._i);
+            var starttime = new Date(calEvent.start);
 
-            var endtime = new Date(calEvent.end._i);
+            var endtime = new Date(calEvent.end);
             $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
             $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
             //$('#starts-at').val(starttime);

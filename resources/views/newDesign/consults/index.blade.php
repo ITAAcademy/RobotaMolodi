@@ -8,7 +8,7 @@
             <div class="col-xs-12 oll-consults-list">
                 <div class="col-xs-3 imeg-consults-list">
 
-                    @if($consultant->user->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
+                    @if($consultant->user->avatar)
                         {!! Html::image( asset($consultant->user->getAvatarPath()), 'logo',
                         array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}                    @else
                         {!! Html::image('image/it.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
