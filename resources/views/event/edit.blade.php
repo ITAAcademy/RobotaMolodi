@@ -7,6 +7,7 @@
 <link href="{{ asset('/css/sortAds/calendarDatepicker.css') }}" rel="stylesheet">
 
 @section('content')
+    <div class="content">
         @if ($errors->any())
             <div class="err-info">
                 <ul>
@@ -187,7 +188,7 @@
             </div><!-- /.modal -->
         </div><br>
         <div class="row">
-            <div class="col-sm-offset-5 col-md-9 col-sm-9">
+            <div class="col-sm-offset-3 col-md-9 col-sm-9">
                 <input class="btn btn-primary" type="submit" value="{{ trans('form.saveChanges') }}">
             </div>
         </div>
@@ -203,5 +204,6 @@
             calendar_consult_edit('#calendar_edit');
         })
     </script>
+    </div>
 @stop
 

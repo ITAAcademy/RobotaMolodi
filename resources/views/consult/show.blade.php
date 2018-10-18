@@ -5,6 +5,7 @@
 
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
 
 @section('content')
