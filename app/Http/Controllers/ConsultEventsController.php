@@ -85,7 +85,7 @@ class ConsultEventsController extends Controller
             $consult->resume_id = $consultData['resume'];
         }
         $consult->update($request->all());
-        dd($request->all());
+    //    dd($request->all());
         $events = json_decode($consultData['events'], true);
         if (isset($consultData['events'])) {
             foreach ($events as $event) {

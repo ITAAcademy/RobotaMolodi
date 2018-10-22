@@ -44,8 +44,15 @@
     /*width: 102px;*/
     /*text-align: center;*/
 }
-
+.article .second_level{
+    margin-top: 45px;
+}
 .article .second_level p {
     padding-top: 0;
-    margin: 0;
+
+}
+
+.content .article .years .subtitle{
+    font-family: 'Roboto', sans-serif;
+
 }

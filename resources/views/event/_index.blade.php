@@ -71,12 +71,12 @@
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
             <a href="?my=1" type="link" class="fa orange-button {{$my ? 'active' : ''}}">Заплановані</a>
         </div>
-        <table class="table table-striped consult-table">
+        <table class="table table-striped consult-table table-responsive">
             <thead>
 
             <tr>
-                <th scope="col">Початок консультації</th>
-                <th scope="col">Кінець консультації</th>
+                <th scope="col">Дата</th>
+                {{--<th scope="col">Кінець консультації</th>--}}
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
                 <th scope="col">Опис</th>
@@ -88,10 +88,11 @@
                 <tr scope="row">
                     <td>
                         <div>{{$consultation->time_start}}</div>
-                    </td>
-                    <td>
                         <div>{{$consultation->time_end}}</div>
                     </td>
+                    {{--<td>--}}
+                        {{----}}
+                    {{--</td>--}}
                     <td>
                         <div>{{$consultation->consults->city}}</div>
                     </td>
