@@ -25,8 +25,11 @@
             </tr>
             </thead>
             @foreach($consultations as $consultation)
+                <?php
+                $result = $consultation->consults->user_id != Auth::User()->id ? "silver" : "white";
+                ?>
                 <tbody>
-                <tr scope="row">
+                <tr scope="row" style="background: {{$result}}">
                     <td>
                         <div>{{$consultation->time_start}}</div>
                         <div>{{$consultation->time_end}}</div>
