@@ -54,10 +54,14 @@
 .consult-table{
     width: 100%;
     table-layout: fixed;
+    overflow-y: hidden;
 }
 .dropdown-menu-right {
 position: absolute;
 }
 .active{
     text-decoration: underline;
+}
+.table-responsive{
+
 }

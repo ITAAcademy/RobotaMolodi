@@ -62,18 +62,23 @@ class ConsultEventsController extends Controller
 
     public function edit($id)
     {
-        $cities = City::all();
-        $industries = Industry::all();
-        $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
-        $currencies = Currency::all();
-        $consultant = Consult::find($id);
+
+            $cities = City::all();
+            $industries = Industry::all();
+            $resumes = Auth::user()->resumes()->orderBy('created_at', 'desc')->get();
+            $currencies = Currency::all();
+            $consultant = Consult::find($id);
+        if($consultant->user_id==Auth::User()->id) {
 //        dd($consultant);
-        return view('event.edit',
-            ['consultant' => $consultant,
-                'cities' => $cities,
-                'industries' => $industries,
-                'resumes' => $resumes,
-                'currencies' => $currencies]);
+            return view('event.edit',
+                ['consultant' => $consultant,
+                    'cities' => $cities,
+                    'industries' => $industries,
+                    'resumes' => $resumes,
+                    'currencies' => $currencies]);
+        }
+        else
+            return redirect('sconsult');
     }
 
     public function update(ConsultValid $request, $id)

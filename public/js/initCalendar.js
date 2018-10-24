@@ -1,6 +1,14 @@
 function initCalendar(selector) {
-
+    var curr_date = new Date;
     $(selector).fullCalendar({
+
+        defaultDate: curr_date,
+        validRange: function(nowDate) {
+            return {
+                start: nowDate,
+                end: nowDate.clone().add(1, 'months')
+            };
+        },
 
         eventClick: function(calEvent, jsEvent, view) {
            // console.log(calEvent);

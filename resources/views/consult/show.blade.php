@@ -52,10 +52,12 @@
 
                     <div class="panel-headings">
 {{--{{dd($consultant)}}--}}
+                        {{--@if($consultant->user_id==Auth::User()->id)--}}
                         <strong class="name_edit"> {{$consultant->userName()}}</strong>
                         <form action="{{ action('ConsultEventsController@edit' , $consultant->id) }}">
                             <button  type="submit" class=" fa orange-button">&#xf044;</button>
                         </form>
+                        {{--@endif--}}
                     </div>
 
 
