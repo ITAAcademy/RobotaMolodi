@@ -218,7 +218,7 @@ hr.fc-divider {
   border-style: solid;
   border-width: 1px;
   padding: 0;
-  vertical-align: top; }
+  vertical-align: top;}
 
 .fc td.fc-today {
   border-style: double;
@@ -238,7 +238,7 @@ a[data-goto]:hover {
   /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
   /* no visible border by default. but make available if need be (scrollbar width compensation) */
   border-style: solid;
-  border-width: 0; }
+  border-width: 0;}
 
 .fc-row table {
   /* don't put left/right border on anything within a fake row.

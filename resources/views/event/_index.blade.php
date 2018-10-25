@@ -63,38 +63,42 @@
 
     <div class="content">
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
-            <a href="{{ url('events' ) }}" type="link" class="fa orange-button">Всі консультацій</a>
+            <a href="{{ url('events' ) }}" type="link" class="{{!$my&&!$conf ? 'act' : ''}} fa orange-button ">Всі</a>
         </div>
-        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
-            <a href="?conf=1" type="link" class="fa orange-button">Підтвердженні консультації</a>
+        <div class=" col-md-2 col-sm-3 col-xs-4 ">
+            <a href="?conf=1" type="link" class="{{$conf ? 'act' : ''}} fa orange-button ">Підтвердженні</a>
         </div>
-        <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
-            <a href="?my=1" type="link" class="fa orange-button">Мої консультації</a>
+        <div class=" col-md-2 col-sm-3 col-xs-4 ">
+            <a href="?my=1" type="link" class="{{$my ? 'act' : ''}} fa orange-button ">Заплановані</a>
         </div>
-        <table class="table table-striped consult-table">
+        <div class="col-md-8 tbtxt" style="display: {{!$my&&!$conf ? 'block' : 'none'}}">
+            Всі консультації користувача
+        </div>
+        <div class="col-md-8 tbtxt" style="display: {{$conf ? 'block' : 'none'}}">
+            Ваші підтвердженні консультації
+        </div>
+        <div class="col-md-8 tbtxt" style="display: {{$my ? 'block' : 'none'}}">
+            Графік запланованих консультацій
+        </div>
+        <table class="consult-table">
             <thead>
 
             <tr>
-                <th scope="col">Початок консультації</th>
-                <th scope="col">Кінець консультації</th>
+                <th scope="col">Дата</th>
                 <th scope="col">Місто</th>
                 <th scope="col">Галузь</th>
                 <th scope="col">Опис</th>
-                @if($my)
-                    <th scope="col">Посада</th>
-                @else
-                    <th scope="col">Редагувати</th>
-                @endif
                 <th scope="col">Опції</th>
             </tr>
             </thead>
             @foreach($consultations as $consultation)
+                <?php
+                $result = $consultation->consults->user_id != Auth::User()->id ? "whitesmoke" : "white";
+                ?>
                 <tbody>
-                <tr scope="row">
+                <tr scope="row" style="background: {{$result}}">
                     <td>
                         <div>{{$consultation->time_start}}</div>
-                    </td>
-                    <td>
                         <div>{{$consultation->time_end}}</div>
                     </td>
                     <td>
@@ -107,36 +111,38 @@
                         <div>{{$consultation->consults->description}}</div>
                     </td>
                     <td>
-                        @if($my)
-                            <div>{{$consultation->consults->position}}</div>
-                        @else
-                            <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
-                                <button type="submit" class=" fa orange-button">&#xf044;Редагувати</button>
-                            </form>
-                        @endif
-                    </td>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a href='/sconsult/{{$consultation->consults->id}}'>
+                                    <button class="btn-lg fa orange-button">&#xf05a;</button>
+                                </a>
+                            </div>
+                            @if($my||$consultation->consults->user_id!=Auth::User()->id)
+                                <div class="col-md-2">
+                                    {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
+                                    {!! Form::submit('&#xf014;', [' class' => 'fa orange-button btn-lg']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            @else
+                                <div class="col-md-2">
+                                    <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
+                                        <button type="submit" class=" fa orange-button btn-lg">&#xf044;</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-2">
+                                    {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
+                                    {!! Form::submit('&#xf014;', [' class' => 'fa orange-button btn-lg']) !!}
+                                    {!! Form::close() !!}
+                                </div>
 
-                    <td>
-                        <div>
-                            <a  href='/sconsult/{{$consultation->consults->id}}' target="_blank">
-                                <button class=" fa orange-button">&#xf05a;Детальніше</button>
-                            </a>
-                        </div><br>
-                        @if($my)
-                            {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
-                            {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                            {!! Form::close() !!}
-                        @else
-                            {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
-                            {!! Form::submit('&#xf014; Видалити', [' class' => 'fa orange-button']) !!}
-                            {!! Form::close() !!}
-                        @endif
-
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             @endforeach
         </table>
+        {{--</div>--}}
         <div class="container"> {!!  $consultations->render() !!}</div>
     </div>
 

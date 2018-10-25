@@ -18,7 +18,7 @@
                         <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">
                             <img src="{{asset('image/aboutUsImages/icon_lamp.png')}}" alt="lamp">
                         </div>
-                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
+                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11 idea">
                             {{ trans('aboutus.ideaofcreation') }}
                             <div class="row second_level">
                                 <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 article-icon">

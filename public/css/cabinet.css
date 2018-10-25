@@ -34,7 +34,7 @@
 .contentAjax{
     margin-right: 15px;
     margin-left: 15px;
-    margin-top: 65px;
+    /*margin-top: 65px;*/
 }
 
 .padding-left-cab{
@@ -45,6 +45,8 @@
     color: #f68c06;
     background: none;
     border: none;
+    text-decoration: none;
+
 }
 
 .container {
@@ -54,7 +56,23 @@
 .consult-table{
     width: 100%;
     table-layout: fixed;
+    overflow-y: hidden;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.consult-table tr{
+    border-bottom: 1px solid silver;
 }
 .dropdown-menu-right {
 position: absolute;
+}
+.act{
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration:none !important;
+    color: #f68c06 !important;
+}
+.tbtxt{
+    margin-left: 7px;
 }

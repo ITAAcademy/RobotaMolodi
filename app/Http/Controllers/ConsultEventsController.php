@@ -26,16 +26,17 @@ class ConsultEventsController extends Controller
      *
      * @return Response
      */
-      public function index(Request $request)
+    public function index(Request $request)
     {
         $consultations = TimeConsultation::get_consultations($request);
-        $request->has('my')? $my = 1: $my = 0;
-            if ($request->ajax()) {
-                return view('event.index', ['consultations' => $consultations]);
-            } else {
-                return view('event._index', ['consultations' => $consultations, 'my'=>$my]);
-            }
+        $request->has('my') ? $my = 1 : $my = 0;
+        $request->has('conf') ? $conf = 1 : $conf = 0;
+        if ($request->ajax()) {
+            return view('event.index', ['consultations' => $consultations]);
+        } else {
+            return view('event._index', ['consultations' => $consultations, 'my' => $my, 'conf' => $conf]);
         }
+    }
 
 
     public function show($id)
@@ -48,14 +49,17 @@ class ConsultEventsController extends Controller
 
     public function store(StoreConfirmConsultation $request)
     {
-
+        //    dd($request->all());
         $confirmedCons = ConfirmedConsultation::create($request->all());
+
         $confirmedCons->user_id = Auth::user()->id;
+
         $confirmedCons->save();
         return json_encode("Registration completed successfully.");
 
 
     }
+
     public function edit($id)
     {
         $cities = City::all();
@@ -65,11 +69,11 @@ class ConsultEventsController extends Controller
         $consultant = Consult::find($id);
 //        dd($consultant);
         return view('event.edit',
-            ['consultant'=> $consultant,
-            'cities' => $cities,
-            'industries' => $industries,
-            'resumes' => $resumes,
-            'currencies' => $currencies]);
+            ['consultant' => $consultant,
+                'cities' => $cities,
+                'industries' => $industries,
+                'resumes' => $resumes,
+                'currencies' => $currencies]);
     }
 
     public function update(ConsultValid $request, $id)
@@ -77,13 +81,13 @@ class ConsultEventsController extends Controller
 
         $consultData = $request->all();
         $consult = Consult::find($id);
-        if(isset($consultData['resume'])){
+        if (isset($consultData['resume'])) {
             $consult->resume_id = $consultData['resume'];
         }
-        $consult->update($request ->all());
-  //      dd($request->all());
+        $consult->update($request->all());
+    //    dd($request->all());
         $events = json_decode($consultData['events'], true);
-        if(isset($consultData['events'])) {
+        if (isset($consultData['events'])) {
             foreach ($events as $event) {
                 $timeConsultation = new TimeConsultation;
                 $startSec = strtotime($event['start']);
@@ -103,10 +107,11 @@ class ConsultEventsController extends Controller
             Storage::makeDirectory($directory);
             Storage::put($directory . $filename, file_get_contents($file));
             $user = Auth::user();
-            $user->avatar = $directory.$filename;
+            $user->avatar = $directory . $filename;
             $user->save();
         }
     }
+
     public function destroy($id)
     {
         $data = TimeConsultation::find($id);

@@ -44,6 +44,9 @@ class TimeConsultation extends Model
                 ->whereHas('consults', function ($q) {
                     $q->where('user_id', '=', Auth::User()->id);
                 })
+                ->orWhereHas('confirmedConsultations', function ($q) {
+                    $q->where('user_id', '=', Auth::User()->id);
+                })
                 ->paginate(5);
             return $consultations;
         }

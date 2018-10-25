@@ -1,6 +1,10 @@
 .row{
     line-height: 26px;
 }
+.idea{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
 .staticLinksMenu
 {
     /*height: 40px;*/
@@ -39,4 +43,16 @@
 .container-link-menu .btn{
     /*width: 102px;*/
     /*text-align: center;*/
+}
+.article .second_level{
+    margin-top: 45px;
+}
+.article .second_level p {
+    padding-top: 0;
+
+}
+
+.content .article .years .subtitle{
+    font-family: 'Roboto', sans-serif;
+
 }

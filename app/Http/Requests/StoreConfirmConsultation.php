@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class StoreConfirmConsultation extends Request
 {
@@ -36,6 +37,8 @@ class StoreConfirmConsultation extends Request
             return [
                 //
                 'time_consultation_id' => 'unique:confirmed_consultations,time_consultation_id,NULL,id,user_id,'.$idUser->id,
+//                'time_start' >  DateTime('now'),
+
             ];
 
     }

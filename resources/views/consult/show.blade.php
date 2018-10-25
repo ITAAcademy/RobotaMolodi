@@ -5,6 +5,7 @@
 
     <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
     <link rel='stylesheet' href='{{ asset('/css/fullcalendar/fullcalendar.css') }}' />
 
 @section('content')
@@ -21,7 +22,7 @@
             <div class="col-md-2">
                 <div class="logos">
                     <div class="panel panel-orange" id="vimg">
-                        @if($consultant->user->avatar and File::exists(public_path(Auth::user()->getAvatarPath())))
+                        @if($consultant->user->avatar)
                             {!! Html::image( asset($consultant->user->getAvatarPath()), 'logo',
                             array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}                    @else
                             {!! Html::image('image/it.jpg', 'logo', array('id' => 'vacImg', 'width' => '100%', 'height' => '100%')) !!}
@@ -51,10 +52,12 @@
 
                     <div class="panel-headings">
 {{--{{dd($consultant)}}--}}
+                        @if(Auth::User() && $consultant->user_id==Auth::User()->id)
                         <strong class="name_edit"> {{$consultant->userName()}}</strong>
                         <form action="{{ action('ConsultEventsController@edit' , $consultant->id) }}">
                             <button  type="submit" class=" fa orange-button">&#xf044;</button>
                         </form>
+                        @endif
                     </div>
 
 
@@ -106,7 +109,7 @@
         <br>
     </div>
 
-        <div class="row">
+        <div>
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
 
             <!-- Central Modal Medium Warning -->

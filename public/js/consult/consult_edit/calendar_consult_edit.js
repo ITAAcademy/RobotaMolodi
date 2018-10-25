@@ -1,6 +1,7 @@
 function calendar_consult_edit(selector) {
     var events = [];
     var curr_date = new Date;
+
     $(selector).fullCalendar({
         header: {
             left: 'prev,next today',
@@ -13,6 +14,26 @@ function calendar_consult_edit(selector) {
                 start: nowDate,
                 end: nowDate.clone().add(1, 'months')
             };
+        },
+        firstDay: 1,
+        dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
+        dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
+        monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+        // monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
+
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+
+        buttonText: {
+            prev: "попер",
+            next: "наст",
+            today: "Сьогодні",
+            month: "Місяць",
+            week: "Тиждень",
+            day: "День"
         },
         timeFormat: 'h:mm',
         eventOrder: 'start',
@@ -78,6 +99,9 @@ function calendar_consult_edit(selector) {
                     }
                 });
             }
+            // else{
+            //
+            // }
         },
         editable: true,
         eventLimit: true,
