@@ -221,7 +221,7 @@ Route::group(['middleware' => 'auth', 'after' => 'no-cache'], function()
 
     Route::get('project/{project}/destroy',['as'=>'projectDestroy','uses' => 'ProjectController@destroy']);
 
-    Route::resource('cabinet','cabinet\CabinetController');
+    Route::resource('cabinet','Cabinet\CabinetController');
     Route::resource('user','UserController', ['only' => ['edit','update']]);
     Route::post('user/{id}/deleteAvatar',[
         'as' => 'deleteAvatar',
