@@ -3,17 +3,20 @@
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 
 <div class="content">
-    <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
-        <a href="{{ url('events' ) }}" type="link" class="fa orange-button active">Всі</a>
+    <div class=" col-md-2 col-sm-3 col-xs-4 ">
+        <a href="{{ url('events' ) }}" type="link" class="fa orange-button act">Всі</a>
     </div>
-    <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+    <div class=" col-md-2 col-sm-3 col-xs-4 ">
         <a href="?conf=1" type="link" class="fa orange-button">Підтвердженні</a>
     </div>
-    <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt ">
+    <div class=" col-md-2 col-sm-3 col-xs-4 ">
         <a href="?my=1" type="link" class="fa orange-button">Заплановані</a>
     </div>
+    <div class="col-md-8 ">
+        Всі консультації користувача
+    </div>
     <div class="row">
-        <table class="table table-striped consult-table">
+        <table class="consult-table">
             <thead>
 
             <tr>
@@ -26,7 +29,7 @@
             </thead>
             @foreach($consultations as $consultation)
                 <?php
-                $result = $consultation->consults->user_id != Auth::User()->id ? "silver" : "white";
+                $result = $consultation->consults->user_id != Auth::User()->id ? "whitesmoke" : "white";
                 ?>
                 <tbody>
                 <tr scope="row" style="background: {{$result}}">
@@ -45,24 +48,24 @@
                     </td>
                     <td>
                         <div class="row">
-                            <div class="col-md-4">
-                                <a href='/sconsult/{{$consultation->consults->id}}' target="_blank">
+                            <div class="col-md-2">
+                                <a href='/sconsult/{{$consultation->consults->id}}'>
                                     <button class=" fa orange-button btn-lg">&#xf05a;</button>
                                 </a>
                             </div>
                             @if($consultation->consults->user_id!=Auth::User()->id)
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
                                     {!! Form::submit('&#xf014;', [' class' => 'fa orange-button btn-lg']) !!}
                                     {!! Form::close() !!}
                                 </div>
                             @else
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <form action="{{ action('ConsultEventsController@edit' , $consultation->consults->id) }}">
                                         <button type="submit" class=" fa orange-button btn-lg">&#xf044;</button>
                                     </form>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     {!! Form::open(['method' => 'DELETE','action' => ['ConsultEventsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете видалити радника?")']) !!}
                                     {!! Form::submit('&#xf014;', [' class' => 'fa orange-button btn-lg']) !!}
                                     {!! Form::close() !!}

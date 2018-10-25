@@ -117,7 +117,7 @@
             </div>
 
             @if(!$resumes->isEmpty())
-                <div class="row form-company-row">
+                <br><div class="row form-company-row marg-top">
                     <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
                         {{ trans('main.resume') }}
                     </label>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             @else
-                <br><div class="row form-company-row">
+                <br><div class="row form-company-row ">
                     <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
                         У Вас ще немає резюме
                     </label>
@@ -150,7 +150,6 @@
             <div class="row form-company-row">
                     <label for="img" class="col-md-3 col-sm-3 label-text-company">Ваш аватар</label>
                 <div class="col-md-6 col-sm-6">
-                    <label for="img">Ваш аватар </label>
                     <input id="img" type="file" name="img"  accept=".JPG, .jpg, .jpeg, .png, .gif">
                 </div>
             </div><br>

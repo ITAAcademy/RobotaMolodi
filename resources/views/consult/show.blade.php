@@ -52,12 +52,12 @@
 
                     <div class="panel-headings">
 {{--{{dd($consultant)}}--}}
-                        {{--@if($consultant->user_id==Auth::User()->id)--}}
+                        @if(Auth::User() && $consultant->user_id==Auth::User()->id)
                         <strong class="name_edit"> {{$consultant->userName()}}</strong>
                         <form action="{{ action('ConsultEventsController@edit' , $consultant->id) }}">
                             <button  type="submit" class=" fa orange-button">&#xf044;</button>
                         </form>
-                        {{--@endif--}}
+                        @endif
                     </div>
 
 
@@ -109,7 +109,7 @@
         <br>
     </div>
 
-        <div class="row">
+        <div>
         <div id="calendar" data-consult-id="{{$consultant->id}}"></div>
 
             <!-- Central Modal Medium Warning -->
