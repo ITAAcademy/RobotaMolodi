@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 use App\Repositoriy\Crop;
 
-class cabinetController extends Controller
+class CabinetController extends Controller
 {
     /**
      * Display a listing of the resource.
