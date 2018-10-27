@@ -73,6 +73,6 @@ a:hover {
     text-decoration:none !important;
     color: #f68c06 !important;
 }
-.tbtxt{
-    /*margin-left: 7px;*/
+.but{
+    margin-left: -15px;
 }
