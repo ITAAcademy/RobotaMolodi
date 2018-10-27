@@ -1,7 +1,7 @@
 <link href="{{ asset('/css/header.css') }}" rel="stylesheet">
 
 <header>
-    <nav class="navbar navbar-default">
+    <nav class="container navbar navbar-default">
         <div class="col-xs-1 col-sm-1" style="padding: 0">
             <div class="bars-left-modal">
                 <button type="button" class="btn btn-default only-bars">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         @else
-            <div class="headerChangeRowXS1 col-xs-2 col-sm-2 col-lg-2" style="padding: 0">
+            <div class="headerChangeRowXS1 col-xs-3 col-sm-2 col-lg-3" style="padding: 0">
                 <div class="navtab-exit">
                     <a class="modal-user-button" style="margin-top: -2px;"
                        @if(Auth::user()->isAdmin()) href="{{url('/admin')}}"
