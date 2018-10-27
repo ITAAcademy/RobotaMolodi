@@ -63,7 +63,7 @@
 .consult-table tr{
     border-bottom: 1px solid silver;
 }
-.dropdown-menu-right {
+div .dropdown-menu-right {
 position: absolute;
 }
 .act{
