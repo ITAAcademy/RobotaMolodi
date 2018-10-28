@@ -63,7 +63,7 @@
 .consult-table tr{
     border-bottom: 1px solid silver;
 }
-.dropdown-menu-right {
+div .dropdown-menu-right {
 position: absolute;
 }
 .act{
@@ -73,6 +73,6 @@ a:hover {
     text-decoration:none !important;
     color: #f68c06 !important;
 }
-.tbtxt{
-    margin-left: 7px;
+.but{
+    margin-left: -15px;
 }

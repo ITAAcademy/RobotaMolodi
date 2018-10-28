@@ -119,7 +119,7 @@
                             </div>
                             @if($my||$consultation->consults->user_id!=Auth::User()->id)
                                 <div class="col-md-2">
-                                    {!! Form::open(['method' => 'DELETE','action' => ['cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
+                                    {!! Form::open(['method' => 'DELETE','action' => ['Cabinet\ConsultsController@destroy', $consultation->id], 'onsubmit' => 'return confirm("Ви дійсно хочете відмовитись від консультації?")']) !!}
                                     {!! Form::submit('&#xf014;', [' class' => 'fa orange-button btn-lg']) !!}
                                     {!! Form::close() !!}
                                 </div>

@@ -3,7 +3,7 @@
 <link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 
 <div class="content">
-    <div class=" col-md-2 col-sm-3 col-xs-4 ">
+    <div class=" col-md-2 col-sm-3 col-xs-4 but">
         <a href="{{ url('events' ) }}" type="link" class="fa orange-button act">Всі</a>
     </div>
     <div class=" col-md-2 col-sm-3 col-xs-4 ">
@@ -12,7 +12,7 @@
     <div class=" col-md-2 col-sm-3 col-xs-4 ">
         <a href="?my=1" type="link" class="fa orange-button">Заплановані</a>
     </div>
-    <div class="col-md-8 ">
+    <div class="col-md-8 but">
         Всі консультації користувача
     </div>
     <div class="row">
