@@ -63,32 +63,32 @@
 
     <div class="content">
         <div class=" col-md-2 col-sm-3 col-xs-4 tbtxt">
-            <a href="{{ url('events' ) }}" type="link" class="{{!$my&&!$conf ? 'act' : ''}} fa orange-button ">Всі</a>
+            <a href="{{ url('events' ) }}" type="link" class="{{!$my&&!$conf ? 'act' : ''}} fa orange-button ">{{ trans('consult.all') }}</a>
         </div>
         <div class=" col-md-2 col-sm-3 col-xs-4 ">
-            <a href="?conf=1" type="link" class="{{$conf ? 'act' : ''}} fa orange-button ">Підтвердженні</a>
+            <a href="?conf=1" type="link" class="{{$conf ? 'act' : ''}} fa orange-button ">{{ trans('consult.conf') }}</a>
         </div>
         <div class=" col-md-2 col-sm-3 col-xs-4 ">
-            <a href="?my=1" type="link" class="{{$my ? 'act' : ''}} fa orange-button ">Заплановані</a>
+            <a href="?my=1" type="link" class="{{$my ? 'act' : ''}} fa orange-button ">{{ trans('consult.my') }}</a>
         </div>
         <div class="col-md-8 tbtxt" style="display: {{!$my&&!$conf ? 'block' : 'none'}}">
-            Всі консультації користувача
+            {{ trans('consult.alltxt') }}
         </div>
         <div class="col-md-8 tbtxt" style="display: {{$conf ? 'block' : 'none'}}">
-            Ваші підтвердженні консультації
+            {{ trans('consult.conftxt') }}
         </div>
         <div class="col-md-8 tbtxt" style="display: {{$my ? 'block' : 'none'}}">
-            Графік запланованих консультацій
+            {{ trans('consult.mytxt') }}
         </div>
         <table class="consult-table">
             <thead>
 
             <tr>
-                <th scope="col">Дата</th>
-                <th scope="col">Місто</th>
-                <th scope="col">Галузь</th>
-                <th scope="col">Опис</th>
-                <th scope="col">Опції</th>
+                <th scope="col">{{ trans('consult.date') }}</th>
+                <th scope="col">{{ trans('consult.city') }}</th>
+                <th scope="col">{{ trans('consult.area') }}</th>
+                <th scope="col">{{ trans('consult.descr') }}</th>
+                <th scope="col">{{ trans('consult.options') }}</th>
             </tr>
             </thead>
             @foreach($consultations as $consultation)
@@ -143,7 +143,7 @@
             @endforeach
         </table>
         {{--</div>--}}
-        <div class="container"> {!!  $consultations->render() !!}</div>
+        <br><div class="container"> {!!  $consultations->render() !!}</div>
     </div>
 
 @stop

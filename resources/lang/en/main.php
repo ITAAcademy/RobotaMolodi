@@ -19,4 +19,8 @@ return [
 
     'area' => 'Area',
     'position' => 'Position',
+    'resume' => 'Resume:',
+    'value' => 'Cost of consultation',
+    'no_res'=>'You have no resume yet',
+    'create_res'=>'Create resume',
 ];

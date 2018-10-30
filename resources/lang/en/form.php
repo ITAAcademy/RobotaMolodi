@@ -25,5 +25,6 @@ return [
     'unselected' => 'File not selected',
     'choose' => 'Choose the photo',
     'editResume' => 'Edit the resume',
+    'saveChanges' => 'Save changes',
 
 ];

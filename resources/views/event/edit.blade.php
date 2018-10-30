@@ -137,19 +137,19 @@
             @else
                 <br><div class="row form-company-row ">
                     <label for="resume_id" class="col-md-3 col-sm-3 label-text-company">
-                        У Вас ще немає резюме
+                        {{ trans('main.no_res') }}
                     </label>
                     <div class="col-md-6 col-sm-6">
                         <a href="{{action("ResumeController@create")}}">
-                            <button type="button"  class="btn btn-large">Створити резюме</button>
+                            <button type="button"  class="btn btn-large">{{ trans('main.create_res') }}</button>
                         </a>
                     </div>
                 </div>
             @endif
 
             <div class="row form-company-row">
-                    <label for="img" class="col-md-3 col-sm-3 label-text-company">Ваш аватар</label>
-                <div class="col-md-6 col-sm-6">
+                    <label for="img" class="col-md-3 col-sm-3 label-text-company">{{ trans('consult.ava') }}</label>
+                <div class="col-md-6 col-sm-6 container3">
                     <input id="img" type="file" name="img"  accept=".JPG, .jpg, .jpeg, .png, .gif">
                 </div>
             </div><br>
@@ -166,21 +166,21 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="col-xs-4" for="time_start">Початок консультації</label>
+                                    <label class="col-xs-4" for="time_start">{{ trans('consult.start') }}</label>
                                     <input type="text" name="time_start" id="time_start" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="col-xs-4" for="time_end">Кінець консультації</label>
+                                    <label class="col-xs-4" for="time_end">{{ trans('consult.end') }}</label>
                                     <input type="text" name="time_end" id="time_end" />
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
-                            <button type="button" class="btn btn-primary" id="save-event">Зберегти</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('consult.close') }}</button>
+                            <button type="button" class="btn btn-primary" id="save-event">{{ trans('consult.save') }}</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
