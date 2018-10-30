@@ -143,7 +143,7 @@
             @endforeach
         </table>
         {{--</div>--}}
-        <div class="container"> {!!  $consultations->render() !!}</div>
+        <br><div class="container"> {!!  $consultations->render() !!}</div>
     </div>
 
 @stop

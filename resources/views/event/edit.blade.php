@@ -149,7 +149,7 @@
 
             <div class="row form-company-row">
                     <label for="img" class="col-md-3 col-sm-3 label-text-company">Ваш аватар</label>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6 container3">
                     <input id="img" type="file" name="img"  accept=".JPG, .jpg, .jpeg, .png, .gif">
                 </div>
             </div><br>

@@ -159,3 +159,11 @@ div.bootstrap-datetimepicker-widget, .dropdown-menu, .bottom, .pull-right{
     top: 0 !important;
     left: 0 !important;
 }
+div.container3 {
+    height: 3em;
+    position: relative }
+div.container3 input {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%) }
