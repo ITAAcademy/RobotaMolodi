@@ -32,4 +32,9 @@ return [
     'area'=>'Area',
     'descr'=>'Description',
     'options'=>'Options',
+    'ava'=>'Your avatar',
+    'start'=>'Begin the consultation',
+    'end'=>'End of consultation',
+    'close'=>'Close',
+    'save'=>'Save',
 ];
