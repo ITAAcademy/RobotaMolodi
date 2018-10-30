@@ -4,27 +4,27 @@
 
 <div class="content">
     <div class=" col-md-2 col-sm-3 col-xs-4 but">
-        <a href="{{ url('events' ) }}" type="link" class="fa orange-button act">Всі</a>
+        <a href="{{ url('events' ) }}" type="link" class="fa orange-button act">{{ trans('consult.all') }}</a>
     </div>
     <div class=" col-md-2 col-sm-3 col-xs-4 ">
-        <a href="?conf=1" type="link" class="fa orange-button">Підтвердженні</a>
+        <a href="?conf=1" type="link" class="fa orange-button">{{ trans('consult.conf') }}</a>
     </div>
     <div class=" col-md-2 col-sm-3 col-xs-4 ">
-        <a href="?my=1" type="link" class="fa orange-button">Заплановані</a>
+        <a href="?my=1" type="link" class="fa orange-button">{{ trans('consult.my') }}</a>
     </div>
     <div class="col-md-8 but">
-        Всі консультації користувача
+        {{ trans('consult.alltxt') }}
     </div>
     <div class="row">
         <table class="consult-table">
             <thead>
 
             <tr>
-                <th scope="col">Дата</th>
-                <th scope="col">Місто</th>
-                <th scope="col">Галузь</th>
-                <th scope="col">Опис</th>
-                <th scope="col">Опції</th>
+                <th scope="col">{{ trans('consult.date') }}</th>
+                <th scope="col">{{ trans('consult.city') }}</th>
+                <th scope="col">{{ trans('consult.area') }}</th>
+                <th scope="col">{{ trans('consult.descr') }}</th>
+                <th scope="col">{{ trans('consult.options') }}</th>
             </tr>
             </thead>
             @foreach($consultations as $consultation)

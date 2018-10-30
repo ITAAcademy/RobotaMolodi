@@ -21,4 +21,15 @@ return [
     'action' => 'Register ',
     'attention' => '"Sorry, this functionality is only available from cabinet."',
 
+    'all'=>'All',
+    'conf'=>'Confirmed',
+    'my'=>'Planned',
+    'alltxt'=>'All user consultations',
+    'conftxt'=>'Your confirmed consultations',
+    'mytxt'=>'Schedule of planned consultations',
+    'date'=>'Date',
+    'city'=>'City',
+    'area'=>'Area',
+    'descr'=>'Description',
+    'options'=>'Options',
 ];
