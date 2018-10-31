@@ -15,6 +15,8 @@ function calendar_consult_edit(selector) {
                 end: nowDate.clone().add(1, 'months')
             };
         },
+        height: 550,
+
         firstDay: 1,
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],

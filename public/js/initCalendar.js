@@ -32,8 +32,10 @@ function initCalendar(selector) {
         eventMouseout: function( event, jsEvent, view ) {
             $(this).css('background-color', '#3348ce');
         },
+        height: 550,
 
         firstDay: 1,
+
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
         monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],

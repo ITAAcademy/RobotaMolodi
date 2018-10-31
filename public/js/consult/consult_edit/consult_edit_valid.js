@@ -73,7 +73,7 @@ $(document).ready(function(){
             var patt = /^\(\d{3}\) \d{3}-\d{2}-\d{2}$/i;
             if(!patt.test($('#telephone').val()) ){
                 error.telephone = true;
-                telephoneInfo.removeClass('correct').addClass('error').html('← Формат номеру (XXX) XXX-XX-XX').show();
+                telephoneInfo.removeClass('correct').addClass('error').html('← Формат номеру (067) 111-11-11').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.telephone = false;
