@@ -21,7 +21,7 @@ function calendar_consult_create(selector) {
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
         monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-
+        weekNames: ["всі дні","ам","пм"],
         buttonText: {
             prev: "попер",
             next: "наст",
@@ -30,7 +30,6 @@ function calendar_consult_create(selector) {
             week: "Тиждень",
             day: "День"
         },
-
         header: {
             left: 'prev,next today',
             center: 'title',
