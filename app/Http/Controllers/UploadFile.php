@@ -70,6 +70,7 @@ class UploadFile extends Controller
             }
         }
         $directory = 'image/company/'. Auth::user()->id . '/';
+        Storage::makeDirectory($directory);
         $company->image = $this->savePhoto($request, $directory);
         $company->save();
         return $directory.$company->image;

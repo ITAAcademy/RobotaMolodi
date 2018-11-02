@@ -37,4 +37,6 @@ return [
     'end'=>'End of consultation',
     'close'=>'Close',
     'save'=>'Save',
+    'no_cons'=>'You do not have any consultations yet',
+    'cr_new'=>'Create new event',
 ];

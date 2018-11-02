@@ -2,6 +2,8 @@ function calendar_consult_create(selector) {
     var events = [];
     var curr_date = new Date;
     $(selector).fullCalendar({
+        height: 550,
+
         header: {
             left: 'prev,next today',
             center: 'title',
@@ -14,18 +16,12 @@ function calendar_consult_create(selector) {
                 end: nowDate.clone().add(1, 'months')
             };
         },
+
         firstDay: 1,
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
         monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-        // monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
-
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-
+        weekNames: ["всі дні","ам","пм"],
         buttonText: {
             prev: "попер",
             next: "наст",
@@ -33,6 +29,11 @@ function calendar_consult_create(selector) {
             month: "Місяць",
             week: "Тиждень",
             day: "День"
+        },
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
         },
         timeFormat: 'h:mm',
         eventOrder: 'start',

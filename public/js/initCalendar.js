@@ -32,18 +32,14 @@ function initCalendar(selector) {
         eventMouseout: function( event, jsEvent, view ) {
             $(this).css('background-color', '#3348ce');
         },
+        height: 550,
 
         firstDay: 1,
+
         dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
         monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
         // monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
-
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
 
         buttonText: {
             prev: "попер",
@@ -52,6 +48,12 @@ function initCalendar(selector) {
             month: "Місяць",
             week: "Тиждень",
             day: "День"
+        },
+
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
         },
         timeFormat: 'h:mm',
         eventOrder: 'start',
