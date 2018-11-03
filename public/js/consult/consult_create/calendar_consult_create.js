@@ -1,9 +1,10 @@
 function calendar_consult_create(selector) {
     var events = [];
     var curr_date = new Date;
+    var initialLocaleCode = 'uk';
     $(selector).fullCalendar({
         height: 550,
-
+        locale: initialLocaleCode,
         header: {
             left: 'prev,next today',
             center: 'title',
