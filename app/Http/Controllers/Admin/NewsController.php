@@ -55,8 +55,12 @@ class NewsController extends Controller
          */
     //    dd($request->all());
         $newsOne = News::find($id);
-        if($request->image){$this->helperSave($newsOne,$request);}
-        else{$newsOne->update($request->all());}
+        if($request->image){
+            $this->helperSave($newsOne,$request);
+        }
+        else {
+            $newsOne->update($request->all());
+        }
         Session::flash('flash_message', 'news successfully added!');
         if($newsOne->img!='Not picture') ImageCompress::tinifyImage($newsOne->getPath() . $newsOne->img);
         return redirect()->route('admin.news.index');
