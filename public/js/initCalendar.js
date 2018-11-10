@@ -1,187 +1,96 @@
 function initCalendar(selector) {
     var curr_date = new Date;
-    if(lan == "ua") {
-        $(selector).fullCalendar({
+    var loc = lan == "ua"? "uk":"en";
+    var names =lan == "ua"? [ "Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень" ]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-            defaultDate: curr_date,
-            validRange: function (nowDate) {
-                return {
-                    start: nowDate,
-                    end: nowDate.clone().add(1, 'months')
-                };
-            },
+    $(selector).fullCalendar({
 
-            eventClick: function (calEvent, jsEvent, view) {
-                // console.log(calEvent);
+        defaultDate: curr_date,
+        validRange: function(nowDate) {
+            return {
+                start: nowDate,
+                end: nowDate.clone().add(1, 'months')
+            };
+        },
 
-
-                $('#centralModalWarning').modal('show')
-
-                var starttime = new Date(calEvent.start);
-
-                var endtime = new Date(calEvent.end);
-                $('#spstart').text(starttime.getHours() + ':' + starttime.getMinutes());
-                $('#spend').text(endtime.getHours() + ':' + endtime.getMinutes());
-                //$('#starts-at').val(starttime);
-                //$('#ends-at').val(endtime);
-                $('#time_consultation_id').val(calEvent.time_id);
-
-            },
-            eventMouseover: function (event, jsEvent, view) {
-                $(this).css('background-color', '#4196f2');
-            },
-            eventMouseout: function (event, jsEvent, view) {
-                $(this).css('background-color', '#3348ce');
-            },
-            height: 550,
-
-            firstDay: 1,
-
-            dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-            dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
-            monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-            monthNamesShort: ['Січ.', 'Лют.', 'Бер', 'Квіт.', 'Трав.', 'Черв.', 'Лип.', 'Серп.', 'Вер.', 'Жов.', 'Лис.', 'Груд.'],
-
-            buttonText: {
-                prev: "попер",
-                next: "наст",
-                today: "Сьогодні",
-                month: "Місяць",
-                week: "Тиждень",
-                day: "День"
-            },
-
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            timeFormat: 'h:mm',
-            eventOrder: 'start',
-            themeSystem: 'bootstrap3',
-            displayEventEnd: true,
-            eventBackgroundColor: '#3348ce',
+        eventClick: function(calEvent, jsEvent, view) {
+            // console.log(calEvent);
 
 
-            events: function (start, end, timezone, callback) {
-                $.ajax({
-                    url: '/consult/:ID/events'.replace(':ID', $('#calendar').data('consult-id')),
-                    type: "GET",
-                    dataType: 'json',
-                    success: function (doc) {
-                        console.log(doc);
-                        var events = [];
-                        if (Array.isArray(doc)) {
-                            events = doc.map(function (item) {
-                                return {
-                                    time_id: item.id,
-                                    start: item.time_start,
-                                    end: item.time_end,
-                                }
-                            })
-                        } else {
+            $('#centralModalWarning').modal('show')
 
-                            events.push(
-                                {
-                                    time_id: item.id,
-                                    start: doc.time_start,
-                                    end: doc.time_end,
+            var starttime = new Date(calEvent.start);
 
-                                }
-                            )
-                        }
+            var endtime = new Date(calEvent.end);
+            $('#spstart').text(starttime.getHours()+':'+starttime.getMinutes());
+            $('#spend').text(endtime.getHours()+':'+endtime.getMinutes());
+            //$('#starts-at').val(starttime);
+            //$('#ends-at').val(endtime);
+            $('#time_consultation_id').val(calEvent.time_id);
 
-                        callback(events);
+        },
+        eventMouseover: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#4196f2');
+        },
+        eventMouseout: function( event, jsEvent, view ) {
+            $(this).css('background-color', '#3348ce');
+        },
+        height: 550,
+        monthNames: names,
+        firstDay: 1,
+
+
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        timeFormat: 'h:mm',
+        eventOrder: 'start',
+        themeSystem: 'bootstrap3',
+        displayEventEnd: true,
+        eventBackgroundColor: '#3348ce',
+
+
+
+        events: function (start, end, timezone, callback) {
+            $.ajax({
+                url: '/consult/:ID/events'.replace(':ID', $('#calendar').data('consult-id')),
+                type: "GET",
+                dataType: 'json',
+                success: function (doc) {
+                    // console.log(doc);
+                    var events = [];
+                    if (Array.isArray(doc)){
+                        events = doc.map(function (item) {
+                            return {
+                                time_id: item.id,
+                                start: item.time_start,
+                                end: item.time_end,
+                            }
+                        })
+                    }else{
+
+                        events.push(
+                            {
+                                time_id: item.id,
+                                start: doc.time_start,
+                                end: doc.time_end,
+
+                            }
+                        )
                     }
-                });
-            }
 
-        });
-    }
-    else{
-        $(selector).fullCalendar({
+                    callback(events);
+                }
+            });
+        }
 
-            defaultDate: curr_date,
-            validRange: function (nowDate) {
-                return {
-                    start: nowDate,
-                    end: nowDate.clone().add(1, 'months')
-                };
-            },
-
-            eventClick: function (calEvent, jsEvent, view) {
-                // console.log(calEvent);
+    });
 
 
-                $('#centralModalWarning').modal('show')
 
-                var starttime = new Date(calEvent.start);
-
-                var endtime = new Date(calEvent.end);
-                $('#spstart').text(starttime.getHours() + ':' + starttime.getMinutes());
-                $('#spend').text(endtime.getHours() + ':' + endtime.getMinutes());
-                //$('#starts-at').val(starttime);
-                //$('#ends-at').val(endtime);
-                $('#time_consultation_id').val(calEvent.time_id);
-
-            },
-            eventMouseover: function (event, jsEvent, view) {
-                $(this).css('background-color', '#4196f2');
-            },
-            eventMouseout: function (event, jsEvent, view) {
-                $(this).css('background-color', '#3348ce');
-            },
-            height: 550,
-            firstDay: 1,
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            timeFormat: 'h:mm',
-            eventOrder: 'start',
-            themeSystem: 'bootstrap3',
-            displayEventEnd: true,
-            eventBackgroundColor: '#3348ce',
-
-
-            events: function (start, end, timezone, callback) {
-                $.ajax({
-                    url: '/consult/:ID/events'.replace(':ID', $('#calendar').data('consult-id')),
-                    type: "GET",
-                    dataType: 'json',
-                    success: function (doc) {
-                        console.log(doc);
-                        var events = [];
-                        if (Array.isArray(doc)) {
-                            events = doc.map(function (item) {
-                                return {
-                                    time_id: item.id,
-                                    start: item.time_start,
-                                    end: item.time_end,
-                                }
-                            })
-                        } else {
-
-                            events.push(
-                                {
-                                    time_id: item.id,
-                                    start: doc.time_start,
-                                    end: doc.time_end,
-
-                                }
-                            )
-                        }
-
-                        callback(events);
-                    }
-                });
-            }
-
-        });
-    }
-
-    $('#submitButton').on('click', function (e) {
+    $('#submitButton').on('click', function(e) {
         e.preventDefault()
         // var cons = $('#cons_id').val();
         // var begin = $('#starts-at').val();
@@ -193,13 +102,13 @@ function initCalendar(selector) {
         $.ajax({
             url: '/consult',
             type: "POST",
-            data: {
+            data:  {
                 'time_consultation_id': time_consultation_id,
             },
             dataType: 'json',
             success: function (respond) {
                 //if(respond){
-                alert(respond);
+                alert(respond );
                 // }
             },
             // error: function(data){
@@ -220,6 +129,7 @@ function initCalendar(selector) {
         });
         $('#centralModalWarning').modal('hide');
     });
+
 
 
 }

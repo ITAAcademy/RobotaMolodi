@@ -185,12 +185,10 @@
     <?php $lan = App::getLocale();?>
     {{--<script type="text/javascript" src="{{ asset('/js/lang.js') }}"></script>--}}
     <script> var lan = "<?php echo($lan);?>";</script>
-    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/calendar_consult_create.js') }}"
-            defer></script>
-    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/consultValidation.js') }}"
-            crossorigin="anonymous" defer></script>
-    <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous"
-            defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/calendar_consult_create.js') }}"defer></script>
+    <script type="text/javascript" src="{{ asset('/js/consult/consult_create/consultValidation.js') }}" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="{{ asset('/js/fullcalendar/uk.js') }}"defer></script>
     <script>
         $(document).ready(function () {
             calendar_consult_create('#calendar2');

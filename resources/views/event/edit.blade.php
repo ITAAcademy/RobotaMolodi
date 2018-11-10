@@ -208,6 +208,7 @@
             crossorigin="anonymous" defer></script>
     <script type="text/javascript" src="{{ asset('/js/fullcalendar/fullcalendar.min.js') }}" crossorigin="anonymous"
             defer></script>
+    <script type="text/javascript" src="{{ asset('/js/fullcalendar/uk.js') }}"defer></script>
 
     <script>
         $(document).ready(function () {

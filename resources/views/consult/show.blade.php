@@ -157,8 +157,9 @@
     </div>
     <?php $lan= App::getLocale();?>
     <script> var lan = "<?php echo ($lan);?>";</script>
-    <script src='{{ asset('/js/fullcalendar/fullcalendar.min.js') }}'></script>
     <script src='{{ asset('/js/initCalendar.js') }}'></script>
+    <script src='{{ asset('/js/fullcalendar/fullcalendar.min.js') }}'></script>
+    <script type="text/javascript" src="{{ asset('/js/fullcalendar/uk.js') }}"defer></script>
     <script>
         $(document).ready(function() {
              initCalendar('#calendar');
