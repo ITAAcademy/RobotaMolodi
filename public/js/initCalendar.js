@@ -4,7 +4,7 @@ function initCalendar(selector) {
     var names =lan == "ua"? [ "Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень" ]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     $(selector).fullCalendar({
-
+        locale: loc,
         defaultDate: curr_date,
         validRange: function(nowDate) {
             return {
