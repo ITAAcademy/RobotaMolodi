@@ -1,7 +1,10 @@
 function initCalendar(selector) {
     var curr_date = new Date;
-    $(selector).fullCalendar({
+    var loc = lan == "ua"? "uk":"en";
+    var names =lan == "ua"? [ "Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень" ]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 
+    $(selector).fullCalendar({
+        locale: loc,
         defaultDate: curr_date,
         validRange: function(nowDate) {
             return {
@@ -11,7 +14,7 @@ function initCalendar(selector) {
         },
 
         eventClick: function(calEvent, jsEvent, view) {
-           // console.log(calEvent);
+            // console.log(calEvent);
 
 
             $('#centralModalWarning').modal('show')
@@ -33,22 +36,9 @@ function initCalendar(selector) {
             $(this).css('background-color', '#3348ce');
         },
         height: 550,
-
+        monthNames: names,
         firstDay: 1,
 
-        dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-        dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
-        monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-        // monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
-
-        buttonText: {
-            prev: "попер",
-            next: "наст",
-            today: "Сьогодні",
-            month: "Місяць",
-            week: "Тиждень",
-            day: "День"
-        },
 
         header: {
             left: 'prev,next today',
@@ -69,17 +59,17 @@ function initCalendar(selector) {
                 type: "GET",
                 dataType: 'json',
                 success: function (doc) {
-                    console.log(doc);
+                    // console.log(doc);
                     var events = [];
                     if (Array.isArray(doc)){
-                         events = doc.map(function (item) {
+                        events = doc.map(function (item) {
                             return {
                                 time_id: item.id,
                                 start: item.time_start,
                                 end: item.time_end,
                             }
                         })
-                }else{
+                    }else{
 
                         events.push(
                             {
@@ -107,19 +97,19 @@ function initCalendar(selector) {
         // var fin = $('#ends-at').val();
         var time_consultation_id = $('#time_consultation_id').val();
 
-         //alert( time_consultation_id);
+        //alert( time_consultation_id);
 
         $.ajax({
             url: '/consult',
             type: "POST",
-             data:  {
-                 'time_consultation_id': time_consultation_id,
-             },
+            data:  {
+                'time_consultation_id': time_consultation_id,
+            },
             dataType: 'json',
             success: function (respond) {
                 //if(respond){
-                    alert(respond );
-               // }
+                alert(respond );
+                // }
             },
             // error: function(data){
             //     alert("Available only for authorized users! Please log in.");
@@ -127,7 +117,7 @@ function initCalendar(selector) {
             statusCode: {
                 500: function () {
 
-                   alert("Available only for authorized users! Please log in.");
+                    alert("Available only for authorized users! Please log in.");
 
                 },
                 422: function () {
@@ -136,9 +126,9 @@ function initCalendar(selector) {
                 }
             },
 
-            });
-        $('#centralModalWarning').modal('hide');
         });
+        $('#centralModalWarning').modal('hide');
+    });
 
 
 

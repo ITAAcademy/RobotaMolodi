@@ -37,6 +37,9 @@ return [
     'addCompany' => 'Add Company',
     'editCompany' => 'Edit Company',
 
+    'addConsultant' => 'Add Consultant',
+    'editConsultant' => 'Edit Consultant`s data',
+
     'addVacancy' => 'Add Vacancy',
     'editVacancy' => 'Edit Vacancy',
     'closetopvac' => 'Close Top Vacancies',

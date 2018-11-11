@@ -16,7 +16,7 @@ $(document).ready(function(){
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.positionCon = false;
-                positionInfo.removeClass('error').addClass('correct');
+                positionInfo.removeClass('error').addClass('correct').html('← Лише літери').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -35,7 +35,7 @@ $(document).ready(function(){
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.description = false;
-                descriptionInfo.removeClass('error').addClass('correct');
+                descriptionInfo.removeClass('error').addClass('correct').html('← Перевищено ліміт 255 символів').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -56,7 +56,7 @@ $(document).ready(function(){
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.value = false;
-                valueInfo.removeClass('error').addClass('correct');
+                valueInfo.removeClass('error').addClass('correct').html('← Лише цілі числа').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -77,7 +77,7 @@ $(document).ready(function(){
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.telephone = false;
-                telephoneInfo.removeClass('error').addClass('correct');
+                telephoneInfo.removeClass('error').addClass('correct').html('← Формат номеру (067) 111-11-11').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -107,7 +107,7 @@ $(document).ready(function(){
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.val = false;
-                endValidInfo.removeClass('error').addClass('correct');
+                endValidInfo.removeClass('error').addClass('correct').html('← Тривалість консультації не може перевищувати 1 день').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },

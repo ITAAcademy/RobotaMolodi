@@ -1,59 +1,45 @@
 function calendar_consult_create(selector) {
+
     var events = [];
     var curr_date = new Date;
-    $(selector).fullCalendar({
-        height: 550,
-
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        defaultDate:curr_date,
-        validRange: function(nowDate) {
-            return {
-                start: nowDate,
-                end: nowDate.clone().add(1, 'months')
-            };
-        },
-
-        firstDay: 1,
-        dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-        dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
-        monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-        weekNames: ["всі дні","ам","пм"],
-        buttonText: {
-            prev: "попер",
-            next: "наст",
-            today: "Сьогодні",
-            month: "Місяць",
-            week: "Тиждень",
-            day: "День"
-        },
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        timeFormat: 'h:mm',
-        eventOrder: 'start',
-        themeSystem: 'bootstrap3',
-        displayEventEnd: true,
-        eventBackgroundColor: '#3348ce',
-        navLinks: true, // can click day/week names to navigate views
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-            $('#modalCal').modal('show');
-        },
-        eventClick: function(event, element) {
-            $('#modalCal').modal('show');
-            $('.modal').find('#time_start').val(event.start);
-            $('.modal').find('#time_end').val(event.end);
-        },
-        editable: true,
-        eventLimit: true,
-    });
+var loc = lan == "ua"? "uk":"en";
+var names =lan == "ua"? [ "Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень" ]:["January","February","March","April","May","June","July","August","September","October","November","December"];
+        $(selector).fullCalendar({
+            locale: loc,
+            height: 550,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultDate:curr_date,
+            validRange: function(nowDate) {
+                return {
+                    start: nowDate,
+                    end: nowDate.clone().add(1, 'months')
+                };
+            },
+            firstDay: 1,
+            monthNames: names,
+            timeFormat: 'h:mm',
+            eventOrder: 'start',
+            themeSystem: 'bootstrap3',
+            displayEventEnd: true,
+            eventBackgroundColor: '#3348ce',
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end) {
+                $('#modalCal').modal('show');
+            },
+            eventClick: function(event, element) {
+                $('#modalCal').modal('show');
+                $('.modal').find('#time_start').val(event.start);
+                $('.modal').find('#time_end').val(event.end);
+            },
+            editable: true,
+            eventLimit: true,
+        });
 
     $("#time_start, #time_end").datetimepicker();
 

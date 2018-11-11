@@ -1,15 +1,18 @@
 function calendar_consult_edit(selector) {
     var events = [];
     var curr_date = new Date;
+    var loc = lan == "ua"? "uk":"en";
+    var names =lan == "ua"? [ "Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень" ]:["January","February","March","April","May","June","July","August","September","October","November","December"];
 
     $(selector).fullCalendar({
+        locale: loc,
         header: {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: curr_date,
-        validRange: function(nowDate) {
+        validRange: function (nowDate) {
             return {
                 start: nowDate,
                 end: nowDate.clone().add(1, 'months')
@@ -18,25 +21,8 @@ function calendar_consult_edit(selector) {
         height: 550,
 
         firstDay: 1,
-        dayNames: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-        dayNamesShort: ["НД", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"],
-        monthNames: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-        // monthNamesShort: ['Янв.','Фев.','Март','Апр.','Май','Июнь','Июль','Авг.','Сент.','Окт.','Ноя.','Дек.'],
+        monthNames: names,
 
-        buttonText: {
-            prev: "попер",
-            next: "наст",
-            today: "Сьогодні",
-            month: "Місяць",
-            week: "Тиждень",
-            day: "День"
-        },
-
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
         timeFormat: 'h:mm',
         eventOrder: 'start',
         themeSystem: 'bootstrap3',
@@ -45,7 +31,7 @@ function calendar_consult_edit(selector) {
         navLinks: true, // can click day/week names to navigate views
         selectable: true,
         selectHelper: true,
-        select: function(start, end) {
+        select: function (start, end) {
             $('#modalCal').modal('show');
         },
 
@@ -56,7 +42,7 @@ function calendar_consult_edit(selector) {
                 dataType: 'json',
                 success: function (doc) {
                     let events = [];
-                    if (Array.isArray(doc)){
+                    if (Array.isArray(doc)) {
                         events = doc.map(function (item) {
                             return {
                                 time_id: item.id,
@@ -64,7 +50,7 @@ function calendar_consult_edit(selector) {
                                 end: item.time_end,
                             }
                         })
-                    }else{
+                    } else {
 
                         events.push(
                             {
@@ -80,13 +66,13 @@ function calendar_consult_edit(selector) {
                 }
             });
         },
-        eventClick: function(event, element) {
+        eventClick: function (event, element) {
             $('#modalCal').modal('show');
             $('.modal').find('#time_start').val(event.start);
             $('.modal').find('#time_end').val(event.end);
         },
 
-        eventClick: function (event,doc) {
+        eventClick: function (event, doc) {
             event._id = event.time_id;
 
             if (confirm('Видалити консультацію?')) {
@@ -96,7 +82,7 @@ function calendar_consult_edit(selector) {
                     data: 'id=' + event._id,
 
                     success: function (response) {
-                        $('#calendar_edit').fullCalendar('removeEvents',event._id);
+                        $('#calendar_edit').fullCalendar('removeEvents', event._id);
                         displayMessage("Deleted Successfully");
                     }
                 });
@@ -111,7 +97,7 @@ function calendar_consult_edit(selector) {
 
     $("#time_start, #time_end").datetimepicker();
 
-    $('#save-event').on('click', function() {
+    $('#save-event').on('click', function () {
         var eventData = {
             start: $('#time_start').val(),
             end: $('#time_end').val(),
@@ -123,7 +109,7 @@ function calendar_consult_edit(selector) {
         $('.modal').modal('hide');
     });
 
-    $( '#consultEdit' ).on( "submit", ( e)=> {
+    $('#consultEdit').on("submit", (e) => {
 
         e.preventDefault();
         var allData = new FormData($('#consultEdit')[0]);
@@ -147,7 +133,10 @@ function calendar_consult_edit(selector) {
         });
     });
 }
+
 function displayMessage(message) {
-    $(".response").html("<div class='success'>"+message+"</div>");
-    setInterval(function() { $(".success").fadeOut(); }, 1000);
+    $(".response").html("<div class='success'>" + message + "</div>");
+    setInterval(function () {
+        $(".success").fadeOut();
+    }, 1000);
 }

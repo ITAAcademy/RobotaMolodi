@@ -59,6 +59,8 @@
     overflow-y: hidden;
     margin-right: 15px;
     margin-left: 15px;
+    font-size: 14px;
+    line-height: 20px;
 }
 .consult-table tr{
     border-bottom: 1px solid silver;
