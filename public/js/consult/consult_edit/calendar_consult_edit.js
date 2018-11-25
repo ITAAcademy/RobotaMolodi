@@ -22,7 +22,8 @@ function calendar_consult_edit(selector) {
 
         firstDay: 1,
         monthNames: names,
-
+        minTime:"09:00:00",
+        maxTime:"19:00:00",
         timeFormat: 'h:mm',
         eventOrder: 'start',
         themeSystem: 'bootstrap3',

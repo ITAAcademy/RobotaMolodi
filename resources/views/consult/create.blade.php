@@ -29,12 +29,17 @@
                 {{ trans('main.phone') }}
             </label>
             <div class="col-md-6 col-sm-6">
-                <input type="text" placeholder="{{ trans('main.phone') }}" class="form-control" name="telephone"
+                <input type="text" placeholder="(XXX) XXX-XX-XX" class="form-control" name="telephone"
                        value="{{ old('phone') }}" id="telephone">
             </div>
             <span class="red-star"> * </span>
         </div>
-
+        {!!Html::script('js/jquery.maskedinput.min.js')!!}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#telephone").mask("(099) 999-99-99");
+            });
+        </script>
         <div class="row form-company-row">
             <label for="city" class="col-md-3 col-sm-3 label-text-company">
                 {{ trans('main.city') }}
@@ -78,16 +83,17 @@
             <label for="value" class="col-md-3 col-sm-3 label-text-company">
                 {{ trans('main.value') }}
             </label>
-            <div class="col-md-5 col-sm-5">
-                <input type="number" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
-                       value="{{ old('value') }}" id="value">
-            </div>
-            <div class="col-md-1 col-sm-1">
-                <select class="form-control input-sm" id="currency_id" name="currency_id">
+
+            <div class="col-md-2 col-sm-2">
+                <select class="form-control input" id="currency_id" name="currency_id">
                     @foreach($currencies as $currency)
                         <option value="{{$currency->id}}">{{$currency->currency}}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <input type="number" min="0" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
+                       value="{{ old('value') }}" id="value">
             </div>
             <span class="red-star"> * </span>
         </div>
@@ -182,8 +188,9 @@
             </div>
         </div>
     </form>
+
+
     <?php $lan = App::getLocale();?>
-    {{--<script type="text/javascript" src="{{ asset('/js/lang.js') }}"></script>--}}
     <script> var lan = "<?php echo($lan);?>";</script>
     <script type="text/javascript" src="{{ asset('/js/consult/consult_create/calendar_consult_create.js') }}"defer></script>
     <script type="text/javascript" src="{{ asset('/js/consult/consult_create/consultValidation.js') }}" crossorigin="anonymous" defer></script>
@@ -194,6 +201,12 @@
             calendar_consult_create('#calendar2');
 
         })
+    </script>
+
+    <script type="text/javascript">
+        // jQuery(function($){
+        //     $("#telephone").mask("(999) 999-9999");
+        // });
     </script>
 @stop
 

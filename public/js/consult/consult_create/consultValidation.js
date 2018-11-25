@@ -12,11 +12,11 @@ $(document).ready(function(){
             var patt = /^([а-яё\s]+|[a-z\s]+)$/iu;
             if(elem.val().length > 255 || !patt.test($('#positionCon').val()) ) {
                 error.positionCon = true;
-                positionInfo.removeClass('correct').addClass('error').html('← Лише літери').show();
+                positionInfo.removeClass('correct').addClass('error').html('  Лише літери').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.positionCon = false;
-                positionInfo.removeClass('error').addClass('correct').html('← Лише літери').hide();
+                positionInfo.removeClass('error').addClass('correct').html('  Лише літери').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -31,11 +31,11 @@ $(document).ready(function(){
             });
             if(elem.val().length > 255 ) {
                 error.description = true;
-                descriptionInfo.removeClass('correct').addClass('error').html('← Перевищено ліміт 255 символів').show();
+                descriptionInfo.removeClass('correct').addClass('error').html('  Перевищено ліміт 255 символів').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.description = false;
-                descriptionInfo.removeClass('error').addClass('correct').html('← Перевищено ліміт 255 символів').hide();
+                descriptionInfo.removeClass('error').addClass('correct').html('  Перевищено ліміт 255 символів').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -52,11 +52,11 @@ $(document).ready(function(){
             var patt = /^\d+$/i;
             if(!patt.test($('#value').val()) ){
                 error.value = true;
-                valueInfo.removeClass('correct').addClass('error').html('← Лише цілі числа').show();
+                valueInfo.removeClass('correct').addClass('error').html('  Лише додатні цілі числа').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.value = false;
-                valueInfo.removeClass('error').addClass('correct').html('← Лише цілі числа').hide();
+                valueInfo.removeClass('error').addClass('correct').html('   Лише додатні цілі числа').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -73,11 +73,11 @@ $(document).ready(function(){
             var patt = /^\(\d{3}\) \d{3}-\d{2}-\d{2}$/i;
             if(!patt.test($('#telephone').val()) ){
                 error.telephone = true;
-                telephoneInfo.removeClass('correct').addClass('error').html('← Формат номеру (067) 111-11-11').show();
+                telephoneInfo.removeClass('correct').addClass('error').html('  Формат номеру (XXX) XXX-XX-XX').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.telephone = false;
-                telephoneInfo.removeClass('error').addClass('correct').html('← Формат номеру (067) 111-11-11').hide();
+                telephoneInfo.removeClass('error').addClass('correct').html('  Формат номеру (XXX) XXX-XX-XX').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },
@@ -103,11 +103,11 @@ $(document).ready(function(){
 
             if ( ms !== me || ds!==de || ys!== ye || Date.parse($('#time_start').val()) < curr_pars) {
                 error.val = true;
-                endValidInfo.removeClass('correct').addClass('error').html('← Тривалість консультації не може перевищувати 1 день').show();
+                endValidInfo.removeClass('correct').addClass('error').html('  Тривалість консультації не може перевищувати 1 день').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.val = false;
-                endValidInfo.removeClass('error').addClass('correct').html('← Тривалість консультації не може перевищувати 1 день').hide();
+                endValidInfo.removeClass('error').addClass('correct').html('  Тривалість консультації не може перевищувати 1 день').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },

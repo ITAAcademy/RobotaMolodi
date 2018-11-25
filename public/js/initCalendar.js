@@ -45,6 +45,8 @@ function initCalendar(selector) {
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
+        minTime:"09:00:00",
+        maxTime:"19:00:00",
         timeFormat: 'h:mm',
         eventOrder: 'start',
         themeSystem: 'bootstrap3',
