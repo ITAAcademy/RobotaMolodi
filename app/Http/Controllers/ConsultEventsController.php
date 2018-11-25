@@ -116,7 +116,16 @@ class ConsultEventsController extends Controller
     {
         $data = TimeConsultation::find($id);
         $data->confirmedConsultations()->delete();
+        $cons_id=$data->consults_id;
         $data->delete();
+        $cons = TimeConsultation::where('consults_id', $cons_id)->get();
+        if(!count($cons))
+        {
+            $consult = Consult::find($cons_id);
+            $consult->delete();
+        }
+            ;
+       // dd($cons);
         return redirect('events');
     }
 }
