@@ -20,6 +20,8 @@ var names =lan == "ua"? [ "Січень","Лютий","Березень","Кві
                 };
             },
             firstDay: 1,
+            minTime:"09:00:00",
+            maxTime:"19:00:00",
             monthNames: names,
             timeFormat: 'h:mm',
             eventOrder: 'start',
