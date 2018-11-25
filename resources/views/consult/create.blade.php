@@ -78,16 +78,17 @@
             <label for="value" class="col-md-3 col-sm-3 label-text-company">
                 {{ trans('main.value') }}
             </label>
-            <div class="col-md-5 col-sm-5">
-                <input type="number" min="0" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
-                       value="{{ old('value') }}" id="value">
-            </div>
-            <div class="col-md-1 col-sm-1">
-                <select class="form-control input-sm" id="currency_id" name="currency_id">
+
+            <div class="col-md-2 col-sm-2">
+                <select class="form-control input" id="currency_id" name="currency_id">
                     @foreach($currencies as $currency)
                         <option value="{{$currency->id}}">{{$currency->currency}}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <input type="number" min="0" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
+                       value="{{ old('value') }}" id="value">
             </div>
             <span class="red-star"> * </span>
         </div>
