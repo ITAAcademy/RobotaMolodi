@@ -33,6 +33,12 @@
             </div>
             <span class="red-star"> * </span>
         </div>
+            {!!Html::script('js/jquery.maskedinput.min.js')!!}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#telephone").mask("(099) 999-99-99");
+                });
+            </script>
         <div class="row form-company-row">
             <label for="city" class="col-md-3 col-sm-3 label-text-company">
                 {{ trans('main.city') }}

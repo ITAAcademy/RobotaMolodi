@@ -1,3 +1,4 @@
+<link href="{{ asset('/css/style_resume.css') }}" rel="stylesheet">
 <div class="row">
     <div class="form-group resume-row {{$errors->has('name_u') ? 'has-error' : ''}}">
         <div class="col-md-2 col-sm-2 control-label label-text-resume">
@@ -118,7 +119,7 @@
         </div>
         <div class=" col-md-6 col-sm-6 resume-form">
             <div class="resume-form-input">
-                <select name="position" id="position" class="form-control">
+                <select name="position" id="position" style="width: 100%" class="form-control">
                     @if(Input::old('position')== '')
                         @foreach($positions as $position)
                             @if($position == Input::old('position'))
