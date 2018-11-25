@@ -29,7 +29,7 @@
                 {{ trans('main.phone') }}
             </label>
             <div class="col-md-6 col-sm-6">
-                <input type="text" placeholder="{{ trans('main.phone') }}" class="form-control" name="telephone"
+                <input type="text" placeholder="(XXX) XXX-XX-XX" class="form-control" name="telephone"
                        value="{{ old('phone') }}" id="telephone">
             </div>
             <span class="red-star"> * </span>
@@ -182,8 +182,9 @@
             </div>
         </div>
     </form>
+
+
     <?php $lan = App::getLocale();?>
-    {{--<script type="text/javascript" src="{{ asset('/js/lang.js') }}"></script>--}}
     <script> var lan = "<?php echo($lan);?>";</script>
     <script type="text/javascript" src="{{ asset('/js/consult/consult_create/calendar_consult_create.js') }}"defer></script>
     <script type="text/javascript" src="{{ asset('/js/consult/consult_create/consultValidation.js') }}" crossorigin="anonymous" defer></script>
@@ -194,6 +195,12 @@
             calendar_consult_create('#calendar2');
 
         })
+    </script>
+
+    <script type="text/javascript">
+        // jQuery(function($){
+        //     $("#telephone").mask("(999) 999-9999");
+        // });
     </script>
 @stop
 
