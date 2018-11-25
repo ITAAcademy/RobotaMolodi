@@ -52,11 +52,11 @@ $(document).ready(function(){
             var patt = /^\d+$/i;
             if(!patt.test($('#value').val()) ){
                 error.value = true;
-                valueInfo.removeClass('correct').addClass('error').html('  Лише цілі числа').show();
+                valueInfo.removeClass('correct').addClass('error').html('  Лише додатні цілі числа').show();
                 elem.removeClass('normal').addClass('wrong');
             } else {
                 error.value = false;
-                valueInfo.removeClass('error').addClass('correct').html('  Лише цілі числа').hide();
+                valueInfo.removeClass('error').addClass('correct').html('   Лише додатні цілі числа').hide();
                 elem.removeClass('wrong').addClass('normal');
             }
         },

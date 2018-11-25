@@ -79,7 +79,7 @@
                 {{ trans('main.value') }}
             </label>
             <div class="col-md-5 col-sm-5">
-                <input type="number" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
+                <input type="number" min="0" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
                        value="{{ old('value') }}" id="value">
             </div>
             <div class="col-md-1 col-sm-1">

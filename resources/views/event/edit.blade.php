@@ -28,7 +28,7 @@
                 {{ trans('main.phone') }}
             </label>
             <div class="col-md-6 col-sm-6">
-                <input type="text" placeholder="{{ trans('main.phone') }}" class="form-control" name="telephone"
+                <input type="text" placeholder="(XXX) XXX-XX-XX" class="form-control" name="telephone"
                        value="{{$consultant->telephone}}" id="telephone">
             </div>
             <span class="red-star"> * </span>
@@ -87,7 +87,7 @@
                 {{ trans('main.value') }}
             </label>
             <div class="col-md-5 col-sm-5">
-                <input type="number" placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
+                <input type="number" min="0"  placeholder=" {{ trans('main.value') }}" class="form-control" name="value"
                        value="{{$consultant->value}}" id="value">
             </div>
             <div class="col-md-1 col-sm-1">
