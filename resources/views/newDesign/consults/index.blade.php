@@ -50,7 +50,7 @@
                             <div class="consultations">
                               <div> <img src="{{ asset('/image/consult.png') }}" align="left"></div> 
                                   <a href='/sconsult/{{$consultant->id}}' >
-                                         <div class="consultations-planing" > запланувати консультацію</div>
+                                         <div class="consultations-planing" > Запланувати консультацію</div>
                                     </a>
                             </div>
                          
