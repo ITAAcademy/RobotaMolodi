@@ -62,7 +62,10 @@
         </div>
     @endforeach
 
-    @include('newDesign.paginator', ['paginator' => $consultants])
+    {{--@include('newDesign.paginator', ['paginator' => $consultants])--}}
+
+            <div class="container col-md-6" style="width: 100%"> {!!  $consultants->render() !!}</div>
+
 </div>
 
 @include('newDesign.jsForFilter')
