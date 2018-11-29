@@ -1,6 +1,6 @@
 
 <link href="{{ asset('/css/consults/consultsList.css') }}" rel="stylesheet">
-<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
+{{--<link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">--}}
 
 <div class="test">
     @foreach($consultants as $consultant)
@@ -64,7 +64,7 @@
 
     {{--@include('newDesign.paginator', ['paginator' => $consultants])--}}
 
-            <div class="container col-md-6" style="width: 100%"> {!!  $consultants->render() !!}</div>
+            <div class="container" style="width: 100%"> {!!  $consultants->render() !!}</div>
 
 </div>
 

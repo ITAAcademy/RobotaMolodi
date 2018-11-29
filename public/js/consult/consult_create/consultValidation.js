@@ -85,14 +85,8 @@ $(document).ready(function(){
         'time_end' : function () {
             $('body').append('<div id="endValidInfo" class="info"></div>');
             var endValidInfo = $('#endValidInfo');
-            var s = $("#time_start").data("DateTimePicker").date();
-            var date_s = new Date(s);
-            var ms = date_s.getMonth(), ds = date_s.getDate(), ys = date_s.getFullYear();
-            var e = $("#time_end").data("DateTimePicker").date();
-            var date_e = new Date(e);
-            var me = date_e.getMonth(), de = date_e.getDate(), ye = date_e.getFullYear();
-            var curr_date = new Date;
-            var curr_pars = Date.parse(curr_date);
+            var start = $('#time_start').val();
+            var end = $("#time_end").val();
 
             var elem = $('#error_calendar');
             var pos = elem.offset();
@@ -101,14 +95,14 @@ $(document).ready(function(){
                 left: pos.left + elem.width() + 5
             });
 
-            if ( ms !== me || ds!==de || ys!== ye || Date.parse($('#time_start').val()) < curr_pars) {
-                error.val = true;
-                endValidInfo.removeClass('correct').addClass('error').html('  Тривалість консультації не може перевищувати 1 день').show();
-                elem.removeClass('normal').addClass('wrong');
-            } else {
+            if (end > start) {
                 error.val = false;
-                endValidInfo.removeClass('error').addClass('correct').html('  Тривалість консультації не може перевищувати 1 день').hide();
+                endValidInfo.removeClass('error').addClass('correct').html('Консультація не може завершитись до її початку').hide();
                 elem.removeClass('wrong').addClass('normal');
+            } else {
+                error.val = true;
+                endValidInfo.removeClass('correct').addClass('error').html('Консультація не може завершитись до її початку').show();
+                elem.removeClass('normal').addClass('wrong');
             }
         },
     };
@@ -116,7 +110,7 @@ $(document).ready(function(){
     $('#description').change(jVal.description);
     $('#value').change(jVal.value);
     $('#telephone').change(jVal.telephone);
-    $('#time_end').datetimepicker().on('dp.change', jVal.time_end);
+    $('#time_end').change(jVal.time_end);
 
 
     var error = {

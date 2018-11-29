@@ -26,7 +26,7 @@ class ConsultsController extends Controller
     const PER_PAGE = 9;
     public function index(Request $request)
     {
-        $consultants =Consult::with('user')->paginate(self::PER_PAGE);
+        $consultants =Consult::with('user')->paginate(9);
         $specialisations = Resume::groupBy('position')->lists('position');
         if ($request->ajax()) {
             return view('newDesign.consults.index', ['consultants' => $consultants]);
