@@ -17,7 +17,7 @@
     </div>
 
     {!!Html::script('js/scrollup.js')!!}
-    @include('newDesign.jsForFilter')
+    {{--@include('newDesign.jsForFilter') Розкомітити для відпрацювання фільтрів "працюють некоректно"--}}
 @stop
 
 

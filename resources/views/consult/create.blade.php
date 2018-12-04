@@ -1,6 +1,7 @@
 @extends('app')
 <link href="{{ asset('/css/vacancyShow.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/consult.css') }}" rel="stylesheet">
+<link href="{{ asset('/css/cabinet.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/styleValidation.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/fullcalendar/fullcalendar.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/sortAds/calendarDatepicker.css') }}" rel="stylesheet">
@@ -158,23 +159,29 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-xs-12">
+                                    <label class="col-xs-4" for="date_cons">{{ trans('consult.date') }}</label>
+                                    <input type="text" name="date_cons" id="date_cons"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
                                     <label class="col-xs-4" for="time_start">{{ trans('consult.start') }}</label>
-                                    <input type="text" name="time_start" id="time_start"/>
+                                    <input type="time" name="time_start" id="time_start"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label class="col-xs-4" for="time_end">{{ trans('consult.end') }}</label>
-                                    <input type="text" name="time_end" id="time_end"/>
+                                    <input type="time" name="time_end"  id="time_end"/>
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default"
+                            <button type="button" class="btn fa orange-button"
                                     data-dismiss="modal">{{ trans('consult.close') }}</button>
-                            <button type="button" class="btn btn-primary"
-                                    id="save-event">{{ trans('consult.save') }}</button>
+                            <button type="button" class="btn fa orange-button" disabled="true"
+                                    id="save-event" >{{ trans('consult.save') }}</button>
 
                         </div>
                     </div><!-- /.modal-content -->
@@ -201,12 +208,6 @@
             calendar_consult_create('#calendar2');
 
         })
-    </script>
-
-    <script type="text/javascript">
-        // jQuery(function($){
-        //     $("#telephone").mask("(999) 999-9999");
-        // });
     </script>
 @stop
 

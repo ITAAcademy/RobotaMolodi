@@ -9,7 +9,7 @@ function calendar_consult_edit(selector) {
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: 'month,agendaDay'
         },
         defaultDate: curr_date,
         validRange: function (nowDate) {
@@ -88,20 +88,19 @@ function calendar_consult_edit(selector) {
                     }
                 });
             }
-            // else{
-            //
-            // }
         },
         editable: true,
         eventLimit: true,
+        dayClick: function (date, jsEvent, view) {
+            var clickDate = date.format();
+            $('#date_cons').val(clickDate);
+        },
     });
-
-    $("#time_start, #time_end").datetimepicker();
-
     $('#save-event').on('click', function () {
         var eventData = {
-            start: $('#time_start').val(),
-            end: $('#time_end').val(),
+            start:$('#date_cons').val()+' '+$('#time_start').val(),
+            end: $('#date_cons').val()+' '+$('#time_end').val(),
+            date: $('#date_cons').val(),
         };
         events.push(eventData);
         $('#calendar_edit').fullCalendar('renderEvent', eventData, true);

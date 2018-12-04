@@ -43,7 +43,7 @@ function initCalendar(selector) {
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: 'month,agendaDay'
         },
         minTime:"09:00:00",
         maxTime:"19:00:00",
