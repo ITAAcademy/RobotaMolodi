@@ -34,6 +34,7 @@ function calendar_consult_create(selector) {
         selectHelper: true,
         select: function (start, end) {
             $('#modalCal').modal('show');
+
         },
         editable: true,
         eventLimit: true,
@@ -41,6 +42,7 @@ function calendar_consult_create(selector) {
         dayClick: function (date, jsEvent, view) {
             var clickDate = date.format();
             $('#date_cons').val(clickDate);
+            $("#save-event").disabled = true;
         },
     });
     $('#save-event').on('click', function () {
@@ -49,6 +51,7 @@ function calendar_consult_create(selector) {
             end: $('#date_cons').val()+' '+$('#time_end').val(),
             date: $('#date_cons').val(),
         };
+
         events.push(eventData);
        $('#calendar2').fullCalendar('renderEvent', eventData, true);
         $('.modal').find('input').val('');

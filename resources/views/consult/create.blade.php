@@ -180,8 +180,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn fa orange-button"
                                     data-dismiss="modal">{{ trans('consult.close') }}</button>
-                            <button type="button" class="btn fa orange-button"
-                                    id="save-event">{{ trans('consult.save') }}</button>
+                            <button type="button" class="btn fa orange-button" disabled="true"
+                                    id="save-event" >{{ trans('consult.save') }}</button>
 
                         </div>
                     </div><!-- /.modal-content -->
@@ -208,12 +208,6 @@
             calendar_consult_create('#calendar2');
 
         })
-    </script>
-
-    <script type="text/javascript">
-        // jQuery(function($){
-        //     $("#telephone").mask("(999) 999-9999");
-        // });
     </script>
 @stop
 

@@ -87,7 +87,6 @@ $(document).ready(function(){
             var endValidInfo = $('#endValidInfo');
             var start = $('#time_start').val();
             var end = $("#time_end").val();
-
             var elem = $('#error_calendar');
             var pos = elem.offset();
             endValidInfo.css({
@@ -95,14 +94,16 @@ $(document).ready(function(){
                 left: pos.left + elem.width() + 5
             });
 
-            if (end > start) {
+            if (start !=0 && end > start) {
                 error.val = false;
                 endValidInfo.removeClass('error').addClass('correct').html('Консультація не може завершитись до її початку').hide();
                 elem.removeClass('wrong').addClass('normal');
+                document.getElementById("save-event").disabled = false;
             } else {
                 error.val = true;
                 endValidInfo.removeClass('correct').addClass('error').html('Консультація не може завершитись до її початку').show();
                 elem.removeClass('normal').addClass('wrong');
+                document.getElementById("save-event").disabled = true;
             }
         },
     };

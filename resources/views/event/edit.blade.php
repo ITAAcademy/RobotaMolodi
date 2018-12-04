@@ -197,7 +197,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn fa orange-button"
                                     data-dismiss="modal">{{ trans('consult.close') }}</button>
-                            <button type="button" class="btn fa orange-button"
+                            <button type="button" class="btn fa orange-button" disabled="true"
                                     id="save-event">{{ trans('consult.save') }}</button>
                         </div>
                     </div><!-- /.modal-content -->
