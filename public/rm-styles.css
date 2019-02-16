@@ -1085,6 +1085,7 @@ header .tads_panel .nav-tabs > li > a {
 
 .galleries .thumbnail > img, .thumbnail a > img {
     margin: 0;
+    height: 103px;
     padding: 0;
 }
 

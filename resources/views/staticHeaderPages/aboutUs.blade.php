@@ -96,14 +96,6 @@
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_1.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_2.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_2.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_3.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_3.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_4.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_4.jpg')}}"/></a>
                                                 </div>
@@ -112,20 +104,12 @@
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_5.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_6.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_7.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_7.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_7.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_8.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_8.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_9.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_9.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_10.jpg')}}">
@@ -138,14 +122,6 @@
                                                 <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_12.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_12.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_13.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_13.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_14.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2013_14.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2013_15.jpg')}}">
@@ -245,26 +221,7 @@
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_1.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_1.jpg')}}"/></a>
                                                 </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_2.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_2.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_3.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_3.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_4.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_4.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_5.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_5.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_6.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_6.jpg')}}"/></a>
-                                                </div>
+
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_7.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_7.jpg')}}"/></a>
@@ -281,10 +238,7 @@
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_10.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_10.jpg')}}"/></a>
                                                 </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_11.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_11.jpg')}}"/></a>
-                                                </div>
+
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_12.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_12.jpg')}}"/></a>
@@ -301,34 +255,12 @@
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_15.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_15.jpg')}}"/></a>
                                                 </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_16.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_16.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_17.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_17.jpg')}}"/></a>
-                                                </div>
+
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_18.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_18.jpg')}}"/></a>
                                                 </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_19.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_19.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_20.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_20.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_21.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_21.jpg')}}"/></a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_22.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2016_22.jpg')}}"/></a>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -340,43 +272,126 @@
                                             <p>{{ trans('aboutus.in2017') }} <a href="https://profitday.info/datedevents?years%5B%5D=2017&cities%5B%5D=1&events%5B%5D=PROF+IT+Day">«PROFIT DAY»</a>   {{ trans('aboutus.events2017') }}</p>
                                             <div class="row galleries ">
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_1.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_1.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_01.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_01.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_2.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_2.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_02.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_02.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_3.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_3.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_03.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_03.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_04.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_04.jpg')}}"/></a>
                                                 </div>
 
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_5.jpg')}}">
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_06.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_06.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_5.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_5.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_6.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_6.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_07.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_07.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_7.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_7.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_08.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_08.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_8.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_8.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_09.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_09.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_9.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_9.jpg')}}"/></a>
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_10.jpg')}}"/></a>
                                                 </div>
-                                                {{--<div class="gallery-item nopadding">--}}
-                                                    {{--<a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2017_4.jpg')}}">--}}
-                                                        {{--<img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_4.jpg')}}"/></a>--}}
-                                                {{--</div>--}}
-
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2018</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>
+                                                {{ trans('aboutus.in2018') }}
+                                                <a href="https://www.facebook.com/events/178781732773416/">{{ trans('aboutus.hackathon_YEPS') }}</a>
+                                                {{ trans('aboutus.in2018_1') }}
+                                                <a href="https://hack.intita.com/#itcamp">{{ trans('aboutus.Hackers_school') }} </a>
+                                                {{ trans('aboutus.in2018_2') }}
+                                                <a href="https://profitday.info/">«PROFIT DAY» </a>
+                                                {{ trans('aboutus.in2018_3') }}
+                                                <a href="https://www.facebook.com/events/172953163617012/">“Kids for kids” </a>
+                                                {{ trans('aboutus.in2018_4') }}
+                                            </p>
+                                            <div class="row galleries ">
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_1.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_2.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_3.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_4.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_5.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_6.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_7.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_8.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_9.jpg')}}"/>
+                                                    </a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_10.jpg')}}"/>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

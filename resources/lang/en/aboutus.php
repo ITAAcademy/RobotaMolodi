@@ -35,5 +35,11 @@ return [
     'cycleofevents' => ' - Days of Career - a series of events that spanned more than 17 regions of Ukraine and combined job vacancies, trainings from leading employers and exhibitions of all-Ukrainian and regional companies. The main target audience of the project is youth and internally displaced persons. The field of information technology was the priority area of the fair.',
     'in2017' => 'In 2017 we organized career days',
     'events2017' => 'a line of events, which were held in a half of Ukraine regions and included vacancies fairs, pieces of training by leading employers. Youth and internally displaced persons took part in the events. The field of information technology was the priority area of the fairs. In cooperation with Hackers’ school by IT-Academy, in summer a 4 week IT Summer Camp for children of the age 10-17 was held. About 80 people were involved. In cooperation with IT-Academy Vinnytsia we also implement a constantly functioning social project "Harmony", which provides training for practicing programmers of young people with functional limitations. They learn IT technologies in Vinnytsia Center for social and psychological rehabilitation of children and young people with functional limitations "Harmony".',
-
+    'in2018' => 'In 2018 we organized two-days social',
+    'in2018_1' => '“Youth Employment Solutions”. In cooperation with',
+    'in2018_2' => ' in summer a 4 week IT Summer Camp for children of the age 10-17 was held. Career days ',
+    'in2018_3' =>' - were held in a half of Ukraine regions and included vacancies fairs, trainings by leading employers. The biggest ones were in Lutsk, Ternopil, Odesa, Vinnytsia, Lviv. In cooperation with SAP and GURT hackathon ',
+    'in2018_4' =>' was held on 20-th of October.',
+    'hackathon_YEPS' =>' hackathon YEPS ',
+    'Hackers_school' => ' Hackers’ school, ',
 ];
