@@ -291,15 +291,16 @@
                                                        href="{{asset('image/aboutUsImages/gallery/gallery_2017_04.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_04.jpg')}}"/></a>
                                                 </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery"
-                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_05.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_05.jpg')}}"/></a>
-                                                </div>
+
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery"
                                                        href="{{asset('image/aboutUsImages/gallery/gallery_2017_06.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_06.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item nopadding">
+                                                    <a class="thumbnail gallery"
+                                                       href="{{asset('image/aboutUsImages/gallery/gallery_2017_5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2017_5.jpg')}}"/></a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery"

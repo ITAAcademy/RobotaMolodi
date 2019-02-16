@@ -878,6 +878,7 @@ header .tads_panel .nav-tabs > li > a {
 
 .galleries .thumbnail > img, .thumbnail a > img {
     margin: 0;
+    height: 103px;
     padding: 0;
 }
 
@@ -1070,6 +1071,9 @@ header .tads_panel .nav-tabs > li > a {
     .content .article .second_level .galleries .col-md-3:nth-child(6) {
         margin-top: 10px;
     }
+    .galleries .gallery-item .gallery img{
+        height: 103px;
+    }
 
     .footer-bottom {
         height: 100%;
@@ -1137,6 +1141,7 @@ header .tads_panel .nav-tabs > li > a {
     .content .article .second_level .galleries .col-sm-3:nth-child(6) {
         margin-top: 10px;
     }
+
 
     /*.content .article .years .year-text {
         background: #fff;
@@ -1230,6 +1235,7 @@ header .tads_panel .nav-tabs > li > a {
     }
 
     .galleries .thumbnail > img, .thumbnail a > img {
+        height: 103px;
         margin: 0;
         padding: 0;
         text-align: center;
