@@ -51,13 +51,13 @@
         </div>
     </div>
 
-    <div class="down-footer col-xs-12">
+    <div class="down-footer col-xs-12 d-flex justify-content-between">
         <div class="inner-footer col-md-7">
             <span>{{ trans('footer.copy') }}</span>
             <img  id="revival" src="{{asset('image/vidrodjenja.png')}}" >
         </div>
         <div class="inner-footer col-md-5">
-            <div class="row" id="footerlinks" >
+            <div class="row" id="footerlinks">
                 <div class="col-xs-5 col-sm-4" id="footershare" >
                     <span>{{ trans('footer.share') }}</span>
                 </div>
@@ -80,6 +80,16 @@
                     <a href="https://plus.google.com/share?url=http://robotamolodi.org/"
                        class="ggl" target="_blank" title="Share on plus.google.com">
                     </a>
+                </div>
+                <div class="row" id="footer_partner">
+                    <div class="col-xs-5 col-sm-4" id="footer_add_partn" >
+                        <span>{{ trans('footer.partners') }}</span>
+                    </div>
+                    <div class="col-xs-1 col-sm-0">
+                        <a href="https://jooble.org/"
+                           target="_blank" class="partn">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
