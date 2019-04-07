@@ -6,12 +6,15 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
-        <div>
-            <h4 style="text-align: center">Список індустрій</h4>
-        </div>
-        <div class="fixed-action-btn">
-            <a href="{{ URL::route('admin.industry.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
-        </div>
+            <div class="createNews">
+                <div class="row">
+                    <a href="{{ URL::route('admin.industry.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+                    <div>
+                        <h4 style="text-align: center">Список індустрій</h4>
+                    </div>
+                </div>
+            </div>
+
         <table class="striped bordered highlight">
             <thead>
                 <tr>
