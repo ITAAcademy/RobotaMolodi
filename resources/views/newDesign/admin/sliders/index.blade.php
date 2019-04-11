@@ -124,7 +124,7 @@
                                     </div>
                                 </th>
                                 <td>
-                                    <img class="picture img-responsive" src="{{ asset($slider->image) }}">
+                                    <img class="picture img-responsive" src="{{ $slider->image }}">
                                 </td>
                                 <td>
                                     <a href="{!! $slider->url !!}" title="{!! $slider->url !!}" class="btn-floating blue"><i class="material-icons">link</i></a>
