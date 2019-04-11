@@ -10,7 +10,8 @@
         @endif
             <div class="createNews">
                 <div class="row">
-                    <a href="{{ URL::route('admin.slider.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+                    <a href="{{ URL::route('admin.news.create') }}"
+                       class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
                     <div>
                         <h4 style="text-align: center">Список новин</h4>
                     </div>
