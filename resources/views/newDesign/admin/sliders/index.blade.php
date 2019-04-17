@@ -11,10 +11,10 @@
         </div>
     @endif
 
-    <div class="createNews">
-        <div class="row">
-            <a href="{{ URL::route('admin.slider.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
-        </div>
+        <div class="createNews">
+            <div class="row">
+                <a href="{{ URL::route('admin.slider.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+            </div>
 
         <div>
             <label>Choose category</label>
@@ -124,7 +124,7 @@
                                     </div>
                                 </th>
                                 <td>
-                                    <img class="picture img-responsive" src="{{ asset($slider->image) }}">
+                                    <img class="picture img-responsive" src="{{ $slider->image }}">
                                 </td>
                                 <td>
                                     <a href="{!! $slider->url !!}" title="{!! $slider->url !!}" class="btn-floating blue"><i class="material-icons">link</i></a>
