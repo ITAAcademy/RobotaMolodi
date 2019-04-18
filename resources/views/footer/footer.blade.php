@@ -4,7 +4,7 @@
             <ul class="footer-list">
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.information') }}</li>
                 <hr class="li-header-rows">
-                <li><a href="aboutus">{{ trans('footer.about') }}</a></li>
+                <li><a href="about_us">{{ trans('footer.about') }}</a></li>
                 <li><a href="https://profitday.info/allcompanies" target="_blank">{{ trans('footer.partners') }}</a></li>
                 <li><a href="#" target="_blank">{{ trans('footer.support') }}</a></li>
                 <li><a href="#" target="_blank">{{ trans('footer.business_ideas') }}</a></li>

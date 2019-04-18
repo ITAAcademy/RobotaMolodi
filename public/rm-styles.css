@@ -2674,13 +2674,13 @@ button.btn.btn-primary.enter-button:focus {
     text-decoration: none;
 }
 #footerlinks{
-    padding-right: 200px;
+    padding-right: 150px;
 }
 #footer_partner{
     padding-left: 100px;
 }
 #footer_add_partn{
-    padding-left: 65px;
+    padding-left: 55px;
 }
 #footershare{
     padding: 0;
@@ -2763,8 +2763,7 @@ html, body {
 }
 
 a.partn{
-    background-image: url(image/partn.jpg);
-    width: 100px;
+   color: #0f0f0f;
     height: 100px;
     display: block;
 }
