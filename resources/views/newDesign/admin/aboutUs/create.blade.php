@@ -132,8 +132,8 @@
 
         function handleFileSelect(evt) {
             var files = evt.target.files; // FileList object
-
             // Loop through the FileList and render image files as thumbnails.
+
             for (var i = 0, file; file = files[i]; i++) {
                 // Only process image files.
                 if (!file.type.match('image.*')) {

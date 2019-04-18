@@ -55,7 +55,7 @@ class AboutUsesController extends Controller
             'published'           => 'required',
             'year'                => 'required',
             'icon'                => 'required',
-            'multi_files'         => 'required'
+            'multi_files'         => 'required',
         ];
 
         $this->validate($request,$rules);
