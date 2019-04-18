@@ -82,12 +82,13 @@
                     </a>
                 </div>
                 <div class="row" id="footer_partner">
-                    <div class="col-xs-5 col-sm-4" id="footer_add_partn" >
-                        <span>{{ trans('footer.partners') }}</span>
+                    <div class="col-xs-6 col-sm-4" id="footer_add_partn" >Вакансії на
+                        {{--<span>{{ trans('footer.partners') }}</span>--}}
                     </div>
                     <div class="col-xs-1 col-sm-0">
                         <a href="https://jooble.org/"
                            target="_blank" class="partn">
+                            jooble.org
                         </a>
                     </div>
                 </div>
