@@ -34,7 +34,7 @@
                 <tr>
                     {{--<td scope="row">{{ $new->id }}</td>--}}
                     <td style="text-align: center">
-                        <h5>{{ $new->name }}</h5>
+                        <p>{{ $new->name }}</p>
                     </td>
                     <td>
                         {!! substr($new->description, 0, 100)."..." !!}
