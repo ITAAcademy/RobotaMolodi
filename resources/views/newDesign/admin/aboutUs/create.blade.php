@@ -97,14 +97,13 @@
     <script>
 
         $test_date = '2010';
-        $test_arr  = explode('/', $test_date);
-        if (count($test_arr) == 1) {
-            if (checkdate($test_arr[0])) {
-                // valid date ...
-            } else {
-                // problem with dates ...
-                alert('Please enter the correct date!);
+
+        $date = DateTime::createFromFormat('Y', $test_date);
+        $date_errors = DateTime::getLastErrors();
+        if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
+            $errors[] = 'Some useful error message goes here.';
         }
+
     </script>
 
 
