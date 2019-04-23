@@ -95,17 +95,16 @@
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
-        $().ready(function () {
-            $('.btn').on('click',function () {
-                var year = $('.year').val();
-                if(year < 1990 || year > 2018 ){
-                    alert('Please enter the  correct date from 1980 to 2018 year !');
-                    $('.year').empty();
-                }
 
-            })
-
-        });
+        $test_date = '01/01/2010';
+        $test_arr  = explode('/', $test_date);
+        if (count($test_arr) == 3) {
+            if (checkdate($test_arr[0], $test_arr[1], $test_arr[2])) {
+                // valid date ...
+            } else {
+                // problem with dates ...
+                alert('Please enter the correct date!);
+        }
     </script>
 
 
