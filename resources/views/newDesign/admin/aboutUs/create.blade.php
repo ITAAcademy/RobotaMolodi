@@ -96,10 +96,10 @@
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
 
-        $test_date = '01/01/2010';
+        $test_date = '2010';
         $test_arr  = explode('/', $test_date);
-        if (count($test_arr) == 3) {
-            if (checkdate($test_arr[0], $test_arr[1], $test_arr[2])) {
+        if (count($test_arr) == 1) {
+            if (checkdate($test_arr[0])) {
                 // valid date ...
             } else {
                 // problem with dates ...
