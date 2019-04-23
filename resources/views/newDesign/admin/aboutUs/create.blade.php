@@ -96,7 +96,7 @@
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
 
-        $test_date = '2010';
+        $test_date = '2008';
 
         $date = DateTime::createFromFormat('Y', $test_date);
         $date_errors = DateTime::getLastErrors();
