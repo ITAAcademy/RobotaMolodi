@@ -6,11 +6,11 @@
         <h4>Змінити статус користувача</h4>
         <thead>
         <tr>
-            <th class="s4 m4 l5 xl5">Username</th>
-            <th class="s3 m3 l2 xl2">is Admin</th>
-            <th class="s5 m5 l5 xl5">Set admin</th>
-            <th class="s5 m5 l5 xl5">is Adwiser</th>
-            <th class="s5 m5 l5 xl5">Set role adwiser</th>
+            <th class="col-sm-8 col-md-8 col-lg-8">Username</th>
+            <th class="col-sm-1 col-md-1 col-lg-1">is Admin</th>
+            <th class="col-sm-1 col-md-1 col-lg-1">Set admin</th>
+            <th class="col-sm-1 col-md-1 col-lg-1">is Adwiser</th>
+            <th class="col-sm-1 col-md-1 col-lg-1">Set role adwiser</th>
         </tr>
         </thead>
         <tbody>
