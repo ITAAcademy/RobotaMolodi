@@ -95,15 +95,17 @@
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
+        $().ready(function () {
+            $('.btn').on('click',function () {
+                var year = $('.year').val();
+                if(year < 1990 || year > 2019 ){
+                    alert('Please enter the  correct date from 1980 to 2019 year !');
+                    $('.year').empty();
+                }
 
-        $test_date = '2008';
+            })
 
-        $date = DateTime::createFromFormat('Y', $test_date);
-        $date_errors = DateTime::getLastErrors();
-        if ($date_errors['warning_count'] + $date_errors['error_count'] > 0) {
-            $errors[] = 'Some useful error message goes here.';
-        }
-
+        });
     </script>
 
 
