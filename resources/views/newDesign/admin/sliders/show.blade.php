@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ $slider->id }}</td>
                 <td>
-                    <img class="picture" src="{{ asset($slider->image) }}" style="width: 100%">
+                    <img class="picture" src="{{$slider->image}}" style="width: 100%">
                 </td>
                 <td>
                     <a href="{!! $slider->url !!}">{!! $slider->url !!}</a>
