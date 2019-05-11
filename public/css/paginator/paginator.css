@@ -1,4 +1,6 @@
-
+.overflow {
+    overflow-wrap: anywhere;
+}
 .paginatorBlock{
     margin: 0;
     margin-outside: 5px;
