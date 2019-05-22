@@ -94,19 +94,19 @@
     </div>
     <script>$(document).ready(function(){CKEDITOR.replace( 'description' );});</script>
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        $().ready(function () {
-            $('.btn').on('click',function () {
-                var year = $('.year').val();
-                if(year < 1990 || year > 2019 ){
-                    alert('Please enter the  correct date from 1980 to 2019 year !');
-                    $('.year').empty();
-                }
+    {{--<script>--}}
+        {{--$().ready(function () {--}}
+            {{--$('.btn').on('click',function () {--}}
+                {{--var year = $('.year').val();--}}
+                {{--if(year < 1990 || year > 2019 ){--}}
+                    {{--alert('Please enter the  correct date from 1980 to 2019 year !');--}}
+                    {{--$('.year').empty();--}}
+                {{--}--}}
 
-            })
+            {{--})--}}
 
-        });
-    </script>
+        {{--});--}}
+    {{--</script>--}}
 
 
     <script>
