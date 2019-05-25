@@ -661,6 +661,9 @@ header .auth .login-content .login-form .social-icons {
     padding-left: 10px;
     padding-bottom: 25px;
 }
+ .btn {
+     white-space: normal;
+}
 
 header .auth .navbar-nav > li.active {
     z-index: 999;
