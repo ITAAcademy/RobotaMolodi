@@ -1,6 +1,6 @@
 <link href="{{ asset('/css/resumes/resumesList.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/paginator/paginator.css') }}" rel="stylesheet">
-
+ 
 <div class="test">
     @foreach ($resumes as $resume)
         <div>
@@ -11,7 +11,7 @@
                 <h4>
                     <strong>{{$resume->salary}} - {{$resume->salary_max}} {{ $resume->currency->currency }}</strong>
                 </h4>
-                <p class="text-left"> {{strip_tags($resume->description)}} </p>
+                <p class="overflow text-left"> {{strip_tags($resume->description)}} </p>
             </div>
 
             <div class="section-link__right">

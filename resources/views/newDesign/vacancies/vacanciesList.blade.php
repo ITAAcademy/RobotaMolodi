@@ -12,7 +12,7 @@
                             <h4>
                                 <strong>{{$vacancy->salary}} - {{$vacancy->salary_max}} {{$vacancy->Currency()[0]['currency']}}</strong>
                             </h4>
-                            <p class="text-left"> {{strip_tags($vacancy->description)}} </p>
+                            <p class="overflow text-left"> {{strip_tags($vacancy->description)}} </p>
                         </div>
 
                 <div class="section-link__right">
