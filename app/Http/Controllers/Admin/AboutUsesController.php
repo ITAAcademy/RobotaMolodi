@@ -49,13 +49,15 @@ class AboutUsesController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'title'               => 'required',
+            'title'               => 'required|max:255',
             'short_description'   => 'required',
             'description'         => 'required',
             'published'           => 'required',
             'year'                => 'required',
             'icon'                => 'required',
             'multi_files'         => 'required',
+            'start_date'          => 'date_format:Y',
+            'end_date'            => 'date_format:Y|after:start_date',
         ];
 
         $this->validate($request,$rules);
