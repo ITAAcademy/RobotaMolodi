@@ -64,7 +64,7 @@ class ResponseController extends Controller
             $user = Auth::user();
             $to = $vacancy->user_email;
             $message->from($user->email, $user->name);
-            $message->to($to, $vacancy->position)->subject('Резюме по вакансії ');
+            $message->to($to, $vacancy->position)->subject('Резюме по вакансії '.$vacancy->position);
             $message->attach($uploadFile);
         });
 
