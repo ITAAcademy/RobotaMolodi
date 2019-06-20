@@ -14,8 +14,9 @@
 		"guzzlehttp/guzzle": "~6.0",
 		"laravel/socialite": "~2.0",
 		"tinify/tinify": "^1.5",
-		"illuminate/filesystem": "5.*"
-	},
+		"illuminate/filesystem": "5.*",
+      "ext-json": "*"
+    },
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",

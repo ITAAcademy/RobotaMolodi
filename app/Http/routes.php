@@ -16,6 +16,10 @@ use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
 
+Route::post('c_id', 'AuthCidController@checkClientid');
+Route::post('c_secret', 'AuthCidController@CheckClientSecret');
+Route::get('token', 'AuthCidController@CheckAccessToken');
+
 Route::get('language/{lang}', function($lang){
 
     if (in_array($lang, Config::get('app.locales'))) {

@@ -19,7 +19,7 @@ class Slider extends Model
     
     public $timestamps = false;
     
-    private $path = 'uploads/sliders/';
+    private $path = 'uploads/news/';
     
     public function getPath(){
         return $this->path;
