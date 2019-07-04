@@ -16,9 +16,10 @@ use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
 
-Route::post('c_id', 'AuthCidController@checkClientid');
-Route::post('c_secret', 'AuthCidController@CheckClientSecret');
-Route::get('token', 'AuthCidController@CheckAccessToken');
+Route::get('ClientIdGenerate','AuthCidController@ClientIdGenerate');
+Route::post('client_id', 'AuthCidController@CheckClientId');
+Route::post('request_token', 'AuthCidController@CheckRequestToken');
+Route::post('access_token', 'AuthCidController@CheckAccessToken');
 
 Route::get('language/{lang}', function($lang){
 
