@@ -84,6 +84,13 @@
                 </div>
             </div>
         </a>
+        <a href="{{route('admin.client-id.index')}}">
+            <div class="row">
+                <div class="col 112">
+                    <li><p>ClientId</p></li>
+                </div>
+            </div>
+        </a>
     </ol>
 </div>
 

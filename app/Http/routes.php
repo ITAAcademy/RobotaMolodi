@@ -16,10 +16,9 @@ use JsonSchema\Validator;
 use Illuminate\Support\Facades\Input;
 use App\Models\Vacancy;
 
-Route::get('ClientIdGenerate','AuthCidController@ClientIdGenerate');
-Route::post('client_id', 'AuthCidController@CheckClientId');
-Route::post('request_token', 'AuthCidController@CheckRequestToken');
-Route::post('access_token', 'AuthCidController@CheckAccessToken');
+Route::post('client_id', 'ClientIdController@CheckClientId');
+Route::post('request_token', 'ClientIdController@CheckRequestToken');
+Route::post('access_token', 'ClientIdController@CheckAccessToken');
 
 Route::get('language/{lang}', function($lang){
 
@@ -95,6 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('/vacancies', 'Admin\VacanciesController');
     Route::post('/vacancies/{id}/set_un_block', ['as' => 'setVacancyUnBlock', 'uses' => 'Admin\VacanciesController@setUnBlock']);
     Route::resource('/resumes', 'Admin\ResumesController');
+    Route::resource('/client-id', 'Admin\ClientIdGenerateController');/////////////////////////////////////////////////////////////////////////
     Route::post('/resumes/{id}/set_un_block', ['as' => 'setResumeUnBlock', 'uses' => 'Admin\ResumesController@setUnBlock']);
     Route::post('/industry/set_main', ['as'=>'setMainIndustry', 'uses'=>'Admin\IndustryController@setMainIndustry']);
     Route::post('save/category', ['as' => 'saveCategory', 'uses' => 'Admin\SliderController@saveCategory']);
