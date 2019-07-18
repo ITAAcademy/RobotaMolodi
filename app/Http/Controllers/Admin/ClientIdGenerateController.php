@@ -19,7 +19,7 @@ class ClientIdGenerateController extends Controller
     public function index()
     {
         $clientsId = AboutParser::all();
-        return view('newDesign.admin.clientId.index', ['clients_id' => $clientsId]);
+        return view('newDesign.admin.parsers.index', ['clients_id' => $clientsId]);
     }
 
     /**
@@ -30,7 +30,7 @@ class ClientIdGenerateController extends Controller
     public function create()
     {
         $clientId = new AboutParser();
-        return view('newDesign.admin.clientId.create', ['client_id' => $clientId]);
+        return view('newDesign.admin.parsers.create', ['client_id' => $clientId]);
     }
 
     /**
@@ -45,12 +45,14 @@ class ClientIdGenerateController extends Controller
 
         $storeClientId = new AboutParser([
             'site_name' => $request->site_name,
-            'client_id' => $client_id
+            'client_id' => $client_id,
         ]);
+
         $storeClientId->save();
+        $storeClientId->where('client_id', $client_id)->update(['client_secret' => $client_secret]);
 
         $parser = AboutParser::where('client_id', $client_id)->first();
-        $parser->tokens()->create(['parser_id' => $parser->id, 'client_secret' => $client_secret]);
+        $parser->tokens()->create(['parser_id' => $parser->id]);
 
         return redirect()->route('admin.client-id.index');
     }
@@ -75,7 +77,7 @@ class ClientIdGenerateController extends Controller
     public function edit($id)
     {
         $client_id = AboutParser::find($id);
-        return view('newDesign.admin.clientId.edit', ['client_id' => $client_id]);
+        return view('newDesign.admin.parsers.edit', ['client_id' => $client_id]);
     }
 
     /**

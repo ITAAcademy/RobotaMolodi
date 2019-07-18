@@ -17,7 +17,8 @@ class ClientIdController extends Controller
     public function CheckClientId(Request $request)
     {
         $this->validate($request, [
-            'client_id' => 'required|exists:about_parsers,client_id'
+            'client_id' => 'required|exists:about_parsers,client_id',
+            'client_secret' => 'required|exists:about_parsers,client_secret'
         ]);
 
         $request_token = Str::random(64);
@@ -27,8 +28,8 @@ class ClientIdController extends Controller
 
         $res = array(
             'client_id' => $request->client_id,
-            'token' => $request_token,
-            'client_secret' => $parser->tokens()->where('parser_id', $parser->id)->first()->client_secret,
+            'request_token' => $request_token,
+            'client_secret' => $parser->where('client_id', $request->client_id)->first()->client_secret,
         );
 
         return $res;
@@ -40,7 +41,7 @@ class ClientIdController extends Controller
         $this->validate($request, [
             'client_id' => 'required|exists:about_parsers,client_id',
             'request_token' => 'required|exists:parser_tokens,request_token',
-            'client_secret' => 'required|exists:parser_tokens,client_secret'
+            'client_secret' => 'required|exists:about_parsers,client_secret'
         ]);
 
         $access_token = Str::random(64);
@@ -62,7 +63,6 @@ class ClientIdController extends Controller
             'access_token' => 'required|exists:parser_tokens,access_token'
         ]);
 
-        return 42;
         $file = $request->file; //file('D:\xampp\htdocs\file.txt');
         $file = json_decode($file[0]);
         $file = json_decode($file->data);

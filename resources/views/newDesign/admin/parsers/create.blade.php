@@ -5,7 +5,7 @@
         <h4 class="contentAndmin">Створити ClientId</h4>
 
         {!! Form::open(array('url' => '/admin/client-id', 'method' => 'POST')) !!}
-        @include('newDesign.admin.clientId._form')
+        @include('newDesign.admin.parsers._form')
         {!! Form::close() !!}
     </div>
 @endsection

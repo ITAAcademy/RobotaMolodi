@@ -84,10 +84,15 @@
                 </div>
             </div>
         </a>
+        <div class="row blocked">
+            <div class="col l12">
+                <li><p align="center" class="blockedContent">Сторонні сервіси</p></li>
+            </div>
+        </div>
         <a href="{{route('admin.client-id.index')}}">
             <div class="row">
                 <div class="col 112">
-                    <li><p>ClientId</p></li>
+                    <li><p>Парсери</p></li>
                 </div>
             </div>
         </a>

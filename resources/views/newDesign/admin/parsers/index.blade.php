@@ -20,8 +20,9 @@
             <thead>
                 <tr>
                     <th>№ п/п</th>
-                    <th>Site_Name</th>
+                    <th>Назва сайту</th>
                     <th>Client_id</th>
+                    <th>Client_secret</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -34,6 +35,9 @@
 
                         <td data-id="{{$client_id->id}}">
                             {{ $client_id->client_id }}
+                        </td>
+                        <td data-id="{{$client_id->client_secret}}">
+                            {{ $client_id->client_secret }}
                         </td>
                         <td>
                             <div>
