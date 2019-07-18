@@ -9,7 +9,7 @@
         @endif
         <div class="createNews">
             <div class="row">
-                <a href="{{ URL::route('admin.client-id.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
+                <a href="{{ URL::route('admin.parsers.create') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a><br>
                 <div>
                     <h4 style="text-align: center">Список парсерів</h4>
                 </div>
@@ -42,10 +42,10 @@
                         <td>
                             <div>
                             <span style="display: inline-block">
-                                <a href="{{ route('admin.client-id.edit', $client_id->id) }}"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('admin.parsers.edit', $client_id->id) }}"><i class="fa fa-edit"></i></a>
                             </span>
                                 <span style="display: inline-block">
-                                {!! Form::open(['method' => 'DELETE','route' => ['admin.client-id.destroy', $client_id->id]]) !!}
+                                {!! Form::open(['method' => 'DELETE','route' => ['admin.parsers.destroy', $client_id->id]]) !!}
                                     {!! Form::submit('&#xf014;', [' class' => 'fa']) !!}
                                     {!! Form::close() !!}
                             </span>
