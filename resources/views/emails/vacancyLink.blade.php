@@ -1,4 +1,4 @@
-<br/>
-Name : {{$user->name}}<br/>
+Ви отримали посилання.<br/>
+Name: {{$user->name}}<br/>
 Email: {{$user->email}}<br/>
-Link: {{ $link }} <br/>
+Link: {{ $link }}
