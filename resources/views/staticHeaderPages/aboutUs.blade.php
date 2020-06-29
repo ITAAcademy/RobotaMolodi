@@ -358,16 +358,6 @@
                                                     </a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_4.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_4.jpg')}}"/>
-                                                    </a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_5.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_5.jpg')}}"/>
-                                                    </a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_6.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_6.jpg')}}"/>
                                                     </a>
@@ -383,11 +373,6 @@
                                                     </a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_9.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_9.jpg')}}"/>
-                                                    </a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_10.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_10.jpg')}}"/>
                                                     </a>
@@ -400,7 +385,7 @@
                                             <span>2019</span>
                                         </div>
                                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
-                                            <p>{{ trans('aboutus.19text') }}</p>
+                                            <p>{!! trans('aboutus.19text') !!}</p>
                                             <div class="row galleries">
                                                 <div class="gallery-item">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_1.jpg')}}">
