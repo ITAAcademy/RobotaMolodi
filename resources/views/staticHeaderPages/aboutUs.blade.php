@@ -395,6 +395,56 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2019</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{{ trans('aboutus.19text') }}</p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_3.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_4.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_9.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_10.jpg')}}"/></a>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
