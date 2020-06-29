@@ -42,5 +42,5 @@ return [
     'in2018_4' =>' - за фінансування корпорації SAP разом із Ресурсним центром ГУРТ. ',
     'hackathon_YEPS' =>'хакатон YEPS',
     'Hackers_school' => 'Школою Хакерів ',
-
+    '19text' => 'У 2019 році організували <a href="https://profitday.info/">дні кар’єри «PROFIT DAY»</a> в більше, ніж половині областей України - наймасовіші заходи відбулись в <a href="https://www.facebook.com/events/1047590505427504/">Києві</a>, <a href="https://www.facebook.com/events/2265360083784274/">Тернополі</a>, <a href="https://www.facebook.com/events/419832868786842/">Одесі</a>, <a href="https://www.facebook.com/events/2245711582417143/">Вінниці</a>, <a href="https://www.facebook.com/events/2061232660835672/">Львові</a>. Спільно із Школою Хакерів влітку у м. Вінниці провели 4-х тижневий ІТ-табір для дітей 10-17 років. У рамках допомоги учасникам АТО, <a href="https://intita.com/graduate">провели супровід у працевлаштуванні ветеранів АТО - випускників Вінницької ІТ-Академії</a>. Виступили співорганізатором хакатону - <a href="https://www.facebook.com/events/it-academy-vinnytsia/kodaday-ita-hackathon/327451467731782/">Kodaday. Hackathon ITA</a>. Спільно з iHUB та Академії Cisco виступили співорганізатором просвітницького ІТ-заходу для старшокласників  - Знайомтесь - Інтернет речей.'
     ];
