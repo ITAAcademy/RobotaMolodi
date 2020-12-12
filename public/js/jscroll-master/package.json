@@ -32,7 +32,7 @@
   },
   "homepage": "http://jscroll.com",
   "dependencies": {
-    "jquery": "^1.7.4"
+    "jquery": "^3.5.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
