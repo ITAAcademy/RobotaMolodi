@@ -40,7 +40,6 @@ class City extends Model {
     public function scopeGetCityName($id)
     {
         $res = City::find($id);
-        dd($res);
         return $res;
     }
 }

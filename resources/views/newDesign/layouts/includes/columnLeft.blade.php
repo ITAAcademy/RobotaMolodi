@@ -41,6 +41,7 @@
                 </div>
             </div>
         </a>
+
         <a href="{{route('admin.users.index')}}">
             <div class="row">
                 <div class="col l12">
@@ -70,6 +71,7 @@
                 </div>
             </div>
         </a>
+
         <a href="{{route('admin.vacancies.index')}}">
             <div class="row">
                 <div class="col l12">
@@ -77,10 +79,25 @@
                 </div>
             </div>
         </a>
+
         <a href="{{route('admin.resumes.index')}}">
             <div class="row">
                 <div class="col l12">
                     <li><p>Резюме</p></li>
+                </div>
+            </div>
+        </a>
+
+        <div class="row blocked">
+            <div class="col l12">
+                <li><p align="center" class="blockedContent">Сторонні сервіси</p></li>
+            </div>
+        </div>
+
+        <a href="{{route('admin.parsers.index')}}">
+            <div class="row">
+                <div class="col l12">
+                    <li><p>Парсери</p></li>
                 </div>
             </div>
         </a>

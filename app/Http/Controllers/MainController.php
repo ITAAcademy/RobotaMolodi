@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\CityCheck;
 use App\Models\Rating;
 use App\Models\Resume;
 use App\Models\News;
@@ -70,6 +71,8 @@ class MainController extends Controller
                 'vacancies' => $vacancies,
             ));
         }
+        $cities = CityCheck::where('city_id', 0)->get();
+        //dd($cities);
         $vacancies = Vacancy::allVacancies()->isActive()->unblockVacancies()->paginate();
         $specialisations = Vacancy::groupBy('position')->lists('position');
         Filter::routeFilterPaginator($request, $vacancies);
