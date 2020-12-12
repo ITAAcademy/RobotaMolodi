@@ -123,19 +123,21 @@
                 <div align="right">
                     {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send'])!!}
                 </div>
-
+                
                 {!!Form::close()!!}
             </div>
-
-            <div id="send-file-vacancy" class="row">
+            
+            <div id="send-file-vacancy" class="row" style="margin-left: 10px">
+                {!!Html::script('js/validateFile.js')!!}
                 {!!Form::open(['route' => ['vacancy.response.sendFile',$vacancy->id],'method'=>"POST", 'enctype' => 'multipart/form-data', 'files' => true])!!}
-                {!! Form::file('file',array('class' => 'open-file-vac', 'id'=>'File', 'name' => 'FileName')) !!}
+                {!! Form::file('file',array('class' => 'open-file-vac', 'onchange' => 'ValidateSize(this)', 'accept' => '.pdf,.doc,.docx,.odt,.rtf,.txt', 'id'=>'File', 'name' => 'FileName')) !!}
                 <div align="right">
-                    {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send'])!!}
+                    {!!Form::submit(trans('vacancy.send'), ['class' => 'btn btn-warning btn-send', 'id' => 'buttonHide', 'style' => 'display: none;'])!!}
                 </div>
-
+                
                 {!!Form::close()!!}
             </div>
+            <p id="sizeExeption" style="display: none; color:red; margin-left: 15px">Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 30 мб.</p>
 
 
             <div id="send-resume-vacancy">

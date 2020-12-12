@@ -44,8 +44,18 @@ class ResponseController extends Controller
         $user = Auth::user();
         $uploadFile = UploadFile::upFile($request);
 
-        if($uploadFile==null){
-            $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 2 мб.';
+
+        //Check filesize
+        if(filesize($uploadFile) > 30000000){
+            $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 30 мб.';
+            return View::make('errors.uploadFileError', array('error' => $error));
+        }
+
+        //Check file extension
+        $allowed =  array('doc', 'docx', 'odt', 'rtf', 'txt', 'pdf');
+        $ext = pathinfo(strtolower($uploadFile), PATHINFO_EXTENSION);
+        if(!in_array($ext,$allowed) ) {
+            $error = 'Необхiдний формат файлу: doc, docx, odt, rtf, txt, pdf розмiром до 30 мб.';
             return View::make('errors.uploadFileError', array('error' => $error));
         }
 
