@@ -43,6 +43,8 @@ class ResponseController extends Controller
     {
         $user = Auth::user();
         $uploadFile = UploadFile::upFile($request);
+        $idResume = $request->input('resumeId');    
+        $linkResume = route('resume.show', $idResume);
 
 
         //Check filesize
@@ -59,7 +61,7 @@ class ResponseController extends Controller
             return View::make('errors.uploadFileError', array('error' => $error));
         }
 
-        Mail::send('emails.vacancyFile', ['user' => $user, 'file' =>$uploadFile], function ($message) use ($uploadFile, $id){
+        Mail::send('emails.vacancyFile', ['user' => $user, 'file' =>$uploadFile, 'link' => $linkResume], function ($message) use ($uploadFile, $id){
             $vacancy = Vacancy::find($id);
             $user = Auth::user();
             $to = $vacancy->user_email;
@@ -83,7 +85,7 @@ class ResponseController extends Controller
         $linkResume = route('resume.show', $idResume);
         $user = Auth::user();
 
-        Mail::send('emails.vacancyLink', ['user' => $user, 'link' => $linkResume], function ($message) use($id){
+        Mail::send('emails.vacancyResume', ['user' => $user, 'link' => $linkResume], function ($message) use($id){
             $vacancy = Vacancy::find($id);
             $user = Auth::user();
             $to = $vacancy->user_email;

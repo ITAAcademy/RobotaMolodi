@@ -1,5 +1,5 @@
-<br/>
-From : {{$user->name}}<br/>
-To : {{$user->email}}<br/>
-Resume{{$resume->id}}
+Ви отримали резюме.<br/>
+Name: {{$user->name}}<br/>
+Email: {{$user->email}}<br/>
+Resume:{{$link}}
 
