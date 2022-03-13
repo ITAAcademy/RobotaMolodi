@@ -36,7 +36,7 @@
                 <hr class="li-header-rows">
                 <li>
                     <i class="fa fa-phone" aria-hidden="true"></i>
-                    <a href="tel:+380432528267">+38-0432<strong>52-82-67</strong></a>
+                    <a href="tel:+380674311921">+38-067-431-19-21</a>
                 </li>
                 <li>
                     <i class="fa fa-envelope" aria-hidden="true"></i>

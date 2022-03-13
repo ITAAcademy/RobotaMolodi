@@ -28,7 +28,7 @@
             <i class="fa fa-phone-square" aria-hidden="true"></i>
         </div>
         <div class="col-sm-3 c_phone">
-            <p style="color:  #3f3e3e">+38-0432-52-82-67</p>
+            <p style="color:  #3f3e3e">+38-067-431-19-21</p>
         </div>
     </div>
     {{--<div class="row">--}}
