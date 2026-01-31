@@ -52,90 +52,98 @@
 	<script src="{{ asset('./rm-scripts.js') }}"></script>
 </head>
 <body>
-    <div class="wrapper-page">
-			@include('header/header')
-			<div class="container container-main">
-				<div class="row">
-					<img src="https://ichef.bbci.co.uk/news/800/cpsprodpb/1B3B/production/_123617960_photo_2022-03-09_19-23-00.jpg.webp" class="img-responsive" style='margin: 0 auto;' alt="">
-					<h3>
-						Today we’re reaching out to you to ask to donate and contribute to peace in Ukraine. 
-					</h3>
-					<h4>
-						Donations and any other help are extremely important to our country to support the Ukrainian people and the Ukrainian army, defending not only our country but the whole world from russian aggressor.
-					</h4>
-					<h4>
-						Ukraine is being invaded by russia. Every day hundreds of civilians including children and women are killed, as russian troops ruthlessly bomb and shell Ukrainian cities.
-					</h4>
-					<h4>
-						Even your smallest support will make Ukraine stronger and get us closer to victory in the Russia-Ukraine war!
-					</h4>
-					</br>
-					<dl>
-						<p>
-							NATIONAL YOUTH NON-GOVERMENT ORGANIZATION "THE YOUTH EMPLOYMENT CENTRE"
-						</p>
-						<dt>Сurrency account:</dt>
-						<dd>USD</dd>
-						<dt>IBAN Code:</dt>
-						<dd>UA393006140000026004000012081</dd>
-						<dt>Назва банку / Name of the bank</dt>
-						<dd>JSC "CREDIT AGRICOLE BANK", 42/4 PUSHKINSKA STR., KYIV, 01024, UKRAINE</dd>
-						<dt>SWIFT code банку / Bank SWIFT Code</dt>
-						<dd>AGRIUAUK</dd>
-						<dt>Адреса підприємства / Company address</dt>
-						<dd>UA 21007 Вінницька, м. Вінниця, вул. Київська, б.52, кв. 95 </dd>
-						<dt>Банки кореспонденти / Correspondent banks</dt>
-						<dd>Рахунок в банку кореспонденті / Account in the correspondent bank: 20586620000</dd>
-						<dd>SWIFT Code банку-кореспондента / SWIFT Code of the correspondent bank: AGRIFRPP</dd>
-						<dd>Банк кореспондент / Correspondent bank: CREDIT AGRICOLE SA (FRANCE); 12, PLACE DES ETATS-UNIS 92127 MONTROUGE CEDEX, FRANCE</dd>
-						<dt>Payment details:</dt>
-						<dd>non-refundable financial assistance</dd>
-					</dl>
-					
-					<dl>
-						<p>
-							NATIONAL YOUTH NON-GOVERMENT ORGANIZATION "THE YOUTH EMPLOYMENT CENTRE"
-						</p>
-						<dt>Сurrency account:</dt>
-						<dd>EUR</dd>
-						<dt>IBAN Code:</dt>
-						<dd>UA393006140000026004000012081</dd>
-						<dt>Назва банку / Name of the bank</dt>
-						<dd>JSC "CREDIT AGRICOLE BANK", 42/4 PUSHKINSKA STR., KYIV, 01024, UKRAINE</dd>
-						<dt>SWIFT code банку / Bank SWIFT Code</dt>
-						<dd>AGRIUAUK</dd>
-						<dt>Адреса підприємства / Company address</dt>
-						<dd>UA 21007 Вінницька, м. Вінниця, вул. Київська, б.52, кв. 95 </dd>
-						<dt>Банки кореспонденти / Correspondent banks</dt>
-						<dd>Рахунок в банку кореспонденті / Account in the correspondent bank: 20586612000</dd>
-						<dd>SWIFT Code банку-кореспондента / SWIFT Code of the correspondent bank: AGRIFRPP</dd>
-						<dd>Банк кореспондент / Correspondent bank: CREDIT AGRICOLE SA (FRANCE); 12, PLACE DES ETATS-UNIS 92127 MONTROUGE CEDEX, FRANCE</dd>
-						<dt>Payment details:</dt>
-						<dd>non-refundable financial assistance</dd>
-					</dl>
+{{--    <div class="wrapper-page">--}}
+{{--			@include('header/header')--}}
+{{--			<div class="container container-main">--}}
+{{--				<div class="row">--}}
+{{--					<img src="https://ichef.bbci.co.uk/news/800/cpsprodpb/1B3B/production/_123617960_photo_2022-03-09_19-23-00.jpg.webp" class="img-responsive" style='margin: 0 auto;' alt="">--}}
+{{--					<h3>--}}
+{{--						Today we’re reaching out to you to ask to donate and contribute to peace in Ukraine. --}}
+{{--					</h3>--}}
+{{--					<h4>--}}
+{{--						Donations and any other help are extremely important to our country to support the Ukrainian people and the Ukrainian army, defending not only our country but the whole world from russian aggressor.--}}
+{{--					</h4>--}}
+{{--					<h4>--}}
+{{--						Ukraine is being invaded by russia. Every day hundreds of civilians including children and women are killed, as russian troops ruthlessly bomb and shell Ukrainian cities.--}}
+{{--					</h4>--}}
+{{--					<h4>--}}
+{{--						Even your smallest support will make Ukraine stronger and get us closer to victory in the Russia-Ukraine war!--}}
+{{--					</h4>--}}
+{{--					</br>--}}
+{{--					<dl>--}}
+{{--						<p>--}}
+{{--							NATIONAL YOUTH NON-GOVERMENT ORGANIZATION "THE YOUTH EMPLOYMENT CENTRE"--}}
+{{--						</p>--}}
+{{--						<dt>Сurrency account:</dt>--}}
+{{--						<dd>USD</dd>--}}
+{{--						<dt>IBAN Code:</dt>--}}
+{{--						<dd>UA393006140000026004000012081</dd>--}}
+{{--						<dt>Назва банку / Name of the bank</dt>--}}
+{{--						<dd>JSC "CREDIT AGRICOLE BANK", 42/4 PUSHKINSKA STR., KYIV, 01024, UKRAINE</dd>--}}
+{{--						<dt>SWIFT code банку / Bank SWIFT Code</dt>--}}
+{{--						<dd>AGRIUAUK</dd>--}}
+{{--						<dt>Адреса підприємства / Company address</dt>--}}
+{{--						<dd>UA 21007 Вінницька, м. Вінниця, вул. Київська, б.52, кв. 95 </dd>--}}
+{{--						<dt>Банки кореспонденти / Correspondent banks</dt>--}}
+{{--						<dd>Рахунок в банку кореспонденті / Account in the correspondent bank: 20586620000</dd>--}}
+{{--						<dd>SWIFT Code банку-кореспондента / SWIFT Code of the correspondent bank: AGRIFRPP</dd>--}}
+{{--						<dd>Банк кореспондент / Correspondent bank: CREDIT AGRICOLE SA (FRANCE); 12, PLACE DES ETATS-UNIS 92127 MONTROUGE CEDEX, FRANCE</dd>--}}
+{{--						<dt>Payment details:</dt>--}}
+{{--						<dd>non-refundable financial assistance</dd>--}}
+{{--					</dl>--}}
+{{--					--}}
+{{--					<dl>--}}
+{{--						<p>--}}
+{{--							NATIONAL YOUTH NON-GOVERMENT ORGANIZATION "THE YOUTH EMPLOYMENT CENTRE"--}}
+{{--						</p>--}}
+{{--						<dt>Сurrency account:</dt>--}}
+{{--						<dd>EUR</dd>--}}
+{{--						<dt>IBAN Code:</dt>--}}
+{{--						<dd>UA393006140000026004000012081</dd>--}}
+{{--						<dt>Назва банку / Name of the bank</dt>--}}
+{{--						<dd>JSC "CREDIT AGRICOLE BANK", 42/4 PUSHKINSKA STR., KYIV, 01024, UKRAINE</dd>--}}
+{{--						<dt>SWIFT code банку / Bank SWIFT Code</dt>--}}
+{{--						<dd>AGRIUAUK</dd>--}}
+{{--						<dt>Адреса підприємства / Company address</dt>--}}
+{{--						<dd>UA 21007 Вінницька, м. Вінниця, вул. Київська, б.52, кв. 95 </dd>--}}
+{{--						<dt>Банки кореспонденти / Correspondent banks</dt>--}}
+{{--						<dd>Рахунок в банку кореспонденті / Account in the correspondent bank: 20586612000</dd>--}}
+{{--						<dd>SWIFT Code банку-кореспондента / SWIFT Code of the correspondent bank: AGRIFRPP</dd>--}}
+{{--						<dd>Банк кореспондент / Correspondent bank: CREDIT AGRICOLE SA (FRANCE); 12, PLACE DES ETATS-UNIS 92127 MONTROUGE CEDEX, FRANCE</dd>--}}
+{{--						<dt>Payment details:</dt>--}}
+{{--						<dd>non-refundable financial assistance</dd>--}}
+{{--					</dl>--}}
 
-					<dl>
-						<p>
-							ВСЕУКРАЇНСЬКА МОЛОДІЖНА ГРОМАДСЬКА ОРГАНІЗАЦІЯ “МОЛОДІЖНИЙ ЦЕНТР ПРАЦЕВЛАШТУВАННЯ”
-						</p>
-						<dt>Валюта</dt>
-						<dd>ГРН</dd>
-						<dt>IBAN Code:</dt>
-						<dd>UA 393006140000026004000012081</dd>
-						<dt>Назва банку / Name of the bank</dt>
-						<dd>АТ “КРЕДІ АГРІКОЛЬ БАНК”</dd>
-						<dt>ЄДРПОУ</dt>
-						<dd>35662522</dd>
-						
-						<dt>Призначення платежу:</dt>
-						<dd>безповоротна фінансова допомога</dd>
-					</dl>
-						@include('main/mainContent')
-				</div>
+{{--					<dl>--}}
+{{--						<p>--}}
+{{--							ВСЕУКРАЇНСЬКА МОЛОДІЖНА ГРОМАДСЬКА ОРГАНІЗАЦІЯ “МОЛОДІЖНИЙ ЦЕНТР ПРАЦЕВЛАШТУВАННЯ”--}}
+{{--						</p>--}}
+{{--						<dt>Валюта</dt>--}}
+{{--						<dd>ГРН</dd>--}}
+{{--						<dt>IBAN Code:</dt>--}}
+{{--						<dd>UA 393006140000026004000012081</dd>--}}
+{{--						<dt>Назва банку / Name of the bank</dt>--}}
+{{--						<dd>АТ “КРЕДІ АГРІКОЛЬ БАНК”</dd>--}}
+{{--						<dt>ЄДРПОУ</dt>--}}
+{{--						<dd>35662522</dd>--}}
+{{--						--}}
+{{--						<dt>Призначення платежу:</dt>--}}
+{{--						<dd>безповоротна фінансова допомога</dd>--}}
+{{--					</dl>--}}
+{{--						@include('main/mainContent')--}}
+{{--				</div>--}}
+{{--			</div>--}}
+{{--			@include('footer/footer')--}}
+{{--    </div>--}}
+	<div class="wrapper-page">
+		@include('header/header')
+		<div class="container container-main">
+			<div class="row">
+				@include('main/mainContent')
 			</div>
-			@include('footer/footer')
-    </div>
-
+		</div>
+		@include('footer/footer')
+	</div>
 	<script>
         $(document).ready(function() {
             $(document).on("click", ".likeDislike", function (e) {

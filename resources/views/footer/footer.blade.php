@@ -5,7 +5,7 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.information') }}</li>
                 <hr class="li-header-rows">
                 <li><a href="about_us">{{ trans('footer.about') }}</a></li>
-                <li><a href="https://profitday.info/allcompanies" target="_blank">{{ trans('footer.partners') }}</a></li>
+{{--                <li><a href="https://profitday.info/allcompanies" target="_blank">{{ trans('footer.partners') }}</a></li>--}}
                 <li><a href="#" target="_blank">{{ trans('footer.support') }}</a></li>
                 <li><a href="#" target="_blank">{{ trans('footer.business_ideas') }}</a></li>
             </ul>
@@ -16,7 +16,7 @@
                 <li class="li_header"><img src="{{asset('image/redHat.png')}}">{{ trans('footer.education') }}</li>
                 <hr>
                 <li><a href="#" target="_blank">{{ trans('footer.schools') }}</a></li>
-                <li><a href="https://profitday.info/upcomingevents" target="_blank">{{ trans('footer.training') }}</a></li>
+                <li><a href="https://profitday.info/" target="_blank">{{ trans('footer.training') }}</a></li>
                 <li><a href="https://intita.com/courses" target="_blank">{{ trans('footer.courses') }}</a></li>
                 <li><a href="#" target="_blank">{{ trans('footer.education_abroad') }}</a></li>
             </ul>

@@ -215,7 +215,7 @@
                                             <span>2016</span>
                                         </div>
                                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
-                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="http://www.profitday.info/datedevents?year=2016">«PROFIT DAY»</a>   {{ trans('aboutus.cycleofevents') }}</p>
+                                            <p>{{ trans('aboutus.organiztprovide') }} <a href="https://profitday.info">«PROFIT DAY»</a>   {{ trans('aboutus.cycleofevents') }}</p>
                                             <div class="row galleries ">
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2016_1.jpg')}}">
@@ -269,7 +269,7 @@
                                             <span>2017</span>
                                         </div>
                                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
-                                            <p>{{ trans('aboutus.in2017') }} <a href="https://profitday.info/datedevents?years%5B%5D=2017&cities%5B%5D=1&events%5B%5D=PROF+IT+Day">«PROFIT DAY»</a>   {{ trans('aboutus.events2017') }}</p>
+                                            <p>{{ trans('aboutus.in2017') }} <a href="https://profitday.info">«PROFIT DAY»</a>   {{ trans('aboutus.events2017') }}</p>
                                             <div class="row galleries ">
                                                 <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery"
@@ -358,23 +358,13 @@
                                                     </a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_6.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_6.jpg')}}"/>
-                                                    </a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_7.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_7.jpg')}}"/>
                                                     </a>
                                                 </div>
                                                 <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_8.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_8.jpg')}}"/>
-                                                    </a>
-                                                </div>
-                                                <div class="gallery-item nopadding">
-                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_10.jpg')}}">
-                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_10.jpg')}}"/>
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/gallery_2018_6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/resize/gallery_2018_6.jpg')}}"/>
                                                     </a>
                                                 </div>
                                             </div>
@@ -427,6 +417,241 @@
                                                     <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2019/photo_10.jpg')}}">
                                                         <img data-src="{{asset('image/aboutUsImages/gallery/2019/photo_10.jpg')}}"/></a>
                                                 </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2020-2022</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{!! trans('aboutus.20-22text_1') !!}</p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-3.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-4.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-9.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-10.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                            <p>{!! trans('aboutus.20-22text_2') !!} <a href="https://www.facebook.com/media/set/?set=a.3042062996033496&type=3" target="_blank">{!! trans('aboutus.20-22text_3') !!}</a></p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-11.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-11.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-12.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-12.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-13.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-13.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-14.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-14.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2022/2022-15.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2022/2022-15.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                            <p>{!! trans('aboutus.20-22text_4') !!} <a href="https://uspih.vn.ua" target="_blank">https://uspih.vn.ua</a></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2023</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{!! trans('aboutus.23text_1') !!} - <a href="https://intita.com/news/yak-dzhunu-otrimati-pershu-robotu-v-it-_1690890026" target="_blank">https://intita.com/news/yak-dzhunu-otrimati-pershu-robotu-v-it-_1690890026</a></p>
+                                            <p>{!! trans('aboutus.23text_2') !!} - <a href="https://getstrong.intita.com/ " target="_blank">https://getstrong.intita.com</a></p>
+                                            <p>{!! trans('aboutus.23text_3') !!} - <a href="https://intita.com/news/u-vinnici-aitivci-dvi-dobi-rozroblyali-antishahraiski-tehnologii_1698139147" target="_blank">https://intita.com/news/u-vinnici-aitivci-dvi-dobi-rozroblyali-antishahraiski-tehnologii_1698139147</a></p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-3.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-4.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-9.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-10.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2023/2023-1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2023/2023-1.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2024</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{!! trans('aboutus.24text_1') !!} - <a href="https://stem.intita.com" target="_blank">https://stem.intita.com</a></p>
+                                            <p>{!! trans('aboutus.24text_2') !!} - <a href="https://100.intita.com" target="_blank">https://100.intita.com</a></p>
+                                            <p>{!! trans('aboutus.24text_3') !!} - <a href="https://intita.com/news/narodzhennya-intelektualnogo-kapitalu-ukraini-v-vinnici_1734356974" target="_blank">https://intita.com/news/narodzhennya-intelektualnogo-kapitalu-ukraini-v-vinnici_1734356974</a></p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-3.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-4.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-5.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-9.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2024/2024-10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2024/2024-10.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row years">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 year">
+                                            <span>2025</span>
+                                        </div>
+                                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 year-text">
+                                            <p>{!! trans('aboutus.25text_1') !!}</p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-1.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-1.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-2.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-2.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-3.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-3.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-4.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-4.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-5.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-5.jpg')}}"/></a>
+                                                </div>
+                                            </div>
+                                            <p>{!! trans('aboutus.25text_2') !!}</p>
+                                            <div class="row galleries">
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-6.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-6.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-7.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-7.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-8.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-8.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-9.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-9.jpg')}}"/></a>
+                                                </div>
+                                                <div class="gallery-item">
+                                                    <a class="thumbnail gallery" href="{{asset('image/aboutUsImages/gallery/2025/2025-10.jpg')}}">
+                                                        <img data-src="{{asset('image/aboutUsImages/gallery/2025/2025-10.jpg')}}"/></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
