@@ -38,11 +38,11 @@
                     <span>{{ trans('header.carrierdays') }}</span>
                 </a>
             </div>
-            <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('https://profitday.info/allcompanies') }}" class="afterChange" target="_blank">
-                    <span>{{ trans('header.partners') }}</span>
-                </a>
-            </div>
+{{--            <div class="col-xs-12 list-modal-left">--}}
+{{--                <a href="{{ url('https://profitday.info/allcompanies') }}" class="afterChange" target="_blank">--}}
+{{--                    <span>{{ trans('header.partners') }}</span>--}}
+{{--                </a>--}}
+{{--            </div>--}}
             <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
                     <span>{{ trans('header.contacts') }}</span>
