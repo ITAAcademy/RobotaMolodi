@@ -13,6 +13,9 @@
         <div class="staticLinksMenu">
             <a class="btn" href="{{ url('https://profitday.info')}}" target="_blank">{{trans('header.carrierdays')}}</a>
         </div>
+        <div class="staticLinksMenu">
+            <a class="btn" href="{{ url('documents') }}">{{trans('header.documents')}}</a>
+        </div>
 {{--        <div class="staticLinksMenu">--}}
 {{--            <a class="btn" href="{{ url('https://profitday.info/allcompanies')}}" target="_blank">{{trans('header.partners')}}</a>--}}
 {{--        </div>--}}

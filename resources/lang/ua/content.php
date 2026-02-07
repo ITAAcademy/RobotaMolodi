@@ -33,7 +33,8 @@ return [
         'editResume' => 'редагувати резюме',
         'contactus' => 'Звязатися з нами:',
         'aboutus' => 'Про нас',
-
+        'documents' => 'Документи',
+    
         'addCompany' => 'Додати компанію',
         'editCompany' => 'Редагувати компанію',
 

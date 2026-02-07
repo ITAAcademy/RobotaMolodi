@@ -13,4 +13,5 @@ return [
     'allvacancy' => 'Всі вакансії',
     'allcompany' => 'Всі компанії',
     'cabinet' => 'Особистий кабінет',
+    'documents' => 'Документи',
 ];
