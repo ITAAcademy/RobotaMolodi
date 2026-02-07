@@ -13,4 +13,5 @@ return [
     'allvacancy' => 'All Vacancies',
     'allcompany' => 'All Companies',
     'cabinet' => 'My Cabinet',
+    'documents' => 'Documents',
 ];

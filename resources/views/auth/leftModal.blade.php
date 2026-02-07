@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('news') }}" class="afterChange">
+                <a href="{{ url('https://intita.com/news') }}" class="afterChange">
                     <span>{{ trans('header.news') }}</span>
                 </a>
             </div>
@@ -44,12 +44,17 @@
 {{--                </a>--}}
 {{--            </div>--}}
             <div class="col-xs-12 list-modal-left">
+                <a href="{{ url('documents') }}" class="afterChange" target="_blank">
+                    <span>{{ trans('header.documents') }}</span>
+                </a>
+            </div>
+            <div class="col-xs-12 list-modal-left">
                 <a href="{{ url('/contacts') }}" class="afterChange">
                     <span>{{ trans('header.contacts') }}</span>
                 </a>
             </div>
             <div class="col-xs-12 list-modal-left">
-                <a href="{{ url('consults') }}" class="afterChange">
+                <a href="{{ url('sconsult') }}" class="afterChange">
                     <span>{{ trans('navtab.alladvisor') }}</span>
                 </a>
             </div>

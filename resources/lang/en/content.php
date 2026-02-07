@@ -33,7 +33,8 @@ return [
     'editResume' => 'edit resume',
     'contactus' => 'Contact us:',
     'aboutus' => 'About us',
-
+    'documents' => 'Documents',
+    
     'addCompany' => 'Add Company',
     'editCompany' => 'Edit Company',
 

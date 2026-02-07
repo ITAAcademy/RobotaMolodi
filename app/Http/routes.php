@@ -262,7 +262,6 @@ Route::post('deleleimg', ['as'=>'deleteimg', 'uses' => 'UploadFile@deleteResumeI
 //staticHeaderPages
 Route::get('about_us', function () {
     return view('staticHeaderPages.aboutUs');
-
 });
 Route::get('contacts', function () {
     return view('staticHeaderPages.contacts');
@@ -270,6 +269,7 @@ Route::get('contacts', function () {
 Route::get('policy', ['as' => 'policy', function () {
     return view('staticHeaderPages.politics_uses');
 }]);
+Route::get('documents', 'DocumentsController@index');
 
 Route::get('companies/{company}', 'Company\CompanyController@showCompanyVacancies');
 
