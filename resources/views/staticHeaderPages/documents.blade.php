@@ -17,7 +17,7 @@
                             <div class="documents__icon">
                                 <img src="{{ asset('image/document.svg') }}" alt="document">
                             </div>
-                            <div class="documents__name">{{ $doc['title'] }}</div>
+                            <div class="documents__name">{{ trans($doc['title_key']) }}</div>
                         </a>
                     @endforeach
                 </div>
