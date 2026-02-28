@@ -25,7 +25,6 @@
                                     <img src="{{asset('image/aboutUsImages/map_icon.png')}}" alt="map">
                                 </div>
                                 <div class="col-xs-12 col-sm-11 col-md-11 col-lg-11">
-                                    <p>{{ trans('aboutus.mainpurpose') }}</p>
                                     <p>{{ trans('aboutus.present') }}</p>
                                     <p>{{ trans('aboutus.highmember') }}</p>
                                     <div class="row years">

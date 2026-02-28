@@ -38,3 +38,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - php artisan db:seed 
 
 ## Conventions
+
+node 6
+.\node_modules\.bin\gulp watch
