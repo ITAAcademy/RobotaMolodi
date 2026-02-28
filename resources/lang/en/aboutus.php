@@ -21,7 +21,6 @@ return [
     'interactive' => ', which provides for the creation of an interactive information and analytical system of youth labor centers and student employment centers to automate, unify and improve the effectiveness of their work with young people and interaction with partners and with each other.',
     'charity' => 'In 2013, with the support of the an organization of Bogdan Havrylyshyn Charitable Foundation,',
     'realize' => 'realizes international project "Search for new mechanisms of youth employment"',
-    'mainpurpose' => 'The main objective is to study the experience of youth employment in Poland and to introduce this experience through concrete means in Ukraine.',
     '13provide' => 'In 2013-2014, the first time in Ukraine was held ',
     'sectoral' => 'industry fairs vacancies',
     'inparticular' => ', in particular in the IT field.',
